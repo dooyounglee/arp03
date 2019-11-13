@@ -28,19 +28,6 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService bService;
-
-	/*
-	 * @RequestMapping("blist.do") public String boardList(ModelAndView mv,
-	 * 
-	 * @RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
-	 * 
-	 * // System.out.println(currentPage);
-	 * 
-	 * return "board/boardListView";
-	 * 
-	 * }
-	 */
-	
 	
 	@RequestMapping("blist.do")
 	public ModelAndView boardList(ModelAndView mv,
@@ -61,9 +48,7 @@ public class BoardController {
 	@RequestMapping("binsert.do")
 	public String insertBoard(Board b, HttpServletRequest request, Model model,
 			@RequestParam(value = "uploadFile", required = false) MultipartFile file) {
-
 		int result = bService.insertBoard(b);
-
 		if (result > 0) {
 			return "redirect:blist.do";
 		} else {
@@ -81,12 +66,14 @@ public class BoardController {
 		String realFolder = root + "/buploadImages";
 		//String realFolder = request.getSession().getServletContext().getRealPath("buploadFiles");
 		
+		UUID uuid = UUID.randomUUID();
+		
 		// 업로드할 파일 이름
 		String org_filename = file.getOriginalFilename();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		
-		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + "."
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + uuid + "."
 				+ org_filename.substring(org_filename.lastIndexOf(".") + 1);
 		
 		//System.out.println("원본 파일명 : " + org_filename);

@@ -10,6 +10,6 @@
 	</select>
 	
 	<insert id="insertBoard">
-		insert into board values(SEQ_BOARD.nextval, #{m_no}, 1, #{title}, #{content}, sysdate, sysdate, default, default, default, default, default)
+		insert into board values(SEQ_BOARD.nextval, #{m_no}, default, #{title}, #{content}, sysdate, sysdate, default, default, default, default, default)
 	</insert>
 </mapper>
