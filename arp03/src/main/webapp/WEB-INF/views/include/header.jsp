@@ -22,7 +22,7 @@
 	
 	학생
 	<a href="lectureList.ad"><del>내 수강목록</del></a>
-	<a href="">자유 게시판</a>
+	<a href="blist.do">자유 게시판</a>
 	<a href="">내 문의</a>
 	<a href="">내 정보</a>
 	
@@ -30,7 +30,7 @@
 	
 	선생님
 	<a href="lectureList.ad"><del>내 수업목록</del></a>
-	<a href="">자유 게시판</a>
+	<a href="blist.do">자유 게시판</a>
 	<a href="tblist.do">선생님 게시판</a>
 	<a href="">내 문의</a>
 	<a href="">내 정보</a>

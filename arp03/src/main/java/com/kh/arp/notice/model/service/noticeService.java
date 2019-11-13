@@ -18,6 +18,15 @@ public interface noticeService {
 
 	// 공지사항 상세보기
 	Notice selectNotice(int n_no);
+
+	// 공지사항 수정하기
+	int updateNotice(Notice n);
+
+	// 수정하기 폼
+	Notice updateNoticeForm(int n_no);
+
+	// 공지사항 삭제
+	int deleteNotice(int n_no);
 	
 	
 }

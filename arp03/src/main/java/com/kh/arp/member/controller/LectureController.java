@@ -47,6 +47,7 @@ public class LectureController {
 		System.out.println(lec);
 		
 		int result=ms.makeLecture(lec);
+		System.out.println(result+"ddddddddd");
 		if(result>0) {
 			Lecture newlec=ms.getLastestLecture();
 			System.out.println(newlec);
