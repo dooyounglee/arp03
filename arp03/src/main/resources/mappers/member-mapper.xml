@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	<select id="login" resultType="Member">
+		select * from member where id=#{id} and pw=#{pw}
+	</select>
+	
+	<insert id="join">
+		update member set
+			id=#{id},
+			pw=#{pw},
+			name=#{name},
+			phone=#{phone},
+			regdate=sysdate,
+			updatedate=sysdate,
+			condate=sysdate,
+			status='Y'
+		where m_no=#{m_no}
+	</insert>
+	
+	<select id="getMemberList" resultType="Member">
+		select * from member
+	</select>
+	
+	<update id="banish">
+		update member set status='N' where m_no=#{m_no}
+	</update>
+	
+	<update id="banishCancle">
+		update member set status='Y' where m_no=#{m_no}
+	</update>
+	
+	<insert id="insertMember">
+		<if test='typee == "s"'>
+			insert into member(m_no,typee,email,status) values(seq_member.nextval,#{typee},#{email},default)
+		</if>
+		<if test='typee == "t"'>
+			insert into member(m_no,typee,email,status,name,phone) values(seq_member.nextval,#{typee},#{email},default,#{name},#{phone})
+		</if>
+	</insert>
+	
+	<select id="getAuth" resultType="Auth">
+		select * from auth where code=#{code} or email=#{email}
+	</select>
+	
+	<select id="getMember" resultType="Member">
+		select * from member where email=#{email} or id=#{id}
+	</select>
+	
+	<insert id="insertAuth">
+		insert into auth values(#{email},#{code})
+	</insert>
+	
+	<delete id="deleteAuth">
+		delete from auth where email=#{email}
+	</delete>
+
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="noticeMapper">
+
+
+
+<resultMap id="noticeResultSet" type="Notice">
+	<id property="n_no" column="n_no"/>
+	<result property="m_no" column="m_no"/>
+	<result property="title" column="title"/>
+	<result property="content" column="content"/>
+	<result property="regdate" column="regdate"/>
+	<result property="vcount" column="vcount"/>
+</resultMap>
+
+
+
+<insert id ="insertNotice">
+insert into Notice values(
+	seq_notice.nextval,
+	3,
+	#{title},
+	#{content},
+	sysdate,
+	default)
+</insert>
+
+<select id="getListCount" resultType="_int">
+select count(*)
+from notice
+</select>
+
+<select id="selectList" resultMap="noticeResultSet">
+select *
+from notice
+order by n_no desc
+</select>
+
+<update id="updateCount">
+	update board
+	set vcount = vcount+1
+	where n_no = #{n_no}
+</update>
+
+<select id="selectNotice" resultMap="noticeResultSet">
+	select *
+	from notice
+	where n_no=#{n_no}
+</select>
+
+
+</mapper>

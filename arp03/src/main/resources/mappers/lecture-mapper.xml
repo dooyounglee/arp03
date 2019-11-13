@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lectureMapper">
+	<select id="getClassList" resultType="Lecture">
+		select * from lecture
+	</select>
+	
+	<select id="getLecture" resultType="Lecture">
+		select * from lecture where lec_no=#{lec_no}
+	</select>
+	
+	<insert id="makeLecture">
+		insert into lecture values(
+			seq_lecture.nextval,
+			#{m_no},
+			#{title},
+			sysdate,<!-- to_date(#{startdate},'yyyy-mm-dd'), -->
+			sysdate,
+			#{inghour},
+			default,
+			#{content},
+			null,
+			#{headcount},
+			#{ingcount},
+			#{nth},
+			#{dayofweek},
+			#{place}
+		)
+	</insert>
+	
+	<select id="getLastestLecture" resultType="Lecture">
+		select * from (select * from lecture order by 1 desc) where rownum=1
+	</select>
+	
+	<insert id="insertClassdate">
+		insert into classdate values(#{lec_no},#{classdate},#{nth})
+	</insert>
+</mapper>

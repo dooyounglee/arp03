@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.kh.arp.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.kh.arp.member.model.vo.Auth" alias="Auth"/>
+		<typeAlias type="com.kh.arp.member.model.vo.Lecture" alias="Lecture"/>
+		<typeAlias type="com.kh.arp.board.model.vo.Board" alias="Board"/>
+		<typeAlias type="com.kh.arp.notice.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="com.kh.arp.question.model.vo.Question" alias="Question"/>
+
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="/mappers/member-mapper.xml"/>
+		<mapper resource="/mappers/lecture-mapper.xml"/>
+		<mapper resource="/mappers/tboard-mapper.xml"/>
+		<mapper resource="/mappers/notice-mapper.xml"/>
+		<mapper resource="/mappers/question-mapper.xml"/>
+	</mappers>
+</configuration>
