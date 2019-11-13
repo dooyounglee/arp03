@@ -26,8 +26,8 @@
 <c:forEach items="${ list }" var="n">
 	<tr>
 		<td>${ n.n_no }</td>
-		<td>${ n.title }</td>
-	  <td>관리자</td>
+		<td><a href="ndetail.ad?n_no=${ n.n_no }">${ n.title }</a></td>
+	  <td>admin</td>
 		<td>${ n.regdate }</td>
 		<td>${ n.vcount }</td>
 	</tr>

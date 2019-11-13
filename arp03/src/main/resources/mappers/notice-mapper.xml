@@ -37,9 +37,9 @@ order by n_no desc
 </select>
 
 <update id="updateCount">
-	update board
-	set vcount = vcount+1
-	where n_no = #{n_no}
+	update notice
+	set vcount=vcount+1
+	where n_no=#{n_no}
 </update>
 
 <select id="selectNotice" resultMap="noticeResultSet">
@@ -47,6 +47,12 @@ order by n_no desc
 	from notice
 	where n_no=#{n_no}
 </select>
+
+<update id="updateNotice">
+	update notice
+	set title=#{title} , content=#{content}
+	where n_no= #{n_no}
+</update>
 
 
 </mapper>

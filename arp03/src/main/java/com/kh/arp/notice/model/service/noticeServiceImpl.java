@@ -48,6 +48,19 @@ public class noticeServiceImpl implements noticeService{
 	
 	}
 
+	@Override
+	public int updateNotice(Notice n) {
+
+		return nDao.updateNotice(n);
+	
+	}
+
+	@Override
+	public Notice updateNoticeForm(int n_no) {
+		
+		return nDao.selectNotice(n_no);
+	}
+
 
 
 }
