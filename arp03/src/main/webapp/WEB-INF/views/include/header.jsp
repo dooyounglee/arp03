@@ -47,15 +47,14 @@
 	
 	<hr>
 	
-	관리자
-	<a href="lectureList.ad"><del>강좌관리</del></a>
+<a href="lectureList.ad"><del>강좌관리</del></a>
 	<a href="boardList.ad"><del>게시글 관리</del></a>
 	<a href="replyList.ad"><del>댓글 관리</del></a>
 	<a href="">문의관리</a>
 	<a href="declareList.ad"><del>신고관리</del></a>
 	<a href="memberList.ad"><del>회원관리</del></a>
 	<a href="nlist.ad"><del>공지사항</del></a>
-	<a href="">faq</a>
+	<a href="flist.ad">faq</a>
 <hr>
 </body>
 </html>
