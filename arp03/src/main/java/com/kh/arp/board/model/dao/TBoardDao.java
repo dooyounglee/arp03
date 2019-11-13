@@ -17,5 +17,22 @@ public class TBoardDao {
 	public ArrayList<Board> selectTBoardList(){
 		return (ArrayList)sqlSession.selectList("tboardMapper.selectTBoardList");
 	}
+	
+	public int insertTBoard(Board b) {
+	
+		return sqlSession.insert("tboardMapper.insertTBoard",b);
+	}
+	
+	public Board detailTBoard(int b_no) {
+		return  sqlSession.selectOne("tboardMapper.detailTBoard",b_no);
+	}
 
+	public Board updateTBoardForm(int b_no) {
+		return sqlSession.selectOne("tboardMapper.updateTBoardForm",b_no);
+	}
+	
+	public int updateTBoard(Board b) {
+		return sqlSession.update("tboardMapper.updateTBoard",b);
+		
+	}
 }

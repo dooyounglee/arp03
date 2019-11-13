@@ -20,4 +20,28 @@ public class TBoardServiceImpl implements TBoardService{
 		return tbDao.selectTBoardList();
 	}
 
+	@Override
+	public int insertTBoard(Board b) {
+		
+		return tbDao.insertTBoard(b);
+	}
+
+	@Override
+	public Board detailTBoard(int b_no) {
+
+		return tbDao.detailTBoard(b_no);
+	}
+
+	@Override
+	public Board updateTBoardForm(int b_no) {
+		
+		return tbDao.updateTBoardForm(b_no);
+	}
+
+	@Override
+	public int updateTBoard(Board b) {
+		
+		return tbDao.updateTBoard(b);
+	}
+
 }

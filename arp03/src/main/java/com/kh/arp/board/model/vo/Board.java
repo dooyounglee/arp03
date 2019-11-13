@@ -9,6 +9,7 @@ public class Board {
 	private int m_no;
 	private int ca_no;
 	private String title;
+	private String content;
 	private String regdate;
 	private String update_date;
 	private int vcount;
