@@ -98,9 +98,13 @@
 			for(i=0;i<limit;i++){
 				for(j=0;j<week.length;j++){
 					if(i==0 && ddd<=week[j]){
-						arr.push(date_add(start, 7*i+week[j]-ddd))
+						if(holiday.indexOf(date_add(start, 7*i+week[j]-ddd))==-1){
+							arr.push(date_add(start, 7*i+week[j]-ddd))
+						}
 					}else if(i!=0){
-						arr.push(date_add(start, 7*i+week[j]-ddd))
+						if(holiday.indexOf(date_add(start, 7*i+week[j]-ddd))==-1){
+							arr.push(date_add(start, 7*i+week[j]-ddd))
+						}
 					}
 					if(arr.length>=limit)break;
 				}
@@ -137,6 +141,7 @@
 	</script>
 	
 	<script>
+	var holiday=['2019-01-01','2019-05-05','2019-10-03','2019-12-25','2020-01-01'];
 	//var arrr=[];
 	
 	function calend(yyyy,mm){
