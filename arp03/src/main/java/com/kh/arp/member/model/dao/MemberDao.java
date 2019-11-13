@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Classdate;
 import com.kh.arp.member.model.vo.Lecture;
@@ -79,6 +80,18 @@ public class MemberDao {
 			sqlSession.insert("lectureMapper.insertClassdate",list.get(i));
 		}
 		return 1;
+	}
+
+	public List<Board> getBoardList() {
+		return sqlSession.selectList("adminMapper.getBoardList",null);
+	}
+
+	public int deleteBoard(Board b) {
+		return sqlSession.update("adminMapper.deleteBoard",b);
+	}
+
+	public int deleteCancleBoard(Board b) {
+		return sqlSession.update("adminMapper.deleteCancleBoard",b);
 	}
 
 }

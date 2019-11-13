@@ -48,8 +48,8 @@
 	
 	관리자
 	<a href="lectureList.ad"><del>강좌관리</del></a>
-	<a href="">자유 게시판 관리</a>
-	<a href="">선생님 게시판 관리</a>
+	<a href="boardList.ad"><del>게시글 관리</del></a>
+	<a href="replyList.ad">댓글 관리</a>
 	<a href="">문의관리</a>
 	<a href="">신고관리</a>
 	<a href="memberList.ad"><del>회원관리</del></a>

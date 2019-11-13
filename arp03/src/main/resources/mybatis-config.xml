@@ -15,6 +15,7 @@
 	</typeAliases>
 	
 	<mappers>
+		<mapper resource="/mappers/admin-mapper.xml"/>
 		<mapper resource="/mappers/member-mapper.xml"/>
 		<mapper resource="/mappers/lecture-mapper.xml"/>
 		<mapper resource="/mappers/tboard-mapper.xml"/>

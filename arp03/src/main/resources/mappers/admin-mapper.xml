@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminMapper">
+	<select id="getBoardList" resultType="Board">
+		select * from board
+	</select>
+	
+	<update id="deleteBoard">
+		update board set status='N' where b_no=#{b_no}
+	</update>
+	
+	<update id="deleteCancleBoard">
+		update board set status='Y' where b_no=#{b_no}
+	</update>
+	
+	
+
+</mapper>

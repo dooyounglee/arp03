@@ -3,6 +3,7 @@ package com.kh.arp.member.model.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Classdate;
 import com.kh.arp.member.model.vo.Lecture;
@@ -39,5 +40,11 @@ public interface MemberService {
 	int insertClassdate(ArrayList<Classdate> list);
 
 	Lecture getLastestLecture();
+
+	List<Board> getBoardList();
+
+	int deleteBoard(Board b);
+
+	int deleteCancleBoard(Board b);
 
 }

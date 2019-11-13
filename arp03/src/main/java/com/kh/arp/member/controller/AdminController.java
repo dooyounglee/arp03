@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.member.model.service.MemberService;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Lecture;
@@ -117,6 +118,32 @@ public class AdminController {
 	
 	
 	
+	
+	@RequestMapping("/boardList.ad")
+	public ModelAndView boardList(ModelAndView mv) {
+		List<Board> list=ms.getBoardList();
+		mv.addObject("list",list);
+		mv.setViewName("mypage/admin/boardList");
+		return mv;
+	}
+	
+	@PostMapping("/deleteBoard.ad")
+	public ModelAndView deleteBoardPost(Board b, ModelAndView mv) {
+		int result=ms.deleteBoard(b);
+		if(result>0) {
+			mv.setViewName("redirect:/boardList.ad");
+		}
+		return mv;
+	}
+	
+	@PostMapping("/deleteCancleBoard.ad")
+	public ModelAndView deleteCancleBoardPost(Board b, ModelAndView mv) {
+		int result=ms.deleteCancleBoard(b);
+		if(result>0) {
+			mv.setViewName("redirect:/boardList.ad");
+		}
+		return mv;
+	}
 	
 	
 	
