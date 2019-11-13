@@ -104,6 +104,18 @@ public ModelAndView detailNotice(int n_no ,ModelAndView mv) {
 	
 }
 
+@RequestMapping("ndelete.ad")
+public String deleteNotice(int n_no ,ModelAndView mv) {
+	
+	int result = nService.deleteNotice(n_no);
+	
+	if(result>0) {
+		return "redirect:nlist.ad";
+	}else {
+		return null;
+	}
+	
+}
 
 
 

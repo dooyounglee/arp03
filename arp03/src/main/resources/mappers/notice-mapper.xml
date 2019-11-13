@@ -54,5 +54,12 @@ order by n_no desc
 	where n_no= #{n_no}
 </update>
 
+<delete id="deleteNotice">
+
+	delete notice
+	where n_no = #{n_no}
+
+</delete>
+
 
 </mapper>

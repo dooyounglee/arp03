@@ -24,6 +24,9 @@ public interface noticeService {
 
 	// 수정하기 폼
 	Notice updateNoticeForm(int n_no);
+
+	// 공지사항 삭제
+	int deleteNotice(int n_no);
 	
 	
 }

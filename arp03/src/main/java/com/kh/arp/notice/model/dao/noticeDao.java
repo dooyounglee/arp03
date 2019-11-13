@@ -51,5 +51,11 @@ public class noticeDao {
 	}
 
 
+	public int deleteNotice(int n_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("noticeMapper.deleteNotice" ,n_no);
+	}
+
+
 	
 }
