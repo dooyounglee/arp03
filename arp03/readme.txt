@@ -4,4 +4,4 @@ doo
 minsang
 sira
 jieun
-yryr
+yr
