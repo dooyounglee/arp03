@@ -35,4 +35,8 @@ public class TBoardDao {
 		return sqlSession.update("tboardMapper.updateTBoard",b);
 		
 	}
+	
+	public int deleteTBoard(int b_no) {
+		return sqlSession.update("tboardMapper.deleteTBoard",b_no);
+	}
 }

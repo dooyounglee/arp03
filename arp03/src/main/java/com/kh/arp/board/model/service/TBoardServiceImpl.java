@@ -44,4 +44,10 @@ public class TBoardServiceImpl implements TBoardService{
 		return tbDao.updateTBoard(b);
 	}
 
+	@Override
+	public int deleteTBoard(int b_no) {
+
+		return tbDao.deleteTBoard(b_no);
+	}
+
 }

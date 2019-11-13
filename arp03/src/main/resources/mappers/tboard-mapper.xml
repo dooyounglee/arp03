@@ -6,7 +6,7 @@
 	<select id ="selectTBoardList" resultType="Board">
 		select * 
 		from board 
-		where ca_no=2
+		where ca_no=2 and status='Y'
 	</select>
 	
 	<insert id="insertTBoard">
@@ -43,6 +43,13 @@
 		set title=#{title}, content=#{content}, 
 		update_date=sysdate
 		where b_no=#{b_no}
+	</update>
+	
+	<update id="deleteTBoard">
+		update board 
+		set status='N'
+		 where b_no=#{b_no}
+	
 	</update>
 
 

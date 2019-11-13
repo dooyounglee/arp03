@@ -100,5 +100,19 @@ public class TBoardController {
 		
 	
 	}
+	
+	@RequestMapping("tbdelete.do")
+	public String deleteTBoard(int b_no) {
+		int result = tbService.deleteTBoard(b_no);
+		
+		if(result > 0) {
+			return "redirect:tblist.do";
+		}else {
+			return "common/errorPage";
+		}
+		
+		
+		
+	}
 
 }

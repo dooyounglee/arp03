@@ -21,5 +21,8 @@ public interface TBoardService {
 	
 	// 5. 선생님 게시판 글 수정용 서비스
 	int updateTBoard(Board b);
+	
+	// 6. 선생님 게시판 글 삭제용 서비스
+	int deleteTBoard(int b_no);
 
 }
