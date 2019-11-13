@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,33 +33,89 @@ public ModelAndView noticeList(ModelAndView mv) {
 	
 }
 
-@RequestMapping("ninsertForm.ad")
-public String insertNoticeForm() {
-	
-	return "notice/insertNoticeForm";
-	
-}
+
+
 	
 	
 @RequestMapping("ninsert.ad")
-public String insertNotice(Notice n , HttpServletRequest request) {
+public String insertNotice(Notice n , HttpServletRequest request , Model m) {
 	
 	int result = nService.insertNotice(n);
+	
+	
+	if(result>0) {
+		return "redirect:nlist.ad";
+
+	}else {
+		return null;
+	}
+}
+
+@RequestMapping("ninsertForm.ad")
+public String insertForm() {
+	return "notice/insertNoticeForm";
+}
+
+
+@RequestMapping("nupdateForm.ad")
+public ModelAndView updateForm(int n_no , ModelAndView mv) {
+	
+	Notice n = nService.updateNoticeForm(n_no);
+	
+	mv.addObject("n" , n).setViewName("notice/updateNoticeForm");
+	
+	return mv;
+	
+}
+
+
+@RequestMapping("nupdate.ad")
+public ModelAndView updateNotice(Notice n , ModelAndView mv) {
+	
+	int result = nService.updateNotice(n);
+	
+	
+	if(result > 0) {
+		
+		mv.addObject("n" , n).setViewName("redirect:nlist.ad");
+		
+	}else {
+		mv.addObject("msg" , "수정실패").setViewName("common/errorPage");
+	}
+	
+	return mv;
+}
+
+@RequestMapping("ndetail.ad")
+public ModelAndView detailNotice(int n_no ,ModelAndView mv) {
+	
+	Notice n = nService.selectNotice(n_no);
+	
+	if(n != null) {
+	
+		mv.addObject("n" ,n).setViewName("notice/detailNotice");
+		
+	}else {
+		mv.addObject("msg" ,"게시글 조회 실패").setViewName("common/errorPage");
+	}
+	
+	return mv;
+	
+	
+}
+
+@RequestMapping("ndelete.ad")
+public String deleteNotice(int n_no ,ModelAndView mv) {
+	
+	int result = nService.deleteNotice(n_no);
 	
 	if(result>0) {
 		return "redirect:nlist.ad";
 	}else {
 		return null;
 	}
-}
-
-@RequestMapping("ndetail.ad")
-public int detailNotice(int n_no) {
-	Notice n = nService.selectNotice(n_no);
-	return n_no;
 	
 }
-
 
 
 

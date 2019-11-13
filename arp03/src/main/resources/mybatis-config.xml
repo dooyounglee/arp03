@@ -11,7 +11,8 @@
 		<typeAlias type="com.kh.arp.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.arp.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.arp.question.model.vo.Question" alias="Question"/>
-
+		<typeAlias type="com.kh.arp.board.model.vo.BoardFile" alias="BoardFile"/>
+		<typeAlias type="com.kh.arp.FAQ.model.vo.FAQ" alias="FAQ"/>
 	</typeAliases>
 	
 	<mappers>
@@ -22,5 +23,6 @@
 		<mapper resource="/mappers/notice-mapper.xml"/>
 		<mapper resource="/mappers/question-mapper.xml"/>
 		<mapper resource="/mappers/board-mapper.xml"/>
+		<mapper resource="/mappers/faq-mapper.xml"/>
 	</mappers>
 </configuration>

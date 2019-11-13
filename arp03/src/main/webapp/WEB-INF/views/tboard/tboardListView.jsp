@@ -8,10 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="../include/header.jsp"/>
-<h1 align="center">게시판 리스트</h1>
+		<jsp:include page="../include/header.jsp"/>
+	<h1 align="center">게시판 리스트</h1>
+	
+	<c:if test="${ !empty mem }">
+		<button onclick ="location.href='insertTBoardFrom.do';">글쓰기</button>
+	</c:if>
 
-<button onclick ="location.href='insertTBoardFrom.do';">글쓰기</button>
 <table align="center" border="1" cellspacing="0" width="700">
 		<tr>
 			<th>번호</th>

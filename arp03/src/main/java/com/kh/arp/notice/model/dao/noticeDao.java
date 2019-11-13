@@ -44,4 +44,18 @@ public class noticeDao {
 		return sqlSession.selectOne("noticeMapper.selectNotice", n_no);
 	}
 
+
+	public int updateNotice(Notice n) {
+	
+		return sqlSession.update("noticeMapper.updateNotice" , n);
+	}
+
+
+	public int deleteNotice(int n_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("noticeMapper.deleteNotice" ,n_no);
+	}
+
+
+	
 }
