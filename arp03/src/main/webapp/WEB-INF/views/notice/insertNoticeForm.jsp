@@ -29,7 +29,7 @@
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" name="writer" value="${ mem.id }" readonly></td>
+				<td><input type="text" name="m_no" value="${ mem.m_no }" readonly></td>
 			</tr>
 			<tr>
 				<td>내용</td>

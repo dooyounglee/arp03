@@ -17,7 +17,7 @@
 
 <insert id ="insertNotice">
 insert into Notice values(
-	seq_notice.nextval,
+	seq_notice.nextval, 
 	#{m_no},
 	#{title},
 	#{content},
