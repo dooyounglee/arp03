@@ -137,4 +137,9 @@ public class MemberServiceImple implements MemberService {
 		return md.okDeclare(d);
 	}
 
+	@Override
+	public int update(Member m) {
+		return md.update(m);
+	}
+
 }

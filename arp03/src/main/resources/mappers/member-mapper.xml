@@ -44,7 +44,7 @@
 	</select>
 	
 	<select id="getMember" resultType="Member">
-		select * from member where email=#{email} or id=#{id}
+		select * from member where email=#{email} or id=#{id} or m_no=#{m_no}
 	</select>
 	
 	<insert id="insertAuth">
@@ -54,5 +54,14 @@
 	<delete id="deleteAuth">
 		delete from auth where email=#{email}
 	</delete>
+	
+	<update id="update">
+		update member set
+		name=#{name},
+		email=#{email},
+		phone=#{phone},
+		updatedate=sysdate
+		where m_no=#{m_no}
+	</update>
 
 </mapper>

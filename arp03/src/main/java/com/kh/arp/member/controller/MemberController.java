@@ -48,6 +48,9 @@ public class MemberController {
 	
 	@PostMapping("/login.me")
 	public String loginPost(Member m,HttpSession session,String remember,HttpServletResponse res) {
+		
+		//status=y일떄만 되도록 해야겠는데?
+		
 		Member mem=ms.login(m);
 		if(mem!=null) {
 			session.setAttribute("mem", mem);
@@ -105,6 +108,41 @@ public class MemberController {
 	@GetMapping("/myInfo.me")
 	public ModelAndView myInfo(ModelAndView mv) {
 		mv.setViewName("mypage/myInfo");
+		return mv;
+	}
+	
+	@PostMapping("/update.me")
+	public ModelAndView updatePost(Member m, HttpSession session, ModelAndView mv) {
+		int result=ms.update(m);
+		if(result>0) {
+			Member newm=ms.getMember(m);
+			session.setAttribute("mem", newm);
+		}
+		mv.setViewName("mypage/myInfo");
+		return mv;
+	}
+	
+	@PostMapping("/changePw.me")
+	public ModelAndView updatePost(Member m, String newPw, HttpSession session, ModelAndView mv) {
+		Member newm=ms.getMember(m);
+		if(newm.getPw().contentEquals(m.getPw())) {
+			newm.setPw(newPw);
+			int result=ms.update(newm);
+			if(result>0) {
+				session.setAttribute("mem", newm);
+			}
+		}
+		mv.setViewName("mypage/myInfo");
+		return mv;
+	}
+	
+	@PostMapping("/leave.me")
+	public ModelAndView leavePost(Member m, HttpSession session, ModelAndView mv) {
+		int result=ms.banish(m);
+		if(result>0) {
+			session.invalidate();
+		}
+		mv.setViewName("redirect:/");
 		return mv;
 	}
 }

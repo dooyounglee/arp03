@@ -17,6 +17,7 @@
 	</c:if>
 	<a href="login.me">로그인</a>
 	<a href="logout.me"><del>로그아웃</del></a>
+	<a href="">id/pw찾기</a>
 	
 	<hr>
 	
@@ -24,7 +25,7 @@
 	<a href="lectureList.ad"><del>내 수강목록</del></a>
 	<a href="blist.do">자유 게시판</a>
 	<a href="">내 문의</a>
-	<a href="myInfo.me">내 정보</a>
+	<a href="myInfo.me"><del>내 정보</del></a>
 	
 	<hr>
 	
@@ -33,7 +34,7 @@
 	<a href="blist.do">자유 게시판</a>
 	<a href="tblist.do">선생님 게시판</a>
 	<a href="">내 문의</a>
-	<a href="myInfo.me">내 정보</a>
+	<a href="myInfo.me"><del>내 정보</del></a>
 	
 	<hr>
 	
