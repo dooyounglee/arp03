@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
+import com.kh.arp.declaree.model.vo.Declaree;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Classdate;
 import com.kh.arp.member.model.vo.Lecture;
@@ -92,6 +94,26 @@ public class MemberDao {
 
 	public int deleteCancleBoard(Board b) {
 		return sqlSession.update("adminMapper.deleteCancleBoard",b);
+	}
+
+	public List<BReply> getReplyList() {
+		return sqlSession.selectList("adminMapper.getReplyList",null);
+	}
+
+	public int deleteReply(BReply r) {
+		return sqlSession.update("adminMapper.deleteReply",r);
+	}
+
+	public int deleteCancleReply(BReply r) {
+		return sqlSession.update("adminMapper.deleteCancleReply",r);
+	}
+
+	public List<Declaree> getDeclareList() {
+		return sqlSession.selectList("adminMapper.getDeclareList",null);
+	}
+
+	public int okDeclare(Declaree d) {
+		return sqlSession.update("adminMapper.okDeclare",d);
 	}
 
 }
