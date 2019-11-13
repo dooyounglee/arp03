@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boardMapper">
+	<select id="getListCount" resultType="_int">
+		select count(*) from board where status = 'Y'
+	</select>
+	
+	<select id="selectList" resultType="Board">
+		select * from board where status='Y' order by b_no desc
+	</select>
+	
+	<insert id="insertBoard">
+		insert into board values(SEQ_BOARD.nextval, #{m_no}, default, #{title}, #{content}, sysdate, sysdate, default, default, default, default, default)
+	</insert>
+</mapper>
