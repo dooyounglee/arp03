@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminMapper">
+	<select id="getBoardList" resultType="Board">
+		select * from board
+	</select>
+	
+	<update id="deleteBoard">
+		update board set status='N' where b_no=#{b_no}
+	</update>
+	
+	<update id="deleteCancleBoard">
+		update board set status='Y' where b_no=#{b_no}
+	</update>
+	
+	<select id="getReplyList" resultType="BReply">
+		select * from breply
+	</select>
+	
+	<update id="deleteReply">
+		update breply set status='N' where r_no=#{r_no}
+	</update>
+	
+	<update id="deleteCancleReply">
+		update breply set status='Y' where r_no=#{r_no}
+	</update>
+	
+	<select id="getDeclareList" resultType="Declaree">
+		select * from declaree
+	</select>
+	
+	<update id="okDeclare">
+		update declaree set okdate=sysdate, status='A' where d_no=#{d_no}
+	</update>
+	
+	
+
+</mapper>

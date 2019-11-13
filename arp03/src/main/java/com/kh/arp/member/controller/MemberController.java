@@ -101,4 +101,10 @@ public class MemberController {
 		mv.setViewName("member/join");
 		return mv;
 	}
+	
+	@GetMapping("/myInfo.me")
+	public ModelAndView myInfo(ModelAndView mv) {
+		mv.setViewName("mypage/myInfo");
+		return mv;
+	}
 }

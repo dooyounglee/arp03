@@ -7,6 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.arp.board.model.vo.BReply;
+import com.kh.arp.board.model.vo.Board;
+import com.kh.arp.declaree.model.vo.Declaree;
 import com.kh.arp.member.model.dao.MemberDao;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Classdate;
@@ -92,6 +95,46 @@ public class MemberServiceImple implements MemberService {
 	@Override
 	public int insertClassdate(ArrayList<Classdate> list) {
 		return md.insertClassdate(list);
+	}
+
+	@Override
+	public List<Board> getBoardList() {
+		return md.getBoardList();
+	}
+
+	@Override
+	public int deleteBoard(Board b) {
+		return md.deleteBoard(b);
+	}
+
+	@Override
+	public int deleteCancleBoard(Board b) {
+		return md.deleteCancleBoard(b);
+	}
+
+	@Override
+	public List<BReply> getReplyList() {
+		return md.getReplyList();
+	}
+
+	@Override
+	public int deleteReply(BReply r) {
+		return md.deleteReply(r);
+	}
+
+	@Override
+	public int deleteCancleReply(BReply r) {
+		return md.deleteCancleReply(r);
+	}
+
+	@Override
+	public List<Declaree> getDeclareList() {
+		return md.getDeclareList();
+	}
+
+	@Override
+	public int okDeclare(Declaree d) {
+		return md.okDeclare(d);
 	}
 
 }
