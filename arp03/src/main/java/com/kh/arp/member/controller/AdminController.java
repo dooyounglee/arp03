@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.member.model.service.MemberService;
@@ -108,6 +107,20 @@ public class AdminController {
 		}
 		return mv;
 	}
+	
+	@GetMapping("/insertMemberToLecture.ad")
+	public ModelAndView insertMemberToLectureGet(ModelAndView mv) {
+		mv.setViewName("mypage/admin/insertStudentToLecture");
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//랜덤코드 생성
 	public String randomCode(int len) {
