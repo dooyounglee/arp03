@@ -53,7 +53,7 @@
 	<a href="declareList.ad"><del>신고관리</del></a>
 	<a href="memberList.ad"><del>회원관리</del></a>
 	<a href="nlist.ad"><del>공지사항</del></a>
-	<a href="">faq</a>
+	<a href="flist.ad">faq</a>
 <hr>
 </body>
 </html>
