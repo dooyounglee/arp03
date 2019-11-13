@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.arp.board.model.dao.TBoardDao;
 import com.kh.arp.board.model.vo.Board;
+import com.kh.arp.board.model.vo.BoardFile;
 
 @Service("tbService")
 public class TBoardServiceImpl implements TBoardService{
@@ -48,6 +49,35 @@ public class TBoardServiceImpl implements TBoardService{
 	public int deleteTBoard(int b_no) {
 
 		return tbDao.deleteTBoard(b_no);
+	}
+
+	@Override
+	public int insertTBoardFile(BoardFile bf) {
+
+		return tbDao.insertTBoardFile(bf);
+	}
+
+	@Override
+	public BoardFile detailTBoardFile(int b_no) {
+	
+		return tbDao.detailTBoardFile(b_no);
+	}
+
+	@Override
+	public BoardFile updateTBoardFile(int b_no) {
+		return tbDao.updateTBoardFile(b_no);
+	}
+
+	@Override
+	public int updateFile(BoardFile bf) {
+		
+		return tbDao.updateFile(bf);
+	}
+
+	@Override
+	public int updateInsertFile(BoardFile bf) {
+
+		return tbDao.updateInsertFile(bf);
 	}
 
 }

@@ -30,14 +30,14 @@
 			<td>내용</td>
 			<td>${ b.content }</td>		
 		</tr>
-	<%-- 	<tr>
+		<tr>
 			<td>첨부파일</td>
 			<td>
-				<c:if test="${ !empty b.originalFileName }">
-					<a href="${ pageContext.servletContext.contextPath }/resources/buploadFiles/${b.renameFileName}" download="${ b.originalFileName }">${ b.originalFileName }</a>
+				<c:if test="${ !empty bf.original_filename }">
+					<a href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bf.rename_filename}" download="${ bf.original_filename }">${ bf.original_filename }</a>
 				</c:if>
 			</td>		
-		</tr> --%>
+		</tr>
 		<tr>
 			<td colspan="2" align="center">
 				<c:if test="${ mem.m_no eq b.m_no }">

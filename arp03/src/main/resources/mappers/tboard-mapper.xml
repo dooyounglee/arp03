@@ -7,6 +7,7 @@
 		select * 
 		from board 
 		where ca_no=2 and status='Y'
+		order by b_no
 	</select>
 	
 	<insert id="insertTBoard">
@@ -22,7 +23,7 @@
 		default, 
 		0 ,
 		0,
-		'N')
+		#{fileStatus})
 	</insert>
 	
 	<select id="detailTBoard" resultType="Board">
@@ -51,6 +52,32 @@
 		 where b_no=#{b_no}
 	
 	</update>
+	
+	<insert id="insertTBoardFile">
+		insert into BoardFile
+		values(seq_boardfile.nextval,seq_board.currval,#{original_filename}, #{rename_filename})
+	</insert>
+	
+	<select id="detailTBoardFile" resultType="BoardFile">
+		select * 
+		from BoardFile 
+		where b_no=#{b_no}
+	
+	</select>
+	
+	<update id="updateFile">
+	
+		update BoardFile 
+		set original_filename=#{original_filename},rename_filename=#{rename_filename}
+		where b_no=#{b_no}
+
+	</update>
+	
+	<insert id="updateInsertFile">
+		insert into BoardFile
+		values(seq_boardFile.nextval,#{b_no},#{original_filename},#{rename_filename})
+	
+	</insert>
 
 
 

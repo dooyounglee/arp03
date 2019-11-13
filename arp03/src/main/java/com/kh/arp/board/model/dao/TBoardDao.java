@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.arp.board.model.vo.Board;
+import com.kh.arp.board.model.vo.BoardFile;
 
 @Repository("tbDao")
 public class TBoardDao {
@@ -38,5 +39,27 @@ public class TBoardDao {
 	
 	public int deleteTBoard(int b_no) {
 		return sqlSession.update("tboardMapper.deleteTBoard",b_no);
+	}
+	
+	public int insertTBoardFile(BoardFile bf) {
+		return sqlSession.insert("tboardMapper.insertTBoardFile",bf);
+	}
+	
+	public BoardFile detailTBoardFile(int b_no) {
+		return sqlSession.selectOne("tboardMapper.detailTBoardFile",b_no);
+	}
+	
+	public BoardFile updateTBoardFile(int b_no) {
+		return sqlSession.selectOne("tboardMapper.detailTBoardFile",b_no);
+	}
+	
+	public int updateFile(BoardFile bf) {
+		System.out.println("dao"+bf);
+		return sqlSession.update("tboardMapper.updateFile",bf);
+	}
+	
+	public int updateInsertFile(BoardFile bf) {
+		 
+		return sqlSession.insert("tboardMapper.updateInsertFile",bf);
 	}
 }

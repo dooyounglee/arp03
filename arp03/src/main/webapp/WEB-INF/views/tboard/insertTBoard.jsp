@@ -59,8 +59,13 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="hidden" name="writer" value="${ mem.m_no }"></td>
+					<td><input type="hidden" name="m_no" value="${ mem.m_no }"></td>
 				</tr>
+				<tr>
+					<td>첨부파일</td>
+					<td><input type="file" name="uploadFile"></td>
+				</tr>
+				
 				<tr>
 					<td></td>
 					<td><textarea id="summernote" cols="50" rows="7" name="content"></textarea></td>
@@ -68,7 +73,7 @@
 				
 				<tr>
 					<td colspan="2" align="center">
-						<button type="submit">등록하기</button> 
+						<button type="submit" name="subBtn">등록하기</button> 
 						<button type="button" onclick="location.href='tblist.do';">목록으로</button>
 					</td>
 				</tr>
@@ -89,7 +94,17 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="hidden" name="writer" value="${ b.m_no }"></td>
+					<td><input type="hidden" name="m_no" value="${ b.m_no }"></td>
+				</tr>
+				<tr>
+					<td>첨부파일</td>
+				<td>
+					<input type="file" name="reloadFile">
+					<input type="hidden" name="original_filename" value="${ bf.original_filename }">
+					<c:if test="${ !empty bf.original_filename }">
+						<a href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bf.rename_filename}" download="${ bf.original_filename }">${ bf.original_filename }</a>
+					</c:if>
+				</td>	
 				</tr>
 				<tr>
 					<td></td>
@@ -121,7 +136,23 @@
 				}
 			});
 		});
+	 
+	 $("#subBtn").click(function(){
+		 if(("#title").equals("")){
+			 alert("제목을 입력해주세요!");
+		 }
+	 })
 	</script>
+	
+	<script src='jquery-3.2.1.js'></script>
+	
+	<script>
+	
+	var jq132 = jQuery.noConflict();
+	
+	</script>
+	
+	
   
 
 </body>
