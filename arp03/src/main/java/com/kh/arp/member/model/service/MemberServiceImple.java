@@ -142,4 +142,9 @@ public class MemberServiceImple implements MemberService {
 		return md.update(m);
 	}
 
+	@Override
+	public Member find(Member m) {
+		return md.find(m);
+	}
+
 }

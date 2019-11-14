@@ -145,4 +145,40 @@ public class MemberController {
 		mv.setViewName("redirect:/");
 		return mv;
 	}
+	
+	@GetMapping("/find.me")
+	public ModelAndView findGet(ModelAndView mv) {
+		mv.setViewName("member/find");
+		return mv;
+	}
+	
+	@PostMapping("/findId.me")
+	public ModelAndView findIdPost(Member m, ModelAndView mv) {
+		System.out.println(m);
+		
+		Member newm=ms.find(m);
+		if(newm!=null) {
+			System.out.println(newm);
+		}
+		mv.setViewName("redirect:/find.me");
+		return mv;
+	}
+	
+	@PostMapping("/findPw.me")
+	public ModelAndView findPwPost(Member m, ModelAndView mv) {
+		System.out.println(m);
+		Member newm=ms.find(m);
+		System.out.println(newm);
+		if(newm!=null) {
+			//임시비번 컬럼을 만들어서, 임시비번
+			//안전하게 임시비번도 확인해도 좋고..
+			
+			//url랜덤코드 테이블이 있어야 해 Auth처럼
+			//이메일 전송-url누르게 할까?-비번변경페이지-새비번으로 수정
+		}else {
+			//등록된 이메일이 없습니다.
+		}
+		mv.setViewName("redirect:/find.me");
+		return mv;
+	}
 }

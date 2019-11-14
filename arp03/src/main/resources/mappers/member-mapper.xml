@@ -63,5 +63,9 @@
 		updatedate=sysdate
 		where m_no=#{m_no}
 	</update>
+	
+	<select id="find" resultType="Member">
+		select * from member where m_no=#{m_no} or email=#{email} or phone=#{email}
+	</select>
 
 </mapper>

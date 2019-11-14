@@ -17,7 +17,7 @@
 	</c:if>
 	<a href="login.me">로그인</a>
 	<a href="logout.me"><del>로그아웃</del></a>
-	<a href="">id/pw찾기</a>
+	<a href="find.me"><del>id/pw찾기</del></a>
 	
 	<hr>
 	

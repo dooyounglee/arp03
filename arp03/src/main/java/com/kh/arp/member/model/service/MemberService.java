@@ -61,4 +61,6 @@ public interface MemberService {
 
 	int update(Member m);
 
+	Member find(Member m);
+
 }

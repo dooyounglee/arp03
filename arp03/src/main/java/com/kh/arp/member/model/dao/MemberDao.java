@@ -120,4 +120,8 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.update",m);
 	}
 
+	public Member find(Member m) {
+		return sqlSession.selectOne("memberMapper.find",m);
+	}
+
 }
