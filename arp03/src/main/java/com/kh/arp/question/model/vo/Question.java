@@ -4,21 +4,22 @@ import lombok.Data;
 
 @Data
 public class Question {
-	// Áú¹®°Ô½ÃÆÇ
-	private int q_no;				// Áú¹®¹øÈ£
-	private int lec_no;				// °­ÀÇ¹øÈ£
-	private int m_no;				// È¸¿ø¹øÈ£
-	private String title;			// Á¦¸ñ
-	private String content;			// ³»¿ë
-	private String regdate;			// ÀÛ¼ºÀÏÀÚ
-	private String update;			// ¼öÁ¤ÀÏÀÚ
-	private String status;			// »óÅÂ
-	private int vcount;				// Á¶È¸¼ö
-	private int dcount;				// ½Å°í¼ö
-	private int rcount;				// ´ñ±Û¼ö
-	private String isreply;			// ´äº¯¿©ºÎ
-	private String replydate;		// ³³º¯³¯Â¥
-	private String replycontent;	// ´äº¯³»¿ë
-	private String isdelete;		// »èÁ¦¿©ºÎ
-
+	
+	private int q_no;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	private int lec_no;				// ï¿½ï¿½ï¿½Ç¹ï¿½È£
+	private int m_no;				// È¸ï¿½ï¿½ï¿½ï¿½È£
+	private String title;			// ï¿½ï¿½ï¿½ï¿½
+	private String content;			// ï¿½ï¿½ï¿½ï¿½
+	private String regdate;			// ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String update;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String status;			// ï¿½ï¿½ï¿½ï¿½
+	private int vcount;				// ï¿½ï¿½È¸ï¿½ï¿½
+	private int dcount;				// ï¿½Å°ï¿½ï¿½
+	private int rcount;				// ï¿½ï¿½Û¼ï¿½
+	private String isreply;			// ï¿½äº¯ï¿½ï¿½ï¿½ï¿½
+	private String replydate;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¥
+	private String replycontent;	// ï¿½äº¯ï¿½ï¿½ï¿½ï¿½
+	private String isdelete;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String name;	// joiní•˜ëŠë¼ í•„ìš”í•´ì„œ í•„ë“œëª…ì¶”ê°€í•¨
+	private String fileox;	// ì²¨ë¶€íŒŒì¼ì—¬ë¶€ ì¶”ê°€í•¨
 }
