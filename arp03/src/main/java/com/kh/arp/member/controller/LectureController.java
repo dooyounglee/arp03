@@ -65,4 +65,10 @@ public class LectureController {
 		}
 		return mv;
 	}
+	
+	@GetMapping("/test")
+	public ModelAndView test(ModelAndView mv) {
+		mv.setViewName("son");
+		return mv;
+	}
 }
