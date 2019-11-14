@@ -48,6 +48,9 @@ public class MemberController {
 	
 	@PostMapping("/login.me")
 	public String loginPost(Member m,HttpSession session,String remember,HttpServletResponse res) {
+		
+		//status=y일떄만 되도록 해야겠는데?
+		
 		Member mem=ms.login(m);
 		if(mem!=null) {
 			session.setAttribute("mem", mem);
@@ -99,6 +102,83 @@ public class MemberController {
 		mem=ms.getMember(mem);
 		mv.addObject("auth", mem);
 		mv.setViewName("member/join");
+		return mv;
+	}
+	
+	@GetMapping("/myInfo.me")
+	public ModelAndView myInfo(ModelAndView mv) {
+		mv.setViewName("mypage/myInfo");
+		return mv;
+	}
+	
+	@PostMapping("/update.me")
+	public ModelAndView updatePost(Member m, HttpSession session, ModelAndView mv) {
+		int result=ms.update(m);
+		if(result>0) {
+			Member newm=ms.getMember(m);
+			session.setAttribute("mem", newm);
+		}
+		mv.setViewName("mypage/myInfo");
+		return mv;
+	}
+	
+	@PostMapping("/changePw.me")
+	public ModelAndView updatePost(Member m, String newPw, HttpSession session, ModelAndView mv) {
+		Member newm=ms.getMember(m);
+		if(newm.getPw().contentEquals(m.getPw())) {
+			newm.setPw(newPw);
+			int result=ms.update(newm);
+			if(result>0) {
+				session.setAttribute("mem", newm);
+			}
+		}
+		mv.setViewName("mypage/myInfo");
+		return mv;
+	}
+	
+	@PostMapping("/leave.me")
+	public ModelAndView leavePost(Member m, HttpSession session, ModelAndView mv) {
+		int result=ms.banish(m);
+		if(result>0) {
+			session.invalidate();
+		}
+		mv.setViewName("redirect:/");
+		return mv;
+	}
+	
+	@GetMapping("/find.me")
+	public ModelAndView findGet(ModelAndView mv) {
+		mv.setViewName("member/find");
+		return mv;
+	}
+	
+	@PostMapping("/findId.me")
+	public ModelAndView findIdPost(Member m, ModelAndView mv) {
+		System.out.println(m);
+		
+		Member newm=ms.find(m);
+		if(newm!=null) {
+			System.out.println(newm);
+		}
+		mv.setViewName("redirect:/find.me");
+		return mv;
+	}
+	
+	@PostMapping("/findPw.me")
+	public ModelAndView findPwPost(Member m, ModelAndView mv) {
+		System.out.println(m);
+		Member newm=ms.find(m);
+		System.out.println(newm);
+		if(newm!=null) {
+			//임시비번 컬럼을 만들어서, 임시비번
+			//안전하게 임시비번도 확인해도 좋고..
+			
+			//url랜덤코드 테이블이 있어야 해 Auth처럼
+			//이메일 전송-url누르게 할까?-비번변경페이지-새비번으로 수정
+		}else {
+			//등록된 이메일이 없습니다.
+		}
+		mv.setViewName("redirect:/find.me");
 		return mv;
 	}
 }
