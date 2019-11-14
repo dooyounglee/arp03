@@ -69,7 +69,7 @@ CREATE TABLE FAQ (
 	faq_no	number		PRIMARY KEY,
 	question	varchar2(1000)		NULL,
 	answer	varchar2(4000)		NULL,
-	m_no	Number		REFERENCES MEMBER
+	m_no	Number		REFERENCES MEMBER,
 	category varchar2(1000) NOT NULL
 );
 
