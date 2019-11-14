@@ -15,6 +15,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 </head>
+
 <body>
 	<!-- 제목, 내용, 작성자, 첨부파일정보 -->
 	<jsp:include page="../include/header.jsp"/>
@@ -81,7 +82,7 @@
 			$.ajax({
 				data: form_data,
 				type: "POST",
-				url: "/fileaj.qu",
+				url: "fileaj.qu",
 				cache: false,
 				contentType: false,
 				enctype: "multipart/form-data",
@@ -95,6 +96,17 @@
 		
 		
 	</script>
+	
+	
+	<!-- header에 있는 jquery 충돌 방지 -->
+   <script src='jquery-3.2.1.js'></script>
+   
+   <script>
+   
+   var jq132 = jQuery.noConflict();
+   
+   </script>
+	
 	
 </body>
 </html>
