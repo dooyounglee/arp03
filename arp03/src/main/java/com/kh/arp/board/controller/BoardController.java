@@ -15,10 +15,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.arp.board.model.service.BoardService;
+import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.common.PageInfo;
 import com.kh.arp.common.Pagination;
@@ -89,6 +93,42 @@ public class BoardController {
 		file.transferTo(f);
 		out.println("resources/buploadImages/"+renameFileName);
 		out.close();
+	}
+	
+	@RequestMapping("bdetail.do")
+	public ModelAndView boardDetail(int b_no, ModelAndView mv) {
+		Board b = bService.selectBoard(b_no);
+
+		if (b != null) {
+			mv.addObject("b", b);
+			mv.setViewName("board/boardDetailView");
+		} else {
+			mv.addObject("msg", "게시글 상세조회 실패");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="replyList.do", produces="application/json; charset=UTF-8")
+	public String replyList(int b_no)  {
+		ArrayList<BReply> list = bService.selectReplyList(b_no);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		return gson.toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping("rinsert.do")
+	public String insertReply(BReply r) {
+		int result =  bService.insertReply(r);
+		//System.out.println(r);
+		
+		if(result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+		
 	}
 
 }

@@ -59,4 +59,8 @@ public interface MemberService {
 
 	int okDeclare(Declaree d);
 
+	int update(Member m);
+
+	Member find(Member m);
+
 }

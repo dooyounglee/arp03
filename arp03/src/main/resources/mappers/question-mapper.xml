@@ -2,16 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="questionMapper">
 
+<resultMap id="qList" type="Question">
+	<id property="q_no" column="q_no"/>
+	<result property="title" column="title"/>
+	<result property="name" column="name"/>
+	<result property="regdate" column="regdate"/>
+	<result property="vcount" column="vcount"/>
+	<result property="dcount" column="dcount"/>
+</resultMap>
+
+
 <select id="getListCount" resultType="_int">
 	select count(*)
 	from Question
-	where lec_no='4'
+	where lec_no=#{lec_no}
 </select>
 
-<select id="selectQuestionList" resultType="Question">
-	select *
-	from Question
-	where lec_no='4'
+<select id="selectQuestionList" resultMap="qList">
+	select q.q_no, q.title, m.name, q.regdate, q.vcount, q.dcount
+	from Question q
+    join member m using(m_no)
+    where q.lec_no=#{lec_no}
 	order by q_no desc
 </select>
 </mapper>

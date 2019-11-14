@@ -116,4 +116,12 @@ public class MemberDao {
 		return sqlSession.update("adminMapper.okDeclare",d);
 	}
 
+	public int update(Member m) {
+		return sqlSession.update("memberMapper.update",m);
+	}
+
+	public Member find(Member m) {
+		return sqlSession.selectOne("memberMapper.find",m);
+	}
+
 }

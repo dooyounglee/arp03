@@ -4,26 +4,7 @@
 <!DOCTYPE html>
 <html>
 <!-- <script src="https://code.jquery.com/juqery-3.1.0.min.js" type="text/javascript"></script> -->
-<script>
-/* summernote에서 이미지 업로드시 실행할 함수 */
-	function sendFile(file, editor) {
-    // 파일 전송을 위한 폼생성
-		data = new FormData();
-	    data.append("uploadFile", file);
-	    $.ajax({ // ajax를 통해 파일 업로드 처리
-	        data : data,
-	        type : "POST",
-	        url : "./summernote_imageUpload.jsp",
-	        cache : false,
-	        contentType : false,
-	        processData : false,
-	        success : function(data) { // 처리가 성공할 경우
-            // 에디터에 이미지 출력
-	        	$(editor).summernote('editor.insertImage', data.url);
-	        }
-	    });
-	}
-</script>
+
 <head>
 <meta charset="UTF-8">
 
@@ -50,12 +31,12 @@
 	
 	<br><br>
 	
-	<form action="insertTBoard.do" method="post" enctype="multipart/form-data">
+	<form action="insertTBoard.do" method="post" enctype="multipart/form-data" name="boardForm">
 	
 			<table align="center">
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="title"></td>
+					<td><input type="text" name="title" id="title" required></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -63,17 +44,17 @@
 				</tr>
 				<tr>
 					<td>첨부파일</td>
-					<td><input type="file" name="uploadFile"></td>
+					<td><input type="file" name="uploadFile" ></td>
 				</tr>
 				
 				<tr>
 					<td></td>
-					<td><textarea id="summernote" cols="50" rows="7" name="content"></textarea></td>
+					<td><textarea id="summernote" cols="50" rows="7" name="content" id="content" required></textarea></td>
 				</tr>
 				
 				<tr>
 					<td colspan="2" align="center">
-						<button type="submit" name="subBtn">등록하기</button> 
+						<button type="submit" id="subBtn">등록하기</button> 
 						<button type="button" onclick="location.href='tblist.do';">목록으로</button>
 					</td>
 				</tr>
@@ -90,7 +71,7 @@
 			<table align="center">
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="title" value="${ b.title }"></td>
+					<td><input type="text" name="title" value="${ b.title }" id="title" required></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -108,12 +89,12 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><textarea id="summernote" cols="50" rows="7" name="content">${ b.content }</textarea></td>
+					<td><textarea id="summernote" cols="50" rows="7" name="content" id="content" required>${ b.content }</textarea></td>
 				</tr>
 				
 				<tr>
 					<td colspan="2" align="center">
-						<button type="submit">수정하기</button> 
+						<button type="submit" id="subBtn">수정하기</button> 
 						<button type="button" onclick="location.href='tblist.do';">목록으로</button>
 					</td>
 				</tr>
@@ -137,13 +118,48 @@
 			});
 		});
 	 
-	 $("#subBtn").click(function(){
-		 if(("#title").equals("")){
+	     function sendFile(file, el) {
+	         var form_data = new FormData();
+	         form_data.append('file', file);
+	         $.ajax({
+	           data: form_data,
+	           type:"POST",
+	           url:"imageUpload.do",
+	           cache: false,
+	           contentType: false,
+	           enctype: 'multipart/form-data',
+	           processData: false,
+	           success: function(img_name) {
+	           	//console.log(img_name);
+	             $(el).summernote('editor.insertImage', img_name);
+	           },
+	           error: function(){
+	           	console.log("ajax 통신 실패");
+	           }
+	         });
+	       }
+	
+	 
+/*   	 $("#subBtn").on("click", function(){
+		 var title = $("#title").val();
+		 var content = $("#content").val();
+		 
+		 if(title==""){
 			 alert("제목을 입력해주세요!");
-		 }
-	 })
+			 $("#title").focus();
+			 return false;
+		 }else if(content==""){
+			 alert("내용을 입력해주세요!");
+			 $("#content").focus();
+			 return false;
+		 }else{
+			 return true;
+		 };
+	 }); */
+	 
 	</script>
 	
+	 <!--  헤더 제이쿼리 충돌 방지  -->
 	<script src='jquery-3.2.1.js'></script>
 	
 	<script>
@@ -151,6 +167,8 @@
 	var jq132 = jQuery.noConflict();
 	
 	</script>
+	 
+	
 	
 	
   

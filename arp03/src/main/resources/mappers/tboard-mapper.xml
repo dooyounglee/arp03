@@ -4,12 +4,11 @@
 
 
 	<select id ="selectTBoardList" resultType="Board">
-		select * 
-		from board 
-		where ca_no=2 and status='Y'
+		select b.*, m.name 
+		from board b, member m
+		where b.ca_no=2 and b.status='Y' and b.m_no=m.m_no
 		order by b_no
 	</select>
-	
 	<insert id="insertTBoard">
 		insert into board
 		values(seq_board.nextval, 
