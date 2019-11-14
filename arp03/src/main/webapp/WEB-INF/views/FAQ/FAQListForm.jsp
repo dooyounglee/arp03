@@ -26,11 +26,11 @@ display:inline;
 </c:if>
 <nav align="center">
 <ul >
-	
-	<li><a href="#">로그인</a></li>
-	<li><a href="#">수강</a></li>
-	<li><a href="#">홈페이지</a></li>
-	<li><a href="#">기타</a></li>
+	<li><a href="#">전체</a></li>
+	<li><a href="fcategory.ad?category=${faq.category eq '로그인' }">로그인</a></li>
+	<li><a href="fcategory.ad?category=${category eq '수강' }">수강</a></li>
+	<li><a href="fcategory.ad?category=${category eq '홈페이지' }">홈페이지</a></li>
+	<li><a href="fcategory.ad?category=${category eq '기타' }">기타</a></li>
 </ul>
 </nav>
 <br>
@@ -43,7 +43,7 @@ display:inline;
 <c:forEach items="${ list }" var="f">
 	
 	<tr>
-		<td>${f.category }</td>
+		<td >${f.category }</td>
 		<td colspan="3"  class="question" style="cursor:pointer">${ f.question }</td>
 	</tr>
 	<tr>
@@ -71,6 +71,7 @@ $(function(){
 			$(this).parent().next().children().eq(0).toggle()
 		});
 	
+		
 	
 });
 

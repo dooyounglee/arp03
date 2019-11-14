@@ -32,4 +32,10 @@ public class FAQServiceImpl implements FAQService {
 		return fDao.deleteFAQ(faq_no);
 	}
 
+	@Override
+	public int selectCategory(String category) {
+		// TODO Auto-generated method stub
+		return fDao.selectCategory(category);
+	}
+
 }

@@ -57,6 +57,14 @@ public String deleteFAQ(int faq_no) {
 	
 }
 
+@RequestMapping("fcategory.ad")
+public ModelAndView selectCategory(String category , ModelAndView mv) {
+	
+	FAQ Category = fService.selectCategory(category);
+	
+	
+}
+
 
 
 

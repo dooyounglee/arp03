@@ -29,4 +29,9 @@ public class FAQdao {
 		return sqlSession.delete("faqMapper.deleteFAQ" , faq_no);
 	}
 
+	public int selectCategory(String category) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("faqMapper.selectCategory" , category);
+	}
+
 }

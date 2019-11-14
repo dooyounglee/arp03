@@ -15,4 +15,7 @@ public interface FAQService {
 	// faq 삭제
 	int deleteFAQ(int faq_no);
 
+	// 카테고리 선택
+	int selectCategory(String category);
+
 }
