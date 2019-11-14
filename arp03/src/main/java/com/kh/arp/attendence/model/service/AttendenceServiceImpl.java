@@ -14,7 +14,7 @@ public class AttendenceServiceImpl implements AttendenceService {
 	
 	@Override
 	public Attendence selectStudentAttendence() {
-		Attendence at = atDao.selectStudentAttendence()
+		Attendence at = atDao.selectStudentAttendence();
 		return null;
 	}
 
