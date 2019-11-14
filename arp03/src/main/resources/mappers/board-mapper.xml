@@ -12,4 +12,8 @@
 	<insert id="insertBoard">
 		insert into board values(SEQ_BOARD.nextval, #{m_no}, default, #{title}, #{content}, sysdate, sysdate, default, default, default, default, default)
 	</insert>
+	
+	<select id="selectBoard" resultType="Board">
+		select * from board where b_no = #{b_no}
+	</select>
 </mapper>

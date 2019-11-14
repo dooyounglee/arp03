@@ -31,7 +31,7 @@
 				<td>${ b.b_no }</td>
 				<td>
 					<c:if test="${ !empty mem }">
-						<a href="bdetail.do?id=${ b.b_no }">${ b.title }</a>
+						<a href="bdetail.do?b_no=${ b.b_no }">${ b.title }</a>
 					</c:if>
 					<c:if test="${ empty mem }">
 						${ b.title }

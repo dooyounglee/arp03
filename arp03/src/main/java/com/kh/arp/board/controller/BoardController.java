@@ -90,5 +90,19 @@ public class BoardController {
 		out.println("resources/buploadImages/"+renameFileName);
 		out.close();
 	}
+	
+	@RequestMapping("bdetail.do")
+	public ModelAndView boardDetail(int b_no, ModelAndView mv) {
+		Board b = bService.selectBoard(b_no);
+
+		if (b != null) {
+			mv.addObject("b", b);
+			mv.setViewName("board/boardDetailView");
+		} else {
+			mv.addObject("msg", "게시글 상세조회 실패");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 
 }

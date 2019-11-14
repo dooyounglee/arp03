@@ -30,4 +30,9 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.insertBoard(b);
 	}
 
+	@Override
+	public Board selectBoard(int b_no) {
+		return bDao.selectBoard(b_no);
+	}
+
 }
