@@ -62,4 +62,8 @@ public class TBoardDao {
 		 
 		return sqlSession.insert("tboardMapper.updateInsertFile",bf);
 	}
+	
+	public int getListCount() {
+		return sqlSession.selectOne("tboardMapper.getListCount");
+	}
 }

@@ -29,10 +29,22 @@ public class TBoardController {
 	private TBoardService tbService;
 	
 	@RequestMapping("tblist.do")
-	public ModelAndView selectTBoardList(ModelAndView mv) {
+	public ModelAndView selectTBoardList(ModelAndView mv,
+										@RequestParam(value="currentPage", defaultValue="1") int currentPage) {
 		
+		
+		int listCount = tbService.getListCount();
 		ArrayList<Board> list = tbService.selectTBoardList();
 		
+		for(Board b : list) {
+			
+			if(b.getContent().contains("img")) {
+				b.setImageStatus("Y");
+			}else {
+				b.setImageStatus("N");
+			}
+			
+		}
 		
 		
 		mv.addObject("list",list).setViewName("tboard/tboardListView");
@@ -253,11 +265,11 @@ public class TBoardController {
 		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + uuid + "."
 				+ org_filename.substring(org_filename.lastIndexOf(".") + 1);
 		
-		System.out.println("원본 파일명 : " + org_filename);
-		System.out.println("저장할 파일명 : " + renameFileName);
+	//	System.out.println("원본 파일명 : " + org_filename);
+	//	System.out.println("저장할 파일명 : " + renameFileName);
 
 		String filepath = realFolder + "\\" + renameFileName;
-		System.out.println("파일경로 : " + filepath);
+	//	System.out.println("파일경로 : " + filepath);
 
 		File f = new File(filepath);
 		if (!f.exists()) {

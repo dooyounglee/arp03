@@ -41,5 +41,8 @@ public interface TBoardService {
 	// 11.선생님 게시판 수정시 새로운 파일 저장용 서비스 
 	int updateInsertFile(BoardFile bf);
 	
+	// 12. 선생님 게시판 총 갯수 조회용 서비스 
+	int getListCount();
+	
 
 }

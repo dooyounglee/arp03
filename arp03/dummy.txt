@@ -15,6 +15,7 @@ DROP TABLE Board;
 DROP TABLE BCategory;
 drop table auth;
 DROP TABLE member;
+drop trigger filestatusTrigger;
 
 CREATE TABLE member (
 	m_no	Number		 PRIMARY KEY,
@@ -167,7 +168,7 @@ CREATE TABLE  Board  (
 	 title 	varchar2(1000)		NOT NULL,
 	 content 	varchar2(4000)		NOT NULL,
 	 regdate 	date	DEFAULT sysdate	NOT NULL,
-	 udpate_date 	date	DEFAULT sysdate	NOT NULL,
+	 update_date 	date	DEFAULT sysdate	NOT NULL,
 	 vcount 	number	DEFAULT 0	NOT NULL,
 	 status 	varchar2(10)	DEFAULT 'Y'	NOT NULL,
 	 dcount 	Number	DEFAULT 0	NULL,
@@ -226,6 +227,13 @@ CREATE SEQUENCE SEQ_BoardFile;		--게시판 첨부파일 번호
 CREATE SEQUENCE SEQ_BCategory;		-- 카테고리 번호
 CREATE SEQUENCE SEQ_QNA;			-- 문의사항 번호
 
+
+create or replace trigger filestatusTrigger -- 첨부파일 상태 트리거
+after insert on BoardFile
+for each row begin
+update board set filestatus='Y'
+where b_no = :new.b_no;
+end;
 
 
  
