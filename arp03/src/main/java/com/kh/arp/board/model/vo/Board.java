@@ -18,6 +18,7 @@ public class Board {
 	private int rcount;
 	private String fileStatus;
 	private String name; 			// list 작성자 조인
+	private String imageStatus;		// 이미지가 존재하는지 여부
 	
 
 }

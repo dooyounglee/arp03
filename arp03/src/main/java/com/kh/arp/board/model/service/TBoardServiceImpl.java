@@ -80,4 +80,10 @@ public class TBoardServiceImpl implements TBoardService{
 		return tbDao.updateInsertFile(bf);
 	}
 
+	@Override
+	public int getListCount() {
+		
+		return tbDao.getListCount();
+	}
+
 }

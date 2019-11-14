@@ -77,6 +77,12 @@
 		values(seq_boardFile.nextval,#{b_no},#{original_filename},#{rename_filename})
 	
 	</insert>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from board
+		where status='Y'
+	</select>
 
 
 
