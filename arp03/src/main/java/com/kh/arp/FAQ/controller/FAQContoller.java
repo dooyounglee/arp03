@@ -62,6 +62,9 @@ public ModelAndView selectCategory(String category , ModelAndView mv) {
 	
 	FAQ Category = fService.selectCategory(category);
 	
+	내가 DB에서 category 를 뽑아서 객체를 view 보내줘야하는데 
+	
+	
 	
 }
 

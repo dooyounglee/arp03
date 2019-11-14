@@ -25,5 +25,9 @@ where faq_no = #{faq_no}
 
 </delete>
 
+<select id="selectCategory" resultType="FAQ">
+select * from FAQ
+where category =#{category}
+</select>
 
 </mapper>
