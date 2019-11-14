@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.arp.board.model.dao.BoardDao;
+import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.common.PageInfo;
 
@@ -33,6 +34,16 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board selectBoard(int b_no) {
 		return bDao.selectBoard(b_no);
+	}
+
+	@Override
+	public ArrayList<BReply> selectReplyList(int b_no) {
+		return bDao.selectReplyList(b_no);
+	}
+
+	@Override
+	public int insertReply(BReply r) {
+		return bDao.insertReply(r);
 	}
 
 }

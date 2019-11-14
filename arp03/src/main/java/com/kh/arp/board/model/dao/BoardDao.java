@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.common.PageInfo;
 
@@ -35,6 +36,14 @@ public class BoardDao {
 
 	public Board selectBoard(int b_no) {
 		return sqlSession.selectOne("boardMapper.selectBoard", b_no);
+	}
+
+	public ArrayList<BReply> selectReplyList(int b_no) {
+		return (ArrayList) sqlSession.selectList("boardMapper.selectReplyList", b_no);
+	}
+
+	public int insertReply(BReply r) {
+		return sqlSession.insert("boardMapper.insertReply", r);
 	}
 	
 }
