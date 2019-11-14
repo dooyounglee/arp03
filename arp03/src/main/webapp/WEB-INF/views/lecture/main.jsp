@@ -8,7 +8,13 @@
 </head>
 <body>
 	<jsp:include page="../include/header.jsp"/>
-	
+		수강페이지
+	<a href="">메인</a>
+	<a href="">강의계획</a>
+<%-- 	<a href="question.qu?lec_no=${ c.lec_no }">질문게시판</a> --%>
+	<a href="questionAllList.qu">질문게시판</a>
+	<a href="">내 출석</a>
+	<a href="">내 점수</a>
 	<h1>${lec.title }페이지 입니다.</h1>
 	${lec }
 
