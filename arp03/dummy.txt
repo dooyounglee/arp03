@@ -92,7 +92,7 @@ CREATE TABLE declaree (
 	okdate	date	DEFAULT sysdate	NOT NULL,
 	status	varchar2(10)	DEFAULT 'N'	NOT NULL,
 	obj	VARCHAR(255)		NULL,
-	obj_no	VARCHAR(255)		NULL
+	obj_no	number		NULL
 );
 
 CREATE TABLE Question (

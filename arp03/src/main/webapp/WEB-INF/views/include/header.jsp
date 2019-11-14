@@ -38,7 +38,13 @@
 	
 	<hr>
 	
-
+	
+	<a href="">메인</a>
+	<a href="">강의계획</a>
+<%-- 	<a href="question.qu?lec_no=${ c.lec_no }">질문게시판</a> --%>
+	<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a>
+	<a href="">내 출석</a>
+	<a href="">내 점수</a>
 	
 	<hr>
 	

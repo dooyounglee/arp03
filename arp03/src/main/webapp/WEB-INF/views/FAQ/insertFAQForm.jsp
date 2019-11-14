@@ -25,6 +25,9 @@
 	<form action="finsert.ad" method="post" enctype="multipart/form-data">
 		<table align="center">
 			<tr>
+				<input type="hidden" name="m_no" value="${ mem.m_no }">
+			</tr>
+			<tr>
 				<td>구분</td>
 				<td>
 				<select name="category">
@@ -47,7 +50,7 @@
 			<tr>
 				<td colspan="2" align="center">
 					<button type="submit">등록하기</button> 
-					<button type="button" onclick="location.href='nlist.ad';">목록으로</button>
+					<button type="button" onclick="location.href='flist.ad';">목록으로</button>
 				</td>
 			</tr>
 		</table>
@@ -62,6 +65,15 @@
 		  $('#summernote').summernote();
 		});
 	</script>
+	
+	
+	  <script src='jquery-3.2.1.js'></script>
+   
+   <script>
+   
+   var jq132 = jQuery.noConflict();
+   
+   </script>
 	
 </body>
 </html>

@@ -18,5 +18,8 @@ public interface QService {
 	// 게시글 전체리스트 조회
 	ArrayList<Question> selectQuestionList(PageInfo pi, int lec_no);
 	
+	// lec_no에맞는 Lecture 객체 조회하자
+	Lecture getLecture(int lec_no);
+	
 	
 }
