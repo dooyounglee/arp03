@@ -17,11 +17,7 @@ public class Board {
 	private int dcount;
 	private int rcount;
 	private String fileStatus;
-	
-	
-	
-	
-	
+	private String name; 			// list 작성자 조인
 	
 
 }

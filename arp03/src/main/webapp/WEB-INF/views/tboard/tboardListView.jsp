@@ -28,7 +28,7 @@
 			<tr>
 				<td>${ b.b_no }</td>
 				<td><a href="tbdetail.do?b_no=${ b.b_no }">${ b.title }</a></td>
-				<td>${ b.m_no }</td>
+				<td>${ b.name }</td>
 				<td>${b.regdate }</td>
 				<td>${ b.vcount }</td>
 				<c:if test="${ b.fileStatus eq 'Y' }">

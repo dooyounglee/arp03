@@ -2,11 +2,14 @@ package com.kh.arp.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -186,15 +189,15 @@ public class TBoardController {
 	
 }
 		
-		result = tbService.updateTBoard(b);
-		
-		if(result > 0) {
-			mv.addObject("b_no", b.getB_no()).setViewName("redirect:tbdetail.do");
-		}else {
-			mv.addObject("msg", "게시판 수정 실패").setViewName("common/errorPage");
+			result = tbService.updateTBoard(b);
+			
+			if(result > 0) {
+				mv.addObject("b_no", b.getB_no()).setViewName("redirect:tbdetail.do");
+			}else {
+				mv.addObject("msg", "게시판 수정 실패").setViewName("common/errorPage");
 		}
-		
-		return mv;
+			
+			return mv;
 		
 		
 	
@@ -216,16 +219,53 @@ public class TBoardController {
 	
 	// 업로드 되어있는 파일 삭제용 메소드
 	public void deleteFile(String renameFileName, HttpServletRequest request) {
-	String root = request.getSession().getServletContext().getRealPath("resources");
-	String savePath = root + "/buploadFiles";
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "/buploadFiles";
+			
+			
+		File f = new File(savePath + "/" + renameFileName);
+			
+		if(f.exists()) {
+		f.delete();
+		}	
 		
-		
-	File f = new File(savePath + "/" + renameFileName);
-		
-	if(f.exists()) {
-	f.delete();
-}
+	}
 	
-}
+	
+	// 썸머노트 이미지 업로드용 메소드
+	@RequestMapping("imageUpload.do")
+	public void imageUpload(MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		// 업로드할 폴더 경로
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String realFolder = root + "/tbuploadImages";
+		//String realFolder = request.getSession().getServletContext().getRealPath("buploadFiles");
+		
+		UUID uuid = UUID.randomUUID();
+		
+		// 업로드할 파일 이름
+		String org_filename = file.getOriginalFilename();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + uuid + "."
+				+ org_filename.substring(org_filename.lastIndexOf(".") + 1);
+		
+		System.out.println("원본 파일명 : " + org_filename);
+		System.out.println("저장할 파일명 : " + renameFileName);
+
+		String filepath = realFolder + "\\" + renameFileName;
+		System.out.println("파일경로 : " + filepath);
+
+		File f = new File(filepath);
+		if (!f.exists()) {
+			f.mkdirs();
+		}
+		file.transferTo(f);
+		out.println("resources/tbuploadImages/"+renameFileName);
+		out.close();
+	}
 
 }
