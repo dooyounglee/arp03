@@ -39,6 +39,11 @@ public class QDao {
 		
 		return qList;
 	}
+	
+	// Mapper에 이미 되어있는거 재사용하자
+	public Lecture getLecture(int lec_no) {
+		return sqlSession.selectOne("lectureMapper.getLecture",lec_no);
+	}
 
 	
 	
