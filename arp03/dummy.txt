@@ -294,7 +294,8 @@ insert into lecture values(seq_lecture.nextval,27,'강의명27',sysdate,sysdate,
 insert into lecture values(seq_lecture.nextval,27,'강의명27',sysdate,sysdate,2,'Y','내용20',null,30,21,6,'월화수','여기20');
 
 
-
+INSERT INTO BCATEGORY VALUES(1, '일반');
+INSERT INTO BCATEGORY VALUES(2, '선생님');
 INSERT INTO BOARD 
 VALUES(seq_board.nextval,1,2,'제목입니다','내용입니다',SYSDATE,SYSDATE,0,'Y',0,0,'N');
 
