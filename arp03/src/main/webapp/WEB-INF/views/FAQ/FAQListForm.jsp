@@ -26,14 +26,55 @@ display:inline;
 </c:if>
 <nav align="center">
 <ul >
+	
 	<li><a href="#">로그인</a></li>
 	<li><a href="#">수강</a></li>
 	<li><a href="#">홈페이지</a></li>
 	<li><a href="#">기타</a></li>
 </ul>
 </nav>
+<br>
+<table align="center" border="1" cellspacing="0" width="700" style="text-align:center;"> 
+<tr>
+	<th>구분</th>
+	<th colspan="3" width="300">질문내용</th>
+	
+</tr>
+<c:forEach items="${ list }" var="f">
+	
+	<tr>
+		<td>${f.category }</td>
+		<td colspan="3"  class="question" style="cursor:pointer">${ f.question }</td>
+	</tr>
+	<tr>
+		<td colspan="3" style="display:none" style="cursor:pointer" class="answer" >
+		${f.answer } 
+		<c:if test="${ mem.id eq 'admin' }">
+		<a href="fdelete.ad?faq_no=${ f.faq_no }" >삭제하기</a>
+		</c:if>
+		</td>
+		
+	</tr>
+	
+</c:forEach>
+
+</table>
 
 
+<script>
 
+$(function(){
+	
+		$(".question").on("click" , function(){
+			//다 접기
+			$(".answer").hide()
+			$(this).parent().next().children().eq(0).toggle()
+		});
+	
+	
+});
+
+
+</script>
 </body>
 </html>
