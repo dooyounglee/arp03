@@ -26,11 +26,11 @@ display:inline;
 </c:if>
 <nav align="center">
 <ul >
-	<li><a href="#">전체</a></li>
-	<li><a href="fcategory.ad?category=${faq.category eq '로그인' }">로그인</a></li>
-	<li><a href="fcategory.ad?category=${category eq '수강' }">수강</a></li>
-	<li><a href="fcategory.ad?category=${category eq '홈페이지' }">홈페이지</a></li>
-	<li><a href="fcategory.ad?category=${category eq '기타' }">기타</a></li>
+	<li><a href="flist.ad">전체</a></li>
+	<li><a href="fcategory.ad?category=로그인">로그인</a></li>
+	<li><a href="fcategory.ad?category=수강">수강</a></li>
+	<li><a href="fcategory.ad?category=홈페이지">홈페이지</a></li>
+	<li><a href="fcategory.ad?category=기타">기타</a></li>
 </ul>
 </nav>
 <br>

@@ -2,6 +2,8 @@ package com.kh.arp.FAQ.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,15 +59,15 @@ public String deleteFAQ(int faq_no) {
 	
 }
 
+
 @RequestMapping("fcategory.ad")
-public ModelAndView selectCategory(String category , ModelAndView mv) {
+public ModelAndView selectCatgory(String category , ModelAndView mv) {
 	
-	FAQ Category = fService.selectCategory(category);
+	ArrayList<FAQ> list = fService.selectCategory(category);
 	
-	내가 DB에서 category 를 뽑아서 객체를 view 보내줘야하는데 
+	mv.addObject("list" , list).setViewName("FAQ/FAQListForm");
 	
-	
-	
+	return mv;
 }
 
 
