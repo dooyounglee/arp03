@@ -66,12 +66,28 @@ display:inline;
 $(function(){
 	
 		$(".question").on("click" , function(){
-			//다 접기
-			$(".answer").hide()
-			$(this).parent().next().children().eq(0).toggle()
+			var this_answer=$(this).parent().next().children().eq(0);
+			console.log($(this_answer).css("display"));
+			
+			if($(this_answer).css("display")=="table-cell"){
+				
+				$(".answer").hide()
+			}else{
+				$(".answer").hide()
+				$(this_answer).show()
+			}
+			/* //다 접기
+			var this_answer=$(this).parent().next().children().eq(0);
+			$(".answer").each(function(index,item){
+				if($(this)!=this_answer)alert("ddd")
+			})
+			this_answer.toggle() */
 		});
 	
-		
+		$(".answer").on("click" , function(){
+			
+			
+		});
 	
 });
 
