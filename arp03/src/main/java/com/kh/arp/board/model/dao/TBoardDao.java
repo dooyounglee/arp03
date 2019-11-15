@@ -81,4 +81,8 @@ public class TBoardDao {
 	public int updateStatus(int b_no) {
 		return sqlSession.update("tboardMapper.updateStatus",b_no);
 	}
+	
+	public String deleteBoardFile(int b_no) {
+		return sqlSession.selectOne("tboardMapper.deleteBoardFile",b_no);
+	}
 }

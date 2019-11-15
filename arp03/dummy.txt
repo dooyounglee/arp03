@@ -15,6 +15,7 @@ DROP TABLE Board;
 DROP TABLE BCategory;
 drop table auth;
 DROP TABLE member;
+DROP TABLE vacation;
 
 
 CREATE TABLE member (
@@ -76,10 +77,23 @@ CREATE TABLE QnA (
 	m_no	Number		REFERENCES MEMBER,
 	title	varchar2(1000)		NOT NULL,
 	content	varchar2(4000)		NOT NULL,
-	answer	varchar2(4000)		NOT NULL,
+	answer	varchar2(4000)		NULL,
 	questiondate	date	DEFAULT sysdate	NOT NULL,
-	answerdate	date	DEFAULT sysdate	NOT NULL,
+	answerdate	date	DEFAULT sysdate	NULL,
 	status	varchar2(10)	DEFAULT 'N'	NOT NULL
+);
+
+CREATE TABLE vacation (
+	v_no	Number		NOT NULL,
+	m_no	Number		NOT NULL,
+	lec_no	number		NOT NULL,
+	reason	varchar2(2000)		NOT NULL,
+	start_date	date		NOT NULL,
+	date_count	number		NOT NULL,
+	application_date	Number		NOT NULL,
+	tstatus	varchar2(100)	DEFAULT 'N'	NOT NULL,
+	astatus  	varchar2(100)	DEFAULT 'N' 	NOT NULL,
+	status	varchar2(100)	DEFAULT 'N'	NOT NULL
 );
 
 CREATE TABLE declaree (
@@ -208,6 +222,7 @@ DROP SEQUENCE SEQ_BReply; 		-- 게시판 댓글 번호
 DROP SEQUENCE SEQ_BoardFile;		--게시판 첨부파일 번호
 DROP SEQUENCE SEQ_BCategory;		-- 카테고리 번호
 DROP SEQUENCE SEQ_QNA;			-- 문의사항 번호
+DROP SEQUENCE SEQ_VACATION;		-- 휴가 번호
 
 CREATE SEQUENCE SEQ_Notice; 		-- 공지사항 번호
 CREATE SEQUENCE SEQ_FAQ;			-- FAQ 번호
@@ -223,7 +238,7 @@ CREATE SEQUENCE SEQ_BReply; 		-- 게시판 댓글 번호
 CREATE SEQUENCE SEQ_BoardFile;		--게시판 첨부파일 번호
 CREATE SEQUENCE SEQ_BCategory;		-- 카테고리 번호
 CREATE SEQUENCE SEQ_QNA;			-- 문의사항 번호
-
+CREATE SEQUENCE SEQ_VACATION;		-- 휴가 번호
 
 /*drop trigger filestatusTrigger;
 create or replace trigger filestatusTrigger -- 첨부파일 상태 트리거

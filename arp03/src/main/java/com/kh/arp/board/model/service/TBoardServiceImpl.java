@@ -99,4 +99,10 @@ public class TBoardServiceImpl implements TBoardService{
 		return tbDao.updateStatus(b_no);
 	}
 
+	@Override
+	public String deleteBoardFile(int b_no) {
+
+		return tbDao.deleteBoardFile(b_no);
+	}
+
 }
