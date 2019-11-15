@@ -42,8 +42,8 @@
 	
 	<c:if test="${!empty lec }">
 		수강페이지
-		<a href="">메인</a>
-		<a href="">강의계획</a>
+		<a href="main.lec?lec_no=${lec.lec_no }"><del>메인</del></a>
+		<a href="info.lec"><del>강의계획</del></a>
 		<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a>
 		<a href="">내 출석</a>
 		<a href="">내 점수</a>

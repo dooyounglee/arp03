@@ -71,4 +71,12 @@ public class LectureController {
 		mv.setViewName("son");
 		return mv;
 	}
+	
+	@GetMapping("/info.lec")
+	public ModelAndView info(HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		mv.addObject("lec", lec);
+		mv.setViewName("lecture/info");
+		return mv;
+	}
 }
