@@ -66,8 +66,8 @@ display:inline;
 $(function(){
 	
 		$(".question").on("click" , function(){
-			var this_answer=$(this).parent().next().children().eq(0);
-			console.log($(this_answer).css("display"));
+			
+			var this_answer=$(this).parent().next().children().eq(0); // 질문의 답변
 			
 			if($(this_answer).css("display")=="table-cell"){
 				
@@ -75,6 +75,8 @@ $(function(){
 			}else{
 				$(".answer").hide()
 				$(this_answer).show()
+				
+				
 			}
 			/* //다 접기
 			var this_answer=$(this).parent().next().children().eq(0);
