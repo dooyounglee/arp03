@@ -45,5 +45,15 @@ public class BoardServiceImpl implements BoardService {
 	public int insertReply(BReply r) {
 		return bDao.insertReply(r);
 	}
+	
+	@Override
+	public int deleteReply(int r_no) {
+		return bDao.deleteReply(r_no);
+	}
+
+	@Override
+	public int updateReply(BReply r) {
+		return bDao.updateReply(r);
+	}
 
 }

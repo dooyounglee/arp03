@@ -18,10 +18,18 @@
 	</select>
 	
 	<select id="selectReplyList" resultType="BReply">
-		select * from breply where b_no = #{b_no}
+		select * from breply where b_no = #{b_no} and status = 'Y'
 	</select>
 	
 	<insert id="insertReply">
 		insert into breply values(SEQ_BREPLY.nextval, #{b_no}, #{m_no}, #{content}, sysdate, sysdate, default, default, SEQ_BREPLY.currval)
 	</insert>
+	
+	<update id="deleteReply">
+		update breply set status = 'N' where r_no=#{r_no}
+	</update>
+	
+	<update id="updateReply">
+		update breply set content=#{content}, update_date=sysdate where r_no=#{r_no}
+	</update>
 </mapper>

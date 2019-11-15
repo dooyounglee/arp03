@@ -84,7 +84,7 @@ CREATE TABLE QnA (
 	status	varchar2(10)	DEFAULT 'N'	NOT NULL
 );
 
-<<<<<<< HEAD
+
 CREATE TABLE vacation (
 	v_no	Number		PRIMARY KEY,
 	m_no	Number		REFERENCES MEMBER,

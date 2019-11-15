@@ -23,6 +23,13 @@ public interface BoardService {
 	// 댓글 리스트 조회
 	ArrayList<BReply> selectReplyList(int b_no);
 	
+	// 댓글 작성
 	int insertReply(BReply r);
+		
+	// 댓글 삭제
+	int deleteReply(int r_no);
+		
+	// 댓글 수정
+	int updateReply(BReply r);
 	
 }

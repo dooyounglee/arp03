@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-3.2.1.js"></script>
 </head>
 <body>
     <h1>신고하기</h1>
     
-    <form action="insert.de" method="post" autocomplete=off>
     	신고사유
 		<input type="radio" name="kind" value="1">이유1<br>
 		<input type="radio" name="kind" value="2">이유2<br>
@@ -17,11 +17,29 @@
 		<input type="radio" name="kind" value="4">이유4<br>
 		<input type="radio" name="kind" value="5">이유5<br>
 	
-		내용:<input name="content">
-		<button>신고</button>
-    </form>
+		내용:<input id="content">
+		<button onclick="send()">신고</button>
 	
-	
+	<script>
+		function send(){
+			alert("dd")
+			var parent = window.opener;
+			
+			alert($('input[name="kind"]:checked').length)
+/* 			$.ajax({
+				url:'',
+				type:'post',
+				data:{
+					
+				},
+				success:function(data){
+					parent.location.href='declareList.ad';
+					window.close();
+				},
+			}) */
+			
+		}
+	</script>
 	
 	
 	
