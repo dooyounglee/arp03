@@ -160,7 +160,7 @@
 							console.log("성공");
 							$("#filename").text("");
 							$("#original_filename").val(null);
-						
+						  
 						}else{
 							alert("파일 삭제 실패");
 						}
