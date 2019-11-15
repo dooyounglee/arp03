@@ -15,6 +15,7 @@ import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Classdate;
 import com.kh.arp.member.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.qna.model.vo.Qna;
 
 @Service
 public class MemberServiceImple implements MemberService {
@@ -145,6 +146,11 @@ public class MemberServiceImple implements MemberService {
 	@Override
 	public Member find(Member m) {
 		return md.find(m);
+	}
+
+	@Override
+	public List<Qna> getQnaList() {
+		return md.getQnaList();
 	}
 
 }

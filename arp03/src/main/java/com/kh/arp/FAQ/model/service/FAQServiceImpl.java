@@ -33,7 +33,7 @@ public class FAQServiceImpl implements FAQService {
 	}
 
 	@Override
-	public int selectCategory(String category) {
+	public ArrayList<FAQ> selectCategory(String category) {
 		// TODO Auto-generated method stub
 		return fDao.selectCategory(category);
 	}
