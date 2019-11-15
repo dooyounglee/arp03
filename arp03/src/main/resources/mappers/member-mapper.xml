@@ -67,9 +67,5 @@
 	<select id="find" resultType="Member">
 		select * from member where m_no=#{m_no} or email=#{email} or phone=#{email}
 	</select>
-	
-	<select id="getQnaList" resultType="Qna">
-		select * from qna
-	</select>
 
 </mapper>

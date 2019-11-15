@@ -10,7 +10,6 @@ import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Classdate;
 import com.kh.arp.member.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
-import com.kh.arp.qna.model.vo.Qna;
 
 public interface MemberService {
 
@@ -63,7 +62,5 @@ public interface MemberService {
 	int update(Member m);
 
 	Member find(Member m);
-
-	List<Qna> getQnaList();
 
 }
