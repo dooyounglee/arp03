@@ -112,7 +112,9 @@
 				callbacks: { // 콜백을 사용
                  // 이미지를 업로드할 경우 이벤트를 발생
 				    onImageUpload: function(files, editor, welEditable) {
-					    sendFile(files[0], this);
+				    	 for (var i = files.length - 1; i >= 0; i--) {
+		  		            	sendFile(files[i], this);
+		  		            }
 					}
 				}
 			});

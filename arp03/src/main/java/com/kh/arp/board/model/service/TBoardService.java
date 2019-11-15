@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.board.model.vo.BoardFile;
+import com.kh.arp.common.PageInfo;
 
 
 public interface TBoardService {
 	
 	// 1. 선생님 게시판 리스트용 서비스
-	ArrayList<Board> selectTBoardList();
+	ArrayList<Board> selectTBoardList(PageInfo pi);
 	
 	// 2. 선생님 게시판 글 작성용 서비스 
 	int insertTBoard(Board b);

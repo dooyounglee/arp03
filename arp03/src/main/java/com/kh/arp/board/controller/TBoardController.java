@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.arp.board.model.service.TBoardService;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.board.model.vo.BoardFile;
+import com.kh.arp.common.PageInfo;
+import com.kh.arp.common.Pagination;
 import com.kh.arp.member.model.vo.Member;
 
 @Controller
@@ -35,7 +37,9 @@ public class TBoardController {
 		
 		
 		int listCount = tbService.getListCount();
-		ArrayList<Board> list = tbService.selectTBoardList();
+		PageInfo pi = new PageInfo(currentPage, listCount, 3, 5);
+		// System.out.println("pi"+pi);
+		ArrayList<Board> list = tbService.selectTBoardList(pi);
 		
 		for(Board b : list) {
 			
@@ -48,7 +52,7 @@ public class TBoardController {
 		}
 		
 		
-		mv.addObject("list",list).setViewName("tboard/tboardListView");
+		mv.addObject("list",list).addObject("pi",pi).setViewName("tboard/tboardListView");
 		
 		return mv;
 	}

@@ -44,9 +44,9 @@
 				</c:if>
 			</tr>
 		</c:forEach>		
-</table>
 
-		<!-- 페이징 처리 -->
+
+	<!-- 페이징 처리 -->
 		<tr align="center" height="20">
 			<td colspan="6">
 				<!-- [이전] -->
@@ -58,7 +58,7 @@
 						<c:param name="currentPage" value="${ pi.currentPage-1 }"/>
 					</c:url>
 					<a href="${ before }">[이전] </a>	
-				</c:if>
+				</c:if> 
 				
 				<!-- [페이지] -->
 				<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
@@ -73,18 +73,18 @@
 					</c:if>
 				</c:forEach>
 				
-				<!-- [다음] -->
+				 <!-- [다음] -->
 				<c:if test="${ pi.currentPage eq pi.maxPage }">
 					 [다음]
 				</c:if>
 				<c:if test="${ pi.currentPage ne pi.maxPage }">
-					<c:url value="blist.do" var="after">
+					<c:url value="tblist.do" var="after">
 						<c:param name="currentPage" value="${ pi.currentPage+1 }"/>
 					</c:url>
 					<a href="${ after }"> [다음]</a>
 				</c:if>
 			</td>
 		</tr>
-
+</table>
 </body>
 </html>
