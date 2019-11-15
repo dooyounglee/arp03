@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="attendenceMapper">
+<resultMap type="attendenceResultSet" id="attendenceStudence">
+	<id property="classdate" column="classdate"/>
+	<id property="lec_no" column="lec_no"/>
+	<id property="m_no" column="m_no"/>
+	<result property="content" column="content"/>
+	<result property="status" column="status"/>
+</resultMap>
 
+<select id="selectAttendence" resultType="attendenceReusltSet">
+	select *
+	from attendence
+</select>
 </mapper>

@@ -42,6 +42,8 @@ public class LectureController {
 	public ModelAndView makeLecturePost(Lecture lec, HttpSession session, ModelAndView mv, String[] classdate, String[] week) {
 		
 		Member mem=(Member)session.getAttribute("mem");
+		System.out.println(lec+ "lec");
+		System.out.println(mem+"mem");
 		lec.setM_no(mem.getM_no());
 		lec.setDayofweek(String.join(",", week));
 		System.out.println(lec);
