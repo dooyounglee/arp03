@@ -45,7 +45,7 @@
 				</td>
 				<td>${ q.name }</td>
 				<td>${ q.regdate }</td>
-				<td>${ q.dcount }</td>
+				<td>${ q.vcount }</td>
 				<%-- 				<td>
 					<c:if test="${ !empty q.originalName }">
 						<img align="center" width="30" src="siraFile/클립1.svg"/>

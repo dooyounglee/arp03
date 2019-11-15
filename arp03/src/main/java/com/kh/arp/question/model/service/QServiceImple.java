@@ -51,13 +51,19 @@ public class QServiceImple implements QService{
 	@Override
 	public Question selectDetailQuestion(int q_no) {
 		
-		return qDao.selectDetailQuestion(q_no);
+		// 조회수 먼저 증가
+		int result = qDao.updateCount(q_no);
+		
+		if(result > 0) { // 제대로 업데이트
+			return qDao.selectDetailQuestion(q_no);
+		}else {
+			return null;
+		}
 	}
 
 	@Override
-	public int qUpdate(int q_no) {
-		return qDao.qUpdateForm(q_no);
+	public int qUpdate(Question q) {
+		return qDao.qUpdate(q);
 	}
-
 	
 }

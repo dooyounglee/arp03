@@ -104,7 +104,7 @@ public class QController {
 			//model.addAttribute("qf", qf);
 			
 			// 성공하면 리스트를 조회해오자
-			ArrayList<Question> qList2 = qService.selectQuestionList2(q);
+			//ArrayList<Question> qList2 = qService.selectQuestionList2(q);
 			
 			int lec_no = q.getLec_no();
 			
@@ -164,28 +164,34 @@ public class QController {
 		return mv;
 	}
 	
+
+	 @RequestMapping("qupdateForm.qu") public ModelAndView qUpdateForm(int q_no, ModelAndView mv) { 
+		 Question q = qService.selectDetailQuestion(q_no);
 	
-	@RequestMapping("qupdateForm.qu")
-	public ModelAndView qUpdateForm(int q_no, ModelAndView mv) {
-		Question q = qService.selectUpdateForm(q_no);
+		 mv.addObject("q", q).setViewName("question/qUpdateForm");
+	 
+		 return mv; 
 		
-		mv.addObject("q", q).setViewName("question/qupdateForm");
-		
-		return mv;
-	}
+	 }
 	
-	/*
-	 * @RequestMapping("qupdate.qu") public ModelAndView qUpdate(int q_no,
-	 * ModelAndView mv) {
-	 * 
-	 * int result = qService.qUpdate(q_no);
-	 * 
-	 * if(result > 0) { mv.addObject("q").setViewName("question/qupdateForm"); }else
-	 * { mv.addObject("msg", "게시판 수정 실패").setViewName("qcommon/errorPage"); }
-	 * 
-	 * return mv; }
-	 */
-	
+
+	 @RequestMapping("qupdate.qu") 
+	 public ModelAndView qUpdate(Question q, ModelAndView mv) {
+	   
+	   int result = qService.qUpdate(q);
+	   
+	   int lec_no = q.getLec_no();
+	   
+	   if(result > 0) { 
+		   mv.addObject("q_no", q.getQ_no()).setViewName("redirect:qdetail.qu?lec_no="+lec_no);
+	   }else { 
+		   mv.addObject("msg", "게시판 수정 실패").setViewName("qcommon/errorPage"); 
+	   }
+	   
+	   return mv;
+	   
+	 }
+
 	
 	/*
 	 * @RequestMapping("")

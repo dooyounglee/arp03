@@ -29,9 +29,8 @@ public interface QService {
 	
 	// 상세보기 페이지 조회
 	Question selectDetailQuestion(int q_no);
-	
-	// 게시글 업데이트
-	int qUpdate(int q_no);
+
+	int qUpdate(Question q);
 	
 	
 }
