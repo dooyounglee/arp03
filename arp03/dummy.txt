@@ -15,7 +15,7 @@ DROP TABLE Board;
 DROP TABLE BCategory;
 drop table auth;
 DROP TABLE member;
-drop trigger filestatusTrigger;
+
 
 CREATE TABLE member (
 	m_no	Number		 PRIMARY KEY,
@@ -36,8 +36,6 @@ CREATE TABLE auth(
 	email varchar2(1000),
 	code varchar2(1000)
 );
-INSERT INTO auth values('1','1');
-INSERT INTO auth values('gost','2');
 
 CREATE TABLE Lecture (
 	lec_no	number		PRIMARY KEY,
@@ -158,8 +156,6 @@ CREATE TABLE  BCategory  (
 	 ca_no 	Number	DEFAULT 1	PRIMARY KEY,
 	 ca_name 	varchar2(20)	DEFAULT '일반'	NOT NULL
 );
-INSERT INTO bcategory values(1,DEFAULT);
-INSERT INTO BCATEGORY values(2,'무엇');
 
 
 CREATE TABLE  Board  (
@@ -227,6 +223,15 @@ CREATE SEQUENCE SEQ_BReply; 		-- 게시판 댓글 번호
 CREATE SEQUENCE SEQ_BoardFile;		--게시판 첨부파일 번호
 CREATE SEQUENCE SEQ_BCategory;		-- 카테고리 번호
 CREATE SEQUENCE SEQ_QNA;			-- 문의사항 번호
+
+
+/*drop trigger filestatusTrigger;
+create or replace trigger filestatusTrigger -- 첨부파일 상태 트리거
+after insert on BoardFile
+for each row begin
+update board set filestatus='Y'
+where b_no = :new.b_no;
+end;*/
 
 
  
@@ -299,6 +304,22 @@ INSERT INTO BCATEGORY VALUES(1, '일반');
 INSERT INTO BCATEGORY VALUES(2, '선생님');
 INSERT INTO BOARD 
 VALUES(seq_board.nextval,1,2,'제목입니다','내용입니다',SYSDATE,SYSDATE,0,'Y',0,0,'N');
+
+
+INSERT INTO ARP.BREPLY
+(R_NO, B_NO, M_NO, CONTENT, REGDATE, UDPATE_DATE, STATUS, "DEPTH", PARENT_NO)
+VALUES(1, 1, 1, '내용1', sysdate	, sysdate	, 'Y'	, 1	, 1);
+INSERT INTO ARP.BREPLY
+(R_NO, B_NO, M_NO, CONTENT, REGDATE, UDPATE_DATE, STATUS, "DEPTH", PARENT_NO)
+VALUES(2, 1, 1, '내용2', sysdate	, sysdate	, 'Y'	, 1	, 1);
+
+
+INSERT INTO ARP.DECLAREE
+(D_NO, M_NO, KIND, CONTENT, REGDATE, OKDATE, STATUS, OBJ, OBJ_NO)
+VALUES(1, 1, 'a', '내용1', sysdate	, sysdate	, 'N'	, 'b', 1);
+INSERT INTO ARP.DECLAREE
+(D_NO, M_NO, KIND, CONTENT, REGDATE, OKDATE, STATUS, OBJ, OBJ_NO)
+VALUES(2, 1, 'b', '내용2', sysdate	, sysdate	, 'N'	, 'r', 1);
 
 
 insert into question values(seq_question.nextval, 1, 21, '안녕하세요', '반갑습니다', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, null, 'N', '있음');
