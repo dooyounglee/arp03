@@ -16,7 +16,7 @@ public class AttendenceController {
 	public ModelAndView attendence(ModelAndView mv) {
 		
 		Attendence at= atService.selectStudentAttendence();
-		
+		mv.addObject("at", at).setViewName("attendence/studentat");
 		return mv;
 	}
 }

@@ -45,6 +45,18 @@ public class QDao {
 		return sqlSession.selectOne("lectureMapper.getLecture",lec_no);
 	}
 
+	public int qInsert(Question q) {
+		
+		return sqlSession.insert("questionMapper.qInsert", q);
+	}
+
+	public ArrayList<Question> selectQuestionList2(Question q) {
+		ArrayList<Question> qList2 = (ArrayList)sqlSession.selectList("questionMapper.selectQuestionList2", q);
+		
+		return qList2;
+		
+	}
+
 	
 	
 }

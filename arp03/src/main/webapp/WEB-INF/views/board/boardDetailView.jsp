@@ -51,7 +51,7 @@
 	<table align="center" width="500" border="1" cellspacing="0" id="rtb">
 		<thead>
 			<tr>
-				<td colspan="4"><b id="rCount"></b></td>
+				<td colspan="3"><b id="rCount"></b></td>
 			</tr>
 		</thead>
 		<tbody>
@@ -84,11 +84,6 @@
 				
 			});
 			
-			$(document).one("click", "#rr", function(){
-				console.log($(this).parent().parent().next());
-				$("#rtb tbody:last").append("<tr><td colspan='3'><textarea cols='50' rows='3' id='reContent'></textarea></td><td><button>등록</button></td></tr>")
-			});
-			
 		});
 		
 		function getReplyList(){
@@ -97,7 +92,7 @@
 				data:{b_no:${b.b_no}},
 				dataType:"json",
 				success:function(data){
-					//console.log(data);
+					console.log(data);
 					$tbody = $("#rtb tbody");
 					$tbody.html("");
 					
@@ -107,18 +102,14 @@
 						$.each(data, function(index, value) { // value == data[index]
 							// 작성자 내용 작성일
 						$tr = $("<tr>");
-						$td = $("<td>");
-						
+							
 						$writerTd = $("<td>").text("익명");
 						$contentTd = $("<td width='250'>").text(value.content);
 						$dateTd = $("<td>").text(value.regdate);
-						
-						$rreply= $('<input type="button" id="rr" value="대댓"/>');
-						
+							
 						$tr.append($writerTd);
 						$tr.append($contentTd);
 						$tr.append($dateTd);
-						$tr.append($td.append($rreply));
 						
 						$tbody.append($tr);
 							
@@ -126,7 +117,7 @@
 					} else {
 						$tr = $("<tr>");
 						
-						$contentTd = $("<td colspan='4'>").text("등록된 댓글이 없습니다.");
+						$contentTd = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
 						$tr.append($contentTd);
 						
 						$tbody.append($tr);

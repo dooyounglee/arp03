@@ -95,6 +95,12 @@
 		set FILESTATUS='Y'
 		where b_no=#{b_no}
 	</update>
+	
+	<select id="deleteBoardFile" resultType="String">
+		select rename_filename
+		from boardfile
+		where b_no=#{b_no}
+	</select>
 
 
 

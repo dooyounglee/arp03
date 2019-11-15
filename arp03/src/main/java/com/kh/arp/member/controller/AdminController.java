@@ -20,17 +20,12 @@ import com.kh.arp.member.model.service.MemberService;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
-import com.kh.arp.qna.model.service.QnaService;
-import com.kh.arp.qna.model.vo.Qna;
 
 @Controller
 public class AdminController {
 
 	@Autowired
 	private MemberService ms;
-	
-	@Autowired
-	private QnaService qs;
 	
 	@Autowired
 	private JavaMailSenderImpl javaMailSenderImple;
@@ -192,23 +187,6 @@ public class AdminController {
 		if(result>0) {
 			mv.setViewName("redirect:/declareList.ad");
 		}
-		return mv;
-	}
-	
-	@RequestMapping("/qnaList.ad")
-	public ModelAndView qnaList(ModelAndView mv) {
-		List<Qna> list=ms.getQnaList();
-		mv.addObject("list",list);
-		mv.setViewName("qna/list");
-		return mv;
-	}
-	
-	@PostMapping("/answerQna.ad")
-	public ModelAndView answerPost(Qna qna, ModelAndView mv) {
-		Qna newqna=qs.getQna(qna.getQna_no());
-		newqna.setAnswer(qna.getAnswer());
-		int result=qs.answerQna(newqna);
-		mv.setViewName("redirect:/get.qna?qna_no="+qna.getQna_no());
 		return mv;
 	}
 	

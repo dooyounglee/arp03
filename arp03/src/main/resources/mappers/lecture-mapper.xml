@@ -26,9 +26,9 @@
 			#{dayofweek},
 			#{place}
 		)
-		<selectKey keyProperty="abc">
+		<!-- <selectKey keyProperty="abc">
 			select seq_lecture.currval from dual
-		</selectKey>
+		</selectKey> -->
 	</insert>
 	
 	<select id="getLastestLecture" resultType="Lecture">
