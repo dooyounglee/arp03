@@ -22,9 +22,8 @@
 	
 	<h1 align="center">상세보기 페이지</h1>
 	<br>
-	<form action="qupdateForm.qu" method="post" enctype="multipart/form-data">
+	<form action="qupdateForm.qu?q_no=${ q.q_no }" method="post" enctype="multipart/form-data">
 		<table align="center">
-			<input type="hidden" name="m_no" value="${ mem.m_no }">
 			<tr>
 				<td>제목</td>
 				<td><input size="40" type="text" name="title" value="${ q.title }" readonly></td>
@@ -52,32 +51,7 @@
 		</table>
 	</form>
 	
-	<script>
-		$(document).ready(function(){
-			$("#summernote").summernote({
-				height:300,
-				minHeight: null,
-				maxHeight: null,
-				focus: true,
-				
-				callbacks:{
-					
-					onImageUpload: function(files, editor, weleditable){
-						for(var i = files.length - 1; i >= 0; i--){
-							sendFile(files[i], this);
-						}
-					}
-					
-				},
-				lang:"ko-KR",
-				placeholder: '※ 이 게시판은 수업시간에 궁금했던점들을 선생님께 질문할수있는 질문게시판입니다. 도배, 욕설 및 부적절한 내용을 올릴 경우 신고 및 삭제될 수 있습니다. 참고하여 작성해주세요.'
-				
-			});
-		});
-		
-		
-	</script>
-	
+
 	
 	<!-- header에 있는 jquery 충돌 방지 -->
    <script src='jquery-3.2.1.js'></script>

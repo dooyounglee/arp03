@@ -55,15 +55,25 @@ public class QDao {
 		return qList2;
 		
 	}
+	
+	// 조회수 증가
+	public int updateCount(int q_no) {
+		return sqlSession.update("questionMapper.updateCount", q_no);
+	}
 
 	public Question selectDetailQuestion(int q_no) {
 		return sqlSession.selectOne("questionMapper.selectDetailQuestion", q_no);
 	}
 
-	public int qUpdate(int q_no) {
-		// TODO Auto-generated method stub
-		return sqlSession.update("questionMapper.qUpdateForm", q_no);
+	/*
+	 * public int qUpdate(int q_no) { // TODO Auto-generated method stub return
+	 * sqlSession.update("questionMapper.qUpdateForm", q_no); }
+	 */
+
+	public int qUpdate(Question q) {
+		return sqlSession.update("questionMapper.qUpdate", q);
 	}
+
 
 	
 	
