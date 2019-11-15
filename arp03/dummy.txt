@@ -314,14 +314,6 @@ INSERT INTO ARP.BREPLY
 VALUES(2, 1, 1, '내용2', sysdate	, sysdate	, 'Y'	, 1	, 1);
 
 
-INSERT INTO ARP.DECLAREE
-(D_NO, M_NO, KIND, CONTENT, REGDATE, OKDATE, STATUS, OBJ, OBJ_NO)
-VALUES(1, 1, 'a', '내용1', sysdate	, sysdate	, 'N'	, 'b', 1);
-INSERT INTO ARP.DECLAREE
-(D_NO, M_NO, KIND, CONTENT, REGDATE, OKDATE, STATUS, OBJ, OBJ_NO)
-VALUES(2, 1, 'b', '내용2', sysdate	, sysdate	, 'N'	, 'r', 1);
-
-
 insert into question values(seq_question.nextval, 1, 21, '안녕하세요', '반갑습니다', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, null, 'N', '있음');
 insert into question values(seq_question.nextval, 1, 2, '안녕하세요2', '반갑습니다2', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, null, 'N', '있음');
 insert into question values(seq_question.nextval, 2, 21, '안녕하세요3', '반갑습니다3', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, null, 'N', '있음');
