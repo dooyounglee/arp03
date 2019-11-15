@@ -40,15 +40,16 @@
 	
 	<hr>
 	
-	
-	<a href="">메인</a>
-	<a href="">강의계획</a>
-<%-- 	<a href="question.qu?lec_no=${ c.lec_no }">질문게시판</a> --%>
-	<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a>
-	<a href="">내 출석</a>
-	<a href="">내 점수</a>
-	
-	<hr>
+	<c:if test="${!empty lec }">
+		수강페이지
+		<a href="">메인</a>
+		<a href="">강의계획</a>
+		<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a>
+		<a href="">내 출석</a>
+		<a href="">내 점수</a>
+		<hr>
+	</c:if>
+
 	
 <a href="lectureList.ad"><del>강좌관리</del></a>
 	<a href="boardList.ad"><del>게시글 관리</del></a>

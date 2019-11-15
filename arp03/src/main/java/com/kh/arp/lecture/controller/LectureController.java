@@ -23,10 +23,9 @@ public class LectureController {
 	private LectureService ls;
 	
 	@RequestMapping("/main.lec")
-	public ModelAndView lectureList(ModelAndView mv, int lec_no) {
+	public ModelAndView lectureList(int lec_no, HttpSession session, ModelAndView mv) {
 		Lecture lec=ls.getLecture(lec_no);
-		System.out.println(lec);
-		mv.addObject("lec",lec);
+		session.setAttribute("lec", lec);
 		mv.setViewName("lecture/main");
 		return mv;
 	}
