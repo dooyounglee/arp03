@@ -31,11 +31,10 @@ public class QDao {
 
 	public ArrayList<Question> selectQuestionList(PageInfo pi, int lec_no) {
 		
-		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		//RowBounds rowBounds = new RowBounds(pi.getOffset(), pi.getBoardLimit());
 		
 		// 전달할값 있으면 가운데 null값 대체해놓기..
-		ArrayList<Question> qList = (ArrayList)sqlSession.selectList("questionMapper.selectQuestionList", lec_no, rowBounds);
+		ArrayList<Question> qList = (ArrayList)sqlSession.selectList("questionMapper.selectQuestionList", lec_no, new RowBounds(pi.getOffset(), pi.getBoardLimit()));
 		
 		return qList;
 	}
@@ -55,6 +54,15 @@ public class QDao {
 		
 		return qList2;
 		
+	}
+
+	public Question selectDetailQuestion(int q_no) {
+		return sqlSession.selectOne("questionMapper.selectDetailQuestion", q_no);
+	}
+
+	public int qUpdate(int q_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("questionMapper.qUpdateForm", q_no);
 	}
 
 	

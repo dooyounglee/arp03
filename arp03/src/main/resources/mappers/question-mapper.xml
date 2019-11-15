@@ -43,6 +43,12 @@
 	where lec_no=#{lec_no}
 </select>
 
+<select id="selectDetailQuestion" resultType="question">
+	select *
+	from question
+	where q_no=#{q_no}
+</select>
+
 
 
 </mapper>
