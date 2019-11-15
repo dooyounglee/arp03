@@ -10,7 +10,7 @@
 <body>
 	<jsp:include page="../include/header.jsp"/>
 	
-	<form action="${aaa }.qna" method="post" autocomplete=off>
+	<form action="write.qna" method="post" autocomplete=off>
 		제목:<input name="title"><br>
 		내용:<input name="content"><br>
 		<button>완료</button>
