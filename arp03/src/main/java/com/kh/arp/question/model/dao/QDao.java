@@ -31,11 +31,10 @@ public class QDao {
 
 	public ArrayList<Question> selectQuestionList(PageInfo pi, int lec_no) {
 		
-		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		//RowBounds rowBounds = new RowBounds(pi.getOffset(), pi.getBoardLimit());
 		
 		// 전달할값 있으면 가운데 null값 대체해놓기..
-		ArrayList<Question> qList = (ArrayList)sqlSession.selectList("questionMapper.selectQuestionList", lec_no, rowBounds);
+		ArrayList<Question> qList = (ArrayList)sqlSession.selectList("questionMapper.selectQuestionList", lec_no, new RowBounds(pi.getOffset(), pi.getBoardLimit()));
 		
 		return qList;
 	}
@@ -43,6 +42,27 @@ public class QDao {
 	// Mapper에 이미 되어있는거 재사용하자
 	public Lecture getLecture(int lec_no) {
 		return sqlSession.selectOne("lectureMapper.getLecture",lec_no);
+	}
+
+	public int qInsert(Question q) {
+		
+		return sqlSession.insert("questionMapper.qInsert", q);
+	}
+
+	public ArrayList<Question> selectQuestionList2(Question q) {
+		ArrayList<Question> qList2 = (ArrayList)sqlSession.selectList("questionMapper.selectQuestionList2", q);
+		
+		return qList2;
+		
+	}
+
+	public Question selectDetailQuestion(int q_no) {
+		return sqlSession.selectOne("questionMapper.selectDetailQuestion", q_no);
+	}
+
+	public int qUpdate(int q_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("questionMapper.qUpdateForm", q_no);
 	}
 
 	

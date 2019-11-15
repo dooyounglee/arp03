@@ -21,5 +21,17 @@ public interface QService {
 	// lec_no에맞는 Lecture 객체 조회하자
 	Lecture getLecture(int lec_no);
 	
+	// 게시판글 추가
+	int qInsert(Question q);
+
+	// 추가한 후에 조회해오는 리스트
+	ArrayList<Question> selectQuestionList2(Question q);
+	
+	// 상세보기 페이지 조회
+	Question selectDetailQuestion(int q_no);
+	
+	// 게시글 업데이트
+	int qUpdate(int q_no);
+	
 	
 }

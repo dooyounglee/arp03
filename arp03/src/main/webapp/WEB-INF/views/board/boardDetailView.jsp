@@ -51,7 +51,7 @@
 	<table align="center" width="600" border="1" cellspacing="0" id="rtb">
 		<thead>
 			<tr>
-				<td colspan="4"><b id="rCount"></b></td>
+				<td colspan="3"><b id="rCount"></b></td>
 			</tr>
 		</thead>
 		<tbody>
@@ -83,7 +83,7 @@
 				});
 				
 			});
-			
+
 			$(document).one("click", "#rr", function(){
 				//console.log($(this).parent().parent().next());
 				console.log($(this).parent().eq(0));
@@ -149,7 +149,7 @@
 				getReplyList();
 			});
 			
-			
+		
 		});
 		
 		function getReplyList(){
@@ -158,7 +158,7 @@
 				data:{b_no:${b.b_no}},
 				dataType:"json",
 				success:function(data){
-					//console.log(data);
+					console.log(data);
 					$tbody = $("#rtb tbody");
 					$tbody.html("");
 					
@@ -171,6 +171,7 @@
 						$td = $("<td>");
 						
 						$writerTd = $("<td>").text(value.r_no);
+							
 						$contentTd = $("<td width='250'>").text(value.content);
 						$dateTd = $("<td>").text(value.regdate);
 						
@@ -178,10 +179,10 @@
 						$altB = $('<input type="button" id="alt" value="alt"/>');
 						$deleteB = $('<input type="button" id="del" value="del"/>');
 						
+							
 						$tr.append($writerTd);
 						$tr.append($contentTd);
 						$tr.append($dateTd);
-						$tr.append($td.append($rreply));
 						
 						if(value.m_no == ${mem.m_no}) {
 							$tr.append($td.append($altB));
@@ -194,7 +195,7 @@
 					} else {
 						$tr = $("<tr>");
 						
-						$contentTd = $("<td colspan='4'>").text("등록된 댓글이 없습니다.");
+						$contentTd = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
 						$tr.append($contentTd);
 						
 						$tbody.append($tr);

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글 작성하기 페이지</title>
+<title>수정 페이지</title>
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -20,14 +20,14 @@
 	<!-- 제목, 내용, 작성자, 첨부파일정보 -->
 	<jsp:include page="../include/header.jsp"/>
 	
-	<h1 align="center">게시글 작성하기</h1>
+	<h1 align="center">수정 페이지</h1>
 	<br>
-	<form action="qinsert.qu?lec_no=${lec_no }" method="post" enctype="multipart/form-data">
+	<form action="qupdateForm.qu" method="post" enctype="multipart/form-data">
 		<table align="center">
 			<input type="hidden" name="m_no" value="${ mem.m_no }">
 			<tr>
 				<td>제목</td>
-				<td><input size="40" type="text" name="title"></td>
+				<td><input size="40" type="text" name="title" value="${ q.title }"></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
@@ -35,7 +35,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea id="summernote" cols="50" rows="7" name="content"></textarea></td>
+				<td><textarea id="summernote" cols="50" rows="7" name="content">${ q.content }</textarea></td>
 			</tr>
 			<tr>
 				<td>첨부파일</td>
@@ -43,9 +43,9 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
-					<button type="submit">등록</button>
+					<button type="submit">확인</button>
 					<!-- <button type="button" onclick="window.history.back()">취소</button> -->
-					<button type="button" onclick="location.href='question.qu?lec_no=${lec_no}';">목록</button>
+					<button type="button" onclick="location.href='question.qu?lec_no=${q.lec_no}';">목록</button>
 					<br><br>
 				</td>
 			</tr>
@@ -74,26 +74,6 @@
 				
 			});
 		});
-		
-		
-		function sendFile(file, el){
-			var form_data = new FormData();
-			form_data.append("file", file);
-			
-			$.ajax({
-				data: form_data,
-				type: "POST",
-				url: "fileaj.qu",
-				cache: false,
-				contentType: false,
-				enctype: "multipart/form-data",
-				processData: false,
-				success: function(img_name){
-					$(el).summernote("editor.insertImage", img_name);
-				}
-			});
-			
-		}
 		
 		
 	</script>

@@ -4,11 +4,15 @@
 
 <resultMap id="qList" type="Question">
 	<id property="q_no" column="q_no"/>
+	<result property="lec_no" column="lec_no"/>
+	<result property="m_no" column="m_no"/>
 	<result property="title" column="title"/>
 	<result property="name" column="name"/>
 	<result property="regdate" column="regdate"/>
 	<result property="vcount" column="vcount"/>
-	<result property="dcount" column="dcount"/>
+	<result property="isreply" column="isreply"/>
+	<result property="fileox" column="fileox"/>
+	
 </resultMap>
 
 
@@ -19,10 +23,32 @@
 </select>
 
 <select id="selectQuestionList" resultMap="qList">
-	select q.q_no, q.title, m.name, q.regdate, q.vcount, q.dcount
+	select q.q_no, c.lec_no, m_no, q.title, m.name, q.regdate, q.vcount, q.isreply, q.fileox
 	from Question q
     join member m using(m_no)
-    where q.lec_no=#{lec_no}
+    join myclass c using(m_no)
+    where q.lec_no=#{lec.no} and c.lec_no=#{lec.no}
 	order by q_no desc
 </select>
+
+<insert id="qInsert">
+	insert into question
+	values(seq_question.nextval, #{lec_no}, #{m_no}, #{title}, #{content}, 
+			sysdate, sysdate, default, 0, 0, 0, default, default, default, default, default)
+</insert>
+
+<select id="selectQuestionList2" resultType="question">
+	select *
+	from Question
+	where lec_no=#{lec_no}
+</select>
+
+<select id="selectDetailQuestion" resultType="question">
+	select *
+	from question
+	where q_no=#{q_no}
+</select>
+
+
+
 </mapper>

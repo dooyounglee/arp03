@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,16 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="../include/header.jsp"/>
-	
-	<table>
-		<tr>
-			<td>
-		</tr>
-	</table>
-	
-	
-	
-	<jsp:include page="../include/footer.jsp"/>
+	<h1>오류페이지</h1>
 </body>
 </html>

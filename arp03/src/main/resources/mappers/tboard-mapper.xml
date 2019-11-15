@@ -83,6 +83,24 @@
 		from board
 		where status='Y'
 	</select>
+	
+	<update id="selectRcount">
+		update board set
+		vcount = vcount +1
+		where b_no=#{b_no}
+	</update>
+	
+	<update id="updateStatus">
+		update board 
+		set FILESTATUS='Y'
+		where b_no=#{b_no}
+	</update>
+	
+	<select id="deleteBoardFile" resultType="String">
+		select rename_filename
+		from boardfile
+		where b_no=#{b_no}
+	</select>
 
 
 
