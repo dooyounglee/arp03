@@ -7,7 +7,7 @@
 		select b.*, m.name 
 		from board b, member m
 		where b.ca_no=2 and b.status='Y' and b.m_no=m.m_no
-		order by b_no
+		order by b_no desc
 	</select>
 	<insert id="insertTBoard">
 		insert into board
@@ -101,6 +101,16 @@
 		from boardfile
 		where b_no=#{b_no}
 	</select>
+	
+	<delete id="updateFileDelete">
+		delete boardfile where rename_filename=#{rename}
+	</delete>
+	
+	<update id="updateFileStatus">
+		update board
+		set filestatus='N'
+		where b_no=#{b_no}
+	</update>
 
 
 

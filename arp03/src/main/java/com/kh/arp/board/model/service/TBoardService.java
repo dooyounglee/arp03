@@ -53,4 +53,10 @@ public interface TBoardService {
 
 	// 15. 게시판 글 삭제 했을때 업로드 되어있는 파일도 삭제되는 서비스 
 	String deleteBoardFile(int b_no);
+	
+	// 16. 게시글 수정시 파일업로드 삭제시 디비 삭제용 서비스 
+	int updateFileDelete(String rename);
+	
+	// 17. 게시글 첨부파일 지우고 수정완료시 첨부파일 상태 변경용 서비스 
+	int updateFileStatus(int b_no);
 }

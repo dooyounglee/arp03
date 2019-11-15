@@ -81,9 +81,13 @@
 					<td>첨부파일</td>
 				<td>
 					<input type="file" name="reloadFile">
-					<input type="hidden" name="original_filename" value="${ bf.original_filename }">
+					<input type="hidden" id="original_filename" name="original_filename" value="${ bf.original_filename }">
+					<input type="hidden" id="rename" value="${ bf.rename_filename }">
 					<c:if test="${ !empty bf.original_filename }">
-						<a href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bf.rename_filename}" download="${ bf.original_filename }">${ bf.original_filename }</a>
+					<div id="delDiv">
+						<a id="filename" href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bf.rename_filename}" download="${ bf.original_filename }">${ bf.original_filename }</a>
+						<button type="button" id="delBtn">파일삭제</button>
+					</div>
 					</c:if>
 				</td>	
 				</tr>
@@ -120,6 +124,8 @@
 			});
 		});
 	 
+
+	 
 	     function sendFile(file, el) {
 	         var form_data = new FormData();
 	         form_data.append('file', file);
@@ -140,6 +146,35 @@
 	           }
 	         });
 	       }
+	     
+		 $("#delBtn").on("click", function(){
+			 
+			var rename = $("#rename").val();
+	
+				$.ajax({
+					url:"tbdeleteFile.do",
+					data:{rename_filename : rename},
+					success:function(data){
+							
+						if(data == "success"){
+							console.log("성공");
+							$("#filename").text("");
+							$("#original_filename").val(null);
+						  
+						}else{
+							alert("파일 삭제 실패");
+						}
+						
+					},error:function(){
+						
+						console.log("ajax 통신 실패");
+					}
+				});
+				
+			}); 
+		 
+
+		
 	
 	 
 /*   	 $("#subBtn").on("click", function(){
