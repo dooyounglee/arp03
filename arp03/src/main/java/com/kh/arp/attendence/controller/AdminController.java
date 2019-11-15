@@ -9,11 +9,11 @@ import com.kh.arp.member.model.service.MemberService;
 public class AdminController {
 	
 	@Autowired
-	private MemberService mab;
+	private MemberService ms;
 	
 	@RequestMapping("/DetailStudent")
 	public ModelAndView DetailStudentAttendence(ModelAndView mv) {
-		mab.
+		ms.
 		mv.addObject
 	}
 }
