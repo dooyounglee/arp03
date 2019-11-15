@@ -86,4 +86,16 @@ public class TBoardServiceImpl implements TBoardService{
 		return tbDao.getListCount();
 	}
 
+	@Override
+	public int selectRcount(int b_no) {
+
+		return tbDao.selectRcount(b_no);
+	}
+
+	@Override
+	public int updateStatus(int b_no) {
+		
+		return tbDao.updateStatus(b_no);
+	}
+
 }
