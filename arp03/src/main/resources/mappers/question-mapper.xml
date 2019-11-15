@@ -43,6 +43,23 @@
 	where lec_no=#{lec_no}
 </select>
 
+<update id="updateCount">
+	update Question
+	set vcount = vcount+1
+	where q_no=#{q_no}
+</update>
+
+<select id="selectDetailQuestion" resultType="question">
+	select *
+	from question
+	where q_no=#{q_no}
+</select>
+
+<update id="qUpdate">
+	update Question
+	set title=#{title}, content=#{content}
+	where q_no=#{q_no}
+</update>
 
 
 </mapper>

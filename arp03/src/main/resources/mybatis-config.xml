@@ -26,6 +26,7 @@
 		<mapper resource="/mappers/notice-mapper.xml"/>
 		<mapper resource="/mappers/question-mapper.xml"/>
 		<mapper resource="/mappers/board-mapper.xml"/>
+		<mapper resource="/mappers/declaree-mapper.xml"/>
 		<mapper resource="/mappers/faq-mapper.xml"/>
 		<mapper resource="/mappers/qna-mapper.xml"/>
 	</mappers>

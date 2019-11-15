@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.common.PageInfo;
-import com.kh.arp.common.Pagination;
 import com.kh.arp.member.model.vo.Lecture;
 import com.kh.arp.question.model.service.QService;
 import com.kh.arp.question.model.vo.QFile;
@@ -49,11 +48,14 @@ public class QController {
 	public ModelAndView questionList(ModelAndView mv,
 									@RequestParam(value="currentPage", defaultValue="1") int currentPage, int lec_no) {
 		
-		System.out.println("dd");
+		
 		int listCount = qService.getListCount(lec_no);
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		int pageLimit = 5;
+		int boardLimit = 10;
 		
+		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
+		// PageInfo pi = new PageInfo(currentPage, listCount, 5, 10); 이렇게 바로써도됨
 		
 		ArrayList<Question> qList = qService.selectQuestionList(pi, lec_no);
 		
@@ -102,7 +104,7 @@ public class QController {
 			//model.addAttribute("qf", qf);
 			
 			// 성공하면 리스트를 조회해오자
-			ArrayList<Question> qList2 = qService.selectQuestionList2(q);
+			//ArrayList<Question> qList2 = qService.selectQuestionList2(q);
 			
 			int lec_no = q.getLec_no();
 			
@@ -147,16 +149,49 @@ public class QController {
 		
 	}
 	
+	
 	@RequestMapping("qdetail.qu")
 	public ModelAndView qdetail(ModelAndView mv, int q_no) {
 		
+		Question q = qService.selectDetailQuestion(q_no);
 		
+		if(q != null) {
+			mv.addObject("q", q).setViewName("question/qdetailForm");
+		}else {
+			mv.addObject("msg", "게시글 상세조회 실패").setViewName("qcommon/errorPage");
+		}
 		
 		return mv;
 	}
 	
+
+	 @RequestMapping("qupdateForm.qu") public ModelAndView qUpdateForm(int q_no, ModelAndView mv) { 
+		 Question q = qService.selectDetailQuestion(q_no);
 	
+		 mv.addObject("q", q).setViewName("question/qUpdateForm");
+	 
+		 return mv; 
+		
+	 }
 	
+
+	 @RequestMapping("qupdate.qu") 
+	 public ModelAndView qUpdate(Question q, ModelAndView mv) {
+	   
+	   int result = qService.qUpdate(q);
+	   
+	   int lec_no = q.getLec_no();
+	   
+	   if(result > 0) { 
+		   mv.addObject("q_no", q.getQ_no()).setViewName("redirect:qdetail.qu?lec_no="+lec_no);
+	   }else { 
+		   mv.addObject("msg", "게시판 수정 실패").setViewName("qcommon/errorPage"); 
+	   }
+	   
+	   return mv;
+	   
+	 }
+
 	
 	/*
 	 * @RequestMapping("")
