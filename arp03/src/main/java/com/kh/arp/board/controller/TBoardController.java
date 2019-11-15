@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.arp.board.model.service.TBoardService;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.board.model.vo.BoardFile;
+import com.kh.arp.member.model.vo.Member;
 
 @Controller
 public class TBoardController {
@@ -124,13 +125,12 @@ public class TBoardController {
 	
 	
 	@RequestMapping("tbdetail.do")
-	public ModelAndView detailTBoard(int b_no,ModelAndView mv) {
+	public ModelAndView detailTBoard(int b_no,ModelAndView mv,Member mem) {
 		
 		Board b = tbService.detailTBoard(b_no);
 		BoardFile bf = tbService.detailTBoardFile(b_no);
 		
-	//	System.out.println("디테일에서"+bf);
-		
+		int count = tbService.selectRcount(b_no);
 
 		if(b != null) {
 			mv.addObject("b", b).addObject("bf",bf).setViewName("tboard/detailTBoard");
@@ -195,6 +195,7 @@ public class TBoardController {
 				bf.setRename_filename(renameFileName);
 				bf.setOriginal_filename(file.getOriginalFilename());
 				
+				int updateStatus = tbService.updateStatus(b.getB_no());
 				result = tbService.updateTBoard(b);
 				int resultFile = tbService.updateInsertFile(bf);
 	}

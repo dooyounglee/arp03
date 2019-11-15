@@ -44,5 +44,10 @@ public interface TBoardService {
 	// 12. 선생님 게시판 총 갯수 조회용 서비스 
 	int getListCount();
 	
+	// 13. 선생님 게시판 조회수 증가용 서비스 
+	int selectRcount(int b_no);
+	
+	// 14. 게시판 글 수정할때 상태값 수정
+	int updateStatus(int b_no);
 
 }

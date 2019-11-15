@@ -66,4 +66,14 @@ public class TBoardDao {
 	public int getListCount() {
 		return sqlSession.selectOne("tboardMapper.getListCount");
 	}
+	
+	public int selectRcount(int b_no) {
+		System.out.println("다오에서 실행중");
+		return sqlSession.update("tboardMapper.selectRcount",b_no);
+		
+	}
+	
+	public int updateStatus(int b_no) {
+		return sqlSession.update("tboardMapper.updateStatus",b_no);
+	}
 }
