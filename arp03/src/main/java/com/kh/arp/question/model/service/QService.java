@@ -27,5 +27,11 @@ public interface QService {
 	// 추가한 후에 조회해오는 리스트
 	ArrayList<Question> selectQuestionList2(Question q);
 	
+	// 상세보기 페이지 조회
+	Question selectDetailQuestion(int q_no);
+	
+	// 게시글 업데이트
+	int qUpdate(int q_no);
+	
 	
 }

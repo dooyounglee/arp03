@@ -48,5 +48,16 @@ public class QServiceImple implements QService{
 		return qDao.selectQuestionList2(q);
 	}
 
+	@Override
+	public Question selectDetailQuestion(int q_no) {
+		
+		return qDao.selectDetailQuestion(q_no);
+	}
+
+	@Override
+	public int qUpdate(int q_no) {
+		return qDao.qUpdateForm(q_no);
+	}
+
 	
 }
