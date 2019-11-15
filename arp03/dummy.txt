@@ -104,7 +104,7 @@ CREATE TABLE declaree (
 	kind	varchar2(10)		NOT NULL,
 	content	varchar2(4000)		NOT NULL,
 	regdate	date	DEFAULT sysdate	NOT NULL,
-	okdate	date	DEFAULT sysdate	NOT NULL,
+	okdate	date	DEFAULT sysdate	NULL,
 	status	varchar2(10)	DEFAULT 'N'	NOT NULL,
 	obj	VARCHAR(255)		NULL,
 	obj_no	number		NULL
@@ -321,22 +321,6 @@ INSERT INTO BCATEGORY VALUES(1, '일반');
 INSERT INTO BCATEGORY VALUES(2, '선생님');
 INSERT INTO BOARD 
 VALUES(seq_board.nextval,1,2,'제목입니다','내용입니다',SYSDATE,SYSDATE,0,'Y',0,0,'N');
-
-
-INSERT INTO ARP.BREPLY
-(R_NO, B_NO, M_NO, CONTENT, REGDATE, UDPATE_DATE, STATUS, "DEPTH", PARENT_NO)
-VALUES(1, 1, 1, '내용1', sysdate	, sysdate	, 'Y'	, 1	, 1);
-INSERT INTO ARP.BREPLY
-(R_NO, B_NO, M_NO, CONTENT, REGDATE, UDPATE_DATE, STATUS, "DEPTH", PARENT_NO)
-VALUES(2, 1, 1, '내용2', sysdate	, sysdate	, 'Y'	, 1	, 1);
-
-
-INSERT INTO ARP.DECLAREE
-(D_NO, M_NO, KIND, CONTENT, REGDATE, OKDATE, STATUS, OBJ, OBJ_NO)
-VALUES(1, 1, 'a', '내용1', sysdate	, sysdate	, 'N'	, 'b', 1);
-INSERT INTO ARP.DECLAREE
-(D_NO, M_NO, KIND, CONTENT, REGDATE, OKDATE, STATUS, OBJ, OBJ_NO)
-VALUES(2, 1, 'b', '내용2', sysdate	, sysdate	, 'N'	, 'r', 1);
 
 
 
