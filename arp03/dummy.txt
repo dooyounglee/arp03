@@ -78,9 +78,9 @@ CREATE TABLE QnA (
 	m_no	Number		REFERENCES MEMBER,
 	title	varchar2(1000)		NOT NULL,
 	content	varchar2(4000)		NOT NULL,
-	answer	varchar2(4000)		NOT NULL,
+	answer	varchar2(4000)		NULL,
 	questiondate	date	DEFAULT sysdate	NOT NULL,
-	answerdate	date	DEFAULT sysdate	NOT NULL,
+	answerdate	date	DEFAULT sysdate	NULL,
 	status	varchar2(10)	DEFAULT 'N'	NOT NULL
 );
 
