@@ -22,9 +22,9 @@
 	
 	<h1 align="center">수정 페이지</h1>
 	<br>
-	<form action="qupdateForm.qu" method="post" enctype="multipart/form-data">
+	<form action="qupdate.qu?q_no=${ q.q_no }" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="lec_no" value="${q.lec_no }">
 		<table align="center">
-			<input type="hidden" name="m_no" value="${ mem.m_no }">
 			<tr>
 				<td>제목</td>
 				<td><input size="40" type="text" name="title" value="${ q.title }"></td>
