@@ -37,7 +37,7 @@ public class TBoardController {
 		
 		
 		int listCount = tbService.getListCount();
-		PageInfo pi = new PageInfo(currentPage, listCount, 3, 5);
+		PageInfo pi = new PageInfo(currentPage, listCount, 7, 10);
 		// System.out.println("pi"+pi);
 		ArrayList<Board> list = tbService.selectTBoardList(pi);
 		
@@ -189,11 +189,10 @@ public class TBoardController {
 				
 				result = tbService.updateTBoard(b);
 				int resultFile = tbService.updateFile(bf);
-			//	System.out.println("기존에 파일이있었음");
+
 			
 			}else{	// 기존의 파일이 없었다묭용
-				
-			//	System.out.println("기존에 파일이ㄴㄴ");
+		
 				String renameFileName = saveFile(file, request);
 				
 				bf.setRename_filename(renameFileName);
@@ -221,10 +220,13 @@ public class TBoardController {
 	}
 	
 	@RequestMapping("tbdelete.do")
-	public String deleteTBoard(int b_no) {
+	public String deleteTBoard(int b_no,HttpServletRequest request) {
 		int result = tbService.deleteTBoard(b_no);
+		String rename = tbService.deleteBoardFile(b_no);
 		
 		if(result > 0) {
+	
+			new TBoardController().deleteFile(rename,request);
 			return "redirect:tblist.do";
 		}else {
 			return "common/errorPage";
@@ -237,7 +239,7 @@ public class TBoardController {
 	// 업로드 되어있는 파일 삭제용 메소드
 	public void deleteFile(String renameFileName, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "/buploadFiles";
+		String savePath = root + "/tbuploadFiles";
 			
 			
 		File f = new File(savePath + "/" + renameFileName);

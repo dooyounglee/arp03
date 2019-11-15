@@ -51,4 +51,6 @@ public interface TBoardService {
 	// 14. 게시판 글 수정할때 상태값 수정
 	int updateStatus(int b_no);
 
+	// 15. 게시판 글 삭제 했을때 업로드 되어있는 파일도 삭제되는 서비스 
+	String deleteBoardFile(int b_no);
 }
