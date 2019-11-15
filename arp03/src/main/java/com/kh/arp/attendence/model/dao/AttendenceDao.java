@@ -13,7 +13,7 @@ public class AttendenceDao {
 	private SqlSessionTemplate sqlSession;
 	
 	public Attendence selectStudentAttendence() {
-		Attendence at=null;
+		Attendence at=null; 
 		return at;
 	}
 }
