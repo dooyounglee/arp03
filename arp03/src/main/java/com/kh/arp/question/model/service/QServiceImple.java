@@ -37,5 +37,16 @@ public class QServiceImple implements QService{
 		return qDao.getLecture(lec_no);
 	}
 
+	@Override
+	public int qInsert(Question q) {
+		
+		return qDao.qInsert(q);
+	}
+
+	@Override
+	public ArrayList<Question> selectQuestionList2(Question q) {
+		return qDao.selectQuestionList2(q);
+	}
+
 	
 }
