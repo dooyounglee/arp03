@@ -38,7 +38,7 @@
 	
 	<c:if test="${mem.id eq 'admin' }">
 	<a href="nupdateForm.ad?n_no=${ n.n_no }">수정하기</a>
-	<a href="ndelete.ad?n_no=${ n.n_no }">삭제하기</a>
+	<a href="ndelete.ad?n_no=${ n.n_no }" >삭제하기</a>
 	</c:if>	
 </body>
 </html>

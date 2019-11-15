@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.arp.board.model.dao.TBoardDao;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.board.model.vo.BoardFile;
+import com.kh.arp.common.PageInfo;
 
 @Service("tbService")
 public class TBoardServiceImpl implements TBoardService{
@@ -16,9 +17,9 @@ public class TBoardServiceImpl implements TBoardService{
 	private TBoardDao tbDao;
 
 	@Override
-	public ArrayList<Board> selectTBoardList() {
+	public ArrayList<Board> selectTBoardList(PageInfo pi) {
 		
-		return tbDao.selectTBoardList();
+		return tbDao.selectTBoardList(pi);
 	}
 
 	@Override
@@ -78,6 +79,24 @@ public class TBoardServiceImpl implements TBoardService{
 	public int updateInsertFile(BoardFile bf) {
 
 		return tbDao.updateInsertFile(bf);
+	}
+
+	@Override
+	public int getListCount() {
+		
+		return tbDao.getListCount();
+	}
+
+	@Override
+	public int selectRcount(int b_no) {
+
+		return tbDao.selectRcount(b_no);
+	}
+
+	@Override
+	public int updateStatus(int b_no) {
+		
+		return tbDao.updateStatus(b_no);
 	}
 
 }

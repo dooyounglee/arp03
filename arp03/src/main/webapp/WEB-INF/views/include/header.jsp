@@ -24,8 +24,9 @@
 	학생
 	<a href="lectureList.ad"><del>내 수강목록</del></a>
 	<a href="blist.do">자유 게시판</a>
-	<a href="">내 문의</a>
+	<a href="mylist.qna"><del>내 문의</del></a>
 	<a href="myInfo.me"><del>내 정보</del></a>
+	<a href="myvacation.me">내 휴가</a>
 	
 	<hr>
 	
@@ -33,7 +34,7 @@
 	<a href="lectureList.ad"><del>내 수업목록</del></a>
 	<a href="blist.do">자유 게시판</a>
 	<a href="tblist.do">선생님 게시판</a>
-	<a href="">내 문의</a>
+	<a href="mylist.qna"><del>내 문의</del></a>
 	<a href="myInfo.me"><del>내 정보</del></a>
 	
 	<hr>
@@ -51,11 +52,11 @@
 <a href="lectureList.ad"><del>강좌관리</del></a>
 	<a href="boardList.ad"><del>게시글 관리</del></a>
 	<a href="replyList.ad"><del>댓글 관리</del></a>
-	<a href="">문의관리</a>
+	<a href="qnaList.ad"><del>문의관리</del></a>
 	<a href="declareList.ad"><del>신고관리</del></a>
 	<a href="memberList.ad"><del>회원관리</del></a>
 	<a href="nlist.ad"><del>공지사항</del></a>
-	<a href="flist.ad">faq</a>
+	<a href="flist.ad"><del>faq</del></a>
 <hr>
 </body>
 </html>

@@ -21,6 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.arp.board.model.service.TBoardService;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.board.model.vo.BoardFile;
+import com.kh.arp.common.PageInfo;
+import com.kh.arp.common.Pagination;
+import com.kh.arp.member.model.vo.Member;
 
 @Controller
 public class TBoardController {
@@ -29,13 +32,27 @@ public class TBoardController {
 	private TBoardService tbService;
 	
 	@RequestMapping("tblist.do")
-	public ModelAndView selectTBoardList(ModelAndView mv) {
-		
-		ArrayList<Board> list = tbService.selectTBoardList();
-		
+	public ModelAndView selectTBoardList(ModelAndView mv,
+										@RequestParam(value="currentPage", defaultValue="1") int currentPage) {
 		
 		
-		mv.addObject("list",list).setViewName("tboard/tboardListView");
+		int listCount = tbService.getListCount();
+		PageInfo pi = new PageInfo(currentPage, listCount, 3, 5);
+		// System.out.println("pi"+pi);
+		ArrayList<Board> list = tbService.selectTBoardList(pi);
+		
+		for(Board b : list) {
+			
+			if(b.getContent().contains("img")) {
+				b.setImageStatus("Y");
+			}else {
+				b.setImageStatus("N");
+			}
+			
+		}
+		
+		
+		mv.addObject("list",list).addObject("pi",pi).setViewName("tboard/tboardListView");
 		
 		return mv;
 	}
@@ -112,13 +129,12 @@ public class TBoardController {
 	
 	
 	@RequestMapping("tbdetail.do")
-	public ModelAndView detailTBoard(int b_no,ModelAndView mv) {
+	public ModelAndView detailTBoard(int b_no,ModelAndView mv,Member mem) {
 		
 		Board b = tbService.detailTBoard(b_no);
 		BoardFile bf = tbService.detailTBoardFile(b_no);
 		
-	//	System.out.println("디테일에서"+bf);
-		
+		int count = tbService.selectRcount(b_no);
 
 		if(b != null) {
 			mv.addObject("b", b).addObject("bf",bf).setViewName("tboard/detailTBoard");
@@ -183,6 +199,7 @@ public class TBoardController {
 				bf.setRename_filename(renameFileName);
 				bf.setOriginal_filename(file.getOriginalFilename());
 				
+				int updateStatus = tbService.updateStatus(b.getB_no());
 				result = tbService.updateTBoard(b);
 				int resultFile = tbService.updateInsertFile(bf);
 	}
@@ -253,11 +270,11 @@ public class TBoardController {
 		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + uuid + "."
 				+ org_filename.substring(org_filename.lastIndexOf(".") + 1);
 		
-		System.out.println("원본 파일명 : " + org_filename);
-		System.out.println("저장할 파일명 : " + renameFileName);
+	//	System.out.println("원본 파일명 : " + org_filename);
+	//	System.out.println("저장할 파일명 : " + renameFileName);
 
 		String filepath = realFolder + "\\" + renameFileName;
-		System.out.println("파일경로 : " + filepath);
+	//	System.out.println("파일경로 : " + filepath);
 
 		File f = new File(filepath);
 		if (!f.exists()) {

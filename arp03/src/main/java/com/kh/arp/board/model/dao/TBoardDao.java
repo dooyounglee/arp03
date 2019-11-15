@@ -2,12 +2,14 @@ package com.kh.arp.board.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.board.model.vo.BoardFile;
+import com.kh.arp.common.PageInfo;
 
 @Repository("tbDao")
 public class TBoardDao {
@@ -15,8 +17,11 @@ public class TBoardDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public ArrayList<Board> selectTBoardList(){
-		return (ArrayList)sqlSession.selectList("tboardMapper.selectTBoardList");
+	public ArrayList<Board> selectTBoardList(PageInfo pi){
+		int offset =pi.getOffset();
+		int boardLimit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, boardLimit);
+		return (ArrayList)sqlSession.selectList("tboardMapper.selectTBoardList",null,rowBounds);
 	}
 	
 	public int insertTBoard(Board b) {
@@ -61,5 +66,19 @@ public class TBoardDao {
 	public int updateInsertFile(BoardFile bf) {
 		 
 		return sqlSession.insert("tboardMapper.updateInsertFile",bf);
+	}
+	
+	public int getListCount() {
+		return sqlSession.selectOne("tboardMapper.getListCount");
+	}
+	
+	public int selectRcount(int b_no) {
+		System.out.println("다오에서 실행중");
+		return sqlSession.update("tboardMapper.selectRcount",b_no);
+		
+	}
+	
+	public int updateStatus(int b_no) {
+		return sqlSession.update("tboardMapper.updateStatus",b_no);
 	}
 }
