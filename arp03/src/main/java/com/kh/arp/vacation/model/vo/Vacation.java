@@ -12,7 +12,7 @@ public class Vacation {
 	private String start_date;
 	private String start_count; // 휴가일수
 	private int date_count;
-	private int application_date;
+	private String application_date;
 	private String tstatus;
 	private String astauts;
 	private String status;
