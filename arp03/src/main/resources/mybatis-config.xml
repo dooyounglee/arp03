@@ -14,7 +14,6 @@
 		<typeAlias type="com.kh.arp.question.model.vo.Question" alias="Question"/>
 		<typeAlias type="com.kh.arp.board.model.vo.BoardFile" alias="BoardFile"/>
 		<typeAlias type="com.kh.arp.FAQ.model.vo.FAQ" alias="FAQ"/>
-		<typeAlias type="com.kh.arp.qna.model.vo.Qna" alias="Qna"/>
 		<typeAlias type="com.kh.arp.declaree.model.vo.Declaree" alias="Declaree"/>
 	</typeAliases>
 	
@@ -27,6 +26,5 @@
 		<mapper resource="/mappers/question-mapper.xml"/>
 		<mapper resource="/mappers/board-mapper.xml"/>
 		<mapper resource="/mappers/faq-mapper.xml"/>
-		<mapper resource="/mappers/qna-mapper.xml"/>
 	</mappers>
 </configuration>

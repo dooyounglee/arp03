@@ -26,6 +26,7 @@
 	<a href="blist.do">자유 게시판</a>
 	<a href="mylist.qna"><del>내 문의</del></a>
 	<a href="myInfo.me"><del>내 정보</del></a>
+	<a href="myvacation.me">내 휴가</a>
 	
 	<hr>
 	
