@@ -15,9 +15,15 @@ index
             var url="test";
             window.open(url,"","width=400,height=400,left=600");
         }
+        function dwindow(){
+            var url="insert.de";
+            window.open(url,"","width=400,height=400,left=600");
+        }
     </script>
     <input type="button" value="자식을 불러라"  onclick="nwindow()"/>
-    <input type="text" value="뭘주려나..." name="get" id="get"/>
+    <input type="text" value="뭘주려나..." name="get" id="get"/><br>
+    
+    <input type="button" value="신고"  onclick="dwindow()"/>
     
     
 	<jsp:include page="include/footer.jsp"></jsp:include>

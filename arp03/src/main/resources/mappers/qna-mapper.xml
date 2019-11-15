@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="qnaMapper">
+	<select id="getMyQnaList" resultType="Qna">
+		select * from qna where m_no=#{m_no}
+	</select>
+	
+	<select id="getQna" resultType="Qna">
+		select * from qna where qna_no=#{qna_no}
+	</select>
+	
+	<insert id="writeQna">
+		INSERT INTO QNA VALUES(seq_qna.nextval,#{m_no},#{title},#{content},null,sysdate,null,default)
+		<selectKey keyProperty="qna_no" resultType="int" order="AFTER">
+			select seq_qna.currval from dual
+		</selectKey>
+	</insert>
+	
+	<update id="delQna">
+		update qna set status='N' where qna_no=#{qna_no}
+	</update>
+	
+	<update id="answerQna">
+		update qna set answer=#{answer}, answerdate=sysdate where qna_no=#{qna_no}
+	</update>
+	
+
+</mapper>

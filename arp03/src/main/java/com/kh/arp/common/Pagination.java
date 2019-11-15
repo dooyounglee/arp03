@@ -14,7 +14,7 @@ public class Pagination {
 			endPage = maxPage;
 		}
 		
-		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
+		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
 		
 		return pi;
 	}
