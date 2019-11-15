@@ -1,10 +1,12 @@
 package com.kh.arp.attendence.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.kh.arp.attendence.model.dao.AttendenceDao;
 import com.kh.arp.attendence.model.vo.Attendence;
 
+@Service
 public class AttendenceServiceImpl implements AttendenceService {
 		
 	@Autowired
