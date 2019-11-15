@@ -14,7 +14,7 @@
 	<a href="insertMember.ad">회원등록</a><br>
 	<a href="insertMemberToLecture.ad">학생을 강의에 꽂아주기</a><br>
 	<c:forEach var="m" items="${list }">
-		<a href="">${m }</a>
+		<a href="DetailStudent.ad?m_no=${m.m_no }">${m }</a>
 		<button onclick="banish(${m.m_no})">강퇴</button><button onclick="banishCancle(${m.m_no})">강퇴취소</button><br>
 	</c:forEach>
 	
