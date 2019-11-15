@@ -10,6 +10,6 @@
 <body>
 <h1>내 휴가 리스트 </h1>
 	
-<button onclick="location.href='insertVacation.me';"></button>
+<button onclick="location.href='vinsert.me';"></button>
 </body>
 </html>

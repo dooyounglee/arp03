@@ -10,4 +10,10 @@ public class VacationController {
 		
 		return "vacation/vacationListForm";
 	}
+	
+	@RequestMapping("vinsert.me")
+	public String vInsertForm() {
+		
+		return "vacation/insertVactionForm";
+	}
 }
