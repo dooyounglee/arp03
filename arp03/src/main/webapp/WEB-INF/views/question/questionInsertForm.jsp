@@ -22,8 +22,9 @@
 	
 	<h1 align="center">게시글 작성하기</h1>
 	<br>
-	<form action="qinsert.qu" method="post" enctype="multipart/form-data">
+	<form action="qinsert.qu?lec_no=${lec_no }" method="post" enctype="multipart/form-data">
 		<table align="center">
+			<input type="hidden" name="m_no" value="${ mem.m_no }">
 			<tr>
 				<td>제목</td>
 				<td><input size="40" type="text" name="title"></td>
@@ -43,8 +44,8 @@
 			<tr>
 				<td colspan="2" align="right">
 					<button type="submit">등록</button>
-					<button type="button" onclick="window.history.back()">취소</button>
-					<button type="button" onclick="location.href='qList.qu';">목록</button>
+					<!-- <button type="button" onclick="window.history.back()">취소</button> -->
+					<button type="button" onclick="location.href='question.qu?lec_no=${lec_no}';">목록</button>
 					<br><br>
 				</td>
 			</tr>
