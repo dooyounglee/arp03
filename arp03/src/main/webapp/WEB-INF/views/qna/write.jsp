@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +10,11 @@
 <body>
 	<jsp:include page="../include/header.jsp"/>
 	
-	<table>
-		<tr>
-			<td>
-		</tr>
-	</table>
-	
+	<form action="write.qna" method="post" autocomplete=off>
+		제목:<input name="title"><br>
+		내용:<input name="content"><br>
+		<button>완료</button>
+	</form>
 	
 	<jsp:include page="../include/footer.jsp"/>
 </body>

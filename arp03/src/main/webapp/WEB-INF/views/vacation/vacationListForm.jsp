@@ -8,8 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>내 휴가 리스트 </h1>
-	
-<button onclick="location.href='vinsert.me';"></button>
+
+<jsp:include page= "../include/header.jsp"/>
+
+<h1 align="center">내 휴가 리스트 </h1>
+
+<button onclick="location.href='vinsert.me';">작성하기</button>
 </body>
 </html>

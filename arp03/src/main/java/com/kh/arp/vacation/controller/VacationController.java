@@ -1,11 +1,17 @@
 package com.kh.arp.vacation.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-public class VacationController {
+import com.kh.arp.vacation.model.service.VacationServiceImpl;
 
+@Controller
+public class VacationController {
+	@Autowired
+	private VacationServiceImpl vService;
 	
-	@RequestMapping("vList.me")
+	@RequestMapping("vlist.me")
 	public String vacationListForm() {
 		
 		return "vacation/vacationListForm";
@@ -14,6 +20,6 @@ public class VacationController {
 	@RequestMapping("vinsert.me")
 	public String vInsertForm() {
 		
-		return "vacation/insertVactionForm";
+		return "vacation/insertVacationForm";
 	}
 }
