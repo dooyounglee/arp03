@@ -130,5 +130,29 @@ public class BoardController {
 		}
 		
 	}
+	
+	@ResponseBody
+	@RequestMapping("deleteReply.do")
+	public String deleteReply(int r_no) {
+		//System.out.println(b_no + " " + r_no);
+		int rst = bService.deleteReply(r_no);
+		if(rst > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("updateReply.do")
+	public String updateReply(BReply r) {
+		//System.out.println(r);
+		int rst = bService.updateReply(r);
+		if(rst > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
 
 }

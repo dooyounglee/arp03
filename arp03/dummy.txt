@@ -179,7 +179,7 @@ CREATE TABLE  BReply  (
 	 m_no 	Number		REFERENCES MEMBER,
 	 content 	varchar2(4000)		NULL,
 	 regdate 	date	DEFAULT sysdate	NOT NULL,
-	 udpate_date 	date	DEFAULT sysdate	NULL,
+	 update_date 	date	DEFAULT sysdate	NULL,
 	 status 	varchar2(3)	DEFAULT 'Y'	NOT NULL,
 	 depth 	number	DEFAULT 1	NOT NULL,
 	 parent_no 	Number		NOT NULL
