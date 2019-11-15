@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>신고하기</h1>
-    
+    <h2>무조건 게시판 1번글 신고하는거</h2>
     	신고사유
 		<input type="radio" name="kind" value="1">이유1<br>
 		<input type="radio" name="kind" value="2">이유2<br>
@@ -22,21 +22,21 @@
 	
 	<script>
 		function send(){
-			alert("dd")
+			var kind=$('input[name="kind"]:checked').val()
 			var parent = window.opener;
 			
-			alert($('input[name="kind"]:checked').length)
-/* 			$.ajax({
-				url:'',
+ 			$.ajax({
+				url:'insert.de',
 				type:'post',
 				data:{
-					
+					kind:kind,
+					content:$('#content').val(),
 				},
 				success:function(data){
 					parent.location.href='declareList.ad';
 					window.close();
 				},
-			}) */
+			})
 			
 		}
 	</script>
@@ -44,6 +44,5 @@
 	
 	
 	
-	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>
