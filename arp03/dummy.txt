@@ -8,6 +8,7 @@ DROP TABLE QUESTION;
 DROP TABLE ATTENDENCE;
 DROP TABLE myclass;
 DROP TABLE Classdate;
+DROP TABLE vacation;
 DROP TABLE LECTURE;
 DROP TABLE BoardFile;
 DROP TABLE BReply;
@@ -15,7 +16,7 @@ DROP TABLE Board;
 DROP TABLE BCategory;
 drop table auth;
 DROP TABLE member;
-DROP TABLE vacation;
+
 
 
 CREATE TABLE member (
@@ -84,9 +85,9 @@ CREATE TABLE QnA (
 );
 
 CREATE TABLE vacation (
-	v_no	Number		NOT NULL,
-	m_no	Number		NOT NULL,
-	lec_no	number		NOT NULL,
+	v_no	Number		PRIMARY KEY,
+	m_no	Number		REFERENCES MEMBER,
+	lec_no	number	    REFERENCES LECTURE,
 	reason	varchar2(2000)		NOT NULL,
 	start_date	date		NOT NULL,
 	date_count	number		NOT NULL,
