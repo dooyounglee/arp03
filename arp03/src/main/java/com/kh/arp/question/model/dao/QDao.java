@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.arp.common.PageInfo;
-import com.kh.arp.member.model.vo.Lecture;
+import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.question.model.vo.Question;
 
 @Repository("qDao")

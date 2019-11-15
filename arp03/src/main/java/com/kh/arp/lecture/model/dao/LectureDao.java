@@ -1,4 +1,4 @@
-package com.kh.arp.member.model.dao;
+package com.kh.arp.lecture.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.qna.model.vo.Qna;
 
 @Repository
-public class MemberDao {
+public class LectureDao {
 
 	@Autowired
 	private SqlSession sqlSession;

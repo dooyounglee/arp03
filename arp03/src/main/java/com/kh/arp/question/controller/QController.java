@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.common.PageInfo;
-import com.kh.arp.member.model.vo.Lecture;
+import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.question.model.service.QService;
 import com.kh.arp.question.model.vo.QFile;
 import com.kh.arp.question.model.vo.Question;

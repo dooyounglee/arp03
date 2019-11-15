@@ -1,7 +1,6 @@
-package com.kh.arp.member.controller;
+package com.kh.arp.lecture.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,20 +11,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.arp.member.model.service.MemberService;
-import com.kh.arp.member.model.vo.Classdate;
-import com.kh.arp.member.model.vo.Lecture;
+import com.kh.arp.lecture.model.service.LectureService;
+import com.kh.arp.lecture.model.vo.Classdate;
+import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
 
 @Controller
 public class LectureController {
 
 	@Autowired
-	private MemberService ms;
+	private LectureService ls;
 	
 	@RequestMapping("/main.lec")
 	public ModelAndView lectureList(ModelAndView mv, int lec_no) {
-		Lecture lec=ms.getLecture(lec_no);
+		Lecture lec=ls.getLecture(lec_no);
 		System.out.println(lec);
 		mv.addObject("lec",lec);
 		mv.setViewName("lecture/main");
@@ -48,10 +47,10 @@ public class LectureController {
 		lec.setDayofweek(String.join(",", week));
 		System.out.println(lec);
 		
-		int result=ms.makeLecture(lec);
+		int result=ls.makeLecture(lec);
 		System.out.println(result+"ddddddddd");
 		if(result>0) {
-			Lecture newlec=ms.getLastestLecture();
+			Lecture newlec=ls.getLastestLecture();
 			System.out.println(newlec);
 			ArrayList<Classdate> list=new ArrayList<>();
 			for(int i=0;i<classdate.length;i++) {
@@ -60,7 +59,7 @@ public class LectureController {
 			}
 			System.out.println(list);
 			
-			int result1=ms.insertClassdate(list);
+			int result1=ls.insertClassdate(list);
 			mv.setViewName("redirect:/lectureList.ad");
 		}else {
 			;
