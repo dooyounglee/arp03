@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.common.PageInfo;
-import com.kh.arp.member.model.vo.Lecture;
+import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.question.model.service.QService;
 import com.kh.arp.question.model.vo.QFile;
 import com.kh.arp.question.model.vo.Question;
@@ -62,6 +62,7 @@ public class QController {
 		// lecture 객체 가져오자~
 		Lecture lec = qService.getLecture(lec_no);
 		
+		
 		// 데이터값, 뷰 지정
 		mv.addObject("pi", pi).addObject("qList", qList).addObject("lec", lec).setViewName("question/question");
 		
@@ -83,38 +84,32 @@ public class QController {
 	
 	//String title, String content
 	@RequestMapping("qinsert.qu")
-	public String qInsert(Question q, HttpServletRequest request, Model model, 
+	public String qInsert(Question q, HttpServletRequest request,
 			@RequestParam(value="fileUp", required=false) MultipartFile file) {
-
+		int lec_no = q.getLec_no();
 		//System.out.println(q);
 		//System.out.println(file.getOriginalFilename());
 		//System.out.println(file);
 		QFile qf = new QFile();
 		
+		int resultqf = 0;
+		
 		if(!file.getOriginalFilename().equals("")) {
-			String reName = saveFile(file, request);
+			String changeName = saveFile(file, request);
 			
 			qf.setOriginalName(file.getOriginalFilename());
-			qf.setReName(reName);
-		}
-		
-		int result = qService.qInsert(q);
-		
-		if(result > 0) {
-			//model.addAttribute("qf", qf);
-			
-			// 성공하면 리스트를 조회해오자
-			//ArrayList<Question> qList2 = qService.selectQuestionList2(q);
-			
-			int lec_no = q.getLec_no();
-			
-			return "redirect:question.qu?lec_no="+lec_no;
+			qf.setChangeName(changeName);
+			q.setFileox("Y");
+			//System.out.println(q.getFileox());
+			int result = qService.qInsert(q);
+			resultqf = qService.qFileInsert(qf);
 		}else {
-			model.addAttribute("msg", "게시판 글 작성하기 실패");
-			return "qcommon/errorPage";
+			q.setFileox("N");
+			int result = qService.qInsert(q);
 		}
+		
+		return "redirect:question.qu?lec_no="+lec_no;
 	}
-	
 	
 	
 	private String saveFile(MultipartFile file, HttpServletRequest request) {
@@ -132,20 +127,20 @@ public class QController {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		
-		String reName = sdf.format(new Date(System.currentTimeMillis())) + "."
+		String changeName = sdf.format(new Date(System.currentTimeMillis())) + "."
 						+ originalName.substring(originalName.lastIndexOf(".")+1);
 	
-		String reNamePath = savePath + "/" + reName;
+		String changeNamePath = savePath + "/" + changeName;
 		
 		try {
-			file.transferTo(new File(reNamePath));
+			file.transferTo(new File(changeNamePath));
 			
 		} catch (IllegalStateException | IOException e) {
 			
 			e.printStackTrace();
 		}
 		
-		return reName;
+		return changeName;
 		
 	}
 	
@@ -191,8 +186,20 @@ public class QController {
 	   return mv;
 	   
 	 }
-
-	
+	 
+	 @RequestMapping("qdelete.qu")
+	 public String qDelete(int q_no, int lec_no) {
+		 int result = qService.qDelete(q_no);
+		 
+		 if(result > 0) {
+			 return "redirect:question.qu?lec_no="+lec_no;
+		 }else {
+			 return "qcommon/errorPage";
+		 }
+	 }
+	 
+	 
+	 
 	/*
 	 * @RequestMapping("")
 	 */

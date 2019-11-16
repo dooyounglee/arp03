@@ -104,5 +104,15 @@ public class TBoardServiceImpl implements TBoardService{
 
 		return tbDao.deleteBoardFile(b_no);
 	}
+	
+	public int updateFileDelete(String rename) {
+		return tbDao.updateFileDelete(rename);
+	}
+
+	@Override
+	public int updateFileStatus(int b_no) {
+		
+		return tbDao.updateFileStatus(b_no);
+	}
 
 }

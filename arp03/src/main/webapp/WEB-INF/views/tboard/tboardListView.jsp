@@ -37,10 +37,10 @@
 				<td>${b.regdate }</td>
 				<td>${ b.vcount }</td>
 				<c:if test="${ b.fileStatus eq 'Y' }">
-				<td>있음</td>
+				<td>O</td>
 				</c:if>
 				<c:if test="${ b.fileStatus eq 'N' }">
-				<td>없음</td>
+				<td></td>
 				</c:if>
 			</tr>
 		</c:forEach>		

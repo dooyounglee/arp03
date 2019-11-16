@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,7 +23,6 @@ import com.kh.arp.board.model.service.TBoardService;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.board.model.vo.BoardFile;
 import com.kh.arp.common.PageInfo;
-import com.kh.arp.common.Pagination;
 import com.kh.arp.member.model.vo.Member;
 
 @Controller
@@ -167,8 +167,10 @@ public class TBoardController {
 	public ModelAndView updateTBoard(Board b,BoardFile bf,ModelAndView mv,HttpServletRequest request,
 			 							@RequestParam(value="reloadFile", required=false) MultipartFile file){
 		
+		
+		System.out.println("새로운파일이넘어왔는가"+!file.getOriginalFilename().equals(""));
 		int result =0;
-	//	System.out.println("넘어오는"+bf.getOriginal_filename());
+		System.out.println("넘어오는"+bf.getOriginal_filename());
 	
 		// 새로운 첨부파일이 넘어왔을 경우
 		if(!file.getOriginalFilename().equals("")) {
@@ -204,8 +206,9 @@ public class TBoardController {
 	}
 	
 }
-		
+
 			result = tbService.updateTBoard(b);
+			int updateN = tbService.updateFileStatus(b.getB_no());
 			
 			if(result > 0) {
 				mv.addObject("b_no", b.getB_no()).setViewName("redirect:tbdetail.do");
@@ -236,17 +239,40 @@ public class TBoardController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping("tbdeleteFile.do")
+	public String deleteFileA(HttpServletRequest request) {
+		
+		String rename = request.getParameter("rename_filename");
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "/tbuploadFiles";
+		System.out.println("컨트롤");
+			
+		File f = new File(savePath + "/" + rename);
+			
+		if(f.exists()) {
+			System.out.println(f);
+		f.delete();
+		}
+		
+		int result = tbService.updateFileDelete(rename);
+		return "success";	
+	}
+	
 	// 업로드 되어있는 파일 삭제용 메소드
+
 	public void deleteFile(String renameFileName, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "/tbuploadFiles";
-			
+		System.out.println("컨트롤");
 			
 		File f = new File(savePath + "/" + renameFileName);
 			
 		if(f.exists()) {
 		f.delete();
 		}	
+		
+	
 		
 	}
 	

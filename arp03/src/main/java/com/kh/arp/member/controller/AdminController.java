@@ -3,6 +3,7 @@ package com.kh.arp.member.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -16,9 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.declaree.model.vo.Declaree;
+import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.member.model.service.MemberService;
 import com.kh.arp.member.model.vo.Auth;
-import com.kh.arp.member.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.qna.model.service.QnaService;
 import com.kh.arp.qna.model.vo.Qna;
@@ -36,7 +37,8 @@ public class AdminController {
 	private JavaMailSenderImpl javaMailSenderImple;
 	
 	@RequestMapping("/lectureList.ad")
-	public ModelAndView classList(ModelAndView mv) {
+	public ModelAndView classList(HttpSession session, ModelAndView mv) {
+		session.removeAttribute("lec");
 		List<Lecture> list=ms.getClassList();
 		System.out.println(list);
 		mv.addObject("list",list);

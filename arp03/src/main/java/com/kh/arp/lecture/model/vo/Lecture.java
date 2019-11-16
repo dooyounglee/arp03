@@ -1,4 +1,4 @@
-package com.kh.arp.member.model.vo;
+package com.kh.arp.lecture.model.vo;
 
 import lombok.Data;
 
