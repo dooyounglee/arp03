@@ -10,4 +10,5 @@ public class Exam {
 	private String title;
 	private String examdate;
 	private String status;
+	private String openn;
 }

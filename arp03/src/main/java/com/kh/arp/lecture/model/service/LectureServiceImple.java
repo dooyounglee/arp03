@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.arp.lecture.model.dao.LectureDao;
 import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
@@ -16,6 +17,9 @@ public class LectureServiceImple implements LectureService {
 
 	@Autowired
 	private MemberDao md;
+	
+	@Autowired
+	private LectureDao ld;
 
 	@Override
 	public Lecture getLecture(int lec_no) {
@@ -39,7 +43,22 @@ public class LectureServiceImple implements LectureService {
 
 	@Override
 	public List<Exam> getExamList(int lec_no) {
-		return md.getExamList(lec_no);
+		return ld.getExamList(lec_no);
+	}
+
+	@Override
+	public Exam makeExam(Exam e) {
+		return ld.makeExam(e);
+	}
+
+	@Override
+	public Exam getExam(int e_no) {
+		return ld.getExam(e_no);
+	}
+
+	@Override
+	public int editExam(Exam e) {
+		return ld.editExam(e);
 	}
 
 }
