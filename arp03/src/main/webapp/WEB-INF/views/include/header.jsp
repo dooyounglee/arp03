@@ -21,24 +21,26 @@
 	
 	<hr>
 	
-	학생
-	<a href="lectureList.ad"><del>내 수강목록</del></a>
-	<a href="blist.do">자유 게시판</a>
-	<a href="mylist.qna"><del>내 문의</del></a>
-	<a href="myInfo.me"><del>내 정보</del></a>
-	<a href="vlist.me">내 휴가</a>
-	
-	<hr>
-	
-	선생님
-	<a href="lectureList.ad"><del>내 수업목록</del></a>
-	<a href="blist.do">자유 게시판</a>
-	<a href="tblist.do">선생님 게시판</a>
-	<a href="mylist.qna"><del>내 문의</del></a>
-	<a href="myInfo.me"><del>내 정보</del></a>
-	<a href="">학생휴가 관리</a>
-	
-	<hr>
+	<c:if test="${!empty mem }">
+		학생
+		<a href="lectureList.ad"><del>내 수강목록</del></a>
+		<a href="blist.do">자유 게시판</a>
+		<a href="mylist.qna"><del>내 문의</del></a>
+		<a href="myInfo.me"><del>내 정보</del></a>
+		<a href="vlist.me">내 휴가</a>
+		
+		<hr>
+		
+		선생님
+		<a href="lectureList.ad"><del>내 수업목록</del></a>
+		<a href="blist.do">자유 게시판</a>
+		<a href="tblist.do">선생님 게시판</a>
+		<a href="mylist.qna"><del>내 문의</del></a>
+		<a href="myInfo.me"><del>내 정보</del></a>
+		<a href="">학생휴가 관리</a>
+		
+		<hr>
+	</c:if>
 	
 	<c:if test="${!empty lec }">
 		수강페이지
