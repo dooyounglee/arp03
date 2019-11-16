@@ -134,7 +134,7 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping("deleteReply.do")
 	public String deleteReply(int r_no) {
-		System.out.println(r_no);
+		//System.out.println(r_no);
 		int rst = bService.deleteReply(r_no);
 		if(rst > 0) {
 			return "success";
@@ -165,8 +165,6 @@ public class BoardController {
 		} else {
 			return "fail";
 		}
-		
 	}
 	
-
 }

@@ -19,6 +19,7 @@
 		<typeAlias type="com.kh.arp.lecture.model.vo.Exam" alias="Exam"/>
 		<typeAlias type="com.kh.arp.lecture.model.vo.Score" alias="Score"/>
 		<typeAlias type="com.kh.arp.lecture.model.vo.MyClass" alias="MyClass"/>
+		<typeAlias type="com.kh.arp.vacation.model.vo.Vacation" alias="Vacation"/>
 	</typeAliases>
 	
 	<mappers>
@@ -32,5 +33,6 @@
 		<mapper resource="/mappers/declaree-mapper.xml"/>
 		<mapper resource="/mappers/faq-mapper.xml"/>
 		<mapper resource="/mappers/qna-mapper.xml"/>
+		<mapper resource="/mappers/vacation-mapper.xml"/>
 	</mappers>
 </configuration>
