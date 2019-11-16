@@ -28,22 +28,6 @@ public class QController {
 	@Autowired
 	private QService qService;
 	
-	
-	/*
-	 * @RequestMapping("questionAllList.qu") public ModelAndView
-	 * questionAllList(ModelAndView mv) {
-	 * 
-	 * List<Lecture> lecList = qService.getClassList();
-	 * 
-	 * mv.addObject("lecList",lecList);
-	 * mv.setViewName("question/questionAllListPage");
-	 * 
-	 * return mv;
-	 * 
-	 * }
-	 */
-	
-	
 	@RequestMapping("question.qu")
 	public ModelAndView questionList(ModelAndView mv,
 									@RequestParam(value="currentPage", defaultValue="1") int currentPage, int lec_no) {
@@ -150,6 +134,8 @@ public class QController {
 		
 		Question q = qService.selectDetailQuestion(q_no);
 		
+		//System.out.println(q);
+		
 		if(q != null) {
 			mv.addObject("q", q).setViewName("question/qdetailForm");
 		}else {
@@ -160,7 +146,9 @@ public class QController {
 	}
 	
 
-	 @RequestMapping("qupdateForm.qu") public ModelAndView qUpdateForm(int q_no, ModelAndView mv) { 
+	 @RequestMapping("qupdateForm.qu")
+	 public ModelAndView qUpdateForm(int q_no, ModelAndView mv) {
+		 
 		 Question q = qService.selectDetailQuestion(q_no);
 	
 		 mv.addObject("q", q).setViewName("question/qUpdateForm");
@@ -171,31 +159,68 @@ public class QController {
 	
 
 	 @RequestMapping("qupdate.qu") 
-	 public ModelAndView qUpdate(Question q, ModelAndView mv) {
-	   
-	   int result = qService.qUpdate(q);
-	   
-	   int lec_no = q.getLec_no();
-	   
-	   if(result > 0) { 
-		   mv.addObject("q_no", q.getQ_no()).setViewName("redirect:qdetail.qu?lec_no="+lec_no);
-	   }else { 
-		   mv.addObject("msg", "게시판 수정 실패").setViewName("qcommon/errorPage"); 
-	   }
+	 public ModelAndView qUpdate(Question q, QFile qf, ModelAndView mv, 
+			 HttpServletRequest request, @RequestParam(value="fileReload", required=false) MultipartFile file) {
+	   // 먼저 파일제외한 내용부터 업데이트
+	    int result = qService.qUpdate(q);
+	    int lec_no = q.getLec_no();
+	    
+	    if(!file.getOriginalFilename().equals("")) {
+	    	
+	    	if(q.getOriginalname() != null) {
+	    		deleteFile(q.getChangename(), request);
+	    	}
+	    	
+	    	String changename = saveFile(file, request);
+	    	qf.setChangeName(changename);
+	    	qf.setOriginalName(file.getOriginalFilename());
+	    	qf.setQ_no(q.getQ_no());
+	    	
+	    }
+	    
+	    
+		int result2 = qService.qUpdateFile(qf);
+	    
+
+		 if(result2 > 0) { 
+			mv.addObject("q_no", q.getQ_no()).setViewName("redirect:qdetail.qu?lec_no="+lec_no);
+		 }else { 
+			mv.addObject("msg", "게시판 수정 실패").setViewName("qcommon/errorPage"); 
+		 }
 	   
 	   return mv;
 	   
 	 }
 	 
 	 @RequestMapping("qdelete.qu")
-	 public String qDelete(int q_no, int lec_no) {
+	 public String qDelete(int q_no, int lec_no, HttpServletRequest request) {
+		 
+		 Question q = qService.qSelectDelete(q_no);
+		 
+		 if(q.getOriginalname() != null) {
+			 deleteFile(q.getChangename(), request);
+		 }
+		 
 		 int result = qService.qDelete(q_no);
+		 
 		 
 		 if(result > 0) {
 			 return "redirect:question.qu?lec_no="+lec_no;
 		 }else {
 			 return "qcommon/errorPage";
 		 }
+	 }
+	 
+	 public void deleteFile(String changename, HttpServletRequest request) {
+		 String root = request.getSession().getServletContext().getRealPath("resources");
+		 String savePath = root + "/qFileUpload";
+		 
+		 File f = new File(savePath + "/" + changename);
+		 
+		 if(f.exists()) { // 존재할경우
+			 f.delete(); // 삭제
+		 }
+		 
 	 }
 	 
 	 

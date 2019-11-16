@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,8 @@
 	<br>
 	<form action="qupdate.qu?q_no=${ q.q_no }" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="lec_no" value="${q.lec_no }">
+	<input type="hidden" name="originalname" value="${ q.originalname }">
+	<input type="hidden" name="changename" value="${ q.changename }">
 		<table align="center">
 			<tr>
 				<td>제목</td>
@@ -39,7 +42,12 @@
 			</tr>
 			<tr>
 				<td>첨부파일</td>
-				<td><input type="file" name="fileUp"></td>
+				<td>
+					<input type="file" name="fileReload">
+					<c:if test="${ !empty q.originalname }">
+						<a href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${q.changename}" download="${ q.originalname }">${ q.originalname }</a>
+					</c:if>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
