@@ -10,10 +10,11 @@ import org.springframework.stereotype.Repository;
 import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.declaree.model.vo.Declaree;
+import com.kh.arp.lecture.model.vo.Classdate;
+import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Auth;
-import com.kh.arp.member.model.vo.Classdate;
-import com.kh.arp.member.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.qna.model.vo.Qna;
 
 @Repository
 public class MemberDao {
@@ -122,6 +123,10 @@ public class MemberDao {
 
 	public Member find(Member m) {
 		return sqlSession.selectOne("memberMapper.find",m);
+	}
+
+	public List<Qna> getQnaList() {
+		return sqlSession.selectList("memberMapper.getQnaList",null);
 	}
 
 }

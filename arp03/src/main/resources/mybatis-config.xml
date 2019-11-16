@@ -7,13 +7,14 @@
 	<typeAliases>
 		<typeAlias type="com.kh.arp.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.arp.member.model.vo.Auth" alias="Auth"/>
-		<typeAlias type="com.kh.arp.member.model.vo.Lecture" alias="Lecture"/>
+		<typeAlias type="com.kh.arp.lecture.model.vo.Lecture" alias="Lecture"/>
 		<typeAlias type="com.kh.arp.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.arp.board.model.vo.BReply" alias="BReply"/>
 		<typeAlias type="com.kh.arp.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.arp.question.model.vo.Question" alias="Question"/>
 		<typeAlias type="com.kh.arp.board.model.vo.BoardFile" alias="BoardFile"/>
 		<typeAlias type="com.kh.arp.FAQ.model.vo.FAQ" alias="FAQ"/>
+		<typeAlias type="com.kh.arp.qna.model.vo.Qna" alias="Qna"/>
 		<typeAlias type="com.kh.arp.declaree.model.vo.Declaree" alias="Declaree"/>
 	</typeAliases>
 	
@@ -27,5 +28,6 @@
 		<mapper resource="/mappers/board-mapper.xml"/>
 		<mapper resource="/mappers/declaree-mapper.xml"/>
 		<mapper resource="/mappers/faq-mapper.xml"/>
+		<mapper resource="/mappers/qna-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -3,6 +3,7 @@ package com.kh.arp.member.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -16,10 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.declaree.model.vo.Declaree;
+import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.member.model.service.MemberService;
 import com.kh.arp.member.model.vo.Auth;
-import com.kh.arp.member.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.qna.model.service.QnaService;
+import com.kh.arp.qna.model.vo.Qna;
 
 @Controller
 public class AdminController {
@@ -28,10 +31,14 @@ public class AdminController {
 	private MemberService ms;
 	
 	@Autowired
+	private QnaService qs;
+	
+	@Autowired
 	private JavaMailSenderImpl javaMailSenderImple;
 	
 	@RequestMapping("/lectureList.ad")
-	public ModelAndView classList(ModelAndView mv) {
+	public ModelAndView classList(HttpSession session, ModelAndView mv) {
+		session.removeAttribute("lec");
 		List<Lecture> list=ms.getClassList();
 		System.out.println(list);
 		mv.addObject("list",list);
@@ -187,6 +194,23 @@ public class AdminController {
 		if(result>0) {
 			mv.setViewName("redirect:/declareList.ad");
 		}
+		return mv;
+	}
+	
+	@RequestMapping("/qnaList.ad")
+	public ModelAndView qnaList(ModelAndView mv) {
+		List<Qna> list=ms.getQnaList();
+		mv.addObject("list",list);
+		mv.setViewName("qna/list");
+		return mv;
+	}
+	
+	@PostMapping("/answerQna.ad")
+	public ModelAndView answerPost(Qna qna, ModelAndView mv) {
+		Qna newqna=qs.getQna(qna.getQna_no());
+		newqna.setAnswer(qna.getAnswer());
+		int result=qs.answerQna(newqna);
+		mv.setViewName("redirect:/get.qna?qna_no="+qna.getQna_no());
 		return mv;
 	}
 	

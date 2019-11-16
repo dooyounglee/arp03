@@ -48,7 +48,7 @@
 		</tr>
 	</table>
 	<!-- 댓글 목록 부분 -->
-	<table align="center" width="500" border="1" cellspacing="0" id="rtb">
+	<table align="center" width="600" border="1" cellspacing="0" id="rtb">
 		<thead>
 			<tr>
 				<td colspan="3"><b id="rCount"></b></td>
@@ -83,7 +83,73 @@
 				});
 				
 			});
+
+			$(document).one("click", "#rr", function(){
+				//console.log($(this).parent().parent().next());
+				console.log($(this).parent().eq(0));
+				$("#rtb tbody:last").append("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button>등록</button></td></tr>")
+			});
 			
+			$(document).on("click", "#del", function(){
+				//console.log($(this).parent().parent().children().eq(0).text());
+				var $r_no = $(this).parent().parent().children().eq(0).text();
+				//console.log($td1.eq(0).text());
+							
+				$.ajax({
+					url:"deleteReply.do",
+					data:{r_no:$r_no},
+					success:function(data){
+						//console.log("삭제 성공");
+						getReplyList();
+					}, error:function(){
+						console.log("ajax 통신 실패");
+					}
+				});
+			});
+			
+			$(document).on("click", "#alt", function(){
+				//console.log("수정ㄱㄱ");
+				var $content = $(this).parent().parent().children().eq(1);
+				var $btns = $(this).parent().parent().children().eq(3);
+				
+				var $reContent = $("<textarea cols='30' name='reContent' id='reContent'>" + $content.text() + "</textarea>");
+				
+				$content.replaceWith($reContent);
+				$("#reContent").focus();
+				
+				var $reBtns = $('<input type="button" id="alert" value="등록"/>' + '<input type="button" id="cancel" value="취소"/>');
+				
+				/* $reBtns += $submit;
+				$reBtns += $cancel; */
+				
+				$btns.replaceWith($reBtns);
+				
+			});
+			
+			$(document).on("click", "#alert", function(){
+				
+				var $r_no = $(this).parent().children().eq(0).text();
+				/* console.log($r_no);
+				console.log($("#reContent").val()); */
+				
+				$.ajax({
+					url:"updateReply.do",
+					data:{content:$("#reContent").val(), r_no:$r_no},
+					success:function(data){
+						console.log("수정 성공");
+						getReplyList();
+					}, error:function(){
+						console.log("ajax 통신 실패");
+					}
+				})
+				
+			});
+			
+			$(document).on("click", "#cancel", function(){
+				getReplyList();
+			});
+			
+		
 		});
 		
 		function getReplyList(){
@@ -102,14 +168,27 @@
 						$.each(data, function(index, value) { // value == data[index]
 							// 작성자 내용 작성일
 						$tr = $("<tr>");
+						$td = $("<td>");
+						
+						$writerTd = $("<td>").text(value.r_no);
 							
-						$writerTd = $("<td>").text("익명");
 						$contentTd = $("<td width='250'>").text(value.content);
 						$dateTd = $("<td>").text(value.regdate);
+						
+						$rreply = $('<input type="button" id="rr" value="re"/>');
+						$altB = $('<input type="button" id="alt" value="alt"/>');
+						$deleteB = $('<input type="button" id="del" value="del"/>');
+						
 							
 						$tr.append($writerTd);
 						$tr.append($contentTd);
 						$tr.append($dateTd);
+						$tr.append($td.append($rreply));
+						
+						if(value.m_no == ${mem.m_no}) {
+							$tr.append($td.append($altB));
+							$tr.append($td.append($deleteB));
+						}
 						
 						$tbody.append($tr);
 							

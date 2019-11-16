@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.common.PageInfo;
-import com.kh.arp.member.model.vo.Lecture;
+import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.question.model.service.QService;
 import com.kh.arp.question.model.vo.QFile;
 import com.kh.arp.question.model.vo.Question;
@@ -192,7 +192,7 @@ public class QController {
 		 int result = qService.qDelete(q_no);
 		 
 		 if(result > 0) {
-			 return "redirect:question.qu?lec_no"+lec_no;
+			 return "redirect:question.qu?lec_no="+lec_no;
 		 }else {
 			 return "qcommon/errorPage";
 		 }

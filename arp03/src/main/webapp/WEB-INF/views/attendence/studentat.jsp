@@ -10,7 +10,11 @@
 <body>
 	<jsp:include page="../include/header.jsp"/>
 	
-	
+	<table>
+		<tr>
+			<td>
+		</tr>
+	</table>
 	
 	
 	<jsp:include page="../include/footer.jsp"/>

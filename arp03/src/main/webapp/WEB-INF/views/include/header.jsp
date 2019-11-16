@@ -26,7 +26,7 @@
 	<a href="blist.do">자유 게시판</a>
 	<a href="mylist.qna"><del>내 문의</del></a>
 	<a href="myInfo.me"><del>내 정보</del></a>
-	<a href="myvacation.me">내 휴가</a>
+	<a href="vlist.me">내 휴가</a>
 	
 	<hr>
 	
@@ -36,18 +36,20 @@
 	<a href="tblist.do">선생님 게시판</a>
 	<a href="mylist.qna"><del>내 문의</del></a>
 	<a href="myInfo.me"><del>내 정보</del></a>
+	<a href="">학생휴가 관리</a>
 	
 	<hr>
 	
-	
-	<a href="">메인</a>
-	<a href="">강의계획</a>
-<%-- 	<a href="question.qu?lec_no=${ c.lec_no }">질문게시판</a> --%>
-	<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a>
-	<a href="">내 출석</a>
-	<a href="">내 점수</a>
-	
-	<hr>
+	<c:if test="${!empty lec }">
+		수강페이지
+		<a href="main.lec?lec_no=${lec.lec_no }"><del>메인</del></a>
+		<a href="info.lec"><del>강의계획</del></a>
+		<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a>
+		<a href="">내 출석</a>
+		<a href="">내 점수</a>
+		<hr>
+	</c:if>
+
 	
 <a href="lectureList.ad"><del>강좌관리</del></a>
 	<a href="boardList.ad"><del>게시글 관리</del></a>
@@ -55,8 +57,10 @@
 	<a href="qnaList.ad"><del>문의관리</del></a>
 	<a href="declareList.ad"><del>신고관리</del></a>
 	<a href="memberList.ad"><del>회원관리</del></a>
+	<a href="vationList.ad">휴가관리</a>
 	<a href="nlist.ad"><del>공지사항</del></a>
 	<a href="flist.ad"><del>faq</del></a>
+	
 <hr>
 </body>
 </html>
