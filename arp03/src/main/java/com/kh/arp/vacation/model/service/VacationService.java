@@ -1,8 +1,11 @@
 package com.kh.arp.vacation.model.service;
 
+import com.kh.arp.vacation.model.vo.Vacation;
+
 public interface VacationService {
 
-	
-	int insertVacation(int v_no);
+	// 휴가작성용
+	int insertVacation(Vacation v);
+
 	
 }

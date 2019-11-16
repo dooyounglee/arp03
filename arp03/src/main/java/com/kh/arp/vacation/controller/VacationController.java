@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.arp.vacation.model.service.VacationServiceImpl;
+import com.kh.arp.vacation.model.vo.Vacation;
 
 @Controller
 public class VacationController {
@@ -24,11 +25,15 @@ public class VacationController {
 	}
 	
 	@RequestMapping("vinsert.me")
-	public String vInsert(int v_no) {
+	public String vInsert(Vacation v) {
 		
+		int result = vService.insertVacation(v);
 		
+		if(result>0) {
+			return "redirect:vlist.me";
+		}else {
+			return null;
+		}
 		
-		
-		return "redirect:vlist.me";
 	}
 }
