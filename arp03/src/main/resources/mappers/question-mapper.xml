@@ -26,11 +26,13 @@
 </select>
 
 <select id="selectQuestionList" resultMap="qList">
-	select q.q_no, lec_no, m_no, title, m.name, q.regdate, q.vcount, q.isreply, q.fileox, f.originalname, f.changename
-    from qfile f, question q
-    join member m using(m_no)
+    select q.q_no, q.lec_no, q.m_no, q.title, m.name,
+           q.regdate, q.vcount, q.isreply, q.fileox, originalname,
+           changename
+    from question q
+    join member m on(q.m_no=m.m_no)
+    left join qfile f on(q.q_no=f.q_no)
     where q.lec_no=#{lec_no} and q.status='Y'
-    order by q.q_no desc
 </select>
 
 <insert id="qInsert">
