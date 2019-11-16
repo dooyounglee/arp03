@@ -21,12 +21,10 @@ public class QDao {
 	
 	
 	public List<Lecture> getClassList() {
-		
 		return sqlSession.selectList("lectureMapper.getClassList",null);
 	}
 	
 	public int getListCount(int lec_no) {
-		
 		return sqlSession.selectOne("questionMapper.getListCount", lec_no);
 	}
 
@@ -46,24 +44,12 @@ public class QDao {
 	}
 	
 	public int qInsert(Question q) {
-		
 		return sqlSession.insert("questionMapper.qInsert", q);
 	}
 	
 	public int qFileInsert(QFile qf) {
 		return sqlSession.insert("questionMapper.qFileInsert", qf);
 	}
-	
-
-	/*
-	 * public ArrayList<Question> selectQuestionList2(Question q) {
-	 * ArrayList<Question> qList2 =
-	 * (ArrayList)sqlSession.selectList("questionMapper.selectQuestionList2", q);
-	 * 
-	 * return qList2;
-	 * 
-	 * }
-	 */
 	
 	// 조회수 증가
 	public int updateCount(int q_no) {
@@ -74,20 +60,16 @@ public class QDao {
 		return sqlSession.selectOne("questionMapper.selectDetailQuestion", q_no);
 	}
 
-	/*
-	 * public int qUpdate(int q_no) { // TODO Auto-generated method stub return
-	 * sqlSession.update("questionMapper.qUpdateForm", q_no); }
-	 */
-
 	public int qUpdate(Question q) {
 		return sqlSession.update("questionMapper.qUpdate", q);
 	}
-
+	
+	public int qUpdateFile(QFile qf) {
+		return sqlSession.update("questionMapper.qUpdateFile", qf);
+	}
+	
 	public int qDelete(int q_no) {
 		return sqlSession.update("questionMapper.qDelete", q_no);
 	}
-
-
-	
 	
 }

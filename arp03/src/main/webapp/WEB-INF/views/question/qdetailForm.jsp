@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +39,11 @@
 			</tr>
 			<tr>
 				<td>첨부파일</td>
-				<td><input type="file" name="fileUp" readonly></td>
+				<td>
+					<c:if test="${ !empty q.originalname }">
+						<a href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${ q.changename }" download="${ q.originalname }">${ q.originalname }</a>
+					</c:if>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">

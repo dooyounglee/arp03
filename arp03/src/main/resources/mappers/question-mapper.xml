@@ -14,8 +14,6 @@
 	<result property="fileox" column="fileox"/>
 	<result property="originalname" column="originalName"/>
 	<result property="changename" column="changeName"/>
-	
-	
 </resultMap>
 
 
@@ -33,6 +31,7 @@
     join member m on(q.m_no=m.m_no)
     left join qfile f on(q.q_no=f.q_no)
     where q.lec_no=#{lec_no} and q.status='Y'
+    order by q.q_no desc
 </select>
 
 <insert id="qInsert">
@@ -46,27 +45,28 @@
 	values(seq_qfile.nextval, seq_question.currval, #{originalName}, #{changeName})
 </insert>
 
-<!-- <select id="selectQuestionList2" resultType="question">
-	select *
-	from Question
-	where lec_no=#{lec_no}
-</select> -->
-
 <update id="updateCount">
 	update Question
 	set vcount = vcount+1
 	where q_no=#{q_no}
 </update>
 
-<select id="selectDetailQuestion" resultType="question">
-	select *
-	from question
-	where q_no=#{q_no}
+<select id="selectDetailQuestion" resultMap="qList">
+	select q.*, originalname, changename
+    from question q
+    left join qfile f on(q.q_no=f.q_no)
+    where q.q_no=#{q_no} and q.status='Y'
 </select>
 
 <update id="qUpdate">
 	update Question
 	set title=#{title}, content=#{content}
+	where q_no=#{q_no}
+</update>
+
+<update id="qUpdateFile">
+	update qfile
+	set originalName=#{originalName}, changeName=#{changeName}
 	where q_no=#{q_no}
 </update>
 
