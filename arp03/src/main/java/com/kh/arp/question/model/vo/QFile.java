@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class QFile {
-	// Áú¹®°Ô½ÃÆÇ ÆÄÀÏ¾÷·Îµå
-	private int file_no;		// ÆÄÀÏ ¹øÈ£
-	private int q_no;			// Áú¹® ¹øÈ£
-	private String originalName;// ÆÄÀÏ ¿øº»¸í
-	private String reName;		// ÆÄÀÏ ¼öÁ¤¸í
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¾ï¿½ï¿½Îµï¿½
+	private int file_no;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	private int q_no;			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	private String originalName;// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String changeName;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 }
