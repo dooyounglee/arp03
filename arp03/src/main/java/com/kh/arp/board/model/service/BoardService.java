@@ -32,4 +32,7 @@ public interface BoardService {
 	// 댓글 수정
 	int updateReply(BReply r);
 	
+	// 대댓 작성
+	int insertReReply(BReply r);
+	
 }

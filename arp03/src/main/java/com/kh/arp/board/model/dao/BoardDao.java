@@ -53,5 +53,9 @@ public class BoardDao {
 	public int updateReply(BReply r) {
 		return sqlSession.update("boardMapper.updateReply", r);
 	}
+
+	public int insertReReply(BReply r) {
+		return sqlSession.insert("boardMapper.insertReReply", r);
+	}
 	
 }

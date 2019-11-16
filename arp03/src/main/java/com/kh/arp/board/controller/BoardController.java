@@ -154,5 +154,19 @@ public class BoardController {
 			return "fail";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping("reinsert.do")
+	public String insertReReply(BReply r) {
+		//System.out.println(r);
+		int rst = bService.insertReReply(r);
+		if(rst > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+		
+	}
+	
 
 }
