@@ -1,11 +1,13 @@
 package com.kh.arp.lecture.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.arp.lecture.model.vo.Classdate;
+import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.member.model.dao.MemberDao;
 
@@ -33,6 +35,11 @@ public class LectureServiceImple implements LectureService {
 	@Override
 	public int insertClassdate(ArrayList<Classdate> list) {
 		return md.insertClassdate(list);
+	}
+
+	@Override
+	public List<Exam> getExamList(int lec_no) {
+		return md.getExamList(lec_no);
 	}
 
 }

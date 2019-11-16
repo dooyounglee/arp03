@@ -1,6 +1,7 @@
 package com.kh.arp.lecture.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.lecture.model.service.LectureService;
 import com.kh.arp.lecture.model.vo.Classdate;
+import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
 
@@ -74,6 +76,26 @@ public class LectureController {
 	
 	@GetMapping("/info.lec")
 	public ModelAndView info(HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		mv.addObject("lec", lec);
+		mv.setViewName("lecture/info");
+		return mv;
+	}
+	
+	@GetMapping("/list.ex")
+	public ModelAndView examList(HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		
+		List<Exam> list=ls.getExamList(lec.getLec_no());
+		
+		mv.addObject("list", list);
+		mv.addObject("lec", lec);
+		mv.setViewName("mypage/teacher/examList");
+		return mv;
+	}
+	
+	@GetMapping("/make.ex")
+	public ModelAndView makeExam(HttpSession session, ModelAndView mv) {
 		Lecture lec=(Lecture)session.getAttribute("lec");
 		mv.addObject("lec", lec);
 		mv.setViewName("lecture/info");

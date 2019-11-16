@@ -38,4 +38,8 @@
 	<insert id="insertClassdate">
 		insert into classdate values(#{lec_no},#{classdate},#{nth})
 	</insert>
+	
+	<select id="getExamList" resultType="Exam">
+		select * from exam
+	</select>
 </mapper>
