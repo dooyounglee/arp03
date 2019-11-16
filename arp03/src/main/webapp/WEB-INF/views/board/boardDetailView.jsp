@@ -113,8 +113,9 @@
 			
 			$(document).on("click", "#del", function(){
 				//console.log($(this).parent().parent().children().eq(0).text());
-				var $r_no = $(this).parent().parent().children().eq(0).text();
+				//var $r_no = $(this).parent().parent().children().eq(0).text();
 				//console.log($td1.eq(0).text());
+				var $r_no = $(this).parent().parent().children("#hrno").val();
 							
 				$.ajax({
 					url:"deleteReply.do",
