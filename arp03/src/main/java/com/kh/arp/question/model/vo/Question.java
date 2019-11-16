@@ -11,7 +11,7 @@ public class Question {
 	private String title;			// ����
 	private String content;			// ����
 	private String regdate;			// �ۼ�����
-	private String update;			// ��������
+	private String updatedate;			// ��������
 	private String status;			// ����
 	private int vcount;				// ��ȸ��
 	private int dcount;				// �Ű��

@@ -49,11 +49,6 @@ public class QServiceImple implements QService{
 		return qDao.qFileInsert(qf);
 	}
 
-	/*
-	 * @Override public ArrayList<Question> selectQuestionList2(Question q) { return
-	 * qDao.selectQuestionList2(q); }
-	 */
-
 	@Override
 	public Question selectDetailQuestion(int q_no) {
 		
@@ -70,6 +65,16 @@ public class QServiceImple implements QService{
 	@Override
 	public int qUpdate(Question q) {
 		return qDao.qUpdate(q);
+	}
+	
+	@Override
+	public int qUpdateFile(QFile qf) {
+		return qDao.qUpdateFile(qf);
+	}
+	
+	@Override
+	public Question qSelectDelete(int q_no) {
+		return qDao.selectDetailQuestion(q_no);
 	}
 
 	@Override

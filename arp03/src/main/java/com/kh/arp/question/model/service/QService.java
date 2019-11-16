@@ -28,18 +28,20 @@ public interface QService {
 	// 파일 첨부
 	int qFileInsert(QFile qf);
 	
-
-	/*
-	 * // 추가한 후에 조회해오는 리스트 ArrayList<Question> selectQuestionList2(Question q);
-	 */
-	
 	// 상세보기 페이지 조회
 	Question selectDetailQuestion(int q_no);
 	
-	// 업데이트
+	// 글 업데이트
 	int qUpdate(Question q);
+	
+	// 첨부파일 업데이트
+	int qUpdateFile(QFile qf);
+	
+	// 수정 및 삭제하려고하는 게시판 조회용 서비스
+	Question qSelectDelete(int q_no);
 	
 	// 게시판 삭제 서비스
 	int qDelete(int q_no);
+
 	
 }
