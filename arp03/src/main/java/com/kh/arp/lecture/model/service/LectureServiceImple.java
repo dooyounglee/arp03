@@ -10,7 +10,10 @@ import com.kh.arp.lecture.model.dao.LectureDao;
 import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
+import com.kh.arp.lecture.model.vo.MyClass;
+import com.kh.arp.lecture.model.vo.Score;
 import com.kh.arp.member.model.dao.MemberDao;
+import com.kh.arp.member.model.vo.Member;
 
 @Service
 public class LectureServiceImple implements LectureService {
@@ -59,6 +62,27 @@ public class LectureServiceImple implements LectureService {
 	@Override
 	public int editExam(Exam e) {
 		return ld.editExam(e);
+	}
+
+	@Override
+	public List<MyClass> getStudentList(int lec_no) {
+		return ld.getStudentList(lec_no);
+	}
+
+	@Override
+	public int insertScore(Score s) {
+		int result=ld.isScore(s);
+		if(result>0) {
+			ld.updateScore(s);
+		}else {
+			ld.insertScore(s);
+		}
+		return 0;
+	}
+
+	@Override
+	public List<Score> getLectureScore(int lec_no) {
+		return ld.getLectureScore(lec_no);
 	}
 
 }

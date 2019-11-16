@@ -22,6 +22,9 @@
 		<input type="hidden" name="e_no" value="${e_no }">
 		시험명:<input name="title" value="${e.title }"><br>
 		시험날짜:<input type="date" name="examdate" value="${e.examdate.split(' ')[0] }"><br>
+		총점:
+		문제수:
+		시험시간:
 		<button>완료</button>
 	</form>
 	

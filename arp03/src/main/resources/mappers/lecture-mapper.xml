@@ -60,4 +60,26 @@
 		examdate=#{examdate}
 		where e_no=#{e_no}
 	</update>
+	
+	<select id="getStudentList" resultType="MyClass">
+		select * from myclass where lec_no=#{lec_no}
+	</select>
+	
+	<select id="isScore" resultType="_int">
+		select count(*) from score where e_no=#{e_no} and m_no=#{m_no}
+	</select>
+	
+	<update id="updateScore">
+		update score set
+		score=#{score}
+		where e_no=#{e_no} and m_no=#{m_no}
+	</update>
+	
+	<update id="insertScore">
+		insert into score values(#{e_no},#{m_no},#{score})
+	</update>
+	
+	<select id="getLectureScore" resultType="Score">
+		select * from score where e_no in (select e_no from exam where lec_no=#{lec_no})
+	</select>
 </mapper>

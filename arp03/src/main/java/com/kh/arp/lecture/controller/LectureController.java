@@ -10,12 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.lecture.model.service.LectureService;
 import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
+import com.kh.arp.lecture.model.vo.MyClass;
+import com.kh.arp.lecture.model.vo.Score;
 import com.kh.arp.member.model.vo.Member;
 
 @Controller
@@ -134,5 +137,27 @@ public class LectureController {
 		int result=ls.editExam(e);
 		mv.setViewName("redirect:/get.ex?e_no="+e.getE_no());
 		return mv;
+	}
+	
+	@GetMapping("/list.sc")
+	public ModelAndView listScoreGet(HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+
+		List<Exam> elist=ls.getExamList(lec.getLec_no());
+		List<MyClass> mlist=ls.getStudentList(lec.getLec_no());
+		List<Score> slist=ls.getLectureScore(lec.getLec_no());
+		
+		mv.addObject("elist", elist);
+		mv.addObject("mlist", mlist);
+		mv.addObject("slist", slist);
+		mv.setViewName("mypage/teacher/score/list");
+		return mv;
+	}
+	
+	@ResponseBody
+	@PostMapping("/insert.sc")
+	public String insertScoreGet(Score s, ModelAndView mv) {
+		int result=ls.insertScore(s);
+		return "success";
 	}
 }
