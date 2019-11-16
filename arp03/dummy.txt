@@ -347,11 +347,10 @@ VALUES(seq_board.nextval,1,2,'제목입니다','내용입니다',SYSDATE,SYSDATE
 
 INSERT INTO ARP.BREPLY
 (R_NO, B_NO, M_NO, CONTENT, REGDATE, UPDATE_DATE, STATUS, "DEPTH", PARENT_NO, RE_COUNT)
-VALUES(1, 1, 1, '내용1', sysdate	, sysdate	, 'Y'	, 1	, 1, 0);
+VALUES(SEQ_BREPLY.nextval, 1, 1, '내용1', sysdate	, sysdate	, 'Y'	, 1	,  SEQ_BREPLY.currval, 0);
 INSERT INTO ARP.BREPLY
 (R_NO, B_NO, M_NO, CONTENT, REGDATE, UPDATE_DATE, STATUS, "DEPTH", PARENT_NO, RE_COUNT)
-VALUES(2, 1, 1, '내용2', sysdate	, sysdate	, 'Y'	, 1	, 1, 0);
-
+VALUES(SEQ_BREPLY.nextval, 1, 1, '내용2', sysdate	, sysdate	, 'Y'	, 1	,  SEQ_BREPLY.currval, 0);
 
 
 
