@@ -13,7 +13,7 @@
 	
 	<a href="make.ex">강의 만들기</a><br>
 	<c:forEach var="e" items="${list }">
-		<a href="">${e }</a><br>
+		<a href="get.ex?e_no=${e.e_no }">${e }</a><br>
 	</c:forEach>
 	
 	<jsp:include page="../../../include/footer.jsp"/>

@@ -42,4 +42,22 @@
 	<select id="getExamList" resultType="Exam">
 		select * from exam
 	</select>
+	
+	<insert id="makeExam" >
+		INSERT INTO exam VALUES(seq_exam.nextval,#{lec_no},#{title},to_date(#{examdate},'yyyy-MM-dd'),default,default)
+		<selectKey keyProperty="e_no" resultType="int" order="AFTER">
+			select seq_exam.currval from dual
+		</selectKey>
+	</insert>
+	
+	<select id="getExam" resultType="Exam">
+		select * from exam where e_no=#{e_no}
+	</select>
+	
+	<update id="editExam">
+		update exam set
+		title=#{title},
+		examdate=#{examdate}
+		where e_no=#{e_no}
+	</update>
 </mapper>

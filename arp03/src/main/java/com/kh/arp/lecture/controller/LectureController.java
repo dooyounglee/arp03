@@ -90,7 +90,7 @@ public class LectureController {
 		
 		mv.addObject("list", list);
 		mv.addObject("lec", lec);
-		mv.setViewName("mypage/teacher/examList");
+		mv.setViewName("mypage/teacher/exam/list");
 		return mv;
 	}
 	
@@ -101,9 +101,38 @@ public class LectureController {
 	}
 	
 	@PostMapping("/make.ex")
-	public ModelAndView makeExamPost(Exam e, ModelAndView mv) {
-		System.out.println(e);
+	public ModelAndView makeExamPost(Exam e, HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		e.setLec_no(lec.getLec_no());
+		
+		Exam newe=ls.makeExam(e);
+		newe=ls.getExam(newe.getE_no());
 		mv.setViewName("redirect:/list.ex");
+		return mv;
+	}
+	
+	@GetMapping("/get.ex")
+	public ModelAndView getExam(int e_no, ModelAndView mv) {
+		Exam e=ls.getExam(e_no);
+		
+		mv.addObject("e", e);
+		mv.setViewName("mypage/teacher/exam/get");
+		return mv;
+	}
+	
+	@GetMapping("/edit.ex")
+	public ModelAndView editExamGet(int e_no, ModelAndView mv) {
+		Exam e=ls.getExam(e_no);
+		
+		mv.addObject("e", e);
+		mv.setViewName("mypage/teacher/exam/make");
+		return mv;
+	}
+	
+	@PostMapping("/edit.ex")
+	public ModelAndView editExamPost(Exam e, ModelAndView mv) {
+		int result=ls.editExam(e);
+		mv.setViewName("redirect:/get.ex?e_no="+e.getE_no());
 		return mv;
 	}
 }

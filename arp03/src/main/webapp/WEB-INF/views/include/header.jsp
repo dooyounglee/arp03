@@ -38,7 +38,6 @@
 		<a href="mylist.qna"><del>내 문의</del></a>
 		<a href="myInfo.me"><del>내 정보</del></a>
 		<a href="">학생휴가 관리</a>
-		<a href="list.ex">시험 관리</a>
 		
 		<hr>
 	</c:if>
@@ -50,6 +49,7 @@
 		<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a>
 		<a href="">내 출석</a>
 		<a href="">내 점수</a>
+		<a href="list.ex">시험 관리</a>
 		<hr>
 	</c:if>
 

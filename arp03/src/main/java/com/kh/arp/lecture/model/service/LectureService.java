@@ -19,4 +19,10 @@ public interface LectureService {
 
 	List<Exam> getExamList(int lec_no);
 
+	Exam makeExam(Exam e);
+
+	Exam getExam(int e_no);
+
+	int editExam(Exam e);
+
 }
