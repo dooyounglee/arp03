@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 import com.kh.arp.vacation.model.dao.VacationDao;
 
 @Service
-public class VacationServiceImpl {
+public class VacationServiceImpl implements VacationService {
 	@Autowired
 	private VacationDao vDao;
+
+	
+	
 }

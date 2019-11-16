@@ -17,9 +17,18 @@ public class VacationController {
 		return "vacation/vacationListForm";
 	}
 	
-	@RequestMapping("vinsert.me")
+	@RequestMapping("vinsertForm.me")
 	public String vInsertForm() {
 		
 		return "vacation/insertVacationForm";
+	}
+	
+	@RequestMapping("vinsert.me")
+	public String vInsert(int v_no) {
+		
+		
+		
+		
+		return "redirect:vlist.me";
 	}
 }
