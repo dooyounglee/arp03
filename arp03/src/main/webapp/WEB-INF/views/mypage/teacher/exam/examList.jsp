@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="../../include/header.jsp"/>
+	<jsp:include page="../../../include/header.jsp"/>
 	<h1>시험관리</h1>
 	
 	<a href="make.ex">강의 만들기</a><br>
@@ -16,6 +16,6 @@
 		<a href="">${e }</a><br>
 	</c:forEach>
 	
-	<jsp:include page="../../include/footer.jsp"/>
+	<jsp:include page="../../../include/footer.jsp"/>
 </body>
 </html>

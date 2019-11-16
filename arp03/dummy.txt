@@ -218,7 +218,8 @@ CREATE TABLE exam(
 	lec_no NUMBER REFERENCES LECTURE,
 	title varchar2(1000) NOT NULL,
 	examdate DATE NOT NULL,
-	status varchar2(100) DEFAULT 'Y'
+	status varchar2(100) DEFAULT 'Y',
+	openn varchar2(100) DEFAULT 'N'
 );
 
 CREATE TABLE score (

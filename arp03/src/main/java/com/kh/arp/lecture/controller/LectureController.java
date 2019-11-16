@@ -95,10 +95,15 @@ public class LectureController {
 	}
 	
 	@GetMapping("/make.ex")
-	public ModelAndView makeExam(HttpSession session, ModelAndView mv) {
-		Lecture lec=(Lecture)session.getAttribute("lec");
-		mv.addObject("lec", lec);
-		mv.setViewName("lecture/info");
+	public ModelAndView makeExamGet(ModelAndView mv) {
+		mv.setViewName("mypage/teacher/exam/make");
+		return mv;
+	}
+	
+	@PostMapping("/make.ex")
+	public ModelAndView makeExamPost(Exam e, ModelAndView mv) {
+		System.out.println(e);
+		mv.setViewName("redirect:/list.ex");
 		return mv;
 	}
 }
