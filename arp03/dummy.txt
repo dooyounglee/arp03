@@ -9,6 +9,7 @@ DROP TABLE ATTENDENCE;
 DROP TABLE myclass;
 DROP TABLE Classdate;
 DROP TABLE vacation;
+DROP TABLE exam;
 DROP TABLE LECTURE;
 DROP TABLE BoardFile;
 DROP TABLE BReply;
@@ -210,6 +211,15 @@ CREATE TABLE  BoardFile  (
 	 rename_filename 	varchar(30)		NOT NULL
 );
 
+
+CREATE TABLE exam(
+	e_no NUMBER PRIMARY KEY,
+	lec_no NUMBER REFERENCES LECTURE,
+	title varchar2(1000) NOT NULL,
+	examdate DATE NOT NULL,
+	status varchar2(100) DEFAULT 'Y'
+);
+
 DROP SEQUENCE SEQ_Notice; 		-- 공지사항 번호
 DROP SEQUENCE SEQ_FAQ;			-- FAQ 번호
 DROP SEQUENCE SEQ_Lecture;		-- 강의번호
@@ -225,6 +235,7 @@ DROP SEQUENCE SEQ_BoardFile;		--게시판 첨부파일 번호
 DROP SEQUENCE SEQ_BCategory;		-- 카테고리 번호
 DROP SEQUENCE SEQ_QNA;			-- 문의사항 번호
 DROP SEQUENCE SEQ_VACATION;		-- 휴가 번호
+DROP SEQUENCE seq_exam;
 
 CREATE SEQUENCE SEQ_Notice; 		-- 공지사항 번호
 CREATE SEQUENCE SEQ_FAQ;			-- FAQ 번호
@@ -241,6 +252,7 @@ CREATE SEQUENCE SEQ_BoardFile;		--게시판 첨부파일 번호
 CREATE SEQUENCE SEQ_BCategory;		-- 카테고리 번호
 CREATE SEQUENCE SEQ_QNA;			-- 문의사항 번호
 CREATE SEQUENCE SEQ_VACATION;		-- 휴가 번호
+CREATE SEQUENCE seq_exam;
 
 /*drop trigger filestatusTrigger;
 create or replace trigger filestatusTrigger -- 첨부파일 상태 트리거
