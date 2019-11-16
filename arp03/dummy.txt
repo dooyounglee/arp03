@@ -9,6 +9,7 @@ DROP TABLE ATTENDENCE;
 DROP TABLE myclass;
 DROP TABLE Classdate;
 DROP TABLE vacation;
+drop table score;
 DROP TABLE exam;
 DROP TABLE LECTURE;
 DROP TABLE BoardFile;
@@ -218,6 +219,13 @@ CREATE TABLE exam(
 	title varchar2(1000) NOT NULL,
 	examdate DATE NOT NULL,
 	status varchar2(100) DEFAULT 'Y'
+);
+
+CREATE TABLE score (
+	e_no	number		REFERENCES exam,
+	m_no 	Number		REFERENCES MEMBER,
+	score	number		NOT NULL,
+	PRIMARY KEY(e_no,m_no)
 );
 
 DROP SEQUENCE SEQ_Notice; 		-- 공지사항 번호
