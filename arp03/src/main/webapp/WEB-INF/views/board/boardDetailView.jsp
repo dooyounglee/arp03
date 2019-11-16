@@ -149,9 +149,10 @@
 			
 			$(document).on("click", "#alert", function(){
 				
-				var $r_no = $(this).parent().children().eq(0).text();
+				//var $r_no = $(this).parent().children().eq(0).text();
 				/* console.log($r_no);
 				console.log($("#reContent").val()); */
+				var $r_no = $(this).parent().children("#hrno").val();
 				
 				$.ajax({
 					url:"updateReply.do",
@@ -179,7 +180,7 @@
 				data:{b_no:${b.b_no}},
 				dataType:"json",
 				success:function(data){
-					console.log(data);
+					//console.log(data);
 					$tbody = $("#rtb tbody");
 					$tbody.html("");
 					
@@ -187,7 +188,7 @@
 					
 					if(data.length > 0){ // 댓글이 존재할 경우
 						$.each(data, function(index, value) { // value == data[index]
-							// 작성자 내용 작성일
+						
 						$tr = $("<tr>");
 						$td = $("<td>");
 						
@@ -200,6 +201,7 @@
 						$rreply = $('<input type="button" id="rr" value="re"/>');
 						$altB = $('<input type="button" id="alt" value="alt"/>');
 						$deleteB = $('<input type="button" id="del" value="del"/>');
+						$hrno = $('<input type="hidden" id="hrno" value="' + value.r_no + '"/>');
 						
 						if(value.status == 'N') {
 							$rnoTd = $("<td>").text("");
@@ -215,7 +217,7 @@
 						
 						$tr.append($contentTd);
 						$tr.append($dateTd);
-						
+						//$tr.append($hrno);
 						
 						if(value.depth == 1 && value.status == 'Y') {
 							$tr.append($td.append($rreply));
@@ -226,6 +228,7 @@
 							$tr.append($td.append($deleteB));
 						}
 						
+						$tr.append($hrno);
 						$tbody.append($tr);
 							
 						});
