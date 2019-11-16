@@ -43,6 +43,7 @@
 			<tr>
 				<td colspan="2" align="right">
 					<button type="submit">수정</button>
+					<button type="button" onclick="location.href='qdelete.qu?q_no=${ q.q_no }&lec_no=${ q.lec_no }';">삭제</button>
 					<!-- <button type="button" onclick="window.history.back()">취소</button> -->
 					<button type="button" onclick="location.href='question.qu?lec_no=${q.lec_no}';">목록</button>
 					<br><br>

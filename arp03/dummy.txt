@@ -123,10 +123,10 @@ CREATE TABLE Question (
 	dcount	number	DEFAULT 0	NOT NULL,
 	rcount	number	DEFAULT 0	NOT NULL,
 	isreply	char(3)	DEFAULT 'N'	NOT NULL,
-	replydate	date	DEFAULT SYSDATE	NOT NULL,
-	replycontent	varchar2(4000)	DEFAULT 'N'	NOT NULL,
+	replydate	date	NULL,
+	replycontent	varchar2(4000)	NULL,
 	isdelete	char(3)	DEFAULT 'N'	NOT NULL,
-	fileox	varchar2(4000)	DEFAULT 'N' NOT NULL
+	fileox	varchar2(4000)	DEFAULT 'N'	NOT NULL
 );
 
 CREATE TABLE QReply (
@@ -323,6 +323,15 @@ INSERT INTO BOARD
 VALUES(seq_board.nextval,1,2,'제목입니다','내용입니다',SYSDATE,SYSDATE,0,'Y',0,0,'N');
 
 
+INSERT INTO ARP.BREPLY
+(R_NO, B_NO, M_NO, CONTENT, REGDATE, UDPATE_DATE, STATUS, "DEPTH", PARENT_NO)
+VALUES(1, 1, 1, '내용1', sysdate	, sysdate	, 'Y'	, 1	, 1);
+INSERT INTO ARP.BREPLY
+(R_NO, B_NO, M_NO, CONTENT, REGDATE, UDPATE_DATE, STATUS, "DEPTH", PARENT_NO)
+VALUES(2, 1, 1, '내용2', sysdate	, sysdate	, 'Y'	, 1	, 1);
+
+
+
 
 insert into FAQ values( SEQ_FAQ.NEXTVAL , '질문입니다','<p>답변입니다<p>',3,'수강');
 insert into FAQ values( SEQ_FAQ.NEXTVAL , '질문입니다','<p>답변입니다<p>',3,'수강');
@@ -345,12 +354,12 @@ insert into myclass values(3, 3);
 insert into myclass values(1, 3);
 
 
--- Question 테이블 더미데이터 추가
---insert into question values(seq_question.nextval, 1, 21, '안녕하세요', '반갑습니다', sysdate, sysdate, 'Y', 0, 0, 0, 'N', sysdate, 'N', 'N', 'N');
---insert into question values(seq_question.nextval, 1, 2, '안녕하세요2', '반갑습니다2', sysdate, sysdate, 'Y', 0, 0, 0, 'N', sysdate, 'N', 'N', 'N');
---insert into question values(seq_question.nextval, 2, 21, '안녕하세요3', '반갑습니다3', sysdate, sysdate, 'Y', 0, 0, 0, 'N', sysdate, 'N', 'N', 'N');
---insert into question values(seq_question.nextval, 3, 3, '안녕하세요4', '반갑습니다4', sysdate, sysdate, 'Y', 0, 0, 0, 'N', sysdate, 'N', 'N', 'N');
---insert into question values(seq_question.nextval, 1, 3, '안녕하세요5', '반갑습니다5', sysdate, sysdate, 'Y', 0, 0, 0, 'N', sysdate, 'N', 'N', 'N');
---오류나서 주석함
+-- 이게 진짜
+insert into question values(seq_question.nextval, 1, 21, '안녕하세요', '반갑습니다', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, null, 'N', default);
+insert into question values(seq_question.nextval, 1, 2, '안녕하세요2', '반갑습니다2', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, null, 'N', default);
+insert into question values(seq_question.nextval, 2, 21, '안녕하세요3', '반갑습니다3', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, null, 'N', default);
+insert into question values(seq_question.nextval, 3, 3, '안녕하세요4', '반갑습니다4', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, null, 'N', default);
+insert into question values(seq_question.nextval, 1, 3, '안녕하세요5', '반갑습니다5', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, null, 'N', default);
+
 
 COMMIT;

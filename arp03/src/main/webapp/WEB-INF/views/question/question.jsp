@@ -46,17 +46,7 @@
 				<td>${ q.name }</td>
 				<td>${ q.regdate }</td>
 				<td>${ q.vcount }</td>
-				<%-- 				<td>
-					<c:if test="${ !empty q.originalName }">
-						<img align="center" width="30" src="siraFile/클립1.svg"/>
-					</c:if>
-				</td> --%>
-				<c:if test="${ !empty qf.originalName}">
-					<td>○</td>
-				</c:if>
-				<c:if test="${ empty qf.originalName }">
-					<td>${ q.fileox } </td>
-				</c:if>
+				<td>${ q.fileox } </td>
 				<td>${ q.isreply }</td>
 			</tr>
 		</c:forEach>

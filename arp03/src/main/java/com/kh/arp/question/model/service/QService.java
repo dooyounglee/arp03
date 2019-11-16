@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.kh.arp.common.PageInfo;
 import com.kh.arp.lecture.model.vo.Lecture;
+import com.kh.arp.question.model.vo.QFile;
 import com.kh.arp.question.model.vo.Question;
 
 public interface QService {
@@ -23,14 +24,22 @@ public interface QService {
 	
 	// 게시판글 추가
 	int qInsert(Question q);
+	
+	// 파일 첨부
+	int qFileInsert(QFile qf);
+	
 
-	// 추가한 후에 조회해오는 리스트
-	ArrayList<Question> selectQuestionList2(Question q);
+	/*
+	 * // 추가한 후에 조회해오는 리스트 ArrayList<Question> selectQuestionList2(Question q);
+	 */
 	
 	// 상세보기 페이지 조회
 	Question selectDetailQuestion(int q_no);
-
+	
+	// 업데이트
 	int qUpdate(Question q);
 	
+	// 게시판 삭제 서비스
+	int qDelete(int q_no);
 	
 }

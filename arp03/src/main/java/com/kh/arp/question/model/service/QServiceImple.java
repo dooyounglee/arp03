@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.arp.common.PageInfo;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.question.model.dao.QDao;
+import com.kh.arp.question.model.vo.QFile;
 import com.kh.arp.question.model.vo.Question;
 
 @Service("qService")
@@ -42,11 +43,16 @@ public class QServiceImple implements QService{
 		
 		return qDao.qInsert(q);
 	}
-
+	
 	@Override
-	public ArrayList<Question> selectQuestionList2(Question q) {
-		return qDao.selectQuestionList2(q);
+	public int qFileInsert(QFile qf) {
+		return qDao.qFileInsert(qf);
 	}
+
+	/*
+	 * @Override public ArrayList<Question> selectQuestionList2(Question q) { return
+	 * qDao.selectQuestionList2(q); }
+	 */
 
 	@Override
 	public Question selectDetailQuestion(int q_no) {
@@ -64,6 +70,11 @@ public class QServiceImple implements QService{
 	@Override
 	public int qUpdate(Question q) {
 		return qDao.qUpdate(q);
+	}
+
+	@Override
+	public int qDelete(int q_no) {
+		return qDao.qDelete(q_no);
 	}
 	
 }
