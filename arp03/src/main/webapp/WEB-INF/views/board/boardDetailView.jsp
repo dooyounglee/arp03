@@ -201,20 +201,27 @@
 						$altB = $('<input type="button" id="alt" value="alt"/>');
 						$deleteB = $('<input type="button" id="del" value="del"/>');
 						
+						if(value.status == 'N') {
+							$rnoTd = $("<td>").text("");
+							$contentTd = $("<td width='250'>").text("사용자가 삭제한 댓글입니다.");
+							$dateTd = $("<td>").text("");
+						}
+						
 						if(value.depth == 1) {
 							$tr.append($rnoTd);
 						} else {
 							$tr.append($rrnoTd);
 						}
-							
+						
 						$tr.append($contentTd);
 						$tr.append($dateTd);
 						
-						if(value.depth == 1) {
+						
+						if(value.depth == 1 && value.status == 'Y') {
 							$tr.append($td.append($rreply));
 						}
 						
-						if(value.m_no == ${mem.m_no}) {
+						if(value.m_no == ${mem.m_no} && value.status == 'Y') {
 							$tr.append($td.append($altB));
 							$tr.append($td.append($deleteB));
 						}
