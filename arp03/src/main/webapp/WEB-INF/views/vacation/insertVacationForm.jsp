@@ -17,9 +17,10 @@
 <jsp:include page= "../include/header.jsp"/>
 
 	<h2 align="center"> 휴가 신청하기</h2>
-	<form action ="vinsert.me" align="center">
+	<form action ="vinsert.me" align="center" POST="GET">
 	
 	<input type="text" name="m_no" value="${ mem.m_no }" readonly><br>
+	<input type="text" name="lec_no" value="${lec.lec_no }" readonly><br>
 	<textarea name="reason"  rows="4" cols="50" placeholder="사유입력"></textarea><br>
 	<input type="text" id="testDatepicker" name="start_date">
 	
@@ -32,7 +33,7 @@
 		<option value="5">5일</option>
 	</select>
 	<br>
-	<input type="text" id="totalVacation"> <br>
+	<input type="text" id="totalVacation" name="totalVacation" readonly> <br>
 	
 	<button type="submit">등록하기</button> 
 	<button type="button" onclick="location.href='vlist.me';">목록으로</button>

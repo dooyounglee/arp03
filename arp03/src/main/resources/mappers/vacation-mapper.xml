@@ -8,14 +8,19 @@ values(seq_vacation.nextval,
 	   #{m_no},
 	   #{lec_no},
 	   #{reason},
-	   #{start_Date},
+	   #{start_date},
 	   #{date_count},
 	   sysdate,
 	   default,
 	   default,
 	   default
 	   )
+	   
+
 </insert>
 
+<select id="selectList" resultType="Vacation">
+select *from vacation
+</select>
 
 </mapper>

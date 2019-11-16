@@ -28,9 +28,9 @@ public class noticeServiceImpl implements noticeService{
 	}
 
 	@Override
-	public ArrayList<Notice> selectList() {
+	public ArrayList<Notice> selectList(PageInfo pi) {
 		// TODO Auto-generated method stub
-		return nDao.selectList();
+		return nDao.selectList(pi);
 	}
 
 	@Override

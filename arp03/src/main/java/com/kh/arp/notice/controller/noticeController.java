@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.arp.common.PageInfo;
 import com.kh.arp.notice.model.service.noticeService;
 import com.kh.arp.notice.model.vo.Notice;
 
@@ -22,13 +24,15 @@ public class noticeController {
 	
 	
 @RequestMapping("nlist.ad")
-public ModelAndView noticeList(ModelAndView mv) {
+public ModelAndView noticeList(ModelAndView mv,
+				@RequestParam(value="currentPage", defaultValue="1") int currentPage) {
 	
 	int listCount = nService.getListCount();
+	PageInfo pi = new PageInfo(currentPage, listCount, 7, 10);
 	
-	ArrayList<Notice> list = nService.selectList();
+	ArrayList<Notice> list = nService.selectList(pi);
 	
-	mv.addObject("list" , list).setViewName("notice/noticeListForm");
+	mv.addObject("list" , list).addObject("pi" , pi).setViewName("notice/noticeListForm");
 	return mv;
 	
 }

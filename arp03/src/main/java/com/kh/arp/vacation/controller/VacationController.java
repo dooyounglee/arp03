@@ -1,9 +1,17 @@
 package com.kh.arp.vacation.controller;
 
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.vacation.model.service.VacationServiceImpl;
 import com.kh.arp.vacation.model.vo.Vacation;
 
@@ -13,9 +21,13 @@ public class VacationController {
 	private VacationServiceImpl vService;
 	
 	@RequestMapping("vlist.me")
-	public String vacationListForm() {
+	public ModelAndView vacationListForm(ModelAndView mv) {
 		
-		return "vacation/vacationListForm";
+		ArrayList<Vacation> list = vService.selectList();
+		
+		mv.addObject("list" , list).setViewName("vacation/vacationListForm");
+		
+		return mv;
 	}
 	
 	@RequestMapping("vinsertForm.me")
@@ -25,15 +37,19 @@ public class VacationController {
 	}
 	
 	@RequestMapping("vinsert.me")
-	public String vInsert(Vacation v) {
-		
+	public String vInsert(Vacation v, HttpSession session ) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
 		int result = vService.insertVacation(v);
-		
+			
 		if(result>0) {
 			return "redirect:vlist.me";
+		
 		}else {
 			return null;
 		}
 		
+	
 	}
+	
+	
 }

@@ -1,5 +1,7 @@
 package com.kh.arp.vacation.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,14 @@ public class VacationServiceImpl implements VacationService {
 		// TODO Auto-generated method stub
 		return vDao.insertVacation(v);
 	}
+
+	@Override
+	public ArrayList<Vacation> selectList() {
+		// TODO Auto-generated method stub
+		return vDao.selectList();
+	}
+
+
 
 
 	
