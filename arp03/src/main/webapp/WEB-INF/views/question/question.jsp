@@ -31,14 +31,14 @@
 		<tr>
 			<th width="25">번호</th>
 			<th width="180">제목</th>
-			<th width="50">회원이름</th>
+			<th width="20">회원이름</th>
 			<th width="50">작성일</th>
-			<th width="25">조회수</th>
-			<th width="35">첨부파일</th>
-			<th width="25">답변여부</th>
+			<th width="30">조회수</th>
+			<th width="40">첨부파일</th>
+			<th width="38">답변여부</th>
 		</tr>
 		<c:forEach items="${ qList }" var="q">
-			<tr>
+			<tr align="center">
 				<td>${ q.q_no }</td>
 				<td>
 					<a href="qdetail.qu?q_no=${ q.q_no }">${ q.title }</a>
@@ -46,7 +46,13 @@
 				<td>${ q.name }</td>
 				<td>${ q.regdate }</td>
 				<td>${ q.vcount }</td>
-				<td>${ q.fileox } </td>
+				
+				<c:if test="${ q.fileox eq 'Y' }">
+					<td><img width="15" src="resources/siraFile/클립2.svg"></td>
+				</c:if>
+				<c:if test="${ q.fileox ne 'Y' }">
+					<td>${ q.fileox } </td>
+				</c:if>
 				<td>${ q.isreply }</td>
 			</tr>
 		</c:forEach>
