@@ -51,7 +51,7 @@
 	<table align="center" width="600" border="1" cellspacing="0" id="rtb">
 		<thead>
 			<tr>
-				<td colspan="3"><b id="rCount"></b></td>
+				<td colspan="4"><b id="rCount"></b></td>
 			</tr>
 		</thead>
 		<tbody>
@@ -84,10 +84,31 @@
 				
 			});
 
-			$(document).one("click", "#rr", function(){
-				//console.log($(this).parent().parent().next());
-				console.log($(this).parent().eq(0));
-				$("#rtb tbody:last").append("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button>등록</button></td></tr>")
+			$(document).on("click", "#rr", function(){
+				//console.log($(this).parent().parent().children().eq(0).text());
+				$parent_no = $(this).parent().parent().children().eq(0).text();
+				
+				$("#rtb tbody:last").append("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button id='rrsb'>등록</button>" + "<input type='button' class='cancel' value='취소'/></td></tr>");
+			});
+			
+			$(document).on("click", "#rrsb", function(){
+				//console.log($("#reContent").val());
+				//console.log($parent_no);
+				
+				$.ajax({
+					url:"reinsert.do",
+					data:{content:$("#reContent").val(), b_no:${b.b_no}, m_no:${mem.m_no}, parent_no:$parent_no},
+					success:function(data){
+						if(data == "success") {
+							getReplyList();
+						} else {
+							alert("댓글 작성에 실패했습니당");
+						}
+					}, error:function(){
+						console.log("ajax 통신 실패");
+					}	
+				
+				});
 			});
 			
 			$(document).on("click", "#del", function(){
@@ -117,7 +138,7 @@
 				$content.replaceWith($reContent);
 				$("#reContent").focus();
 				
-				var $reBtns = $('<input type="button" id="alert" value="등록"/>' + '<input type="button" id="cancel" value="취소"/>');
+				var $reBtns = $('<input type="button" id="alert" value="등록"/>' + '<input type="button" class="cancel" value="취소"/>');
 				
 				/* $reBtns += $submit;
 				$reBtns += $cancel; */
@@ -145,7 +166,7 @@
 				
 			});
 			
-			$(document).on("click", "#cancel", function(){
+			$(document).on("click", ".cancel", function(){
 				getReplyList();
 			});
 			
@@ -170,20 +191,28 @@
 						$tr = $("<tr>");
 						$td = $("<td>");
 						
-						$writerTd = $("<td>").text(value.r_no);
+						$rnoTd = $("<td>").text(value.r_no);
+						$rrnoTd = $("<td>").text("ㄴ");
 							
 						$contentTd = $("<td width='250'>").text(value.content);
-						$dateTd = $("<td>").text(value.regdate);
+						$dateTd = $("<td>").text(value.update_date);
 						
 						$rreply = $('<input type="button" id="rr" value="re"/>');
 						$altB = $('<input type="button" id="alt" value="alt"/>');
 						$deleteB = $('<input type="button" id="del" value="del"/>');
 						
+						if(value.depth == 1) {
+							$tr.append($rnoTd);
+						} else {
+							$tr.append($rrnoTd);
+						}
 							
-						$tr.append($writerTd);
 						$tr.append($contentTd);
 						$tr.append($dateTd);
-						$tr.append($td.append($rreply));
+						
+						if(value.depth == 1) {
+							$tr.append($td.append($rreply));
+						}
 						
 						if(value.m_no == ${mem.m_no}) {
 							$tr.append($td.append($altB));

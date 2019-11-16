@@ -197,10 +197,11 @@ CREATE TABLE  BReply  (
 	 m_no 	Number		REFERENCES MEMBER,
 	 content 	varchar2(4000)		NULL,
 	 regdate 	date	DEFAULT sysdate	NOT NULL,
-	 udpate_date 	date	DEFAULT sysdate	NULL,
+	 update_date 	date	DEFAULT sysdate	NULL,
 	 status 	varchar2(3)	DEFAULT 'Y'	NOT NULL,
 	 depth 	number	DEFAULT 1	NOT NULL,
-	 parent_no 	Number		NOT NULL
+	 parent_no 	number		NOT NULL,
+	 re_count number DEFAULT 0
 );
 
 
@@ -345,12 +346,11 @@ VALUES(seq_board.nextval,1,2,'제목입니다','내용입니다',SYSDATE,SYSDATE
 
 
 INSERT INTO ARP.BREPLY
-(R_NO, B_NO, M_NO, CONTENT, REGDATE, UDPATE_DATE, STATUS, "DEPTH", PARENT_NO)
-VALUES(1, 1, 1, '내용1', sysdate	, sysdate	, 'Y'	, 1	, 1);
+(R_NO, B_NO, M_NO, CONTENT, REGDATE, UPDATE_DATE, STATUS, "DEPTH", PARENT_NO, RE_COUNT)
+VALUES(SEQ_BREPLY.nextval, 1, 1, '내용1', sysdate	, sysdate	, 'Y'	, 1	,  SEQ_BREPLY.currval, 0);
 INSERT INTO ARP.BREPLY
-(R_NO, B_NO, M_NO, CONTENT, REGDATE, UDPATE_DATE, STATUS, "DEPTH", PARENT_NO)
-VALUES(2, 1, 1, '내용2', sysdate	, sysdate	, 'Y'	, 1	, 1);
-
+(R_NO, B_NO, M_NO, CONTENT, REGDATE, UPDATE_DATE, STATUS, "DEPTH", PARENT_NO, RE_COUNT)
+VALUES(SEQ_BREPLY.nextval, 1, 1, '내용2', sysdate	, sysdate	, 'Y'	, 1	,  SEQ_BREPLY.currval, 0);
 
 
 
