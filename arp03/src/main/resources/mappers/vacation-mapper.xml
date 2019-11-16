@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="vacationMapper">
 
-<insert id="insertVacation"></insert>
+<insert id="insertVacation">
+insert into vacation
+values(seq_vacation.nextval,
+	   #{m_no},
+	   #{lec_no},
+	   #{reason},
+	   #{start_Date},
+	   #{date_count},
+	   sysdate,
+	   default,
+	   default,
+	   default
+	   )
+</insert>
+
 
 </mapper>

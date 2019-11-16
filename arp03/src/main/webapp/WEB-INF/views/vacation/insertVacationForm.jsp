@@ -23,7 +23,7 @@
 	<textarea name="reason"  rows="4" cols="50" placeholder="사유입력"></textarea><br>
 	<input type="text" id="testDatepicker" name="start_date">
 	
-	<select id="howdate">
+	<select id="howdate" name="date_count">
 		<option>----</option>
 		<option value="1">1일</option>
 		<option value="2">2일</option>
