@@ -27,7 +27,7 @@
 
 <select id="selectQuestionList" resultMap="qList">
     select q.q_no, q.lec_no, q.m_no, q.title, m.name,
-           q.regdate, q.vcount, q.fileox, originalname,
+           q.regdate, q.vcount, q.isreply, q.fileox, originalname,
            changename
     from question q
     join member m on(q.m_no=m.m_no)
