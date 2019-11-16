@@ -1,6 +1,7 @@
 package com.kh.arp.lecture.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,11 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.lecture.model.service.LectureService;
 import com.kh.arp.lecture.model.vo.Classdate;
+import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
+import com.kh.arp.lecture.model.vo.MyClass;
+import com.kh.arp.lecture.model.vo.Score;
 import com.kh.arp.member.model.vo.Member;
 
 @Controller
@@ -78,5 +83,81 @@ public class LectureController {
 		mv.addObject("lec", lec);
 		mv.setViewName("lecture/info");
 		return mv;
+	}
+	
+	@GetMapping("/list.ex")
+	public ModelAndView examList(HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		
+		List<Exam> list=ls.getExamList(lec.getLec_no());
+		
+		mv.addObject("list", list);
+		mv.addObject("lec", lec);
+		mv.setViewName("mypage/teacher/exam/list");
+		return mv;
+	}
+	
+	@GetMapping("/make.ex")
+	public ModelAndView makeExamGet(ModelAndView mv) {
+		mv.setViewName("mypage/teacher/exam/make");
+		return mv;
+	}
+	
+	@PostMapping("/make.ex")
+	public ModelAndView makeExamPost(Exam e, HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		e.setLec_no(lec.getLec_no());
+		
+		Exam newe=ls.makeExam(e);
+		newe=ls.getExam(newe.getE_no());
+		mv.setViewName("redirect:/list.ex");
+		return mv;
+	}
+	
+	@GetMapping("/get.ex")
+	public ModelAndView getExam(int e_no, ModelAndView mv) {
+		Exam e=ls.getExam(e_no);
+		
+		mv.addObject("e", e);
+		mv.setViewName("mypage/teacher/exam/get");
+		return mv;
+	}
+	
+	@GetMapping("/edit.ex")
+	public ModelAndView editExamGet(int e_no, ModelAndView mv) {
+		Exam e=ls.getExam(e_no);
+		
+		mv.addObject("e", e);
+		mv.setViewName("mypage/teacher/exam/make");
+		return mv;
+	}
+	
+	@PostMapping("/edit.ex")
+	public ModelAndView editExamPost(Exam e, ModelAndView mv) {
+		int result=ls.editExam(e);
+		mv.setViewName("redirect:/get.ex?e_no="+e.getE_no());
+		return mv;
+	}
+	
+	@GetMapping("/list.sc")
+	public ModelAndView listScoreGet(HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+
+		List<Exam> elist=ls.getExamList(lec.getLec_no());
+		List<MyClass> mlist=ls.getStudentList(lec.getLec_no());
+		List<Score> slist=ls.getLectureScore(lec.getLec_no());
+		
+		mv.addObject("elist", elist);
+		mv.addObject("mlist", mlist);
+		mv.addObject("slist", slist);
+		mv.setViewName("mypage/teacher/score/list");
+		return mv;
+	}
+	
+	@ResponseBody
+	@PostMapping("/insert.sc")
+	public String insertScoreGet(Score s, ModelAndView mv) {
+		int result=ls.insertScore(s);
+		return "success";
 	}
 }

@@ -9,4 +9,9 @@ public class VacationDao {
 
 	@Autowired
 	private SqlSession sqlSession;
+
+	public int insertVacation(int v_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("vacationMapper.insertVacation" , v_no);
+	}
 }

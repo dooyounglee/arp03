@@ -9,6 +9,8 @@ DROP TABLE ATTENDENCE;
 DROP TABLE myclass;
 DROP TABLE Classdate;
 DROP TABLE vacation;
+drop table score;
+DROP TABLE exam;
 DROP TABLE LECTURE;
 DROP TABLE BoardFile;
 DROP TABLE BReply;
@@ -91,8 +93,8 @@ CREATE TABLE vacation (
 	lec_no	number	    REFERENCES LECTURE,
 	reason	varchar2(2000)		NOT NULL,
 	start_date	date		NOT NULL,
-	date_count	date		NOT NULL,
-	application_date	Number		NOT NULL,
+	date_count	Number		NOT NULL,
+	application_date	date	NOT NULL,
 	tstatus	varchar2(100)	DEFAULT 'N'	NOT NULL,
 	astatus  	varchar2(100)	DEFAULT 'N' 	NOT NULL,
 	status	varchar2(100)	DEFAULT 'N'	NOT NULL
@@ -195,10 +197,11 @@ CREATE TABLE  BReply  (
 	 m_no 	Number		REFERENCES MEMBER,
 	 content 	varchar2(4000)		NULL,
 	 regdate 	date	DEFAULT sysdate	NOT NULL,
-	 udpate_date 	date	DEFAULT sysdate	NULL,
+	 update_date 	date	DEFAULT sysdate	NULL,
 	 status 	varchar2(3)	DEFAULT 'Y'	NOT NULL,
 	 depth 	number	DEFAULT 1	NOT NULL,
-	 parent_no 	Number		NOT NULL
+	 parent_no 	number		NOT NULL,
+	 re_count number DEFAULT 0
 );
 
 
@@ -208,6 +211,23 @@ CREATE TABLE  BoardFile  (
 	 b_no 	number		REFERENCES BOARD,
 	 original_filename 	varchar(30)		NOT NULL,
 	 rename_filename 	varchar(30)		NOT NULL
+);
+
+
+CREATE TABLE exam(
+	e_no NUMBER PRIMARY KEY,
+	lec_no NUMBER REFERENCES LECTURE,
+	title varchar2(1000) NOT NULL,
+	examdate DATE NOT NULL,
+	status varchar2(100) DEFAULT 'Y',
+	openn varchar2(100) DEFAULT 'N'
+);
+
+CREATE TABLE score (
+	e_no	number		REFERENCES exam,
+	m_no 	Number		REFERENCES MEMBER,
+	score	number		NOT NULL,
+	PRIMARY KEY(e_no,m_no)
 );
 
 DROP SEQUENCE SEQ_Notice; 		-- 공지사항 번호
@@ -225,6 +245,7 @@ DROP SEQUENCE SEQ_BoardFile;		--게시판 첨부파일 번호
 DROP SEQUENCE SEQ_BCategory;		-- 카테고리 번호
 DROP SEQUENCE SEQ_QNA;			-- 문의사항 번호
 DROP SEQUENCE SEQ_VACATION;		-- 휴가 번호
+DROP SEQUENCE seq_exam;
 
 CREATE SEQUENCE SEQ_Notice; 		-- 공지사항 번호
 CREATE SEQUENCE SEQ_FAQ;			-- FAQ 번호
@@ -241,6 +262,7 @@ CREATE SEQUENCE SEQ_BoardFile;		--게시판 첨부파일 번호
 CREATE SEQUENCE SEQ_BCategory;		-- 카테고리 번호
 CREATE SEQUENCE SEQ_QNA;			-- 문의사항 번호
 CREATE SEQUENCE SEQ_VACATION;		-- 휴가 번호
+CREATE SEQUENCE seq_exam;
 
 /*drop trigger filestatusTrigger;
 create or replace trigger filestatusTrigger -- 첨부파일 상태 트리거
@@ -324,12 +346,11 @@ VALUES(seq_board.nextval,1,2,'제목입니다','내용입니다',SYSDATE,SYSDATE
 
 
 INSERT INTO ARP.BREPLY
-(R_NO, B_NO, M_NO, CONTENT, REGDATE, UDPATE_DATE, STATUS, "DEPTH", PARENT_NO)
-VALUES(1, 1, 1, '내용1', sysdate	, sysdate	, 'Y'	, 1	, 1);
+(R_NO, B_NO, M_NO, CONTENT, REGDATE, UPDATE_DATE, STATUS, "DEPTH", PARENT_NO, RE_COUNT)
+VALUES(SEQ_BREPLY.nextval, 1, 1, '내용1', sysdate	, sysdate	, 'Y'	, 1	,  SEQ_BREPLY.currval, 0);
 INSERT INTO ARP.BREPLY
-(R_NO, B_NO, M_NO, CONTENT, REGDATE, UDPATE_DATE, STATUS, "DEPTH", PARENT_NO)
-VALUES(2, 1, 1, '내용2', sysdate	, sysdate	, 'Y'	, 1	, 1);
-
+(R_NO, B_NO, M_NO, CONTENT, REGDATE, UPDATE_DATE, STATUS, "DEPTH", PARENT_NO, RE_COUNT)
+VALUES(SEQ_BREPLY.nextval, 1, 1, '내용2', sysdate	, sysdate	, 'Y'	, 1	,  SEQ_BREPLY.currval, 0);
 
 
 

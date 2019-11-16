@@ -13,6 +13,6 @@
 
 <h1 align="center">내 휴가 리스트 </h1>
 
-<button onclick="location.href='vinsert.me';">작성하기</button>
+<button onclick="location.href='vinsertForm.me';">작성하기</button>
 </body>
 </html>
