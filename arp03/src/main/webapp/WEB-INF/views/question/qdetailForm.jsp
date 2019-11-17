@@ -24,7 +24,7 @@
 <body>
 	<!-- 제목, 내용, 작성자, 첨부파일정보 -->
 	<jsp:include page="../include/header.jsp"/>
-	
+	<!-- 여기 작성자부분 수정전엔 뜨는데 수정다하고 상세보기다시오면 못뜸 -> 다시올떈 url에 name값사라져있음 -->
 	<br><br><br>
 	<h1 align="center">상세보기 페이지</h1>
 	<br>
@@ -41,7 +41,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td align="center"><textarea id="summernote" cols="40" rows="3" name="content" readonly>${ q.content }</textarea></td>
+				<td>${ q.content }</td>
 			</tr>
 			<tr>
 				<td>첨부파일</td>
@@ -65,7 +65,8 @@
 		</table>
 	</form>
 	<br><br><br>
-
+	
+	
 	
 	<!-- header에 있는 jquery 충돌 방지 -->
    <script src='jquery-3.2.1.js'></script>
