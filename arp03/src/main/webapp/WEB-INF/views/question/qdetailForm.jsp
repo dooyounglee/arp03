@@ -24,7 +24,7 @@
 <body>
 	<!-- 제목, 내용, 작성자, 첨부파일정보 -->
 	<jsp:include page="../include/header.jsp"/>
-	
+	<!-- 여기 작성자부분 수정전엔 뜨는데 수정다하고 상세보기다시오면 못뜸 -> 다시올떈 url에 name값사라져있음 -->
 	<br><br><br>
 	<h1 align="center">상세보기 페이지</h1>
 	<br>

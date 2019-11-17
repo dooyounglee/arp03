@@ -23,6 +23,7 @@
 	<h1 align="center">수정 페이지</h1>
 	<br>
 	<form action="qupdate.qu?q_no=${ q.q_no }" method="post" enctype="multipart/form-data">
+	<%-- <input type="hidden" name="name" value="${ name }"> --%>
 	<input type="hidden" name="lec_no" value="${q.lec_no }">
 	<input type="hidden" name="originalname" value="${ q.originalname }">
 	<input type="hidden" name="changename" value="${ q.changename }">

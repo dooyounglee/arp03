@@ -155,7 +155,7 @@ public class QController {
 	}
 
 	@RequestMapping("qupdate.qu")
-	public ModelAndView qUpdate(Question q, QFile qf, ModelAndView mv, HttpServletRequest request,
+	public ModelAndView qUpdate(Question q, String name, QFile qf, ModelAndView mv, HttpServletRequest request,
 			@RequestParam(value = "fileReload", required = false) MultipartFile file) {
 		int result = 0;
 		int lec_no = q.getLec_no();
@@ -212,7 +212,7 @@ public class QController {
 		}
 		
 		if(result > 0) {
-			mv.addObject("q_no", q.getQ_no()).setViewName("redirect:qdetail.qu?lec_no=" + lec_no);
+			mv.addObject("q_no", q.getQ_no()).setViewName("redirect:qdetail.qu?lec_no=" + lec_no + "&name=" + name);
 		}else {
 			mv.addObject("msg", "게시판 수정 실패").setViewName("qcommon/errorPage");
 		}
