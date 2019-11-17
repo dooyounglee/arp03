@@ -83,15 +83,26 @@
 				});
 				
 			});
+			
+			$clicked = 0;
 
-			$(document).on("click", "#rr", function(){
+			$(document).on("click", ".rr", function(){
 				//console.log($(this).parent().parent().children().eq(0).text());
-				$parent_no = $(this).parent().parent().children().eq(0).text();
+				$parent_no = $(this).parent().parent().children("#hrno").val();
 				
-				$("#rtb tbody:last").append("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button id='rrsb'>등록</button>" + "<input type='button' class='cancel' value='취소'/></td></tr>");
+				//$(this).parent().parent().after("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button class='rrsb'>등록</button>" + "<input type='button' class='cancel' value='취소'/></td></tr>");
+				
+				if($clicked%2 == 0) {
+					$(this).parent().parent().after("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button class='rrsb'>등록</button>" + "<input type='button' class='cancel' value='취소'/></td></tr>");
+				} else {
+					$(this).parent().parent().next().remove();
+				}
+				console.log($clicked);
+				$clicked++;
+				console.log($clicked);
 			});
 			
-			$(document).on("click", "#rrsb", function(){
+			$(document).on("click", ".rrsb", function(){
 				//console.log($("#reContent").val());
 				//console.log($parent_no);
 				
@@ -111,10 +122,11 @@
 				});
 			});
 			
-			$(document).on("click", "#del", function(){
+			$(document).on("click", ".del", function(){
 				//console.log($(this).parent().parent().children().eq(0).text());
-				var $r_no = $(this).parent().parent().children().eq(0).text();
+				//var $r_no = $(this).parent().parent().children().eq(0).text();
 				//console.log($td1.eq(0).text());
+				var $r_no = $(this).parent().parent().children("#hrno").val();
 							
 				$.ajax({
 					url:"deleteReply.do",
@@ -128,7 +140,7 @@
 				});
 			});
 			
-			$(document).on("click", "#alt", function(){
+			$(document).on("click", ".alt", function(){
 				//console.log("수정ㄱㄱ");
 				var $content = $(this).parent().parent().children().eq(1);
 				var $btns = $(this).parent().parent().children().eq(3);
@@ -149,9 +161,10 @@
 			
 			$(document).on("click", "#alert", function(){
 				
-				var $r_no = $(this).parent().children().eq(0).text();
+				//var $r_no = $(this).parent().children().eq(0).text();
 				/* console.log($r_no);
 				console.log($("#reContent").val()); */
+				var $r_no = $(this).parent().children("#hrno").val();
 				
 				$.ajax({
 					url:"updateReply.do",
@@ -174,48 +187,52 @@
 		});
 		
 		function getReplyList(){
+			$clicked = 0;
 			$.ajax({
 				url:"replyList.do",
 				data:{b_no:${b.b_no}},
 				dataType:"json",
 				success:function(data){
-					console.log(data);
+					//console.log(data);
 					$tbody = $("#rtb tbody");
 					$tbody.html("");
 					
-					$("#rCount").text("댓글(" + data.length + ")");
+					//$("#rCount").text("댓글(" + data.length + ")");
+					$rcount = 0;
 					
 					if(data.length > 0){ // 댓글이 존재할 경우
 						$.each(data, function(index, value) { // value == data[index]
-							// 작성자 내용 작성일
+						
 						$tr = $("<tr>");
 						$td = $("<td>");
 						
-						$rnoTd = $("<td>").text(value.r_no);
+						//$rnoTd = $("<td>").text(value.r_no);
 						$rrnoTd = $("<td>").text("ㄴ");
 							
 						$contentTd = $("<td width='250'>").text(value.content);
 						$dateTd = $("<td>").text(value.update_date);
 						
-						$rreply = $('<input type="button" id="rr" value="re"/>');
-						$altB = $('<input type="button" id="alt" value="alt"/>');
-						$deleteB = $('<input type="button" id="del" value="del"/>');
-						
-						if(value.status == 'N') {
-							$rnoTd = $("<td>").text("");
-							$contentTd = $("<td width='250'>").text("사용자가 삭제한 댓글입니다.");
-							$dateTd = $("<td>").text("");
-						}
+						$rreply = $('<input type="button" class="rr" value="re"/>');
+						$altB = $('<input type="button" class="alt" value="alt"/>');
+						$deleteB = $('<input type="button" class="del" value="del"/>');
+						$hrno = $('<input type="hidden" id="hrno" value="' + value.r_no + '"/>');
 						
 						if(value.depth == 1) {
-							$tr.append($rnoTd);
+							$contentTd = $("<td colspan='2'>").text(value.content);
 						} else {
 							$tr.append($rrnoTd);
 						}
 						
+						if(value.status == 'N') {
+							//$rnoTd = $("<td>").text("");
+							$contentTd = $("<td colspan='2'>").text("사용자가 삭제한 댓글입니다.");
+							$dateTd = $("<td>").text("");
+							$rcount = $rcount + 1;
+						}
+						
 						$tr.append($contentTd);
 						$tr.append($dateTd);
-						
+						//$tr.append($hrno);
 						
 						if(value.depth == 1 && value.status == 'Y') {
 							$tr.append($td.append($rreply));
@@ -226,8 +243,9 @@
 							$tr.append($td.append($deleteB));
 						}
 						
+						$tr.append($hrno);
 						$tbody.append($tr);
-							
+						
 						});
 					} else {
 						$tr = $("<tr>");
@@ -237,6 +255,8 @@
 						
 						$tbody.append($tr);
 					}
+					//console.log($rcount);
+					$("#rCount").text("댓글(" + (data.length - $rcount) + ")");
 					
 				},
 				error:function(){
