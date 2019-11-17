@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 
-	String totalVacation = request.getParameter("totalVacation");
 
 %>
 <!DOCTYPE html>

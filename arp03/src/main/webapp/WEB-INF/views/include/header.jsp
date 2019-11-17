@@ -27,7 +27,7 @@
 		<a href="blist.do">자유 게시판</a>
 		<a href="mylist.qna"><del>내 문의</del></a>
 		<a href="myInfo.me"><del>내 정보</del></a>
-		<a href="vlist.me">내 휴가</a>
+		<a href="myLlist.me?m_no=${mem.m_no }">내 휴가</a>
 		
 		<hr>
 		

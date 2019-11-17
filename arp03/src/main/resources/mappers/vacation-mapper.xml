@@ -23,4 +23,10 @@ values(seq_vacation.nextval,
 select *from vacation
 </select>
 
+<select id="selectLecture" resultType="Lecture">
+select * from lecture
+where m_no=#{m_no}
+</select>
+
+
 </mapper>

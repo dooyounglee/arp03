@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.vacation.model.dao.VacationDao;
 import com.kh.arp.vacation.model.vo.Vacation;
 
@@ -23,6 +24,11 @@ public class VacationServiceImpl implements VacationService {
 	public ArrayList<Vacation> selectList() {
 		// TODO Auto-generated method stub
 		return vDao.selectList();
+	}
+
+	public ArrayList<Lecture> selectLectureList(int m_no) {
+		// TODO Auto-generated method stub
+		return vDao.selectLectureList(m_no);
 	}
 
 
