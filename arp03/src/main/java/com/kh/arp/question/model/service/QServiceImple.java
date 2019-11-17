@@ -81,5 +81,28 @@ public class QServiceImple implements QService{
 	public int qDelete(int q_no) {
 		return qDao.qDelete(q_no);
 	}
-	
+
+	@Override
+	public int fileDelete(String changename) {
+		return qDao.fileDelete(changename);
+	}
+
+	@Override
+	public int fileoxChange(int q_no) {
+		return qDao.fileoxChange(q_no);
+	}
+
+	@Override
+	public int DeleteAfterFileox(int q_no) {
+		return qDao.DeleteAfterFileox(q_no);
+	}
+
+	@Override
+	public int qNewInsertFile(QFile qf) {
+		return qDao.qNewInsertFile(qf);
+	}
+
+	/*
+	 * @Override public int selectQ(QFile qf) { return qDao.selectQ(qf); }
+	 */
 }
