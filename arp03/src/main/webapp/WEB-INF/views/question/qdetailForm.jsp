@@ -41,7 +41,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td align="center"><textarea id="summernote" cols="40" rows="3" name="content" readonly>${ q.content }</textarea></td>
+				<td>${ q.content }</td>
 			</tr>
 			<tr>
 				<td>첨부파일</td>
@@ -65,7 +65,8 @@
 		</table>
 	</form>
 	<br><br><br>
-
+	
+	
 	
 	<!-- header에 있는 jquery 충돌 방지 -->
    <script src='jquery-3.2.1.js'></script>
