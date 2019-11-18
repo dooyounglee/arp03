@@ -31,7 +31,7 @@
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input size="10" type="text" name="name" value="${ mem.id }" readonly></td>
+				<td><input size="10" type="text" name="name" value="${ name }" readonly></td>
 			</tr>
 			<tr>
 				<td>내용</td>
@@ -67,7 +67,6 @@
 							sendFile(files[i], this);
 						}
 					}
-					
 				},
 				lang:"ko-KR",
 				placeholder: '※ 이 게시판은 수업시간에 궁금했던점들을 선생님께 질문할수있는 질문게시판입니다. 도배, 욕설 및 부적절한 내용을 올릴 경우 신고 및 삭제될 수 있습니다. 참고하여 작성해주세요.'
@@ -83,13 +82,16 @@
 			$.ajax({
 				data: form_data,
 				type: "POST",
-				url: "fileaj.qu",
+				url: "qImgUpload.aj",
 				cache: false,
 				contentType: false,
 				enctype: "multipart/form-data",
 				processData: false,
 				success: function(img_name){
+					console.log("ajax통신 성공")
 					$(el).summernote("editor.insertImage", img_name);
+				}, error: function(){
+					console.log("ajax통신 실패");
 				}
 			});
 			

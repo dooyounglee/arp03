@@ -42,6 +42,21 @@ public interface QService {
 	
 	// 게시판 삭제 서비스
 	int qDelete(int q_no);
+	
+	// 게시글 수정시 파일 삭제 서비스
+	int fileDelete(String changename);
 
+	// 파일업로드시 파일유무 변경서비스
+	int fileoxChange(int q_no);
+
+	// 파일삭제 후 파일유무 변경서비스
+	int DeleteAfterFileox(int q_no);
+
+	// 파일 추가 서비스
+	int qNewInsertFile(QFile qf);
+
+	/*
+	 * // QFile 검색 int selectQ(QFile qf);
+	 */
 	
 }

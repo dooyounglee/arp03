@@ -71,5 +71,26 @@ public class QDao {
 	public int qDelete(int q_no) {
 		return sqlSession.update("questionMapper.qDelete", q_no);
 	}
+
+	public int fileDelete(String changename) {
+		return sqlSession.delete("questionMapper.fileDelete", changename);
+	}
+
+	public int fileoxChange(int q_no) {
+		return sqlSession.update("questionMapper.fileoxChange",q_no);
+	}
+
+	public int DeleteAfterFileox(int q_no) {
+		return sqlSession.update("questionMapper.DeleteAfterFileox", q_no);
+	}
+
+	public int qNewInsertFile(QFile qf) {
+		return sqlSession.insert("questionMapper.qNewInsertFile", qf);
+	}
+
+	/*
+	 * public int selectQ(QFile qf) { return
+	 * sqlSession.selectOne("questionMapper.selectQ", qf); }
+	 */
 	
 }

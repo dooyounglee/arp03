@@ -48,8 +48,8 @@
 		<a href="info.lec"><del>강의계획</del></a>
 		<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a>
 		<a href="">내 출석</a>
-		<a href="list.sc">내 점수</a>
-		<a href="list.ex">시험 관리</a>
+		<a href="list.sc"><del>내 점수</del></a>
+		<a href="list.ex"><del>시험 관리</del></a>
 		<hr>
 	</c:if>
 

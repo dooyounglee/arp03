@@ -148,4 +148,19 @@ public class MemberServiceImple implements MemberService {
 		return md.getQnaList();
 	}
 
+	@Override
+	public List<Member> getStudentList() {
+		return md.getStudentList();
+	}
+
+	@Override
+	public List<Member> getTeacherList() {
+		return md.getTeacherList();
+	}
+
+	@Override
+	public List<Lecture> getLectureListByTeacher(int m_no) {
+		return md.getLectureListByTeacher(m_no);
+	}
+
 }

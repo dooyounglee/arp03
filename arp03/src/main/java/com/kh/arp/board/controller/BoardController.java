@@ -38,7 +38,7 @@ public class BoardController {
 			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
 		// System.out.println(currentPage);
 		int listCount = bService.listCount();
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = new PageInfo(currentPage, listCount, 10, 10);
 		ArrayList<Board> list = bService.selectList(pi);
 		mv.addObject("pi", pi).addObject("list", list).setViewName("board/boardListView");
 		return mv;

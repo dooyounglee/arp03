@@ -129,4 +129,16 @@ public class MemberDao {
 		return sqlSession.selectList("memberMapper.getQnaList",null);
 	}
 
+	public List<Member> getStudentList() {
+		return sqlSession.selectList("memberMapper.getStudentList",null);
+	}
+
+	public List<Member> getTeacherList() {
+		return sqlSession.selectList("memberMapper.getTeacherList",null);
+	}
+
+	public List<Lecture> getLectureListByTeacher(int m_no) {
+		return sqlSession.selectList("memberMapper.getLectureListByTeacher",m_no);
+	}
+
 }

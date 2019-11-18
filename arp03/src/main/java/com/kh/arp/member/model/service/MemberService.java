@@ -64,4 +64,10 @@ public interface MemberService {
 
 	List<Qna> getQnaList();
 
+	List<Member> getStudentList();
+
+	List<Member> getTeacherList();
+
+	List<Lecture> getLectureListByTeacher(int m_no);
+
 }
