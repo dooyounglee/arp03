@@ -40,6 +40,9 @@
 		<a href="">학생휴가 관리</a>
 		
 		<hr>
+		
+		매니저
+		<a href=""></a>
 	</c:if>
 	
 	<c:if test="${!empty lec }">
