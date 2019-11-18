@@ -3,6 +3,7 @@ package com.kh.arp.member.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -11,14 +12,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.declaree.model.vo.Declaree;
+import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.member.model.service.MemberService;
 import com.kh.arp.member.model.vo.Auth;
-import com.kh.arp.member.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.qna.model.service.QnaService;
 import com.kh.arp.qna.model.vo.Qna;
@@ -36,7 +40,8 @@ public class AdminController {
 	private JavaMailSenderImpl javaMailSenderImple;
 	
 	@RequestMapping("/lectureList.ad")
-	public ModelAndView classList(ModelAndView mv) {
+	public ModelAndView classList(HttpSession session, ModelAndView mv) {
+		session.removeAttribute("lec");
 		List<Lecture> list=ms.getClassList();
 		System.out.println(list);
 		mv.addObject("list",list);
@@ -118,9 +123,36 @@ public class AdminController {
 	
 	@GetMapping("/insertMemberToLecture.ad")
 	public ModelAndView insertMemberToLectureGet(ModelAndView mv) {
+		List<Member> mlist=ms.getStudentList();
+		List<Member> tlist=ms.getTeacherList();
+		
+		mv.addObject("mlist", mlist);
+		mv.addObject("tlist", tlist);
 		mv.setViewName("mypage/admin/insertStudentToLecture");
 		return mv;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="tlist.lec", produces="application/json; charset=UTF-8")
+	public String getLectureListByTeacher(int m_no)  {
+		List<Lecture> list=ms.getLectureListByTeacher(m_no);
+		Gson gson = new GsonBuilder().create();
+		return gson.toJson(list);
+	}
+	
+	@PostMapping("/addStudentToLecture.ad")
+	public ModelAndView addStudentToLecture(int[] s, int t, int lec, ModelAndView mv) {
+		for(int i=0;i<s.length;i++) {
+			System.out.println(s[i]);
+		}
+		System.out.println(t);
+		System.out.println(lec);
+		
+		mv.setViewName("mypage/admin/insertStudentToLecture");
+		return mv;
+	}
+	
+	
 	
 	
 	

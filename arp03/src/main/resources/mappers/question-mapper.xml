@@ -2,64 +2,111 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="questionMapper">
 
-<resultMap id="qList" type="Question">
-	<id property="q_no" column="q_no"/>
-	<result property="lec_no" column="lec_no"/>
-	<result property="m_no" column="m_no"/>
-	<result property="title" column="title"/>
-	<result property="name" column="name"/>
-	<result property="regdate" column="regdate"/>
-	<result property="vcount" column="vcount"/>
-	<result property="isreply" column="isreply"/>
-	<result property="fileox" column="fileox"/>
+	<resultMap id="qList" type="Question">
+		<id property="q_no" column="q_no"/>
+		<result property="lec_no" column="lec_no"/>
+		<result property="m_no" column="m_no"/>
+		<result property="title" column="title"/>
+		<result property="name" column="name"/>
+		<result property="regdate" column="regdate"/>
+		<result property="vcount" column="vcount"/>
+		<result property="isreply" column="isreply"/>
+		<result property="fileox" column="fileox"/>
+		<result property="originalname" column="originalName"/>
+		<result property="changename" column="changeName"/>
+	</resultMap>
 	
-</resultMap>
-
-
-<select id="getListCount" resultType="_int">
-	select count(*)
-	from Question
-	where lec_no=#{lec_no}
-</select>
-
-<select id="selectQuestionList" resultMap="qList">
-	select q.q_no, c.lec_no, m_no, q.title, m.name, q.regdate, q.vcount, q.isreply, q.fileox
-	from Question q
-    join member m using(m_no)
-    join myclass c using(m_no)
-    where q.lec_no=#{lec.no} and c.lec_no=#{lec.no}
-	order by q_no desc
-</select>
-
-<insert id="qInsert">
-	insert into question
-	values(seq_question.nextval, #{lec_no}, #{m_no}, #{title}, #{content}, 
-			sysdate, sysdate, default, 0, 0, 0, default, default, default, default, default)
-</insert>
-
-<select id="selectQuestionList2" resultType="question">
-	select *
-	from Question
-	where lec_no=#{lec_no}
-</select>
-
-<update id="updateCount">
-	update Question
-	set vcount = vcount+1
-	where q_no=#{q_no}
-</update>
-
-<select id="selectDetailQuestion" resultType="question">
-	select *
-	from question
-	where q_no=#{q_no}
-</select>
-
-<update id="qUpdate">
-	update Question
-	set title=#{title}, content=#{content}
-	where q_no=#{q_no}
-</update>
-
-
+	<resultMap id="QFile1" type="QFile">
+		<id property="file_no" column="file_no"/>
+		<result property="q_no" column="q_no"/>
+		<result property="originalName" column="originalName"/>
+		<result property="changeName" column="changeName"/>
+	</resultMap>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from Question
+		where lec_no=#{lec_no} and status='Y'
+	</select>
+	
+	<select id="selectQuestionList" resultMap="qList">
+	    select q.q_no, q.lec_no, q.m_no, q.title, m.name,
+	           q.regdate, q.vcount, q.isreply, q.fileox, originalname,
+	           changename
+	    from question q
+	    join member m on(q.m_no=m.m_no)
+	    left join qfile f on(q.q_no=f.q_no)
+	    where q.lec_no=#{lec_no} and q.status='Y'
+	    order by q.q_no desc
+	</select>
+	
+	<insert id="qInsert">
+		insert into question
+		values(seq_question.nextval, #{lec_no}, #{m_no}, #{title}, #{content}, 
+				sysdate, sysdate, default, 0, 0, 0, default, default, default, default, #{fileox})
+	</insert>
+	
+	<insert id="qFileInsert">
+		insert into qfile
+		values(seq_qfile.nextval, seq_question.currval, #{originalName}, #{changeName})
+	</insert>
+	
+	<update id="updateCount">
+		update Question
+		set vcount = vcount+1
+		where q_no=#{q_no}
+	</update>
+	
+	<select id="selectDetailQuestion" resultMap="qList">
+		select q.*, originalname, changename
+	    from question q
+	    left join qfile f on(q.q_no=f.q_no)
+	    where q.q_no=#{q_no} and q.status='Y'
+	</select>
+	
+	<update id="qUpdate">
+		update Question
+		set title=#{title}, content=#{content}
+		where q_no=#{q_no}
+	</update>
+	
+	<update id="qUpdateFile">
+		update qfile
+		set originalName=#{originalName}, changeName=#{changeName}
+		where q_no=#{q_no}
+	</update>
+	
+	<update id="qDelete">
+		update Question
+		set status='N'
+		where q_no=#{q_no}
+	</update>
+	
+	<delete id="fileDelete">
+		delete qfile
+		where changeName=#{changeName}
+	</delete>
+	
+	<update id="fileoxChange">
+		update Question
+		set fileox='Y'
+		where q_no=#{q_no}
+	</update>
+	
+	<update id="DeleteAfterFileox">
+		update Question
+		set fileox='N'
+		where q_no=#{q_no}
+	</update>
+	
+	<insert id="qNewInsertFile">
+		insert into qfile values(seq_qfile.nextval, #{q_no}, #{originalName}, #{changeName})
+	</insert>
+	
+	<select id="selectQ" resultMap="QFile1">
+		select *
+	    from qfile
+	    where q_no=#{q_no} and originalName=#{originalName}
+	</select>
+		
 </mapper>

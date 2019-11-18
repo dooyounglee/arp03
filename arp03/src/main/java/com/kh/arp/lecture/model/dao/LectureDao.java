@@ -1,4 +1,4 @@
-package com.kh.arp.member.model.dao;
+package com.kh.arp.lecture.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +11,16 @@ import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.declaree.model.vo.Declaree;
 import com.kh.arp.lecture.model.vo.Classdate;
+import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
+import com.kh.arp.lecture.model.vo.MyClass;
+import com.kh.arp.lecture.model.vo.Score;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.qna.model.vo.Qna;
 
 @Repository
-public class MemberDao {
+public class LectureDao {
 
 	@Autowired
 	private SqlSession sqlSession;
@@ -129,16 +132,42 @@ public class MemberDao {
 		return sqlSession.selectList("memberMapper.getQnaList",null);
 	}
 
-	public List<Member> getStudentList() {
-		return sqlSession.selectList("memberMapper.getStudentList",null);
+	public List<Exam> getExamList(int lec_no) {
+		return sqlSession.selectList("lectureMapper.getExamList",lec_no);
+	}
+	
+	public Exam makeExam(Exam e) {
+		sqlSession.insert("lectureMapper.makeExam",e);
+		return e;
 	}
 
-	public List<Member> getTeacherList() {
-		return sqlSession.selectList("memberMapper.getTeacherList",null);
+	public Exam getExam(int e_no) {
+		return sqlSession.selectOne("lectureMapper.getExam",e_no);
 	}
 
-	public List<Lecture> getLectureListByTeacher(int m_no) {
-		return sqlSession.selectList("memberMapper.getLectureListByTeacher",m_no);
+	public int editExam(Exam e) {
+		return sqlSession.update("lectureMapper.editExam",e);
+	}
+
+	public List<MyClass> getStudentList(int lec_no) {
+		return sqlSession.selectList("lectureMapper.getStudentList",lec_no);
+	}
+
+	public int isScore(Score s) {
+		return sqlSession.selectOne("lectureMapper.isScore",s);
+	}
+
+	public int updateScore(Score s) {
+		return sqlSession.update("lectureMapper.updateScore",s);
+		
+	}
+
+	public int insertScore(Score s) {
+		return sqlSession.insert("lectureMapper.insertScore",s);
+	}
+
+	public List<Score> getLectureScore(int lec_no) {
+		return sqlSession.selectList("lectureMapper.getLectureScore",lec_no);
 	}
 
 }

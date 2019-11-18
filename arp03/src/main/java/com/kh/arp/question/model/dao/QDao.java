@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.arp.common.PageInfo;
-import com.kh.arp.member.model.vo.Lecture;
+import com.kh.arp.lecture.model.vo.Lecture;
+import com.kh.arp.question.model.vo.QFile;
 import com.kh.arp.question.model.vo.Question;
 
 @Repository("qDao")
@@ -20,12 +21,10 @@ public class QDao {
 	
 	
 	public List<Lecture> getClassList() {
-		
 		return sqlSession.selectList("lectureMapper.getClassList",null);
 	}
 	
 	public int getListCount(int lec_no) {
-		
 		return sqlSession.selectOne("questionMapper.getListCount", lec_no);
 	}
 
@@ -43,17 +42,13 @@ public class QDao {
 	public Lecture getLecture(int lec_no) {
 		return sqlSession.selectOne("lectureMapper.getLecture",lec_no);
 	}
-
+	
 	public int qInsert(Question q) {
-		
 		return sqlSession.insert("questionMapper.qInsert", q);
 	}
-
-	public ArrayList<Question> selectQuestionList2(Question q) {
-		ArrayList<Question> qList2 = (ArrayList)sqlSession.selectList("questionMapper.selectQuestionList2", q);
-		
-		return qList2;
-		
+	
+	public int qFileInsert(QFile qf) {
+		return sqlSession.insert("questionMapper.qFileInsert", qf);
 	}
 	
 	// 조회수 증가
@@ -65,16 +60,37 @@ public class QDao {
 		return sqlSession.selectOne("questionMapper.selectDetailQuestion", q_no);
 	}
 
-	/*
-	 * public int qUpdate(int q_no) { // TODO Auto-generated method stub return
-	 * sqlSession.update("questionMapper.qUpdateForm", q_no); }
-	 */
-
 	public int qUpdate(Question q) {
 		return sqlSession.update("questionMapper.qUpdate", q);
 	}
-
-
 	
+	public int qUpdateFile(QFile qf) {
+		return sqlSession.update("questionMapper.qUpdateFile", qf);
+	}
+	
+	public int qDelete(int q_no) {
+		return sqlSession.update("questionMapper.qDelete", q_no);
+	}
+
+	public int fileDelete(String changename) {
+		return sqlSession.delete("questionMapper.fileDelete", changename);
+	}
+
+	public int fileoxChange(int q_no) {
+		return sqlSession.update("questionMapper.fileoxChange",q_no);
+	}
+
+	public int DeleteAfterFileox(int q_no) {
+		return sqlSession.update("questionMapper.DeleteAfterFileox", q_no);
+	}
+
+	public int qNewInsertFile(QFile qf) {
+		return sqlSession.insert("questionMapper.qNewInsertFile", qf);
+	}
+
+	/*
+	 * public int selectQ(QFile qf) { return
+	 * sqlSession.selectOne("questionMapper.selectQ", qf); }
+	 */
 	
 }

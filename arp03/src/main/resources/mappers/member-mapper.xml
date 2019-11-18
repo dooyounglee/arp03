@@ -71,5 +71,17 @@
 	<select id="getQnaList" resultType="Qna">
 		select * from qna
 	</select>
+	
+	<select id="getStudentList" resultType="Member">
+		select * from member where typee='s'
+	</select>
+	
+	<select id="getTeacherList" resultType="Member">
+		select * from member where typee='t'
+	</select>
+	
+	<select id="getLectureListByTeacher" resultType="Lecture">
+		select * from lecture where m_no=#{m_no}
+	</select>
 
 </mapper>

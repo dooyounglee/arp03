@@ -56,4 +56,9 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.updateReply(r);
 	}
 
+	@Override
+	public int insertReReply(BReply r) {
+		return bDao.insertReReply(r);
+	}
+
 }

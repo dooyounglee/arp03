@@ -38,7 +38,7 @@ public class BoardController {
 			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
 		// System.out.println(currentPage);
 		int listCount = bService.listCount();
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = new PageInfo(currentPage, listCount, 10, 10);
 		ArrayList<Board> list = bService.selectList(pi);
 		mv.addObject("pi", pi).addObject("list", list).setViewName("board/boardListView");
 		return mv;
@@ -134,7 +134,7 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping("deleteReply.do")
 	public String deleteReply(int r_no) {
-		System.out.println(r_no);
+		//System.out.println(r_no);
 		int rst = bService.deleteReply(r_no);
 		if(rst > 0) {
 			return "success";
@@ -154,5 +154,17 @@ public class BoardController {
 			return "fail";
 		}
 	}
-
+	
+	@ResponseBody
+	@RequestMapping("reinsert.do")
+	public String insertReReply(BReply r) {
+		//System.out.println(r);
+		int rst = bService.insertReReply(r);
+		if(rst > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
 }
