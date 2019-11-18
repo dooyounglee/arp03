@@ -83,5 +83,20 @@
 	<select id="getLectureListByTeacher" resultType="Lecture">
 		select * from lecture where m_no=#{m_no}
 	</select>
+	
+	<select id="getIngStudentList" resultType="Member">
+		select m.* from myclass mc, member m where m.m_no=mc.m_no and lec_no=#{lec_no}
+	</select>
+	
+	<select id="getOtherStudentList" resultType="Member">
+		select * from member where m_no not in (select m_no from myclass where lec_no=#{lec_no})
+	</select>
 
+	<insert id="insertStudentToIng">
+		insert into myclass values(#{lec_no},#{m_no})
+	</insert>
+	
+	<delete id="insertStudentToOther">
+		delete from myclass where lec_no=#{lec_no} and m_no=#{m_no}
+	</delete>
 </mapper>
