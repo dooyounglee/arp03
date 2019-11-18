@@ -14,7 +14,7 @@
 <h2 align="center">휴가를 쓸 수업</h2>
 
 <h2 align="center">${mem.m_no }의 강의</h2>
-<button onclick="location.href='vlist.me';">내가 신청한 휴가리스트</button>
+<button onclick="location.href='vlist.me';">내 휴가리스트</button>
 <table  align="center" border="1" cellspacing="0" width="700" method="post">
 	<tr>
 		<th>강의번호</th>

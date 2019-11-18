@@ -18,14 +18,14 @@
 <tr>
 	<th>휴가번호</th>
 	<th>강의번호</th>
-	<th>강의명</th>
+	<th width="50">강의명</th>
 	<th width="100">사유</th>
-	<th>휴가시작일</th>
-	<th>휴가끝나는일</th>
+	<th width="100">휴가시작일</th>
+	<th width="100">휴가끝나는일</th>
 	<th width="50">일수</th>
-	<th width="50">작성자</th>
 	<th>작성일</th>
-	
+	<th>선생님</th>
+	<th>관리자</th>
 </tr>
 
 <c:forEach items="${ list }" var="v">
@@ -33,15 +33,14 @@
 	<tr>
 		<td>${ v.v_no }</td>
 		<td>${ v.lec_no }</td>
-		<td>${ t }</td>
-		<td>${ v.reason }</td>
+		<td>${ v.title }</td>
+		<td><a href="vdtail.me?v_no=${ v_no }">${ v.reason }</a></td>
 		<td class="startDate">${v.start_date }</td>
 			<td class="endDate"></td>
 		<td class="dateCount"> ${v.date_count }일</td>
-		
-	
-		<td>${v.m_no }</td>
 		<td>${v.application_date }</td>
+		<td>${v.tstatus }</td>
+		<td>${v.astatus }</td>
 	</tr>		
 </c:if>
 </c:forEach>

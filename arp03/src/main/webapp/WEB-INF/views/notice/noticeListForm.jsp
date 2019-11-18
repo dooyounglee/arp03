@@ -14,11 +14,13 @@
 <body>
 <jsp:include page ="../include/header.jsp"/>
 <h2 align="center">공지사항입니다.</h2>
+총게시물갯수 ${pi.listCount}
 <c:if test ="${mem.id eq 'admin' }">
 <button onclick ="location.href='ninsertForm.ad';">작성하기</button>
 </c:if>
 
 <br>
+
 <table align="center" border="1" cellspacing="0" width="700"> 
 <tr>
 	<th>번호</th>
@@ -27,18 +29,29 @@
 	<th>작성일</th>
 	<th>조회수</th>
 </tr>
-<c:forEach items="${ list }" var="n">
+
+<c:if test="${pi.listCount eq 0 }">
 	<tr>
+	<td colspan="5" align="center">해당 게시판에 게시물이 없습니다</td>
+	</tr>
+</c:if>
+	
+
+
+<c:forEach items="${ list }" var="n">
+	
 		<td>${ n.n_no }</td>
 		<td><a href="ndetail.ad?n_no=${ n.n_no }">${ n.title }</a></td>
-	  <td>admin</td>
+	  	<td>admin</td>
 		<td>${ n.regdate }</td>
 		<td>${ n.vcount }</td>
 	</tr>
 </c:forEach>
 
 <!-- 페이징처리 -->
+
 <tr align="center" height="20">
+		<c:if test= "${pi.listCount ne 0 }">
 			<td colspan="6">
 				<!-- [이전] -->
 				<c:if test="${ pi.currentPage eq 1 }">
@@ -75,10 +88,17 @@
 					<a href="${ after }"> [다음]</a>
 				</c:if>
 			</td>
+			</c:if>
 		</tr>
+	
 </table>
 
+<script>
 
+
+
+
+</script>
 
 </body>
 </html>
