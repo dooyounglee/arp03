@@ -9,8 +9,8 @@
 </head>
 <body>
     <h1>신고하기</h1>
-    
-    	신고사유<br>
+    <h2>무조건 게시판 1번글 신고하는거</h2>
+    	신고사유
 		<input type="radio" name="kind" value="1">이유1<br>
 		<input type="radio" name="kind" value="2">이유2<br>
 		<input type="radio" name="kind" value="3">이유3<br>
@@ -44,6 +44,5 @@
 	
 	
 	
-	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 </html>
