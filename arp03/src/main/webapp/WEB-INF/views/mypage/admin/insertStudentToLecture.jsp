@@ -55,7 +55,7 @@
 							$('#lecture').append('<option value="'+data[i].lec_no+'">lec_no='+data[i].lec_no+'</option>')
 						}
 					}else{
-						$('#lecture').html('<option>강의가 없음<option>')
+						$('#lecture').html('<option>Not Exist</option>')
 					}
 				},
 			})
@@ -77,7 +77,7 @@
 							$('#ings').append('<option value="'+data[i].m_no+'">m_no='+data[i].m_no+'</option>')
 						}
 					}else{
-						$('#ings').html('<option>없음<option>')
+						$('#ings').html('<option>Not Exist</option>')
 					}
 				},
 			})
@@ -103,7 +103,7 @@
 							$('#other').append('<option value="'+data[i].m_no+'">m_no='+data[i].m_no+'</option>')
 						}
 					}else{
-						$('#other').html('<option>없음<option>')
+						$('#other').html('<option>Not Exist</option>')
 					}
 				},
 			})
@@ -113,36 +113,40 @@
 		})
 		
 		function insertStudent(){
-			console.log("<<성공")
-			$.ajax({
-				url:'insertStudentToIng.lec',
-				type:'post',
-				data:{
-					m_no:parseInt($('#other').val()),
-					lec_no:parseInt($('#lecture').val()),
-				},
-				success:function(data){
-					console.log("<<성공")
-					ingList($('#lecture').val())
-					otherList($('#lecture').val())
-				},
-			})
+			var other=$('#other').val()
+			for(i=0;i<other.length;i++){
+				$.ajax({
+					url:'insertStudentToIng.lec',
+					type:'post',
+					data:{
+						m_no:parseInt(other[i]),
+						lec_no:parseInt($('#lecture').val()),
+					},
+					success:function(data){
+						console.log("<<성공")
+						ingList($('#lecture').val())
+						otherList($('#lecture').val())
+					},
+				})
+			}
 		}
 		function removeStudent(){
-			console.log(">>성공")
-			$.ajax({
-				url:'insertStudentToOther.lec',
-				type:'post',
-				data:{
-					m_no:parseInt($('#ings').val()),
-					lec_no:parseInt($('#lecture').val()),
-				},
-				success:function(data){
-					console.log(">>성공")
-					ingList($('#lecture').val())
-					otherList($('#lecture').val())
-				},
-			})
+			var ings=$('#ings').val()
+			for(i=0;i<ings.length;i++){
+				$.ajax({
+					url:'insertStudentToOther.lec',
+					type:'post',
+					data:{
+						m_no:parseInt(ings[i]),
+						lec_no:parseInt($('#lecture').val()),
+					},
+					success:function(data){
+						console.log(">>성공")
+						ingList($('#lecture').val())
+						otherList($('#lecture').val())
+					},
+				})
+			}
 		}
 	</script>
 	
