@@ -10,7 +10,7 @@
 <body>
     <h1>신고하기</h1>
     
-    	신고사유
+    	신고사유<br>
 		<input type="radio" name="kind" value="1">이유1<br>
 		<input type="radio" name="kind" value="2">이유2<br>
 		<input type="radio" name="kind" value="3">이유3<br>
@@ -22,21 +22,21 @@
 	
 	<script>
 		function send(){
-			alert("dd")
+			var kind=$('input[name="kind"]:checked').val()
 			var parent = window.opener;
 			
-			alert($('input[name="kind"]:checked').length)
-/* 			$.ajax({
-				url:'',
+ 			$.ajax({
+				url:'insert.de',
 				type:'post',
 				data:{
-					
+					kind:kind,
+					content:$('#content').val(),
 				},
 				success:function(data){
 					parent.location.href='declareList.ad';
 					window.close();
 				},
-			}) */
+			})
 			
 		}
 	</script>
