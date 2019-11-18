@@ -31,4 +31,13 @@ public class VacationDao {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("vacationMapper.selectLecture" , m_no);
 	}
+
+
+
+
+
+
+
+
+
 }

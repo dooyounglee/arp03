@@ -2,8 +2,6 @@ package com.kh.arp.vacation.controller;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,16 +20,18 @@ public class VacationController {
 	public ModelAndView myLectrueList(ModelAndView mv ,int m_no) {
 		ArrayList<Lecture> list = vService.selectLectureList(m_no);	
 		mv.addObject("list" , list).setViewName("vacation/myLectureListForm");
+		
 		return mv;
 	}
 	
 	
 	@RequestMapping("vlist.me")
-	public ModelAndView vacationListForm(ModelAndView mv) {
+	public ModelAndView vacationListForm(ModelAndView mv ) {
 		
 		ArrayList<Vacation> list = vService.selectList();
-		
+				
 		mv.addObject("list" , list).setViewName("vacation/vacationListForm");
+		
 		
 		return mv;
 	}

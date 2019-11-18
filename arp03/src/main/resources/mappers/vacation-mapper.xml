@@ -28,5 +28,11 @@ select * from lecture
 where m_no=#{m_no}
 </select>
 
+<select id="selectTitle" resultType="lecture">
+SELECT title
+FROM member
+JOIN lecture USING(m_no)
+WHERE lec_no=#{lec_no}
 
+</select>
 </mapper>

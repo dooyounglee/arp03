@@ -30,7 +30,7 @@
 		<td>${c.title }</td>
 		<td>${c.startdate }</td>
 		<td>${c.starttime }</td>
-		<td><a href="vinsertForm.me?m_no=${c.m_no }&lec_no=${c.lec_no}">휴가신청하기</a></td>
+		<td><a href="vinsertForm.me?m_no=${c.m_no }&lec_no=${c.lec_no}&title=${c.title}">휴가신청하기</a></td>
 	</tr>
 	</c:forEach>
 	

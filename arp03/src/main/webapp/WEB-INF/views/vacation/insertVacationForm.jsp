@@ -22,6 +22,8 @@
 	<input type="text" name="m_no" value="${param.m_no }" readonly><br>
 	<input type="text" name="lec_no" value="${param.lec_no }" readonly><br>
 	
+	<input type="text" name="title" value="${param.title }" readonly><br>
+	
 	<textarea name="reason"  rows="4" cols="50" placeholder="사유입력"></textarea><br>
 	<input type="text" id="testDatepicker" name="start_date">
 	
