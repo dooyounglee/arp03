@@ -59,13 +59,13 @@ public class TBoardServiceImpl implements TBoardService{
 	}
 
 	@Override
-	public BoardFile detailTBoardFile(int b_no) {
+	public ArrayList<BoardFile> detailTBoardFile(int b_no) {
 	
 		return tbDao.detailTBoardFile(b_no);
 	}
 
 	@Override
-	public BoardFile updateTBoardFile(int b_no) {
+	public ArrayList<BoardFile> updateTBoardFile(int b_no) {
 		return tbDao.updateTBoardFile(b_no);
 	}
 
@@ -100,7 +100,7 @@ public class TBoardServiceImpl implements TBoardService{
 	}
 
 	@Override
-	public String deleteBoardFile(int b_no) {
+	public ArrayList<BoardFile> deleteBoardFile(int b_no) {
 
 		return tbDao.deleteBoardFile(b_no);
 	}
