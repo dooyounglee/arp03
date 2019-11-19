@@ -19,7 +19,7 @@ DROP TABLE BCategory;
 drop table auth;
 DROP TABLE member;
 DROP TABLE survey;
-
+    
 
 
 CREATE TABLE member (

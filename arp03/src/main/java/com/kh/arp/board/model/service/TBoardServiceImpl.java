@@ -109,7 +109,7 @@ public class TBoardServiceImpl implements TBoardService{
 	public int updateFileDelete(String rename) {
 		return tbDao.updateFileDelete(rename);
 	}
-
+ 
 	@Override
 	public int updateFileStatus(int b_no) {
 		

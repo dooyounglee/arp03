@@ -78,7 +78,7 @@ public class TBoardDao {
 		return sqlSession.update("tboardMapper.selectRcount",b_no);
 		
 	}
-	
+	 
 	public int updateStatus(int b_no) {
 		return sqlSession.update("tboardMapper.updateStatus",b_no);
 	}

@@ -497,7 +497,7 @@ public class TBoardController {
 	}
 	
 	// 선생님 게시판 댓글 리스트용 메소드 
-	
+	   
 	@ResponseBody
 	@RequestMapping(value="treplyList.do", produces="application/json; charset=UTF-8")
 	public String treplyList(int b_no) {

@@ -118,7 +118,7 @@
 		values(seq_breply.nextval,#{b_no},#{m_no},
 		#{content},sysdate,sysdate,'Y',1,seq_breply.currval,0)
 	</insert>
-	
+	 
 	<select id="selectReplyList" resultType="BReply">
 		select * 
 		from breply 
