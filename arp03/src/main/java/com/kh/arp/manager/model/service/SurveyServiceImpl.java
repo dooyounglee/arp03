@@ -18,10 +18,5 @@ public class SurveyServiceImpl implements SurveyService {
 		int result=sd.insertsurvey(lec_no, session);
 		return result;
 	}
-	@Override
-	public Lecture getLecture(int lec_no) {
-		Lecture lec=sd.getLecture(lec_no);
-		return lec;
-	}
 
 }

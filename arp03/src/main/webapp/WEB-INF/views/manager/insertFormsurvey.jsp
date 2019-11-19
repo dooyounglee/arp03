@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../include/header.jsp"/>
 <form action="survey.ma">
 	<input type="text" name="title" placeholder="제목">
 	<input type="text" value="${enrolldate }" readonly>
@@ -15,5 +16,6 @@
 	<input type="text" name="q2">
 	<input type="text" name="q3">
 </form>
+<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>

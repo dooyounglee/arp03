@@ -8,5 +8,4 @@ public interface SurveyService {
 
 	int insertsurvey(int lec_no, HttpSession session);
 	
-	Lecture getLecture(int lec_no);
 }

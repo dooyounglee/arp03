@@ -34,7 +34,6 @@ public class SurveyController {
 	@RequestMapping("survey.ma")
 	public ModelAndView survey(int lec_no, HttpSession session, ModelAndView mv) {
 		Lecture lec=ls.getLecture(lec_no);
-		System.out.println(lec);
 		mv.addObject("lec", lec);
 		mv.setViewName("manager/insertsurvey");
 		return mv;

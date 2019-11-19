@@ -17,7 +17,5 @@ public class SurveyDao {
 		
 		return sqlSession.insert("surveyMapper.insertSurvey");
 	}
-	public Lecture getLecture(int lec_no) {
-		return sqlSession.selectOne("lectureMapper.getLecture");
-	}
+
 }
