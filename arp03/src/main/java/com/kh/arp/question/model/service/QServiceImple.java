@@ -102,6 +102,11 @@ public class QServiceImple implements QService{
 		return qDao.qNewInsertFile(qf);
 	}
 
+	@Override
+	public int qTCInsertReply(Question q) {
+		return qDao.qTCInsertReply(q);
+	}
+
 	/*
 	 * @Override public int selectQ(QFile qf) { return qDao.selectQ(qf); }
 	 */

@@ -48,7 +48,8 @@
 		
 		매니저
 		<a href="studentconsulting.ma">학생상담</a>
-		<a href="survey.ma">설문조사</a>
+		<a href="lectureList.ad">설문조사</a>
+		<hr>
 	</c:if>
 	
 	<c:if test="${!empty lec }">

@@ -25,15 +25,14 @@
 	<h1 align="center">${ lec.lec_no }번 강의_${ lec.title } 게시판</h1>
 	
 	<h3 align="center">
-		총 게시글 갯수 : ${ pi.listCount } 페이지  [ ${ pi.currentPage } / ${ pi.maxPage } ]
+		총 게시글 갯수 : ${ pi.listCount }&nbsp;&nbsp;  &nbsp;&nbsp;페이지  [ ${ pi.currentPage } / ${ pi.maxPage } ]
 		<!-- 로그인이 된 상태에서는 글쓰기 버튼 보이게 / 일단 테스트해볼때 방해되니까 주석처리닷..-->
 	<%-- 	<c:if test="${ !empty mem }"> --%>
 	<c:set var="loop_flag" value="false"/>
 		<c:forEach items="${ qList }" var="q" varStatus="status">
 			<c:if test="${ not loop_flag }">
-				${ status.count }
 				<c:if test="${status.count == 1 }">
-				<button style="cursor:pointer" onclick="location.href='qWriteForm.qu?lec_no=${lec.lec_no}&name=${ q.name }';">글쓰기</button>
+				&nbsp;<button style="cursor:pointer" onclick="location.href='qWriteForm.qu?lec_no=${lec.lec_no}&name=${ q.name }';">글쓰기</button>
 					<c:set var="loop_flag" value="true"/>
 				</c:if>
 			</c:if>

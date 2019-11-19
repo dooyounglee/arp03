@@ -127,7 +127,7 @@ CREATE TABLE Question (
 	rcount	number	DEFAULT 0	NOT NULL,
 	isreply	char(3)	DEFAULT 'N'	NOT NULL,
 	replydate	date	NULL,
-	replycontent	varchar2(4000)	DEFAULT	'N'	NOT NULL,
+	replycontent	varchar2(4000) NULL,
 	isdelete	char(3)	DEFAULT 'N'	NOT NULL,
 	fileox	varchar2(4000)	DEFAULT 'N'	NOT NULL
 );

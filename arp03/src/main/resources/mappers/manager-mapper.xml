@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="managerMapper">
+  <insert id="isnertSurvey">
+  	insert into survey values
+  	(SEQ_SURVEY.NEXTVAL, #{lec_no}, 
+  	#{m_no}, #{title}, #{enrolldate}, 
+  	#{q1}, #{a1}, #{q2}, #{a2}, #{q3}, #{a3})
+  </insert>
+  
+  	
+	<select id="daysurvey">
+		update member set
+			id=#{id},
+			pw=#{pw},
+			name=#{name},
+			phone=#{phone},
+			regdate=sysdate,
+			updatedate=sysdate,
+			condate=sysdate,
+			status='Y'
+		where m_no=#{m_no}
+	</select>
+	
+</mapper>

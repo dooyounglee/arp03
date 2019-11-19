@@ -108,5 +108,10 @@
 	    from qfile
 	    where q_no=#{q_no} and originalName=#{originalName}
 	</select>
-		
+	
+	<update id="qTCInsertReply">
+		update Question
+		set isreply='Y', replydate=sysdate, replycontent=#{replycontent}
+		where q_no=#{q_no}
+	</update>
 </mapper>
