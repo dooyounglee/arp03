@@ -96,8 +96,8 @@
 		where b_no=#{b_no}
 	</update>
 	
-	<select id="deleteBoardFile" resultType="String">
-		select rename_filename
+	<select id="deleteBoardFile" resultType="BoardFile">
+		select *
 		from boardfile
 		where b_no=#{b_no}
 	</select>

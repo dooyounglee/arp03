@@ -33,8 +33,11 @@
 		<tr>
 			<td>첨부파일</td>
 			<td>
-				<c:if test="${ !empty bf.original_filename }">
-					<a href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bf.rename_filename}" download="${ bf.original_filename }">${ bf.original_filename }</a>
+				<c:if test="${ !empty bfList}">
+				<c:forEach items="${ bfList }" var="bl">
+					<a href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bl.rename_filename}" download="${ bl.original_filename }">${ bl.original_filename }</a>
+					<br>
+				</c:forEach>
 				</c:if>
 			</td>		
 		</tr>
