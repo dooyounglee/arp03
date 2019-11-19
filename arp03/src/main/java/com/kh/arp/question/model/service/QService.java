@@ -54,6 +54,9 @@ public interface QService {
 
 	// 파일 추가 서비스
 	int qNewInsertFile(QFile qf);
+	
+	// 질문게시판에 답변하기(선생님) 내용 업데이트 서비스
+	int qTCInsertReply(Question q);
 
 	/*
 	 * // QFile 검색 int selectQ(QFile qf);
