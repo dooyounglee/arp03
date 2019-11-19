@@ -8,13 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<jsp:include page="../include/header.jsp"/>
-	<c:forEach var="d" items="${ list}">
-	<a href="survey.ma?lec_no=${d.lec_no }">${d}</a>
-	<br>
-	</c:forEach>
-
-	<jsp:include page="../include/footer.jsp"/>
+<form action="survey.ma">
+	<input type="text" name="title" placeholder="제목">
+	<input type="text" value="${enrolldate }" readonly>
+	<input type="text" name="q1">
+	<input type="text" name="q2">
+	<input type="text" name="q3">
+</form>
 </body>
 </html>
