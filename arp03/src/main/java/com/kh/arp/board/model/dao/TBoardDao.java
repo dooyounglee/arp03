@@ -1,13 +1,13 @@
 package com.kh.arp.board.model.dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.board.model.vo.BoardFile;
 import com.kh.arp.common.PageInfo;
@@ -93,5 +93,17 @@ public class TBoardDao {
 	
 	public int updateFileStatus(int b_no) {
 		return sqlSession.update("tboardMapper.updateFileStatus",b_no);
+	}
+	
+	public int insertReplyT(BReply r) {
+		return sqlSession.insert("tboardMapper.insertReplyT",r);
+	}
+	
+	public ArrayList<BReply> selectReplyList(int b_no){
+		return (ArrayList)sqlSession.selectList("tboardMapper.selectReplyList",b_no);
+	}
+	
+	public int tbReplyUpdate(BReply r) {
+		return sqlSession.update("tboardMapper.tbReplyUpdate",r);
 	}
 }

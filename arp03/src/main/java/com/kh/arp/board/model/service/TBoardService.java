@@ -1,7 +1,9 @@
 package com.kh.arp.board.model.service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.board.model.vo.BoardFile;
 import com.kh.arp.common.PageInfo;
@@ -59,4 +61,15 @@ public interface TBoardService {
 	
 	// 17. 게시글 첨부파일 지우고 수정완료시 첨부파일 상태 변경용 서비스 
 	int updateFileStatus(int b_no);
+	
+	// ---------- 댓글용 서비스 -----------
+	
+	// 18 .선생님 게시판 댓글용 서비스 
+	int insertReplyT(BReply r);
+	
+	// 19. 선생님 게시판 댓글 리스트용 서비스 
+	ArrayList<BReply> selectReplyList(int b_no);
+
+	// 20. 선생님 게시판 댓글 수정용 서비스 
+	int tbReplyUpdate(BReply r);
 }

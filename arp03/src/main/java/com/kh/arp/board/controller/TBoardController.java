@@ -24,7 +24,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.arp.board.model.service.TBoardService;
+import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.board.model.vo.BoardFile;
 import com.kh.arp.common.PageInfo;
@@ -475,6 +478,50 @@ public class TBoardController {
 	
 		return renameFileName;
 		  
+	}
+	
+	
+	// 선생님 게시판 댓글 작성용 메소드
+	@ResponseBody
+	@RequestMapping("trinsert.do")
+	public String insertReplyT(BReply r) {
+		System.out.println(r);
+		
+		int result = tbService.insertReplyT(r);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	// 선생님 게시판 댓글 리스트용 메소드 
+	
+	@ResponseBody
+	@RequestMapping(value="treplyList.do", produces="application/json; charset=UTF-8")
+	public String treplyList(int b_no) {
+		
+		ArrayList<BReply> list = tbService.selectReplyList(b_no);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		
+		return gson.toJson(list);
+		
+	}
+	
+	// 선생님 게시판 댓글 수정용 메소드 
+	@ResponseBody
+	@RequestMapping("tbReplyUpdate.do")
+	public String tbReplyUpdate(BReply r) {
+		System.out.println("r="+r);
+		int result = tbService.tbReplyUpdate(r);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "failed";
+		}
 	}
 	
 }

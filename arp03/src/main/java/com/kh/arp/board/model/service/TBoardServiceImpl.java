@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.arp.board.model.dao.TBoardDao;
+import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.board.model.vo.BoardFile;
 import com.kh.arp.common.PageInfo;
@@ -113,6 +114,24 @@ public class TBoardServiceImpl implements TBoardService{
 	public int updateFileStatus(int b_no) {
 		
 		return tbDao.updateFileStatus(b_no);
+	}
+
+	@Override
+	public int insertReplyT(BReply r) {
+		
+		return tbDao.insertReplyT(r);
+	}
+
+	@Override
+	public ArrayList<BReply> selectReplyList(int b_no) {
+
+		return tbDao.selectReplyList(b_no);
+	}
+
+	@Override
+	public int tbReplyUpdate(BReply r) {
+
+		return tbDao.tbReplyUpdate(r);
 	}
 
 }
