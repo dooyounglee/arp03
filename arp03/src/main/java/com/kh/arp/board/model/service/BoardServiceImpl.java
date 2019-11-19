@@ -37,8 +37,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public ArrayList<BReply> selectReplyList(int b_no) {
-		return bDao.selectReplyList(b_no);
+	public ArrayList<BReply> selectReplyList(int b_no, PageInfo pi) {
+		return bDao.selectReplyList(b_no, pi);
 	}
 
 	@Override
@@ -59,6 +59,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int insertReReply(BReply r) {
 		return bDao.insertReReply(r);
+	}
+
+	@Override
+	public int replyListCount(int b_no) {
+		return bDao.replyListCount(b_no);
 	}
 
 }

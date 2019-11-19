@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,6 @@ import com.kh.arp.board.model.service.BoardService;
 import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.common.PageInfo;
-import com.kh.arp.common.Pagination;
 
 @Controller
 public class BoardController {
@@ -111,10 +111,16 @@ public class BoardController {
 	
 	@ResponseBody
 	@RequestMapping(value="replyList.do", produces="application/json; charset=UTF-8")
-	public String replyList(int b_no)  {
-		ArrayList<BReply> list = bService.selectReplyList(b_no);
+	public String replyList(int b_no,
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage)  {
+		int listCount = bService.replyListCount(b_no);
+		PageInfo pi = new PageInfo(currentPage, listCount, 10, 10);
+		ArrayList<BReply> list = bService.selectReplyList(b_no, pi);
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		return gson.toJson(list);
+		HashMap map = new HashMap();
+		map.put("pi", pi);
+		map.put("list", list);
+		return gson.toJson(map);
 	}
 	
 	@ResponseBody
