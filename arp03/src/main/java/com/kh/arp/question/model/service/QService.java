@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.arp.common.PageInfo;
-import com.kh.arp.member.model.vo.Lecture;
+import com.kh.arp.lecture.model.vo.Lecture;
+import com.kh.arp.question.model.vo.QFile;
 import com.kh.arp.question.model.vo.Question;
 
 public interface QService {
@@ -23,14 +24,39 @@ public interface QService {
 	
 	// 게시판글 추가
 	int qInsert(Question q);
-
-	// 추가한 후에 조회해오는 리스트
-	ArrayList<Question> selectQuestionList2(Question q);
+	
+	// 파일 첨부
+	int qFileInsert(QFile qf);
 	
 	// 상세보기 페이지 조회
 	Question selectDetailQuestion(int q_no);
-
+	
+	// 글 업데이트
 	int qUpdate(Question q);
 	
+	// 첨부파일 업데이트
+	int qUpdateFile(QFile qf);
+	
+	// 수정 및 삭제하려고하는 게시판 조회용 서비스
+	Question qSelectDelete(int q_no);
+	
+	// 게시판 삭제 서비스
+	int qDelete(int q_no);
+	
+	// 게시글 수정시 파일 삭제 서비스
+	int fileDelete(String changename);
+
+	// 파일업로드시 파일유무 변경서비스
+	int fileoxChange(int q_no);
+
+	// 파일삭제 후 파일유무 변경서비스
+	int DeleteAfterFileox(int q_no);
+
+	// 파일 추가 서비스
+	int qNewInsertFile(QFile qf);
+
+	/*
+	 * // QFile 검색 int selectQ(QFile qf);
+	 */
 	
 }

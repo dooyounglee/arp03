@@ -11,7 +11,7 @@ public class Question {
 	private String title;			// ����
 	private String content;			// ����
 	private String regdate;			// �ۼ�����
-	private String update;			// ��������
+	private String updatedate;			// ��������
 	private String status;			// ����
 	private int vcount;				// ��ȸ��
 	private int dcount;				// �Ű��
@@ -22,4 +22,6 @@ public class Question {
 	private String isdelete;		// ��������
 	private String name;	// join하느라 필요해서 필드명추가함
 	private String fileox;	// 첨부파일여부 추가함
+	private String originalname;
+	private String changename;
 }

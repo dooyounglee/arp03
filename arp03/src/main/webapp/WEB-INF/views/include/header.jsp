@@ -21,34 +21,42 @@
 	
 	<hr>
 	
-	학생
-	<a href="lectureList.ad"><del>내 수강목록</del></a>
-	<a href="blist.do">자유 게시판</a>
-	<a href="mylist.qna"><del>내 문의</del></a>
-	<a href="myInfo.me"><del>내 정보</del></a>
-	<a href="vlist.me">내 휴가</a>
+	<c:if test="${!empty mem }">
+		학생
+		<a href="lectureList.ad"><del>내 수강목록</del></a>
+		<a href="blist.do">자유 게시판</a>
+		<a href="mylist.qna"><del>내 문의</del></a>
+		<a href="myInfo.me"><del>내 정보</del></a>
+		<a href="vlist.me">내 휴가</a>
+		
+		<hr>
+		
+		선생님
+		<a href="lectureList.ad"><del>내 수업목록</del></a>
+		<a href="blist.do">자유 게시판</a>
+		<a href="tblist.do">선생님 게시판</a>
+		<a href="mylist.qna"><del>내 문의</del></a>
+		<a href="myInfo.me"><del>내 정보</del></a>
+		<a href="">학생휴가 관리</a>
+		
+		<hr>
+		
+		매니저
+		<a href="studentconsulting.ma">학생상담</a>
+		<a href="survey.ma">설문조사</a>
+	</c:if>
 	
-	<hr>
-	
-	선생님
-	<a href="lectureList.ad"><del>내 수업목록</del></a>
-	<a href="blist.do">자유 게시판</a>
-	<a href="tblist.do">선생님 게시판</a>
-	<a href="mylist.qna"><del>내 문의</del></a>
-	<a href="myInfo.me"><del>내 정보</del></a>
-	<a href="">학생휴가 관리</a>
-	
-	<hr>
-	
-	
-	<a href="">메인</a>
-	<a href="">강의계획</a>
-<%-- 	<a href="question.qu?lec_no=${ c.lec_no }">질문게시판</a> --%>
-	<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a>
-	<a href="">내 출석</a>
-	<a href="">내 점수</a>
-	
-	<hr>
+	<c:if test="${!empty lec }">
+		수강페이지
+		<a href="main.lec?lec_no=${lec.lec_no }"><del>메인</del></a>
+		<a href="info.lec"><del>강의계획</del></a>
+		<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a> 
+		<a href="">내 출석</a>
+		<a href="list.sc"><del>내 점수</del></a>
+		<a href="list.ex"><del>시험 관리</del></a>
+		<hr>
+	</c:if>
+
 	
 <a href="lectureList.ad"><del>강좌관리</del></a>
 	<a href="boardList.ad"><del>게시글 관리</del></a>

@@ -48,7 +48,7 @@
 		</tr>
 	</table>
 	<!-- 댓글 목록 부분 -->
-	<table align="center" width="500" border="1" cellspacing="0" id="rtb">
+	<table align="center" width="600" border="1" cellspacing="0" id="rtb" class="paginated">
 		<thead>
 			<tr>
 				<td colspan="4"><b id="rCount"></b></td>
@@ -84,14 +84,110 @@
 				
 			});
 			
-			$(document).one("click", "#rr", function(){
-				console.log($(this).parent().parent().next());
-				$("#rtb tbody:last").append("<tr><td colspan='3'><textarea cols='50' rows='3' id='reContent'></textarea></td><td><button>등록</button></td></tr>")
+			$clicked = 0;
+
+			$(document).on("click", ".rr", function(){
+				//console.log($(this).parent().parent().children().eq(0).text());
+				$parent_no = $(this).parent().parent().children("#hrno").val();
+				
+				//$(this).parent().parent().after("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button class='rrsb'>등록</button>" + "<input type='button' class='cancel' value='취소'/></td></tr>");
+				
+				if($clicked%2 == 0) {
+					$(this).parent().parent().after("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button class='rrsb'>등록</button>" + "<input type='button' class='cancel' value='취소'/></td></tr>");
+				} else {
+					$(this).parent().parent().next().remove();
+				}
+				//console.log($clicked);
+				$clicked++;
+				//console.log($clicked);
 			});
 			
+			$(document).on("click", ".rrsb", function(){
+				//console.log($("#reContent").val());
+				//console.log($parent_no);
+				
+				$.ajax({
+					url:"reinsert.do",
+					data:{content:$("#reContent").val(), b_no:${b.b_no}, m_no:${mem.m_no}, parent_no:$parent_no},
+					success:function(data){
+						if(data == "success") {
+							getReplyList();
+						} else {
+							alert("댓글 작성에 실패했습니당");
+						}
+					}, error:function(){
+						console.log("ajax 통신 실패");
+					}	
+				
+				});
+			});
+			
+			$(document).on("click", ".del", function(){
+				//console.log($(this).parent().parent().children().eq(0).text());
+				//var $r_no = $(this).parent().parent().children().eq(0).text();
+				//console.log($td1.eq(0).text());
+				var $r_no = $(this).parent().parent().children("#hrno").val();
+							
+				$.ajax({
+					url:"deleteReply.do",
+					data:{r_no:$r_no},
+					success:function(data){
+						//console.log("삭제 성공");
+						getReplyList();
+					}, error:function(){
+						console.log("ajax 통신 실패");
+					}
+				});
+			});
+			
+			$(document).on("click", ".alt", function(){
+				//console.log("수정ㄱㄱ");
+				var $content = $(this).parent().parent().children().eq(1);
+				var $btns = $(this).parent().parent().children().eq(3);
+				
+				var $reContent = $("<textarea cols='30' name='reContent' id='reContent'>" + $content.text() + "</textarea>");
+				
+				$content.replaceWith($reContent);
+				$("#reContent").focus();
+				
+				var $reBtns = $('<input type="button" id="alert" value="등록"/>' + '<input type="button" class="cancel" value="취소"/>');
+				
+				/* $reBtns += $submit;
+				$reBtns += $cancel; */
+				
+				$btns.replaceWith($reBtns);
+				
+			});
+			
+			$(document).on("click", "#alert", function(){
+				
+				//var $r_no = $(this).parent().children().eq(0).text();
+				/* console.log($r_no);
+				console.log($("#reContent").val()); */
+				var $r_no = $(this).parent().children("#hrno").val();
+				
+				$.ajax({
+					url:"updateReply.do",
+					data:{content:$("#reContent").val(), r_no:$r_no},
+					success:function(data){
+						console.log("수정 성공");
+						getReplyList();
+					}, error:function(){
+						console.log("ajax 통신 실패");
+					}
+				})
+				
+			});
+			
+			$(document).on("click", ".cancel", function(){
+				getReplyList();
+			});
+			
+		
 		});
 		
 		function getReplyList(){
+			$clicked = 0;
 			$.ajax({
 				url:"replyList.do",
 				data:{b_no:${b.b_no}},
@@ -101,36 +197,68 @@
 					$tbody = $("#rtb tbody");
 					$tbody.html("");
 					
-					$("#rCount").text("댓글(" + data.length + ")");
+					//$("#rCount").text("댓글(" + data.length + ")");
+					$rcount = 0;
 					
 					if(data.length > 0){ // 댓글이 존재할 경우
 						$.each(data, function(index, value) { // value == data[index]
-							// 작성자 내용 작성일
+						
 						$tr = $("<tr>");
 						$td = $("<td>");
 						
-						$writerTd = $("<td>").text("익명");
+						//$rnoTd = $("<td>").text(value.r_no);
+						$rrnoTd = $("<td>").text("ㄴ");
+							
 						$contentTd = $("<td width='250'>").text(value.content);
-						$dateTd = $("<td>").text(value.regdate);
+						$dateTd = $("<td>").text(value.update_date);
 						
-						$rreply= $('<input type="button" id="rr" value="대댓"/>');
+						$rreply = $('<input type="button" class="rr" value="re"/>');
+						$altB = $('<input type="button" class="alt" value="alt"/>');
+						$deleteB = $('<input type="button" class="del" value="del"/>');
+						$hrno = $('<input type="hidden" id="hrno" value="' + value.r_no + '"/>');
 						
-						$tr.append($writerTd);
+						if(value.depth == 1) {
+							$contentTd = $("<td colspan='2' width='250'>").text(value.content);
+						} else {
+							$tr.append($rrnoTd);
+						}
+						
+						if(value.status == 'N') {
+							//$rnoTd = $("<td>").text("");
+							$contentTd = $("<td colspan='2'>").text("사용자가 삭제한 댓글입니다.");
+							$dateTd = $("<td>").text("");
+							$rcount++;
+						}
+						
 						$tr.append($contentTd);
 						$tr.append($dateTd);
-						$tr.append($td.append($rreply));
+						//$tr.append($hrno);
 						
+						if(value.depth == 1 && value.status == 'Y') {
+							$tr.append($td.append($rreply));
+						}
+						
+						if(value.m_no == ${mem.m_no} && value.status == 'Y') {
+							$tr.append($td.append($altB));
+							$tr.append($td.append($deleteB));
+						}
+						
+						$tr.append($hrno);
 						$tbody.append($tr);
-							
+						
 						});
+					
+						//page();
 					} else {
 						$tr = $("<tr>");
 						
-						$contentTd = $("<td colspan='4'>").text("등록된 댓글이 없습니다.");
+						$contentTd = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
 						$tr.append($contentTd);
 						
 						$tbody.append($tr);
 					}
+					//console.log((data.length - $rcount));
+					$("#rCount").text("댓글(" + (data.length - $rcount) + ")");
 					
 				},
 				error:function(){
@@ -138,6 +266,7 @@
 				}
 			});
 		}
+		
 	</script>
 	
 	<jsp:include page="../include/footer.jsp"/>

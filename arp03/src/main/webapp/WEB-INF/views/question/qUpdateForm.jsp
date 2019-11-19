@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,6 @@
 <!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-
 </head>
 
 <body>
@@ -23,7 +23,10 @@
 	<h1 align="center">수정 페이지</h1>
 	<br>
 	<form action="qupdate.qu?q_no=${ q.q_no }" method="post" enctype="multipart/form-data">
+	<%-- <input type="hidden" name="name" value="${ name }"> --%>
 	<input type="hidden" name="lec_no" value="${q.lec_no }">
+	<input type="hidden" name="originalname" value="${ q.originalname }">
+	<input type="hidden" name="changename" value="${ q.changename }">
 		<table align="center">
 			<tr>
 				<td>제목</td>
@@ -31,7 +34,7 @@
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input size="10" type="text" name="name" value="${ mem.id }" readonly></td>
+				<td><input size="10" type="text" name="name" value="${ name }" readonly></td>
 			</tr>
 			<tr>
 				<td>내용</td>
@@ -39,11 +42,16 @@
 			</tr>
 			<tr>
 				<td>첨부파일</td>
-				<td><input type="file" name="fileUp"></td>
+				<td><input style="display:inline-block;" type="file" name="fileReload">
+					<c:if test="${ !empty q.originalname }">
+						<a href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${q.changename}" download="${ q.originalname }" id="fName">${ q.originalname }</a>
+						<button type="button" id="fileDelete">삭제</button>
+					</c:if>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
-					<button type="submit">확인</button>
+					<button id="deleteaj" type="submit">확인</button>
 					<!-- <button type="button" onclick="window.history.back()">취소</button> -->
 					<button type="button" onclick="location.href='question.qu?lec_no=${q.lec_no}';">목록</button>
 					<br><br>
@@ -53,6 +61,7 @@
 	</form>
 	
 	<script>
+	
 		$(document).ready(function(){
 			$("#summernote").summernote({
 				height:300,
@@ -74,6 +83,75 @@
 				
 			});
 		});
+		
+	
+		$("#fileDelete").click(function(){
+			var changename = $("input[name=changename]").val();
+			//console.log(changename);
+			//var q_no = ${ q.q_no };
+			//var lec_no = ${q.lec_no };
+			
+			$.ajax({
+				url: "fileDelete.aj",
+				data: {changename:changename},
+				success: function(data){
+					console.log("ajax통신 성공")
+					if(data == "success"){
+						console.log("sucess");
+						$("#fName").text("");
+						$("input[name=originalname]").val(null);
+						$("#fileDelete").attr("style","display:none");
+					}else{
+						alert("파일이 정상적으로 삭제되지않았습니다.");
+					}
+					
+				}, error:function(){
+					console.log("ajax통신 실패");
+				}
+			});
+			
+		});
+		
+		
+		 
+		 
+		 
+		 
+		
+/* 		 $("#fileDelete").click(function(){
+			 $("#fileDelete").attr("style","display:none");
+			 $("#fName").attr("style","display:none");
+			});
+			
+		
+		$("#deleteaj").click(function(){
+			var changename = $("input[name=changename]").val();
+			//console.log(changename);
+			var q_no = ${ q.q_no };
+			
+			$.ajax({
+				url: "fileDelete.aj",
+				data: {changename:changename, q_no:q_no},
+				success: function(data){
+					console.log("ajax통신 성공")
+					if(data == "success"){
+						console.log("sucess");
+						$("#fName").text("");
+						$("input[name=originalname]").val(null);
+						$("#fileDelete").attr("style","display:none");
+					}else{
+						alert("파일이 정상적으로 삭제되지않았습니다.");
+					}
+					
+				}, error:function(){
+					console.log("ajax통신 실패");
+				}
+			});
+			
+		});
+		 */
+		
+		
 		
 		
 	</script>
