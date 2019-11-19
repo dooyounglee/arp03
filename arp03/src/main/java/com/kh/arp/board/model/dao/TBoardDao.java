@@ -1,6 +1,7 @@
 package com.kh.arp.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -50,12 +51,12 @@ public class TBoardDao {
 		return sqlSession.insert("tboardMapper.insertTBoardFile",bf);
 	}
 	
-	public BoardFile detailTBoardFile(int b_no) {
-		return sqlSession.selectOne("tboardMapper.detailTBoardFile",b_no);
+	public ArrayList<BoardFile> detailTBoardFile(int b_no) {
+		return (ArrayList)sqlSession.selectList("tboardMapper.detailTBoardFile",b_no);
 	}
 	
-	public BoardFile updateTBoardFile(int b_no) {
-		return sqlSession.selectOne("tboardMapper.detailTBoardFile",b_no);
+	public ArrayList<BoardFile> updateTBoardFile(int b_no) {
+		return (ArrayList)sqlSession.selectList("tboardMapper.detailTBoardFile",b_no);
 	}
 	
 	public int updateFile(BoardFile bf) {
@@ -82,8 +83,8 @@ public class TBoardDao {
 		return sqlSession.update("tboardMapper.updateStatus",b_no);
 	}
 	
-	public String deleteBoardFile(int b_no) {
-		return sqlSession.selectOne("tboardMapper.deleteBoardFile",b_no);
+	public ArrayList<BoardFile> deleteBoardFile(int b_no) {
+		return (ArrayList)sqlSession.selectList("tboardMapper.deleteBoardFile",b_no);
 	}
 	
 	public int updateFileDelete(String rename) {

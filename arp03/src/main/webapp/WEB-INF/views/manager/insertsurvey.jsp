@@ -8,13 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<jsp:include page="../include/header.jsp"/>
-	<c:forEach var="d" items="${ list}">
-	<a href="survey.ma?lec_no=${d.lec_no }">${d}</a>
-	<br>
-	</c:forEach>
-
-	<jsp:include page="../include/footer.jsp"/>
+		<jsp:include page="../include/header.jsp"/>
+		
+		<h1>${lec.title }페이지 입니다.<button onclick="insertsurvey.ma">설문조사 만들기</button></h1>
+	${lec }
+		
+		<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>

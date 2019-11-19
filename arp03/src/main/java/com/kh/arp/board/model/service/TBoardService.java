@@ -31,10 +31,10 @@ public interface TBoardService {
 	int insertTBoardFile(BoardFile bf);
 	
 	// 8. 선생님 게시판 글 상세보기 파일용 서비스 
-	BoardFile detailTBoardFile(int b_no);
+	ArrayList<BoardFile> detailTBoardFile(int b_no);
 	
 	// 9. 선생님 게시판 파일 수정폼용 서비스 
-	BoardFile updateTBoardFile(int b_no);
+	ArrayList<BoardFile> updateTBoardFile(int b_no);
 	
 	// 10. 선생님 게시판 파일 수정용 서비스
 	int updateFile(BoardFile bf);
@@ -52,7 +52,7 @@ public interface TBoardService {
 	int updateStatus(int b_no);
 
 	// 15. 게시판 글 삭제 했을때 업로드 되어있는 파일도 삭제되는 서비스 
-	String deleteBoardFile(int b_no);
+	ArrayList<BoardFile> deleteBoardFile(int b_no);
 	
 	// 16. 게시글 수정시 파일업로드 삭제시 디비 삭제용 서비스 
 	int updateFileDelete(String rename);
