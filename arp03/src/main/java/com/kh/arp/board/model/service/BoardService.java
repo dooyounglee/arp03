@@ -21,7 +21,7 @@ public interface BoardService {
 	Board selectBoard(int b_no);
 	
 	// 댓글 리스트 조회
-	ArrayList<BReply> selectReplyList(int b_no);
+	ArrayList<BReply> selectReplyList(int b_no, PageInfo pi);
 	
 	// 댓글 작성
 	int insertReply(BReply r);
@@ -34,5 +34,7 @@ public interface BoardService {
 	
 	// 대댓 작성
 	int insertReReply(BReply r);
+
+	int replyListCount(int b_no);
 	
 }

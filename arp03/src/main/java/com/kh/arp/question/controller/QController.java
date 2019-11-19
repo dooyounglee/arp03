@@ -62,7 +62,7 @@ public class QController {
 		// lec_no 가져온걸 넘겨주기
 		model.addAttribute("lec_no", lec_no);
 		model.addAttribute("name", name);
-
+		
 		return "question/questionInsertForm";
 	}
 
@@ -91,8 +91,10 @@ public class QController {
 			q.setFileox("N");
 			int result = qService.qInsert(q);
 		}
-
+		
+		//request.setAttribute("q", q);
 		return "redirect:question.qu?lec_no=" + lec_no;
+		//return "question/qdetailForm";
 	}
 
 	private String saveFile(MultipartFile file, HttpServletRequest request) {
@@ -301,6 +303,32 @@ public class QController {
 		out.println("resources/qImageUpload/"+changeName);
 		out.close();
 	 }
+	 
+	 @RequestMapping("qTCInsertReply")
+	 public ModelAndView qTCInsertReplyUpdate(ModelAndView mv, Question q) {
+		
+		 int q_no = q.getQ_no();
+		 String name = q.getName();
+		 int lec_no = q.getLec_no();
+		 
+		 q.setQ_no(q.getQ_no()); 
+		 q.setReplycontent(q.getReplycontent());
+		 //System.out.println(q);
+		 
+		 int result = qService.qTCInsertReply(q);
+		 
+		 if(result > 0) {
+			 Question q1 = qService.selectDetailQuestion(q_no);
+			 System.out.println(q1);
+			 mv.addObject("q1", q1).setViewName("redirect:qdetail.qu?q_no="+ q_no + "&name=" + name);
+		 }else {
+			 mv.addObject("msg", "게시판 수정 실패").setViewName("qcommon/errorPage");
+		 }
+		 
+		 return mv;
+		 
+	 }
+	 
 	 
 
 }
