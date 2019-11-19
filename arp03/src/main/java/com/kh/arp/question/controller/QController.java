@@ -291,14 +291,14 @@ public class QController {
 
 		String changeNamePath = savePath + "\\" + changeName;
 		 
-		//System.out.println(changeNamePath);
-		
+		//System.out.println("첸지패뜨:"+changeNamePath);
+		//System.out.println("아웃프린트엘엔:"+savePath + "/" + changeName);
 		File f = new File(changeNamePath);
 		if(!f.exists()) {
 			f.mkdirs();
 		}
 		file.transferTo(f);
-		out.println(savePath + changeName);
+		out.println("resources/qImageUpload/"+changeName);
 		out.close();
 	 }
 	 
