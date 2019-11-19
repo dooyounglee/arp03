@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.btns{display: inline-block;}
+</style>
 </head>
 <body>
 	
@@ -185,23 +188,24 @@
 			
 		
 		});
-		
-		function getReplyList(){
+		$count = 0;
+		function getReplyList(currentPage){
 			$clicked = 0;
 			$.ajax({
 				url:"replyList.do",
-				data:{b_no:${b.b_no}},
+				data:{b_no:${b.b_no}, currentPage:currentPage},
 				dataType:"json",
 				success:function(data){
-					//console.log(data);
+					console.log(data.list);
+					console.log(data.pi);
 					$tbody = $("#rtb tbody");
 					$tbody.html("");
-					
+					$pageinfo = data.pi;
 					//$("#rCount").text("댓글(" + data.length + ")");
 					$rcount = 0;
 					
-					if(data.length > 0){ // 댓글이 존재할 경우
-						$.each(data, function(index, value) { // value == data[index]
+					if(data.list.length > 0){ // 댓글이 존재할 경우
+						$.each(data.list, function(index, value) { // value == data[index]
 						
 						$tr = $("<tr>");
 						$td = $("<td>");
@@ -247,8 +251,11 @@
 						$tbody.append($tr);
 						
 						});
-					
-						//page();
+					if($count == 0) {
+						page(data.pi);
+					} 
+						$count++;
+						console.log($count);
 					} else {
 						$tr = $("<tr>");
 						
@@ -258,7 +265,17 @@
 						$tbody.append($tr);
 					}
 					//console.log((data.length - $rcount));
-					$("#rCount").text("댓글(" + (data.length - $rcount) + ")");
+					$("#rCount").text("댓글(" + (data.pi.listCount - $rcount) + ")");
+					if($pageinfo.currentPage == 1) {
+						$("#lt").attr("disabled", true);
+					} else {
+						$("#lt").attr("disabled", false);
+					}
+					if($pageinfo.currentPage == $pageinfo.maxPage) {
+						$("#rt").attr("disabled", true);
+					} else {
+						$("#rt").attr("disabled", false);
+					}
 					
 				},
 				error:function(){
@@ -266,6 +283,54 @@
 				}
 			});
 		}
+		
+		function page(e){ 
+			//$("#rtb> :last").append("<tr><td colspan='4'>헤헤</td></tr>")
+			var $lastRow = $("#rtb:last");
+			var $leftbtn = $("<div class='leftbtn btns'>");
+			var $ltlt = $("<button id='ltlt'>").text("<<");
+			var $lt = $("<button id='lt'>").text("<");
+			$leftbtn.append($ltlt).append($lt);
+			$lastRow.append("<tr><td colspan='4'>");
+			console.log($lastRow);
+			$lastRow.append($leftbtn);
+			var $rightbtn = $("<div class='rightbtn btns'>");
+			var $gt = $("<button id='rt'>").text(">");
+			var $gtgt = $("<button id='rtrt'>").text(">>");
+			$rightbtn.append($gt).append($gtgt);
+			for (var i = e.startPage; i <= e.endPage; i++) {
+					var btn = $("<button class='btns numbtn'>").text(i);
+					$lastRow.append(btn);
+				}
+				//$lastRow.append(btn);
+			
+			$lastRow.append($rightbtn);
+			$lastRow.append("</td></tr>");
+			//$(".tagactive").attr("disabled", true);
+			
+		}
+		
+		$(document).on("click", "#rtrt", function(){
+			getReplyList($pageinfo.endPage);
+			//console.log($pageinfo.endPage);
+		});
+		
+		$(document).on("click", "#ltlt", function(){
+			getReplyList(1);
+		});
+		
+		$(document).on("click", "#lt", function(){
+			getReplyList(($pageinfo.currentPage) - 1);
+		});
+		
+		$(document).on("click", "#rt", function(){
+			getReplyList(($pageinfo.currentPage) + 1);
+		});
+		
+		$(document).on("click", ".numbtn", function(){
+			//console.log($(this).text());
+			getReplyList($(this).text());
+		});
 		
 	</script>
 	

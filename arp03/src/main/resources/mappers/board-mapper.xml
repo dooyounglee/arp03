@@ -40,4 +40,9 @@
 	<insert id="insertReReply">
 		insert into breply values(SEQ_BREPLY.nextval, #{b_no}, #{m_no}, #{content}, sysdate, sysdate, default, 2, #{parent_no}, default)
 	</insert>
+	
+	<select id="replyListCount" resultType="_int">
+		select count(*) from breply where b_no = #{b_no} and (STATUS = 'Y' OR RE_COUNT >= 1)
+	</select>
+	
 </mapper>
