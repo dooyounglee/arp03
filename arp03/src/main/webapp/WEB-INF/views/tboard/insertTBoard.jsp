@@ -1,13 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String[] list = request.getParameterValues("bfList");
+%>
 <!DOCTYPE html>
 <html>
 <!-- <script src="https://code.jquery.com/juqery-3.1.0.min.js" type="text/javascript"></script> -->
 
 <head>
 <meta charset="UTF-8">
-
+<style>
+	#formDiv{
+		text-align:left;
+		margin-left:auto;
+		margin-right:auto;
+		width:800px
+		}
+	
+</style>
 
 <title>게시판 작성하기 </title>
 </head>
@@ -30,35 +41,38 @@
 	<h3 align="center">글 작성하기</h3>
 	
 	<br><br>
+	<!-- action="insertTBoard.do" --> 
+	<form method="post" id="MultiUpload" action="insertTBoard.do" enctype="multipart/form-data" id="boardInsertForm" >
 	
-	<form action="insertTBoard.do" method="post" enctype="multipart/form-data" name="boardForm">
-	
-			<table align="center">
-				<tr>
-					<td>제목</td>
-					<td><input type="text" name="title" id="title" required></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="hidden" name="m_no" value="${ mem.m_no }"></td>
-				</tr>
-				<tr>
-					<td>첨부파일</td>
-					<td><input type="file" name="uploadFile" ></td>
-				</tr>
+			<div align="center" id="formDiv">
 				
-				<tr>
-					<td></td>
-					<td><textarea id="summernote" cols="50" rows="7" name="content" id="content" required></textarea></td>
-				</tr>
+		<%-- 		<c:forEach items="${ bfList }" var="list">
+					<input type="text" value="${ list.original_filename }" name="original_filename">
+					<input type="hidden" value="${ list.rename_filename }" name="rename_filename">
+				</c:forEach> --%>
 				
-				<tr>
-					<td colspan="2" align="center">
+				
+				
+					<label>제목</label>
+					<input type="text" name="title" id="title" required><br>
+					
+				
+					<input type="hidden" name="m_no" value="${ mem.m_no }">
+			
+			
+					
+					<label>파일첨부</label>
+					<input type="file"  name="file" id="file" multiple="multiple">
+					<div id="fileArea">
+					
+					</div>
+					<textarea id="summernote" cols="50" rows="7" name="content" id="content"required></textarea>
+				
 						<button type="submit" id="subBtn">등록하기</button> 
 						<button type="button" onclick="location.href='tblist.do';">목록으로</button>
-					</td>
-				</tr>
-			</table>
+						
+		</div>
+	
 		</form>
 		
 	</c:if>
@@ -70,24 +84,33 @@
 	
 			<table align="center">
 				<tr>
+
 					<td>제목</td>
-					<td><input type="text" name="title" value="${ b.title }" id="title" required></td>
+					<td><input type="text" name="title" value="${ b.title }" id="title" required></td><br><br>
 				</tr>
+				
 				<tr>
 					<td></td>
 					<td><input type="hidden" name="m_no" value="${ b.m_no }"></td>
+					<br>
 				</tr>
 				<tr>
 					<td>첨부파일</td>
 				<td>
-					<input type="file" name="reloadFile">
-					<input type="hidden" id="original_filename" name="original_filename" value="${ bf.original_filename }">
-					<input type="hidden" id="rename" value="${ bf.rename_filename }">
-					<c:if test="${ !empty bf.original_filename }">
+				<input type="file" name="reloadFile" multiple="multiple"> 
+				
+				<c:if test="${ !empty bfList }">
+				<c:forEach items="${ bfList }" var="bfList">
+				
+					<input type="hidden" class="original_filename" name="original_filename"  value="${ bfList.original_filename }">
+					<input type="hidden" id="rename" value="${ bfList.rename_filename }">
+					
 					<div id="delDiv">
-						<a id="filename" href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bf.rename_filename}" download="${ bf.original_filename }">${ bf.original_filename }</a>
-						<button type="button" id="delBtn">파일삭제</button>
+					 <a id="fileName" href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bfList.rename_filename}" download="${ bfList.original_filename }">${ bfList.original_filename }</a>
+                	  <button type="button" class="delBtn">파일삭제</button>
 					</div>
+				
+				</c:forEach>
 					</c:if>
 				</td>	
 				</tr>
@@ -126,6 +149,8 @@
 	 
 
 	 
+
+	 
 	     function sendFile(file, el) {
 	         var form_data = new FormData();
 	         form_data.append('file', file);
@@ -147,52 +172,87 @@
 	         });
 	       }
 	     
-		 $("#delBtn").on("click", function(){
-			 
-			var rename = $("#rename").val();
-	
-				$.ajax({
-					url:"tbdeleteFile.do",
-					data:{rename_filename : rename},
-					success:function(data){
-							
-						if(data == "success"){
-							console.log("성공");
-							$("#filename").text("");
-							$("#original_filename").val(null);
-						  
-						}else{
-							alert("파일 삭제 실패");
-						}
-						
-					},error:function(){
-						
-						console.log("ajax 통신 실패");
-					}
-				});
-				
-			}); 
-		 
+	     $(".delBtn").on("click", function(){
+	    	 
+	         var this_=$(this)
+	        	
+	         var rename = $(this_).parent().prev().val();
+	         
+	         console.log(rename);
+	   
+	            $.ajax({
+	               url:"tbdeleteFile.do",
+	               data:{rename_filename : rename},
+	               success:function(data){
+	                     
+	                  if(data == "success"){
+	                     console.log("성공");
+	                     
+	                     
+	                     $(this_).parent().prev().remove()
+	                     $(this_).parent().prev().remove()  
+	                     $(this_).parent().remove() 
+	                    
+	                
+	                     
+	                    
+	                  }else{
+	                     alert("파일 삭제 실패");
+	                  }
+	                  
+	               },error:function(){
+	                  
+	                  console.log("ajax 통신 실패");
+	               }
+	            });
+	            
+	         }); 
+	       
+	     
+		// 파일업로드 리스트 보여주기		
+	     $(document).ready( function() {
+	    	 
+	    	   var fileArea = document.getElementById("fileArea");
+	    	   
+	    	 
+	         $("input[type=file]").change(function () {
+	             
+	             var fileInput = document.getElementById("file");
+	    
+	              
+	             var files = fileInput.files;
+	             var file;
+	             
+	             $("input[type=file]").on("click",function(){
+	            	
+	            	 while ( fileArea.hasChildNodes() ) { 
+	            		 fileArea.removeChild( fileArea.firstChild ); 
+	            		 }
 
+	             });
+	          	
+	             for (var i = 0; i < files.length; i++) {
+	            	 
+	            	 var input = document.createElement("input");
+	            	 var br = document.createElement("br");
+	            	 input.type="text";
+	            	 input.id="upFileName"+i;
+	            	 input.style="none";
+	            	 fileArea.appendChild(input);
+	            	 fileArea.appendChild(br);
+
+	   
+	                 file = files[i];
+	                 $("#upFileName"+i).val(file.name);
+	            }
+	                
+	        
+	              
+	         });
+	  
+	     });
 		
 	
-	 
-/*   	 $("#subBtn").on("click", function(){
-		 var title = $("#title").val();
-		 var content = $("#content").val();
-		 
-		 if(title==""){
-			 alert("제목을 입력해주세요!");
-			 $("#title").focus();
-			 return false;
-		 }else if(content==""){
-			 alert("내용을 입력해주세요!");
-			 $("#content").focus();
-			 return false;
-		 }else{
-			 return true;
-		 };
-	 }); */
 	 
 	</script>
 	
@@ -202,8 +262,52 @@
 	<script>
 	
 	var jq132 = jQuery.noConflict();
+
 	
 	</script>
+	
+<!-- 	<script>
+		var form = document.forms[0];
+		var fileArea = document.getElementById("fileArea");
+		var num =2;
+	
+		$("#addBtn").on("click", function(){
+		if(num < 6){
+			var element = document.createElement("input");
+			element.type="file";
+			element.name="uploadFile"+num;
+			num++;
+			
+			fileArea.appendChild(element);
+		
+		}else{
+			alert("파일첨부는 5개까지 가능합니다");
+		}
+	});	
+		$("#deleteBtn").on("click",function(){
+			if(num > 2){
+				num--;
+				var inputs = fileArea.getElementsByTagName('input');
+				fileArea.removeChild(inputs[inputs.length-1]);
+			
+			}
+		});
+		
+	form.onsubmit=function(){
+		var inputs = fileArea.getElementsByTagName('input');
+		event.preventDefault(); // 일단 정지
+		for(var i=0; i<inputs.length; i++){
+			if(inputs[i].value== ""){
+				alert((i+1)+"번째파일을 선택해주세요");
+				inputs[i].focus();
+				return;
+			}
+		}
+		
+		this.submit();
+	}
+	
+	</script> -->
 	 
 	
 	

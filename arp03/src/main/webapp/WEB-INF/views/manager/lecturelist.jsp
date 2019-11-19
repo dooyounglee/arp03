@@ -8,15 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<jsp:include page="../include/header.jsp"/>
-	
-	<table>
-		<tr>
-			<td>
-		</tr>
-	</table>
-	
-	
+	${list }
+
 	<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>

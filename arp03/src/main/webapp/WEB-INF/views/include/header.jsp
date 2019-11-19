@@ -40,13 +40,17 @@
 		<a href="">학생휴가 관리</a>
 		
 		<hr>
+		
+		매니저
+		<a href="studentconsulting.ma">학생상담</a>
+		<a href="survey.ma">설문조사</a>
 	</c:if>
 	
 	<c:if test="${!empty lec }">
 		수강페이지
 		<a href="main.lec?lec_no=${lec.lec_no }"><del>메인</del></a>
 		<a href="info.lec"><del>강의계획</del></a>
-		<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a>
+		<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a> 
 		<a href="">내 출석</a>
 		<a href="list.sc"><del>내 점수</del></a>
 		<a href="list.ex"><del>시험 관리</del></a>
