@@ -10,7 +10,10 @@
 <body>
 
 	<jsp:include page="../include/header.jsp"/>
-	${list }
+	<c:forEach var="d" items="${ list}">
+	<a href="">${d}</a>
+	<br>
+	</c:forEach>
 
 	<jsp:include page="../include/footer.jsp"/>
 </body>
