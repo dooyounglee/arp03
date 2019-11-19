@@ -13,6 +13,7 @@ import com.kh.arp.lecture.model.service.LectureService;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.manager.model.service.SurveyService;
 import com.kh.arp.member.model.service.MemberService;
+import com.kh.arp.member.model.vo.Member;
 
 @Controller
 public class SurveyController {
@@ -24,25 +25,17 @@ public class SurveyController {
 	@Autowired
 	private SurveyService ss;
 	
-	@RequestMapping("lecture.ma")
-	public ModelAndView lectureList(HttpSession session, ModelAndView mv) {
-		List<Lecture> list=ms.getClassList();
-		mv.addObject("list", list);
-		mv.setViewName("manager/lecturelist");
-		return mv;
-	}
-	@RequestMapping("survey.ma")
-	public ModelAndView survey(int lec_no, HttpSession session, ModelAndView mv) {
-		Lecture lec=ls.getLecture(lec_no);
-		mv.addObject("lec", lec);
-		mv.setViewName("manager/insertsurvey");
-		return mv;
-	}
 	
+	
+	@RequestMapping("daysurvey.ma")
+	public ModelAndView daysurvey(ModelAndView mv) {
+		mv.setViewName("manager/insertFormSurvey");
+		return mv;
+	}
 	
 	@RequestMapping("insertsurvey.ma")
-	public ModelAndView insertsurvey(int lec_no, HttpSession session, ModelAndView mv) {
-		int result=ss.insertsurvey(lec_no, session);
+	public ModelAndView insertsurvey(ModelAndView mv) {
+		int result=ss.insertsurvey();
 		if(result>0) {
 			mv.setViewName("manager/insertsurvey");			
 		}else {

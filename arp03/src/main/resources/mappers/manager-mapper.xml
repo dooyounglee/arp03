@@ -7,4 +7,19 @@
   	#{m_no}, #{title}, #{enrolldate}, 
   	#{q1}, #{a1}, #{q2}, #{a2}, #{q3}, #{a3})
   </insert>
+  
+  	
+	<select id="daysurvey">
+		update member set
+			id=#{id},
+			pw=#{pw},
+			name=#{name},
+			phone=#{phone},
+			regdate=sysdate,
+			updatedate=sysdate,
+			condate=sysdate,
+			status='Y'
+		where m_no=#{m_no}
+	</select>
+	
 </mapper>
