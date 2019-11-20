@@ -9,8 +9,9 @@
 </head>
 <body class="fix-header card-no-border logo-center">
 
+
 	<!-- Preloader - style you can find in spinners.css -->
-	<%-- <%@ include file="include/bpreloader.jsp" %> --%>
+	<%@ include file="include/bpreloader.jsp" %>
 	<!-- End of Preloader - style you can find in spinners.css -->
 
 	<!-- Main wrapper -->
@@ -142,7 +143,7 @@
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card blog-widget">
                             <div class="card-body">
-                                <div class="blog-image"><img src="../assets/images/big/img1.jpg" alt="img" class="img-responsive" /></div>
+                                <div class="blog-image"><img src="/${cp }/resources/material-pro/assets/images/big/img1.jpg" alt="img" class="img-responsive" /></div>
                                 <h3>Business development new rules for 2017</h3>
                                 <label class="label label-rounded label-success">Technology</label>
                                 <p class="m-t-20 m-b-20">
@@ -252,7 +253,7 @@
                     <!-- Column -->
                     <div class="col-lg-4 col-md-4">
                         <div class="card">
-                            <img class="" src="../assets/images/background/weatherbg.jpg" alt="Card image cap">
+                            <img class="" src="/${cp }/resources/material-pro/assets/images/background/weatherbg.jpg" alt="Card image cap">
                             <div class="card-img-overlay" style="height:110px;">
                                 <h3 class="card-title text-white m-b-0 dl">New Delhi</h3>
                                 <small class="card-text text-white font-light">Sunday 15 march</small>
@@ -285,9 +286,9 @@
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <!-- Column -->
                         <div class="card">
-                            <img class="card-img-top" src="../assets/images/background/profile-bg.jpg" alt="Card image cap">
+                            <img class="card-img-top" src="/${cp }/resources/material-pro/assets/images/background/profile-bg.jpg" alt="Card image cap">
                             <div class="card-body little-profile text-center">
-                                <div class="pro-img"><img src="../assets/images/users/4.jpg" alt="user" /></div>
+                                <div class="pro-img"><img src="/${cp }/resources/material-pro/assets/images/users/4.jpg" alt="user" /></div>
                                 <h3 class="m-b-0">Angela Dominic</h3>
                                 <p>Web Designer &amp; Developer</p>
                                 <a href="javascript:void(0)" class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded">Follow</a>
@@ -316,7 +317,7 @@
                                     <div class="message-widget contact-widget">
                                         <!-- Message -->
                                         <a href="#">
-                                            <div class="user-img"> <img src="../assets/images/users/1.jpg" alt="user"
+                                            <div class="user-img"> <img src="/${cp }/resources/material-pro/assets/images/users/1.jpg" alt="user"
                                                     class="img-circle"> <span class="profile-status online pull-right"></span>
                                             </div>
                                             <div class="mail-contnet">
@@ -325,7 +326,7 @@
                                         </a>
                                         <!-- Message -->
                                         <a href="#">
-                                            <div class="user-img"> <img src="../assets/images/users/2.jpg" alt="user"
+                                            <div class="user-img"> <img src="/${cp }/resources/material-pro/assets/images/users/2.jpg" alt="user"
                                                     class="img-circle"> <span class="profile-status busy pull-right"></span>
                                             </div>
                                             <div class="mail-contnet">
@@ -342,7 +343,7 @@
                                         </a>
                                         <!-- Message -->
                                         <a href="#">
-                                            <div class="user-img"> <img src="../assets/images/users/4.jpg" alt="user"
+                                            <div class="user-img"> <img src="/${cp }/resources/material-pro/assets/images/users/4.jpg" alt="user"
                                                     class="img-circle"> <span class="profile-status offline pull-right"></span>
                                             </div>
                                             <div class="mail-contnet">
@@ -371,20 +372,20 @@
                                     <div class="card-body">
                                         <div class="profiletimeline">
                                             <div class="sl-item">
-                                                <div class="sl-left"> <img src="../assets/images/users/1.jpg" alt="user"
+                                                <div class="sl-left"> <img src="/${cp }/resources/material-pro/assets/images/users/1.jpg" alt="user"
                                                         class="img-circle"> </div>
                                                 <div class="sl-right">
                                                     <div><a href="#" class="link">John Doe</a> <span class="sl-date">5
                                                             minutes ago</span>
                                                         <p>assign a new task <a href="#"> Design weblayout</a></p>
                                                         <div class="row">
-                                                            <div class="col-lg-3 col-md-6 m-b-20"><img src="../assets/images/big/img1.jpg"
+                                                            <div class="col-lg-3 col-md-6 m-b-20"><img src="/${cp }/resources/material-pro/assets/images/big/img1.jpg"
                                                                     alt="user" class="img-responsive radius"></div>
-                                                            <div class="col-lg-3 col-md-6 m-b-20"><img src="../assets/images/big/img2.jpg"
+                                                            <div class="col-lg-3 col-md-6 m-b-20"><img src="/${cp }/resources/material-pro/assets/images/big/img2.jpg"
                                                                     alt="user" class="img-responsive radius"></div>
-                                                            <div class="col-lg-3 col-md-6 m-b-20"><img src="../assets/images/big/img3.jpg"
+                                                            <div class="col-lg-3 col-md-6 m-b-20"><img src="/${cp }/resources/material-pro/assets/images/big/img3.jpg"
                                                                     alt="user" class="img-responsive radius"></div>
-                                                            <div class="col-lg-3 col-md-6 m-b-20"><img src="../assets/images/big/img4.jpg"
+                                                            <div class="col-lg-3 col-md-6 m-b-20"><img src="/${cp }/resources/material-pro/assets/images/big/img4.jpg"
                                                                     alt="user" class="img-responsive radius"></div>
                                                         </div>
                                                         <div class="like-comm"> <a href="javascript:void(0)" class="link m-r-10">2
@@ -396,13 +397,13 @@
                                             </div>
                                             <hr>
                                             <div class="sl-item">
-                                                <div class="sl-left"> <img src="../assets/images/users/2.jpg" alt="user"
+                                                <div class="sl-left"> <img src="/${cp }/resources/material-pro/assets/images/users/2.jpg" alt="user"
                                                         class="img-circle"> </div>
                                                 <div class="sl-right">
                                                     <div> <a href="#" class="link">John Doe</a> <span class="sl-date">5
                                                             minutes ago</span>
                                                         <div class="m-t-20 row">
-                                                            <div class="col-md-3 col-xs-12"><img src="../assets/images/big/img1.jpg"
+                                                            <div class="col-md-3 col-xs-12"><img src="/${cp }/resources/material-pro/assets/images/big/img1.jpg"
                                                                     alt="user" class="img-responsive radius"></div>
                                                             <div class="col-md-9 col-xs-12">
                                                                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -420,7 +421,7 @@
                                             </div>
                                             <hr>
                                             <div class="sl-item">
-                                                <div class="sl-left"> <img src="../assets/images/users/3.jpg" alt="user"
+                                                <div class="sl-left"> <img src="/${cp }/resources/material-pro/assets/images/users/3.jpg" alt="user"
                                                         class="img-circle"> </div>
                                                 <div class="sl-right">
                                                     <div><a href="#" class="link">John Doe</a> <span class="sl-date">5
@@ -438,7 +439,7 @@
                                             </div>
                                             <hr>
                                             <div class="sl-item">
-                                                <div class="sl-left"> <img src="../assets/images/users/4.jpg" alt="user"
+                                                <div class="sl-left"> <img src="/${cp }/resources/material-pro/assets/images/users/4.jpg" alt="user"
                                                         class="img-circle"> </div>
                                                 <div class="sl-right">
                                                     <div><a href="#" class="link">John Doe</a> <span class="sl-date">5
@@ -604,35 +605,35 @@
                             <ul class="m-t-20 chatonline">
                                 <li><b>Chat option</b></li>
                                 <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/1.jpg" alt="user-img"
+                                    <a href="javascript:void(0)"><img src="/${cp }/resources/material-pro/assets/images/users/1.jpg" alt="user-img"
                                             class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/2.jpg" alt="user-img"
+                                    <a href="javascript:void(0)"><img src="/${cp }/resources/material-pro/assets/images/users/2.jpg" alt="user-img"
                                             class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/3.jpg" alt="user-img"
+                                    <a href="javascript:void(0)"><img src="/${cp }/resources/material-pro/assets/images/users/3.jpg" alt="user-img"
                                             class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/4.jpg" alt="user-img"
+                                    <a href="javascript:void(0)"><img src="/${cp }/resources/material-pro/assets/images/users/4.jpg" alt="user-img"
                                             class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/5.jpg" alt="user-img"
+                                    <a href="javascript:void(0)"><img src="/${cp }/resources/material-pro/assets/images/users/5.jpg" alt="user-img"
                                             class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/6.jpg" alt="user-img"
+                                    <a href="javascript:void(0)"><img src="/${cp }/resources/material-pro/assets/images/users/6.jpg" alt="user-img"
                                             class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/7.jpg" alt="user-img"
+                                    <a href="javascript:void(0)"><img src="/${cp }/resources/material-pro/assets/images/users/7.jpg" alt="user-img"
                                             class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/8.jpg" alt="user-img"
+                                    <a href="javascript:void(0)"><img src="/${cp }/resources/material-pro/assets/images/users/8.jpg" alt="user-img"
                                             class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
                                 </li>
                             </ul>
@@ -643,9 +644,7 @@
                 <!-- End Right sidebar -->
                 <!-- ============================================================== -->
             </div>
-            <!-- ============================================================== -->
             <!-- End Container fluid  -->
-            <!-- ============================================================== -->
             
             <!-- footer -->
             <footer class="footer">
@@ -660,6 +659,43 @@
 	<!-- End of Main wrapper -->
 
 
+	<!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script data-cfasync="false" src="/arp/resources/material-pro/email-decode.min.js"></script><script src="/${cp }/resources/material-pro/assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="/${cp }/resources/material-pro/assets/plugins/popper/popper.min.js"></script>
+    <script src="/${cp }/resources/material-pro/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="/${cp }/resources/material-pro/horizontal/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="/${cp }/resources/material-pro/horizontal/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="/${cp }/resources/material-pro/horizontal/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="/${cp }/resources/material-pro/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="/${cp }/resources/material-pro/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="/${cp }/resources/material-pro/horizontal/js/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!-- chartist chart -->
+    <script src="/${cp }/resources/material-pro/assets/plugins/chartist-js/dist/chartist.min.js"></script>
+    <script src="/${cp }/resources/material-pro/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!--c3 JavaScript -->
+    <script src="/${cp }/resources/material-pro/assets/plugins/d3/d3.min.js"></script>
+    <script src="/${cp }/resources/material-pro/assets/plugins/c3-master/c3.min.js"></script>
+    <!-- Chart JS -->
+    <script src="/${cp }/resources/material-pro/horizontal/js/dashboard1.js"></script>
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script src="/${cp }/resources/material-pro/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+
+	<script>
+	jQuery.noConflict();
+	</script>
 
 
 

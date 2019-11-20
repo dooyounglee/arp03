@@ -52,13 +52,13 @@
 	                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 	                                <div class="carousel-inner" role="listbox">
 	                                    <div class="carousel-item active">
-	                                        <div class="container"> <img class="d-block img-fluid" src="../assets/images/big/img1.jpg" alt="First slide"></div>
+	                                        <div class="container"> <img class="d-block img-fluid" src="/${cp }/resources/material-pro/assets/images/big/img1.jpg" alt="First slide"></div>
 	                                    </div>
 	                                    <div class="carousel-item">
-	                                        <div class="container"><img class="d-block img-fluid" src="../assets/images/big/img2.jpg" alt="Second slide"></div>
+	                                        <div class="container"><img class="d-block img-fluid" src="/${cp }/resources/material-pro/assets/images/big/img2.jpg" alt="Second slide"></div>
 	                                    </div>
 	                                    <div class="carousel-item">
-	                                        <div class="container"><img class="d-block img-fluid" src="../assets/images/big/img3.jpg" alt="Third slide"></div>
+	                                        <div class="container"><img class="d-block img-fluid" src="/${cp }/resources/material-pro/assets/images/big/img3.jpg" alt="Third slide"></div>
 	                                    </div>
 	                                </div>
 	                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
@@ -206,25 +206,25 @@
 	                            <div class="message-center">
 	                                <!-- Message -->
 	                                <a href="#">
-	                                    <div class="user-img"> <img src="../assets/images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+	                                    <div class="user-img"> <img src="/${cp }/resources/material-pro/assets/images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
 	                                    <div class="mail-contnet">
 	                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </div>
 	                                </a>
 	                                <!-- Message -->
 	                                <a href="#">
-	                                    <div class="user-img"> <img src="../assets/images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+	                                    <div class="user-img"> <img src="/${cp }/resources/material-pro/assets/images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
 	                                    <div class="mail-contnet">
 	                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
 	                                </a>
 	                                <!-- Message -->
 	                                <a href="#">
-	                                    <div class="user-img"> <img src="../assets/images/users/3.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
+	                                    <div class="user-img"> <img src="/${cp }/resources/material-pro/assets/images/users/3.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
 	                                    <div class="mail-contnet">
 	                                        <h5>Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span> </div>
 	                                </a>
 	                                <!-- Message -->
 	                                <a href="#">
-	                                    <div class="user-img"> <img src="../assets/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
+	                                    <div class="user-img"> <img src="/${cp }/resources/material-pro/assets/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
 	                                    <div class="mail-contnet">
 	                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
 	                                </a>
@@ -243,12 +243,12 @@
 	            <!-- Profile -->
 	            <!-- ============================================================== -->
 	            <li class="nav-item dropdown">
-	                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+	                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/${cp }/resources/material-pro/assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
 	                <div class="dropdown-menu dropdown-menu-right scale-up">
 	                    <ul class="dropdown-user">
 	                        <li>
 	                            <div class="dw-user-box">
-	                                <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
+	                                <div class="u-img"><img src="/${cp }/resources/material-pro/assets/images/users/1.jpg" alt="user"></div>
 	                                <div class="u-text">
 	                                    <h4>Steave Jobs</h4>
 	                                    <p class="text-muted"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f98f988b8c97b99e94989095d79a9694">[email&#160;protected]</a></p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
