@@ -9,12 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="../include/header.jsp"/>
+	<jsp:include page="../include/header.jsp"/>
 <jsp:useBean id="now" class="java.util.Date"/>
 <fmt:formatDate value="${now }" pattern="yyyy-MM-dd" var = "d"/>
 <form action="insertsurvey.ma">
 	<input type="text" name="lec_no" value="${lec.lec_no}" readonly>
-	<input type="text" name="m_no" value="${mem.name }" readonly>
+	<input type="text" name="m_no" value="${mem.m_no }" readonly>
 	<input type="text" name="title" placeholder="제목">
 	<input type="text" name="enrolldate" value="${d }" readonly>
 	<input type="text" name="q1" placeholder="질문1"> 

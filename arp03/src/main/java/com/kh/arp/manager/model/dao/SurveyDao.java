@@ -19,7 +19,10 @@ public class SurveyDao {
 	}
 
 	public List<Survey> selectsurvey(){
-		System.out.println("gfu"+sqlSession.selectList("managerMapper.selectSurvey"));
 		return sqlSession.selectList("managerMapper.selectSurvey");
+	}
+	public List<Survey> detailsurvey(String s){
+		System.out.println(s);
+		return sqlSession.selectOne("managerMapper.detailSurvey",s);
 	}
 }
