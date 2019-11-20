@@ -45,6 +45,7 @@ public class SurveyController {
 	@RequestMapping("selectsurvey.ma")
 	public ModelAndView selectsurvey(ModelAndView mv) {
 		List<Survey> s= ss.selectsurvey();
+		System.out.println("contorlleo"+s);
 		mv.addObject("list", s).setViewName("manager/selectsurvey");
 		return mv;
 	}
