@@ -58,15 +58,16 @@
 	</update>
 	
 	<select id="selectDetailQuestion" resultMap="qList">
-		select q.*, originalname, changename
+		select q.*, name, originalname, changename
 	    from question q
+	    join member m on(q.m_no=m.m_no)
 	    left join qfile f on(q.q_no=f.q_no)
-	    where q.q_no=#{q_no} and q.status='Y'
+	    where  q.q_no=#{q_no} and q.status='Y'
 	</select>
 	
 	<update id="qUpdate">
 		update Question
-		set title=#{title}, content=#{content}
+		set title=#{title}, content=#{content}, updatedate=sysdate
 		where q_no=#{q_no}
 	</update>
 	
@@ -114,4 +115,8 @@
 		set isreply='Y', replydate=sysdate, replycontent=#{replycontent}
 		where q_no=#{q_no}
 	</update>
+	
+	<insert id="qReplyInsert">
+		insert into QReply values(seq_qreply.nextval, )
+	</insert>
 </mapper>

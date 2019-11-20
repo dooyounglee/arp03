@@ -15,7 +15,7 @@
 	<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a>
 	<a href="">내 출석</a>
 	<a href="">내 점수</a>
-	<h1>${lec.title }페이지 입니다.<button onclick="location.href='daysurvey.ma';">설문조사 만들기</button></h1>
+	<h1>${lec.title }페이지 입니다.<button onclick="location.href='selectsurvey.ma';">설문조사 목록으로 가기</button></h1>
 	${lec }
 
 	<jsp:include page="../include/footer.jsp"/>

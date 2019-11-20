@@ -47,11 +47,12 @@
 		<table class="t1" align="center">
 			<tr>
 				<td>제목</td>
-				<td><input size="40" type="text" name="title" value="${ q.title }" readonly></td>
+				<td><input size="20" type="text" name="title" value="${ q.title }" readonly></td>
+				<td>${ q.updatedate }</td>
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input size="10" type="text" name="name" value="${ name }" readonly></td>
+				<td><input size="10" type="text" name="name" value="${ q.name }" readonly></td>
 			</tr>
 			<tr>
 				<td>내용</td>
@@ -67,9 +68,9 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
-					<c:if test="${ mem.getName() eq name }">
+					<c:if test="${ mem.name eq q.name }">
 					<button type="submit">수정</button>
-					<button type="button" onclick="location.href='qdelete.qu?q_no=${ q.q_no }&lec_no=${ q.lec_no }';">삭제</button>
+					<button type="button" id="qDel">삭제</button>
 					</c:if>
 					<!-- <button type="button" onclick="window.history.back()">취소</button> -->
 					<!-- 나중에 답변하기 버튼은 선생님만 보이게 처리하기 -->
@@ -77,7 +78,7 @@
 					<button type="button" onclick="Qre();">답변하기</button>
 					</c:if>
 					
-					<button type="button" onclick="location.href='question.qu?lec_no=${q.lec_no}';">목록</button>
+					<button type="button" onclick="location.href='question.qu';">목록</button>
 					<br><br>
 				</td>
 			</tr>
@@ -87,11 +88,12 @@
 	
 	
 	<!-- 질문게시판에 선생님이 답변달았을때의 insert form 사실상update-->
-	<form id="qOpen" action="qTCInsertReply?q_no=${ q.q_no }&lec_no=${ q.lec_no }" method="post" enctype="multipart/form-data">
+	<form id="qOpen" action="qTCInsertReply?q_no=${ q.q_no }" method="post" enctype="multipart/form-data">
 		<table align="center">
 			<tr>
 				<td>작성자</td>
-				<td><input size="10" type="text" name="name" value="${ name }" readonly></td>
+				<!-- 접속한 아이디는 mem.getId()쓰면되는데 이름을 따로알아와보자 -->
+				<td><input size="10" type="text" name="name" value="${ mem.name }" readonly></td>
 			</tr>
 			<tr>
 				<td>내용</td>
@@ -111,14 +113,15 @@
 	
 	<!-- 값얻어온다음에 조건값에 메소드값으로 바꾸기 -->
 	<c:if test="${!empty q.replycontent}">
-	<form class="c1" id="qOpen1" action="" method="post" enctype="multipart/form-data">
+	<form class="c1" id="qOpen1" method="post" enctype="multipart/form-data">
 		
 		<h1 align="center">선생님 답변</h1>
 		
 		<table class="t1" align="center">
 			<tr>
 				<td>작성자</td>
-				<td><input size="10" type="text" name="name" value="${ name }" readonly></td>
+				<!-- 여기도 선생님 이름 위에서 알아오면 적어놓자 -->
+				<td><input size="10" type="text" name="name" value="${ mem.name }" readonly></td>
 				<td>${ q.replydate }</td>
 			</tr>
 			<tr>
@@ -130,7 +133,6 @@
 				<!-- 수정버튼은 작성한 해당선생님만 볼 수 있게 -->
 				<br>
 					<button type="button" onclick="qReUpdate();">수정</button>
-					<button type="button" onclick="qReX();">취소</button>
 					<br><br>
 				</td>
 			</tr>
@@ -139,15 +141,20 @@
 	<br>
 	
 	<!-- 댓글 -->
-	<div id="dat">
+	<form id="dat" action="qReplyInsert.re" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="q_no" value="${ q.q_no }">
 	<h5 align="center">댓글리스트있으면 여기위로</h5>
 	<table align="center">
 	<tr>
-		<td><textarea style="border:1px solid black;" id="repl" cols="50" rows="2" name=""></textarea></td>
-		<td><button type="button">댓글</button></td>
+		<td>
+			<textarea style="border:1px solid black;" id="repl" cols="50" rows="2" name="content"></textarea>
+		</td>
+		<td>
+			<button id="datUp" type="button">댓글</button>
+		</td>
 	</tr>
 	</table>
-	</div>
+			<br><br><br>
 	</c:if>
 	
 	
@@ -201,6 +208,14 @@
 		function Qre(){
 			$("#qOpen").attr("style","display:block");
 		}
+		
+		$("#qDel").click(function(){
+			if(confirm("삭제하시겠습니까?") == true){
+				location.href='qdelete.qu?q_no=${ q.q_no }&lec_no=${ q.lec_no }';
+			}else{
+				false;
+			}
+		});
 		
 		function qReX(){
 			//$("#summernote").remove();

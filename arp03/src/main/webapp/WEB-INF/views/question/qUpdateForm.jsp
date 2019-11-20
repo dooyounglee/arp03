@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td><input size="10" type="text" name="name" value="${ name }" readonly></td>
+				<td><input size="10" type="text" name="name" value="${ mem.name }" readonly></td>
 			</tr>
 			<tr>
 				<td>내용</td>

@@ -17,8 +17,9 @@ DROP TABLE BReply;
 DROP TABLE Board;
 DROP TABLE BCategory;
 drop table auth;
-DROP TABLE member;
 DROP TABLE survey;
+DROP TABLE member;
+
     
 
 
@@ -134,6 +135,7 @@ CREATE TABLE Question (
 
 CREATE TABLE QReply (
 	r_no	number		PRIMARY KEY,
+	lec_no	number		REFERENCES LECTURE,
 	q_no	number		REFERENCES QUESTION,
 	m_no	Number		REFERENCES MEMBER,
 	content	varchar2(4000)		NOT NULL,
