@@ -57,16 +57,14 @@
 	   		 maxDate:"+100D",
 	   		showButtonPanel: true, 
 	         currentText: '오늘 날짜', 
-	         closeText: '닫기', 
-	         
-	            
+	         closeText: '닫기'      
 	    });
 	});
 	
 	
 	
 	</script>
-	 <script src='jquery-3.2.1.js'></script>
+	
    
    <script>
    

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,9 +36,9 @@
 		<td>${ v.lec_no }</td>
 		<td>${ v.title }</td>
 		<td><a href="vDetail.me?v_no=${ v.v_no }">${ v.reason }</a></td>
-		<td class="startDate">${v.start_date }</td>
-			<td class="endDate"></td>
-		<td class="dateCount"> ${v.date_count }일</td>
+		<td id="startDate">${ fn:substring(v.start_date,0,10) }</td>
+			<td id="endDate"></td>
+		<td id="dateCount"> ${v.date_count }일</td>
 		<td>${v.application_date }</td>
 		<td>${v.tstatus }</td>
 		<td>${v.astatus }</td>
@@ -50,7 +51,7 @@
 
 $(function(){
 	
-	var start_date = $(".startDate").text()//2019-01-01
+	var start_date = $("#startDate").text()//2019-01-01
 	console.log(start_date)
 	var yyyy= start_date.substr(0,4)
 	console.log(yyyy)
@@ -58,7 +59,7 @@ $(function(){
 	console.log(MM)
 	var dd = parseInt(start_date.substr(8,2))
 	console.log(dd)
-	var howdate = parseInt($(".dateCount").text())
+	var howdate = parseInt($("#dateCount").text())
 	
 	var today=new Date(yyyy,MM,dd+howdate)			
 	console.log(today.getFullYear())
@@ -80,7 +81,7 @@ $(function(){
 
 	
 	
-	 $(".endDate").text(today.getFullYear() + "-" + String(today.getMonth()+1)+"-" + zerodate)
+	 $("#endDate").text(today.getFullYear() + "-" + String(today.getMonth()+1)+"-" + zerodate)
 	
 	
 });

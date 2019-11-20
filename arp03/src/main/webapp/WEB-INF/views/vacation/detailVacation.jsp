@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +42,7 @@
 	</tr>	
 	<tr>
 		<td>휴가시작날짜</td>
-		<td>${v.start_date }</td>
+		<td>${ fn:substring(v.start_date,0,10) }</td>
 	</tr>
 	<tr>
 		<td>끝나는날짜</td>

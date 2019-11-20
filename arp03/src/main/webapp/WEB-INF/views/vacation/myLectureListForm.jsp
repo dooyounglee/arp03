@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,7 @@
 		<th>강의번호</th>
 		<th>강의명</th>
 		<th>시작일</th>
+		<th>요일</th>
 		<th>시작시간</th>
 		<th>휴가신청</th>
 	</tr>
@@ -29,6 +31,7 @@
 		<td>${c.lec_no }</td>
 		<td>${c.title }</td>
 		<td>${c.startdate }</td>
+		<td>${c.dayofweek}</td>
 		<td>${c.starttime }</td>
 		<td><a href="vinsertForm.me?m_no=${c.m_no }&lec_no=${c.lec_no}&title=${c.title}">휴가신청하기</a></td>
 	</tr>

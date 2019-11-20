@@ -50,13 +50,6 @@ public class VacationController {
 	Vacation v = vService.updateVacationForm(v_no);	
 	
 	
-	
-	SimpleDateFormat sdf= new SimpleDateFormat("yyyyMMdd");
-	
-	sdf.format(v.getStart_date());
-	
-	System.out.println(sdf);
-	
 	mv.addObject("v" , v).setViewName("vacation/updateVacationForm");
 		
 	return mv;
@@ -93,6 +86,38 @@ public class VacationController {
 		return mv;
 	}
 	
+	@RequestMapping("vupdate.me")
+	public ModelAndView vUpdate(ModelAndView mv,Vacation v) {
+		
+		int result  = vService.updateVacation(v);
+		
+		if(result >0) {
+			mv.addObject(v).setViewName("redirect:vlist.me");
+		}else {
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
 	
+	@RequestMapping("vdelete.me")
+	public String vDelete(Vacation v) {
+		int result = vService.deleteVacation(v);
+		
+		if(result>0) {
+			return "redirect:vlist.me";
+		}else {
+			return "common/errorPage";
+		}
+	}
 	
+	@RequestMapping("sVlist.te")
+	public ModelAndView sVlistForm(ModelAndView mv) {
+		
+		ArrayList<Vacation> list = vService.selectList();
+		
+		mv.addObject("list",list).setViewName("vacation/studentVacationListForm");
+		
+		return mv;
+	}
 }

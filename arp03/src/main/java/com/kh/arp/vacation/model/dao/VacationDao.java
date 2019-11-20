@@ -35,7 +35,19 @@ public class VacationDao {
 
 	public Vacation selectVacation(int v_no) {
 		
-		return sqlSession.selectOne("vacationMapper.selectVacation" ,v_no);
+		return sqlSession.selectOne("vacationMapper.selectVacation",v_no);
+	}
+
+
+	public int updateVacation(Vacation v) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("vacationMapper.updateVacation" , v);
+	}
+
+
+	public int deleteVacation(Vacation v) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("vacationMapper.deleteVacation",v);
 	}
 
 

@@ -21,4 +21,10 @@ public interface VacationService {
 	// 휴가 수정하기폼
 	 Vacation updateVacationForm(int v_no);
 	
+	// 휴가 수정하기
+	 int updateVacation(Vacation v);
+	 
+	// 휴가 삭제하기 
+	 int deleteVacation(Vacation v);
+	 
 }

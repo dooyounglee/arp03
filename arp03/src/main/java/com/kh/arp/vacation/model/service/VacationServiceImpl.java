@@ -41,6 +41,17 @@ public class VacationServiceImpl implements VacationService {
 		return vDao.selectVacation(v_no);
 	}
 
+	@Override
+	public int updateVacation(Vacation v) {
+		// TODO Auto-generated method stub
+		return vDao.updateVacation(v);
+	}
+
+	public int deleteVacation(Vacation v) {
+		// TODO Auto-generated method stub
+		return vDao.deleteVacation(v);
+	}
+
 
 	
 
