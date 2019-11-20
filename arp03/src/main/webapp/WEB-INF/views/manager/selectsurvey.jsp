@@ -9,7 +9,7 @@
 </head>
 <body>
 <jsp:include page="../include/header.jsp"/>
-
+${list }
 	<table>
 		<tr>
 			<td>설문조사 제목</td>
@@ -18,7 +18,7 @@
 			<td>강의명</td>
 			<!-- 설문조사 인원/ 설문조사 총인원 있으면 좋을듯 -->
 		</tr>
-	<c:forEach var="d" items="list">
+	<c:forEach var="d" items="${ list}">
 		<tr>
 			<td>${d.title }</td>
 			<td>${d.enrolldate }</td>
