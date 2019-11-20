@@ -5,7 +5,7 @@
 <head>
 	<!-- head태그. header.jsp말고 -->
 	<%@ include file="include/bhead.jsp"%>
-	
+		
 </head>
 <body class="fix-header card-no-border logo-center">
 
@@ -662,6 +662,7 @@
 	<!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+    <script src="http://code.jquery.com/jquery-3.2.1.js"></script> 
     <script data-cfasync="false" src="/arp/resources/material-pro/email-decode.min.js"></script><script src="/${cp }/resources/material-pro/assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="/${cp }/resources/material-pro/assets/plugins/popper/popper.min.js"></script>
@@ -675,6 +676,9 @@
     <!--stickey kit -->
     <script src="/${cp }/resources/material-pro/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <script src="/${cp }/resources/material-pro/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script>
+	jQuery.noConflict();
+	</script>
     <!--Custom JavaScript -->
     <script src="/${cp }/resources/material-pro/horizontal/js/custom.min.js"></script>
     <!-- ============================================================== -->
@@ -692,10 +696,8 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="/${cp }/resources/material-pro/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
-
-	<script>
-	jQuery.noConflict();
-	</script>
+	
+	
 
 
 
