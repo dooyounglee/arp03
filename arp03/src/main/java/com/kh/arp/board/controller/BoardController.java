@@ -173,4 +173,24 @@ public class BoardController {
 		}
 	}
 	
+	@RequestMapping("bupdateView.do")
+	public ModelAndView updateSelectBoard(int b_no, ModelAndView mv) {
+		Board b = bService.selectBoard(b_no);
+		mv.addObject("b", b);
+		mv.setViewName("board/boardWriteForm");
+		return mv;
+	}
+	
+	@RequestMapping("bupdate.do")
+	public String updateBoard(Board b, HttpServletRequest request, Model model,
+			@RequestParam(value = "uploadFile", required = false) MultipartFile file) {
+		int rst = bService.updateBoard(b);
+		if(rst > 0) {
+			return "redirect:blist.do";
+		} else {
+			model.addAttribute("msg", "글 작성에 실패했습니다.");
+			return "common/errorPage";
+		}
+	}
+	
 }
