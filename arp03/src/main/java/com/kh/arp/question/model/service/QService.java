@@ -6,6 +6,7 @@ import java.util.List;
 import com.kh.arp.common.PageInfo;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.question.model.vo.QFile;
+import com.kh.arp.question.model.vo.QReply;
 import com.kh.arp.question.model.vo.Question;
 
 public interface QService {
@@ -57,6 +58,9 @@ public interface QService {
 	
 	// 질문게시판에 답변하기(선생님) 내용 업데이트 서비스
 	int qTCInsertReply(Question q);
+
+	// 선생님답변의 댓글
+	int qReplyInsert(QReply q);
 
 	/*
 	 * // QFile 검색 int selectQ(QFile qf);
