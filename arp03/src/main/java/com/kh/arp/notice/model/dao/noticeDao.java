@@ -2,10 +2,12 @@ package com.kh.arp.notice.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.arp.common.PageInfo;
 import com.kh.arp.notice.model.vo.Notice;
 
 @Repository
@@ -27,9 +29,12 @@ public class noticeDao {
 	}
 
 
-	public ArrayList<Notice> selectList() {
+	public ArrayList<Notice> selectList(PageInfo pi) {
 		// TODO Auto-generated method stub
-		return (ArrayList)sqlSession.selectList("noticeMapper.selectList");
+		int offset =pi.getOffset();
+		int boardLimit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, boardLimit);
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectList", null, rowBounds);
 	}
 
 

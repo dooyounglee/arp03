@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import com.kh.arp.common.PageInfo;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.question.model.service.QService;
 import com.kh.arp.question.model.vo.QFile;
+import com.kh.arp.question.model.vo.QReply;
 import com.kh.arp.question.model.vo.Question;
 
 @Controller
@@ -34,46 +36,45 @@ public class QController {
 
 	@RequestMapping("question.qu")
 	public ModelAndView questionList(ModelAndView mv,
-			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, int lec_no) {
-
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, HttpSession session) {
+		// 세션에 담아둔 Lecture에 lec_no가지고오자
+		int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+		
 		int listCount = qService.getListCount(lec_no);
 
 		int pageLimit = 5;
 		int boardLimit = 10;
-
+		
 		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
 		// PageInfo pi = new PageInfo(currentPage, listCount, 5, 10); 이렇게 바로써도됨
-
+		
+		
 		ArrayList<Question> qList = qService.selectQuestionList(pi, lec_no);
-
 		// lecture 객체 가져오자~
 		Lecture lec = qService.getLecture(lec_no);
-
+		
 		// 데이터값, 뷰 지정
-		mv.addObject("pi", pi).addObject("qList", qList).addObject("lec", lec).setViewName("question/question");
+		mv.addObject("pi", pi).addObject("qList", qList).setViewName("question/question");
 
 		return mv;
 	}
 
 	@RequestMapping("qWriteForm.qu")
-	public String questionInsertView(int lec_no, String name, Model model) {
-		// 게시글번호도 같이 넘겨야됨! 이따가 작성
-
-		// lec_no 가져온걸 넘겨주기
-		model.addAttribute("lec_no", lec_no);
-		model.addAttribute("name", name);
+	public String questionInsertView(Model model) {
 		
 		return "question/questionInsertForm";
 	}
 
 	// String title, String content
 	@RequestMapping("qinsert.qu")
-	public String qInsert(Question q, HttpServletRequest request,
+	public String qInsert(Question q, HttpServletRequest request, HttpSession session,
 			@RequestParam(value = "fileUp", required = false) MultipartFile file) {
-		int lec_no = q.getLec_no();
+		
 		// System.out.println(q);
 		// System.out.println(file.getOriginalFilename());
 		// System.out.println(file);
+		int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+		q.setLec_no(lec_no);
 		QFile qf = new QFile();
 
 		int resultqf = 0;
@@ -93,7 +94,7 @@ public class QController {
 		}
 		
 		//request.setAttribute("q", q);
-		return "redirect:question.qu?lec_no=" + lec_no;
+		return "redirect:question.qu";
 		//return "question/qdetailForm";
 	}
 
@@ -130,14 +131,11 @@ public class QController {
 	}
 
 	@RequestMapping("qdetail.qu")
-	public ModelAndView qdetail(ModelAndView mv, int q_no, String name) {
-
+	public ModelAndView qdetail(ModelAndView mv, int q_no) {
 		Question q = qService.selectDetailQuestion(q_no);
-
 		// System.out.println(q);
-
 		if (q != null) {
-			mv.addObject("q", q).addObject("name", name).setViewName("question/qdetailForm");
+			mv.addObject("q", q).setViewName("question/qdetailForm");
 		} else {
 			mv.addObject("msg", "게시글 상세조회 실패").setViewName("qcommon/errorPage");
 		}
@@ -146,21 +144,20 @@ public class QController {
 	}
 
 	@RequestMapping("qupdateForm.qu")
-	public ModelAndView qUpdateForm(int q_no, String name, ModelAndView mv) {
-		System.out.println(name);
+	public ModelAndView qUpdateForm(int q_no, ModelAndView mv) {
 		Question q = qService.selectDetailQuestion(q_no);
 
-		mv.addObject("q", q).addObject("name", name).setViewName("question/qUpdateForm");
+		mv.addObject("q", q).setViewName("question/qUpdateForm");
 
 		return mv;
 
 	}
 
 	@RequestMapping("qupdate.qu")
-	public ModelAndView qUpdate(Question q, String name, QFile qf, ModelAndView mv, HttpServletRequest request,
+	public ModelAndView qUpdate(Question q, QFile qf, ModelAndView mv, HttpServletRequest request, HttpSession session,
 			@RequestParam(value = "fileReload", required = false) MultipartFile file) {
 		int result = 0;
-		int lec_no = q.getLec_no();
+		int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
 		
 		//System.out.println("한번보자" + q.getOriginalname());
 		//System.out.println("한번보자2" + file.getOriginalFilename());
@@ -214,7 +211,7 @@ public class QController {
 		}
 		
 		if(result > 0) {
-			mv.addObject("q_no", q.getQ_no()).setViewName("redirect:qdetail.qu?lec_no=" + lec_no + "&name=" + name);
+			mv.addObject("q_no", q.getQ_no()).setViewName("redirect:qdetail.qu");
 		}else {
 			mv.addObject("msg", "게시판 수정 실패").setViewName("qcommon/errorPage");
 		}
@@ -224,7 +221,7 @@ public class QController {
 	}
 
 	@RequestMapping("qdelete.qu")
-	public String qDelete(int q_no, int lec_no, HttpServletRequest request) {
+	public String qDelete(int q_no, HttpServletRequest request) {
 
 		Question q = qService.qSelectDelete(q_no);
 
@@ -235,7 +232,7 @@ public class QController {
 		int result = qService.qDelete(q_no);
 
 		if (result > 0) {
-			return "redirect:question.qu?lec_no=" + lec_no;
+			return "redirect:question.qu";
 		} else {
 			return "qcommon/errorPage";
 		}
@@ -308,8 +305,8 @@ public class QController {
 	 public ModelAndView qTCInsertReplyUpdate(ModelAndView mv, Question q) {
 		
 		 int q_no = q.getQ_no();
-		 String name = q.getName();
-		 int lec_no = q.getLec_no();
+		// String name = q.getName();
+		 //int lec_no = q.getLec_no();
 		 
 		 q.setQ_no(q.getQ_no()); 
 		 q.setReplycontent(q.getReplycontent());
@@ -320,7 +317,7 @@ public class QController {
 		 if(result > 0) {
 			 Question q1 = qService.selectDetailQuestion(q_no);
 			 System.out.println(q1);
-			 mv.addObject("q1", q1).setViewName("redirect:qdetail.qu?q_no="+ q_no + "&name=" + name);
+			 mv.addObject("q1", q1).setViewName("redirect:qdetail.qu?q_no="+ q_no);
 		 }else {
 			 mv.addObject("msg", "게시판 수정 실패").setViewName("qcommon/errorPage");
 		 }
@@ -330,5 +327,19 @@ public class QController {
 	 }
 	 
 	 
+	 @RequestMapping("qReplyInsert.re")
+	 public String qReplyInsert(QReply q, int q_no, HttpSession session) {
+		 
+		 int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+		 q.setLec_no(lec_no);
+		 int result = qService.qReplyInsert(q);
+		 
+		 if(result > 0) {
+			 return "";
+		 }else {
+			 return "qcommon/errorPage";
+		 }
+		 
+	 }
 
 }
