@@ -31,6 +31,16 @@ public class VacationServiceImpl implements VacationService {
 		return vDao.selectLectureList(m_no);
 	}
 
+	public Vacation selectVacation(int v_no) {
+		// TODO Auto-generated method stub
+		return vDao.selectVacation(v_no);
+	}
+
+	public Vacation updateVacationForm(int v_no) {
+		// TODO Auto-generated method stub
+		return vDao.selectVacation(v_no);
+	}
+
 
 	
 

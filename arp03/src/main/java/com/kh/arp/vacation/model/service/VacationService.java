@@ -15,4 +15,10 @@ public interface VacationService {
 	// 내강의리스트
 	ArrayList<Lecture>selectLectureList(int m_no);
 	
+	// 휴가 상세보기
+	Vacation selectVacation(int v_no);
+	
+	// 휴가 수정하기폼
+	 Vacation updateVacationForm(int v_no);
+	
 }

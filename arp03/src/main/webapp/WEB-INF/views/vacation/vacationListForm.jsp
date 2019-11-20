@@ -34,7 +34,7 @@
 		<td>${ v.v_no }</td>
 		<td>${ v.lec_no }</td>
 		<td>${ v.title }</td>
-		<td><a href="vdtail.me?v_no=${ v_no }">${ v.reason }</a></td>
+		<td><a href="vDetail.me?v_no=${ v.v_no }">${ v.reason }</a></td>
 		<td class="startDate">${v.start_date }</td>
 			<td class="endDate"></td>
 		<td class="dateCount"> ${v.date_count }일</td>

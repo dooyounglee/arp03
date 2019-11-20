@@ -33,6 +33,14 @@ public class VacationDao {
 	}
 
 
+	public Vacation selectVacation(int v_no) {
+		
+		return sqlSession.selectOne("vacationMapper.selectVacation" ,v_no);
+	}
+
+
+	
+
 
 
 

@@ -20,7 +20,14 @@ values(seq_vacation.nextval,
 </insert>
 
 <select id="selectList" resultType="Vacation">
-select *from vacation
+select v.* ,title
+from vacation v , lecture l
+where v.lec_no = l.lec_no
+<!--select b.*, m.name 
+		from board b, member m
+		where b.ca_no=2 and b.status='Y' and b.m_no=m.m_no
+		order by b_no desc  -->
+
 </select>
 
 <select id="selectLecture" resultType="Lecture">
@@ -28,11 +35,12 @@ select * from lecture
 where m_no=#{m_no}
 </select>
 
-<select id="selectTitle" resultType="lecture">
-SELECT title
-FROM member
-JOIN lecture USING(m_no)
-WHERE lec_no=#{lec_no}
+<select id="selectVacation" resultType="Vacation">
+select v.*, m.name
+from vacation v , member m
+where v_no=#{v_no} and v.m_no = m.m_no
 
 </select>
+
+
 </mapper>
