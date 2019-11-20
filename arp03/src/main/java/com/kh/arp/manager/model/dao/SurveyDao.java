@@ -15,7 +15,7 @@ public class SurveyDao {
 	private SqlSession sqlSession;
 	public int insertsurvey() {
 		
-		return sqlSession.insert("surveyMapper.insertSurvey");
+		return sqlSession.insert("managerMapper.insertSurvey");
 	}
 
 }
