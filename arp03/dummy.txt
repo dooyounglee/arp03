@@ -17,8 +17,9 @@ DROP TABLE BReply;
 DROP TABLE Board;
 DROP TABLE BCategory;
 drop table auth;
-DROP TABLE member;
 DROP TABLE survey;
+DROP TABLE member;
+
     
 
 
