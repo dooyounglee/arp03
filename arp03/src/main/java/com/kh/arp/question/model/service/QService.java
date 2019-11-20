@@ -61,6 +61,12 @@ public interface QService {
 
 	// 선생님답변의 댓글
 	int qReplyInsert(QReply q);
+	
+	// 댓글 조회해오기
+	ArrayList<QReply> selectQReply(int q_no);
+
+	// 댓글 갯수 조회해오기
+	int qReplyListCount(int q_no);
 
 	/*
 	 * // QFile 검색 int selectQ(QFile qf);

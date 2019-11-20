@@ -113,6 +113,16 @@ public class QServiceImple implements QService{
 		return qDao.qReplyInsert(q);
 	}
 
+	@Override
+	public ArrayList<QReply> selectQReply(int q_no) {
+		return qDao.selectQReply(q_no);
+	}
+
+	@Override
+	public int qReplyListCount(int q_no) {
+		return qDao.qReplyListCount(q_no);
+	}
+
 	/*
 	 * @Override public int selectQ(QFile qf) { return qDao.selectQ(qf); }
 	 */
