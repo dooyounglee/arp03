@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- Sidebar scroll-->
 <div class="scroll-sidebar">
     <!-- Sidebar navigation-->
@@ -7,44 +8,43 @@
         <ul id="sidebarnav">
             <li class="nav-small-cap">PERSONAL</li>
             <li>
-                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
+                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">로그인 </span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="index.html">Dashboard 1</a></li>
-                    <li><a href="index2.html">Dashboard 2</a></li>
-                    <li><a href="index3.html">Dashboard 3</a></li>
+                    <li><a href="login.me">로그인</a></li>
+                    <li><a href="find.me">회원가입</a></li>
+                    <li><a href="logout.me">로그아웃</a></li>
                     <li><a href="index4.html">Dashboard 4</a></li>
                     <li><a href="index5.html">Dashboard 5</a></li>
                     <li><a href="index6.html">Dashboard 6</a></li>
                 </ul>
             </li>
             <li>
-                <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Apps</span></a>
+                <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">학생</span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="app-calendar.html">Calendar</a></li>
-                    <li>
-                        <a class="has-arrow" href="#" aria-expanded="false">Inbox</a>
-                        <ul aria-expanded="false" class="collapse">
-                            <li><a href="app-email.html">Mailbox</a></li>
-                            <li><a href="app-email-detail.html">Mailbox Detail</a></li>
-                            <li><a href="app-compose.html">Compose Mail</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="app-chat.html">Chat app</a></li>
-                    <li><a href="app-ticket.html">Support Ticket</a></li>
-                    <li><a href="app-contact.html">Contact / Employee</a></li>
-                    <li><a href="app-contact2.html">Contact Grid</a></li>
-                    <li><a href="app-contact-detail.html">Contact Detail</a></li>
+                    <li><a href="lectureList.ad">내 수강목록</a></li>
+                    <li><a href="blist.do">자유 게시판</a></li>
+                    <li><a href="mylist.qna">내 문의</a></li>
+                    <li><a href="myInfo.me">내 정보</a></li>
+                    <li><a href="myLlist.me">내 휴가</a></li>
                 </ul>
             </li>
             <li class="three-column">
-                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Ui Elements</span></a>
+                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">선생님</span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="ui-tooltip-stylish.html">Tooltip stylish</a></li>
-                    <li><a href="ui-sweetalert.html">Sweet Alert</a></li>
-                    <li><a href="ui-cards.html">Cards</a></li>
-                    <li><a href="ui-user-card.html">User Cards</a></li>
-                    <li><a href="ui-buttons.html">Buttons</a></li>
-                    <li><a href="ui-modals.html">Modals</a></li>
+                    <li><a href="lectureList.ad">내 수업목록</a></li>
+                    <li><a href="blist.do">자유 게시판</a></li>
+                    <li><a href="tblist.do">선생님 게시판</a></li>
+                    
+                    <c:if test="${ mem.typee eq 't' }">
+						<a href="tblist.do">선생님 게시판</a>
+					</c:if>
+					<c:if test="${ mem.typee ne 't' }">
+						<li><a onclick="no();">선생님 게시판</a></li>
+					</c:if>
+                    
+                    <li><a href="mylist.qna">내 문의</a></li>
+                    <li><a href="myInfo.me">내 정보</a></li>
+                    <li><a href="sVlist.te">학생휴가 관리</a></li>
                     <li><a href="ui-tab.html">Tab</a></li>
                     <li><a href="ui-tooltip-popover.html">Tooltip &amp; Popover</a></li>
                     <li><a href="ui-notification.html">Notification</a></li>
