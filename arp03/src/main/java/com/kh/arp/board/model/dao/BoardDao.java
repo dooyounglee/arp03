@@ -70,5 +70,9 @@ public class BoardDao {
 	public int replyListCount(int b_no) {
 		return sqlSession.selectOne("boardMapper.replyListCount", b_no);
 	}
+
+	public int updateBoard(Board b) {
+		return sqlSession.update("boardMapper.updateBoard", b);
+	}
 	
 }

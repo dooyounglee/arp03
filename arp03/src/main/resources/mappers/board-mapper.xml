@@ -45,4 +45,8 @@
 		select count(*) from breply where b_no = #{b_no} and (STATUS = 'Y' OR RE_COUNT >= 1)
 	</select>
 	
+	<update id="updateBoard">
+		update board set title=#{title}, content=#{content}, update_date=sysdate where b_no=#{b_no}
+	</update>
+	
 </mapper>
