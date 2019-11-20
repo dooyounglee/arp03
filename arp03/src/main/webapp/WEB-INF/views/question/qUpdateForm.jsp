@@ -84,6 +84,29 @@
 			});
 		});
 		
+		
+		function sendFile(file, el){
+			var form_data = new FormData();
+			form_data.append("file", file);
+			
+			$.ajax({
+				data: form_data,
+				type: "POST",
+				url: "qImgUpload.aj",
+				cache: false,
+				contentType: false,
+				enctype: "multipart/form-data",
+				processData: false,
+				success: function(img_name){
+					console.log("ajax통신 성공")
+					$(el).summernote("editor.insertImage", img_name);
+				}, error: function(){
+					console.log("ajax통신 실패");
+				}
+			});
+			
+		}
+		
 	
 		$("#fileDelete").click(function(){
 			var changename = $("input[name=changename]").val();

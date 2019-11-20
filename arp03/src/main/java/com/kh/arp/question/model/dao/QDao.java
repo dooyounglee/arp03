@@ -88,6 +88,10 @@ public class QDao {
 		return sqlSession.insert("questionMapper.qNewInsertFile", qf);
 	}
 
+	public int qTCInsertReply(Question q) {
+		return sqlSession.update("questionMapper.qTCInsertReply", q);
+	}
+
 	/*
 	 * public int selectQ(QFile qf) { return
 	 * sqlSession.selectOne("questionMapper.selectQ", qf); }

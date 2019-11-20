@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.arp.board.model.dao.TBoardDao;
+import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.board.model.vo.BoardFile;
 import com.kh.arp.common.PageInfo;
@@ -59,13 +60,13 @@ public class TBoardServiceImpl implements TBoardService{
 	}
 
 	@Override
-	public BoardFile detailTBoardFile(int b_no) {
+	public ArrayList<BoardFile> detailTBoardFile(int b_no) {
 	
 		return tbDao.detailTBoardFile(b_no);
 	}
 
 	@Override
-	public BoardFile updateTBoardFile(int b_no) {
+	public ArrayList<BoardFile> updateTBoardFile(int b_no) {
 		return tbDao.updateTBoardFile(b_no);
 	}
 
@@ -100,7 +101,7 @@ public class TBoardServiceImpl implements TBoardService{
 	}
 
 	@Override
-	public String deleteBoardFile(int b_no) {
+	public ArrayList<BoardFile> deleteBoardFile(int b_no) {
 
 		return tbDao.deleteBoardFile(b_no);
 	}
@@ -108,11 +109,29 @@ public class TBoardServiceImpl implements TBoardService{
 	public int updateFileDelete(String rename) {
 		return tbDao.updateFileDelete(rename);
 	}
-
+ 
 	@Override
 	public int updateFileStatus(int b_no) {
 		
 		return tbDao.updateFileStatus(b_no);
+	}
+
+	@Override
+	public int insertReplyT(BReply r) {
+		
+		return tbDao.insertReplyT(r);
+	}
+
+	@Override
+	public ArrayList<BReply> selectReplyList(int b_no) {
+
+		return tbDao.selectReplyList(b_no);
+	}
+
+	@Override
+	public int tbReplyUpdate(BReply r) {
+
+		return tbDao.tbReplyUpdate(r);
 	}
 
 }

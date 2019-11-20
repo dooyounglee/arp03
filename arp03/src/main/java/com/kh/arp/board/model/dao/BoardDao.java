@@ -38,8 +38,10 @@ public class BoardDao {
 		return sqlSession.selectOne("boardMapper.selectBoard", b_no);
 	}
 
-	public ArrayList<BReply> selectReplyList(int b_no) {
-		return (ArrayList) sqlSession.selectList("boardMapper.selectReplyList", b_no);
+	public ArrayList<BReply> selectReplyList(int b_no, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList) sqlSession.selectList("boardMapper.selectReplyList", b_no, rowBounds);
 	}
 
 	public int insertReply(BReply r) {
@@ -63,6 +65,10 @@ public class BoardDao {
 		}
 		
 		return rst;
+	}
+
+	public int replyListCount(int b_no) {
+		return sqlSession.selectOne("boardMapper.replyListCount", b_no);
 	}
 	
 }

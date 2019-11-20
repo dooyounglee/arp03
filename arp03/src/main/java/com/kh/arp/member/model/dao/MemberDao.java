@@ -12,6 +12,7 @@ import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.declaree.model.vo.Declaree;
 import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Lecture;
+import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.qna.model.vo.Qna;
@@ -139,6 +140,22 @@ public class MemberDao {
 
 	public List<Lecture> getLectureListByTeacher(int m_no) {
 		return sqlSession.selectList("memberMapper.getLectureListByTeacher",m_no);
+	}
+
+	public List<Member> getIngStudentList(int lec_no) {
+		return sqlSession.selectList("memberMapper.getIngStudentList",lec_no);
+	}
+
+	public List<Member> getOtherStudentList(int lec_no) {
+		return sqlSession.selectList("memberMapper.getOtherStudentList",lec_no);
+	}
+
+	public int insertStudentToIng(MyClass mc) {
+		return sqlSession.insert("memberMapper.insertStudentToIng",mc);
+	}
+
+	public int insertStudentToOther(MyClass mc) {
+		return sqlSession.delete("memberMapper.insertStudentToOther",mc);
 	}
 
 }

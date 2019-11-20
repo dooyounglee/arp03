@@ -12,6 +12,7 @@ import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.declaree.model.vo.Declaree;
 import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Lecture;
+import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.member.model.dao.MemberDao;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Member;
@@ -161,6 +162,26 @@ public class MemberServiceImple implements MemberService {
 	@Override
 	public List<Lecture> getLectureListByTeacher(int m_no) {
 		return md.getLectureListByTeacher(m_no);
+	}
+
+	@Override
+	public List<Member> getIngStudentList(int lec_no) {
+		return md.getIngStudentList(lec_no);
+	}
+
+	@Override
+	public List<Member> getOtherStudentList(int lec_no) {
+		return md.getOtherStudentList(lec_no);
+	}
+
+	@Override
+	public int insertStudentToIng(MyClass mc) {
+		return md.insertStudentToIng(mc);
+	}
+
+	@Override
+	public int insertStudentToOther(MyClass mc) {
+		return md.insertStudentToOther(mc);
 	}
 
 }

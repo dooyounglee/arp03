@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.btns{display: inline-block;}
+</style>
 </head>
 <body>
 	
@@ -185,23 +188,24 @@
 			
 		
 		});
-		
-		function getReplyList(){
+		$count = 0;
+		function getReplyList(currentPage){
 			$clicked = 0;
 			$.ajax({
 				url:"replyList.do",
-				data:{b_no:${b.b_no}},
+				data:{b_no:${b.b_no}, currentPage:currentPage},
 				dataType:"json",
 				success:function(data){
-					//console.log(data);
+					console.log(data.list);
+					console.log(data.pi);
 					$tbody = $("#rtb tbody");
 					$tbody.html("");
-					
+					$pageinfo = data.pi;
 					//$("#rCount").text("댓글(" + data.length + ")");
 					$rcount = 0;
 					
-					if(data.length > 0){ // 댓글이 존재할 경우
-						$.each(data, function(index, value) { // value == data[index]
+					if(data.list.length > 0){ // 댓글이 존재할 경우
+						$.each(data.list, function(index, value) { // value == data[index]
 						
 						$tr = $("<tr>");
 						$td = $("<td>");
@@ -227,7 +231,7 @@
 							//$rnoTd = $("<td>").text("");
 							$contentTd = $("<td colspan='2'>").text("사용자가 삭제한 댓글입니다.");
 							$dateTd = $("<td>").text("");
-							$rcount = $rcount + 1;
+							$rcount++;
 						}
 						
 						$tr.append($contentTd);
@@ -247,8 +251,11 @@
 						$tbody.append($tr);
 						
 						});
-					
-						page();
+					if($count == 0) {
+						page(data.pi);
+					} 
+						$count++;
+						console.log($count);
 					} else {
 						$tr = $("<tr>");
 						
@@ -257,8 +264,18 @@
 						
 						$tbody.append($tr);
 					}
-					//console.log($rcount);
-					$("#rCount").text("댓글(" + (data.length - $rcount) + ")");
+					//console.log((data.length - $rcount));
+					$("#rCount").text("댓글(" + (data.pi.listCount - $rcount) + ")");
+					if($pageinfo.currentPage == 1) {
+						$("#lt").attr("disabled", true);
+					} else {
+						$("#lt").attr("disabled", false);
+					}
+					if($pageinfo.currentPage == $pageinfo.maxPage) {
+						$("#rt").attr("disabled", true);
+					} else {
+						$("#rt").attr("disabled", false);
+					}
 					
 				},
 				error:function(){
@@ -267,101 +284,54 @@
 			});
 		}
 		
-		function page(){ 
-				var reSortColors = function($table) {
-				  $('tbody tr:odd td', $table).removeClass('even').removeClass('listtd').addClass('odd');
-				  $('tbody tr:even td', $table).removeClass('odd').removeClass('listtd').addClass('even');
-				 };
-				 $('table.paginated').each(function() {
-				  var pagesu = 10;  //페이지 번호 갯수
-				  var currentPage = 0;
-				  var numPerPage = 10;  //목록의 수
-				  var $table = $(this);    
-				  
-				  //length로 원래 리스트의 전체길이구함
-				  var numRows = $table.find('tbody tr').length;
-				  //Math.ceil를 이용하여 반올림
-				  var numPages = Math.ceil(numRows / numPerPage);
-				  //리스트가 없으면 종료
-				  if (numPages==0) return;
-				  //pager라는 클래스의 div엘리먼트 작성
-				  var $pager = $('<td align="center" id="remo" colspan="4"><div class="pager"></div></td>');
-				  
-				  var nowp = currentPage;
-				  var endp = nowp+10;
-				  
-				  //페이지를 클릭하면 다시 셋팅
-				  $table.on('repaginate', function() {
-				  //기본적으로 모두 감춘다, 현재페이지+1 곱하기 현재페이지까지 보여준다
-				  
-				   $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
-				   $("#remo").html("");
-				   
-				   if (numPages > 1) {     // 한페이지 이상이면
-				    if (currentPage < 5 && numPages-currentPage >= 5) {   // 현재 5p 이하이면
-				     nowp = 0;     // 1부터 
-				     endp = pagesu;    // 10까지
-				    }else{
-				     nowp = currentPage -5;  // 6넘어가면 2부터 찍고
-				     endp = nowp+pagesu;   // 10까지
-				     pi = 1;
-				    }
-				    
-				    if (numPages < endp) {   // 10페이지가 안되면
-				     endp = numPages;   // 마지막페이지를 갯수 만큼
-				     nowp = numPages-pagesu;  // 시작페이지를   갯수 -10
-				    }
-				    if (nowp < 1) {     // 시작이 음수 or 0 이면
-				     nowp = 0;     // 1페이지부터 시작
-				    }
-				   }else{       // 한페이지 이하이면
-				    nowp = 0;      // 한번만 페이징 생성
-				    endp = numPages;
-				   }
-				   // [처음]
-				   $('<br /><span class="page-number" cursor: "pointer">[처음]</span>').on('click', {newPage: page},function(event) {
-				          currentPage = 0;   
-				          $table.trigger('repaginate');  
-				          $($(".page-number")[2]).addClass('active').siblings().removeClass('active');
-				      }).appendTo($pager).addClass('clickable');
-				    // [이전]
-				      $('<span class="page-number" cursor: "pointer">&nbsp;&nbsp;&nbsp;[이전]&nbsp;</span>').on('click', {newPage: page},function(event) {
-				          if(currentPage == 0) return; 
-				          currentPage = currentPage-1;
-				    $table.trigger('repaginate'); 
-				    $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
-				   }).appendTo($pager).addClass('clickable');
-				    // [1,2,3,4,5,6,7,8]
-				   for (var page = nowp ; page < endp; page++) {
-				    $('<span class="page-number" cursor: "pointer" style="margin-left: 8px;"></span>').text(page + 1).bind('click', {newPage: page}, function(event) {
-				     currentPage = event.data['newPage'];
-				     $table.trigger('repaginate');
-				     $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
-				     }).appendTo($pager).addClass('clickable');
-				   } 
-				    // [다음]
-				      $('<span class="page-number" cursor: "pointer">&nbsp;&nbsp;&nbsp;[다음]&nbsp;</span>').on('click', {newPage: page},function(event) {
-				    if(currentPage == numPages-1) return;
-				        currentPage = currentPage+1;
-				    $table.trigger('repaginate'); 
-				     $($(".page-number")[(currentPage-nowp)+2]).addClass('active').siblings().removeClass('active');
-				   }).appendTo($pager).addClass('clickable');
-				    // [끝]
-				   $('<span class="page-number" cursor: "pointer">&nbsp;[끝]</span>').on('click', {newPage: page},function(event) {
-				           currentPage = numPages-1;
-				           $table.trigger('repaginate');
-				           $($(".page-number")[endp-nowp+1]).addClass('active').siblings().removeClass('active');
-				   }).appendTo($pager).addClass('clickable');
-				     
-				     $($(".page-number")[2]).addClass('active');
-				reSortColors($table);
-				  });
-				   $pager.insertAfter($table).find('span.page-number:first').next().next().addClass('active');   
-				   $pager.appendTo($table);
-				   $table.trigger('repaginate');
-				 });
-
+		function page(e){ 
+			//$("#rtb> :last").append("<tr><td colspan='4'>헤헤</td></tr>")
+			var $lastRow = $("#rtb:last");
+			var $leftbtn = $("<div class='leftbtn btns'>");
+			var $ltlt = $("<button id='ltlt'>").text("<<");
+			var $lt = $("<button id='lt'>").text("<");
+			$leftbtn.append($ltlt).append($lt);
+			$lastRow.append("<tr><td colspan='4'>");
+			console.log($lastRow);
+			$lastRow.append($leftbtn);
+			var $rightbtn = $("<div class='rightbtn btns'>");
+			var $gt = $("<button id='rt'>").text(">");
+			var $gtgt = $("<button id='rtrt'>").text(">>");
+			$rightbtn.append($gt).append($gtgt);
+			for (var i = e.startPage; i <= e.endPage; i++) {
+					var btn = $("<button class='btns numbtn'>").text(i);
+					$lastRow.append(btn);
+				}
+				//$lastRow.append(btn);
+			
+			$lastRow.append($rightbtn);
+			$lastRow.append("</td></tr>");
+			//$(".tagactive").attr("disabled", true);
+			
 		}
+		
+		$(document).on("click", "#rtrt", function(){
+			getReplyList($pageinfo.endPage);
+			//console.log($pageinfo.endPage);
+		});
+		
+		$(document).on("click", "#ltlt", function(){
+			getReplyList(1);
+		});
+		
+		$(document).on("click", "#lt", function(){
+			getReplyList(($pageinfo.currentPage) - 1);
+		});
+		
+		$(document).on("click", "#rt", function(){
+			getReplyList(($pageinfo.currentPage) + 1);
+		});
+		
+		$(document).on("click", ".numbtn", function(){
+			//console.log($(this).text());
+			getReplyList($(this).text());
+		});
+		
 	</script>
 	
 	<jsp:include page="../include/footer.jsp"/>

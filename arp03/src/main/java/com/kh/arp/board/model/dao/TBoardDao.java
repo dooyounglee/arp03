@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.board.model.vo.BoardFile;
 import com.kh.arp.common.PageInfo;
@@ -50,12 +51,12 @@ public class TBoardDao {
 		return sqlSession.insert("tboardMapper.insertTBoardFile",bf);
 	}
 	
-	public BoardFile detailTBoardFile(int b_no) {
-		return sqlSession.selectOne("tboardMapper.detailTBoardFile",b_no);
+	public ArrayList<BoardFile> detailTBoardFile(int b_no) {
+		return (ArrayList)sqlSession.selectList("tboardMapper.detailTBoardFile",b_no);
 	}
 	
-	public BoardFile updateTBoardFile(int b_no) {
-		return sqlSession.selectOne("tboardMapper.detailTBoardFile",b_no);
+	public ArrayList<BoardFile> updateTBoardFile(int b_no) {
+		return (ArrayList)sqlSession.selectList("tboardMapper.detailTBoardFile",b_no);
 	}
 	
 	public int updateFile(BoardFile bf) {
@@ -77,13 +78,13 @@ public class TBoardDao {
 		return sqlSession.update("tboardMapper.selectRcount",b_no);
 		
 	}
-	
+	 
 	public int updateStatus(int b_no) {
 		return sqlSession.update("tboardMapper.updateStatus",b_no);
 	}
 	
-	public String deleteBoardFile(int b_no) {
-		return sqlSession.selectOne("tboardMapper.deleteBoardFile",b_no);
+	public ArrayList<BoardFile> deleteBoardFile(int b_no) {
+		return (ArrayList)sqlSession.selectList("tboardMapper.deleteBoardFile",b_no);
 	}
 	
 	public int updateFileDelete(String rename) {
@@ -92,5 +93,17 @@ public class TBoardDao {
 	
 	public int updateFileStatus(int b_no) {
 		return sqlSession.update("tboardMapper.updateFileStatus",b_no);
+	}
+	
+	public int insertReplyT(BReply r) {
+		return sqlSession.insert("tboardMapper.insertReplyT",r);
+	}
+	
+	public ArrayList<BReply> selectReplyList(int b_no){
+		return (ArrayList)sqlSession.selectList("tboardMapper.selectReplyList",b_no);
+	}
+	
+	public int tbReplyUpdate(BReply r) {
+		return sqlSession.update("tboardMapper.tbReplyUpdate",r);
 	}
 }

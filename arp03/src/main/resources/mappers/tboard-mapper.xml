@@ -96,8 +96,8 @@
 		where b_no=#{b_no}
 	</update>
 	
-	<select id="deleteBoardFile" resultType="String">
-		select rename_filename
+	<select id="deleteBoardFile" resultType="BoardFile">
+		select *
 		from boardfile
 		where b_no=#{b_no}
 	</select>
@@ -110,6 +110,24 @@
 		update board
 		set filestatus='N'
 		where b_no=#{b_no}
+	</update>
+	
+	<insert id="insertReplyT">
+		insert 
+		into BReply
+		values(seq_breply.nextval,#{b_no},#{m_no},
+		#{content},sysdate,sysdate,'Y',1,seq_breply.currval,0)
+	</insert>
+	 
+	<select id="selectReplyList" resultType="BReply">
+		select * 
+		from breply 
+		where b_no=#{b_no} and status='Y'
+		order by regdate desc
+	</select>
+	
+	<update id="tbReplyUpdate">
+		update breply set content=#{content} where r_no=#{r_no} and b_no=#{b_no}
 	</update>
 
 

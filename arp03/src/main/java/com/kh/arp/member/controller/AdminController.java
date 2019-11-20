@@ -21,6 +21,7 @@ import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.declaree.model.vo.Declaree;
 import com.kh.arp.lecture.model.vo.Lecture;
+import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.member.model.service.MemberService;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Member;
@@ -138,6 +139,36 @@ public class AdminController {
 		List<Lecture> list=ms.getLectureListByTeacher(m_no);
 		Gson gson = new GsonBuilder().create();
 		return gson.toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="inglist.lec", produces="application/json; charset=UTF-8")
+	public String getIngStudentList(int lec_no)  {
+		List<Member> list=ms.getIngStudentList(lec_no);
+		Gson gson = new GsonBuilder().create();
+		return gson.toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="otherlist.lec", produces="application/json; charset=UTF-8")
+	public String getOtherStudentList(int lec_no)  {
+		List<Member> list=ms.getOtherStudentList(lec_no);
+		Gson gson = new GsonBuilder().create();
+		return gson.toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping("insertStudentToIng.lec")
+	public String insertStudentToIng(MyClass mc)  {
+		int result=ms.insertStudentToIng(mc);
+		return "success";
+	}
+	
+	@ResponseBody
+	@RequestMapping("insertStudentToOther.lec")
+	public String insertStudentToOther(MyClass mc)  {
+		int result=ms.insertStudentToOther(mc);
+		return "success";
 	}
 	
 	@PostMapping("/addStudentToLecture.ad")
