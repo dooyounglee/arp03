@@ -21,6 +21,7 @@
 		<typeAlias type="com.kh.arp.lecture.model.vo.MyClass" alias="MyClass"/>
 		<typeAlias type="com.kh.arp.vacation.model.vo.Vacation" alias="Vacation"/>
 		<typeAlias type="com.kh.arp.question.model.vo.QFile" alias="QFile"/>
+		<typeAlias type="com.kh.arp.manager.model.vo.Survey" alias="Survey"/>
 	</typeAliases>
 	
 	<mappers>
@@ -35,5 +36,6 @@
 		<mapper resource="/mappers/faq-mapper.xml"/>
 		<mapper resource="/mappers/qna-mapper.xml"/>
 		<mapper resource="/mappers/vacation-mapper.xml"/>
+		<mapper resource="/mappers/manager-mapper.xml"/>
 	</mappers>
 </configuration>
