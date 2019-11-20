@@ -11,7 +11,7 @@ public interface noticeService {
 	int getListCount();
 	
 	// 현재 페이지에 보여질 공지사항 리스트 조회
-	ArrayList<Notice> selectList();
+	ArrayList<Notice> selectList(PageInfo pi);
 	
 	// 공지사항 작성용 
 	int insertNotice(Notice n);

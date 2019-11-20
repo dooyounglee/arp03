@@ -19,7 +19,7 @@ DROP TABLE BCategory;
 drop table auth;
 DROP TABLE member;
 DROP TABLE survey;
-
+    
 
 
 CREATE TABLE member (
@@ -97,7 +97,7 @@ CREATE TABLE vacation (
 	date_count	Number		NOT NULL,
 	application_date	date	NOT NULL,
 	tstatus	varchar2(100)	DEFAULT 'N'	NOT NULL,
-	astatus  	varchar2(100)	DEFAULT 'N' 	NOT NULL,
+	mstatus  	varchar2(100)	DEFAULT 'N' 	NOT NULL,
 	status	varchar2(100)	DEFAULT 'N'	NOT NULL
 );
 
@@ -211,8 +211,8 @@ CREATE TABLE  BReply  (
 CREATE TABLE  BoardFile  (
 	 a_no 	number		PRIMARY KEY,
 	 b_no 	number		REFERENCES BOARD,
-	 original_filename 	varchar(30)		NOT NULL,
-	 rename_filename 	varchar(30)		NOT NULL
+	 original_filename 	varchar(100)		NOT NULL,
+	 rename_filename 	varchar(100)		NOT NULL
 );
 
 
@@ -333,7 +333,11 @@ insert into member values(seq_member.nextval,'t','t17','1','name37','email37','p
 insert into member values(seq_member.nextval,'t','t18','1','name38','email38','phone38',sysdate,sysdate,sysdate,default,default);
 insert into member values(seq_member.nextval,'t','t19','1','name39','email39','phone39',sysdate,sysdate,sysdate,default,default);
 insert into member values(seq_member.nextval,'t','t20','1','name40','email40','phone40',sysdate,sysdate,sysdate,default,default);
-
+insert into member values(seq_member.nextval,'m','m1','1','name41','email20','phone20',sysdate,sysdate,sysdate,default,default);
+insert into member values(seq_member.nextval,'m','m2','1','name42','email20','phone20',sysdate,sysdate,sysdate,default,default);
+insert into member values(seq_member.nextval,'m','m3','1','name43','email20','phone20',sysdate,sysdate,sysdate,default,default);
+insert into member values(seq_member.nextval,'m','m4','1','name44','email20','phone20',sysdate,sysdate,sysdate,default,default);
+insert into member values(seq_member.nextval,'m','m5','1','name45','email20','phone20',sysdate,sysdate,sysdate,default,default);
 
 insert into lecture values(seq_lecture.nextval,21,'강의명21',sysdate,sysdate,2,'Y','내용1',null,30,0,6,'월화수','여기1');
 insert into lecture values(seq_lecture.nextval,21,'강의명21',sysdate,sysdate,2,'Y','내용2',null,30,0,6,'월화수','여기2');

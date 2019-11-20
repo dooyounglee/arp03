@@ -6,16 +6,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.arp.lecture.model.vo.Lecture;
+import com.kh.arp.member.model.vo.Member;
 
 @Repository
 public class SurveyDao {
 
 	@Autowired
 	private SqlSession sqlSession;
-	public int insertsurvey(int lec_no, HttpSession session) {
+	public int insertsurvey() {
 		
-		return sqlSession.insert("surveyMapper.insertSurvey");
+		return sqlSession.insert("managerMapper.insertSurvey");
 	}
 
 }

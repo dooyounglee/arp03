@@ -9,12 +9,5 @@
 </head>
 <body>
 
-	<jsp:include page="../include/header.jsp"/>
-	<c:forEach var="d" items="${ list}">
-	<a href="survey.ma?lec_no=${d.lec_no }">${d}</a>
-	<br>
-	</c:forEach>
-
-	<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>
