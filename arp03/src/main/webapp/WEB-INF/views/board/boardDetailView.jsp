@@ -33,8 +33,8 @@
 			<td colspan="2" align="center">
 				<button type="button" onclick="">신고</button>
 				<c:if test="${ mem.m_no eq b.m_no }">
-					<button type="button" onclick="location.href='bupdateView.do?id=${b.b_no}';">수정</button>
-					<button type="button" onclick="location.href='bdelete.do?id=${b.b_no}';">삭제</button>
+					<button type="button" onclick="location.href='bupdateView.do?b_no=${b.b_no}';">수정</button>
+					<button type="button" onclick="location.href='bdelete.do?b_no=${b.b_no}';">삭제</button>
 				</c:if>
 			</td>
 		</tr>
@@ -63,6 +63,9 @@
 	</table>
 	
 	<script>
+	
+	
+	
 		$(function(){
 			getReplyList();
 			

@@ -73,10 +73,10 @@
             <li class="nav-devider"></li>
             <li class="nav-small-cap">FORMS, TABLE &amp; WIDGETS</li>
             <li class="two-column">
-                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Forms</span></a>
+                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">매니저</span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="form-basic.html">Basic Forms</a></li>
-                    <li><a href="form-layout.html">Form Layouts</a></li>
+                    <li><a href="studentconsulting.ma">학생상담</a></li>
+                    <li><a href="lectureList.ad">설문조사</a></li>
                     <li><a href="form-addons.html">Form Addons</a></li>
                     <li><a href="form-material.html">Form Material</a></li>
                     <li><a href="form-float-input.html">Floating Lable</a></li>
@@ -95,33 +95,38 @@
                     <li><a href="form-tinymce.html">Tinymce Editor</a></li>
                 </ul>
             </li>
+            
+            <c:if test="${!empty lec }">
             <li>
-                <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Tables</span></a>
+                <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">수강페이지</span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="table-basic.html">Basic Tables</a></li>
-                    <li><a href="table-layout.html">Table Layouts</a></li>
-                    <li><a href="table-data-table.html">Data Tables</a></li>
-                    <li><a href="table-footable.html">Footable</a></li>
-                    <li><a href="table-jsgrid.html">Js Grid Table</a></li>
+                    <li><a href="main.lec">메인</a></li>
+                    <li><a href="info.lec">강의계획</a></li>
+                    <li><a href="question.qu">질문게시판</a></li>
+                    <li><a href="">내 출석</a></li>
+                    <li><a href="list.sc">내 점수</a></li>
+                    <li><a href="list.ex">시험 관리</a></li>
                     <li><a href="table-responsive.html">Responsive Table</a></li>
                     <li><a href="table-bootstrap.html">Bootstrap Tables</a></li>
                     <li><a href="table-editable-table.html">Editable Table</a></li>
                 </ul>
             </li>
+            </c:if>
+            
             <li class="nav-devider"></li>
             <li class="nav-small-cap">EXTRA COMPONENTS</li>
             <li class="two-column">
-                <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Pages</span></a>
+                <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">관리자</span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="starter-kit.html">Starter Kit</a></li>
-                    <li><a href="pages-profile.html">Profile page</a></li>
-                    <li><a href="pages-animation.html">Animation</a></li>
-                    <li><a href="pages-fix-innersidebar.html">Sticky Left sidebar</a></li>
-                    <li><a href="pages-fix-inner-right-sidebar.html">Sticky Right sidebar</a></li>
-                    <li><a href="pages-invoice.html">Invoice</a></li>
-                    <li><a href="pages-treeview.html">Treeview</a></li>
-                    <li><a href="pages-utility-classes.html">Helper Classes</a></li>
-                    <li><a href="pages-search-result.html">Search result</a></li>
+                    <li><a href="lectureList.ad">강좌관리</a></li>
+                    <li><a href="boardList.ad">게시글 관리</a></li>
+                    <li><a href="replyList.ad">댓글 관리</a></li>
+                    <li><a href="qnaList.ad">문의관리</a></li>
+                    <li><a href="declareList.ad">신고관리</a></li>
+                    <li><a href="memberList.ad">회원관리</a></li>
+                    <li><a href="vationList.ad">휴가관리</a></li>
+                    <li><a href="nlist.ad">공지사항</a></li>
+                    <li><a href="flist.ad">faq</a></li>
                     <li><a href="pages-scroll.html">Scrollbar</a></li>
                     <li><a href="pages-pricing.html">Pricing</a></li>
                     <li><a href="pages-lightbox-popup.html">Lighbox popup</a></li>
@@ -216,3 +221,10 @@
     <!-- End Sidebar navigation -->
 </div>
 <!-- End Sidebar scroll-->
+
+<script>
+	function no(){
+		alert("선생님만 이용가능한 게시판입니다.");
+	
+	}
+</script>
