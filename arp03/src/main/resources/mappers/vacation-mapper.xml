@@ -23,10 +23,12 @@ values(seq_vacation.nextval,
 select v.* ,title
 from vacation v , lecture l
 where v.lec_no = l.lec_no
+order by l.lec_no desc
 <!--select b.*, m.name 
 		from board b, member m
 		where b.ca_no=2 and b.status='Y' and b.m_no=m.m_no
 		order by b_no desc  -->
+		
 
 </select>
 
@@ -42,5 +44,18 @@ where v_no=#{v_no} and v.m_no = m.m_no
 
 </select>
 
+<update id="updateVacation">
+update vacation
+set reason=#{reason},start_date=#{start_date},date_count=#{date_count},APPLICATION_DATE=sysdate
+where v_no=#{v_no}
+</update>
+
+<delete id="deleteVacation">
+
+delete vacation
+where v_no = #{v_no}
+
+
+</delete>
 
 </mapper>
