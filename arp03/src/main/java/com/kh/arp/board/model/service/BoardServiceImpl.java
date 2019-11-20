@@ -66,4 +66,9 @@ public class BoardServiceImpl implements BoardService {
 		return bDao.replyListCount(b_no);
 	}
 
+	@Override
+	public int updateBoard(Board b) {
+		return bDao.updateBoard(b);
+	}
+
 }
