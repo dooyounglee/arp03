@@ -73,10 +73,10 @@
             <li class="nav-devider"></li>
             <li class="nav-small-cap">FORMS, TABLE &amp; WIDGETS</li>
             <li class="two-column">
-                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Forms</span></a>
+                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">매니저</span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="form-basic.html">Basic Forms</a></li>
-                    <li><a href="form-layout.html">Form Layouts</a></li>
+                    <li><a href="studentconsulting.ma">학생상담</a></li>
+                    <li><a href="lectureList.ad">설문조사</a></li>
                     <li><a href="form-addons.html">Form Addons</a></li>
                     <li><a href="form-material.html">Form Material</a></li>
                     <li><a href="form-float-input.html">Floating Lable</a></li>
