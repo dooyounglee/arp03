@@ -19,7 +19,7 @@ DROP TABLE BCategory;
 drop table auth;
 DROP TABLE member;
 DROP TABLE survey;
-
+    
 
 
 CREATE TABLE member (
@@ -210,8 +210,8 @@ CREATE TABLE  BReply  (
 CREATE TABLE  BoardFile  (
 	 a_no 	number		PRIMARY KEY,
 	 b_no 	number		REFERENCES BOARD,
-	 original_filename 	varchar(30)		NOT NULL,
-	 rename_filename 	varchar(30)		NOT NULL
+	 original_filename 	varchar(100)		NOT NULL,
+	 rename_filename 	varchar(100)		NOT NULL
 );
 
 

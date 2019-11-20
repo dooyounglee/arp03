@@ -34,7 +34,12 @@
 		선생님
 		<a href="lectureList.ad"><del>내 수업목록</del></a>
 		<a href="blist.do">자유 게시판</a>
+	<c:if test="${ mem.typee eq 't' }">
 		<a href="tblist.do">선생님 게시판</a>
+	</c:if>
+	<c:if test="${ mem.typee ne 't' }">
+		<a onclick="no();">선생님 게시판</a>
+	</c:if>
 		<a href="mylist.qna"><del>내 문의</del></a>
 		<a href="myInfo.me"><del>내 정보</del></a>
 		<a href="">학생휴가 관리</a>
@@ -71,4 +76,10 @@
 	
 <hr>
 </body>
+<script>
+	function no(){
+		alert("선생님만 이용가능한 게시판입니다.");
+	
+	}
+</script>
 </html>
