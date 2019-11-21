@@ -26,7 +26,7 @@ ${list }
 			<td>${d.enrolldate }</td>
 			<td>${d.name }</td>
 			<td>${d.title_1 }</td>
-			<td type="hidden" value="${d.su_no }"></td>
+			<td><input id="su_no" type="hidden" value="${d.su_no }"></td>
 		</tr>
 	</c:forEach>
 	</table>
@@ -34,8 +34,8 @@ ${list }
 		$("table td").mouseenter(function(){
 			$(this).parent().children().css({"background":"darkgray","cursor":"pointer"})
 		}).click(function(){
-			var no=$(this).parent().children().eq(4).val();
-			location.href="detailsurvey.ma?su_no="+no;
+			var no=$("#su_no").val();
+			location.href="detailsurvey.ma?su_no=" + no;
 		});
 	</script>
 	<button type="button" onclick="location.href='daysurvey.ma';">설문조사 만들기</button>

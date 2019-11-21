@@ -40,6 +40,10 @@
 	<!-- End of Left-sidebar -->
 
 	<div class="page-wrapper">
+<<<<<<< HEAD
+		
+		
+=======
 	
 	             <div class="row page-titles">
                  
@@ -55,6 +59,7 @@
                     </div>
                 </div>
 
+>>>>>>> branch 'dev' of https://github.com/dooyounglee/arp03.git
 
 		<h1 align="center">게시판 리스트</h1>
 
@@ -140,7 +145,7 @@
 			</div>
 		</div>
 
-
+	
 
 	</div>
 </body>

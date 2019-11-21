@@ -67,6 +67,9 @@ public interface QService {
 
 	// 댓글 갯수 조회해오기
 	int qReplyListCount(int q_no);
+	
+	// 선생님 이름 조회
+	Question selectTeacherName(int lec_no);
 
 	/*
 	 * // QFile 검색 int selectQ(QFile qf);
