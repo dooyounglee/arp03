@@ -2,6 +2,8 @@ package com.kh.arp.manager.model.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.kh.arp.manager.model.vo.Survey;
 
 public interface SurveyService {
@@ -12,5 +14,7 @@ public interface SurveyService {
 	List<Survey> selectsurvey();
 	
 	Survey detailsurvey(int su_no);
+	
+	int updatesurvey(Survey s);
 	
 }

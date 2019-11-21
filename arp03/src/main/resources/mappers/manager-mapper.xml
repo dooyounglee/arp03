@@ -23,7 +23,7 @@
 	
   <insert id="insertSurvey">
   	insert into survey values
-  	(seq_survey.nextval, #{lec_no}, #{m_no}, 
+  	(seq_survey.nextval, #{m_no2}, #{lec_no}, #{m_no}, 
   	#{title}, #{enrolldate},
   	#{q1}, #{a1}, #{q2}, #{a2}, #{q3}, #{a3})
   </insert>

@@ -32,4 +32,9 @@ public class SurveyServiceImpl implements SurveyService {
 	public Survey detailsurvey(int su_no) {
 		return sDao.detailsurvey(su_no);
 	}
+
+	@Override
+	public int updatesurvey(Survey s) {
+		return sDao.updatesurvey(s);
+	}
 }

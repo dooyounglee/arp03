@@ -2,6 +2,8 @@ package com.kh.arp.manager.model.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,5 +25,10 @@ public class SurveyDao {
 	}
 	public Survey detailsurvey(int su_no){
 		return sqlSession.selectOne("managerMapper.detailSurvey", su_no);
+	}
+	
+	public int updatesurvey(Survey s) {
+		System.out.println(sqlSession.update("managerMapper.updateSurvey", s));
+		return sqlSession.update("managerMapper.updateSurvey", s);
 	}
 }
