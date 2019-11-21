@@ -123,6 +123,7 @@ public class QServiceImple implements QService{
 		return qDao.qReplyListCount(q_no);
 	}
 
+
 	/*
 	 * @Override public int selectQ(QFile qf) { return qDao.selectQ(qf); }
 	 */

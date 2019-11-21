@@ -310,14 +310,15 @@ public class QController {
 	 }
 	 
 	 @RequestMapping("qTCInsertReply")
-	 public ModelAndView qTCInsertReplyUpdate(ModelAndView mv, Question q) {
-		
+	 public ModelAndView qTCInsertReplyUpdate(ModelAndView mv, Question q, HttpSession session) {
+		 String name = ((Member)session.getAttribute("mem")).getName();
 		 int q_no = q.getQ_no();
 		// String name = q.getName();
 		 //int lec_no = q.getLec_no();
 		 
 		 q.setQ_no(q.getQ_no()); 
 		 q.setReplycontent(q.getReplycontent());
+		 q.setName(name);
 		 //System.out.println(q);
 		 
 		 int result = qService.qTCInsertReply(q);

@@ -141,9 +141,9 @@
 	<br>
 	
 	<!-- 댓글 -->
-	<c:if test="${ qRListCount ne 0 }">
 	<form id="dat" action="qReplyInsert.re" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="q_no" value="${ q.q_no }">
+	<c:if test="${ qRListCount ne 0 }">
 	<div style="width:623px; margin-left:auto; margin-right:auto; border:1px solid black;">
 		<table border="1" style="width:623px;">
 		<tr>
@@ -169,6 +169,7 @@
 	
 	
 	<br>
+	
 	<table align="center">
 	<tr>
 		<td>
