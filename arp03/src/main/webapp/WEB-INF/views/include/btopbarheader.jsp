@@ -5,7 +5,7 @@
 	    <!-- Logo -->
 	    <!-- ============================================================== -->
 	    <div class="navbar-header">
-	        <a class="navbar-brand" href="index.html">
+	        <a class="navbar-brand" href="/${cp}">
 	            <!-- Logo icon -->
 	            <b>
 	                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -18,9 +18,10 @@
 	            <!-- Logo text -->
 	            <span>
 	             <!-- dark Logo text -->
-	             <img src="/${cp }/resources/material-pro/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+	             <%-- <img src="/${cp }/resources/material-pro/assets/images/logo-text.png" alt="homepage" class="dark-logo" /> --%>
 	             <!-- Light Logo text -->    
-	             <img src="/${cp }/resources/material-pro/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+	             <%-- <img src="/${cp }/resources/material-pro/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a> --%>
+	             <span style="font-weight:bold;color:white;font-size:1em;">KH정보교육원</span>
 	    </div>
 	    <!-- ============================================================== -->
 	    <!-- End Logo -->
