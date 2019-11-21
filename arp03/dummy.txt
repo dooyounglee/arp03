@@ -235,6 +235,7 @@ CREATE TABLE score (
 
 CREATE TABLE survey (
 	su_no	number		PRIMARY KEY,
+	m_no2	Number	REFERENCES MEMBER,
 	lec_no	number		REFERENCES LECTURE,
 	m_no	Number		REFERENCES MEMBER,
 	title	varchar2(4000)		NOT NULL,
@@ -244,7 +245,8 @@ CREATE TABLE survey (
 	q2	varchar2(4000)		NULL,
 	a2	varchar2(4000)		NULL,
 	q3	varchar2(4000)		NULL,
-	a3	varchar2(4000)		NULL
+	a3	varchar2(4000)		NULL,
+	PRIMARY KEY(su_no, m_no2)
 );
 
 DROP SEQUENCE SEQ_Notice; 		-- 공지사항 번호
