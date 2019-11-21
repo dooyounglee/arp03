@@ -79,4 +79,6 @@ public interface MemberService {
 
 	int insertStudentToOther(MyClass mc);
 
+	List<Lecture> getLectureList(Member mem);
+
 }
