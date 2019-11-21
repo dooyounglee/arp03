@@ -106,6 +106,10 @@ public class QDao {
 		return sqlSession.selectOne("questionMapper.qReplyListCount", q_no);
 	}
 
+	public Question selectTeacherName(int lec_no) {
+		return sqlSession.selectOne("questionMapper.selectTeacherName", lec_no);
+	}
+
 	/*
 	 * public int selectQ(QFile qf) { return
 	 * sqlSession.selectOne("questionMapper.selectQ", qf); }
