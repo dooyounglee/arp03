@@ -22,6 +22,7 @@
 		<typeAlias type="com.kh.arp.vacation.model.vo.Vacation" alias="Vacation"/>
 		<typeAlias type="com.kh.arp.question.model.vo.QFile" alias="QFile"/>
 		<typeAlias type="com.kh.arp.manager.model.vo.Survey" alias="Survey"/>
+		<typeAlias type="com.kh.arp.question.model.vo.QReply" alias="QReply"/>
 	</typeAliases>
 	
 	<mappers>

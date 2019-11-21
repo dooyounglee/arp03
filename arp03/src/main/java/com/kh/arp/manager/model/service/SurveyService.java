@@ -1,11 +1,16 @@
 package com.kh.arp.manager.model.service;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
-import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.manager.model.vo.Survey;
 
 public interface SurveyService {
 
-	int insertsurvey();
+
+	int insertsurvey(Survey s);
+	
+	List<Survey> selectsurvey();
+	
+	List<Survey> detailsurvey(String s);
 	
 }

@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.common.PageInfo;
 import com.kh.arp.lecture.model.vo.Lecture;
+import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.question.model.service.QService;
 import com.kh.arp.question.model.vo.QFile;
 import com.kh.arp.question.model.vo.QReply;
@@ -134,8 +135,15 @@ public class QController {
 	public ModelAndView qdetail(ModelAndView mv, int q_no) {
 		Question q = qService.selectDetailQuestion(q_no);
 		// System.out.println(q);
+		
+		// QReply 조회해오기
+		ArrayList<QReply> qRList = qService.selectQReply(q_no);
+		
+		// QReply 총 댓글수 조회해보자
+		int qReplyListCount = qService.qReplyListCount(q_no);
+		
 		if (q != null) {
-			mv.addObject("q", q).setViewName("question/qdetailForm");
+			mv.addObject("q", q).addObject("qRList", qRList).addObject("qRListCount", qReplyListCount).setViewName("question/qdetailForm");
 		} else {
 			mv.addObject("msg", "게시글 상세조회 실패").setViewName("qcommon/errorPage");
 		}
@@ -328,18 +336,25 @@ public class QController {
 	 
 	 
 	 @RequestMapping("qReplyInsert.re")
-	 public String qReplyInsert(QReply q, int q_no, HttpSession session) {
-		 
+	 public ModelAndView qReplyInsert(QReply q, int q_no, ModelAndView mv, HttpSession session) {
 		 int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+		 int m_no = ((Member)session.getAttribute("mem")).getM_no();
+		 
 		 q.setLec_no(lec_no);
+		 q.setM_no(m_no);
+		 //System.out.println(q);
+		 
 		 int result = qService.qReplyInsert(q);
 		 
-		 if(result > 0) {
-			 return "";
-		 }else {
-			 return "qcommon/errorPage";
+		 
+		 if(result > 0) { 
+			 mv.setViewName("redirect:qdetail.qu?q_no="+q_no);
+		 }else { 
+			 mv.addObject("msg", "댓글 작성 실패").setViewName("qcommon/errorPage");
 		 }
 		 
+		 return mv;
+		  
 	 }
 
 }

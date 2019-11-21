@@ -49,7 +49,6 @@
 			<th width="30">조회수</th>
 			<th width="40">첨부파일</th>
 			<th width="38">답변여부</th>
-			
 		</tr>
 		<c:if test="${ empty qList }">
 			<tr align="center">
