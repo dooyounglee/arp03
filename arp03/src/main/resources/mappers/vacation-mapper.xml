@@ -60,9 +60,10 @@ where v_no = #{v_no}
 
 
 <select id="studentVacationList" resultType="Vacation">
-select *
-from vacation
-
+select v.* ,title ,name
+from vacation v , lecture l, member m 
+where v.lec_no = l.lec_no and v.m_no = m.m_no and l.m_no= #{m_no}
+order by l.lec_no desc
 </select>
 
 

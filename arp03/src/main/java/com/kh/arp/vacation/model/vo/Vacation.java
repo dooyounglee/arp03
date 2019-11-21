@@ -18,4 +18,5 @@ public class Vacation {
 	private String status;
 	private String title;
 	private String name;
+	private String companion_reason;
 }
