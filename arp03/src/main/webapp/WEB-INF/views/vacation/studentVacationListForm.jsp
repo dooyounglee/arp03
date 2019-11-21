@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1 align="center">학생 휴가 리스트 </h1>
-
+<jsp:include page= "../include/header.jsp"/>
 
 <table align="center" border="1" cellspacing="0" width="700"> 
 <tr>
