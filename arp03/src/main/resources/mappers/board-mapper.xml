@@ -49,4 +49,12 @@
 		update board set title=#{title}, content=#{content}, update_date=sysdate where b_no=#{b_no}
 	</update>
 	
+	<update id="deleteBoard">
+		update board set status='N' where b_no=#{b_no}
+	</update>
+	
+	<update id="updateVcount">
+		update board set vcount = vcount+1 where b_no=#{b_no}
+	</update>
+	
 </mapper>
