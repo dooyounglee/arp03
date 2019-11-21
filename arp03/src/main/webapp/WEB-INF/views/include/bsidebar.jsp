@@ -19,7 +19,7 @@
                 </ul>
             </li>
             <li>
-                <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">학생</span></a>
+                <a class="has-arrow aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">학생</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="lectureList.ad">내 수강목록</a></li>
                     <li><a href="blist.do">자유 게시판</a></li>
@@ -29,7 +29,7 @@
                 </ul>
             </li>
             <li class="three-column">
-                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">선생님</span></a>
+                <a class="has-arrow" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">선생님</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="lectureList.ad">내 수업목록</a></li>
                     <li><a href="blist.do">자유 게시판</a></li>

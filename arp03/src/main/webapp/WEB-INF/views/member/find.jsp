@@ -86,9 +86,33 @@
                                             <input type="text" class="form-control" name="email" id="email" placeholder="회원번호 / email / phone">
                                             <input type="hidden" name="m_no" id="m_no">
                                         </div>
-                                        <button type="submit" class="btn btn-success waves-effect waves-light mr-2">찾기</button>
+                                        <!-- <button type="submit" class="btn btn-success waves-effect waves-light mr-2">찾기</button> -->
+                                        <div class="btn-list">
+		                                    <!-- Success Alert modal -->
+		                                    <button type="button" class="btn btn-success" data-toggle="modal"
+		                                        data-target="#success-alert-modal" onclick="findId()">Success Alert</button>
+		                                </div>
                                     </form>
                                     <script>
+                                    	function findId(){
+                                    		$.ajax({
+                                    			url:'findId.me',
+                                    			type:'post',
+                                    			data:{
+                                    				email:$('#email').val(),
+                                    				m_no:$('#m_no').val(),
+                                    			},
+                                    			success:function(data){
+                                    				if(data=='fail'){
+                                    					$('#success-alert-modal').find('h4').text("없어요ㅠ")
+                                    					$('#success-alert-modal').find('p').text("다시 입력해주세요.")
+                                    				}else{
+                                    					$('#success-alert-modal').find('h4').text("찾았어요!")
+                                    					$('#success-alert-modal').find('p').text(data)
+                                    				}
+                                    			}
+                                    		})
+                                    	}
 										$('#email').on('input',function(){
 											var num=$(this).val()
 											if(isNaN(num)){
@@ -99,6 +123,26 @@
 									</script>
                                 </div>
                             </div>
+                            
+                            <!-- Success Alert Modal -->
+                            <div id="success-alert-modal" class="modal fade" tabindex="-1" role="dialog"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content modal-filled bg-success">
+                                        <div class="modal-body p-4">
+                                            <div class="text-center">
+                                                <i class="dripicons-checkmark h1"></i>
+                                                <h4 class="mt-2 text-white">Well Done!</h4>
+                                                <p class="mt-3 op-7">Cras mattis consectetur purus sit amet fermentum.
+                                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+                                                <button type="button" class="btn btn-light my-2"
+                                                    data-dismiss="modal">Continue</button>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+                            
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
