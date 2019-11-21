@@ -74,7 +74,7 @@
 					</c:if>
 					<!-- <button type="button" onclick="window.history.back()">취소</button> -->
 					<!-- 나중에 답변하기 버튼은 선생님만 보이게 처리하기 -->
-					<c:if test="${empty q.replycontent}">
+					<c:if test="${empty q.replycontent && mem.typee eq 't' && mem.m_no eq lec.m_no}">
 					<button type="button" onclick="Qre();">답변하기</button>
 					</c:if>
 					
@@ -93,7 +93,7 @@
 			<tr>
 				<td>작성자</td>
 				<!-- 접속한 아이디는 mem.getId()쓰면되는데 이름을 따로알아와보자 -->
-				<td><input size="10" type="text" name="name" value="${ mem.name }" readonly></td>
+				<td><input size="10" type="text" name="name" value="${ qt.tcname }" readonly></td>
 			</tr>
 			<tr>
 				<td>내용</td>
@@ -121,7 +121,7 @@
 			<tr>
 				<td>작성자</td>
 				<!-- 여기도 선생님 이름 위에서 알아오면 적어놓자 -->
-				<td><input size="10" type="text" name="name" value="${ mem.name }" readonly></td>
+				<td><input size="10" type="text" name="name" value="${ qt.tcname }" readonly></td>
 				<td>${ q.replydate }</td>
 			</tr>
 			<tr>
@@ -131,20 +131,25 @@
 			<tr>
 				<td colspan="2" align="right">
 				<!-- 수정버튼은 작성한 해당선생님만 볼 수 있게 -->
-				<br>
+				<c:if test="${ mem.typee eq 't' && mem.m_no eq lec.m_no }">
+					<br>
 					<button type="button" onclick="qReUpdate();">수정</button>
 					<br><br>
+				</c:if>
 				</td>
 			</tr>
 		</table>
 	</form>
 	<br>
 	
-	<!-- 댓글 -->
-	<c:if test="${ qRListCount ne 0 }">
-	<form id="dat" action="qReplyInsert.re" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="q_no" value="${ q.q_no }">
-	<div style="width:623px; margin-left:auto; margin-right:auto; border:1px solid black;">
+	
+	
+	<!-- 댓글 리스트 조회한것-->
+	<div id="dat">
+	<input type="hidden" id="q_nohidden" name="q_no" value="${ q.q_no }">
+	<div id="replyArea">
+	<div id="replyAreaChildren" style="width:623px; margin-left:auto; margin-right:auto; border:1px solid black;">
+		<c:if test="${ qRListCount ne 0 }">
 		<table border="1" style="width:623px;">
 		<tr>
 			<td colspan="3">댓글(${ qRListCount })</td>
@@ -164,22 +169,24 @@
 			</tr>
 		</table>
 	</c:forEach>
-	</div>
 	</c:if>
+	</div>
+	</div>
 	
 	
 	<br>
+	<!-- 댓글 등록칸 -->
 	<table align="center">
 	<tr>
 		<td>
 			<textarea style="border:1px solid black;" id="repl" cols="50" rows="2" name="content"></textarea>
 		</td>
 		<td>
-			<button style="height:47px;" id="datUp" type="submit">댓글등록</button>
+			<button style="height:47px;" id="datUp" type="submit" onclick="qRestartInsert()">댓글등록</button>
 		</td>
 	</tr>
 	</table>
-	</form>
+	</div>
 			<br><br><br>
 	</c:if>
 	
@@ -259,6 +266,53 @@
 			$("#dat").attr("style","display:none");
 			$("#qOpen").attr("style","display:block");
 		}
+	</script>
+	
+	
+	<script>
+	
+		// 다시 리로드 구역정하기 // 호출해서 쓰자
+		function qRestart(){
+			// replyArea안에있는 replyAreachildered를 리로드하겠다. 부모 안에 자식을 리로드
+			$('#replyArea').load("qdetail.qu?q_no=${q.q_no} #replyAreaChildren")
+		}
+		
+		// 댓글 등록
+		function qRestartInsert(){
+			//var q_no = $("#q_nohidden").val();
+			var content = $("#repl").val();
+			
+			$.ajax({
+				data: {
+					q_no:${q.q_no},
+					content:content
+				},
+				type: "POST",
+				url: "qReplyInsert.re",
+				success: function(success){
+					console.log("ajax통신 성공")
+					
+					if(success=="success"){
+						console.log("댓글등록성공");
+						qRestart();
+						$("#repl").val("").focus();
+							webSocket.send("이두영");
+					}else{
+						alert("댓글등록실패")
+					}
+					
+				}, error: function(){
+					console.log("ajax통신 실패");
+				}
+			});
+		}
+		
+		
+		
+		
+		
+		
+		
 		
 /* 		function qrUpdateBtn(){
 			$("#textAreaRe").removeAttr("readonly");
@@ -305,5 +359,59 @@
    </script>
 	
 	
+	
+	
+	
+	
+	
+	
+	
+<script type="text/javascript">
+//WebSocketEx는 프로젝트 이름
+//websocket 클래스 이름
+var webSocket = new WebSocket("ws://192.168.130.115:8888/arp/websocket");
+var messageTextArea = document.getElementById("messageTextArea");
+//웹 소켓이 연결되었을 때 호출되는 이벤트
+webSocket.onopen = function(message){
+console.log("연결성공")
+};
+//웹 소켓이 닫혔을 때 호출되는 이벤트
+webSocket.onclose = function(message){
+	console.log("연결닫힘")
+};
+//웹 소켓이 에러가 났을 때 호출되는 이벤트
+webSocket.onerror = function(message){
+	console.log("연결에러")
+};
+//웹 소켓에서 메시지가 날라왔을 때 호출되는 이벤트
+webSocket.onmessage = function(message){
+console.log(message)
+qRestart();
+};
+//Send 버튼을 누르면 실행되는 함수
+/* function sendMessage(){
+var message = document.getElementById("textMessage");
+messageTextArea.value += "Send to Server => "+message.value+"\n";
+//웹소켓으로 textMessage객체의 값을 보낸다.
+//webSocket.send(message.value);
+//textMessage객체의 값 초기화
+message.value = "";
+} */
+//웹소켓 종료
+function disconnect(){
+webSocket.close();
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
