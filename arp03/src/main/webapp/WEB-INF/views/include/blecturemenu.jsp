@@ -3,7 +3,7 @@
 <div class="col-lg-3 col-xlg-2 col-md-4">
     <div class="stickyside">
         <div class="list-group" id="top-menu">
-            <a href="main.lec" class="list-group-item active">메인</a>
+            <a href="main.lec?lec_no=${lec.lec_no }" class="list-group-item active">메인</a>
             <a href="question.qu" class="list-group-item">질문게시판</a>
             <a href="info.lec" class="list-group-item">강의계획</a>
             <a href="#3" class="list-group-item">내 출석</a>
