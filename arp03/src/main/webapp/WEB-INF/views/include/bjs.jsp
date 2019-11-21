@@ -24,6 +24,18 @@
     <script src="/${cp }/resources/material-pro/assets/plugins/jsgrid/db.js"></script>
     <script type="text/javascript" src="/${cp }/resources/material-pro/assets/plugins/jsgrid/jsgrid.min.js"></script>
     <script src="/${cp }/resources/material-pro/horizontal/js/jsgrid-init.js"></script>
+    <!-- Editable -->
+    <script src="/${cp }/resources/material-pro/assets/plugins/jquery-datatables-editable/jquery.dataTables.js"></script>
+    <script src="/${cp }/resources/material-pro/assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/${cp }/resources/material-pro/assets/plugins/tiny-editable/mindmup-editabletable.js"></script>
+    <script src="/${cp }/resources/material-pro/assets/plugins/tiny-editable/numeric-input-example.js"></script>
+    <script>
+        $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
+        $('#editable-datatable').editableTableWidget().numericInputExample().find('td:first').focus();
+        $(function () {
+            $('#editable-datatable').DataTable();
+        });
+    </script>
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->

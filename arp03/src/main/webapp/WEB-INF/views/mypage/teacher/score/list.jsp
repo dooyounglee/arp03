@@ -81,8 +81,62 @@
                     <div class="col-lg-9 col-xlg-10 col-md-8">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Editable with Datatable</h4>
-                                <div id="basicgrid"></div>
+                                <h5 class="card-title">Simple Editable table</h5>
+                                <h6 class="card-subtitle">Just click on the table cell you want to edit.</h6>
+                                <div class="table-responsive">
+                                    <table class="table striped editable-table no-wrap">
+                                        <thead>
+                                        	<tr>
+	                                        	<th></th>
+												<c:forEach var="e" items="${elist }">
+													<th width="100px">${e.title }</th>
+												</c:forEach>
+												<th>총합</th>
+											</tr>
+<!--                                             <tr>
+                                                <th>Rendering engine</th>
+                                                <th>Browser</th>
+                                                <th>Platform(s)</th>
+                                                <th>Engine version</th>
+                                                <th>CSS grade</th>
+                                            </tr> -->
+                                        </thead>
+                                        <tbody>
+                                        	<c:forEach var="m" items="${mlist }">
+												<tr>
+													<td>${m.m_no }</td>
+													
+													<c:set var="sum" value="0"/>
+													<c:forEach var="e" items="${elist }">
+														
+														<!-- score선택 -->
+														<c:set var="loop_flag" value="false" />
+														<c:set var="score" value=""/>
+														<c:forEach var="s" items="${slist }">
+															<c:if test="${not loop_flag }">
+																<c:if test="${s.m_no eq m.m_no && s.e_no eq e.e_no }">
+																	<c:set var="score" value="${s.score }"/>
+																	<c:set var="sum" value="${sum+score }"/>
+																	<c:set var="loop_flag" value="true" />
+																</c:if>
+															</c:if>
+														</c:forEach>
+														<!-- End of score선택 -->
+														
+														<td>
+															<c:if test="${score eq 0 }">
+																<c:set var="score" value=""/>
+															</c:if>
+															<input style="border:0px;width:100px" data-e_no="${e.e_no }" data-m_no="${m.m_no }" value="${score }">
+															<%-- ${score } --%>
+														</td>
+													</c:forEach>
+														<td class=sum>${sum }</td>
+												</tr>
+											</c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -128,7 +182,6 @@
 	
 	<jsp:include page="../../../include/header.jsp"/>
 	<h1>성적</h1>
-${slist[3] }
 	<table border=1>
 		<thead>
 			<tr>
