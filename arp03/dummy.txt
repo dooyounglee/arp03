@@ -234,7 +234,8 @@ CREATE TABLE score (
 );
 
 CREATE TABLE survey (
-	su_no	number		PRIMARY KEY,
+	su_no	number	,
+	m_no2	Number	REFERENCES MEMBER,
 	lec_no	number		REFERENCES LECTURE,
 	m_no	Number		REFERENCES MEMBER,
 	title	varchar2(4000)		NOT NULL,
@@ -244,7 +245,8 @@ CREATE TABLE survey (
 	q2	varchar2(4000)		NULL,
 	a2	varchar2(4000)		NULL,
 	q3	varchar2(4000)		NULL,
-	a3	varchar2(4000)		NULL
+	a3	varchar2(4000)		NULL,
+	PRIMARY KEY(su_no, m_no2)
 );
 
 DROP SEQUENCE SEQ_Notice; 		-- 공지사항 번호
@@ -334,11 +336,11 @@ insert into member values(seq_member.nextval,'t','t17','1','name37','email37','p
 insert into member values(seq_member.nextval,'t','t18','1','name38','email38','phone38',sysdate,sysdate,sysdate,default,default);
 insert into member values(seq_member.nextval,'t','t19','1','name39','email39','phone39',sysdate,sysdate,sysdate,default,default);
 insert into member values(seq_member.nextval,'t','t20','1','name40','email40','phone40',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'m','m1','1','name41','email20','phone20',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'m','m2','1','name42','email20','phone20',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'m','m3','1','name43','email20','phone20',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'m','m4','1','name44','email20','phone20',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'m','m5','1','name45','email20','phone20',sysdate,sysdate,sysdate,default,default);
+insert into member values(seq_member.nextval,'m','m1','1','name41','email41','phone41',sysdate,sysdate,sysdate,default,default);
+insert into member values(seq_member.nextval,'m','m2','1','name42','email42','phone42',sysdate,sysdate,sysdate,default,default);
+insert into member values(seq_member.nextval,'m','m3','1','name43','email43','phone43',sysdate,sysdate,sysdate,default,default);
+insert into member values(seq_member.nextval,'m','m4','1','name44','email44','phone44',sysdate,sysdate,sysdate,default,default);
+insert into member values(seq_member.nextval,'m','m5','1','name45','email44','phone45',sysdate,sysdate,sysdate,default,default);
 
 insert into lecture values(seq_lecture.nextval,21,'강의명21',sysdate,sysdate,2,'Y','내용1',null,30,0,6,'월화수','여기1');
 insert into lecture values(seq_lecture.nextval,21,'강의명21',sysdate,sysdate,2,'Y','내용2',null,30,0,6,'월화수','여기2');

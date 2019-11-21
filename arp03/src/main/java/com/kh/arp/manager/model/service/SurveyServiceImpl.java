@@ -29,7 +29,7 @@ public class SurveyServiceImpl implements SurveyService {
 	}
 
 	@Override
-	public List<Survey> detailsurvey(String s) {
-		return sDao.detailsurvey(s);
+	public Survey detailsurvey(int su_no) {
+		return sDao.detailsurvey(su_no);
 	}
 }

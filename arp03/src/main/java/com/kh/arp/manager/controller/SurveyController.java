@@ -49,12 +49,8 @@ public class SurveyController {
 	}
 
 	@RequestMapping("detailsurvey.ma")
-	public ModelAndView detailsurvey(ModelAndView mv, String su_no) {
-		System.out.println(su_no);
-		List<Survey> s = ss.detailsurvey(su_no); 
-		
-		System.out.println(su_no);
-		System.out.println("============="+s);
+	public ModelAndView detailsurvey(ModelAndView mv, int su_no) {
+		Survey s = ss.detailsurvey(su_no); 
 		mv.addObject("s", s).setViewName("manager/detailsurvey");
 		return mv;
 	}
