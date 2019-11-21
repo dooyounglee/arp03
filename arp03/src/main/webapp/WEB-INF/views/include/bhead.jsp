@@ -33,3 +33,4 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
+	<script src="/${cp }/resources/material-pro/assets/plugins/jquery/jquery.min.js"></script>

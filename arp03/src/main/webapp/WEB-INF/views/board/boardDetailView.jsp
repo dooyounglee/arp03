@@ -34,7 +34,7 @@
 				<button type="button" onclick="">신고</button>
 				<c:if test="${ mem.m_no eq b.m_no }">
 					<button type="button" onclick="location.href='bupdateView.do?b_no=${b.b_no}';">수정</button>
-					<button type="button" onclick="location.href='bdelete.do?b_no=${b.b_no}';">삭제</button>
+					<button type="button" onclick="deleteCheck();">삭제</button>
 				</c:if>
 			</td>
 		</tr>
@@ -63,8 +63,12 @@
 	</table>
 	
 	<script>
-	
-	
+		function deleteCheck() {
+			var rst = confirm("정말 삭제하시겠습니까?");
+			if(rst) {
+				location.href='bdelete.do?b_no=${b.b_no}';
+			}
+		}
 	
 		$(function(){
 			getReplyList();
@@ -134,16 +138,19 @@
 				//console.log($td1.eq(0).text());
 				var $r_no = $(this).parent().parent().children("#hrno").val();
 							
-				$.ajax({
-					url:"deleteReply.do",
-					data:{r_no:$r_no},
-					success:function(data){
-						//console.log("삭제 성공");
-						getReplyList();
-					}, error:function(){
-						console.log("ajax 통신 실패");
-					}
-				});
+				var rst = confirm("정말 삭제하시겠습니까?");
+				if(rst) {
+					$.ajax({
+						url:"deleteReply.do",
+						data:{r_no:$r_no},
+						success:function(data){
+							//console.log("삭제 성공");
+							getReplyList();
+						}, error:function(){
+							console.log("ajax 통신 실패");
+						}
+					});
+				}
 			});
 			
 			$(document).on("click", ".alt", function(){
