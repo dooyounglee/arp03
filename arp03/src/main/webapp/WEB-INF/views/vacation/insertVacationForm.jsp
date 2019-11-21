@@ -17,9 +17,13 @@
 <jsp:include page= "../include/header.jsp"/>
 
 	<h2 align="center"> 휴가 신청하기</h2>
-	<form action ="vinsert.me" align="center">
+	<form action ="vinsert.me" align="center" >
 	
-	<input type="text" name="m_no" value="${ mem.m_no }" readonly><br>
+	<input type="text" name="m_no" value="${param.m_no }" readonly><br>
+	<input type="text" name="lec_no" value="${param.lec_no }" readonly><br>
+	
+	<input type="text" name="title" value="${param.title }" readonly><br>
+	
 	<textarea name="reason"  rows="4" cols="50" placeholder="사유입력"></textarea><br>
 	<input type="text" id="testDatepicker" name="start_date">
 	
@@ -32,7 +36,9 @@
 		<option value="5">5일</option>
 	</select>
 	<br>
-	<input type="text" id="totalVacation"> <br>
+	<input type="text" id="totalVacation" name="totalVacation" readonly> <br>
+	
+	
 	
 	<button type="submit">등록하기</button> 
 	<button type="button" onclick="location.href='vlist.me';">목록으로</button>
@@ -51,16 +57,14 @@
 	   		 maxDate:"+100D",
 	   		showButtonPanel: true, 
 	         currentText: '오늘 날짜', 
-	         closeText: '닫기', 
-	         
-	            
+	         closeText: '닫기'      
 	    });
 	});
 	
 	
 	
 	</script>
-	 <script src='jquery-3.2.1.js'></script>
+	
    
    <script>
    
@@ -103,11 +107,6 @@
 			$("#totalVacation").val(String(today.getFullYear()) + String(today.getMonth()+1) + zerodate )
 				
 			}
-			
-
-					
-			
-			
 			
 			
 		})

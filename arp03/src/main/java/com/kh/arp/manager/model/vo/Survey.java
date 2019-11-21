@@ -16,4 +16,6 @@ public class Survey {
 	private String a2;
 	private String q3;
 	private String a3;
+	private String name;
+	private String title_1;
 }

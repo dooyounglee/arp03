@@ -10,6 +10,7 @@ import com.kh.arp.common.PageInfo;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.question.model.dao.QDao;
 import com.kh.arp.question.model.vo.QFile;
+import com.kh.arp.question.model.vo.QReply;
 import com.kh.arp.question.model.vo.Question;
 
 @Service("qService")
@@ -105,6 +106,21 @@ public class QServiceImple implements QService{
 	@Override
 	public int qTCInsertReply(Question q) {
 		return qDao.qTCInsertReply(q);
+	}
+
+	@Override
+	public int qReplyInsert(QReply q) {
+		return qDao.qReplyInsert(q);
+	}
+
+	@Override
+	public ArrayList<QReply> selectQReply(int q_no) {
+		return qDao.selectQReply(q_no);
+	}
+
+	@Override
+	public int qReplyListCount(int q_no) {
+		return qDao.qReplyListCount(q_no);
 	}
 
 	/*

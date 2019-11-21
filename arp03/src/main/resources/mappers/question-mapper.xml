@@ -23,6 +23,18 @@
 		<result property="changeName" column="changeName"/>
 	</resultMap>
 	
+	<resultMap id="QReplyMap" type="QReply">
+		<id property="r_no" column="r_no"/>
+		<result property="lec_no" column="lec_no"/>
+		<result property="q_no" column="q_no"/>
+		<result property="m_no" column="m_no"/>
+		<result property="content" column="content"/>
+		<result property="regdate" column="regdate"/>
+		<result property="updatedate" column="updatedate"/>
+		<result property="status" column="status"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from Question
@@ -58,15 +70,16 @@
 	</update>
 	
 	<select id="selectDetailQuestion" resultMap="qList">
-		select q.*, originalname, changename
+		select q.*, name, originalname, changename
 	    from question q
+	    join member m on(q.m_no=m.m_no)
 	    left join qfile f on(q.q_no=f.q_no)
-	    where q.q_no=#{q_no} and q.status='Y'
+	    where  q.q_no=#{q_no} and q.status='Y'
 	</select>
 	
 	<update id="qUpdate">
 		update Question
-		set title=#{title}, content=#{content}
+		set title=#{title}, content=#{content}, updatedate=sysdate
 		where q_no=#{q_no}
 	</update>
 	
@@ -114,4 +127,22 @@
 		set isreply='Y', replydate=sysdate, replycontent=#{replycontent}
 		where q_no=#{q_no}
 	</update>
+	
+	<insert id="qReplyInsert">
+		insert into QReply values(seq_QReply.nextval, #{lec_no}, #{q_no}, #{m_no}, #{content}, sysdate, sysdate, default)
+	</insert>
+	
+	<select id="selectQRply" resultMap="QReplyMap">
+		select q.*, m.name
+		from qreply q
+        join member m on(q.m_no=m.m_no)
+		where q.q_no=#{q.no} and q.status='Y'
+	</select>
+	
+	<select id="qReplyListCount" resultType="_int">
+		select count(*)
+		from QReply
+		where q_no=#{q_no}
+	</select>
+	
 </mapper>

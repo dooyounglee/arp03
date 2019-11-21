@@ -27,7 +27,7 @@
 		<a href="blist.do">자유 게시판</a>
 		<a href="mylist.qna"><del>내 문의</del></a>
 		<a href="myInfo.me"><del>내 정보</del></a>
-		<a href="vlist.me">내 휴가</a>
+		<a href="myLlist.me?m_no=${mem.m_no }">내 휴가</a>
 		
 		<hr>
 		
@@ -42,7 +42,7 @@
 	</c:if>
 		<a href="mylist.qna"><del>내 문의</del></a>
 		<a href="myInfo.me"><del>내 정보</del></a>
-		<a href="">학생휴가 관리</a>
+		<a href="sVlist.te">학생휴가 관리</a>
 		
 		<hr>
 		
@@ -54,9 +54,9 @@
 	
 	<c:if test="${!empty lec }">
 		수강페이지
-		<a href="main.lec?lec_no=${lec.lec_no }"><del>메인</del></a>
+		<a href="main.lec"><del>메인</del></a>
 		<a href="info.lec"><del>강의계획</del></a>
-		<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a> 
+		<a href="question.qu">질문게시판</a> 
 		<a href="">내 출석</a>
 		<a href="list.sc"><del>내 점수</del></a>
 		<a href="list.ex"><del>시험 관리</del></a>
@@ -75,11 +75,12 @@
 	<a href="flist.ad"><del>faq</del></a>
 	
 <hr>
-</body>
 <script>
 	function no(){
 		alert("선생님만 이용가능한 게시판입니다.");
 	
 	}
+	//$.noConflict();
 </script>
+</body>
 </html>

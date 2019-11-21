@@ -4,13 +4,14 @@ import lombok.Data;
 
 @Data
 public class QReply {
-	// Áú¹®´ñ±Û
-	private int r_no;		// ´ñ±Û¹øÈ£
-	private int lec_no;		// °­ÀÇ¹øÈ£
-	private int b_no;		// °Ô½Ã±Û¹øÈ£
-	private int m_no;		// È¸¿ø¹øÈ£
-	private String content;	// ³»¿ë
-	private String regdate;	// ÀÛ¼ºÀÏÀÚ
-	private String update;	// ¼öÁ¤ÀÏÀÚ
-	private String status;	// »óÅÂ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int r_no;		// ï¿½ï¿½Û¹ï¿½È£
+	private int lec_no;		// ï¿½ï¿½ï¿½Ç¹ï¿½È£
+	private int q_no;		// ï¿½Ô½Ã±Û¹ï¿½È£
+	private int m_no;		// È¸ï¿½ï¿½ï¿½ï¿½È£
+	private String content;	// ï¿½ï¿½ï¿½ï¿½
+	private String regdate;	// ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String updatedate;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String status;	// ï¿½ï¿½ï¿½ï¿½
+	private String name;	// nameì—†ì–´ì„œ í•„ë“œ ì¶”ê°€í•¨
 }

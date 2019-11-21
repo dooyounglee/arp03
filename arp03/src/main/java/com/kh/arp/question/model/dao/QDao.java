@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.arp.common.PageInfo;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.question.model.vo.QFile;
+import com.kh.arp.question.model.vo.QReply;
 import com.kh.arp.question.model.vo.Question;
 
 @Repository("qDao")
@@ -90,6 +91,19 @@ public class QDao {
 
 	public int qTCInsertReply(Question q) {
 		return sqlSession.update("questionMapper.qTCInsertReply", q);
+	}
+
+	public int qReplyInsert(QReply q) {
+		return sqlSession.insert("questionMapper.qReplyInsert", q);
+	}
+
+	public ArrayList<QReply> selectQReply(int q_no) {
+		ArrayList<QReply> qRList = (ArrayList)sqlSession.selectList("questionMapper.selectQRply", q_no);
+		return qRList;
+	}
+
+	public int qReplyListCount(int q_no) {
+		return sqlSession.selectOne("questionMapper.qReplyListCount", q_no);
 	}
 
 	/*

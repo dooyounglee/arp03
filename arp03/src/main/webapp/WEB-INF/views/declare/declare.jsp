@@ -18,7 +18,7 @@
 		<input type="radio" name="kind" value="5">이유5<br>
 	
 		내용:<input id="content">
-		<button onclick="send()">신고</button>
+		<button onclick="send();">신고</button>
 	
 	<script>
 		function send(){

@@ -18,7 +18,7 @@
 	<a href="">메인</a>
 	<a href="">강의계획</a>
 <%-- 	<a href="question.qu?lec_no=${ c.lec_no }">질문게시판</a> --%>
-	<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a>
+	<a href="question.qu">질문게시판</a>
 	<a href="">내 출석</a>
 	<a href="">내 점수</a>
 	
@@ -32,7 +32,7 @@
 		<c:forEach items="${ qList }" var="q" varStatus="status">
 			<c:if test="${ not loop_flag }">
 				<c:if test="${status.count == 1 }">
-				&nbsp;<button style="cursor:pointer" onclick="location.href='qWriteForm.qu?lec_no=${lec.lec_no}&name=${ q.name }';">글쓰기</button>
+				&nbsp;<button style="cursor:pointer" onclick="location.href='qWriteForm.qu'">글쓰기</button>
 					<c:set var="loop_flag" value="true"/>
 				</c:if>
 			</c:if>
@@ -49,7 +49,6 @@
 			<th width="30">조회수</th>
 			<th width="40">첨부파일</th>
 			<th width="38">답변여부</th>
-			
 		</tr>
 		<c:if test="${ empty qList }">
 			<tr align="center">
@@ -61,7 +60,7 @@
 			<tr align="center">
 				<td>${ q.q_no }</td>
 				<td>
-					<a href="qdetail.qu?q_no=${ q.q_no }&name=${ q.name }">${ q.title }</a>
+					<a href="qdetail.qu?q_no=${ q.q_no }">${ q.title }</a>
 				</td>
 				<td>${ q.name }</td>
 				<td>${ q.regdate }</td>
