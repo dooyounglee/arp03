@@ -4,12 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.lecture.model.vo.Lecture;
+import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.vacation.model.service.VacationServiceImpl;
 import com.kh.arp.vacation.model.vo.Vacation;
 
@@ -19,8 +22,12 @@ public class VacationController {
 	private VacationServiceImpl vService;
 	
 	@RequestMapping("myLlist.me")
-	public ModelAndView myLectrueList(ModelAndView mv ,int m_no) {
+	public ModelAndView myLectrueList(ModelAndView mv, HttpSession session) {
+		int m_no =	((Member)session.getAttribute("mem")).getM_no();
+		
+		
 		ArrayList<Lecture> list = vService.selectLectureList(m_no);	
+		System.out.println(list);
 		mv.addObject("list" , list).setViewName("vacation/myLectureListForm");
 		
 		return mv;
@@ -28,9 +35,11 @@ public class VacationController {
 	
 	
 	@RequestMapping("vlist.me")
-	public ModelAndView vacationListForm(ModelAndView mv ) {
+	public ModelAndView vacationListForm(ModelAndView mv, HttpSession session ) {
 		
-		ArrayList<Vacation> list = vService.selectList();
+		int m_no = ((Member)session.getAttribute("mem")).getM_no();
+		
+		ArrayList<Vacation> list = vService.selectList(m_no);
 				
 		mv.addObject("list" , list).setViewName("vacation/vacationListForm");
 		
@@ -114,7 +123,7 @@ public class VacationController {
 	@RequestMapping("sVlist.te")
 	public ModelAndView sVlistForm(ModelAndView mv) {
 		
-		ArrayList<Vacation> list = vService.selectList();
+		ArrayList<Vacation> list = vService.selectStudentList();
 		
 		mv.addObject("list",list).setViewName("vacation/studentVacationListForm");
 		

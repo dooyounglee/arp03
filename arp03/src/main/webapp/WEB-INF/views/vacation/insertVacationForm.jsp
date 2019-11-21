@@ -19,7 +19,7 @@
 	<h2 align="center"> 휴가 신청하기</h2>
 	<form action ="vinsert.me" align="center" >
 	
-	<input type="text" name="m_no" value="${param.m_no }" readonly><br>
+	<input type="text" name="m_no" value="${mem.m_no }" readonly><br>
 	<input type="text" name="lec_no" value="${param.lec_no }" readonly><br>
 	
 	<input type="text" name="title" value="${param.title }" readonly><br>

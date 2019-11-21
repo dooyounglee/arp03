@@ -28,13 +28,13 @@ order by l.lec_no desc
 		from board b, member m
 		where b.ca_no=2 and b.status='Y' and b.m_no=m.m_no
 		order by b_no desc  -->
-		
 
 </select>
 
 <select id="selectLecture" resultType="Lecture">
-select * from lecture
-where m_no=#{m_no}
+select l.*
+from myclass m, lecture l
+where l.lec_no=m.lec_no and m.m_no=#{m_no}
 </select>
 
 <select id="selectVacation" resultType="Vacation">
@@ -57,5 +57,13 @@ where v_no = #{v_no}
 
 
 </delete>
+
+
+<select id="studentVacationList" resultType="Vacation">
+select *
+from vacation
+
+</select>
+
 
 </mapper>

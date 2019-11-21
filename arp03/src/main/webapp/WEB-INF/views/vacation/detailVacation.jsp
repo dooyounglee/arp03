@@ -17,11 +17,11 @@
 	<table border="1px">
 	<tr>
 	<th>선생님</th>
-	<th>관리자</th>
+	<th>매니저</th>
 	</tr>
 	<tr>
 	<td>${v.tstatus }</td>
-	<td>${v.astatus }</td>
+	<td>${v.mstatus }</td>
 	</tr>
 	</table>
 	
@@ -52,7 +52,7 @@
 		<td>일수</td>
 		<td>${v.date_count }일</td>
 	</tr>
-	<c:if test="${v.tstatus eq 'Y' || v.astatus eq 'Y'}">
+	<c:if test="${v.tstatus eq 'Y' || v.mstatus eq 'Y'}">
 		<td>출력하기</td>
 		<td><button onclick="myvacation()">인쇄</button></td>
 	</c:if>

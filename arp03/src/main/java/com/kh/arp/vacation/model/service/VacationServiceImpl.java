@@ -21,9 +21,9 @@ public class VacationServiceImpl implements VacationService {
 	}
 
 	@Override
-	public ArrayList<Vacation> selectList() {
+	public ArrayList<Vacation> selectList(int m_no) {
 		// TODO Auto-generated method stub
-		return vDao.selectList();
+		return vDao.selectList(m_no);
 	}
 
 	public ArrayList<Lecture> selectLectureList(int m_no) {
@@ -50,6 +50,12 @@ public class VacationServiceImpl implements VacationService {
 	public int deleteVacation(Vacation v) {
 		// TODO Auto-generated method stub
 		return vDao.deleteVacation(v);
+	}
+
+	@Override
+	public ArrayList<Vacation> selectStudentList() {
+		// TODO Auto-generated method stub
+		return vDao.studentVacation();
 	}
 
 

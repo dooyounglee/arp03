@@ -10,7 +10,7 @@ public interface VacationService {
 	// 휴가작성용
 	int insertVacation(Vacation v);
 	// 휴가리스트
-	ArrayList<Vacation>selectList();
+	ArrayList<Vacation>selectList(int m_no);
 	
 	// 내강의리스트
 	ArrayList<Lecture>selectLectureList(int m_no);
@@ -26,5 +26,8 @@ public interface VacationService {
 	 
 	// 휴가 삭제하기 
 	 int deleteVacation(Vacation v);
+	 
+	 // 학생 휴가 조회
+	 ArrayList<Vacation>selectStudentList();
 	 
 }

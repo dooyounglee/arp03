@@ -26,7 +26,7 @@
 	<th width="50">일수</th>
 	<th>작성일</th>
 	<th>선생님</th>
-	<th>관리자</th>
+	<th>매니저</th>
 </tr>
 
 <c:forEach items="${ list }" var="v">
@@ -41,7 +41,7 @@
 		<td id="dateCount"> ${v.date_count }일</td>
 		<td>${v.application_date }</td>
 		<td>${v.tstatus }</td>
-		<td>${v.astatus }</td>
+		<td>${v.mstatus }</td>
 	</tr>		
 </c:if>
 </c:forEach>

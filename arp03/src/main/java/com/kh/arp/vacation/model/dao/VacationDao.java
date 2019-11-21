@@ -21,9 +21,9 @@ public class VacationDao {
 	}
 
 
-	public ArrayList<Vacation> selectList() {
+	public ArrayList<Vacation> selectList(int m_no) {
 		
-		return (ArrayList)sqlSession.selectList("vacationMapper.selectList");
+		return (ArrayList)sqlSession.selectList("vacationMapper.selectList" , m_no);
 	}
 
 
@@ -48,6 +48,12 @@ public class VacationDao {
 	public int deleteVacation(Vacation v) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("vacationMapper.deleteVacation",v);
+	}
+
+
+	public ArrayList<Vacation> studentVacation() {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("vacationMapper.studentVacationList");
 	}
 
 

@@ -14,7 +14,7 @@ public class Vacation {
 	private int date_count;
 	private String application_date;
 	private String tstatus;
-	private String astatus;
+	private String mstatus;
 	private String status;
 	private String title;
 	private String name;
