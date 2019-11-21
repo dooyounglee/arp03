@@ -8,17 +8,6 @@
         <ul id="sidebarnav">
             <li class="nav-small-cap">PERSONAL</li>
             <li>
-                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">로그인 </span></a>
-                <ul aria-expanded="false" class="collapse">
-                    <li><a href="login.me">로그인</a></li>
-                    <li><a href="find.me">id/pw찾기</a></li>
-                    <li><a href="logout.me">로그아웃</a></li>
-                    <li><a href="index4.html">Dashboard 4</a></li>
-                    <li><a href="index5.html">Dashboard 5</a></li>
-                    <li><a href="index6.html">Dashboard 6</a></li>
-                </ul>
-            </li>
-            <li>
                 <a class="has-arrow aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">학생</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="lectureList.ad">내 수강목록</a></li>
