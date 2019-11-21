@@ -132,7 +132,8 @@ public class QController {
 	}
 
 	@RequestMapping("qdetail.qu")
-	public ModelAndView qdetail(ModelAndView mv, int q_no) {
+	public ModelAndView qdetail(ModelAndView mv, int q_no, HttpSession session) {
+		
 		Question q = qService.selectDetailQuestion(q_no);
 		// System.out.println(q);
 		
@@ -142,8 +143,13 @@ public class QController {
 		// QReply 총 댓글수 조회해보자
 		int qReplyListCount = qService.qReplyListCount(q_no);
 		
+		// 선생님 이름 조회해오기
+		int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+		Question qt = qService.selectTeacherName(lec_no);
+		// 조회해온 name을 question객체에다가 담아놓자
+		
 		if (q != null) {
-			mv.addObject("q", q).addObject("qRList", qRList).addObject("qRListCount", qReplyListCount).setViewName("question/qdetailForm");
+			mv.addObject("q", q).addObject("qRList", qRList).addObject("qt", qt).addObject("qRListCount", qReplyListCount).setViewName("question/qdetailForm");
 		} else {
 			mv.addObject("msg", "게시글 상세조회 실패").setViewName("qcommon/errorPage");
 		}
@@ -310,14 +316,15 @@ public class QController {
 	 }
 	 
 	 @RequestMapping("qTCInsertReply")
-	 public ModelAndView qTCInsertReplyUpdate(ModelAndView mv, Question q) {
-		
+	 public ModelAndView qTCInsertReplyUpdate(ModelAndView mv, Question q, HttpSession session) {
+		 String name = ((Member)session.getAttribute("mem")).getName();
 		 int q_no = q.getQ_no();
 		// String name = q.getName();
 		 //int lec_no = q.getLec_no();
 		 
 		 q.setQ_no(q.getQ_no()); 
 		 q.setReplycontent(q.getReplycontent());
+		 q.setName(name);
 		 //System.out.println(q);
 		 
 		 int result = qService.qTCInsertReply(q);
@@ -335,8 +342,29 @@ public class QController {
 	 }
 	 
 	 
+	/*
+	 * @RequestMapping("qReplyInsert.re") public ModelAndView qReplyInsert(QReply q,
+	 * int q_no, ModelAndView mv, HttpSession session) { int lec_no =
+	 * ((Lecture)session.getAttribute("lec")).getLec_no(); int m_no =
+	 * ((Member)session.getAttribute("mem")).getM_no();
+	 * 
+	 * q.setLec_no(lec_no); q.setM_no(m_no); //System.out.println(q);
+	 * 
+	 * int result = qService.qReplyInsert(q);
+	 * 
+	 * 
+	 * if(result > 0) { mv.setViewName("redirect:qdetail.qu?q_no="+q_no); }else {
+	 * mv.addObject("msg", "댓글 작성 실패").setViewName("qcommon/errorPage"); }
+	 * 
+	 * return mv;
+	 * 
+	 * }
+	 */
+	 
+	 
+	 @ResponseBody
 	 @RequestMapping("qReplyInsert.re")
-	 public ModelAndView qReplyInsert(QReply q, int q_no, ModelAndView mv, HttpSession session) {
+	 public String qReplyInsert(QReply q, int q_no, HttpSession session) {
 		 int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
 		 int m_no = ((Member)session.getAttribute("mem")).getM_no();
 		 
@@ -348,13 +376,15 @@ public class QController {
 		 
 		 
 		 if(result > 0) { 
-			 mv.setViewName("redirect:qdetail.qu?q_no="+q_no);
+			return "success";
 		 }else { 
-			 mv.addObject("msg", "댓글 작성 실패").setViewName("qcommon/errorPage");
+			return "fail";
 		 }
-		 
-		 return mv;
 		  
 	 }
+	 
+	 
+	 
+	 
 
 }
