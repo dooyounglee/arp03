@@ -98,7 +98,8 @@ public class BoardController {
 	@RequestMapping("bdetail.do")
 	public ModelAndView boardDetail(int b_no, ModelAndView mv) {
 		Board b = bService.selectBoard(b_no);
-
+		bService.updateVcount(b_no);
+		//System.out.println(a);
 		if (b != null) {
 			mv.addObject("b", b);
 			mv.setViewName("board/boardDetailView");
@@ -113,6 +114,7 @@ public class BoardController {
 	@RequestMapping(value="replyList.do", produces="application/json; charset=UTF-8")
 	public String replyList(int b_no,
 			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage)  {
+		//System.out.println("댓글테스트");
 		int listCount = bService.replyListCount(b_no);
 		PageInfo pi = new PageInfo(currentPage, listCount, 10, 10);
 		ArrayList<BReply> list = bService.selectReplyList(b_no, pi);
@@ -189,6 +191,16 @@ public class BoardController {
 			return "redirect:blist.do";
 		} else {
 			model.addAttribute("msg", "글 작성에 실패했습니다.");
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping("bdelete.do")
+	public String deleteBoard(int b_no) {
+		int rst = bService.deleteBoard(b_no);
+		if(rst > 0) {
+			return "redirect:blist.do";
+		} else {
 			return "common/errorPage";
 		}
 	}

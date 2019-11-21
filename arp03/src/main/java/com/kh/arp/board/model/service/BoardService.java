@@ -41,4 +41,10 @@ public interface BoardService {
 	// 게시글 수정
 	int updateBoard(Board b);
 	
+	// 게시글 삭제
+	int deleteBoard(int b_no);
+	
+	// 게시글 뷰카운트 증가
+	int updateVcount(int b_no);
+	
 }

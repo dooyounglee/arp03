@@ -30,6 +30,7 @@ public class LectureController {
 	@RequestMapping("/main.lec")
 	public ModelAndView lectureList(int lec_no, HttpSession session, ModelAndView mv) {
 		Lecture lec=ls.getLecture(lec_no);
+		
 		session.setAttribute("lec", lec);
 		mv.setViewName("lecture/main");
 		return mv;

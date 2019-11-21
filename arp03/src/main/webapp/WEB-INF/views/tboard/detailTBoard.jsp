@@ -170,9 +170,15 @@
 		$(document).on("click",".re",function(){
 			
 			var updateContent =	$(this).parent().parent().children().eq(1);
-			updateContent.parent().after("<tr><td>┖></td><td><textarea></textarea></td></tr>");
+			updateContent.parent().after("<tr><td>┖></td><td><textarea></textarea></td><td><button class='resubBtn'>등록</button></td></tr>");
+			
 			
 		});
+		
+		// 대댓글 등록버튼을 누르면 
+		 $(document).on("click",".resubBtn", function(){
+			 $.ajax
+		 })
 		
 
 	/* 	// 제목을 눌렀을때 대댓글

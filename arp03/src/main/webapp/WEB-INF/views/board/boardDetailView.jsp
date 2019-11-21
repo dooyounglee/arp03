@@ -9,6 +9,7 @@
 <style>
 	.btns{display: inline-block;}
 </style>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" type="text/javascript"></script>
 </head>
 <body>
 	
@@ -34,7 +35,7 @@
 				<button type="button" onclick="">신고</button>
 				<c:if test="${ mem.m_no eq b.m_no }">
 					<button type="button" onclick="location.href='bupdateView.do?b_no=${b.b_no}';">수정</button>
-					<button type="button" onclick="location.href='bdelete.do?b_no=${b.b_no}';">삭제</button>
+					<button type="button" onclick="deleteCheck();">삭제</button>
 				</c:if>
 			</td>
 		</tr>
@@ -63,13 +64,17 @@
 	</table>
 	
 	<script>
-	
-	
+		function deleteCheck() {
+			var rst = confirm("정말 삭제하시겠습니까?");
+			if(rst) {
+				location.href='bdelete.do?b_no=${b.b_no}';
+			}
+		}
 	
 		$(function(){
 			getReplyList();
 			
-			$("#rBtn").on("click", function(){
+			jQuery("#rBtn").on("click", function(){
 				// 내용, 작성자 아이디, 게시판 번호
 				$.ajax({
 					url:"rinsert.do",
@@ -92,7 +97,7 @@
 			
 			$clicked = 0;
 
-			$(document).on("click", ".rr", function(){
+			jQuery(document).on("click", ".rr", function(){
 				//console.log($(this).parent().parent().children().eq(0).text());
 				$parent_no = $(this).parent().parent().children("#hrno").val();
 				
@@ -108,7 +113,7 @@
 				//console.log($clicked);
 			});
 			
-			$(document).on("click", ".rrsb", function(){
+			jQuery(document).on("click", ".rrsb", function(){
 				//console.log($("#reContent").val());
 				//console.log($parent_no);
 				
@@ -128,25 +133,28 @@
 				});
 			});
 			
-			$(document).on("click", ".del", function(){
+			jQuery(document).on("click", ".del", function(){
 				//console.log($(this).parent().parent().children().eq(0).text());
 				//var $r_no = $(this).parent().parent().children().eq(0).text();
 				//console.log($td1.eq(0).text());
 				var $r_no = $(this).parent().parent().children("#hrno").val();
 							
-				$.ajax({
-					url:"deleteReply.do",
-					data:{r_no:$r_no},
-					success:function(data){
-						//console.log("삭제 성공");
-						getReplyList();
-					}, error:function(){
-						console.log("ajax 통신 실패");
-					}
-				});
+				var rst = confirm("정말 삭제하시겠습니까?");
+				if(rst) {
+					$.ajax({
+						url:"deleteReply.do",
+						data:{r_no:$r_no},
+						success:function(data){
+							//console.log("삭제 성공");
+							getReplyList();
+						}, error:function(){
+							console.log("ajax 통신 실패");
+						}
+					});
+				}
 			});
 			
-			$(document).on("click", ".alt", function(){
+			jQuery(document).on("click", ".alt", function(){
 				//console.log("수정ㄱㄱ");
 				var $content = $(this).parent().parent().children().eq(1);
 				var $btns = $(this).parent().parent().children().eq(3);
@@ -165,14 +173,14 @@
 				
 			});
 			
-			$(document).on("click", "#alert", function(){
+			jQuery(document).on("click", "#alert", function(){
 				
 				//var $r_no = $(this).parent().children().eq(0).text();
 				/* console.log($r_no);
 				console.log($("#reContent").val()); */
 				var $r_no = $(this).parent().children("#hrno").val();
 				
-				$.ajax({
+				jQuery.ajax({
 					url:"updateReply.do",
 					data:{content:$("#reContent").val(), r_no:$r_no},
 					success:function(data){
@@ -185,7 +193,7 @@
 				
 			});
 			
-			$(document).on("click", ".cancel", function(){
+			jQuery(document).on("click", ".cancel", function(){
 				getReplyList();
 			});
 			
@@ -194,46 +202,46 @@
 		$count = 0;
 		function getReplyList(currentPage){
 			$clicked = 0;
-			$.ajax({
+			jQuery.ajax({
 				url:"replyList.do",
 				data:{b_no:${b.b_no}, currentPage:currentPage},
 				dataType:"json",
 				success:function(data){
 					console.log(data.list);
 					console.log(data.pi);
-					$tbody = $("#rtb tbody");
+					$tbody = jQuery("#rtb tbody");
 					$tbody.html("");
 					$pageinfo = data.pi;
 					//$("#rCount").text("댓글(" + data.length + ")");
 					$rcount = 0;
 					
 					if(data.list.length > 0){ // 댓글이 존재할 경우
-						$.each(data.list, function(index, value) { // value == data[index]
+						jQuery.each(data.list, function(index, value) { // value == data[index]
 						
-						$tr = $("<tr>");
-						$td = $("<td>");
+						$tr = jQuery("<tr>");
+						$td = jQuery("<td>");
 						
 						//$rnoTd = $("<td>").text(value.r_no);
-						$rrnoTd = $("<td>").text("ㄴ");
+						$rrnoTd = jQuery("<td>").text("ㄴ");
 							
-						$contentTd = $("<td width='250'>").text(value.content);
-						$dateTd = $("<td>").text(value.update_date);
+						$contentTd = jQuery("<td width='250'>").text(value.content);
+						$dateTd = jQuery("<td>").text(value.update_date);
 						
-						$rreply = $('<input type="button" class="rr" value="re"/>');
-						$altB = $('<input type="button" class="alt" value="alt"/>');
-						$deleteB = $('<input type="button" class="del" value="del"/>');
-						$hrno = $('<input type="hidden" id="hrno" value="' + value.r_no + '"/>');
+						$rreply = jQuery('<input type="button" class="rr" value="re"/>');
+						$altB = jQuery('<input type="button" class="alt" value="alt"/>');
+						$deleteB = jQuery('<input type="button" class="del" value="del"/>');
+						$hrno = jQuery('<input type="hidden" id="hrno" value="' + value.r_no + '"/>');
 						
 						if(value.depth == 1) {
-							$contentTd = $("<td colspan='2' width='250'>").text(value.content);
+							$contentTd = jQuery("<td colspan='2' width='250'>").text(value.content);
 						} else {
 							$tr.append($rrnoTd);
 						}
 						
 						if(value.status == 'N') {
 							//$rnoTd = $("<td>").text("");
-							$contentTd = $("<td colspan='2'>").text("사용자가 삭제한 댓글입니다.");
-							$dateTd = $("<td>").text("");
+							$contentTd = jQuery("<td colspan='2'>").text("사용자가 삭제한 댓글입니다.");
+							$dateTd = jQuery("<td>").text("");
 							$rcount++;
 						}
 						
@@ -268,7 +276,7 @@
 						$tbody.append($tr);
 					}
 					//console.log((data.length - $rcount));
-					$("#rCount").text("댓글(" + (data.pi.listCount - $rcount) + ")");
+					jQuery("#rCount").text("댓글(" + data.pi.listCount + ")");
 					if($pageinfo.currentPage == 1) {
 						$("#lt").attr("disabled", true);
 					} else {
@@ -289,20 +297,20 @@
 		
 		function page(e){ 
 			//$("#rtb> :last").append("<tr><td colspan='4'>헤헤</td></tr>")
-			var $lastRow = $("#rtb:last");
-			var $leftbtn = $("<div class='leftbtn btns'>");
-			var $ltlt = $("<button id='ltlt'>").text("<<");
-			var $lt = $("<button id='lt'>").text("<");
+			var $lastRow = jQuery("#rtb:last");
+			var $leftbtn = jQuery("<div class='leftbtn btns'>");
+			var $ltlt = jQuery("<button id='ltlt'>").text("<<");
+			var $lt = jQuery("<button id='lt'>").text("<");
 			$leftbtn.append($ltlt).append($lt);
 			$lastRow.append("<tr><td colspan='4'>");
 			console.log($lastRow);
 			$lastRow.append($leftbtn);
-			var $rightbtn = $("<div class='rightbtn btns'>");
-			var $gt = $("<button id='rt'>").text(">");
-			var $gtgt = $("<button id='rtrt'>").text(">>");
+			var $rightbtn = jQuery("<div class='rightbtn btns'>");
+			var $gt = jQuery("<button id='rt'>").text(">");
+			var $gtgt = jQuery("<button id='rtrt'>").text(">>");
 			$rightbtn.append($gt).append($gtgt);
 			for (var i = e.startPage; i <= e.endPage; i++) {
-					var btn = $("<button class='btns numbtn'>").text(i);
+					var btn = jQuery("<button class='btns numbtn'>").text(i);
 					$lastRow.append(btn);
 				}
 				//$lastRow.append(btn);
@@ -313,24 +321,24 @@
 			
 		}
 		
-		$(document).on("click", "#rtrt", function(){
+		jQuery(document).on("click", "#rtrt", function(){
 			getReplyList($pageinfo.endPage);
 			//console.log($pageinfo.endPage);
 		});
 		
-		$(document).on("click", "#ltlt", function(){
+		jQuery(document).on("click", "#ltlt", function(){
 			getReplyList(1);
 		});
 		
-		$(document).on("click", "#lt", function(){
+		jQuery(document).on("click", "#lt", function(){
 			getReplyList(($pageinfo.currentPage) - 1);
 		});
 		
-		$(document).on("click", "#rt", function(){
+		jQuery(document).on("click", "#rt", function(){
 			getReplyList(($pageinfo.currentPage) + 1);
 		});
 		
-		$(document).on("click", ".numbtn", function(){
+		jQuery(document).on("click", ".numbtn", function(){
 			//console.log($(this).text());
 			getReplyList($(this).text());
 		});
