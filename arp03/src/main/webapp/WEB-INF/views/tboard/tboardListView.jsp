@@ -40,10 +40,26 @@
 	<!-- End of Left-sidebar -->
 
 	<div class="page-wrapper">
-<<<<<<< HEAD
+	
+	
+	
+	
+	             <div class="row page-titles">
+                 
+                    <div class="col-md-7 col-4 align-self-center">
+                        <div clarss="d-flex m-t-10 justify-content-end">
+                            <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                                
+                            </div>
+                            <div class="">
+                                <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 		
 		
-=======
+
 	
 	             <div class="row page-titles">
                  
@@ -59,20 +75,17 @@
                     </div>
                 </div>
 
->>>>>>> branch 'dev' of https://github.com/dooyounglee/arp03.git
-
 		<h1 align="center">게시판 리스트</h1>
 
 		<c:if test="${ !empty mem }">
 			<button onclick="location.href='insertTBoardFrom.do';">글쓰기</button>
 		</c:if>
-		
-		<div class="row" >
-			<div class="col-lg-10" >
-			 	<div class="card" > 
-					<div class="card-body" >
-						<div class="table-responsive" >
-							<table class="table color-table muted-table" >
+		<div class="row">
+			<div class="col-lg-12">
+			<!-- 	<div class="card"> -->
+					<div class="card-body" align="center">
+						<div class="table-responsive">
+							<table class="table color-table muted-table">
 								<thead>
 									<tr>
 										<th>번호</th>
