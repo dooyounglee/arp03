@@ -80,7 +80,7 @@
 		alert("선생님만 이용가능한 게시판입니다.");
 	
 	}
-	$.noConflict();
+	//$.noConflict();
 </script>
 </body>
 </html>

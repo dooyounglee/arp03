@@ -9,5 +9,8 @@
 <body>
 <hr>
 footer
+<script>
+	$.noConflict();
+</script>
 </body>
 </html>
