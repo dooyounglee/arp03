@@ -32,7 +32,8 @@
 	<!-- End of Left-sidebar -->
 
 	<div class="page-wrapper">
-
+		
+		
 
 		<h1 align="center">게시판 리스트</h1>
 
@@ -117,7 +118,7 @@
 			</div>
 		</div>
 
-
+	
 
 	</div>
 </body>
