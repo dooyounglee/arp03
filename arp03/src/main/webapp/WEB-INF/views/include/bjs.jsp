@@ -20,6 +20,10 @@
     <script src="/${cp }/resources/material-pro/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
     <!--Custom JavaScript -->
     <script src="/${cp }/resources/material-pro/horizontal/js/custom.min.js"></script>
+    <!-- Editable -->
+    <script src="/${cp }/resources/material-pro/assets/plugins/jsgrid/db.js"></script>
+    <script type="text/javascript" src="/${cp }/resources/material-pro/assets/plugins/jsgrid/jsgrid.min.js"></script>
+    <script src="/${cp }/resources/material-pro/horizontal/js/jsgrid-init.js"></script>
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->

@@ -99,7 +99,7 @@ public class TBoardController {
 		System.out.println("list"+bfList);
 
 		if (b != null) {
-			mv.addObject("b", b).addObject("bfList", bfList).setViewName("tboard/insertTBoard");
+			mv.addObject("b", b).addObject("bfList", bfList).setViewName("tboard/updateTBoard");
 		} else {
 			mv.addObject("msg", "게시글 상세조회 실패").setViewName("common/errorPage");
 		}

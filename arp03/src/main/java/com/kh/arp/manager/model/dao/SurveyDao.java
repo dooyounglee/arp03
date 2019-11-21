@@ -21,8 +21,7 @@ public class SurveyDao {
 	public List<Survey> selectsurvey(){
 		return sqlSession.selectList("managerMapper.selectSurvey");
 	}
-	public List<Survey> detailsurvey(String s){
-		System.out.println(s);
-		return sqlSession.selectOne("managerMapper.detailSurvey",s);
+	public Survey detailsurvey(int su_no){
+		return sqlSession.selectOne("managerMapper.detailSurvey", su_no);
 	}
 }

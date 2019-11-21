@@ -114,6 +114,7 @@ public class BoardController {
 	@RequestMapping(value="replyList.do", produces="application/json; charset=UTF-8")
 	public String replyList(int b_no,
 			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage)  {
+		//System.out.println("댓글테스트");
 		int listCount = bService.replyListCount(b_no);
 		PageInfo pi = new PageInfo(currentPage, listCount, 10, 10);
 		ArrayList<BReply> list = bService.selectReplyList(b_no, pi);

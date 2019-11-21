@@ -15,7 +15,7 @@
 		<result property="q3" column="q3"/>
 		<result property="a3" column="a3"/>
 		<result property="name" column="name"/>
-		<result property="title_1" column="title_1"/>
+		<result property="title_1" column="lec_title"/>
 	
 	</resultMap>
 	
@@ -29,15 +29,15 @@
   </insert>
   
   <select id="selectSurvey" resultMap="surveyList">
-  	select s.title, enrolldate, name, l.title
+  	select su_no, s.title, enrolldate, name, l.title lec_title
 	from Survey s 
 	join lecture l on s.lec_no=l.lec_no
 	join member m on s.m_no=m.m_no
   </select>
 	
-	<select id="detailSurvey" resultType="_int">
+	<select id="detailSurvey" resultType="Survey">
 		select *
 		from Survey
-		where su_no=#{s}
+		where su_no=#{su_no}
 	</select>
 </mapper>

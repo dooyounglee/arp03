@@ -8,13 +8,31 @@
 <title>Insert title here</title>
 <style>
 	.btns{display: inline-block;}
+	#title{align:center; height:100px;}
+	#demo-foo-pagination{width:800px;}
 </style>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" type="text/javascript"></script>
+<%@ include file="../include/bhead.jsp"%>
 </head>
 <body>
 	
-	<jsp:include page="../include/header.jsp"/>
-	
-	<h1 align="center">게시글 상세보기</h1>
+	<header class="topbar">
+		<%@ include file="../include/btopbarheader.jsp"%>
+	</header>
+	<!-- End Topbar header -->
+
+	<!-- Left-sidebar -->
+	<aside class="left-sidebar">
+		<%@ include file="../include/bsidebar.jsp"%>
+	</aside>
+	<!-- End of Left-sidebar -->
+
+	<div class="page-wrapper">
+		<div class="row page-titles">
+		</div>
+	<div align="center" class="card">
+	<h1 class="card-title">게시글 상세보기</h1>
+	</div>
 	<br>
 	
 	<table align="center">
@@ -42,25 +60,31 @@
 	
 	<br>
 	<br>
-	
+	<div class="card-body">
 	<!-- 댓글 등록 부분 -->
+	<div class="card">
 	<table align="center" border="1" cellspacing="0">
 		<tr>
 			<td><textarea cols="55" rows="3" id="rContent"></textarea></td>
 			<td><button id="rBtn">등록</button></td>
 		</tr>
 	</table>
+	</div>
 	<!-- 댓글 목록 부분 -->
-	<table align="center" width="600" border="1" cellspacing="0" id="rtb" class="paginated">
+	<div class="table-responsive card">
+	<table id="demo-foo-pagination" align="center" border="1" cellspacing="0" class="table table-bordered toggle-arrow-tiny 
+	no-wrap footable footable-4 footable-paging footable-paging-center breakpoint-md">
 		<thead>
 			<tr>
 				<td colspan="4"><b id="rCount"></b></td>
 			</tr>
 		</thead>
 		<tbody>
-		
 		</tbody>
 	</table>
+	</div>
+		</div>
+	</div>
 	
 	<script>
 		function deleteCheck() {
@@ -73,7 +97,7 @@
 		$(function(){
 			getReplyList();
 			
-			$("#rBtn").on("click", function(){
+			jQuery("#rBtn").on("click", function(){
 				// 내용, 작성자 아이디, 게시판 번호
 				$.ajax({
 					url:"rinsert.do",
@@ -96,7 +120,7 @@
 			
 			$clicked = 0;
 
-			$(document).on("click", ".rr", function(){
+			jQuery(document).on("click", ".rr", function(){
 				//console.log($(this).parent().parent().children().eq(0).text());
 				$parent_no = $(this).parent().parent().children("#hrno").val();
 				
@@ -112,7 +136,7 @@
 				//console.log($clicked);
 			});
 			
-			$(document).on("click", ".rrsb", function(){
+			jQuery(document).on("click", ".rrsb", function(){
 				//console.log($("#reContent").val());
 				//console.log($parent_no);
 				
@@ -132,7 +156,7 @@
 				});
 			});
 			
-			$(document).on("click", ".del", function(){
+			jQuery(document).on("click", ".del", function(){
 				//console.log($(this).parent().parent().children().eq(0).text());
 				//var $r_no = $(this).parent().parent().children().eq(0).text();
 				//console.log($td1.eq(0).text());
@@ -153,7 +177,7 @@
 				}
 			});
 			
-			$(document).on("click", ".alt", function(){
+			jQuery(document).on("click", ".alt", function(){
 				//console.log("수정ㄱㄱ");
 				var $content = $(this).parent().parent().children().eq(1);
 				var $btns = $(this).parent().parent().children().eq(3);
@@ -172,14 +196,14 @@
 				
 			});
 			
-			$(document).on("click", "#alert", function(){
+			jQuery(document).on("click", "#alert", function(){
 				
 				//var $r_no = $(this).parent().children().eq(0).text();
 				/* console.log($r_no);
 				console.log($("#reContent").val()); */
 				var $r_no = $(this).parent().children("#hrno").val();
 				
-				$.ajax({
+				jQuery.ajax({
 					url:"updateReply.do",
 					data:{content:$("#reContent").val(), r_no:$r_no},
 					success:function(data){
@@ -192,7 +216,7 @@
 				
 			});
 			
-			$(document).on("click", ".cancel", function(){
+			jQuery(document).on("click", ".cancel", function(){
 				getReplyList();
 			});
 			
@@ -201,46 +225,46 @@
 		$count = 0;
 		function getReplyList(currentPage){
 			$clicked = 0;
-			$.ajax({
+			jQuery.ajax({
 				url:"replyList.do",
 				data:{b_no:${b.b_no}, currentPage:currentPage},
 				dataType:"json",
 				success:function(data){
 					console.log(data.list);
 					console.log(data.pi);
-					$tbody = $("#rtb tbody");
+					$tbody = jQuery("#demo-foo-pagination tbody");
 					$tbody.html("");
 					$pageinfo = data.pi;
 					//$("#rCount").text("댓글(" + data.length + ")");
 					$rcount = 0;
 					
 					if(data.list.length > 0){ // 댓글이 존재할 경우
-						$.each(data.list, function(index, value) { // value == data[index]
+						jQuery.each(data.list, function(index, value) { // value == data[index]
 						
-						$tr = $("<tr>");
-						$td = $("<td>");
+						$tr = jQuery("<tr>");
+						$td = jQuery("<td>");
 						
 						//$rnoTd = $("<td>").text(value.r_no);
-						$rrnoTd = $("<td>").text("ㄴ");
+						$rrnoTd = jQuery("<td width='30'>").text("ㄴ");
 							
-						$contentTd = $("<td width='250'>").text(value.content);
-						$dateTd = $("<td>").text(value.update_date);
+						$contentTd = jQuery("<td width='250'>").text(value.content);
+						$dateTd = jQuery("<td>").text(value.update_date);
 						
-						$rreply = $('<input type="button" class="rr" value="re"/>');
-						$altB = $('<input type="button" class="alt" value="alt"/>');
-						$deleteB = $('<input type="button" class="del" value="del"/>');
-						$hrno = $('<input type="hidden" id="hrno" value="' + value.r_no + '"/>');
+						$rreply = jQuery('<input type="button" class="rr" value="re"/>');
+						$altB = jQuery('<input type="button" class="alt" value="alt"/>');
+						$deleteB = jQuery('<input type="button" class="del" value="del"/>');
+						$hrno = jQuery('<input type="hidden" id="hrno" value="' + value.r_no + '"/>');
 						
 						if(value.depth == 1) {
-							$contentTd = $("<td colspan='2' width='250'>").text(value.content);
+							$contentTd = jQuery("<td colspan='2' width='250'>").text(value.content);
 						} else {
 							$tr.append($rrnoTd);
 						}
 						
 						if(value.status == 'N') {
 							//$rnoTd = $("<td>").text("");
-							$contentTd = $("<td colspan='2'>").text("사용자가 삭제한 댓글입니다.");
-							$dateTd = $("<td>").text("");
+							$contentTd = jQuery("<td colspan='2'>").text("사용자가 삭제한 댓글입니다.");
+							$dateTd = jQuery("<td>").text("");
 							$rcount++;
 						}
 						
@@ -263,9 +287,15 @@
 						});
 					if($count == 0) {
 						page(data.pi);
-					} 
+					} else {
+						var $lastRow = jQuery("#demo-foo-pagination:last");
+						$lastRow.append("<tr><td id='pagetd' align='center' colspan='4'>");
+						//$("#pagetd").append("안녕하세요");
+						$("#pagetd").empty();
+						page(data.pi);
+					}
 						$count++;
-						console.log($count);
+						//console.log($count);
 					} else {
 						$tr = $("<tr>");
 						
@@ -275,7 +305,7 @@
 						$tbody.append($tr);
 					}
 					//console.log((data.length - $rcount));
-					$("#rCount").text("댓글(" + (data.pi.listCount - $rcount) + ")");
+					jQuery("#rCount").text("댓글(" + data.pi.listCount + ")");
 					if($pageinfo.currentPage == 1) {
 						$("#lt").attr("disabled", true);
 					} else {
@@ -296,54 +326,55 @@
 		
 		function page(e){ 
 			//$("#rtb> :last").append("<tr><td colspan='4'>헤헤</td></tr>")
-			var $lastRow = $("#rtb:last");
-			var $leftbtn = $("<div class='leftbtn btns'>");
-			var $ltlt = $("<button id='ltlt'>").text("<<");
-			var $lt = $("<button id='lt'>").text("<");
+			var $lastRow = jQuery("#demo-foo-pagination:last");
+			var $leftbtn = jQuery("<div class='leftbtn btns'>");
+			var $ltlt = jQuery("<button id='ltlt'>").text("<<");
+			var $lt = jQuery("<button id='lt'>").text("<");
+			$lastRow.append("<tr><td id='pagetd' align='center' colspan='4'>");
+			//$pagetd = $("#pagetd");
 			$leftbtn.append($ltlt).append($lt);
-			$lastRow.append("<tr><td colspan='4'>");
 			console.log($lastRow);
-			$lastRow.append($leftbtn);
-			var $rightbtn = $("<div class='rightbtn btns'>");
-			var $gt = $("<button id='rt'>").text(">");
-			var $gtgt = $("<button id='rtrt'>").text(">>");
+			$("#pagetd").append($leftbtn);
+			var $rightbtn = jQuery("<div class='rightbtn btns'>");
+			var $gt = jQuery("<button id='rt'>").text(">");
+			var $gtgt = jQuery("<button id='rtrt'>").text(">>");
 			$rightbtn.append($gt).append($gtgt);
 			for (var i = e.startPage; i <= e.endPage; i++) {
-					var btn = $("<button class='btns numbtn'>").text(i);
-					$lastRow.append(btn);
+					var btn = jQuery("<button class='btns numbtn'>").text(i);
+					$("#pagetd").append(btn);
 				}
 				//$lastRow.append(btn);
 			
-			$lastRow.append($rightbtn);
+			$("#pagetd").append($rightbtn);
 			$lastRow.append("</td></tr>");
 			//$(".tagactive").attr("disabled", true);
 			
 		}
 		
-		$(document).on("click", "#rtrt", function(){
+		jQuery(document).on("click", "#rtrt", function(){
 			getReplyList($pageinfo.endPage);
 			//console.log($pageinfo.endPage);
 		});
 		
-		$(document).on("click", "#ltlt", function(){
+		jQuery(document).on("click", "#ltlt", function(){
 			getReplyList(1);
 		});
 		
-		$(document).on("click", "#lt", function(){
+		jQuery(document).on("click", "#lt", function(){
 			getReplyList(($pageinfo.currentPage) - 1);
 		});
 		
-		$(document).on("click", "#rt", function(){
+		jQuery(document).on("click", "#rt", function(){
 			getReplyList(($pageinfo.currentPage) + 1);
 		});
 		
-		$(document).on("click", ".numbtn", function(){
+		jQuery(document).on("click", ".numbtn", function(){
 			//console.log($(this).text());
 			getReplyList($(this).text());
 		});
 		
 	</script>
 	
-	<jsp:include page="../include/footer.jsp"/>
+	//<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>

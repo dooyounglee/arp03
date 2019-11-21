@@ -6,9 +6,10 @@
 %>
 <!DOCTYPE html>
 <html>
-<!-- <script src="https://code.jquery.com/jquery-3.1.0.min.js" type="text/javascript"></script> -->
-<%@ include file="../include/bhead.jsp"%>
+<!-- <script src="https://code.jquery.com/juqery-3.1.0.min.js" type="text/javascript"></script> -->
+
 <head>
+<%@ include file="../include/bhead.jsp"%>
 <meta charset="UTF-8">
 <style>
 	#formDiv{
@@ -24,7 +25,6 @@
 </head>
 
 <body>
-
 <!-- Topbar header - style you can find in pages.scss -->
 	<header class="topbar">
 		<%@ include file="../include/btopbarheader.jsp"%>
@@ -36,6 +36,7 @@
 		<%@ include file="../include/bsidebar.jsp"%>
 	</aside>
 	<!-- End of Left-sidebar -->
+
 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -50,70 +51,31 @@
 	<jsp:include page="../include/header.jsp"/>
 	
 	<div class="page-wrapper">
-	
-
-	<h3 align="center">글 작성하기</h3>
-	<br><br>
-	<form method="post" id="MultiUpload" action="insertTBoard.do" enctype="multipart/form-data" id="boardInsertForm" >
 		
-			<div align="center" id="formDiv">
-
-					
-					<input name="m_no" value="${mem.m_no}" type="hidden">
-					
-					<div class="form-material">
-					<input type="text" name="title" id="title" required placeholder="제목을 입력해주세요" value="${b.title }" class="form-control"><br>
-                     </div>
-				
-				
-					<input type="hidden" name="m_no" value="${ mem.m_no }">
-					
-					
-			
-			
-					<c:if test="${ empty b }">
-						<label>파일첨부</label>
-						<input type="file"  name="file" id="file" multiple="multiple">
-						<div id="fileArea">
-						
-						</div>
-					</c:if>
-
-						<textarea id="summernote" cols="50" rows="7" name="content" id="content"required >${b.content }</textarea>
-
-
-				<div align="center">
-				<button type="submit" id="subBtn" class="btn waves-effect waves-light btn-info">등록하기</button> 
-				<button type="button" class="btn waves-effect waves-light btn-info" onclick="location.href='tblist.do';">목록으로</button>
-				</div>		
-			</div>
-		</div>
-	</form>
-		
-		
-	
-		
-	<%-- 	<c:if test="${ !empty b }">
+	 	<c:if test="${ !empty b }">
 			<h3 align="center">글 수정하기</h3>
 			
-				<form action="tbupdate.do?b_no=${b.b_no}" method="post" enctype="multipart/form-data">
+			<div align="center" id="formDiv">
+			
+				<form action="tbupdate.do" method="post" enctype="multipart/form-data">
 	
-			<table align="center">
-				<tr>
-
-					<td>제목</td>
-					<td><input type="text" name="title" value="${ b.title }" id="title" required></td><br><br>
-				</tr>
+					<div class="form-material">
+						<input type="text" name="title" id="title" required placeholder="제목을 입력해주세요" value="${b.title }" class="form-control"><br>
+                     </div>
 				
-				<tr>
-					<td></td>
-					<td><input type="hidden" name="m_no" value="${ b.m_no }"></td>
+
+				
+			
+				<input type="hidden" name="b_no" value="${ b.b_no }">
+				<input type="hidden" name="m_no" value="${ b.m_no }">
 					<br>
-				</tr>
-				<tr>
-					<td>첨부파일</td>
-				<td>
-				<input type="file" name="reloadFile" multiple="multiple"> 
+		
+					<label>첨부파일</label>
+			
+				<input type="file" name="reloadFile" id="file" multiple="multiple"> 
+				<div id="fileArea">
+				
+				</div>
 				
 				<c:if test="${ !empty bfList }">
 				<c:forEach items="${ bfList }" var="bfList">
@@ -128,23 +90,23 @@
 				
 				</c:forEach>
 					</c:if>
-				</td>	
-				</tr>
-				<tr>
-					<td></td>
-					<td><textarea id="summernote" cols="50" rows="7" name="content" id="content" required>${ b.content }</textarea></td>
-				</tr>
+			
+			
+			
+				<textarea id="summernote" cols="50" rows="7" name="content" id="content" required>${ b.content }</textarea>
+		
 				
-				<tr>
-					<td colspan="2" align="center">
+		
+				<div align="center">
 						<button type="submit" id="subBtn">수정하기</button> 
 						<button type="button" onclick="location.href='tblist.do';">목록으로</button>
-					</td>
-				</tr>
-			</table>
+			
+				</div>
+		
 		</form>
 		</c:if>
-		 --%>
+	</div>
+</div>		 
 	
 	
 	 <script>
@@ -325,8 +287,8 @@
 	
 	</script> -->
 	 
-	 
-	 
+	
+	
 	
   
 
