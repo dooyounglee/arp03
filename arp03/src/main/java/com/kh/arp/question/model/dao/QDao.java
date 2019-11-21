@@ -97,6 +97,15 @@ public class QDao {
 		return sqlSession.insert("questionMapper.qReplyInsert", q);
 	}
 
+	public ArrayList<QReply> selectQReply(int q_no) {
+		ArrayList<QReply> qRList = (ArrayList)sqlSession.selectList("questionMapper.selectQRply", q_no);
+		return qRList;
+	}
+
+	public int qReplyListCount(int q_no) {
+		return sqlSession.selectOne("questionMapper.qReplyListCount", q_no);
+	}
+
 	/*
 	 * public int selectQ(QFile qf) { return
 	 * sqlSession.selectOne("questionMapper.selectQ", qf); }

@@ -19,14 +19,6 @@
 	
 	</resultMap>
 	
-	<resultMap id="selectsurveylist" type="Survey">
-		<id property="su_no" column="su_no"/>
-		<result property="title" column="title"/>
-		<result property="enrolldate" column="enrolldate"/>
-		<result property="name" column="name"/>
-		<result property="title_1" column="title_1"/>
-		
-	</resultMap>
 		
 	
   <insert id="insertSurvey">
@@ -36,11 +28,16 @@
   	#{q1}, #{a1}, #{q2}, #{a2}, #{q3}, #{a3})
   </insert>
   
-  <select id="selectSurvey" resultMap="selectsurveylist">
+  <select id="selectSurvey" resultMap="surveyList">
   	select s.title, enrolldate, name, l.title
 	from Survey s 
 	join lecture l on s.lec_no=l.lec_no
 	join member m on s.m_no=m.m_no
   </select>
 	
+	<select id="detailSurvey" resultType="_int">
+		select *
+		from Survey
+		where su_no=#{s}
+	</select>
 </mapper>

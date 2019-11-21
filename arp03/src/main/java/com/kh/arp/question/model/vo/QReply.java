@@ -11,6 +11,7 @@ public class QReply {
 	private int m_no;		// ȸ����ȣ
 	private String content;	// ����
 	private String regdate;	// �ۼ�����
-	private String update;	// ��������
+	private String updatedate;	// ��������
 	private String status;	// ����
+	private String name;	// name없어서 필드 추가함
 }

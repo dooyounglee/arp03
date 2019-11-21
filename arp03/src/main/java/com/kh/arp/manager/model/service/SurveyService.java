@@ -11,4 +11,6 @@ public interface SurveyService {
 	
 	List<Survey> selectsurvey();
 	
+	List<Survey> detailsurvey(String s);
+	
 }

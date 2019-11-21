@@ -32,8 +32,7 @@ public class SurveyController {
 	
 	@RequestMapping("insertsurvey.ma")
 	public ModelAndView insertsurvey(ModelAndView mv, Survey s) {
-		int result=ss.insertsurvey(s);
-			System.out.println(s);		
+		int result=ss.insertsurvey(s);		
 		if(result>0) {
 			mv.setViewName("manager/selectsurvey");
 		}else {
@@ -45,8 +44,18 @@ public class SurveyController {
 	@RequestMapping("selectsurvey.ma")
 	public ModelAndView selectsurvey(ModelAndView mv) {
 		List<Survey> s= ss.selectsurvey();
-		System.out.println("contorlleo"+s);
 		mv.addObject("list", s).setViewName("manager/selectsurvey");
+		return mv;
+	}
+
+	@RequestMapping("detailsurvey.ma")
+	public ModelAndView detailsurvey(ModelAndView mv, String su_no) {
+		System.out.println(su_no);
+		List<Survey> s = ss.detailsurvey(su_no); 
+		
+		System.out.println(su_no);
+		System.out.println("============="+s);
+		mv.addObject("s", s).setViewName("manager/detailsurvey");
 		return mv;
 	}
 }

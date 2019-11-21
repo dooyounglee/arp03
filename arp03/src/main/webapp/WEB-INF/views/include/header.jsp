@@ -75,11 +75,12 @@
 	<a href="flist.ad"><del>faq</del></a>
 	
 <hr>
-</body>
 <script>
 	function no(){
 		alert("선생님만 이용가능한 게시판입니다.");
 	
 	}
+	//$.noConflict();
 </script>
+</body>
 </html>

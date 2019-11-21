@@ -23,7 +23,7 @@
 	}
 	.c1{
 		border:1px solid black;
-		width:500px;
+		width:623px;
 		height:250px;
 		margin-left:auto;
 		margin-right:auto;
@@ -43,7 +43,7 @@
 	<h1 align="center">상세보기 페이지</h1>
 	<br>
 	<form class="c1" action="qupdateForm.qu?q_no=${ q.q_no }" method="post" enctype="multipart/form-data">
-		
+		<h3 align="center">학생 질문</h3>
 		<table class="t1" align="center">
 			<tr>
 				<td>제목</td>
@@ -84,7 +84,7 @@
 			</tr>
 		</table>
 	</form>
-	<br><br><br>
+	<br>
 	
 	
 	<!-- 질문게시판에 선생님이 답변달았을때의 insert form 사실상update-->
@@ -115,7 +115,7 @@
 	<c:if test="${!empty q.replycontent}">
 	<form class="c1" id="qOpen1" method="post" enctype="multipart/form-data">
 		
-		<h1 align="center">선생님 답변</h1>
+		<h3 align="center">선생님 답변</h3>
 		
 		<table class="t1" align="center">
 			<tr>
@@ -141,19 +141,45 @@
 	<br>
 	
 	<!-- 댓글 -->
+	<c:if test="${ qRListCount ne 0 }">
 	<form id="dat" action="qReplyInsert.re" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="q_no" value="${ q.q_no }">
-	<h5 align="center">댓글리스트있으면 여기위로</h5>
+	<div style="width:623px; margin-left:auto; margin-right:auto; border:1px solid black;">
+		<table border="1" style="width:623px;">
+		<tr>
+			<td colspan="3">댓글(${ qRListCount })</td>
+		</tr>
+		</table>
+	<c:forEach items="${ qRList }" var="qr">
+		<table border="1">
+			<tr align="center">
+				<td style="width:20px;">${ qr.r_no }</td>
+				<td style="width:70px;">${ qr.name }</td>
+				<td style="width:310px;"><textarea class="textAreaRe" cols="38" rows="1" readonly>${ qr.content }</textarea></td>
+				<td>${ qr.updatedate }</td>
+				<c:if test="${ qr.m_no eq mem.m_no }">
+					<td><button class="qrUpdateBtn" type="button">수정</button></td>
+					<td><button>삭제</button></td>
+				</c:if>
+			</tr>
+		</table>
+	</c:forEach>
+	</div>
+	</c:if>
+	
+	
+	<br>
 	<table align="center">
 	<tr>
 		<td>
 			<textarea style="border:1px solid black;" id="repl" cols="50" rows="2" name="content"></textarea>
 		</td>
 		<td>
-			<button id="datUp" type="button">댓글</button>
+			<button style="height:47px;" id="datUp" type="submit">댓글등록</button>
 		</td>
 	</tr>
 	</table>
+	</form>
 			<br><br><br>
 	</c:if>
 	
@@ -233,6 +259,35 @@
 			$("#dat").attr("style","display:none");
 			$("#qOpen").attr("style","display:block");
 		}
+		
+/* 		function qrUpdateBtn(){
+			$("#textAreaRe").removeAttr("readonly");
+		}
+		 */
+/* 		$("#qrUpdateBtn").click(function(){
+			$(.textAreaRe).click(function(){
+				$(this).removeAttr("readonly");
+			});
+		}); */
+		
+/* 		$(document).ready(function(){
+			$(".qrUpdateBtn").click(function(){
+				$(this).click(function(){
+					$(".textAreaRe").removeAttr("readonly");
+				});
+			});
+		});
+		
+		
+		$(".qrUpdateBtn").click(function(){
+			$(this).append("")
+		}); */
+		
+/* 		$("#qrUpdateBtn").click(function(){
+			$("#textAreaRe").removeAttr("readonly");
+		}); */
+		
+		
 	</script>
 	
 	

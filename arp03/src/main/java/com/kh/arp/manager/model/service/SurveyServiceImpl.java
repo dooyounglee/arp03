@@ -25,7 +25,11 @@ public class SurveyServiceImpl implements SurveyService {
 
 	@Override
 	public List<Survey> selectsurvey() {
-		System.out.println("cqwr"+sDao.selectsurvey());
 		return sDao.selectsurvey();
+	}
+
+	@Override
+	public List<Survey> detailsurvey(String s) {
+		return sDao.detailsurvey(s);
 	}
 }

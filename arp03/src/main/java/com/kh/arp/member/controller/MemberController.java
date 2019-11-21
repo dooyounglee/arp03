@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.member.model.service.MemberService;
@@ -152,16 +153,16 @@ public class MemberController {
 		return mv;
 	}
 	
+	@ResponseBody
 	@PostMapping("/findId.me")
-	public ModelAndView findIdPost(Member m, ModelAndView mv) {
+	public String findIdPost(Member m) {
 		System.out.println(m);
 		
 		Member newm=ms.find(m);
 		if(newm!=null) {
-			System.out.println(newm);
+			return newm.getId();
 		}
-		mv.setViewName("redirect:/find.me");
-		return mv;
+		return "fail";
 	}
 	
 	@PostMapping("/findPw.me")
