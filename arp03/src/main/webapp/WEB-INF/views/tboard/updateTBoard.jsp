@@ -85,6 +85,7 @@
 					
 					<div id="delDiv">
 					 <a id="fileName" href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bfList.rename_filename}" download="${ bfList.original_filename }">${ bfList.original_filename }</a>
+					 <input type="hidden" name="fileStatus" value="${ bfList.original_filename }">
                 	  <button type="button" class="delBtn">파일삭제</button>
 					</div>
 				
