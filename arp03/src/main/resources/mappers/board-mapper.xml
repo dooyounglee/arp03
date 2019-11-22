@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="boardMapper">
 	<select id="getListCount" resultType="_int">
-		select count(*) from board where status = 'Y'
+		select count(*) from board where status = 'Y' and ca_no =1
 	</select>
 	
 	<select id="selectList" resultType="Board">
-		select * from board where status='Y' order by b_no desc
+		select * from board where status='Y' and ca_no =1 order by b_no desc
 	</select>
 	
 	<insert id="insertBoard">
