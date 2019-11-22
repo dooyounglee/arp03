@@ -23,6 +23,7 @@
     <!--This page css - Morris CSS -->
     <link href="/arp/resources/material-pro/assets/plugins/c3-master/c3.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+    <link href="/arp/resources/material-pro/assets/plugins/icheck/skins/all.css" rel="stylesheet">
     <link href="/arp/resources/material-pro/horizontal/css/style.css" rel="stylesheet">
     <!-- Editable CSS -->
     <link type="text/css" rel="stylesheet" href="/arp/resources/material-pro/assets/plugins/jsgrid/jsgrid.min.css" />
