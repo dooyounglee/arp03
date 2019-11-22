@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String[] list = request.getParameterValues("bfList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +48,7 @@
 				<c:forEach items="${ bfList }" var="bl">
 					<a href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bl.rename_filename}" download="${ bl.original_filename }">${ bl.original_filename }</a>
 					<br>
-					<input type="hidden" name="bfList" value="${bl.original_filename }">
+				
 				</c:forEach>
 				
 				</c:if>
@@ -115,32 +118,35 @@
 		$(document).on("click",".upBtn",function(){
 			
 			console.log("44");
-			console.log($(this).parent().parent().children().eq(1).text());
+			console.log($(this).parent().parent().children(".content").text());
+			console.log($(this).parent().parent().children())
 			// content자리가 textarea로 변경되게 
-			 var upContent=$(this).parent().parent().children().eq(1);	
+			 var upContent=$(this).parent().parent().children(".content");	
 			 var contentText= upContent.text();
 			 
-		 	upContent.replaceWith( '<textarea>'+contentText+'</textarea>' );
+		 	upContent.replaceWith( '<textarea id="upcontent">'+contentText+'</textarea>' );
 		 	
-		 	var delNo =$(this).parent().parent().children().eq(4);
+		 	var delNo =$(this).parent().parent().children(".delBtn");
 		 	// 삭제버튼, 수	정버튼 안보이고 등록버튼 보임
-		 	delNo.hide();
-		 	$(this).hide();
-		 	$(this).parent().parent().children().eq(5).show();							
+		 	delNo.hide(); // 삭제버튼
+		 	$(this).hide(); // 수정버튼
+			$(this).parent().parent().children("#subBtn").show();		// 등록버튼	
+		 	$(this).parent().parent().children("#reBtn").hide();	// 답글버튼
+		 				
 		});
 		
 		// 등록버튼 눌렀을때
 		$(document).on("click",".subBtn", function(){
 			
-			var updateContent =	$(this).parent().parent().children().eq(1);
+			var updateContent =	$(this).parent().parent().children("#upcontent");
 			
-			console.log($(this).parent().parent().children().eq(3));
+			console.log(updateContent);
 			
-			$(this).parent().hide();
-		 	$(".upBtn").show();
-		 	$(this).parent().parent().children().eq(4).show();
+			$(this).parent().hide(); // 등록버튼 td삭제
+		 	$(".upBtn").show();		 // 수정버튼
+		 	$(this).parent().parent().children(".delBtn").show(); // 삭제버튼
 			
-		 	var r_no = $(this).parent().parent().children().eq(6).val();
+		 	var r_no = $(this).parent().parent().children("#r_no").val();
 		 	console.log("r_no"+r_no);
 		 	
 		 	$.ajax({
@@ -150,13 +156,12 @@
 					  content:updateContent.val()
 					},
 				success:function(data){
-					
-	
-				
 				if(data=="success"){
 					
+					console.log("성공")
+					getReplyList();
 					
-					updateContent.replaceWith("<td >"+updateContent.val()+"</td>");
+					/* updateContent.replaceWith("<td >"+updateContent.val()+"</td>"); */
 					
 				
 				}else{
@@ -169,9 +174,15 @@
 			}); 
 		});
 		
+		
+		
+		// 답글버튼 눌렀을때 
 		$(document).on("click",".re",function(){
 			
-			var updateContent =	$(this).parent().parent().children().eq(1);
+			/* var updateContent =	$(this).parent().parent().children("#upcontent"); */
+			var updateContent = $(this).parent().parent().children(".content");
+			var name = $(this).parent().parent().children(".name").text();
+			console.log(name);
 			updateContent.parent().after("<tr><td>┖></td><td><textarea></textarea></td><td><button class='resubBtn'>등록</button></td></tr>");
 			
 			
@@ -180,9 +191,9 @@
 		// 대댓글 등록 버튼 눌렀을때 
 		$(document).on("click",".resubBtn", function(){
 			
-			var r_no = $(this).parent().parent().prev().children().eq(7).val();
+			var r_no = $(this).parent().parent().prev().children("#r_no").val();
 			console.log("r_no"+r_no);
-			var content = $(this).parent().prev().children().val();
+			var content = $(this).parent().prev().children().val();  /********************/
 			console.log(content);
 			
 			
@@ -241,8 +252,8 @@
 
 		 // 댓글 삭제버튼 눌렀을때
 		 $(document).on("click",".delBtn", function(){
-			 var r_no = $(this).parent().parent().children().eq(7).val();
-			 var depth = $(this).parent().parent().children().eq(6).val();
+			 var r_no = $(this).parent().parent().children("#r_no").val();
+			 var depth = $(this).parent().parent().children(".depth").val();
 		
 			 		 console.log(r_no);
 					 console.log(depth);
@@ -311,41 +322,45 @@
 							// 작성자 내용 작성일
 							$tr = $("<tr></tr>");
 							
-							$writerTd = $("<td width='50'></td>").text(value.m_no);
-							$writerReTd = $("<td>┖></td>");
-							$contentTd = $("<td></td>").text(value.content);
+							$writerTd = $("<td width='100' class='name'></td>").text(value.name);
+							$writerReTd = $("<td>┖>"+"  "+value.name+"</td>");
+							$contentTd = $("<td class='content'></td>").text(value.content);
 							$dateTd = $("<td></td>").text(value.regdate);
 							$upBtn = $("<td><button class='upBtn'>수정</button></td>");
 							$delBtn = $("<td><button class='delBtn'>삭제</button></td>");
 							$upForm =$("<textarea></textarea>");
-							$subBtn = $("<td><button class='subBtn'>등록</button></td>");
+							$subBtn = $("<td id='subBtn'><button class='subBtn'>등록</button></td>");
 							$r_no = $("<input type='hidden' id='r_no' class='r_no'>").val(value.r_no);
 							$depth = $("<input type='hidden' class='depth'>").val(value.depth);
-							$reBtn = $("<td><button class='re'>답글</button></td>");
+							$reBtn = $("<td id='reBtn'><button class='re'>답글</button></td>");
 							$delString = $("<td>삭제된 댓글입니다.</td>");
 							$parent_no = $("<input type='hidden'  class='parent_no'>").val(value.parent_no);
 							
 						
 							
 						
-							if(value.depth == 1){
+							if(value.depth == 1){				// 댓글
 								$tr.append($writerTd);
 								
 								var status = value.status;
-								
-								if(status == "N"){
+								if(status == "N"){			//삭제된 댓글일때
 								$tr.append($delString);
-								}else{
+								}else{											
+							
 									$tr.append($contentTd);
 								}
 							}else{
+								
 								$tr.append($writerReTd);
 								$tr.append($contentTd);
 							
 							}
 							$tr.append($dateTd);
-							$tr.append($upBtn);
-							$tr.append($delBtn);
+							if(${mem.m_no} == value.m_no){
+								$tr.append($upBtn);
+								$tr.append($delBtn);
+							}
+							
 							$tr.append($subBtn);
 							$tr.append($depth);
 							$tr.append($r_no);

@@ -110,11 +110,12 @@ public class TBoardController {
 
 	// 게시글 수정
 	@RequestMapping("tbupdate.do")
-	public String updateTBoard(String[] original_filenames,String bfList,Board b,BoardFile bf, ModelAndView mv, MultipartHttpServletRequest reloadFile) {
+	public String updateTBoard(String[] list,Board b,BoardFile bf, ModelAndView mv, MultipartHttpServletRequest reloadFile) {
 		
 			
 		
-		System.out.println("bfList 존재"+bfList);
+			System.out.println("b파일"+b.getFileStatus());
+		
 			Iterator<String> files = reloadFile.getFileNames();
 			
 			MultipartFile mpf = reloadFile.getFile(files.next());
@@ -125,8 +126,11 @@ public class TBoardController {
 				System.out.println("새로운파일이 들어왔나봅세당"+fileList);
 				
 				
-				tbService.updateStatus(b.getB_no());	// 파일상태값을 Y로 변경
+			/*
+			 * tbService.updateStatus(b.getB_no()); // 파일상태값을 Y로 변경 */
+				b.setFileStatus("Y");
 				int result = tbService.updateTBoard(b);
+				
 				
 			
 			System.out.println(fileList);
@@ -147,19 +151,19 @@ public class TBoardController {
 		}else {		// 새로운 첨부파일이 없다면
 			
 			
-			if( original_filenames != null) {	// 원래 첨부파일이 있었다면
+			if( b.getFileStatus() != null ) {	/// 원래 첨부파일이 있었다면
 				
 			b.setFileStatus("Y");
 			
-			}else {
+		}else {
 				
 				b.setFileStatus("N");
 				/*
-				 * tbService.updateFileStatus(b.getB_no()); // 상태값을 N으로 변경
+				 * tbService.updateFileStatus(b.getB_no()); // 첨부파일 여부 상태값을 N으로 변경
 				 */			
-			}
+			 } 
 			
-			// 게시글 파일상태값을 N으로 변경
+	
 			int result = tbService.updateTBoard(b);
 			
 		}
