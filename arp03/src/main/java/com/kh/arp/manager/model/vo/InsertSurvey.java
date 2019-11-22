@@ -13,6 +13,6 @@ public class InsertSurvey {
 	private String q1;
 	private String q2;
 	private String q3;
-	private String name;			
+	private String name;			// 매니저 이름
 	private String title_1;				// 강의명
 }

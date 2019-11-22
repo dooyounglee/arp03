@@ -11,7 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.lecture.model.service.LectureService;
 import com.kh.arp.manager.model.service.SurveyService;
-import com.kh.arp.manager.model.vo.Survey;
+import com.kh.arp.manager.model.vo.CompleteSurvey;
+import com.kh.arp.manager.model.vo.InsertSurvey;
 import com.kh.arp.member.model.service.MemberService;
 import com.kh.arp.member.model.vo.Member;
 
@@ -34,12 +35,12 @@ public class SurveyController {
 	}
 	
 	@RequestMapping("insertsurvey.ma")
-	public ModelAndView insertsurvey(ModelAndView mv, Survey s ,HttpSession session) {
+	public ModelAndView insertsurvey(ModelAndView mv, InsertSurvey is, HttpSession session) {
 		System.out.println(s+"첫번째");
 		Member m = new Member();
 		m.setM_no(((Member)session.getAttribute("mem")).getM_no());
 		System.out.println(m+"엠담기");
-		s.setM_no2(m.getM_no());
+		cs.setM_no(m.getM_no());
 		System.out.println(s);
 		int result=ss.insertsurvey(s);
 		if(result>0) {

@@ -10,6 +10,6 @@ public class CompleteSurvey {
 	private String a1;
 	private String a2;
 	private String a3;
-	private String name;
+	private String name;				// 학생이름
 	private String issurvey;			// 학생이 이 설문을 완료했는지 아는 컬럼
 }
