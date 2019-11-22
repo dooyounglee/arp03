@@ -2,25 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="managerMapper">
 
-	<resultMap id="surveyList" type="Survey">
+	<resultMap id="surveyList" type="InsertSurvey">
 		<id property="su_no" column="su_no"/>
-		<result property="m_no2" column="m_no2"/>
 		<result property="lec_no" column="lec_no"/>
 		<result property="m_no" column="m_no"/>
 		<result property="title" column="title"/>
 		<result property="enrolldate" column="enrolldate"/>
 		<result property="q1" column="q1"/>
-		<result property="a1" column="a1"/>
 		<result property="q2" column="q2"/>
-		<result property="a2" column="a2"/>
 		<result property="q3" column="q3"/>
-		<result property="a3" column="a3"/>
 		<result property="name" column="name"/>
 		<result property="title_1" column="lec_title"/>
-		<result property="issurvey" column="issurvey"/>
 	</resultMap>
 	
-		
+	<resultMap id="surveyList" type="CompleteSurvey">
+		<id property="su_no" column="su_no"/>
+		<result property="m_no" column="m_no"/>
+		<result property="a1" column="a1"/>
+		<result property="a2" column="a2"/>
+		<result property="a3" column="a3"/>
+		<result property="name" column="name"/>
+		<result property="issurvey" column="issurvey"/>
+	</resultMap>
 	
   <insert id="insertSurvey">
   	insert into survey values
@@ -36,7 +39,7 @@
 	join member m on s.m_no=m.m_no
   </select>
 	
-	<select id="detailSurvey" resultType="Survey">
+	<select id="detailSurvey" resultType="InsertSurvey">
 		select *
 		from Survey
 		where su_no=#{su_no}
