@@ -134,4 +134,35 @@ public class TBoardServiceImpl implements TBoardService{
 		return tbDao.tbReplyUpdate(r);
 	}
 
+	@Override
+	public int reReplyInsert(BReply r) {
+
+		return tbDao.reReplyInsert(r);
+	}
+
+	@Override
+	public int recountUpdate(BReply r) {
+
+		return tbDao.recountUpdate(r);
+	}
+
+	@Override
+	public int deleteRe(BReply r) {
+
+		return tbDao.deleteRe(r);
+	}
+
+	@Override
+	public int re_countMinus(BReply r) {
+
+		return tbDao.re_countMinus(r);
+		
+	}
+
+	@Override
+	public int upInsertTBoardFile(BoardFile bf) {
+		
+		return tbDao.upInsertTBoardFile(bf);
+	}
+
 }
