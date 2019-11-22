@@ -163,8 +163,9 @@
 				<td style="width:310px;"><textarea class="textAreaRe" cols="38" rows="1" readonly>${ qr.content }</textarea></td>
 				<td>${ qr.updatedate }</td>
 				<c:if test="${ qr.m_no eq mem.m_no }">
-					<td><button class="qrUpdateBtn" type="button">수정</button></td>
-					<td><button>삭제</button></td>
+				<td>
+					<button>X</button>
+				</td>
 				</c:if>
 			</tr>
 		</table>

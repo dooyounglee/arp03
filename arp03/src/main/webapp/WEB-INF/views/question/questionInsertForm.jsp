@@ -42,6 +42,11 @@
 				<td><input type="file" name="fileUp"></td>
 			</tr>
 			<tr>
+				<td>유튜브URL</td>
+				<td><input type="text" style="width:300px;" name="youtubeURL"></td>
+				<iframe width="" height="" src="" frameborder="0"></iframe>
+			</tr>
+			<tr>
 				<td colspan="2" align="right">
 					<button type="submit">등록</button>
 					<!-- <button type="button" onclick="window.history.back()">취소</button> -->
