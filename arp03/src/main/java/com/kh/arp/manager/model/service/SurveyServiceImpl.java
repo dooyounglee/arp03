@@ -2,15 +2,11 @@ package com.kh.arp.manager.model.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.manager.model.dao.SurveyDao;
-import com.kh.arp.manager.model.vo.Survey;
-import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.manager.model.vo.InsertSurvey;
 
 @Service("ss")
 public class SurveyServiceImpl implements SurveyService {
@@ -19,22 +15,22 @@ public class SurveyServiceImpl implements SurveyService {
 	private SurveyDao sDao;
 	
 	@Override
-	public int insertsurvey(Survey s) {
+	public int insertsurvey(InsertSurvey s) {
 		return sDao.insertsurvey(s);
 	}
 
 	@Override
-	public List<Survey> selectsurvey() {
+	public List<InsertSurvey> selectsurvey() {
 		return sDao.selectsurvey();
 	}
 
 	@Override
-	public Survey detailsurvey(int su_no) {
+	public InsertSurvey detailsurvey(int su_no) {
 		return sDao.detailsurvey(su_no);
 	}
 
 	@Override
-	public int updatesurvey(Survey s) {
+	public int updatesurvey(InsertSurvey s) {
 		return sDao.updatesurvey(s);
 	}
 }
