@@ -49,7 +49,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<button type="button" onclick="">신고</button>
+				<button type="button" onclick="declareBoard();">신고</button>
 				<c:if test="${ mem.m_no eq b.m_no }">
 					<button type="button" onclick="location.href='bupdateView.do?b_no=${b.b_no}';">수정</button>
 					<button type="button" onclick="deleteCheck();">삭제</button>
@@ -87,6 +87,44 @@
 	</div>
 	
 	<script>
+		function declareBoard(){
+			 //var url="insertForm.de";
+			/*  var obj = "b";
+			 var obj_no = ${b.b_no};
+	         window.open(url,"","width=500,height=500,left=600"); */
+	         
+	        var form = document.createElement("form");
+			form.setAttribute("method", "post");          
+			form.setAttribute("action", "insertForm.de");
+			form.setAttribute("target", "reportForm")
+				
+			document.body.appendChild(form);
+				
+			var input_id = document.createElement("input");
+				
+			input_id.setAttribute("type", "hidden");
+
+			input_id.setAttribute("name", "obj");      //name 속성 지정
+			input_id.setAttribute("value", "b");        //value 값 설정
+
+			form.appendChild(input_id);
+				
+			var input_id2 = document.createElement("input");
+				
+			input_id2.setAttribute("type", "hidden");
+
+			input_id2.setAttribute("name", "obj_no");      //name 속성 지정
+			input_id2.setAttribute("value", ${b.b_no});        //value 값 설정
+
+			form.appendChild(input_id2);
+				
+			var wintype = "width=500, height=500, resizable=no";
+			open("", "reportForm", wintype);
+				
+			form.submit();
+	     
+		}
+	
 		function deleteCheck() {
 			var rst = confirm("정말 삭제하시겠습니까?");
 			if(rst) {
@@ -96,6 +134,39 @@
 	
 		$(function(){
 			getReplyList();
+			
+			$(document).on("click", ".dec", function(){
+				var form = document.createElement("form");
+					form.setAttribute("method", "post");          
+					form.setAttribute("action", "insertForm.de");
+					form.setAttribute("target", "reportForm")
+						
+					document.body.appendChild(form);
+						
+					var input_id = document.createElement("input");
+						
+					input_id.setAttribute("type", "hidden");
+
+					input_id.setAttribute("name", "obj");      //name 속성 지정
+					input_id.setAttribute("value", "r");        //value 값 설정
+
+					form.appendChild(input_id);
+					
+					var $r_no = $(this).parent().parent().children("#hrno").val();	
+					var input_id2 = document.createElement("input");
+						
+					input_id2.setAttribute("type", "hidden");
+
+					input_id2.setAttribute("name", "obj_no");      //name 속성 지정
+					input_id2.setAttribute("value", $r_no);        //value 값 설정
+
+					form.appendChild(input_id2);
+						
+					var wintype = "width=500, height=500, resizable=no";
+					open("", "reportForm", wintype);
+						
+					form.submit();
+			});
 			
 			jQuery("#rBtn").on("click", function(){
 				// 내용, 작성자 아이디, 게시판 번호
@@ -161,12 +232,13 @@
 				//var $r_no = $(this).parent().parent().children().eq(0).text();
 				//console.log($td1.eq(0).text());
 				var $r_no = $(this).parent().parent().children("#hrno").val();
+				var $depth = $(this).parent().parent().children("#depth").val();
 							
 				var rst = confirm("정말 삭제하시겠습니까?");
 				if(rst) {
 					$.ajax({
 						url:"deleteReply.do",
-						data:{r_no:$r_no},
+						data:{r_no:$r_no, depth:$depth},
 						success:function(data){
 							//console.log("삭제 성공");
 							getReplyList();
@@ -250,10 +322,12 @@
 						$contentTd = jQuery("<td width='250'>").text(value.content);
 						$dateTd = jQuery("<td>").text(value.update_date);
 						
-						$rreply = jQuery('<input type="button" class="rr" value="re"/>');
-						$altB = jQuery('<input type="button" class="alt" value="alt"/>');
-						$deleteB = jQuery('<input type="button" class="del" value="del"/>');
+						$rreply = jQuery('<input type="button" class="rr" value="답댓글"/>');
+						$altB = jQuery('<input type="button" class="alt" value="수정"/>');
+						$deleteB = jQuery('<input type="button" class="del" value="삭제"/>');
+						$decB = $('<input type="button" class="dec" value="신고"/>');
 						$hrno = jQuery('<input type="hidden" id="hrno" value="' + value.r_no + '"/>');
+						$depth = jQuery('<input type="hidden" id="depth" value="' + value.depth + '"/>');
 						
 						if(value.depth == 1) {
 							$contentTd = jQuery("<td colspan='2' width='250'>").text(value.content);
@@ -281,7 +355,12 @@
 							$tr.append($td.append($deleteB));
 						}
 						
+						if(value.status == 'Y') {
+							$tr.append($td.append($decB));	
+						}
+						
 						$tr.append($hrno);
+						$tr.append($depth);
 						$tbody.append($tr);
 						
 						});
@@ -305,7 +384,7 @@
 						$tbody.append($tr);
 					}
 					//console.log((data.length - $rcount));
-					jQuery("#rCount").text("댓글(" + data.pi.listCount + ")");
+					$("#rCount").text("댓글(" + (data.pi.listCount - $rcount) + ")");
 					if($pageinfo.currentPage == 1) {
 						$("#lt").attr("disabled", true);
 					} else {

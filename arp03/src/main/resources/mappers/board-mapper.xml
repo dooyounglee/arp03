@@ -57,4 +57,8 @@
 		update board set vcount = vcount+1 where b_no=#{b_no}
 	</update>
 	
+	<update id="minusCount">
+		update breply set re_count = re_count-1 where parent_no = (select parent_no from breply where r_no = #{r_no}) and parent_no = r_no
+	</update>
+	
 </mapper>
