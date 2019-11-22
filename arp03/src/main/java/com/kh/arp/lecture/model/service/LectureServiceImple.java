@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.arp.lecture.model.dao.LectureDao;
+import com.kh.arp.lecture.model.vo.Attendence;
 import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
@@ -88,6 +89,17 @@ public class LectureServiceImple implements LectureService {
 	@Override
 	public List<Classdate> getLectureDatesList(int lec_no) {
 		return ld.getLectureDatesList(lec_no);
+	}
+
+	@Override
+	public int insertAttendence(Attendence att) {
+		int result=ld.isAttendence(att);
+		if(result>0) {
+			ld.updateAttendence(att);
+		}else {
+			ld.insertAttendence(att);
+		}
+		return 0;
 	}
 
 }

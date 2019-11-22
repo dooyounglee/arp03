@@ -160,7 +160,6 @@ CREATE TABLE Attendence (
 	m_no	Number		REFERENCES MEMBER,
 	classdate	date	,
 	content	varchar2(4000)		NULL,
-	status	varchar2(10)	DEFAULT 'Y'	NOT NULL,
 	PRIMARY KEY(classdate,lec_no,m_no)
 );
 

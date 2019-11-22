@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.lecture.model.service.LectureService;
+import com.kh.arp.lecture.model.vo.Attendence;
 import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
@@ -175,5 +176,15 @@ public class LectureController {
 		//mv.addObject("slist", slist);
 		mv.setViewName("mypage/teacher/attendence/list");
 		return mv;
+	}
+	
+	@ResponseBody
+	@PostMapping("/insert.att")
+	public String insertAttendencePost(Attendence att, HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		att.setLec_no(lec.getLec_no());
+		System.out.println(att);
+		int result=ls.insertAttendence(att);
+		return "success";
 	}
 }
