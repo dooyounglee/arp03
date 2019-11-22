@@ -41,7 +41,7 @@
 	<update id="updateTBoard">
 		update board
 		set title=#{title}, content=#{content}, 
-		update_date=sysdate
+		update_date=sysdate, fileStatus=#{fileStatus}
 		where b_no=#{b_no}
 	</update>
 	
@@ -120,16 +120,33 @@
 	</insert>
 	 
 	<select id="selectReplyList" resultType="BReply">
-		select * 
-		from breply 
-		where b_no=#{b_no} and status='Y'
-		order by regdate desc
+	select * from breply where b_no = #{b_no} and (STATUS = 'Y' OR RE_COUNT >= 1) order by parent_no, depth, r_no
 	</select>
 	
 	<update id="tbReplyUpdate">
 		update breply set content=#{content} where r_no=#{r_no} and b_no=#{b_no}
 	</update>
+	
+	<insert id="reReplyInsert">
+		insert into breply values(seq_breply.nextval,#{b_no},#{m_no},#{content},sysdate,sysdate,'Y',2,#{parent_no},0)
+	</insert>
+	
+	<update id="recountUpdate">
+		update breply set re_count = re_count+1 where r_no=#{parent_no}
+	</update>
+	
+	<update id="deleteRe">
+		update breply set status='N' where r_no=#{r_no}
+	</update>
 
+	<update id="re_countMinus">
+		update breply set re_count = re_count-1 where r_no= (select parent_no from breply where r_no=#{r_no})
+	</update>
+	
+	<insert id="upInsertTBoardFile">
+		insert into BoardFile
+		values(seq_boardfile.nextval,#{b_no},#{original_filename}, #{rename_filename})
+	</insert>
 
 
 </mapper>

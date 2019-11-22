@@ -110,10 +110,11 @@ public class TBoardController {
 
 	// 게시글 수정
 	@RequestMapping("tbupdate.do")
-	public String updateTBoard(String[] original_filenames,Board b,BoardFile bf, ModelAndView mv, MultipartHttpServletRequest reloadFile) {
+	public String updateTBoard(String[] original_filenames,String bfList,Board b,BoardFile bf, ModelAndView mv, MultipartHttpServletRequest reloadFile) {
 		
-
-
+			
+		
+		System.out.println("bfList 존재"+bfList);
 			Iterator<String> files = reloadFile.getFileNames();
 			
 			MultipartFile mpf = reloadFile.getFile(files.next());
@@ -140,11 +141,25 @@ public class TBoardController {
 				 bf.setOriginal_filename(originalFileName);
 				 bf.setRename_filename(renameFileName);
 				 
-				 int resultFile = tbService.insertTBoardFile(bf);
+				 bf.setB_no(b.getB_no());
+				 int resultFile = tbService.upInsertTBoardFile(bf);
 			}
 		}else {		// 새로운 첨부파일이 없다면
 			
-			tbService.updateFileStatus(b.getB_no());	// 게시글 파일상태값을 N으로 변경
+			
+			if( original_filenames != null) {	// 원래 첨부파일이 있었다면
+				
+			b.setFileStatus("Y");
+			
+			}else {
+				
+				b.setFileStatus("N");
+				/*
+				 * tbService.updateFileStatus(b.getB_no()); // 상태값을 N으로 변경
+				 */			
+			}
+			
+			// 게시글 파일상태값을 N으로 변경
 			int result = tbService.updateTBoard(b);
 			
 		}
@@ -523,5 +538,47 @@ public class TBoardController {
 			return "failed";
 		}
 	}
+	
+	// 대댓글 작성용 메소드 
+	@ResponseBody
+	@RequestMapping("reReplyInsert.do")
+	public String reReplyInsert(BReply r) {
+		System.out.println("r="+r);
+		int result = tbService.reReplyInsert(r);
+		
+		tbService.recountUpdate(r);
+		
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "failed";
+		}
+	}
+	
+	// 댓글 삭제하는 폼
+	@ResponseBody
+	@RequestMapping("deleteBtn.do")
+	public String deleteRe(BReply r) {
+		System.out.println(r);
+		
+		int result = tbService.deleteRe(r);
+		
+		
+		
+		  if(r.getDepth() == 2) {
+		  
+		  tbService.re_countMinus(r); 
+		  }
+		
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "failed";
+		}
+	}
+
+	
 	
 }

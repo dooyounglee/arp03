@@ -9,8 +9,7 @@
 </head>
 <body>
     <h1>신고하기</h1>
-    <h2>무조건 게시판 1번글 신고하는거</h2>
-    	신고사유
+    	신고사유<br>
 		<input type="radio" name="kind" value="1">영리목적/홍보<br>
 		<input type="radio" name="kind" value="2">불법정보<br>
 		<input type="radio" name="kind" value="3">음란성/선정성<br>
