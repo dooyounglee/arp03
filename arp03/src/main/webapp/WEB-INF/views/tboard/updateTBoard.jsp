@@ -18,6 +18,8 @@
 		margin-right:auto;
 		width:800px
 		}
+		
+	
 	
 </style>
 
@@ -51,7 +53,7 @@
 	<jsp:include page="../include/header.jsp"/>
 	
 	<div class="page-wrapper">
-		
+		<div class="card">
 	 	<c:if test="${ !empty b }">
 			<h3 align="center">글 수정하기</h3>
 			
@@ -103,9 +105,11 @@
 						<button type="button" onclick="location.href='tblist.do';" class="btn waves-effect waves-light btn-info">목록으로</button>
 			
 				</div>
-		
+				<br><br><br>
+	
 		</form>
 		</c:if>
+			</div>
 	</div>
 </div>		 
 	

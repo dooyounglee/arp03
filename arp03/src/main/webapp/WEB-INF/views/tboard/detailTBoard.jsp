@@ -7,68 +7,131 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../include/bhead.jsp"%>
+<style>
+	#formdiv{
+		border: 1px solid black;
+		padding:20px;
+		padding-left:60px;
+		padding-right:60px;
+		text-align:left;
+		color:black;
+		width:700px;
+		margin-left:auto;
+		margin-right:auto;
+
+	}	
+	
+	.card{
+		text-align:left;
+		margin-left:auto;
+		margin-right:auto;
+	
+	}
+	
+	#bor{
+		margin:0px;	
+	}
+	
+	#regDate{
+	float:right;
+	color :gray;
+	font-size:13px;
+	}
+	
+	#content{
+	border:1px;
+		width:450px;
+		height:230px;
+	}
+	#file,a{
+	font-size:15px;
+	}
+	#btn{
+		text-align:right;
+		margin-left:auto;
+		margin-right:auto;
+		width:600px;
+	}
+	
+	
+	
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
-	<jsp:include page="../include/header.jsp"/>
-	
-	<h1 align="center">게시글 상세보기</h1>
-	<br>
-	
-	<table align="center">
-	<tr>
-			<td colspan="2" align="right">
-				<c:if test="${ mem.m_no eq b.m_no }">
-					<a href="tbupdateView.do?b_no=${ b.b_no }">수정하기</a>
-					<a href="tbdelete.do?b_no=${ b.b_no }">삭제하기</a>
-				</c:if>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">${ b.b_no }번 글 상세보기</td>
-		</tr>
-		<tr>
-			<td>제목</td>
-			<td>${ b.title }</td>		
-		</tr>
-		<tr>
-			<td>작성자</td>
-			<td>${ b.m_no }</td>		
-		</tr>
-		<tr>
-			<td>내용</td>
-			<td>${ b.content }</td>		
-		</tr>
-		<tr>
-			<td>첨부파일</td>
-			<td >
-				<c:if test="${ !empty bfList}">
-				<c:forEach items="${ bfList }" var="bl">
-					<a href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bl.rename_filename}" download="${ bl.original_filename }">${ bl.original_filename }</a>
-					<br>
-				
-				</c:forEach>
-				
-				</c:if>
-			</td>		
-		</tr>
-		
-	</table>
-	<button type="button" onclick="location.href='tblist.do';">목록으로</button>
-	
+	<header class="topbar">
+		<%@ include file="../include/btopbarheader.jsp"%>
+	</header>
+	<!-- End Topbar header -->
+
+	<!-- Left-sidebar -->
+	<aside class="left-sidebar">
+		<%@ include file="../include/bsidebar.jsp"%>
+	</aside>
+	<!-- End of Left-sidebar -->
+
+	<div class="page-wrapper">
+		<div class="row page-titles">
+	</div>
+	<div align="center">
+	<div class="card">
 	<br><br>
 	
+	
+	
+	<div id="formdiv" align="center">
+	<p align="center" style="font-size: 15px ">${ b.b_no }번 글</p>
+	<!-- <label>제목 : </label> -->
+	${ b.title }		
+	<label id="bor" style="color: lightgray">---------------------------------------------------------------------------</label>
+	<div>
+	<label>${ b.name}</label>	
+	
+	<label id="regDate">${ b.regdate }</label>
+	</div>
+	<div id="content">
+	${ b.content }	
+	</div>
+	<img src="resources/image/fileIcon.jpg" width="15px" height="19px" >
+		<label id="file">첨부파일</label>
+	<br>
+	
+	<c:if test="${ !empty bfList}">
+	<c:forEach items="${ bfList }" var="bl">
+		<a href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bl.rename_filename}" download="${ bl.original_filename }">${ bl.original_filename }</a>
+		<br>
+				
+	</c:forEach>
+	</c:if>
+
+	
+		
+
+	
+	
+		
+	
+
+			
+	
+	
+	<br><br>
+
+	
+	<!-- 댓글 등록 부분 -->
+
 		<table align="center" width="600" border="1" cellspacing="0">
 		<tr>
-			<td><textarea cols="55" rows="3" id="rContent"></textarea></td>
-			<td><button id="rBtn">등록하기</button></td>
+			<td width="508px"><textarea cols="57" rows="3" id="rContent" style=" border:0;overflow-y:hidden;background:clear;padding:0px"></textarea></td>
+			<td><button id="rBtn" class="btn waves-effect waves-light btn-info">등록하기</button></td>
 		</tr>
 	</table>
-	
+	<br>
 	<!-- 댓글 목록 부분 -->	
-	<table align="center" width="600" border="1" cellspacing="0" id="rtb">
+	<table align="center" width="600" cellspacing="0" id="rtb" style="color:black" >
 		<thead>
 			<tr>
 				<td colspan="3"><b id="rCount"></b></td>
@@ -77,8 +140,24 @@
 		<tbody>
 			
 		</tbody>
+		
 	</table>
+	</div>
+	<br>
+	<div align="right"  id="btn">
+	<c:if test="${ mem.m_no eq b.m_no }">
+		<a href="tbupdateView.do?b_no=${ b.b_no }">수정하기</a>
+		<a href="tbdelete.do?b_no=${ b.b_no }">삭제하기</a>
+	</c:if>
+	<a href="tblist.do;">목록으로</a>
+	</div>
 	
+	
+	<br><br><br><br>
+	</div>
+	</div>
+	
+
 	<script>
 		$(function(){
 			getReplyList();
@@ -183,7 +262,7 @@
 			var updateContent = $(this).parent().parent().children(".content");
 			var name = $(this).parent().parent().children(".name").text();
 			console.log(name);
-			updateContent.parent().after("<tr><td>┖></td><td><textarea></textarea></td><td><button class='resubBtn'>등록</button></td></tr>");
+			updateContent.parent().after("<tr><td>┖></td><td><textarea></textarea></td><td><button class='resubBtn btn waves-effect waves-light btn-info' >등록</button></td></tr>");
 			
 			
 		});
@@ -193,7 +272,7 @@
 			
 			var r_no = $(this).parent().parent().prev().children("#r_no").val();
 			console.log("r_no"+r_no);
-			var content = $(this).parent().prev().children().val();  /********************/
+			var content = $(this).parent().prev().children().val(); 
 			console.log(content);
 			
 			
@@ -322,23 +401,24 @@
 							// 작성자 내용 작성일
 							$tr = $("<tr></tr>");
 							
-							$writerTd = $("<td width='100' class='name'></td>").text(value.name);
+							
+							$writerTd = $("<td width='120' class='name'></td>").text(value.name);
 							$writerReTd = $("<td>┖>"+"  "+value.name+"</td>");
-							$contentTd = $("<td class='content'></td>").text(value.content);
+							$contentTd = $("<td class='content' width='200'></td>").text(value.content);
 							$dateTd = $("<td></td>").text(value.regdate);
-							$upBtn = $("<td><button class='upBtn'>수정</button></td>");
-							$delBtn = $("<td><button class='delBtn'>삭제</button></td>");
+							$upBtn = $("<td><button class='upBtn btn waves-effect waves-light btn-xs btn-info'>수정</button></td>");
+							$delBtn = $("<td><button class='delBtn btn waves-effect waves-light btn-xs btn-info'>삭제</button></td>");
 							$upForm =$("<textarea></textarea>");
-							$subBtn = $("<td id='subBtn'><button class='subBtn'>등록</button></td>");
+							$subBtn = $("<td id='subBtn'><button class='subBtn btn waves-effect waves-light btn-xs btn-info'>sub</button></td>");
 							$r_no = $("<input type='hidden' id='r_no' class='r_no'>").val(value.r_no);
 							$depth = $("<input type='hidden' class='depth'>").val(value.depth);
-							$reBtn = $("<td id='reBtn'><button class='re'>답글</button></td>");
+							$reBtn = $("<td id='reBtn'><button class='re btn waves-effect waves-light btn-xs btn-info'>답글</button></td>");
 							$delString = $("<td>삭제된 댓글입니다.</td>");
 							$parent_no = $("<input type='hidden'  class='parent_no'>").val(value.parent_no);
 							
 						
 							
-						
+							
 							if(value.depth == 1){				// 댓글
 								$tr.append($writerTd);
 								

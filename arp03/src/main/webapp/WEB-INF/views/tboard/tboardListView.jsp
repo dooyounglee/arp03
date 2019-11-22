@@ -6,11 +6,19 @@
 <head>
 <%@ include file="../include/bhead.jsp"%>
 <style>
-	.col-lg-10{
+	.col-lg-10,#page{
 	margin-left:auto;
 	margin-right: auto;
-	margin-top: auto;
-	margin-bottom: auto;
+
+	}
+	.card{
+	margin-left:auto;
+	margin-right: auto;
+		width:1000px;
+	}
+	
+	#btn{
+	margin-left:1273px;
 	}
 </style>
 
@@ -75,15 +83,15 @@
                     </div>
                 </div>
 
-		<h1 align="center">게시판 리스트</h1>
+		<h3 align="center" style="color:black">게시판 리스트</h3>
 
 		<c:if test="${ !empty mem }">
-			<button onclick="location.href='insertTBoardFrom.do';">글쓰기</button>
+			<button onclick="location.href='insertTBoardFrom.do';" class="btn waves-effect waves-light btn-info" id="btn">글쓰기</button>
+			
 		</c:if>
 		<div class="row">
 			<div class="col-lg-12">
-			<!-- 	<div class="card"> -->
-					<div class="card-body" align="center">
+					<div class="card" align="center">
 						<div class="table-responsive">
 							<table class="table color-table muted-table">
 								<thead>
@@ -118,42 +126,51 @@
 										</tr>
 									</c:forEach>
 
-
+								</table>
 									<!-- 페이징 처리 -->
-									<tr align="center" height="20">
-										<td colspan="6">
-											<!-- [이전] --> <c:if test="${ pi.currentPage eq 1 }">
-					[이전] 
-				</c:if> <c:if test="${ pi.currentPage ne 1 }">
-												<c:url value="tblist.do" var="before">
-													<c:param name="currentPage" value="${ pi.currentPage-1 }" />
-												</c:url>
-												<a href="${ before }">[이전] </a>
-											</c:if> <!-- [페이지] --> <c:forEach begin="${ pi.startPage }"
-												end="${ pi.endPage }" var="p">
-												<c:if test="${ p eq pi.currentPage }">
-													<font color="red" size="4"> [${ p }] </font>
-												</c:if>
-												<c:if test="${ p ne pi.currentPage }">
-													<c:url value="tblist.do" var="page">
-														<c:param name="currentPage" value="${ p }" />
-													</c:url>
-													<a href="${ page }"> ${ p } </a>
-												</c:if>
-											</c:forEach> <!-- [다음] --> <c:if test="${ pi.currentPage eq pi.maxPage }">
-					 [다음]
-				</c:if> <c:if test="${ pi.currentPage ne pi.maxPage }">
-												<c:url value="tblist.do" var="after">
-													<c:param name="currentPage" value="${ pi.currentPage+1 }" />
-												</c:url>
-												<a href="${ after }"> [다음]</a>
-											</c:if>
-										</td>
-									</tr>
-							</table>
+							
+						
 						</div>
 					</div>
 				</div>
+				<div id="page" align="center">
+							<ul class="pagination" >
+							<c:if test="${ pi.currentPage eq 1 }">
+								<li class="page-item"><a class="page-link">이전</a></li>
+							</c:if> 
+							<c:if test="${ pi.currentPage ne 1 }">
+								<c:url value="tblist.do" var="before">
+									<c:param name="currentPage" value="${ pi.currentPage-1 }" />
+								</c:url>
+								<li class="page-item"><a class="page-link" href="${ before }">이전</a></li>
+							</c:if>
+							
+							<c:forEach begin="${ pi.startPage }"
+												end="${ pi.endPage }" var="p">
+									<c:if test="${ p eq pi.currentPage }">
+											<li class="page-item"><a class="page-link">${ p }</a></li>
+											
+									</c:if>
+									<c:if test="${ p ne pi.currentPage }">
+											<c:url value="tblist.do" var="page">
+												<c:param name="currentPage" value="${ p }" />
+											</c:url>
+										<li class="page-item"><a class="page-link" href="${ page }"> ${ p }</a></li>
+									</c:if>
+							</c:forEach> 
+							
+							<c:if test="${ pi.currentPage eq pi.maxPage }">
+									<li class="page-item"><a class="page-link">다음</a></li>
+							</c:if> 
+							<c:if test="${ pi.currentPage ne pi.maxPage }">
+									<c:url value="tblist.do" var="after">
+											<c:param name="currentPage" value="${ pi.currentPage+1 }" />
+									</c:url>
+								<li class="page-item"><a class="page-link" href="${ after }"> 다음</a></li>
+							</c:if>
+							
+							</ui>
+							</div>
 			</div>
 		</div>
 

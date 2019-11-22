@@ -26,9 +26,9 @@
 	</insert>
 	
 	<select id="detailTBoard" resultType="Board">
-		select * 
-		from board 
-		where b_no=#{b_no}
+		select b.*,m.name 
+		from board b, member m
+		where b_no=#{b_no}and b.m_no=m.m_no
 	
 	</select>
 	
