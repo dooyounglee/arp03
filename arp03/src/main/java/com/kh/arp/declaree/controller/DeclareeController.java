@@ -20,9 +20,10 @@ public class DeclareeController {
 	@Autowired
 	private DeclareeService ds;
 	
-	@GetMapping("insert.de")
-	public ModelAndView declareGet(ModelAndView mv) {
-		mv.setViewName("declare/declare");
+	@PostMapping("insertForm.de")
+	public ModelAndView declareGet(ModelAndView mv, String obj, int obj_no) {
+		//System.out.println(obj_no);
+		mv.addObject("obj", obj).addObject("obj_no", obj_no).setViewName("declare/declare");
 		return mv;
 	}
 	
@@ -30,7 +31,7 @@ public class DeclareeController {
 	public ModelAndView declarePost(Declaree d, HttpSession session, ModelAndView mv) {
 		Member m=(Member)session.getAttribute("mem");
 		d.setM_no(m.getM_no());
-		
+		System.out.println(d);
 		int result=ds.declare(d);
 		mv.setViewName("declare/declare");
 		return mv;

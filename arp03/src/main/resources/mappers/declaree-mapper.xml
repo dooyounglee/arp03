@@ -3,7 +3,7 @@
 <mapper namespace="declareMapper">
 	<select id="declare" resultType="Declaree">
 		insert into declaree values(
-		seq_declaree.nextval,#{m_no},#{kind},#{content},sysdate,null,default,'b',1
+		seq_declaree.nextval,#{m_no},#{kind},#{content},sysdate,null,default,#{obj},#{obj_no}
 		)
 	</select>
 	
