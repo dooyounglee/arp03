@@ -34,4 +34,6 @@ public interface LectureService {
 
 	List<Score> getLectureScore(int lec_no);
 
+	List<Classdate> getLectureDatesList(int lec_no);
+
 }

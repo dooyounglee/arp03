@@ -11,16 +11,19 @@
     <h1>신고하기</h1>
     <h2>무조건 게시판 1번글 신고하는거</h2>
     	신고사유
-		<input type="radio" name="kind" value="1">이유1<br>
-		<input type="radio" name="kind" value="2">이유2<br>
-		<input type="radio" name="kind" value="3">이유3<br>
-		<input type="radio" name="kind" value="4">이유4<br>
-		<input type="radio" name="kind" value="5">이유5<br>
+		<input type="radio" name="kind" value="1">영리목적/홍보<br>
+		<input type="radio" name="kind" value="2">불법정보<br>
+		<input type="radio" name="kind" value="3">음란성/선정성<br>
+		<input type="radio" name="kind" value="4">욕설/인신공격<br>
+		<input type="radio" name="kind" value="5">개인정보노출<br>
+		<input type="hidden" id="obj" value=${ obj }>
+		<input type="hidden" id="obj_no" value=${ obj_no }>
 	
 		내용:<input id="content">
-		<button onclick="send()">신고</button>
+		<button onclick="send();">신고</button>
 	
 	<script>
+		console.log($('#obj_no').val());
 		function send(){
 			var kind=$('input[name="kind"]:checked').val()
 			var parent = window.opener;
@@ -31,9 +34,11 @@
 				data:{
 					kind:kind,
 					content:$('#content').val(),
+					obj:$('#obj').val(),
+					obj_no:$('#obj_no').val()
 				},
 				success:function(data){
-					parent.location.href='declareList.ad';
+					//parent.location.href='declareList.ad';
 					window.close();
 				},
 			})

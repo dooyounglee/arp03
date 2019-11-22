@@ -23,7 +23,11 @@
     <!--This page css - Morris CSS -->
     <link href="/arp/resources/material-pro/assets/plugins/c3-master/c3.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+    <link href="/arp/resources/material-pro/assets/plugins/icheck/skins/all.css" rel="stylesheet">
     <link href="/arp/resources/material-pro/horizontal/css/style.css" rel="stylesheet">
+    <!-- Editable CSS -->
+    <link type="text/css" rel="stylesheet" href="/arp/resources/material-pro/assets/plugins/jsgrid/jsgrid.min.css" />
+    <link type="text/css" rel="stylesheet" href="/arp/resources/material-pro/assets/plugins/jsgrid/jsgrid-theme.min.css" />
     <!-- You can change the theme colors from here -->
     <link href="/arp/resources/material-pro/horizontal/css/colors/blue.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

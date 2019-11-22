@@ -3,11 +3,250 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%-- 	<!-- head태그. header.jsp말고 -->
+	<%@ include file="../../include/bhead.jsp"%> --%>
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
-<body>
+<body class="fix-header card-no-border logo-center">
+<%-- 
+	<!-- Main wrapper -->
+	<div id="main-wrapper">
+	
+        <!-- Topbar header - style you can find in pages.scss -->
+        <header class="topbar">
+        	<%@ include file="../../include/btopbarheader.jsp" %>
+        </header>
+        <!-- End Topbar header -->
+        
+        <!-- Left-sidebar -->
+        <aside class="left-sidebar">
+        	<%@ include file="../../include/bsidebar.jsp" %>
+        </aside>
+        <!-- End of Left-sidebar -->
+
+		<!-- Page wrapper  -->
+        <div class="page-wrapper">
+
+
+
+        	<!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 col-12 align-self-center">
+                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active">Form</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+                        <div class="d-flex mt-2 justify-content-end">
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                    <h6 class="mb-0"><small>THIS MONTH</small></h6>
+                                    <h4 class="mt-0 text-info">$58,356</h4>
+                                </div>
+                                <div class="spark-chart">
+                                    <div id="monthchart"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                    <h6 class="mb-0"><small>LAST MONTH</small></h6>
+                                    <h4 class="mt-0 text-primary">$48,356</h4>
+                                </div>
+                                <div class="spark-chart">
+                                    <div id="lastmonthchart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                	
+                	<!-- 수강페이지 메뉴 -->
+                	<%@ include file="../../include/blecturemenu.jsp" %>
+                	
+                    <div class="col-lg-9 col-xlg-10 col-md-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-md-flex no-block align-items-center">
+                                    <div>
+                                        <h4 class="card-title">Default Basic Forms</h4>
+                                        <h6 class="card-subtitle"> All bootstrap element classies </h6>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <button class="btn btn-danger btn-sm pull-right collapsed" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Get code <i class="ti-angle-down"></i></button>
+                                    </div>
+                                </div>
+                                <form class="form" action="make.lec" method="post" autocomplete=off>
+                                    <div class="form-group mt-4 row">
+                                        <label class="col-md-2 col-form-label">강의명</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" name="title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="example-search-input" class="col-md-2 col-form-label">시작일</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="date" name="startdate" id="startdate">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="example-email-input" class="col-md-2 col-form-label">시작시간</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="time" name="starttime">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="example-url-input" class="col-md-2 col-form-label">몇시간</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" name="inghour">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="example-tel-input" class="col-md-2 col-form-label">강의내용</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" name="content">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="example-password-input" class="col-md-2 col-form-label">수정사유</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" name="updatecomment">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="example-number-input" class="col-md-2 col-form-label">학생정원</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="number" name="headcount">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="example-datetime-local-input" class="col-md-2 col-form-label">총회차</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" name="nth" id="nth" value="10">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="example-date-input" class="col-md-2 col-form-label">장소</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" name="place">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+	                                    <label class="col-md-2 col-form-label">요일</label>
+	                                    <div class="col-md-10">
+	                                        <ul class="icheck-list">
+	                                        	<li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value=0>
+	                                                <label for="minimal-checkbox-2">일</label>
+	                                            </li>
+	                                            <li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value=1>
+	                                                <label for="minimal-checkbox-1">월</label>
+	                                            </li>
+	                                            <li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value="2">
+	                                                <label for="minimal-checkbox-2">화</label>
+	                                            </li>
+	                                            <li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value="3">
+	                                                <label for="minimal-checkbox-1">수</label>
+	                                            </li>
+	                                            <li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value="4">
+	                                                <label for="minimal-checkbox-2">목</label>
+	                                            </li>
+	                                            <li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value="5">
+	                                                <label for="minimal-checkbox-1">금</label>
+	                                            </li>
+	                                            <li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value="6">
+	                                                <label for="minimal-checkbox-2">토</label>
+	                                            </li>
+	                                        </ul>
+	                                    </div>
+	                                </div>
+                                </form>
+                            </div>
+		<table style="text-align:center;float:left;">
+			<thead>
+				<tr>
+					<td colspan=1 id='prevmonth'><</td>
+					<td colspan=5><span id="yyyy">2019</span>년 <span id="mm">8</span>월</td>
+					<td colspan=1 id='nextmonth'>></td>
+				</tr>
+				<tr>
+					<td>일</td>
+					<td>월</td>
+					<td>화</td>
+					<td>수</td>
+					<td>목</td>
+					<td>금</td>
+					<td>토</td>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+
+
+
+
+
+
+
+
+		<!-- footer -->
+        <footer class="footer">
+            <%@ include file="../../include/bfooter.jsp" %>
+        </footer>
+        <!-- End footer -->
+
+		</div>
+        <!-- End of Page wrapper  -->
+        
+	</div>
+	<!-- End of Main wrapper -->
+	
+	<%@ include file="../../include/bjs.jsp" %>
+	
+	
+	
+	
+	 --%>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<jsp:include page="../../include/header.jsp"/>
 	
 	<form action="make.lec" method="post" autocomplete=off>
@@ -141,7 +380,7 @@
 	</script>
 	
 	<script>
-	var holiday=['2019-01-01','2019-05-05','2019-10-03','2019-12-25','2020-01-01'];
+	var holiday=['2019-06-06','2019-08-15','2019-09-12','2019-09-13','2019-09-14','2019-10-03','2019-10-09','2019-01-01','2019-05-05','2019-10-03','2019-12-25','2020-01-01'];
 	//var arrr=[];
 	
 	function calend(yyyy,mm){

@@ -184,4 +184,11 @@ public class MemberServiceImple implements MemberService {
 		return md.insertStudentToOther(mc);
 	}
 
+	@Override
+	public List<Lecture> getLectureList(Member mem) {
+		return md.getLectureList(mem);
+	}
+
+
+
 }

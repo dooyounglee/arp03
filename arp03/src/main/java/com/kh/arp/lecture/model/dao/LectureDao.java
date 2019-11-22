@@ -170,4 +170,8 @@ public class LectureDao {
 		return sqlSession.selectList("lectureMapper.getLectureScore",lec_no);
 	}
 
+	public List<Classdate> getLectureDatesList(int lec_no) {
+		return sqlSession.selectList("lectureMapper.getLectureDatesList",lec_no);
+	}
+
 }

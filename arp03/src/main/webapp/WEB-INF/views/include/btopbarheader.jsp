@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<nav class="navbar top-navbar navbar-expand-md navbar-light">
 	    <!-- ============================================================== -->
 	    <!-- Logo -->
 	    <!-- ============================================================== -->
 	    <div class="navbar-header">
-	        <a class="navbar-brand" href="index.html">
+	        <a class="navbar-brand" href="/${cp}">
 	            <!-- Logo icon -->
 	            <b>
 	                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -18,9 +19,10 @@
 	            <!-- Logo text -->
 	            <span>
 	             <!-- dark Logo text -->
-	             <img src="/${cp }/resources/material-pro/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+	             <%-- <img src="/${cp }/resources/material-pro/assets/images/logo-text.png" alt="homepage" class="dark-logo" /> --%>
 	             <!-- Light Logo text -->    
-	             <img src="/${cp }/resources/material-pro/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+	             <%-- <img src="/${cp }/resources/material-pro/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a> --%>
+	             <span style="font-weight:bold;color:white;font-size:1em;">KH정보교육원</span>
 	    </div>
 	    <!-- ============================================================== -->
 	    <!-- End Logo -->
@@ -242,7 +244,12 @@
 	            <!-- ============================================================== -->
 	            <!-- Profile -->
 	            <!-- ============================================================== -->
+	            
 	            <li class="nav-item dropdown">
+	            	<c:if test="${empty mem }">
+		            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="login.me" />login</a>
+		            </c:if>
+		            <c:if test="${!empty mem }">
 	                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/${cp }/resources/material-pro/assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
 	                <div class="dropdown-menu dropdown-menu-right scale-up">
 	                    <ul class="dropdown-user">
@@ -255,23 +262,24 @@
 	                            </div>
 	                        </li>
 	                        <li role="separator" class="divider"></li>
-	                        <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+	                        <li><a href="myInfo.me"><i class="ti-user"></i> My Profile</a></li>
 	                        <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
 	                        <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
 	                        <li role="separator" class="divider"></li>
 	                        <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
 	                        <li role="separator" class="divider"></li>
-	                        <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+	                        <li><a href="logout.me"><i class="fa fa-power-off"></i> Logout</a></li>
 	                    </ul>
 	                </div>
+	                </c:if>
 	            </li>
 	            <!-- ============================================================== -->
 	            <!-- Language -->
 	            <!-- ============================================================== -->
-	                <li class="nav-item dropdown">
+	                <!-- <li class="nav-item dropdown">
 	                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
 	                    <div class="dropdown-menu dropdown-menu-right scale-up"> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-in"></i> India</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-fr"></i> French</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> China</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> Dutch</a> </div>
-	                </li>
+	                </li> -->
 	            </ul>
 	        </div>
 	    </nav>

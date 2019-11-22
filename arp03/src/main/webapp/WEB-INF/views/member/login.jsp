@@ -105,8 +105,8 @@
                                                 <label for="idSaveCheck"> id/pw 기억하기 </label>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-success waves-effect waves-light mr-2">Submit</button>
-                                        <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
+                                        <button type="submit" class="btn btn-success waves-effect waves-light mr-2">login</button>
+                                        <button type="button" class="btn btn-inverse waves-effect waves-light" onclick="location.href='find.me'">id/pw찾기</button>
                                     </form>
                                 </div>
                             </div>
@@ -147,6 +147,17 @@
 
 
 	<%@ include file="../include/bjs.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
 
 
 	<jsp:include page="../include/header.jsp"></jsp:include>

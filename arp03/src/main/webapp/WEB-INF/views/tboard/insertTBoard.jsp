@@ -6,8 +6,8 @@
 %>
 <!DOCTYPE html>
 <html>
-<!-- <script src="https://code.jquery.com/juqery-3.1.0.min.js" type="text/javascript"></script> -->
-
+<!-- <script src="https://code.jquery.com/jquery-3.1.0.min.js" type="text/javascript"></script> -->
+<%@ include file="../include/bhead.jsp"%>
 <head>
 <meta charset="UTF-8">
 <style>
@@ -25,6 +25,18 @@
 
 <body>
 
+<!-- Topbar header - style you can find in pages.scss -->
+	<header class="topbar">
+		<%@ include file="../include/btopbarheader.jsp"%>
+	</header>
+	<!-- End Topbar header -->
+
+	<!-- Left-sidebar -->
+	<aside class="left-sidebar">
+		<%@ include file="../include/bsidebar.jsp"%>
+	</aside>
+	<!-- End of Left-sidebar -->
+
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -37,47 +49,51 @@
 
 	<jsp:include page="../include/header.jsp"/>
 	
-	<c:if test="${ empty b }">
+	<div class="page-wrapper">
+	
+
 	<h3 align="center">글 작성하기</h3>
-	
 	<br><br>
-	<!-- action="insertTBoard.do" --> 
 	<form method="post" id="MultiUpload" action="insertTBoard.do" enctype="multipart/form-data" id="boardInsertForm" >
-	
+		
 			<div align="center" id="formDiv">
-				
-		<%-- 		<c:forEach items="${ bfList }" var="list">
-					<input type="text" value="${ list.original_filename }" name="original_filename">
-					<input type="hidden" value="${ list.rename_filename }" name="rename_filename">
-				</c:forEach> --%>
-				
-				
-				
-					<label>제목</label>
-					<input type="text" name="title" id="title" required><br>
+
 					
+					<input name="m_no" value="${mem.m_no}" type="hidden">
+					
+					<div class="form-material">
+					<input type="text" name="title" id="title" required placeholder="제목을 입력해주세요" value="${b.title }" class="form-control"><br>
+                     </div>
+				
 				
 					<input type="hidden" name="m_no" value="${ mem.m_no }">
+					
+					
 			
 			
-					
-					<label>파일첨부</label>
-					<input type="file"  name="file" id="file" multiple="multiple">
-					<div id="fileArea">
-					
-					</div>
-					<textarea id="summernote" cols="50" rows="7" name="content" id="content"required></textarea>
-				
-						<button type="submit" id="subBtn">등록하기</button> 
-						<button type="button" onclick="location.href='tblist.do';">목록으로</button>
+					<c:if test="${ empty b }">
+						<label>파일첨부</label>
+						<input type="file"  name="file" id="file" multiple="multiple">
+						<div id="fileArea">
 						
+						</div>
+					</c:if>
+
+						<textarea id="summernote" cols="50" rows="7" name="content" id="content"required >${b.content }</textarea>
+
+
+				<div align="center">
+				<button type="submit" id="subBtn" class="btn waves-effect waves-light btn-info">등록하기</button> 
+				<button type="button" class="btn waves-effect waves-light btn-info" onclick="location.href='tblist.do';">목록으로</button>
+				</div>		
+			</div>
 		</div>
+	</form>
+		
+		
 	
-		</form>
 		
-	</c:if>
-		
-		<c:if test="${ !empty b }">
+	<%-- 	<c:if test="${ !empty b }">
 			<h3 align="center">글 수정하기</h3>
 			
 				<form action="tbupdate.do?b_no=${b.b_no}" method="post" enctype="multipart/form-data">
@@ -128,7 +144,7 @@
 			</table>
 		</form>
 		</c:if>
-		
+		 --%>
 	
 	
 	 <script>
@@ -309,8 +325,8 @@
 	
 	</script> -->
 	 
-	
-	
+	 
+	 
 	
   
 

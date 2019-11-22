@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.arp.manager.model.vo.Survey;
+import com.kh.arp.manager.model.vo.InsertSurvey;
 
 @Repository("sDao")
 public class SurveyDao {
@@ -14,15 +14,19 @@ public class SurveyDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int insertsurvey(Survey s) {
+	public int insertsurvey(InsertSurvey s) {
 		return sqlSession.insert("managerMapper.insertSurvey",s);
 	}
 
-	public List<Survey> selectsurvey(){
+	public List<InsertSurvey> selectsurvey(){
 		return sqlSession.selectList("managerMapper.selectSurvey");
 	}
-	public List<Survey> detailsurvey(String s){
-		System.out.println(s);
-		return sqlSession.selectOne("managerMapper.detailSurvey",s);
+	public InsertSurvey detailsurvey(int su_no){
+		return sqlSession.selectOne("managerMapper.detailSurvey", su_no);
+	}
+	
+	public int updatesurvey(InsertSurvey s) {
+		System.out.println(sqlSession.update("managerMapper.updateSurvey", s));
+		return sqlSession.update("managerMapper.updateSurvey", s);
 	}
 }

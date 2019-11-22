@@ -85,4 +85,9 @@ public class LectureServiceImple implements LectureService {
 		return ld.getLectureScore(lec_no);
 	}
 
+	@Override
+	public List<Classdate> getLectureDatesList(int lec_no) {
+		return ld.getLectureDatesList(lec_no);
+	}
+
 }

@@ -5,6 +5,14 @@
 <html>
 <head>
 <%@ include file="../include/bhead.jsp"%>
+<style>
+	.col-lg-10{
+	margin-left:auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	}
+</style>
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -32,7 +40,40 @@
 	<!-- End of Left-sidebar -->
 
 	<div class="page-wrapper">
+	
+	
+	
+	
+	             <div class="row page-titles">
+                 
+                    <div class="col-md-7 col-4 align-self-center">
+                        <div clarss="d-flex m-t-10 justify-content-end">
+                            <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                                
+                            </div>
+                            <div class="">
+                                <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+		
+		
 
+	
+	             <div class="row page-titles">
+                 
+                    <div class="col-md-7 col-4 align-self-center">
+                        <div clarss="d-flex m-t-10 justify-content-end">
+                            <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                                
+                            </div>
+                            <div class="">
+                                <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 		<h1 align="center">게시판 리스트</h1>
 
@@ -117,7 +158,7 @@
 			</div>
 		</div>
 
-
+	
 
 	</div>
 </body>

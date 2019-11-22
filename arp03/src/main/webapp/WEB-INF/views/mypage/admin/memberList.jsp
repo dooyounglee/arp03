@@ -79,7 +79,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">회원관리</h4>
-                                <h6 class="card-subtitle">Add class <code>.table</code></h6>
+                                <a class="btn btn-success float-right" href="insertMemberToLecture.ad">회원을 강좌로 넣기</a>
+                                <h6 class="card-subtitle"><a class="btn btn-success" href="insertMember.ad">회원등록</a></code></h6>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>

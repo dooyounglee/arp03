@@ -158,4 +158,8 @@ public class MemberDao {
 		return sqlSession.delete("memberMapper.insertStudentToOther",mc);
 	}
 
+	public List<Lecture> getLectureList(Member mem) {
+		return sqlSession.selectList("memberMapper.getLectureList",mem);
+	}
+
 }

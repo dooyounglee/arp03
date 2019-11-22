@@ -42,8 +42,13 @@ public class AdminController {
 	
 	@RequestMapping("/lectureList.ad")
 	public ModelAndView classList(HttpSession session, ModelAndView mv) {
-		session.removeAttribute("lec");
-		List<Lecture> list=ms.getClassList();
+		Member mem=(Member)session.getAttribute("mem");
+		List<Lecture> list=null;
+		if(mem.getTypee().equals("a")) {
+			list=ms.getClassList();
+		}else {
+			list=ms.getLectureList(mem);
+		}
 		System.out.println(list);
 		mv.addObject("list",list);
 		mv.setViewName("mypage/lectureList");
