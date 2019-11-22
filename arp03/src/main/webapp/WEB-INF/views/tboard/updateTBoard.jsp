@@ -98,8 +98,8 @@
 				
 		
 				<div align="center">
-						<button type="submit" id="subBtn">수정하기</button> 
-						<button type="button" onclick="location.href='tblist.do';">목록으로</button>
+						<button type="submit" id="subBtn" class="btn waves-effect waves-light btn-info">수정하기</button> 
+						<button type="button" onclick="location.href='tblist.do';" class="btn waves-effect waves-light btn-info">목록으로</button>
 			
 				</div>
 		

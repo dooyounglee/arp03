@@ -106,4 +106,24 @@ public class TBoardDao {
 	public int tbReplyUpdate(BReply r) {
 		return sqlSession.update("tboardMapper.tbReplyUpdate",r);
 	}
+	
+	public int reReplyInsert(BReply r) {
+		return sqlSession.insert("tboardMapper.reReplyInsert",r);
+	}
+	
+	public int recountUpdate(BReply r) {
+		return sqlSession.update("tboardMapper.recountUpdate",r);
+	}
+	
+	public int deleteRe(BReply r) {
+		return sqlSession.update("tboardMapper.deleteRe",r);
+	}
+	
+	public int re_countMinus(BReply r) {
+		return sqlSession.update("tboardMapper.re_countMinus",r);
+	}
+	
+	public int upInsertTBoardFile(BoardFile bf) {
+		return sqlSession.insert("tboardMapper.upInsertTBoardFile",bf);
+	}
 }
