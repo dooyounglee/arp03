@@ -12,7 +12,14 @@
 	
 	<h1 align="center">게시판 리스트</h1>
 	
-	<h3 align="center">총 게시글 갯수 : ${pi.listCount} 페이지 : ${ pi.currentPage } /${ pi.maxPage } 
+	<h3 align="center">총 게시글 갯수 : ${pi.listCount} 페이지 : 
+	<c:if test="${ pi.listCount eq 0 }">
+		0
+	</c:if>
+	<c:if test="${ pi.listCount ne 0 }">
+		${ pi.currentPage }
+	</c:if>
+		 / ${ pi.maxPage } 
 		<c:if test="${ !empty mem }">
 		<button onclick="location.href='binsertForm.do';">글쓰기</button>
 		</c:if>
@@ -43,7 +50,14 @@
 			</tr>
 		</c:forEach>
 		
+		<c:if test="${pi.listCount eq 0}">
+			<tr>
+			<td align="center" colspan="5">존재하는 게시글이 없습니다.</td>
+			</tr>
+		</c:if>
+		
 		<!-- 페이징 처리 -->
+		<c:if test="${pi.listCount ne 0}">
 		<tr align="center" height="20">
 			<td colspan="5">
 				<!-- 이전 -->
@@ -81,6 +95,7 @@
 				
 			</td>
 		</tr>
+		</c:if>
 	</table>
 	
 	<jsp:include page="../include/footer.jsp"/>
