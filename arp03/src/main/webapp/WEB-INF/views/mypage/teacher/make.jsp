@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- head태그. header.jsp말고 -->
-	<%@ include file="../../include/bhead.jsp"%>
+<%-- 	<!-- head태그. header.jsp말고 -->
+	<%@ include file="../../include/bhead.jsp"%> --%>
+<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body class="fix-header card-no-border logo-center">
-
+<%-- 
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -91,105 +92,116 @@
                                 </div>
                                 <form class="form" action="make.lec" method="post" autocomplete=off>
                                     <div class="form-group mt-4 row">
-                                        <label for="example-text-input" class="col-md-2 col-form-label">강의명</label>
+                                        <label class="col-md-2 col-form-label">강의명</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                                            <input class="form-control" type="text" name="title">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-search-input" class="col-md-2 col-form-label">Search</label>
+                                        <label for="example-search-input" class="col-md-2 col-form-label">시작일</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="search" value="How do I shoot web" id="example-search-input">
+                                            <input class="form-control" type="date" name="startdate" id="startdate">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-email-input" class="col-md-2 col-form-label">Email</label>
+                                        <label for="example-email-input" class="col-md-2 col-form-label">시작시간</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="email" value="bootstrap@example.com" id="example-email-input">
+                                            <input class="form-control" type="time" name="starttime">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-url-input" class="col-md-2 col-form-label">URL</label>
+                                        <label for="example-url-input" class="col-md-2 col-form-label">몇시간</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="url" value="https://getbootstrap.com" id="example-url-input">
+                                            <input class="form-control" name="inghour">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-tel-input" class="col-md-2 col-form-label">Telephone</label>
+                                        <label for="example-tel-input" class="col-md-2 col-form-label">강의내용</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="tel" value="1-(555)-555-5555" id="example-tel-input">
+                                            <input class="form-control" name="content">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-password-input" class="col-md-2 col-form-label">Password</label>
+                                        <label for="example-password-input" class="col-md-2 col-form-label">수정사유</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="password" value="hunter2" id="example-password-input">
+                                            <input class="form-control" name="updatecomment">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-number-input" class="col-md-2 col-form-label">Number</label>
+                                        <label for="example-number-input" class="col-md-2 col-form-label">학생정원</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="number" value="42" id="example-number-input">
+                                            <input class="form-control" type="number" name="headcount">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-datetime-local-input" class="col-md-2 col-form-label">Date
-                                            and
-                                            time</label>
+                                        <label for="example-datetime-local-input" class="col-md-2 col-form-label">총회차</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                                            <input class="form-control" name="nth" id="nth" value="10">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-date-input" class="col-md-2 col-form-label">Date</label>
+                                        <label for="example-date-input" class="col-md-2 col-form-label">장소</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+                                            <input class="form-control" name="place">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-month-input" class="col-md-2 col-form-label">Month</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="month" value="2011-08" id="example-month-input">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="example-week-input" class="col-md-2 col-form-label">Week</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="week" value="2011-W33" id="example-week-input">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="example-time-input" class="col-md-2 col-form-label">Time</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="time" value="13:45:00" id="example-time-input">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="example-month-input" class="col-md-2 col-form-label">Select</label>
-                                        <div class="col-md-10">
-                                            <select class="custom-select col-12" id="inlineFormCustomSelect">
-                                                <option selected="">Choose...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="example-color-input" class="col-md-2 col-form-label">Color</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="color" value="#563d7c" id="example-color-input">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="example-color-input" class="col-md-2 col-form-label">Input
-                                            Range</label>
-                                        <div class="col-md-10">
-                                            <input type="range" class="form-control" id="range" value="50">
-                                        </div>
-                                    </div>
+	                                    <label class="col-md-2 col-form-label">요일</label>
+	                                    <div class="col-md-10">
+	                                        <ul class="icheck-list">
+	                                        	<li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value=0>
+	                                                <label for="minimal-checkbox-2">일</label>
+	                                            </li>
+	                                            <li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value=1>
+	                                                <label for="minimal-checkbox-1">월</label>
+	                                            </li>
+	                                            <li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value="2">
+	                                                <label for="minimal-checkbox-2">화</label>
+	                                            </li>
+	                                            <li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value="3">
+	                                                <label for="minimal-checkbox-1">수</label>
+	                                            </li>
+	                                            <li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value="4">
+	                                                <label for="minimal-checkbox-2">목</label>
+	                                            </li>
+	                                            <li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value="5">
+	                                                <label for="minimal-checkbox-1">금</label>
+	                                            </li>
+	                                            <li class="float-left">
+	                                                <input type="checkbox" class="check" name="week" value="6">
+	                                                <label for="minimal-checkbox-2">토</label>
+	                                            </li>
+	                                        </ul>
+	                                    </div>
+	                                </div>
                                 </form>
                             </div>
+		<table style="text-align:center;float:left;">
+			<thead>
+				<tr>
+					<td colspan=1 id='prevmonth'><</td>
+					<td colspan=5><span id="yyyy">2019</span>년 <span id="mm">8</span>월</td>
+					<td colspan=1 id='nextmonth'>></td>
+				</tr>
+				<tr>
+					<td>일</td>
+					<td>월</td>
+					<td>화</td>
+					<td>수</td>
+					<td>목</td>
+					<td>금</td>
+					<td>토</td>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -224,7 +236,7 @@
 	
 	
 	
-	
+	 --%>
 	
 	
 	

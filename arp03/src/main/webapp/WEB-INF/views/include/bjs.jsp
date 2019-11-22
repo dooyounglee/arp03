@@ -47,6 +47,9 @@
     <script src="/${cp }/resources/material-pro/assets/plugins/c3-master/c3.min.js"></script>
     <!-- Chart JS -->
     <script src="/${cp }/resources/material-pro/horizontal/js/dashboard1.js"></script>
+    <!-- icheck -->
+    <script src="/${cp }/resources/material-pro/assets/plugins/icheck/icheck.min.js"></script>
+    <script src="/${cp }/resources/material-pro/assets/plugins/icheck/icheck.init.js"></script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
