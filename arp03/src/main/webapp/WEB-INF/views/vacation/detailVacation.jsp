@@ -14,22 +14,39 @@
 	
 	<h1 align="center">휴가 상세보기</h1>
 	<br>
+<c:if test ="${mem.typee eq 's' }">
 	<table border="1px">
 	<tr>
 	<th>선생님</th>
 	<th>매니저</th>
 	</tr>
 	<tr>
-	<td>${v.tstatus }</td>
-	<td>${v.mstatus }</td>
+	 	<td>
+		 <c:if test = "${ v.tstatus eq 'N'}">
+		 처리중
+  		 </c:if>
+		 <c:if test = "${ v.tstatus eq 'B'}">
+		 반려
+  		 </c:if>
+  	 	<c:if test ="${v.tstatus eq 'Y' }">
+  	 	<img src ="resources/image/sign.png" width="200" height="100">
+  	 	</c:if>
+	 	</td>
+	<td>
+		<c:if test = "${ v.mstatus eq 'N'}">
+			 처리중
+  		</c:if>
+	
+	
+	</td>
 	</tr>
 	</table>
+</c:if>
 	
-	
+	<input type="hidden" value="${v.v_no }">
 	<table align="center" border="1px">
-	
 	<tr>
-		<td colspan="2">${v.v_no}번 글 상세보기</td>
+		<td colspan="2">${v.vacation_title}</td>
 	</tr>
 	<tr>
 		
@@ -52,20 +69,43 @@
 		<td>일수</td>
 		<td>${v.date_count }일</td>
 	</tr>
-	<c:if test="${v.tstatus eq 'Y' || v.mstatus eq 'Y'}">
+	
+	<c:if test="${v.tstatus eq 'Y' && v.mstatus eq 'Y'}">
 		<td>출력하기</td>
 		<td><button onclick="myvacation()">인쇄</button></td>
 	</c:if>
 	
 	<tr>
-	
+	<c:if test="${v.tstatus eq 'B'}">
+		
+		<td>반려사유</td>
+		<td>${v.companion_reason }</td>
+	</c:if>
 	
 	</tr>
 	</table>
+	
+	<c:if test="${mem.typee eq 't' }">
+	<button onclick="location.href='sVlist.te';">리스트로돌아가기</button>
+	<a onclick="location.href='permission.te?v_no=${v.v_no }'" style="cursor:pointer">허가</a>
+	<a onclick="window.open('companiForm.me?v_no=${v.v_no}',width=300, height=300)" style="cursor:pointer">반려</a>
+	</c:if>
+	
+	
+	<c:if test="${mem.typee eq 's' }">
 	<button onclick="location.href='vlist.me';" align="center">리스트로 돌아가기</button>
+	
+	<c:if test="${v.tstatus eq 'B' && v.tstatus eq 'Y' }">
 	<a href="vupdateForm.me?v_no=${ v.v_no }">수정하기</a>
+	</c:if>
+	
 	<a href="vdelete.me?v_no=${ v.v_no }" >삭제하기</a>
+	
+	</c:if>
+	
 
+	
+	
 <script>
 
 
@@ -73,7 +113,8 @@ function myvacation() {
 	  window.print("#tb");
 	  
 	}
-
+	
+	
 
 </script>
 

@@ -1,8 +1,6 @@
 package com.kh.arp.vacation.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -121,12 +119,50 @@ public class VacationController {
 	}
 	
 	@RequestMapping("sVlist.te")
-	public ModelAndView sVlistForm(ModelAndView mv) {
+	public ModelAndView sVlistForm(ModelAndView mv , HttpSession session) {
 		
-		ArrayList<Vacation> list = vService.selectStudentList();
+		int m_no = ((Member)session.getAttribute("mem")).getM_no();
+		
+		ArrayList<Vacation> list = vService.selectStudentList(m_no);
 		
 		mv.addObject("list",list).setViewName("vacation/studentVacationListForm");
 		
 		return mv;
+	}
+	
+	@RequestMapping("companiForm.me")
+	public ModelAndView companiForm(int v_no , ModelAndView mv) {
+		
+		mv.addObject("v_no",v_no).setViewName("vacation/companion");
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping("permission.te")
+	public String permission(int v_no) {
+		
+		int result = vService.permission(v_no);
+		
+		if(result >0) {
+			return "redirect:sVlist.te";
+		}else {
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("cReason.te")
+	public String companion(Vacation v) {
+		
+		System.out.println("v"+v);
+		int result = vService.companion(v);
+		
+		 
+		if(result > 0) {
+			return "redirect:sVlist.te";
+		}else {
+			return "common/errorPage";
+		}
 	}
 }

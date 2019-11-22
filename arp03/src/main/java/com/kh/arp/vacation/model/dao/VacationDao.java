@@ -51,9 +51,22 @@ public class VacationDao {
 	}
 
 
-	public ArrayList<Vacation> studentVacation() {
+	public ArrayList<Vacation> studentVacation(int m_no) {
 		// TODO Auto-generated method stub
-		return (ArrayList)sqlSession.selectList("vacationMapper.studentVacationList");
+		return (ArrayList)sqlSession.selectList("vacationMapper.studentVacationList" ,m_no);
+	}
+
+
+	public int permission(int v_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("vacationMapper.permission" , v_no );
+	}
+
+
+	public int companion(Vacation v) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("vacationMapper.companion" , v);
+		
 	}
 
 

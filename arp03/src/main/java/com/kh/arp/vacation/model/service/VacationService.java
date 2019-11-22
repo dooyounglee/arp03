@@ -28,6 +28,12 @@ public interface VacationService {
 	 int deleteVacation(Vacation v);
 	 
 	 // 학생 휴가 조회
-	 ArrayList<Vacation>selectStudentList();
+	 ArrayList<Vacation>selectStudentList(int m_no);
+	 
+	 // 휴가 허가
+	 int permission(int v_no);
+	 
+	 // 휴가 반려
+	 int companion(Vacation v);
 	 
 }

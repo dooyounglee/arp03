@@ -53,9 +53,19 @@ public class VacationServiceImpl implements VacationService {
 	}
 
 	@Override
-	public ArrayList<Vacation> selectStudentList() {
+	public ArrayList<Vacation> selectStudentList(int m_no) {
 		// TODO Auto-generated method stub
-		return vDao.studentVacation();
+		return vDao.studentVacation(m_no);
+	}
+
+	public int permission(int v_no) {
+		// TODO Auto-generated method stub
+		return vDao.permission(v_no);
+	}
+
+	public int companion(Vacation v) {
+		// TODO Auto-generated method stub
+		return vDao.companion(v);
 	}
 
 

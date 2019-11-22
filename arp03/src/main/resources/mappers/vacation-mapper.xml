@@ -7,11 +7,13 @@ insert into vacation
 values(seq_vacation.nextval,
 	   #{m_no},
 	   #{lec_no},
+	   #{vacation_title},
 	   #{reason},
 	   #{start_date},
 	   #{date_count},
 	   sysdate,
 	   default,
+	   null,
 	   default,
 	   default
 	   )
@@ -62,9 +64,22 @@ where v_no = #{v_no}
 <select id="studentVacationList" resultType="Vacation">
 select v.* ,title ,name
 from vacation v , lecture l, member m 
-where v.lec_no = l.lec_no and v.m_no = m.m_no and l.m_no= #{m_no}
+where v.lec_no = l.lec_no and v.m_no = m.m_no and l.m_no= #{m_no} and tstatus='N'
 order by l.lec_no desc
 </select>
 
+<update id="permission">
+
+update vacation
+set tstatus='Y'
+where v_no=#{v_no}
+
+</update>
+
+<update id="companion">
+update vacation
+set tstatus='B', companion_reason=#{companion_reason}
+where v_no=#{v_no}
+</update>
 
 </mapper>
