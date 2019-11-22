@@ -93,12 +93,14 @@ CREATE TABLE vacation (
 	v_no	Number		PRIMARY KEY,
 	m_no	Number		REFERENCES MEMBER,
 	lec_no	number	    REFERENCES LECTURE,
+	vacation_title varchar2(2000) NOT NULL,
 	reason	varchar2(2000)		NOT NULL,
 	start_date	date		NOT NULL,
 	date_count	Number		NOT NULL,
 	application_date	date	NOT NULL,
 	tstatus	varchar2(100)	DEFAULT 'N'	NOT NULL,
-	mstatus  	varchar2(100)	DEFAULT 'N' 	NOT NULL,
+	companion_reason varchar2(2000) NULL,
+	mstatus  varchar2(100)	DEFAULT 'N' 	NOT NULL,
 	status	varchar2(100)	DEFAULT 'N'	NOT NULL
 );
 
