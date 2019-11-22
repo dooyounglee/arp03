@@ -72,4 +72,19 @@ public interface TBoardService {
 
 	// 20. 선생님 게시판 댓글 수정용 서비스 
 	int tbReplyUpdate(BReply r);
+	
+	// 21. 선생님 게시판 대댓글 수정용 서비스 
+	int reReplyInsert(BReply r);
+	
+	// 22. 선생님 게시판 대댓글 count용 서비스 
+	int recountUpdate(BReply r);
+	
+	// 23. 댓글 삭제용 서비스 
+	int deleteRe(BReply r);
+	
+	// 24. 대댓글 삭제할떄 re_count -1되게
+	int re_countMinus(BReply r);
+	
+	// 25. 게시글 첨부파일만 수정할때
+	int upInsertTBoardFile(BoardFile bf);
 }

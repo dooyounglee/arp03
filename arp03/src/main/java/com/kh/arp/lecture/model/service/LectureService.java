@@ -3,6 +3,7 @@ package com.kh.arp.lecture.model.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kh.arp.lecture.model.vo.Attendence;
 import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
@@ -35,5 +36,7 @@ public interface LectureService {
 	List<Score> getLectureScore(int lec_no);
 
 	List<Classdate> getLectureDatesList(int lec_no);
+
+	int insertAttendence(Attendence att);
 
 }

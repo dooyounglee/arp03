@@ -45,7 +45,9 @@
 				<c:forEach items="${ bfList }" var="bl">
 					<a href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bl.rename_filename}" download="${ bl.original_filename }">${ bl.original_filename }</a>
 					<br>
+					<input type="hidden" name="bfList" value="${bl.original_filename }">
 				</c:forEach>
+				
 				</c:if>
 			</td>		
 		</tr>
@@ -139,7 +141,7 @@
 		 	$(this).parent().parent().children().eq(4).show();
 			
 		 	var r_no = $(this).parent().parent().children().eq(6).val();
-		 	console.log(r_no);
+		 	console.log("r_no"+r_no);
 		 	
 		 	$.ajax({
 				url:"tbReplyUpdate.do",
@@ -175,10 +177,102 @@
 			
 		});
 		
-		// 대댓글 등록버튼을 누르면 
-		 $(document).on("click",".resubBtn", function(){
-			 $.ajax
-		 })
+		// 대댓글 등록 버튼 눌렀을때 
+		$(document).on("click",".resubBtn", function(){
+			
+			var r_no = $(this).parent().parent().prev().children().eq(7).val();
+			console.log("r_no"+r_no);
+			var content = $(this).parent().prev().children().val();
+			console.log(content);
+			
+			
+			
+			  $.ajax({
+				url:"reReplyInsert.do",
+				data:{parent_no: r_no,
+					  content:content,
+					  b_no:${b.b_no},
+					  m_no:${mem.m_no}},
+					  success:function(data){
+						  
+						  if(data=="success"){
+							  
+							  getReplyList();
+							} else {
+								alert("댓글 작성에 실패했습니다");
+							}
+						}, error:function(){
+							console.log("ajax 통신 실패");
+						}	
+						  
+				});	
+		
+		});
+		
+		
+		 
+	/* 	 // 대댓글 삭제 버튼을 눌렀을때
+		 $(document).on("click",".delReBtn", function(){
+			 
+			 $.ajax({
+				 url:"deleteRe.do",
+				 data:{r_no:r_no,
+					   b_no:${b.b_no},
+					   parent_no: r_no,
+					   success:function(data){
+							  
+							  if(data=="success"){
+								  
+								  getReplyList();
+								} else {
+									alert("댓글 삭제에 실패했습니다");
+								}
+							}, error:function(){
+								console.log("ajax 통신 실패");
+							}	
+					   
+					 }
+		
+			 });
+		 
+		 }); */
+		 
+		 
+
+		 // 댓글 삭제버튼 눌렀을때
+		 $(document).on("click",".delBtn", function(){
+			 var r_no = $(this).parent().parent().children().eq(7).val();
+			 var depth = $(this).parent().parent().children().eq(6).val();
+		
+			 		 console.log(r_no);
+					 console.log(depth);
+				
+					 
+					 $.ajax({
+						 url:"deleteBtn.do",
+						 data:{r_no:r_no,
+							   depth:depth},
+							   success:function(data){
+									  
+									  if(data=="success"){
+										  
+										  getReplyList();
+										} else {
+											alert("댓글 삭제에 실패했습니다");
+										}
+									}, error:function(){
+										console.log("ajax 통신 실패");
+									}
+							   
+						
+								
+						 
+					 });
+				 
+				 
+		 });
+			 
+		
 		
 
 	/* 	// 제목을 눌렀을때 대댓글
@@ -218,26 +312,47 @@
 							$tr = $("<tr></tr>");
 							
 							$writerTd = $("<td width='50'></td>").text(value.m_no);
+							$writerReTd = $("<td>┖></td>");
 							$contentTd = $("<td></td>").text(value.content);
 							$dateTd = $("<td></td>").text(value.regdate);
 							$upBtn = $("<td><button class='upBtn'>수정</button></td>");
-							$delBtn = $("<td><button>삭제</button></td>");
+							$delBtn = $("<td><button class='delBtn'>삭제</button></td>");
 							$upForm =$("<textarea></textarea>");
 							$subBtn = $("<td><button class='subBtn'>등록</button></td>");
-							$r_no = $("<input type='hidden' class='r_no'>").val(value.r_no);
+							$r_no = $("<input type='hidden' id='r_no' class='r_no'>").val(value.r_no);
+							$depth = $("<input type='hidden' class='depth'>").val(value.depth);
 							$reBtn = $("<td><button class='re'>답글</button></td>");
+							$delString = $("<td>삭제된 댓글입니다.</td>");
+							$parent_no = $("<input type='hidden'  class='parent_no'>").val(value.parent_no);
 							
-							
-					
 						
-							$tr.append($writerTd);
-							$tr.append($contentTd);
+							
+						
+							if(value.depth == 1){
+								$tr.append($writerTd);
+								
+								var status = value.status;
+								
+								if(status == "N"){
+								$tr.append($delString);
+								}else{
+									$tr.append($contentTd);
+								}
+							}else{
+								$tr.append($writerReTd);
+								$tr.append($contentTd);
+							
+							}
 							$tr.append($dateTd);
 							$tr.append($upBtn);
 							$tr.append($delBtn);
 							$tr.append($subBtn);
+							$tr.append($depth);
 							$tr.append($r_no);
-							$tr.append($reBtn);
+							if(value.depth == 1){
+								$tr.append($reBtn);
+							}
+							$tr.append($parent_no);
 			
 							
 							$subBtn.hide(); 

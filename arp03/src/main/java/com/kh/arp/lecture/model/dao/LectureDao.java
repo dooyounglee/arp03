@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.declaree.model.vo.Declaree;
+import com.kh.arp.lecture.model.vo.Attendence;
 import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
@@ -172,6 +173,18 @@ public class LectureDao {
 
 	public List<Classdate> getLectureDatesList(int lec_no) {
 		return sqlSession.selectList("lectureMapper.getLectureDatesList",lec_no);
+	}
+
+	public int isAttendence(Attendence att) {
+		return sqlSession.selectOne("lectureMapper.isAttendence",att);
+	}
+
+	public int updateAttendence(Attendence att) {
+		return sqlSession.update("lectureMapper.updateAttendence",att);
+	}
+
+	public int insertAttendence(Attendence att) {
+		return sqlSession.insert("lectureMapper.insertAttendence",att);
 	}
 
 }
