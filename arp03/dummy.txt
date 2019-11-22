@@ -102,7 +102,7 @@ CREATE TABLE vacation (
 	application_date	date	NOT NULL,
 	tstatus	varchar2(100)	DEFAULT 'N'	NOT NULL,
 	companion_reason varchar2(2000) NULL,
-	astatus  varchar2(100)	DEFAULT 'N' 	NOT NULL,
+	astatus  varchar2(100)	DEFAULT 'N' NOT NULL,
 	status	varchar2(100)	DEFAULT 'N'	NOT NULL
 );
 
