@@ -20,8 +20,9 @@ public class Question {
 	private String replydate;		// ������¥
 	private String replycontent;	// �亯����
 	private String isdelete;		// ��������
-	private String name;	// join하느라 필요해서 필드명추가함
+	private String name;	// 학생이름 /join하느라 필요해서 필드명추가함
 	private String fileox;	// 첨부파일여부 추가함
 	private String originalname;
 	private String changename;
+	private String tcname;	// 선생님이름
 }

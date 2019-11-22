@@ -10,19 +10,21 @@
 </head>
 <body>
 <jsp:include page="../include/header.jsp"/>
-<jsp:useBean id="now" class="java.util.Date"/>
-<fmt:formatDate value="${now }" pattern="yyyy-MM-dd" var = "d"/>
+<jsp:useBean id="today" class="java.util.Date"/>
+<fmt:formatDate value="${today }" pattern="yyyy-MM-dd" var = "d"/>
 <form action="insertsurvey.ma">
 	<input type="text" name="lec_no" value="${lec.lec_no}" readonly>
+	<input type="hidden" name="m_no2">
 	<input type="text" name="m_no" value="${mem.m_no }" readonly>
 	<input type="text" name="title" placeholder="제목">
 	<input type="text" name="enrolldate" value="${d }" readonly>
 	<input type="text" name="q1" placeholder="질문1">
-	<input type="text" name="a1" placeholder="답1">
+	<input type="hidden" name="a1" placeholder="답1">
 	<input type="text" name="q2" placeholder="질문2">
-	<input type="text" name="a2" placeholder="답2">
+	<input type="hidden" name="a2" placeholder="답2">
 	<input type="text" name="q3" placeholder="질문3">
-	<input type="text" name="a3" placeholder="답3">
+	<input type="hidden" name="a3" placeholder="답3">
+	<input type="hidden" name="issurvey">
 	<button type="submit">등록</button>
 	<button type="reset">취소</button>
 </form>

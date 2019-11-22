@@ -119,13 +119,13 @@ public class MemberController {
 			Member newm=ms.getMember(m);
 			session.setAttribute("mem", newm);
 		}
-		mv.setViewName("mypage/myInfo");
+		mv.setViewName("redirect:myInfo.me");
 		return mv;
 	}
 	
 	@PostMapping("/changePw.me")
 	public ModelAndView updatePost(Member m, String newPw, HttpSession session, ModelAndView mv) {
-		Member newm=ms.getMember(m);
+		Member newm=(Member)session.getAttribute("mem");
 		if(newm.getPw().contentEquals(m.getPw())) {
 			newm.setPw(newPw);
 			int result=ms.update(newm);
@@ -133,17 +133,17 @@ public class MemberController {
 				session.setAttribute("mem", newm);
 			}
 		}
-		mv.setViewName("mypage/myInfo");
+		mv.setViewName("redirect:myInfo.me");
 		return mv;
 	}
 	
 	@PostMapping("/leave.me")
-	public ModelAndView leavePost(Member m, HttpSession session, ModelAndView mv) {
+	public ModelAndView leavePost(HttpSession session, ModelAndView mv) {
+		Member m=(Member)session.getAttribute("mem");
 		int result=ms.banish(m);
 		if(result>0) {
-			session.invalidate();
+			mv.setViewName("redirect:/logout.me");
 		}
-		mv.setViewName("redirect:/");
 		return mv;
 	}
 	

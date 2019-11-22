@@ -40,7 +40,7 @@
 	</insert>
 	
 	<select id="getExamList" resultType="Exam">
-		select * from exam
+		select * from exam where lec_no=#{lec_no}
 	</select>
 	
 	<insert id="makeExam" >
@@ -81,5 +81,9 @@
 	
 	<select id="getLectureScore" resultType="Score">
 		select * from score where e_no in (select e_no from exam where lec_no=#{lec_no})
+	</select>
+	
+	<select id="getLectureDatesList" resultType="Classdate">
+		select * from classdate where lec_no=#{lec_no}
 	</select>
 </mapper>
