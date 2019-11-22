@@ -169,17 +169,17 @@ public class LectureController {
 
 		List<Classdate> dlist=ls.getLectureDatesList(lec.getLec_no());
 		List<MyClass> mlist=ls.getStudentList(lec.getLec_no());
-		//List<Score> slist=ls.getLectureScore(lec.getLec_no());
+		List<Attendence> alist=ls.getLectureAttendence(lec.getLec_no());
 		
 		mv.addObject("dlist", dlist);
 		mv.addObject("mlist", mlist);
-		//mv.addObject("slist", slist);
+		mv.addObject("alist", alist);
 		mv.setViewName("mypage/teacher/attendence/list");
 		return mv;
 	}
 	
 	@ResponseBody
-	@PostMapping("/insert.att")
+	@PostMapping("/insert.at")
 	public String insertAttendencePost(Attendence att, HttpSession session, ModelAndView mv) {
 		Lecture lec=(Lecture)session.getAttribute("lec");
 		att.setLec_no(lec.getLec_no());
