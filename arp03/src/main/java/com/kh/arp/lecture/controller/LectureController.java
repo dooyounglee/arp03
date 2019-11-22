@@ -143,10 +143,20 @@ public class LectureController {
 	
 	@GetMapping("/list.sc")
 	public ModelAndView listScoreGet(HttpSession session, ModelAndView mv) {
+		Member mem=(Member)session.getAttribute("mem");
 		Lecture lec=(Lecture)session.getAttribute("lec");
 
 		List<Exam> elist=ls.getExamList(lec.getLec_no());
-		List<MyClass> mlist=ls.getStudentList(lec.getLec_no());
+		List<MyClass> mlist=null;
+		if(mem.getTypee().equals("s")) {
+			mlist=new ArrayList();
+			MyClass mc=new MyClass();
+			mc.setLec_no(lec.getLec_no());
+			mc.setM_no(mem.getM_no());
+			mlist.add(mc);
+		}else if(mem.getTypee().equals("t")) {
+			mlist=ls.getStudentList(lec.getLec_no());
+		}
 		List<Score> slist=ls.getLectureScore(lec.getLec_no());
 		
 		mv.addObject("elist", elist);
@@ -165,10 +175,20 @@ public class LectureController {
 	
 	@GetMapping("/list.at")
 	public ModelAndView listAttendenceGet(HttpSession session, ModelAndView mv) {
+		Member mem=(Member)session.getAttribute("mem");
 		Lecture lec=(Lecture)session.getAttribute("lec");
 
 		List<Classdate> dlist=ls.getLectureDatesList(lec.getLec_no());
-		List<MyClass> mlist=ls.getStudentList(lec.getLec_no());
+		List<MyClass> mlist=null;
+		if(mem.getTypee().equals("s")) {
+			mlist=new ArrayList();
+			MyClass mc=new MyClass();
+			mc.setLec_no(lec.getLec_no());
+			mc.setM_no(mem.getM_no());
+			mlist.add(mc);
+		}else if(mem.getTypee().equals("t")) {
+			mlist=ls.getStudentList(lec.getLec_no());
+		}
 		List<Attendence> alist=ls.getLectureAttendence(lec.getLec_no());
 		
 		mv.addObject("dlist", dlist);

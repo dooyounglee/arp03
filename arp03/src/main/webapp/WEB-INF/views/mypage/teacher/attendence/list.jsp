@@ -110,7 +110,7 @@
 													<c:forEach var="d" items="${dlist }" varStatus="i">
 													
 														<!-- attendence선택 -->
-														<c:set var="attendence" value="0"/>
+														<c:set var="attendence" value="--"/>
 														<c:set var="checked1" value=""/>
 														<c:set var="checked2" value=""/>
 														<c:set var="checked3" value=""/>
@@ -118,7 +118,7 @@
 														<c:forEach var="a" items="${alist }">
 															<c:if test="${a.m_no == m.m_no && a.nth == i.count }">
 																<c:set var="attendence" value="${a.content }"/>
-																	<c:if test="${attendence eq '0' }">
+																	<c:if test="${attendence eq '--' }">
 																		<c:set var="checked1" value="selected"/>
 																	</c:if>
 																	<c:if test="${attendence eq 'O' }">
@@ -140,7 +140,7 @@
 														</c:if>
 														<c:if test="${mem.typee eq 't' }">
 														<select class="att" style="width:20px;" data-d_no="${i.count }" data-m_no="${m.m_no }">
-															<option value="0" ${checked1 }>----</option>
+															<option value="--" ${checked1 }>----</option>
 															<option value="O" ${checked2 }>O</option>
 															<option value="/" ${checked3 }>/</option>
 															<option value="X" ${checked4 }>X</option>
