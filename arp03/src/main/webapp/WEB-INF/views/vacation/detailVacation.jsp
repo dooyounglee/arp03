@@ -9,7 +9,7 @@
 <title>Insert title here</title>
     <script src="${pageContext.request.contextPath}/resources/js/signature_pad.min.js" type="text/javascript">
     </script>
-     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/css.css">
+     <!--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/css.css">  -->
      
    
      
