@@ -108,9 +108,6 @@
 			<when test="typee == 's'.toString()">
 				select l.* from (select * from myclass where m_no=#{m_no}) mc, lecture l where mc.lec_no=l.lec_no
 			</when>
-			<when test="typee == 'm'.toString()">
-				select l.* from (select * from myclass where m_no=#{m_no}) mc, lecture l where mc.lec_no=l.lec_no
-			</when>
 		</choose>
 		
 	</select>
