@@ -7,17 +7,11 @@
     <nav class="sidebar-nav">
         <ul id="sidebarnav">
             <li class="nav-small-cap">PERSONAL</li>
-            <li>
-                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">로그인 </span></a>
-                <ul aria-expanded="false" class="collapse">
-                    <li><a href="login.me">로그인</a></li>
-                    <li><a href="find.me">id/pw찾기</a></li>
-                    <li><a href="logout.me">로그아웃</a></li>
-                    <li><a href="index4.html">Dashboard 4</a></li>
-                    <li><a href="index5.html">Dashboard 5</a></li>
-                    <li><a href="index6.html">Dashboard 6</a></li>
-                </ul>
-            </li>
+            <li><a class="has-arrow" href="lectureList.ad"><span class="hide-menu">나의 강좌 리스트</span></a></li>
+            <li><a class="has-arrow" href="blist.do"><span class="hide-menu">자유게시판</span></a></li>
+            <li><a class="has-arrow" href="nlist.ad"><span class="hide-menu">공지사항</span></a></li>
+            <li><a class="has-arrow" href="flist.ad"><span class="hide-menu">FAQ</span></a></li>
+            <li><a class="has-arrow" href="mylist.qna"><span class="hide-menu">내 문의</span></a></li>
             <li>
                 <a class="has-arrow aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">학생</span></a>
                 <ul aria-expanded="false" class="collapse">
@@ -28,7 +22,7 @@
                     <li><a href="myLlist.me">내 휴가</a></li>
                 </ul>
             </li>
-            <li class="three-column">
+            <li class="one-column">
                 <a class="has-arrow" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">선생님</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="lectureList.ad">내 수업목록</a></li>
@@ -95,23 +89,6 @@
                     <li><a href="form-tinymce.html">Tinymce Editor</a></li>
                 </ul>
             </li>
-            
-            <c:if test="${!empty lec }">
-            <li>
-                <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">수강페이지</span></a>
-                <ul aria-expanded="false" class="collapse">
-                    <li><a href="main.lec">메인</a></li>
-                    <li><a href="info.lec">강의계획</a></li>
-                    <li><a href="question.qu">질문게시판</a></li>
-                    <li><a href="">내 출석</a></li>
-                    <li><a href="list.sc">내 점수</a></li>
-                    <li><a href="list.ex">시험 관리</a></li>
-                    <li><a href="table-responsive.html">Responsive Table</a></li>
-                    <li><a href="table-bootstrap.html">Bootstrap Tables</a></li>
-                    <li><a href="table-editable-table.html">Editable Table</a></li>
-                </ul>
-            </li>
-            </c:if>
             
             <li class="nav-devider"></li>
             <li class="nav-small-cap">EXTRA COMPONENTS</li>

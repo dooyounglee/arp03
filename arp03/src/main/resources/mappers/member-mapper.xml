@@ -99,4 +99,16 @@
 	<delete id="insertStudentToOther">
 		delete from myclass where lec_no=#{lec_no} and m_no=#{m_no}
 	</delete>
+	
+	<select id="getLectureList" resultType="Lecture">
+		<choose>
+			<when test="typee == 't'.toString()">
+				select * from lecture where m_no=#{m_no}
+			</when>
+			<when test="typee == 's'.toString()">
+				select l.* from (select * from myclass where m_no=#{m_no}) mc, lecture l where mc.lec_no=l.lec_no
+			</when>
+		</choose>
+		
+	</select>
 </mapper>

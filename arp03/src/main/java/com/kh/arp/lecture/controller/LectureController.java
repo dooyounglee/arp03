@@ -161,4 +161,19 @@ public class LectureController {
 		int result=ls.insertScore(s);
 		return "success";
 	}
+	
+	@GetMapping("/list.at")
+	public ModelAndView listAttendenceGet(HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+
+		List<Classdate> dlist=ls.getLectureDatesList(lec.getLec_no());
+		List<MyClass> mlist=ls.getStudentList(lec.getLec_no());
+		//List<Score> slist=ls.getLectureScore(lec.getLec_no());
+		
+		mv.addObject("dlist", dlist);
+		mv.addObject("mlist", mlist);
+		//mv.addObject("slist", slist);
+		mv.setViewName("mypage/teacher/attendence/list");
+		return mv;
+	}
 }

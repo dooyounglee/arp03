@@ -6,6 +6,15 @@
 <head>
 	<!-- head태그. header.jsp말고 -->
 	<%@ include file="../../../include/bhead.jsp"%>
+<style>
+	select {
+		border:0;
+		border-radius:0; /* 아이폰 사파리 보더 없애기 */
+		-webkit-appearance:none; /* 화살표 없애기 for chrome*/
+		-moz-appearance:none; /* 화살표 없애기 for firefox*/
+		appearance:none /* 화살표 없애기 공통*/
+	}
+</style>
 </head>
 <body class="fix-header card-no-border logo-center">
 
@@ -88,18 +97,11 @@
                                         <thead>
                                         	<tr>
 	                                        	<th></th>
-												<c:forEach var="e" items="${elist }">
-													<th width="100px">${e.title }</th>
+												<c:forEach var="d" items="${dlist }">
+													<th width="100px">${d.classdate.substring(5,10) }</th>
 												</c:forEach>
-												<th>총합</th>
+												<th>출석률</th>
 											</tr>
-<!--                                             <tr>
-                                                <th>Rendering engine</th>
-                                                <th>Browser</th>
-                                                <th>Platform(s)</th>
-                                                <th>Engine version</th>
-                                                <th>CSS grade</th>
-                                            </tr> -->
                                         </thead>
                                         <tbody>
                                         	<c:forEach var="m" items="${mlist }">
@@ -107,7 +109,7 @@
 													<td>${m.m_no }</td>
 													
 													<c:set var="sum" value="0"/>
-													<c:forEach var="e" items="${elist }">
+													<c:forEach var="e" items="${dlist }">
 														
 														<!-- score선택 -->
 														<c:set var="loop_flag" value="false" />
@@ -131,7 +133,13 @@
 																${score }
 															</c:if>
 															<c:if test="${mem.typee eq 't' }">
-																<input style="border:0px;width:100px" data-e_no="${e.e_no }" data-m_no="${m.m_no }" value="${score }">
+																<%-- <input style="border:0px;width:100px" data-e_no="${e.e_no }" data-m_no="${m.m_no }" value="${score }"> --%>
+																<select style="width:20px;">
+																	<option>----</option>
+																	<option>O</option>
+																	<option>/</option>
+																	<option>X</option>
+																</select>
 															</c:if>
 															<%-- ${score } --%>
 														</td>

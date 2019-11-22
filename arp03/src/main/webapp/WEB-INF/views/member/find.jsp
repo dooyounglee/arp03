@@ -82,7 +82,6 @@
                                 <div class="col-sm-12 col-xs-12">
                                     <form action="findId.me" method="post" autocomplete=off>
                                         <div class="form-group">
-                                            <label for="id">ID</label>
                                             <input type="text" class="form-control" name="email" id="email" placeholder="회원번호 / email / phone">
                                             <input type="hidden" name="m_no" id="m_no">
                                         </div>
@@ -95,6 +94,11 @@
                                     </form>
                                     <script>
                                     	function findId(){
+                                    		if($('#email').val()==""){
+                                    			$('#success-alert-modal').find('h4').text("빈칸?")
+                            					$('#success-alert-modal').find('p').text("검색어를 써주세요.")
+                            					return
+                                    		}
                                     		$.ajax({
                                     			url:'findId.me',
                                     			type:'post',
@@ -142,7 +146,6 @@
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->
                             </div><!-- /.modal -->
-                            
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
@@ -153,7 +156,6 @@
                                 <div class="col-sm-12 col-xs-12">
                                     <form action="findPw.me" method="post" autocomplete=off>
                                         <div class="form-group">
-                                            <label for="id">Email</label>
                                             <input type="text" class="form-control" name="email" placeholder="Enter Email">
                                         </div>
                                         <button type="submit" class="btn btn-success waves-effect waves-light mr-2">임시비번 바꾸기</button>
