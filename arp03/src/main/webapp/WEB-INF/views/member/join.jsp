@@ -82,28 +82,44 @@
                 <!-- ============================================================== -->
                 <!-- Row -->
                 <div class="row">
+                	<c:if test="${auth.typee eq 's' }">
+						<c:set var="s" value="checked"/>
+					</c:if>
+					<c:if test="${auth.typee eq 't' }">
+						<c:set var="t" value="checked"/>
+					</c:if>
                     <div class="col-lg-6 col-md-6 offset-3">
                         <div class="card card-body">
-                            <h3 class="mb-0">Login</h3>
+                            <h3 class="mb-0">가입</h3>
                             <p class="text-muted mb-4 font-13"> Bootstrap Elements </p>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form action="login.me" method="post">
+                                    <form action="join.me" method="post" autocomplete=off>
+                                    	<input type="hidden" name="m_no" value="${auth.m_no }">
+										<input  name="typee" value="${auth.typee }" >학생
                                         <div class="form-group">
                                             <label for="id">ID</label>
-                                            <input type="text" class="form-control" name="id" id="id" placeholder="Enter Username">
+                                            <input type="text" class="form-control" name="id" id="id">
                                         </div>
                                         <div class="form-group">
                                             <label for="pass">Password</label>
-                                            <input type="password" class="form-control" name="pw" id="pass" placeholder="Password">
+                                            <input type="password" class="form-control" name="pw" id="pw" placeholder="Password">
                                         </div>
                                         <div class="form-group">
-                                            <div class="checkbox checkbox-success">
-                                                <input name="remember" id="remember" type="checkbox">
-                                                <label for="remember"> 자동로그인 </label>
-                                                <input id="idSaveCheck" type="checkbox">
-                                                <label for="idSaveCheck"> id/pw 기억하기 </label>
-                                            </div>
+                                            <label for="pass">Confirm Password</label>
+                                            <input type="password" class="form-control" name="pw" id="pw2" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="id">Name</label>
+                                            <input type="text" class="form-control" name="name" value="${auth.name }">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pass">Phone</label>
+                                            <input class="form-control" name="phone" value="${auth.phone }">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pass">Email</label>
+                                            <input class="form-control" name="email" value="${auth.email }" readonly>
                                         </div>
                                         <button type="submit" class="btn btn-success waves-effect waves-light mr-2">login</button>
                                         <button type="button" class="btn btn-inverse waves-effect waves-light" onclick="location.href='find.me'">id/pw찾기</button>
@@ -167,12 +183,12 @@
 	
 	<jsp:include page="../include/header.jsp"/>
 	
-	<c:if test="${auth.typee eq 's' }">
+	<%-- <c:if test="${auth.typee eq 's' }">
 		<c:set var="s" value="checked"/>
 	</c:if>
 	<c:if test="${auth.typee eq 't' }">
 		<c:set var="t" value="checked"/>
-	</c:if>
+	</c:if> --%>
 		
 	<form action="join.me" method="post" autocomplete=off>
 		<input type="hidden" name="m_no" value="${auth.m_no }">
