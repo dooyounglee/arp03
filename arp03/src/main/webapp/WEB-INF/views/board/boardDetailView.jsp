@@ -118,7 +118,7 @@
 
 			form.appendChild(input_id2);
 				
-			var wintype = "width=500, height=500, resizable=no";
+			var wintype = "width=500, height=500, left=600, resizable=no";
 			open("", "reportForm", wintype);
 				
 			form.submit();
@@ -147,8 +147,8 @@
 						
 					input_id.setAttribute("type", "hidden");
 
-					input_id.setAttribute("name", "obj");      //name 속성 지정
-					input_id.setAttribute("value", "r");        //value 값 설정
+					input_id.setAttribute("name", "obj");    
+					input_id.setAttribute("value", "r");       
 
 					form.appendChild(input_id);
 					
@@ -157,12 +157,12 @@
 						
 					input_id2.setAttribute("type", "hidden");
 
-					input_id2.setAttribute("name", "obj_no");      //name 속성 지정
-					input_id2.setAttribute("value", $r_no);        //value 값 설정
+					input_id2.setAttribute("name", "obj_no");      
+					input_id2.setAttribute("value", $r_no);
 
 					form.appendChild(input_id2);
 						
-					var wintype = "width=500, height=500, resizable=no";
+					var wintype = "width=500, height=500, left=600, resizable=no";
 					open("", "reportForm", wintype);
 						
 					form.submit();
@@ -317,7 +317,7 @@
 						$td = jQuery("<td>");
 						
 						//$rnoTd = $("<td>").text(value.r_no);
-						$rrnoTd = jQuery("<td width='30'>").text("ㄴ");
+						$rrnoTd = jQuery("<td width='30'>").text("Re:");
 							
 						$contentTd = jQuery("<td width='250'>").text(value.content);
 						$dateTd = jQuery("<td>").text(value.update_date);
@@ -367,8 +367,9 @@
 					if($count == 0) {
 						page(data.pi);
 					} else {
-						var $lastRow = jQuery("#demo-foo-pagination:last");
-						$lastRow.append("<tr><td id='pagetd' align='center' colspan='4'>");
+						/* var $lastRow = jQuery("#demo-foo-pagination:last");
+						console.log();
+						$lastRow.append("<tr><td id='pagetd' align='center' colspan='4'>"); */
 						//$("#pagetd").append("안녕하세요");
 						$("#pagetd").empty();
 						page(data.pi);
