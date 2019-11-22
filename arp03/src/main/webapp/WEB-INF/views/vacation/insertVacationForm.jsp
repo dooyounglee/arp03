@@ -19,15 +19,15 @@
 	<h2 align="center"> 휴가 신청하기</h2>
 	<form action ="vinsert.me" align="center" >
 	
-	<input type="text" name="m_no" value="${param.m_no }" readonly><br>
-	<input type="text" name="lec_no" value="${param.lec_no }" readonly><br>
+	<input type="hidden" name="m_no" value="${mem.m_no }" readonly><br>
+	강의번호:<input type="text" name="lec_no" value="${param.lec_no }" readonly><br>
 	
-	<input type="text" name="title" value="${param.title }" readonly><br>
+	강의명:<input type="text" name="title" value="${param.title }" readonly><br>
+	제목:<input type="text" name="vacation_title"><br>
+	사유:<textarea name="reason"  rows="4" cols="50" placeholder="사유입력"></textarea><br>
+	휴가시작일<input type="text" id="testDatepicker" name="start_date">
 	
-	<textarea name="reason"  rows="4" cols="50" placeholder="사유입력"></textarea><br>
-	<input type="text" id="testDatepicker" name="start_date">
-	
-	<select id="howdate" name="date_count">
+	휴가일<select id="howdate" name="date_count">
 		<option>----</option>
 		<option value="1">1일</option>
 		<option value="2">2일</option>
@@ -36,7 +36,7 @@
 		<option value="5">5일</option>
 	</select>
 	<br>
-	<input type="text" id="totalVacation" name="totalVacation" readonly> <br>
+	끝나는일<input type="text" id="totalVacation" name="totalVacation" readonly> <br>
 	
 	
 	

@@ -47,8 +47,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public int deleteReply(int r_no) {
-		return bDao.deleteReply(r_no);
+	public int deleteReply(int r_no, int depth) {
+		return bDao.deleteReply(r_no, depth);
 	}
 
 	@Override

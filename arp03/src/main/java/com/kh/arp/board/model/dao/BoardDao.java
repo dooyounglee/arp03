@@ -48,7 +48,10 @@ public class BoardDao {
 		return sqlSession.insert("boardMapper.insertReply", r);
 	}
 
-	public int deleteReply(int r_no) {
+	public int deleteReply(int r_no, int depth) {
+		if(depth == 2) {
+			sqlSession.update("boardMapper.minusCount", r_no);
+		}
 		return sqlSession.update("boardMapper.deleteReply", r_no);
 	}
 
