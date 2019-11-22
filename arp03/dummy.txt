@@ -11,13 +11,15 @@ DROP TABLE Classdate;
 DROP TABLE vacation;
 drop table score;
 DROP TABLE exam;
-DROP TABLE LECTURE;
 DROP TABLE BoardFile;
 DROP TABLE BReply;
 DROP TABLE Board;
 DROP TABLE BCategory;
 drop table auth;
-DROP TABLE survey;
+DROP TABLE completesurvey;
+DROP TABLE insertsurvey;
+drop table survey;
+DROP TABLE LECTURE;
 DROP TABLE member;
 
     
@@ -233,20 +235,25 @@ CREATE TABLE score (
 	PRIMARY KEY(e_no,m_no)
 );
 
-CREATE TABLE survey (
-	su_no	number	,
-	m_no2	Number	REFERENCES MEMBER,
+CREATE TABLE insertsurvey (
+	su_no	number	PRIMARY KEY,
 	lec_no	number		REFERENCES LECTURE,
 	m_no	Number		REFERENCES MEMBER,
 	title	varchar2(4000)		NOT NULL,
 	enrolldate	date		NOT NULL,
 	q1	varchar2(4000)		NOT NULL,
-	a1	varchar2(4000)		NULL,
 	q2	varchar2(4000)		NULL,
-	a2	varchar2(4000)		NULL,
-	q3	varchar2(4000)		NULL,
-	a3	varchar2(4000)		NULL,
-	PRIMARY KEY(su_no, m_no2)
+	q3	varchar2(4000)		NULL
+	
+);
+CREATE TABLE completesurvey(
+	su_no number REFERENCES insertsurvey,
+	m_no number REFERENCES MEMBER,
+	a1 varchar2(4000) NULL,
+	a2 varchar2(4000) NULL,
+	a3 varchar2(4000) NULL,
+	issurvey varchar2(100) DEFAULT 'N' NOT NULL,
+	PRIMARY KEY(su_no,m_no)
 );
 
 DROP SEQUENCE SEQ_Notice; 		-- 공지사항 번호
@@ -265,7 +272,7 @@ DROP SEQUENCE SEQ_BCategory;		-- 카테고리 번호
 DROP SEQUENCE SEQ_QNA;			-- 문의사항 번호
 DROP SEQUENCE SEQ_VACATION;		-- 휴가 번호
 DROP SEQUENCE seq_exam;
-DROP SEQUENCE SEQ_SURVEY;		-- 설문조사 번호
+DROP SEQUENCE SEQ_insertSURVEY;		-- 설문조사 번호
 
 CREATE SEQUENCE SEQ_Notice; 		-- 공지사항 번호
 CREATE SEQUENCE SEQ_FAQ;			-- FAQ 번호
@@ -283,7 +290,7 @@ CREATE SEQUENCE SEQ_BCategory;		-- 카테고리 번호
 CREATE SEQUENCE SEQ_QNA;			-- 문의사항 번호
 CREATE SEQUENCE SEQ_VACATION;		-- 휴가 번호
 CREATE SEQUENCE seq_exam;
-CREATE SEQUENCE SEQ_SURVEY;			-- 설문조사 번호
+CREATE SEQUENCE SEQ_insertSURVEY;			-- 설문조사 번호
 
 /*drop trigger filestatusTrigger;
 create or replace trigger filestatusTrigger -- 첨부파일 상태 트리거
@@ -340,7 +347,7 @@ insert into member values(seq_member.nextval,'m','m1','1','name41','email41','ph
 insert into member values(seq_member.nextval,'m','m2','1','name42','email42','phone42',sysdate,sysdate,sysdate,default,default);
 insert into member values(seq_member.nextval,'m','m3','1','name43','email43','phone43',sysdate,sysdate,sysdate,default,default);
 insert into member values(seq_member.nextval,'m','m4','1','name44','email44','phone44',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'m','m5','1','name45','email44','phone45',sysdate,sysdate,sysdate,default,default);
+insert into member values(seq_member.nextval,'m','m5','1','name45','email45','phone45',sysdate,sysdate,sysdate,default,default);
 
 insert into lecture values(seq_lecture.nextval,21,'강의명21',sysdate,sysdate,2,'Y','내용1',null,30,0,6,'월화수','여기1');
 insert into lecture values(seq_lecture.nextval,21,'강의명21',sysdate,sysdate,2,'Y','내용2',null,30,0,6,'월화수','여기2');
@@ -362,6 +369,9 @@ insert into lecture values(seq_lecture.nextval,26,'강의명26',sysdate,sysdate,
 insert into lecture values(seq_lecture.nextval,26,'강의명26',sysdate,sysdate,2,'Y','내용18',null,30,21,6,'월화수','여기18');
 insert into lecture values(seq_lecture.nextval,27,'강의명27',sysdate,sysdate,2,'Y','내용19',null,30,21,6,'월화수','여기19');
 insert into lecture values(seq_lecture.nextval,27,'강의명27',sysdate,sysdate,2,'Y','내용20',null,30,21,6,'월화수','여기20');
+insert into lecture values(seq_lecture.nextval,27,'강의명27',sysdate,sysdate,2,'Y','내용21',null,30,21,6,'월화수','여기21');
+insert into lecture values(seq_lecture.nextval,42,'강의명42',sysdate,sysdate,2,'Y','내용22',null,30,21,6,'월화수','여기22');
+insert into lecture values(seq_lecture.nextval,42,'강의명42',sysdate,sysdate,2,'Y','내용23',null,30,21,6,'월화수','여기23');
 
 
 INSERT INTO BCATEGORY VALUES(1, '일반');

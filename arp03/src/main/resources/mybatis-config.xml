@@ -19,9 +19,11 @@
 		<typeAlias type="com.kh.arp.lecture.model.vo.Exam" alias="Exam"/>
 		<typeAlias type="com.kh.arp.lecture.model.vo.Score" alias="Score"/>
 		<typeAlias type="com.kh.arp.lecture.model.vo.MyClass" alias="MyClass"/>
+		<typeAlias type="com.kh.arp.lecture.model.vo.Classdate" alias="Classdate"/>
 		<typeAlias type="com.kh.arp.vacation.model.vo.Vacation" alias="Vacation"/>
 		<typeAlias type="com.kh.arp.question.model.vo.QFile" alias="QFile"/>
-		<typeAlias type="com.kh.arp.manager.model.vo.Survey" alias="Survey"/>
+		<typeAlias type="com.kh.arp.manager.model.vo.InsertSurvey" alias="InsertSurvey"/>
+		<typeAlias type="com.kh.arp.manager.model.vo.CompleteSurvey" alias="CompleteSurvey"/>
 		<typeAlias type="com.kh.arp.question.model.vo.QReply" alias="QReply"/>
 	</typeAliases>
 	
