@@ -304,7 +304,7 @@ end;*/
 
 
  
-INSERT INTO member VALUES(seq_member.nextval, 'a', 'admin','admin', 'admin', 'email0', 'phone0', sysdate, sysdate, sysdate, 0, 'Y');
+INSERT INTO member VALUES(0, 'a', 'admin','admin', 'admin', 'email0', 'phone0', sysdate, sysdate, sysdate, 0, 'Y');
 insert into member values(seq_member.nextval,'s','s1','1','name1','email1','phone1',sysdate,sysdate,sysdate,default,default);
 insert into member values(seq_member.nextval,'s','s2','1','name2','email2','phone2',sysdate,sysdate,sysdate,default,default);
 insert into member values(seq_member.nextval,'s','s3','1','name3','email3','phone3',sysdate,sysdate,sysdate,default,default);
