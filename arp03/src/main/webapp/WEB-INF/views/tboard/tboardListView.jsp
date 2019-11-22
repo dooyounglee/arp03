@@ -100,9 +100,8 @@
 										<tr>
 											<td>${ b.b_no }</td>
 											<c:if test="${ b.imageStatus eq 'Y' }">
-												<td><a href="tbdetail.do?b_no=${ b.b_no }">${ b.title }<img
-														src="resources/image/imgIcon.jpg" width="17px"
-														height="17px" /></a></td>
+											<td><a href="tbdetail.do?b_no=${ b.b_no }">${ b.title }
+											<img src="resources/image/imgIcon.jpg" width="17px" height="17px" /></a></td>
 											</c:if>
 											<c:if test="${ b.imageStatus eq 'N' }">
 												<td><a href="tbdetail.do?b_no=${ b.b_no }">${ b.title }</a></td>
