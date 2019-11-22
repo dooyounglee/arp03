@@ -7,6 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <script src="${pageContext.request.contextPath}/resources/js/signature_pad.min.js" type="text/javascript">
+    </script>
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/css.css">
+     
+   
+     
 </head>
 <body>
 
@@ -87,10 +93,25 @@
 	
 	<c:if test="${mem.typee eq 't' }">
 	<button onclick="location.href='sVlist.te';">리스트로돌아가기</button>
-	<a onclick="location.href='permission.te?v_no=${v.v_no }'" style="cursor:pointer">허가</a>
-	<a onclick="window.open('companiForm.me?v_no=${v.v_no}',width=300, height=300)" style="cursor:pointer">반려</a>
-	</c:if>
 	
+	<a onclick="location.href='permission.te?v_no=${v.v_no }'" style="cursor:pointer">허가</a>
+	<!--<button id="sign">사인하기</button>  -->
+	<a onclick="window.open('companiForm.me?v_no=${v.v_no}',width=300, height=300)" style="cursor:pointer">반려</a>
+	
+	<%--
+	 <div id="signature-pad" class="m-signature-pad">
+        <div class="m-signature-pad--body" id="signDiv">
+            <canvas id="signText"></canvas>
+        </div>
+        <div class="m-signature-pad--footer">
+            <div class="description">사인해 주세요~</div>
+            <button type="button" class="button clear" data-action="clear">지우기</button>
+            <button type="button" class="button save" data-action="save">저장</button>
+        </div>
+    </div>
+
+	 --%>	
+	 </c:if>
 	
 	<c:if test="${mem.typee eq 's' }">
 	<button onclick="location.href='vlist.me';" align="center">리스트로 돌아가기</button>
@@ -104,17 +125,70 @@
 	</c:if>
 	
 
-	
-	
+
 <script>
-
-
 function myvacation() {
 	  window.print("#tb");
 	  
 	}
+
+		
+		var canvas = $("#signature-pad canvas")[0];
+		var sign = new SignaturePad(canvas, {
+		    minWidth: 0.5,
+		    maxWidth: 2.5,
+		    penColor: "rgb(66, 133, 244)"
+		});
+		
+		$("[data-action]").on("click", function(){
+		    if ( $(this).data("action")=="clear" ){
+		        sign.clear();
+		    }
+		    else if ( $(this).data("action")=="save" ){
+		        if (sign.isEmpty()) {
+		            alert("사인해 주세요!!");
+		        } else {
+		            $.ajax({
+		                url : "save.jsp",
+		                method : "post",
+		                dataType : "json",
+		                data : {
+		                    sign : sign.toDataURL()
+		                },
+		                success : function(r){
+		                    alert("저장완료 : " + r.filename);
+		                    sign.clear();
+		                },
+		                error : function(res){
+		                    console.log(res);
+		                }
+		            });
+		        }
+		    }
+		});
 	
+
+
+			
+
+function resizeCanvas(){
+			var canvas = $("#signature-pad canvas")[0];
+			
+			var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+			canvas.width = canvas.offsetWidth * ratio;
+			canvas.height = canvas.offsetHeight * ratio;
+			canvas.getContext("2d").scale(ratio, ratio);
+			}
+
+		$(window).on("resize", function(){
+			resizeCanvas();
+			});
+			resizeCanvas();
+
+
 	
+
+
 
 </script>
 
