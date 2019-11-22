@@ -53,6 +53,7 @@ public class MemberController {
 		//status=y일떄만 되도록 해야겠는데?
 		
 		Member mem=ms.login(m);
+		System.out.println("로그인"+mem);
 		if(mem!=null) {
 			session.setAttribute("mem", mem);
 			if(remember!=null) {
@@ -101,6 +102,7 @@ public class MemberController {
 		Member mem=new Member();
 		mem.setEmail(getauth.getEmail());
 		mem=ms.getMember(mem);
+		System.out.println(mem);
 		mv.addObject("auth", mem);
 		mv.setViewName("member/join");
 		return mv;

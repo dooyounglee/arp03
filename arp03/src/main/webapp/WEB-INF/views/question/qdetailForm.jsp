@@ -67,6 +67,11 @@
 				</td>
 			</tr>
 			<tr>
+				<td>유튜브URL</td>
+				<td><input id="youtubeId" type="text" style="width:300px;" name="youtubeURL"></td>
+				<iframe width="" height="" src="" frameborder="0"></iframe>
+			</tr>
+			<tr>
 				<td colspan="2" align="right">
 					<c:if test="${ mem.name eq q.name }">
 					<button type="submit">수정</button>
