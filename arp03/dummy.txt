@@ -16,7 +16,9 @@ DROP TABLE BReply;
 DROP TABLE Board;
 DROP TABLE BCategory;
 drop table auth;
-DROP TABLE survey;
+DROP TABLE completesurvey;
+DROP TABLE insertsurvey;
+drop table survey;
 DROP TABLE LECTURE;
 DROP TABLE member;
 
@@ -233,21 +235,25 @@ CREATE TABLE score (
 	PRIMARY KEY(e_no,m_no)
 );
 
-CREATE TABLE survey (
-	su_no	number	,
-	m_no2	Number	REFERENCES MEMBER,
+CREATE TABLE insertsurvey (
+	su_no	number	PRIMARY KEY,
 	lec_no	number		REFERENCES LECTURE,
 	m_no	Number		REFERENCES MEMBER,
 	title	varchar2(4000)		NOT NULL,
 	enrolldate	date		NOT NULL,
 	q1	varchar2(4000)		NOT NULL,
-	a1	varchar2(4000)		NULL,
 	q2	varchar2(4000)		NULL,
-	a2	varchar2(4000)		NULL,
-	q3	varchar2(4000)		NULL,
-	a3	varchar2(4000)		NULL,
-	issurvey varchar2(100) DEFAULT 'N' NOT NULL	,
-	PRIMARY KEY(su_no, m_no2)
+	q3	varchar2(4000)		NULL
+	
+);
+CREATE TABLE completesurvey(
+	su_no number REFERENCES insertsurvey,
+	m_no number REFERENCES MEMBER,
+	a1 varchar2(4000) NULL,
+	a2 varchar2(4000) NULL,
+	a3 varchar2(4000) NULL,
+	issurvey varchar2(100) DEFAULT 'N' NOT NULL,
+	PRIMARY KEY(su_no,m_no)
 );
 
 DROP SEQUENCE SEQ_Notice; 		-- 공지사항 번호
@@ -266,7 +272,7 @@ DROP SEQUENCE SEQ_BCategory;		-- 카테고리 번호
 DROP SEQUENCE SEQ_QNA;			-- 문의사항 번호
 DROP SEQUENCE SEQ_VACATION;		-- 휴가 번호
 DROP SEQUENCE seq_exam;
-DROP SEQUENCE SEQ_SURVEY;		-- 설문조사 번호
+DROP SEQUENCE SEQ_insertSURVEY;		-- 설문조사 번호
 
 CREATE SEQUENCE SEQ_Notice; 		-- 공지사항 번호
 CREATE SEQUENCE SEQ_FAQ;			-- FAQ 번호
@@ -284,7 +290,7 @@ CREATE SEQUENCE SEQ_BCategory;		-- 카테고리 번호
 CREATE SEQUENCE SEQ_QNA;			-- 문의사항 번호
 CREATE SEQUENCE SEQ_VACATION;		-- 휴가 번호
 CREATE SEQUENCE seq_exam;
-CREATE SEQUENCE SEQ_SURVEY;			-- 설문조사 번호
+CREATE SEQUENCE SEQ_insertSURVEY;			-- 설문조사 번호
 
 /*drop trigger filestatusTrigger;
 create or replace trigger filestatusTrigger -- 첨부파일 상태 트리거

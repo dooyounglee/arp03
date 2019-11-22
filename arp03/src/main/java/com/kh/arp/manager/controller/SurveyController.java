@@ -35,12 +35,15 @@ public class SurveyController {
 	
 	@RequestMapping("insertsurvey.ma")
 	public ModelAndView insertsurvey(ModelAndView mv, Survey s ,HttpSession session) {
+		System.out.println(s+"첫번째");
 		Member m = new Member();
 		m.setM_no(((Member)session.getAttribute("mem")).getM_no());
+		System.out.println(m+"엠담기");
 		s.setM_no2(m.getM_no());
+		System.out.println(s);
 		int result=ss.insertsurvey(s);
 		if(result>0) {
-			mv.setViewName("manager/selectsurvey");
+			mv.setViewName("redirct:/selectsurvey.ma");
 		}else {
 			mv.setViewName("");
 		}

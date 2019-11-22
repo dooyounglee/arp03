@@ -4,6 +4,7 @@
 
 	<resultMap id="surveyList" type="Survey">
 		<id property="su_no" column="su_no"/>
+		<result property="m_no2" column="m_no2"/>
 		<result property="lec_no" column="lec_no"/>
 		<result property="m_no" column="m_no"/>
 		<result property="title" column="title"/>
@@ -16,7 +17,7 @@
 		<result property="a3" column="a3"/>
 		<result property="name" column="name"/>
 		<result property="title_1" column="lec_title"/>
-	
+		<result property="issurvey" column="issurvey"/>
 	</resultMap>
 	
 		
@@ -25,7 +26,7 @@
   	insert into survey values
   	(seq_survey.nextval, #{m_no2}, #{lec_no}, #{m_no}, 
   	#{title}, #{enrolldate},
-  	#{q1}, #{a1}, #{q2}, #{a2}, #{q3}, #{a3})
+  	#{q1}, #{a1}, #{q2}, #{a2}, #{q3}, #{a3}, #{issurvey})
   </insert>
   
   <select id="selectSurvey" resultMap="surveyList">
