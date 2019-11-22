@@ -100,4 +100,8 @@
 	<update id="insertAttendence">
 		insert into attendence values(#{lec_no},#{m_no},#{nth},#{content})
 	</update>
+	
+	<select id="getLectureAttendence" resultType="Attendence">
+		select * from attendence where lec_no=#{lec_no}
+	</select>
 </mapper>

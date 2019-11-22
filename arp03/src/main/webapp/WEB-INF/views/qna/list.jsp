@@ -79,7 +79,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">qna관리</h4>
-                                <h6 class="card-subtitle">Add class <code>.table</code></h6>
+                                <a class="btn btn-success float-left" href="write.qna">문의하기</a><br>
+                                <h6 class="card-subtitle"></code></h6>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
@@ -97,7 +98,7 @@
                                         		<tr>
 	                                        		<td>${qna.qna_no }</td>
 	                                        		<td>${qna.m_no }</td>
-	                                                <td>${qna.title }</td>
+	                                                <td><a href="get.qna?qna_no=${qna.qna_no }">${qna.title }</a></td>
 	                                                <td>${qna.questiondate }</td>
 	                                                <td>${qna.answerdate }</td>
 	                                                <td>${qna.status }</td>

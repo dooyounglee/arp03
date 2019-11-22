@@ -107,15 +107,43 @@
                                         	<c:forEach var="m" items="${mlist }">
 												<tr>
 													<td>${m.m_no }</td>
-													<c:set var="sum" value="0"/>
-													<c:forEach var="e" items="${dlist }" varStatus="i">
+													<c:forEach var="d" items="${dlist }" varStatus="i">
+													
+														<!-- attendence선택 -->
+														<c:set var="attendence" value="--"/>
+														<c:set var="checked1" value=""/>
+														<c:set var="checked2" value=""/>
+														<c:set var="checked3" value=""/>
+														<c:set var="checked4" value=""/>
+														<c:forEach var="a" items="${alist }">
+															<c:if test="${a.m_no == m.m_no && a.nth == i.count }">
+																<c:set var="attendence" value="${a.content }"/>
+																	<c:if test="${attendence eq '--' }">
+																		<c:set var="checked1" value="selected"/>
+																	</c:if>
+																	<c:if test="${attendence eq 'O' }">
+																		<c:set var="checked2" value="selected"/>
+																	</c:if>
+																	<c:if test="${attendence eq '/' }">
+																		<c:set var="checked3" value="selected"/>
+																	</c:if>
+																	<c:if test="${attendence eq 'X' }">
+																		<c:set var="checked4" value="selected"/>
+																	</c:if>
+															</c:if>
+														</c:forEach>
+														<!-- End of attendence선택 -->
+													
 													<td>
+														<c:if test="${mem.typee eq 's' }">
+														${attendence }
+														</c:if>
 														<c:if test="${mem.typee eq 't' }">
 														<select class="att" style="width:20px;" data-d_no="${i.count }" data-m_no="${m.m_no }">
-															<option value="0">----</option>
-															<option value="O">O</option>
-															<option value="/">/</option>
-															<option value="X">X</option>
+															<option value="--" ${checked1 }>----</option>
+															<option value="O" ${checked2 }>O</option>
+															<option value="/" ${checked3 }>/</option>
+															<option value="X" ${checked4 }>X</option>
 														</select>
 														</c:if>
 													</td>
@@ -171,7 +199,7 @@
 	
 	<jsp:include page="../../../include/header.jsp"/>
 	<h1>성적</h1>
-	<table border=1>
+	<%-- <table border=1>
 		<thead>
 			<tr>
 				<th></th>
@@ -214,7 +242,7 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table>
+	</table> --%>
 	
 	<script>
 		$('.att').on('input',function(){
@@ -228,7 +256,7 @@
 			
 			//db저장
 			$.ajax({
-				url:'insert.att',
+				url:'insert.at',
 				type:'post',
 				data:{
 					nth:$(this_).data('d_no'),

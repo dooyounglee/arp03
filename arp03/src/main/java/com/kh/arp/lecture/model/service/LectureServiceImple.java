@@ -102,4 +102,9 @@ public class LectureServiceImple implements LectureService {
 		return 0;
 	}
 
+	@Override
+	public List<Attendence> getLectureAttendence(int lec_no) {
+		return ld.getLectureAttendence(lec_no);
+	}
+
 }
