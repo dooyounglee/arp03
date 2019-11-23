@@ -20,7 +20,7 @@
 	
 	<h1 align="center">휴가 상세보기</h1>
 	<br>
-<c:if test ="${mem.typee eq 's' }">
+<c:if test ="${mem.typee eq 's'}">
 	<table border="1px">
 	<tr>
 	<th>선생님</th>
@@ -28,26 +28,49 @@
 	</tr>
 	<tr>
 	 	<td>
-		 <c:if test = "${ v.tstatus eq 'N'}">
-		 처리중
-  		 </c:if>
-		 <c:if test = "${ v.tstatus eq 'B'}">
-		 반려
-  		 </c:if>
-  	 	<c:if test ="${v.tstatus eq 'Y' }">
-  	 	<img src ="resources/image/sign.png" width="200" height="100">
-  	 	</c:if>
+			 <c:if test = "${ v.tstatus eq 'N'}">
+			 처리중
+	  		 </c:if>
+			 <c:if test = "${ v.tstatus eq 'B'}">
+			 반려
+	  		 </c:if>
+	  	 	<c:if test ="${v.tstatus eq 'Y' }">
+	  	 	<img src ="resources/image/sign.png" width="200" height="100">
+	  	 </c:if>
 	 	</td>
 	<td>
 		<c:if test = "${ v.astatus eq 'N'}">
 			 처리중
   		</c:if>
-	
+		<c:if test ="${ v.astatus eq 'Y' }">
+			승인
+		</c:if>
 	
 	</td>
 	</tr>
 	</table>
 </c:if>
+	<c:if test ="${mem.typee eq 'a'}">
+	
+	<table border="1px">
+	<tr>
+	<th>선생님</th>
+	</tr>
+	<tr>
+	 	<td>
+			 <c:if test = "${ v.tstatus eq 'N'}">
+			 처리중
+	  		 </c:if>
+			 <c:if test = "${ v.tstatus eq 'B'}">
+			 반려
+	  		 </c:if>
+	  	 	<c:if test ="${v.tstatus eq 'Y' }">
+	  	 	<img src ="resources/image/sign.png" width="200" height="100">
+	  	 </c:if>
+	 	</td>
+	</tr>
+	
+	</c:if>
 	
 	<input type="hidden" value="${v.v_no }">
 	<table align="center" border="1px">
@@ -116,15 +139,15 @@
 	<c:if test="${mem.typee eq 's' }">
 	<button onclick="location.href='vlist.me';" align="center">리스트로 돌아가기</button>
 	
-	<c:if test="${v.tstatus eq 'B' && v.tstatus eq 'Y' }">
+	<c:if test="${v.tstatus eq 'N'}">
 	<a href="vupdateForm.me?v_no=${ v.v_no }">수정하기</a>
 	</c:if>
-	
+	<c:if test="${v.tstatus eq 'B'}">
 	<a href="vdelete.me?v_no=${ v.v_no }" >삭제하기</a>
-	
+	</c:if>
 	</c:if>
 	
-
+	
 
 <script>
 function myvacation() {
@@ -132,7 +155,7 @@ function myvacation() {
 	  
 	}
 
-		
+<%--
 		var canvas = $("#signature-pad canvas")[0];
 		var sign = new SignaturePad(canvas, {
 		    minWidth: 0.5,
@@ -188,7 +211,7 @@ function resizeCanvas(){
 
 	
 
-
+ --%>
 
 </script>
 

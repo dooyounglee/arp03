@@ -36,4 +36,7 @@ public interface VacationService {
 	 // 휴가 반려
 	 int companion(Vacation v);
 	 
+	 // 관리자 휴가 처리
+	 int adminpermission(int num);
+	 
 }

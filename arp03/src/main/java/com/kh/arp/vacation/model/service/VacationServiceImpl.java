@@ -68,6 +68,14 @@ public class VacationServiceImpl implements VacationService {
 		return vDao.companion(v);
 	}
 
+	public int adminpermission(int num) {
+		// TODO Auto-generated method stub
+		return vDao.adminpermission(num);
+	}
+
+	
+
+
 
 	
 
