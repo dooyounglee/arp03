@@ -18,12 +18,12 @@
 <body>
 ${hw }<br>
 <c:forEach var="p" items="${plist }" varStatus="i">
-	${p }<br>
+	문제:${p.problem }<br>
 	<c:if test="${empty alist || alist.size()==0 }">
 	답:<input data-p_no="${p.p_no }"><br>
 	</c:if>
 	<c:if test="${alist.size()>0 }">
-	답:${alist[i.index].answer }<br>
+	답:\(${alist[i.index].answer }\)<br>
 	정답:${p.solution }<br>
 	정답?:${alist[i.index].ox }
 	</c:if>
