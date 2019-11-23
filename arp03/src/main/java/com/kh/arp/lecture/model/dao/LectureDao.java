@@ -18,6 +18,7 @@ import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.lecture.model.vo.Score;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.problem.model.vo.Answer;
 import com.kh.arp.problem.model.vo.Homework;
 import com.kh.arp.problem.model.vo.ProblemRelated;
 import com.kh.arp.qna.model.vo.Qna;
@@ -203,6 +204,10 @@ public class LectureDao {
 
 	public int delHomeworkInLecture(ProblemRelated hw_lec) {
 		return sqlSession.delete("lectureMapper.delHomeworkInLecture",hw_lec);
+	}
+
+	public int submitAnswer(Answer ans) {
+		return sqlSession.insert("lectureMapper.submitAnswer",ans);
 	}
 
 }

@@ -2,6 +2,7 @@ package com.kh.arp.problem.model.service;
 
 import java.util.List;
 
+import com.kh.arp.problem.model.vo.Answer;
 import com.kh.arp.problem.model.vo.Homework;
 import com.kh.arp.problem.model.vo.Problem;
 import com.kh.arp.problem.model.vo.ProblemRelated;
@@ -37,6 +38,8 @@ public interface ProblemService {
 
 	List<Problem> getProblemListInHomework(int hw_no);
 
-	List<Homework> teacherHomeworkList(int m_no);
+	//List<Homework> teacherHomeworkList(int m_no);
+
+	List<Answer> getHomeworkAnswer(ProblemRelated lec_hw_m);
 
 }

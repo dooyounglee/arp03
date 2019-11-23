@@ -1,10 +1,13 @@
 package com.kh.arp.lecture.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +25,11 @@ import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.lecture.model.vo.Score;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.problem.model.service.ProblemService;
+import com.kh.arp.problem.model.vo.Answer;
 import com.kh.arp.problem.model.vo.Homework;
+import com.kh.arp.problem.model.vo.Problem;
 import com.kh.arp.problem.model.vo.ProblemRelated;
+import com.kh.arp.problem.model.vo.Variables;
 
 @Controller
 public class LectureController {
@@ -258,4 +264,120 @@ public class LectureController {
 		return "success";
 	}
 	
+	@GetMapping("/getHomework.lec")
+	public ModelAndView getHomeworkInLecture(int hw_no, HttpSession session, ModelAndView mv) {
+		Member mem=(Member)session.getAttribute("mem");
+		
+		Homework hw=ps.getHomework(hw_no);
+		List<Problem> plist=ps.getProblemListInHomework(hw_no);
+		List<Problem> newplist=new ArrayList<Problem>();
+		for(Problem p:plist) {
+			newplist.add(abc(p,mem.getM_no()));
+		}
+		
+
+		mv.addObject("hw", hw);
+		mv.addObject("plist", newplist);
+		//mv.addObject("alist)
+		mv.setViewName("mypage/teacher/homework/get");
+		return mv;
+	}
+	
+	@GetMapping("/checkAnswer.hw")
+	public ModelAndView checkAnswerHomework(ProblemRelated lec_hw_m, HttpSession session, ModelAndView mv) {
+		Member mem=(Member)session.getAttribute("mem");
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		lec_hw_m.setLec_no(lec.getLec_no());
+		lec_hw_m.setM_no(mem.getM_no());
+		
+		
+		Homework hw=ps.getHomework(lec_hw_m.getHw_no());
+		List<Problem> plist=ps.getProblemListInHomework(lec_hw_m.getHw_no());
+		List<Problem> newplist=new ArrayList<Problem>();
+		for(Problem p:plist) {
+			newplist.add(abc(p,mem.getM_no()));
+		}
+		
+		List<Answer> alist=ps.getHomeworkAnswer(lec_hw_m);
+		System.out.println(alist);
+		
+		mv.addObject("hw", hw);
+		mv.addObject("plist", newplist);
+		mv.addObject("alist", alist);
+		mv.setViewName("mypage/teacher/homework/get");
+		return mv;
+	}
+	
+	@ResponseBody
+	@PostMapping("/submitAnswer.hw")
+	public String submitAnswer(Answer ans, HttpSession session, ModelAndView mv) {
+		Member mem=(Member)session.getAttribute("mem");
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		ans.setLec_no(lec.getLec_no());
+		ans.setM_no(mem.getM_no());
+		
+		Problem p=ps.getProblem(ans.getP_no());
+		Problem ranp=abc(p,mem.getM_no());
+		
+		if(ans.getAnswer().equals(ranp.getSolution())) {
+			ans.setOx("O");
+		}else {
+			ans.setOx("X");
+		}
+		
+		int result=ls.submitAnswer(ans);
+		return "success";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public Problem abc(Problem p,int m_no) {
+		//Problem p=sqlSession.selectOne("problemMapper.getProblem",p_no);
+		List<Variables> vlist=ps.getVariables(p.getP_no());
+		Problem ranp=null;
+		if(vlist.size()>0) {
+			//int random=(int)(Math.random()*vlist.size());
+			int random=m_no%vlist.size();
+			Variables v=vlist.get(random);
+			
+			String strp=p.getProblem();
+			String strs=p.getSolve();
+			String strsolu=p.getSolution();
+			String[] keyval=p.getKeyval().split(",");
+			String[] val=v.getVal().split(",");
+			
+			JSONObject jo=new JSONObject();
+			for(int i=0;i<keyval.length;i++) {
+				jo.put(keyval[i], val[i]);
+			}
+			
+			Set<String> i=jo.keySet();
+			Iterator<String> it=i.iterator();
+			while(it.hasNext()){
+				String temp=it.next();
+				strp=strp.replaceAll(temp, (String)jo.get(temp));
+				strs=strs.replaceAll(temp, (String)jo.get(temp));
+				strsolu=strsolu.replaceAll(temp, (String)jo.get(temp));
+			}
+			
+			ranp=p;
+			ranp.setProblem(strp);
+			ranp.setSolve(strs);
+			ranp.setSolution(strsolu);
+		}
+		return ranp;
+	}
 }

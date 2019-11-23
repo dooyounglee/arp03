@@ -118,4 +118,8 @@
 		delete from homeworkinlecture
 		where lec_no=#{lec_no} and hw_no=#{hw_no}
 	</delete>
+	
+	<insert id="submitAnswer">
+		insert into homeworkanswer values(#{lec_no},#{hw_no},#{p_no},#{m_no},#{answer},#{ox})
+	</insert>
 </mapper>

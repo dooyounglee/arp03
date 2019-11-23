@@ -29,6 +29,7 @@
 		<typeAlias type="com.kh.arp.problem.model.vo.Problem" alias="Problem"/>
 		<typeAlias type="com.kh.arp.problem.model.vo.Variables" alias="Variables"/>
 		<typeAlias type="com.kh.arp.problem.model.vo.Homework" alias="Homework"/>
+		<typeAlias type="com.kh.arp.problem.model.vo.Answer" alias="Answer"/>
 	</typeAliases>
 	
 	<mappers>

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.arp.problem.model.vo.Answer;
 import com.kh.arp.problem.model.vo.Homework;
 import com.kh.arp.problem.model.vo.Problem;
 import com.kh.arp.problem.model.vo.ProblemRelated;
@@ -71,6 +72,10 @@ public class ProblemDao {
 
 	public List<Problem> getProblemListInHomework(int hw_no) {
 		return sqlSession.selectList("problemMapper.getProblemListInHomework",hw_no);
+	}
+
+	public List<Answer> getHomeworkAnswer(ProblemRelated lec_hw_m) {
+		return sqlSession.selectList("problemMapper.getHomeworkAnswer",lec_hw_m);
 	}
 
 

@@ -77,4 +77,9 @@
 		select * from problem where p_no in
 		(select p_no from problemsinHomework where hw_no=#{hw_no})
 	</select>
+	
+	<select id="getHomeworkAnswer" resultType="Answer">
+		select * from homeworkanswer
+		where lec_no=#{lec_no} and hw_no=#{hw_no} and m_no=#{m_no}
+	</select>
 </mapper>

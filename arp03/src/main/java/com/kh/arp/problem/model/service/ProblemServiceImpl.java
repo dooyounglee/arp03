@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.arp.problem.model.dao.ProblemDao;
+import com.kh.arp.problem.model.vo.Answer;
 import com.kh.arp.problem.model.vo.Homework;
 import com.kh.arp.problem.model.vo.Problem;
 import com.kh.arp.problem.model.vo.ProblemRelated;
@@ -85,6 +86,11 @@ public class ProblemServiceImpl implements ProblemService {
 	@Override
 	public List<Problem> getProblemListInHomework(int hw_no) {
 		return pd.getProblemListInHomework(hw_no);
+	}
+
+	@Override
+	public List<Answer> getHomeworkAnswer(ProblemRelated lec_hw_m) {
+		return pd.getHomeworkAnswer(lec_hw_m);
 	}
 
 

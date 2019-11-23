@@ -8,6 +8,7 @@
             <a href="info.lec" class="list-group-item">강의계획</a>
             <a href="list.at" class="list-group-item">내 출석</a>
             <a href="list.sc" class="list-group-item">내 점수</a>
+            <a href="homeworklist.lec" class="list-group-item">숙제</a>
             <a href="#5" class="list-group-item">--------</a>
             <a href="list.ex" class="list-group-item">시험관리</a>
             <a href="list.at" class="list-group-item">출석관리</a>

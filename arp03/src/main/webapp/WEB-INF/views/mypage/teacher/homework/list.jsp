@@ -13,7 +13,10 @@
 <div id="homeworkArea">
 	<div id="homeworkContent">
 <c:forEach var="hw" items="${list }">
-	${hw }<button onclick="del(${hw.hw_no })">삭제</button><br>
+	<a href="getHomework.lec?hw_no=${hw.hw_no }">${hw }</a>
+	<%-- <button onclick="solve(${hw.hw_no })">문제풀기</button> --%>
+	<button onclick="answer(${hw.hw_no })">정답확인</button>
+	<button onclick="del(${hw.hw_no })">삭제</button><br>
 </c:forEach>
 	</div>
 </div>
@@ -22,7 +25,9 @@
 		var url="homework.te";
         window.open(url,"","width=400,height=400,left=600");
 	}
-	
+	function answer(hw_no){
+		location.href="checkAnswer.hw?hw_no="+hw_no
+	}
 	function del(hw_no){
 		$.ajax({
 			url:'delHomework.lec',
