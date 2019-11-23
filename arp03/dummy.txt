@@ -17,6 +17,7 @@ DROP TABLE Board;
 DROP TABLE BCategory;
 drop table auth;
 DROP TABLE completesurvey;
+DROP TABLE surveyquestion;
 DROP TABLE insertsurvey;
 drop table survey;
 DROP TABLE LECTURE;
@@ -258,6 +259,13 @@ CREATE TABLE completesurvey(
 	PRIMARY KEY(su_no,m_no)
 );
 
+CREATE TABLE surveyquestion(
+	sq_no number,
+	su_no number REFERENCES insertsurvey,
+	question varchar2(4000) NOT NULL,
+	PRIMARY KEY(sq_no, su_no)
+);
+
 DROP SEQUENCE SEQ_Notice; 		-- 공지사항 번호
 DROP SEQUENCE SEQ_FAQ;			-- FAQ 번호
 DROP SEQUENCE SEQ_Lecture;		-- 강의번호
@@ -276,6 +284,7 @@ DROP SEQUENCE SEQ_VACATION;		-- 휴가 번호
 DROP SEQUENCE seq_exam;
 DROP SEQUENCE SEQ_insertSURVEY;		-- 설문조사 번호
 DROP SEQUENCE SEQ_SURVEY;
+DROP SEQUENCE SEQ_surveyquestion;
 
 CREATE SEQUENCE SEQ_Notice; 		-- 공지사항 번호
 CREATE SEQUENCE SEQ_FAQ;			-- FAQ 번호
@@ -294,6 +303,7 @@ CREATE SEQUENCE SEQ_QNA;			-- 문의사항 번호
 CREATE SEQUENCE SEQ_VACATION;		-- 휴가 번호
 CREATE SEQUENCE seq_exam;
 CREATE SEQUENCE SEQ_insertSURVEY;			-- 설문조사 번호
+create SEQUENCE SEQ_surveyquestion;
 
 /*drop trigger filestatusTrigger;
 create or replace trigger filestatusTrigger -- 첨부파일 상태 트리거
