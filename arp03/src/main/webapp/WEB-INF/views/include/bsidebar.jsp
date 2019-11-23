@@ -101,7 +101,7 @@
                     <li><a href="qnaList.ad">문의관리</a></li>
                     <li><a href="declareList.ad">신고관리</a></li>
                     <li><a href="memberList.ad">회원관리</a></li>
-                    <li><a href="vationList.ad">휴가관리</a></li>
+                    <li><a href="sVlist.ad">휴가관리</a></li>
                     <li><a href="nlist.ad">공지사항</a></li>
                     <li><a href="flist.ad">faq</a></li>
                     <li><a href="pages-scroll.html">Scrollbar</a></li>
