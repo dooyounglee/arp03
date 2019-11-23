@@ -26,6 +26,8 @@
 		<typeAlias type="com.kh.arp.manager.model.vo.InsertSurvey" alias="InsertSurvey"/>
 		<typeAlias type="com.kh.arp.manager.model.vo.CompleteSurvey" alias="CompleteSurvey"/>
 		<typeAlias type="com.kh.arp.question.model.vo.QReply" alias="QReply"/>
+		<typeAlias type="com.kh.arp.problem.model.vo.Problem" alias="Problem"/>
+		<typeAlias type="com.kh.arp.problem.model.vo.Variables" alias="Variables"/>
 	</typeAliases>
 	
 	<mappers>
@@ -41,5 +43,6 @@
 		<mapper resource="/mappers/qna-mapper.xml"/>
 		<mapper resource="/mappers/vacation-mapper.xml"/>
 		<mapper resource="/mappers/survey-mapper.xml"/>
+		<mapper resource="/mappers/problem-mapper.xml"/>
 	</mappers>
 </configuration>
