@@ -73,6 +73,11 @@ public class VacationServiceImpl implements VacationService {
 		return vDao.adminpermission(num);
 	}
 
+	public int multiPermission(int num) {
+		// TODO Auto-generated method stub
+		return vDao.multipermission(num);
+	}
+
 	
 
 

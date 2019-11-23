@@ -51,7 +51,7 @@
 </table>
 
 
-	<button type="submit" id ="submit">일괄처리하기</button>
+	<button type="submit" id ="submit" style="display:none">일괄처리하기</button>
 	
 	<button type="submit" id ="submit2" style="display:none">처리하기</button>
 
@@ -142,6 +142,10 @@ $(function(){
 		 $("input[name=vacationList]:checked").each(function(){
 				console.log($(this).val());
 				checkVno.push($(this).val());
+				
+				if($(this).prop("checked")){
+					$("#submit").show();
+				}
 			});
 		 
 	 });

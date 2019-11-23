@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -183,15 +184,10 @@ public class VacationController {
 	
 	@ResponseBody  
 	@RequestMapping("permission.ad")
-	public int checkVnoTest(@RequestParam(value="checkList[]") List<String> Number , HttpServletRequest request ) {
+	public int checkVnoTest(@RequestParam(value="checkList[]") List<String> Number) {
 		
 		
-		String v_no = request.getParameter("vacationList");
-		
-		
-		
-		
-		System.out.println(Number);
+	//	System.out.println(Number);
 		
 		int result=0;
 		
@@ -202,11 +198,29 @@ public class VacationController {
 			int num =Integer.parseInt(v);
 			
 			result =vService.adminpermission(num); 	
-			System.out.println(result);
+			//System.out.println(result);
 		}
 		
 		return result;
 
 		
+	}
+	
+	@ResponseBody  
+	@RequestMapping("multiPermission.ad")
+	public int MultiCheck(@RequestParam(value="MultiList[]") List<String> Number) {
+		//System.out.println(Number);
+		
+		int result =0;
+		
+		for(String v : Number) {
+			int num = Integer.parseInt(v);
+			
+			result = vService.multiPermission(num);
+			//System.out.println(result);
+		}
+		
+		//System.out.println(result);
+		return result;
 	}
 }

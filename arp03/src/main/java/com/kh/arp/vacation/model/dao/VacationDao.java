@@ -76,6 +76,12 @@ public class VacationDao {
 	}
 
 
+	public int multipermission(int num) {
+		
+		return sqlSession.update("vacationMapper.adminpermission" , num);
+	}
+
+
 	
 
 
