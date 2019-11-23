@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.arp.manager.model.dao.SurveyDao;
+import com.kh.arp.manager.model.vo.CompleteSurvey;
 import com.kh.arp.manager.model.vo.InsertSurvey;
 
 @Service("ss")
@@ -30,7 +31,7 @@ public class SurveyServiceImpl implements SurveyService {
 	}
 
 	@Override
-	public int updatesurvey(InsertSurvey s) {
-		return sDao.updatesurvey(s);
+	public int insertcompletesurvey(CompleteSurvey s) {
+		return sDao.insertcompletesurvey(s);
 	}
 }

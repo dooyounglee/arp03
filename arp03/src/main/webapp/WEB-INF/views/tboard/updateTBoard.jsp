@@ -18,6 +18,8 @@
 		margin-right:auto;
 		width:800px
 		}
+		
+	
 	
 </style>
 
@@ -51,7 +53,7 @@
 	<jsp:include page="../include/header.jsp"/>
 	
 	<div class="page-wrapper">
-		
+		<div class="card">
 	 	<c:if test="${ !empty b }">
 			<h3 align="center">글 수정하기</h3>
 			
@@ -85,6 +87,7 @@
 					
 					<div id="delDiv">
 					 <a id="fileName" href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bfList.rename_filename}" download="${ bfList.original_filename }">${ bfList.original_filename }</a>
+					 <input type="hidden" name="fileStatus" value="${ bfList.original_filename }">
                 	  <button type="button" class="delBtn">파일삭제</button>
 					</div>
 				
@@ -102,9 +105,11 @@
 						<button type="button" onclick="location.href='tblist.do';" class="btn waves-effect waves-light btn-info">목록으로</button>
 			
 				</div>
-		
+				<br><br><br>
+	
 		</form>
 		</c:if>
+			</div>
 	</div>
 </div>		 
 	

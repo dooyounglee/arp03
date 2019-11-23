@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.declaree.model.vo.Declaree;
+import com.kh.arp.lecture.model.vo.Attendence;
 import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
@@ -17,6 +18,9 @@ import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.lecture.model.vo.Score;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.problem.model.vo.Answer;
+import com.kh.arp.problem.model.vo.Homework;
+import com.kh.arp.problem.model.vo.ProblemRelated;
 import com.kh.arp.qna.model.vo.Qna;
 
 @Repository
@@ -172,6 +176,38 @@ public class LectureDao {
 
 	public List<Classdate> getLectureDatesList(int lec_no) {
 		return sqlSession.selectList("lectureMapper.getLectureDatesList",lec_no);
+	}
+
+	public int isAttendence(Attendence att) {
+		return sqlSession.selectOne("lectureMapper.isAttendence",att);
+	}
+
+	public int updateAttendence(Attendence att) {
+		return sqlSession.update("lectureMapper.updateAttendence",att);
+	}
+
+	public int insertAttendence(Attendence att) {
+		return sqlSession.insert("lectureMapper.insertAttendence",att);
+	}
+
+	public List<Attendence> getLectureAttendence(int lec_no) {
+		return sqlSession.selectList("lectureMapper.getLectureAttendence",lec_no);
+	}
+
+	public List<Homework> getHomeworkListInLecture(int lec_no) {
+		return sqlSession.selectList("lectureMapper.getHomeworkListInLecture",lec_no);
+	}
+
+	public int addHomeworkInLecture(ProblemRelated hw_lec) {
+		return sqlSession.insert("lectureMapper.addHomeworkInLecture",hw_lec);
+	}
+
+	public int delHomeworkInLecture(ProblemRelated hw_lec) {
+		return sqlSession.delete("lectureMapper.delHomeworkInLecture",hw_lec);
+	}
+
+	public int submitAnswer(Answer ans) {
+		return sqlSession.insert("lectureMapper.submitAnswer",ans);
 	}
 
 }

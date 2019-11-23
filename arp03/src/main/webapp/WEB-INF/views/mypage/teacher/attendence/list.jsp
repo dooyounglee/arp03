@@ -107,44 +107,48 @@
                                         	<c:forEach var="m" items="${mlist }">
 												<tr>
 													<td>${m.m_no }</td>
+													<c:forEach var="d" items="${dlist }" varStatus="i">
 													
-													<c:set var="sum" value="0"/>
-													<c:forEach var="e" items="${dlist }">
-														
-														<!-- score선택 -->
-														<c:set var="loop_flag" value="false" />
-														<c:set var="score" value=""/>
-														<c:forEach var="s" items="${slist }">
-															<c:if test="${not loop_flag }">
-																<c:if test="${s.m_no eq m.m_no && s.e_no eq e.e_no }">
-																	<c:set var="score" value="${s.score }"/>
-																	<c:set var="sum" value="${sum+score }"/>
-																	<c:set var="loop_flag" value="true" />
-																</c:if>
+														<!-- attendence선택 -->
+														<c:set var="attendence" value="--"/>
+														<c:set var="checked1" value=""/>
+														<c:set var="checked2" value=""/>
+														<c:set var="checked3" value=""/>
+														<c:set var="checked4" value=""/>
+														<c:forEach var="a" items="${alist }">
+															<c:if test="${a.m_no == m.m_no && a.nth == i.count }">
+																<c:set var="attendence" value="${a.content }"/>
+																	<c:if test="${attendence eq '--' }">
+																		<c:set var="checked1" value="selected"/>
+																	</c:if>
+																	<c:if test="${attendence eq 'O' }">
+																		<c:set var="checked2" value="selected"/>
+																	</c:if>
+																	<c:if test="${attendence eq '/' }">
+																		<c:set var="checked3" value="selected"/>
+																	</c:if>
+																	<c:if test="${attendence eq 'X' }">
+																		<c:set var="checked4" value="selected"/>
+																	</c:if>
 															</c:if>
 														</c:forEach>
-														<!-- End of score선택 -->
-														
-														<td>
-															<c:if test="${score eq 0 }">
-																<c:set var="score" value=""/>
-															</c:if>
-															<c:if test="${mem.typee eq 's' }">
-																${score }
-															</c:if>
-															<c:if test="${mem.typee eq 't' }">
-																<%-- <input style="border:0px;width:100px" data-e_no="${e.e_no }" data-m_no="${m.m_no }" value="${score }"> --%>
-																<select style="width:20px;">
-																	<option>----</option>
-																	<option>O</option>
-																	<option>/</option>
-																	<option>X</option>
-																</select>
-															</c:if>
-															<%-- ${score } --%>
-														</td>
+														<!-- End of attendence선택 -->
+													
+													<td>
+														<c:if test="${mem.typee eq 's' }">
+														${attendence }
+														</c:if>
+														<c:if test="${mem.typee eq 't' }">
+														<select class="att" style="width:20px;" data-d_no="${i.count }" data-m_no="${m.m_no }">
+															<option value="--" ${checked1 }>----</option>
+															<option value="O" ${checked2 }>O</option>
+															<option value="/" ${checked3 }>/</option>
+															<option value="X" ${checked4 }>X</option>
+														</select>
+														</c:if>
+													</td>
 													</c:forEach>
-														<td class=sum>${sum }</td>
+													<td class=sum>${sum }</td>
 												</tr>
 											</c:forEach>
                                         </tbody>
@@ -195,7 +199,7 @@
 	
 	<jsp:include page="../../../include/header.jsp"/>
 	<h1>성적</h1>
-	<table border=1>
+	<%-- <table border=1>
 		<thead>
 			<tr>
 				<th></th>
@@ -238,45 +242,26 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table>
+	</table> --%>
 	
 	<script>
-		//합
-		$('table input').on('input',function(){
+		$('.att').on('input',function(){
 			var this_=$(this)
 			var score=$(this_).val()
-			if(isNaN(score) || score==""){
-				score=0;
-			}
-	
-			//총점
-			var tds=this_.closest('tr').children('td')
-			var sum_=this_.closest('tr').children('td.sum')
-			var sum=0;
-			for(i=1;i<tds.length-1;i++){
-				var n=$(tds).eq(i).children().eq(0).val()
-				if(n=='')n=0;
-				sum+=parseInt(n)
-			}
-			$(sum_).text(sum)
 			
-		})
-		
-		$('table input').on('input',function(){
-			var this_=$(this)
-			var score=$(this_).val()
-			if(isNaN(score) || score==""){
+			if(isNaN(score) || score=="0"){
 				score=0;
 			}
+			
 			
 			//db저장
 			$.ajax({
-				url:'insert.sc',
+				url:'insert.at',
 				type:'post',
 				data:{
-					e_no:$(this_).data('e_no'),
+					nth:$(this_).data('d_no'),
 					m_no:$(this_).data('m_no'),
-					score:score,
+					content:$(this_).val(),
 				},
 				success:function(data){
 					

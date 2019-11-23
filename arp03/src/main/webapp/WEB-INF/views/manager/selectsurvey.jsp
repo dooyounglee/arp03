@@ -26,15 +26,15 @@ ${list }
 			<td>${d.enrolldate }</td>
 			<td>${d.name }</td>
 			<td>${d.title_1 }</td>
-			<td><input id="su_no" type="hidden" value="${d.su_no }"></td>
+			<input id="su_no" type="hidden" value="${d.su_no }">
 		</tr>
 	</c:forEach>
 	</table>
 	<script>
-		$("table td").mouseenter(function(){
+		$("td").mouseenter(function(){
 			$(this).parent().children().css({"background":"darkgray","cursor":"pointer"})
 		}).click(function(){
-			var no=$("#su_no").val();
+			var no=$(this).parent().children().eq(4).val();
 			location.href="detailsurvey.ma?su_no=" + no;
 		});
 	</script>

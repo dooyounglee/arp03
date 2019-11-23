@@ -14,5 +14,6 @@ public class BReply {
 	private String status;
 	private int depth;
 	private int parent_no;
+	private  String name;
 
 }

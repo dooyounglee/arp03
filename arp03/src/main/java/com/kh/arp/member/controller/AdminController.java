@@ -94,6 +94,7 @@ public class AdminController {
 		
 		//이미 있는 email인지 확인. 없으면 insert. 있으면 그걸로.
 		Member newm=ms.getMember(m);
+		System.out.println("이미있는이메일?"+newm);
 		if(newm!=null) {
 			result=1;
 		}else {

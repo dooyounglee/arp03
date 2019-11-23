@@ -86,4 +86,40 @@
 	<select id="getLectureDatesList" resultType="Classdate">
 		select * from classdate where lec_no=#{lec_no}
 	</select>
+	
+	<select id="isAttendence" resultType="_int">
+		select count(*) from attendence where nth=#{nth} and m_no=#{m_no} and lec_no=#{lec_no}
+	</select>
+	
+	<update id="updateAttendence">
+		update attendence set
+		content=#{content}
+		where nth=#{nth} and m_no=#{m_no} and lec_no=#{lec_no}
+	</update>
+	
+	<update id="insertAttendence">
+		insert into attendence values(#{lec_no},#{m_no},#{nth},#{content})
+	</update>
+	
+	<select id="getLectureAttendence" resultType="Attendence">
+		select * from attendence where lec_no=#{lec_no}
+	</select>
+	
+	<select id="getHomeworkListInLecture" resultType="Homework">
+		select * from homework where hw_no in
+		(select hw_no from homeworkinlecture where lec_no=#{lec_no})
+	</select>
+	
+	<insert id="addHomeworkInLecture">
+		insert into homeworkinlecture values(#{lec_no},#{hw_no})
+	</insert>
+	
+	<delete id="delHomeworkInLecture">
+		delete from homeworkinlecture
+		where lec_no=#{lec_no} and hw_no=#{hw_no}
+	</delete>
+	
+	<insert id="submitAnswer">
+		insert into homeworkanswer values(#{lec_no},#{hw_no},#{p_no},#{m_no},#{answer},#{ox})
+	</insert>
 </mapper>

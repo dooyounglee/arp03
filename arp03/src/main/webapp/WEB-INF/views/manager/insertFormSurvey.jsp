@@ -16,9 +16,9 @@
 	<input type="text" name="lec_no" value="${lec.lec_no}" readonly>
 	<input type="hidden" name="m_no2">
 	<input type="text" name="m_no" value="${mem.m_no }" readonly>
-	<input type="text" name="title" placeholder="제목">
+	<input type="text" name="title" placeholder="제목" required>
 	<input type="text" name="enrolldate" value="${d }" readonly>
-	<input type="text" name="q1" placeholder="질문1">
+	<input type="text" name="q1" placeholder="질문1" required>
 	<input type="hidden" name="a1" placeholder="답1">
 	<input type="text" name="q2" placeholder="질문2">
 	<input type="hidden" name="a2" placeholder="답2">

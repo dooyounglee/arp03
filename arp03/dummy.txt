@@ -17,6 +17,7 @@ DROP TABLE Board;
 DROP TABLE BCategory;
 drop table auth;
 DROP TABLE completesurvey;
+DROP TABLE surveyquestion;
 DROP TABLE insertsurvey;
 drop table survey;
 DROP TABLE LECTURE;
@@ -134,7 +135,8 @@ CREATE TABLE Question (
 	replydate	date	NULL,
 	replycontent	varchar2(4000) NULL,
 	isdelete	char(3)	DEFAULT 'N'	NOT NULL,
-	fileox	varchar2(4000)	DEFAULT 'N'	NOT NULL
+	fileox	varchar2(4000)	DEFAULT 'N'	NOT NULL,
+	youtubelink varchar2(4000)	NULL
 );
 
 CREATE TABLE QReply (
@@ -158,10 +160,9 @@ CREATE TABLE QFile (
 CREATE TABLE Attendence (
 	lec_no	number		REFERENCES LECTURE,
 	m_no	Number		REFERENCES MEMBER,
-	classdate	date	,
+	nth number,
 	content	varchar2(4000)		NULL,
-	status	varchar2(10)	DEFAULT 'Y'	NOT NULL,
-	PRIMARY KEY(classdate,lec_no,m_no)
+	PRIMARY KEY(nth,lec_no,m_no)
 );
 
 CREATE TABLE myclass (
@@ -258,6 +259,13 @@ CREATE TABLE completesurvey(
 	PRIMARY KEY(su_no,m_no)
 );
 
+CREATE TABLE surveyquestion(
+	sq_no number,
+	su_no number REFERENCES insertsurvey,
+	question varchar2(4000) NOT NULL,
+	PRIMARY KEY(sq_no, su_no)
+);
+
 DROP SEQUENCE SEQ_Notice; 		-- 공지사항 번호
 DROP SEQUENCE SEQ_FAQ;			-- FAQ 번호
 DROP SEQUENCE SEQ_Lecture;		-- 강의번호
@@ -275,6 +283,8 @@ DROP SEQUENCE SEQ_QNA;			-- 문의사항 번호
 DROP SEQUENCE SEQ_VACATION;		-- 휴가 번호
 DROP SEQUENCE seq_exam;
 DROP SEQUENCE SEQ_insertSURVEY;		-- 설문조사 번호
+DROP SEQUENCE SEQ_SURVEY;
+DROP SEQUENCE SEQ_surveyquestion;
 
 CREATE SEQUENCE SEQ_Notice; 		-- 공지사항 번호
 CREATE SEQUENCE SEQ_FAQ;			-- FAQ 번호
@@ -293,6 +303,7 @@ CREATE SEQUENCE SEQ_QNA;			-- 문의사항 번호
 CREATE SEQUENCE SEQ_VACATION;		-- 휴가 번호
 CREATE SEQUENCE seq_exam;
 CREATE SEQUENCE SEQ_insertSURVEY;			-- 설문조사 번호
+create SEQUENCE SEQ_surveyquestion;
 
 /*drop trigger filestatusTrigger;
 create or replace trigger filestatusTrigger -- 첨부파일 상태 트리거
@@ -415,11 +426,47 @@ INSERT INTO ARP.MYCLASS VALUES(1, 7);
 
 
 -- 이게 진짜
-insert into question values(seq_question.nextval, 1, 21, '안녕하세요', '반갑습니다', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, default, 'N', default);
-insert into question values(seq_question.nextval, 1, 2, '안녕하세요2', '반갑습니다2', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, default, 'N', default);
-insert into question values(seq_question.nextval, 2, 21, '안녕하세요3', '반갑습니다3', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, default, 'N', default);
-insert into question values(seq_question.nextval, 3, 3, '안녕하세요4', '반갑습니다4', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, default, 'N', default);
-insert into question values(seq_question.nextval, 1, 3, '안녕하세요5', '반갑습니다5', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, default, 'N', default);
+insert into question values(seq_question.nextval, 1, 21, '안녕하세요', '반갑습니다', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, default, 'N', default, default);
+insert into question values(seq_question.nextval, 1, 2, '안녕하세요2', '반갑습니다2', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, default, 'N', default, default);
+insert into question values(seq_question.nextval, 2, 21, '안녕하세요3', '반갑습니다3', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, default, 'N', default, default);
+insert into question values(seq_question.nextval, 3, 3, '안녕하세요4', '반갑습니다4', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, default, 'N', default, default);
+insert into question values(seq_question.nextval, 1, 3, '안녕하세요5', '반갑습니다5', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, default, 'N', default, default);
+
+
+
+-- insertsurvey 더미
+insert into insertsurvey values(100, 2, 22, '1', '2019-11-12', 'Y', '1', '2');
+insert into insertsurvey values(101, 2, 22, '2', '2019-11-12', 'Y', '2', '2');
+insert into insertsurvey values(102, 2, 22, '3', '2019-11-13', 'Y', '3', '2');
+insert into insertsurvey values(103, 2, 22, '4', '2019-11-12', 'Y', '4', '2');
+insert into insertsurvey values(104, 2, 22, '5', '2019-11-12', 'Y', '5', '2');
+insert into insertsurvey values(105, 2, 23, '6', '20191112', 'Y', '6', '2');
+insert into insertsurvey values(106, 2, 23, '7', '2019-11-15', 'Y', '7', '2');
+insert into insertsurvey values(107, 2, 24, '8', '2019-11-12', 'Y', '8', '2');
+insert into insertsurvey values(108, 2, 25, '9', '2019-11-16', 'Y', '9', '2');
+insert into insertsurvey values(109, 2, 26, '10', '2019-11-12', 'Y', '10', '2');
+insert into insertsurvey values(110, 2, 27, '11', '2019-11-17', 'Y', '11', '2');
+insert into insertsurvey values(111, 2, 28, '12', '2019-11-13', 'Y', '12', '2');
+
+-- completesurvey 더미
+insert into completesurvey values(100, 2, 1, 1, 1, 'Y');
+insert into completesurvey values(100, 3, 1, 2, 3, 'Y');
+insert into completesurvey values(100, 4, 1, 2, 2, 'Y');
+insert into completesurvey values(100, 5, 1, 2, 3, 'Y');
+insert into completesurvey values(100, 6, 1, 2, 3, 'Y');
+insert into completesurvey values(100, 7, 1, 1, 2, 'Y');
+insert into completesurvey values(100, 8, 1, 2, 3, 'Y');
+insert into completesurvey values(100, 9, 1, 2, 2, 'Y');
+insert into completesurvey values(100, 10, 2, 2, 3, 'Y');
+insert into completesurvey values(100, 11, 2, 2, 1, 'Y');
+insert into completesurvey values(100, 12, 2, 1, 3, 'Y');
+insert into completesurvey values(100, 13, 3, 2, 1, 'Y');
+insert into completesurvey values(100, 14, 3, 2, 3, 'Y');
+insert into completesurvey values(100, 15, 3, 1, 3, 'Y');
+insert into completesurvey values(100, 16, 3, 1, 3, 'Y');
+insert into completesurvey values(100, 17, 3, 1, 3, 'Y');
+insert into completesurvey values(100, 18, 3, 1, 3, 'Y');
+
 
 
 COMMIT;
