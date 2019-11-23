@@ -187,4 +187,8 @@ public class LectureDao {
 		return sqlSession.insert("lectureMapper.insertAttendence",att);
 	}
 
+	public List<Attendence> getLectureAttendence(int lec_no) {
+		return sqlSession.selectList("lectureMapper.getLectureAttendence",lec_no);
+	}
+
 }

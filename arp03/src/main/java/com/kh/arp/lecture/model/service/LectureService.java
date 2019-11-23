@@ -39,4 +39,6 @@ public interface LectureService {
 
 	int insertAttendence(Attendence att);
 
+	List<Attendence> getLectureAttendence(int lec_no);
+
 }
