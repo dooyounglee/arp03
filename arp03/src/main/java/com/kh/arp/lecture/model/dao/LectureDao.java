@@ -18,6 +18,8 @@ import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.lecture.model.vo.Score;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.problem.model.vo.Homework;
+import com.kh.arp.problem.model.vo.ProblemRelated;
 import com.kh.arp.qna.model.vo.Qna;
 
 @Repository
@@ -189,6 +191,18 @@ public class LectureDao {
 
 	public List<Attendence> getLectureAttendence(int lec_no) {
 		return sqlSession.selectList("lectureMapper.getLectureAttendence",lec_no);
+	}
+
+	public List<Homework> getHomeworkListInLecture(int lec_no) {
+		return sqlSession.selectList("lectureMapper.getHomeworkListInLecture",lec_no);
+	}
+
+	public int addHomeworkInLecture(ProblemRelated hw_lec) {
+		return sqlSession.insert("lectureMapper.addHomeworkInLecture",hw_lec);
+	}
+
+	public int delHomeworkInLecture(ProblemRelated hw_lec) {
+		return sqlSession.delete("lectureMapper.delHomeworkInLecture",hw_lec);
 	}
 
 }

@@ -49,4 +49,32 @@
 		val=#{val}
 		where v_no=#{v_no}
 	</update>
+	
+	<insert id="makeHomework">
+		insert into homework values(seq_homework.nextval,#{m_no},#{title},sysdate)
+		<selectKey keyProperty="hw_no" resultType="int" order="AFTER">
+			select seq_homework.currval from dual
+		</selectKey>
+	</insert>
+	
+	<select id="getHomework" resultType="Homework">
+		select * from homework where hw_no=#{hw_no}
+	</select>
+	
+	<select id="getHomeworkList" resultType="Homework">
+		select * from homework where m_no=#{m_no}
+	</select>
+	
+	<insert id="insertProblemInHomework">
+		insert into problemsInHomework values(#{hw_no},#{p_no})
+	</insert>
+	
+	<delete id="deleteProblemInHomework">
+		delete from problemsInHomework where hw_no=#{hw_no} and p_no=#{p_no}
+	</delete>
+	
+	<select id="getProblemListInHomework" resultType="Problem">
+		select * from problem where p_no in
+		(select p_no from problemsinHomework where hw_no=#{hw_no})
+	</select>
 </mapper>

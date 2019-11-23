@@ -9,30 +9,29 @@
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body>
-${hw }
-<button onclick="add()">추가하기</button><br>
-<div id="problemArea">
-	<div id="problemContent">
-		<c:forEach var="p" items="${list }">
-			${p }<button onclick="del(${p.p_no })">제거</button><br>
-		</c:forEach>
+<button onclick="add()">숙제 추가</button>
+<div id="homeworkArea">
+	<div id="homeworkContent">
+<c:forEach var="hw" items="${list }">
+	${hw }<button onclick="del(${hw.hw_no })">삭제</button><br>
+</c:forEach>
 	</div>
 </div>
 <script>
 	function add(){
-		var url="add.hw?hw_no=${hw.hw_no}";
-        window.open(url,34,"width=400,height=400,left=600");
+		var url="homework.te";
+        window.open(url,"","width=400,height=400,left=600");
 	}
-	function del(p_no){
+	
+	function del(hw_no){
 		$.ajax({
-			url:'delProblem.hw',
+			url:'delHomework.lec',
 			type:'post',
 			data:{
-				hw_no:${hw.hw_no},
-				p_no:p_no,
+				hw_no:hw_no,
 			},
 			success:function(data){
-				$('#problemArea').load('get.hw?hw_no=${hw.hw_no} #problemContent')
+				$('#homeworkArea').load('homeworklist.lec #homeworkContent')
 			},
 		})
 	}

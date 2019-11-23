@@ -21,12 +21,18 @@ import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.lecture.model.vo.Score;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.problem.model.service.ProblemService;
+import com.kh.arp.problem.model.vo.Homework;
+import com.kh.arp.problem.model.vo.ProblemRelated;
 
 @Controller
 public class LectureController {
 
 	@Autowired
 	private LectureService ls;
+	
+	@Autowired
+	private ProblemService ps;
 	
 	@RequestMapping("/main.lec")
 	public ModelAndView lectureList(int lec_no, HttpSession session, ModelAndView mv) {
@@ -207,4 +213,49 @@ public class LectureController {
 		int result=ls.insertAttendence(att);
 		return "success";
 	}
+	
+	@GetMapping("/homeworklist.lec")
+	public ModelAndView homeworkListInLectureGet(HttpSession session, ModelAndView mv) {
+		Member mem=(Member)session.getAttribute("mem");
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		
+		List<Homework> list=ls.getHomeworkListInLecture(lec.getLec_no());
+
+		mv.addObject("list", list);
+		mv.setViewName("mypage/teacher/homework/list");
+		return mv;
+	}
+	
+	@GetMapping("/homework.te")
+	public ModelAndView teacherHomeworkList(HttpSession session, ModelAndView mv) {
+		Member mem=(Member)session.getAttribute("mem");
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		
+		List<Homework> list=ps.getHomeworkList(mem.getM_no());
+
+		mv.addObject("list", list);
+		mv.setViewName("mypage/teacher/homework/add");
+		return mv;
+	}
+	
+	@ResponseBody
+	@PostMapping("/addHomework.lec")
+	public String addHomeworkInLecturePost(ProblemRelated hw_lec, HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		hw_lec.setLec_no(lec.getLec_no());
+		
+		int result=ls.addHomeworkInLecture(hw_lec);
+		return "success";
+	}
+	
+	@ResponseBody
+	@PostMapping("/delHomework.lec")
+	public String delHomeworkInLecturePost(ProblemRelated hw_lec, HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		hw_lec.setLec_no(lec.getLec_no());
+		
+		int result=ls.delHomeworkInLecture(hw_lec);
+		return "success";
+	}
+	
 }

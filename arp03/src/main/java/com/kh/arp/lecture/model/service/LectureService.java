@@ -10,6 +10,8 @@ import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.lecture.model.vo.Score;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.problem.model.vo.Homework;
+import com.kh.arp.problem.model.vo.ProblemRelated;
 
 public interface LectureService {
 
@@ -40,5 +42,11 @@ public interface LectureService {
 	int insertAttendence(Attendence att);
 
 	List<Attendence> getLectureAttendence(int lec_no);
+
+	List<Homework> getHomeworkListInLecture(int lec_no);
+
+	int addHomeworkInLecture(ProblemRelated hw_lec);
+
+	int delHomeworkInLecture(ProblemRelated hw_lec);
 
 }
