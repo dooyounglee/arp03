@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="msg-mapper">
+
+<insert id="insertMsg">
+	insert into message values(SEQ_MESSAGE.nextval,#{g_no},#{s_no},#{title},#{content},default,sysdate)
+</insert>
+
+<select id="selectList" resultType="Message">
+	select * from message where s_no=#{m_no}
+</select>
+
+<select id="detailMsg" resultType="Message">
+	select * from message where ms_no=#{ms_no}
+</select>
+
+<select id="listSendMsg" resultType="Message">
+	select * from message where g_no=#{m_no}
+</select>
+
+<update id="updateDate">
+ update message set r_date=sysdate where ms_no=#{ms_no}
+</update>
+
+</mapper>
