@@ -119,9 +119,12 @@
                         <p class="text-muted mt-0">The building block of a card is the <code>.card</code> <code>.card-body</code> Use it whenever you need a padded section within a card.</p>
                         <div class="card">
                             <div class="card-body collapse show">
-                                <h4 class="card-title">${p.problem }</h4>
-                                <p class="card-text">${p.solve }</p>
+                                <h2 class="card-title">${p.problem }</h2>
+                                <h6 class="card-subtitle">사용변수: ${p.keyval }</h6>
+                                <h4 class="card-text card-subtitle">해설: ${p.solve }</h4>
+                                <p class="card-text">정답: ${p.solution }</p>
                                 <a class="btn btn-success" href="edit.pro?p_no=${p.p_no }">수정</a>
+                                <a class="btn btn-danger" href="del.pro?p_no=${p.p_no }">삭제</a>
                             </div>
                         </div>
                     </div>
@@ -136,6 +139,7 @@
                             <div class="card-body collapse show">
                                 <h4 class="card-title">${ranp.problem }</h4>
                                 <p class="card-text">${ranp.solve }</p>
+                                <p class="card-text">${ranp.solution }</p>
                             </div>
                         </div>
                     </div>

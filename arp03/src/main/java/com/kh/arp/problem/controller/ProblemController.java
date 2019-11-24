@@ -45,9 +45,7 @@ public class ProblemController {
 	
 	@PostMapping("/make.pro")
 	public ModelAndView makeProblemPost(Problem p, ModelAndView mv) {
-		System.out.println(p);
 		int result=ps.makeProblem(p);
-		System.out.println(p);
 		mv.setViewName("redirect:/get.pro?p_no="+p.getP_no());
 		return mv;
 	}
@@ -64,12 +62,17 @@ public class ProblemController {
 		Problem p=ps.getProblem(p_no);
 		Problem ranp=abc(p);
 		
-		System.out.println(p);
-		System.out.println(ranp);
-		
 		mv.addObject("ranp", ranp);
 		mv.addObject("p", p);
 		mv.setViewName("problem/get");
+		return mv;
+	}
+	
+	@GetMapping("/del.pro")
+	public ModelAndView del(int p_no, ModelAndView mv) {
+		int result=ps.delProblem(p_no);
+		
+		mv.setViewName("redirect:list.pro");
 		return mv;
 	}
 	
@@ -207,8 +210,6 @@ public class ProblemController {
 			int random=(int)(Math.random()*vlist.size());
 			Variables v=vlist.get(random);
 			
-			System.out.println(p);
-			System.out.println(v);
 			String strp=p.getProblem();
 			String strs=p.getSolve();
 			String strsolu=p.getSolution();
