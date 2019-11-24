@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.arp.manager.model.vo.CompleteSurvey;
 import com.kh.arp.manager.model.vo.InsertSurvey;
+import com.kh.arp.manager.model.vo.SurveyQuestion;
 
 @Repository("sDao")
 public class SurveyDao {
@@ -28,5 +29,8 @@ public class SurveyDao {
 	
 	public int insertcompletesurvey(CompleteSurvey s) {
 		return sqlSession.insert("surveyMapper.insertCompleteSurvey", s);
+	}
+	public int insertsurveyquestion(SurveyQuestion s) {
+		return sqlSession.insert("surveyMapper.insertSurveyQuestion", s);
 	}
 }

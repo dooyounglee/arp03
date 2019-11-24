@@ -8,21 +8,17 @@
 		<result property="m_no" column="m_no"/>
 		<result property="title" column="title"/>
 		<result property="enrolldate" column="enrolldate"/>
-		<result property="q1" column="q1"/>
-		<result property="q2" column="q2"/>
-		<result property="q3" column="q3"/>
 		<result property="title_1" column="lec_title"/>
 	</resultMap>
 	
-	<resultMap id="completesurveyList" type="CompleteSurvey">
+		<resultMap id="surveyquestion" type="SurveyQuestion">
+		<id property="sq_no" column="sq_no"/>
 		<id property="su_no" column="su_no"/>
-		<result property="m_no" column="m_no"/>
-		<result property="a1" column="a1"/>
-		<result property="a2" column="a2"/>
-		<result property="a3" column="a3"/>
-		<result property="name" column="name"/>
-		<result property="issurvey" column="issurvey"/>
+		<id property="m_no" column ="m_no"/>
+		<result property="question" column="question"/>
+		<result property="answer" column="answer"/>
 	</resultMap>
+	
 	
 	<select id="selectSurvey" resultMap="insertsurveyList">
   	select su_no, s.title, enrolldate, name, l.title lec_title
@@ -34,8 +30,12 @@
   <insert id="insertSurvey">
   	insert into insertsurvey values
   	(seq_insertsurvey.nextval,  #{lec_no}, #{m_no}, 
-  	#{title}, #{enrolldate},
-  	#{q1}, #{q2}, #{q3})
+  	#{title}, #{enrolldate})
+  </insert>
+  
+  <insert id ="insertSurveyQuestion">
+  insert into surveyquestion values
+  (#{sq_no}, seq_insertsurvey.currval,#{question})
   </insert>
   
   
