@@ -22,6 +22,7 @@ DROP TABLE BReply;
 DROP TABLE Board;
 DROP TABLE BCategory;
 drop table auth;
+DROP TABLE Message;
 DROP TABLE completesurvey;
 DROP TABLE insertsurvey;
 --drop table survey;
@@ -110,6 +111,16 @@ CREATE TABLE vacation (
 	companion_reason varchar2(2000) NULL,
 	mstatus  varchar2(100)	DEFAULT 'N' 	NOT NULL,
 	status	varchar2(100)	DEFAULT 'N'	NOT NULL
+);
+
+CREATE TABLE Message (
+    ms_no	Number		PRIMARY KEY ,
+	g_no	Number		REFERENCES MEMBER,
+	s_no	Number		REFERENCES MEMBER,
+    title   varchar2(200) NOT NULL,
+	content	varchar2(1000)		NOT NULL,
+	r_date	Date		DEFAULT NULL NULL ,
+	s_date	Date		NULL
 );
 
 CREATE TABLE declaree (
