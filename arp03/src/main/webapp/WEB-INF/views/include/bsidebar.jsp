@@ -8,13 +8,15 @@
         <ul id="sidebarnav">
             <li class="nav-small-cap">PERSONAL</li>
             <li>
+            	<c:if test="${!empty mem}">
             	<a class="has-arrow" onclick="location.href='lectureList.ad'" href="#"><span class="hide-menu">나의 강좌 리스트</span></a>
-            	<c:if test="${!empty mem && mem.typee ne 'a'}">
+            	<c:if test="${mem.typee ne 'a' }">
             	<ul aria-expanded="false" class="collapse">
             		<c:forEach var="l" items="${myLec }">
                     	<li><a href="main.lec?lec_no=${l.lec_no }">${l.title }</a></li>
             		</c:forEach>
                 </ul>
+            	</c:if>
             	</c:if>
             </li>
             <li><a class="has-arrow" href="blist.do"><span class="hide-menu">자유게시판</span></a></li>
