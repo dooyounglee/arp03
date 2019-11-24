@@ -62,9 +62,12 @@ public class ProblemController {
 	@GetMapping("/get.pro")
 	public ModelAndView get(int p_no, ModelAndView mv) {
 		Problem p=ps.getProblem(p_no);
-		//Problem p=sqlSession.selectOne("problemMapper.getProblem",p_no);
-		//mv=abc(p,mv);
-		//mv.addObject("vlist", vlist);
+		Problem ranp=abc(p);
+		
+		System.out.println(p);
+		System.out.println(ranp);
+		
+		mv.addObject("ranp", ranp);
 		mv.addObject("p", p);
 		mv.setViewName("problem/get");
 		return mv;
@@ -197,8 +200,8 @@ public class ProblemController {
 	
 	
 	
-	public ModelAndView abc(Problem p, ModelAndView mv) {
-		//Problem p=sqlSession.selectOne("problemMapper.getProblem",p_no);
+	public Problem abc(Problem p) {
+		Problem ranp=null;
 		List<Variables> vlist=ps.getVariables(p.getP_no());
 		if(vlist.size()>0) {
 			int random=(int)(Math.random()*vlist.size());
@@ -226,15 +229,13 @@ public class ProblemController {
 				strsolu=strsolu.replaceAll(temp, (String)jo.get(temp));
 			}
 			
-			Problem ranp=new Problem();
+			ranp=new Problem();
+			ranp.setP_no(p.getP_no());
 			ranp.setProblem(strp);
 			ranp.setSolve(strs);
 			ranp.setSolution(strsolu);
-			
-			mv.addObject("ranp", ranp);
-			//mv.addObject("v", v);
+			ranp.setKeyval(p.getKeyval());
 		}
-		
-		return mv;
+		return ranp;
 	}
 }

@@ -7,7 +7,7 @@
     <nav class="sidebar-nav">
         <ul id="sidebarnav">
             <li class="nav-small-cap">PERSONAL</li>
-            <c:if test="${!empty lec }">
+            <c:if test="${!empty mem }">
             <li><a class="has-arrow" href="lectureList.ad"><span class="hide-menu">나의 강좌 리스트</span></a></li>
             </c:if>
             <li><a class="has-arrow" href="blist.do"><span class="hide-menu">자유게시판</span></a></li>
