@@ -8,9 +8,6 @@
 		<result property="m_no" column="m_no"/>
 		<result property="title" column="title"/>
 		<result property="enrolldate" column="enrolldate"/>
-		<result property="q1" column="q1"/>
-		<result property="q2" column="q2"/>
-		<result property="q3" column="q3"/>
 		<result property="title_1" column="lec_title"/>
 	</resultMap>
 	
@@ -22,6 +19,12 @@
 		<result property="a3" column="a3"/>
 		<result property="name" column="name"/>
 		<result property="issurvey" column="issurvey"/>
+	</resultMap>
+	
+	<resultMap id="surveyquestion" type="SurveyQuestion">
+		<id property="sq_no" column="sq_no"/>
+		<id property="su_no" column="su_no"/>
+		<result property="question" column="question"/>
 	</resultMap>
 	
 	<select id="selectSurvey" resultMap="insertsurveyList">
