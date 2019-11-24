@@ -51,18 +51,32 @@ public class SurveyController {
 		System.out.println(is+"-------------");
 		System.out.println(q+"model");
 		int result=ss.insertsurvey(is);
-		int j = 1;
-		for( Object qq : q.getQuestion()) {
-			System.out.println(qq+"========");
-			SurveyQuestion fs= new SurveyQuestion();
-			fs.setSq_no(j);
-			fs.setQuestion((String)qq);
-			 int result2=ss.insertsurveyquestion(fs); 
-			j+=1;
+		//---------------------------- insertSurvey 구문-----------------
+		int ds =0;
+		if(result>0) {
+			List<SurveyQuestion> sq = ss.selectstudentmember();
+			int j = 1;
+			for( Object qq : q.getQuestion()) {
+				System.out.println(qq+"========");
+				SurveyQuestion fs= new SurveyQuestion();
+				fs.setSq_no(j);
+				fs.setQuestion((String)qq);
+				for( Object osq:sq ) {
+					fs.setM_no((int)osq);
+					ds=ss.insertsurveyquestion(fs); 
+						if(ds<=0) {
+							break;
+						}
+					}
+					if(ds<=0) {
+						break;
+					}
+				j+=1;
+			}
 		}
 //, @RequestParam("qlast") int qlast
 		
-		if(result>0) {
+		if(ds>0) {
 			mv.setViewName("redirect:/selectsurvey.ma");
 		}else {
 			mv.setViewName("");
@@ -73,6 +87,7 @@ public class SurveyController {
 	@RequestMapping("detailsurvey.ma")
 	public ModelAndView detailsurvey(ModelAndView mv, int su_no) {
 		InsertSurvey s = ss.detailsurvey(su_no); 
+		List<SurveyQuestion> sq = ss.detailsurveyquestion(su_no);
 		mv.addObject("s", s).setViewName("manager/detailsurvey");
 		return mv;
 	}

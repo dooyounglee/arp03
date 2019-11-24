@@ -40,4 +40,14 @@ public class SurveyServiceImpl implements SurveyService {
 	public int insertsurveyquestion(SurveyQuestion s) {
 		return sDao.insertsurveyquestion(s);
 	}
+
+	@Override
+	public List<SurveyQuestion> detailsurveyquestion(int su_no) {
+		return sDao.detailsurveyquestion(su_no);
+	}
+
+	@Override
+	public List<SurveyQuestion> selectstudentmember() {
+		return sDao.selectstudentmember();
+	}
 }

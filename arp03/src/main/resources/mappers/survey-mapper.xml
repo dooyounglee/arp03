@@ -17,6 +17,7 @@
 		<id property="m_no" column ="m_no"/>
 		<result property="question" column="question"/>
 		<result property="answer" column="answer"/>
+		<result property="name" column="name"/>
 	</resultMap>
 	
 	
@@ -35,9 +36,14 @@
   
   <insert id ="insertSurveyQuestion">
   insert into surveyquestion values
-  (#{sq_no}, seq_insertsurvey.currval,#{question})
+  (#{sq_no}, seq_insertsurvey.currval,#{m_no}, #{question})
   </insert>
   
+  <select id="selectstudentmember">
+  select  mc.m_no
+  from surveyquestion sq, insertsurvey iq , lecture l , myclass mc
+  where sq.su_no=seq_insertsurvey.currval And  sq.su_no=iq.su_no And iq.lec_no=l.lec_no And l.lec_no=mc.lec_no
+  </select>
   
 	<select id="detailSurvey" resultType="InsertSurvey">
 		select *
@@ -45,8 +51,11 @@
 		where su_no=#{su_no}
 	</select>
 
-	<insert id = "insertCompleteSurvey">
-	insert into completesurvey values
-	(#{su_no},#{m_no},#{a1},#{a2},#{a3}, default)
-	</insert>
+	<select id="detailsurveyquestion" resultMap="surveyquestion">
+		select sq_no, question, name
+		from surveyquestion s
+		join member m on s.m_no=m.m_no
+		where su_no=#{su_no} And m_no=#{m_no}
+	</select>
+	
 </mapper>
