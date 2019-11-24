@@ -22,7 +22,6 @@
 	<div id ="div"></div>
 	<button id="insertquestion" type="button">질문추가</button>
 	<button id="deletequestion" type="button">질문삭제</button>
-	<input type="hidden" name="issurvey">
 	<button  id="submitquestion" type="submit">등록</button>
 	<button type="reset">취소</button>
 </form>
@@ -32,9 +31,11 @@
 		var removesucess=0;
 		var q=1;
 		$("#insertquestion").click(function(){
-			var hide = $("<input").attr("name", "sq_no["+lastq+"]").attr("type", "hidden").attr("value", q);
 			var input = $("<input>").attr("placeholder", "질문"+q).attr("name", "question["+lastq+"]").attr("required", true);
+			/* var hid = $("<input>").attr("type", "hidden").attr("name", "sq_no["+lastq+"]").attr("value", q);
+			$("#div").append(hid); */
 			$("#div").append(input);
+			
 			lastq+=1;
 			q+=1;	
 		});

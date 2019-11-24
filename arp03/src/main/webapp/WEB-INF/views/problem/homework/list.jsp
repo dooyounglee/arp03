@@ -145,10 +145,10 @@
 	
 	
 	
-homeworkList
+<%-- homeworkList
 <a href="make.hw">숙제 만들기</a><br>
 <c:forEach var="hw" items="${list }">
 	<a href="get.hw?hw_no=${hw.hw_no }">${hw }</a><br>
-</c:forEach>
+</c:forEach> --%>
 </body>
 </html>

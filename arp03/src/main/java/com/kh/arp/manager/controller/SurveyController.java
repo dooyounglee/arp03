@@ -8,14 +8,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.lecture.model.service.LectureService;
 import com.kh.arp.manager.model.service.SurveyService;
 import com.kh.arp.manager.model.vo.CompleteSurvey;
+import com.kh.arp.manager.model.vo.ForSurvey;
 import com.kh.arp.manager.model.vo.InsertSurvey;
 import com.kh.arp.manager.model.vo.SurveyQuestion;
 import com.kh.arp.member.model.service.MemberService;
@@ -45,19 +44,39 @@ public class SurveyController {
 	}
 	
 	@RequestMapping("insertsurvey.ma")
-	public ModelAndView insertsurvey(ModelAndView mv, SurveyQuestion q, InsertSurvey is, HttpSession session) {
+	public ModelAndView insertsurvey(ModelAndView mv, ForSurvey q, InsertSurvey is, HttpSession session) {
 		Member m = new Member();
 		m.setM_no(((Member)session.getAttribute("mem")).getM_no());
 		is.setM_no(m.getM_no());
 		System.out.println(is+"-------------");
 		System.out.println(q+"model");
-//, @RequestParam("qlast") int qlast
-		 Map<String, Object> map = new HashMap<>();
-		for(int i=1; i<=q.getQuestion().size(); i++) {
-			map.put(String.valueOf(i), i);
-		}
 		int result=ss.insertsurvey(is);
+		//---------------------------- insertSurvey 구문-----------------
+		int ds =0;
 		if(result>0) {
+			List<SurveyQuestion> sq = ss.selectstudentmember();
+			int j = 1;
+			for( Object qq : q.getQuestion()) {
+				System.out.println(qq+"========");
+				SurveyQuestion fs= new SurveyQuestion();
+				fs.setSq_no(j);
+				fs.setQuestion((String)qq);
+				for( Object osq:sq ) {
+					fs.setM_no((int)osq);
+					ds=ss.insertsurveyquestion(fs); 
+						if(ds<=0) {
+							break;
+						}
+					}
+					if(ds<=0) {
+						break;
+					}
+				j+=1;
+			}
+		}
+//, @RequestParam("qlast") int qlast
+		
+		if(ds>0) {
 			mv.setViewName("redirect:/selectsurvey.ma");
 		}else {
 			mv.setViewName("");
@@ -68,6 +87,7 @@ public class SurveyController {
 	@RequestMapping("detailsurvey.ma")
 	public ModelAndView detailsurvey(ModelAndView mv, int su_no) {
 		InsertSurvey s = ss.detailsurvey(su_no); 
+		List<SurveyQuestion> sq = ss.detailsurveyquestion(su_no);
 		mv.addObject("s", s).setViewName("manager/detailsurvey");
 		return mv;
 	}

@@ -157,11 +157,11 @@
 	
 	
 	
-	<jsp:include page="../include/header.jsp"/>
+<%-- 	<jsp:include page="../include/header.jsp"/>
 	<a href="make.lec">강의 만들기</a><br>
 	<c:forEach var="c" items="${list }">
 		<a href="main.lec?lec_no=${c.lec_no }">${c }</a><br>
 	</c:forEach>
-	<jsp:include page="../include/footer.jsp"/>
+	<jsp:include page="../include/footer.jsp"/> --%>
 </body>
 </html>
