@@ -7,9 +7,16 @@
     <nav class="sidebar-nav">
         <ul id="sidebarnav">
             <li class="nav-small-cap">PERSONAL</li>
-            <c:if test="${!empty mem }">
-            <li><a class="has-arrow" href="lectureList.ad"><span class="hide-menu">나의 강좌 리스트</span></a></li>
-            </c:if>
+            <li>
+            	<a class="has-arrow" onclick="location.href='lectureList.ad'" href="#"><span class="hide-menu">나의 강좌 리스트</span></a>
+            	<c:if test="${!empty mem && mem.typee ne 'a'}">
+            	<ul aria-expanded="false" class="collapse">
+            		<c:forEach var="l" items="${myLec }">
+                    	<li><a href="main.lec?lec_no=${l.lec_no }">${l.title }</a></li>
+            		</c:forEach>
+                </ul>
+            	</c:if>
+            </li>
             <li><a class="has-arrow" href="blist.do"><span class="hide-menu">자유게시판</span></a></li>
             <li><a class="has-arrow" href="nlist.ad"><span class="hide-menu">공지사항</span></a></li>
             <li><a class="has-arrow" href="flist.ad"><span class="hide-menu">FAQ</span></a></li>
@@ -21,7 +28,7 @@
             <li><a class="has-arrow" href="list.hw"><span class="hide-menu">숙제관리</span></a></li>
             </c:if>
             <li>
-                <a class="has-arrow aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">학생</span></a>
+                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">학생</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="lectureList.ad">내 수강목록</a></li>
                     <li><a href="blist.do">자유 게시판</a></li>
@@ -30,8 +37,9 @@
                     <li><a href="myLlist.me">내 휴가</a></li>
                 </ul>
             </li>
+            <li class="nav-devider"></li>
             <li class="one-column">
-                <a class="has-arrow" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">선생님</span></a>
+                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">선생님</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="lectureList.ad">내 수업목록</a></li>
                     <li><a href="blist.do">자유 게시판</a></li>
@@ -101,7 +109,7 @@
             <li class="nav-devider"></li>
             <li class="nav-small-cap">EXTRA COMPONENTS</li>
             <li class="two-column">
-                <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">관리자</span></a>
+                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">관리자</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="lectureList.ad">강좌관리</a></li>
                     <li><a href="boardList.ad">게시글 관리</a></li>
