@@ -32,6 +32,7 @@
 		var removesucess=0;
 		var q=1;
 		$("#insertquestion").click(function(){
+			var hide = $("<input").attr("name", "sq_no["+lastq+"]").attr("type", "hidden").attr("value", q);
 			var input = $("<input>").attr("placeholder", "질문"+q).attr("name", "question["+lastq+"]").attr("required", true);
 			$("#div").append(input);
 			lastq+=1;

@@ -49,7 +49,6 @@ public class SurveyController {
 		Member m = new Member();
 		m.setM_no(((Member)session.getAttribute("mem")).getM_no());
 		is.setM_no(m.getM_no());
-		q.setSq_no(q.getQuestion().size());
 		System.out.println(is+"-------------");
 		System.out.println(q+"model");
 //, @RequestParam("qlast") int qlast
