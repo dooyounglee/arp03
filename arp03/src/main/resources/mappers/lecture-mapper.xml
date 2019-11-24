@@ -104,4 +104,30 @@
 	<select id="getLectureAttendence" resultType="Attendence">
 		select * from attendence where lec_no=#{lec_no}
 	</select>
+	
+	<select id="getHomeworkListInLecture" resultType="Homework">
+		select * from homework where hw_no in
+		(select hw_no from homeworkinlecture where lec_no=#{lec_no})
+	</select>
+	
+	<insert id="addHomeworkInLecture">
+		insert into homeworkinlecture values(#{lec_no},#{hw_no})
+	</insert>
+	
+	<delete id="delHomeworkInLecture">
+		delete from homeworkinlecture
+		where lec_no=#{lec_no} and hw_no=#{hw_no}
+	</delete>
+	
+	<insert id="submitAnswer">
+		insert into homeworkanswer values(#{lec_no},#{hw_no},#{p_no},#{m_no},#{answer},#{ox})
+	</insert>
+	
+	<select id="getHomeworkScore" resultType="ScoreH">
+		SELECT m_no, hw_no, sum(ox) cnt FROM
+			(SELECT hw_no,M_NO,decode(ox,'O',1,'X',0) ox
+			FROM HOMEWORKANSWER
+			WHERE lec_no=#{lec_no})
+		GROUP BY M_NO, HW_NO
+	</select>
 </mapper>

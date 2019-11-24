@@ -19,6 +19,7 @@ import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.problem.model.service.ProblemService;
 import com.kh.arp.problem.model.vo.Homework;
 import com.kh.arp.problem.model.vo.Problem;
+import com.kh.arp.problem.model.vo.ProblemRelated;
 import com.kh.arp.problem.model.vo.Variables;
 
 @Controller
@@ -113,16 +114,16 @@ public class ProblemController {
 	@GetMapping("/list.hw")
 	public ModelAndView listHomework(HttpSession session, ModelAndView mv) {
 		Member mem=(Member)session.getAttribute("mem");
-		//db에서 m_no로 숙제list가져와
+		List<Homework> list=ps.getHomeworkList(mem.getM_no());
 		
-		//mv.addObject("list", list);
-		mv.setViewName("homework/list");
+		mv.addObject("list", list);
+		mv.setViewName("problem/homework/list");
 		return mv;
 	}
 	
 	@GetMapping("/make.hw")
 	public ModelAndView makeHomeworkGet(HttpSession session, ModelAndView mv) {
-		mv.setViewName("homework/make");
+		mv.setViewName("problem/homework/make");
 		return mv;
 	}
 	
@@ -131,12 +132,55 @@ public class ProblemController {
 		Member mem=(Member)session.getAttribute("mem");
 		
 		hw.setM_no(mem.getM_no());
-		//int result=ps.makeHomework(hw);
-		System.out.println(hw);
+		int result=ps.makeHomework(hw);
 		
 		mv.setViewName("redirect:get.hw?hw_no="+hw.getHw_no());
 		return mv;
 	}
+	
+	@GetMapping("/get.hw")
+	public ModelAndView getHomework(int hw_no, ModelAndView mv) {
+		Homework hw=ps.getHomework(hw_no);
+		List<Problem> list=ps.getProblemListInHomework(hw_no);
+		
+		mv.addObject("hw",hw);
+		mv.addObject("list",list);
+		mv.setViewName("problem/homework/get");
+		return mv;
+	}
+	
+	@GetMapping("/add.hw")
+	public ModelAndView addHomework(int hw_no, ModelAndView mv) {
+		Homework hw=ps.getHomework(hw_no);
+		List<Problem> list=ps.getProblemList();
+				
+		mv.addObject("hw",hw);
+		mv.addObject("list",list);
+		mv.setViewName("problem/homework/add");
+		return mv;
+	}
+	
+	@ResponseBody
+	@PostMapping("/addProblem.hw")
+	public String addProblem(ProblemRelated hw_p) {
+		int result=ps.insertProblemInHomework(hw_p);
+		return "success";
+	}
+	
+	@ResponseBody
+	@PostMapping("/delProblem.hw")
+	public String delProblem(ProblemRelated hw_p) {
+		int result=ps.deleteProblemInHomework(hw_p);
+		return "success";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
