@@ -173,11 +173,11 @@ public class ProblemController {
 		return "success";
 	}
 	
-	@ResponseBody
 	@PostMapping("/delProblem.hw")
-	public String delProblem(ProblemRelated hw_p) {
+	public ModelAndView delProblem(ProblemRelated hw_p, ModelAndView mv) {
 		int result=ps.deleteProblemInHomework(hw_p);
-		return "success";
+		mv.setViewName("redirect:get.hw?hw_no="+hw_p.getHw_no());
+		return mv;
 	}
 	
 	
