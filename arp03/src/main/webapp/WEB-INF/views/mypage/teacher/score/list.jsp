@@ -144,6 +144,58 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Simple Editable table</h5>
+                                <h6 class="card-subtitle">Just click on the table cell you want to edit.</h6>
+                                <div class="table-responsive">
+                                    <table class="table striped editable-table no-wrap">
+                                        <thead>
+                                        	<tr>
+	                                        	<th></th>
+												<c:forEach var="h" items="${hlist }">
+													<th width="100px">${h.title }</th>
+												</c:forEach>
+												<th>총합</th>
+											</tr>
+<!--                                             <tr>
+                                                <th>Rendering engine</th>
+                                                <th>Browser</th>
+                                                <th>Platform(s)</th>
+                                                <th>Engine version</th>
+                                                <th>CSS grade</th>
+                                            </tr> -->
+                                        </thead>
+                                        <tbody>
+                                        	<c:forEach var="m" items="${mlist }">
+												<tr>
+													<td>${m.m_no }</td>
+													
+													<c:set var="sum" value="0"/>
+													<c:forEach var="hw" items="${hlist }">
+														
+														<!-- score선택 -->
+														<c:set var="scoreh" value="0"/>
+														<c:forEach var="sh" items="${shlist }">
+																<c:if test="${sh.m_no eq m.m_no && sh.hw_no eq hw.hw_no }">
+																	<c:set var="scoreh" value="${sh.cnt }"/>
+																	<c:set var="sum" value="${sum+scoreh }"/>
+																</c:if>
+														</c:forEach>
+														<!-- End of score선택 -->
+														
+														<td>
+															${scoreh }
+														</td>
+													</c:forEach>
+														<td class=sum>${sum }</td>
+												</tr>
+											</c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- ============================================================== -->

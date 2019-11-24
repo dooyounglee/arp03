@@ -13,8 +13,12 @@ import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.lecture.model.vo.Score;
+import com.kh.arp.lecture.model.vo.ScoreH;
 import com.kh.arp.member.model.dao.MemberDao;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.problem.model.vo.Answer;
+import com.kh.arp.problem.model.vo.Homework;
+import com.kh.arp.problem.model.vo.ProblemRelated;
 
 @Service
 public class LectureServiceImple implements LectureService {
@@ -105,6 +109,31 @@ public class LectureServiceImple implements LectureService {
 	@Override
 	public List<Attendence> getLectureAttendence(int lec_no) {
 		return ld.getLectureAttendence(lec_no);
+	}
+
+	@Override
+	public List<Homework> getHomeworkListInLecture(int lec_no) {
+		return ld.getHomeworkListInLecture(lec_no);
+	}
+
+	@Override
+	public int addHomeworkInLecture(ProblemRelated hw_lec) {
+		return ld.addHomeworkInLecture(hw_lec);
+	}
+
+	@Override
+	public int delHomeworkInLecture(ProblemRelated hw_lec) {
+		return ld.delHomeworkInLecture(hw_lec);
+	}
+
+	@Override
+	public int submitAnswer(Answer ans) {
+		return ld.submitAnswer(ans);
+	}
+
+	@Override
+	public List<ScoreH> getHomeworkScore(int lec_no) {
+		return ld.getHomeworkScore(lec_no);
 	}
 
 }

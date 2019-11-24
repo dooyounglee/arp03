@@ -49,7 +49,6 @@ public class AdminController {
 		}else {
 			list=ms.getLectureList(mem);
 		}
-		System.out.println(list);
 		mv.addObject("list",list);
 		mv.setViewName("mypage/lectureList");
 		return mv;

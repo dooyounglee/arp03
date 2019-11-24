@@ -7,11 +7,19 @@
     <nav class="sidebar-nav">
         <ul id="sidebarnav">
             <li class="nav-small-cap">PERSONAL</li>
+            <c:if test="${!empty mem }">
             <li><a class="has-arrow" href="lectureList.ad"><span class="hide-menu">나의 강좌 리스트</span></a></li>
+            </c:if>
             <li><a class="has-arrow" href="blist.do"><span class="hide-menu">자유게시판</span></a></li>
             <li><a class="has-arrow" href="nlist.ad"><span class="hide-menu">공지사항</span></a></li>
             <li><a class="has-arrow" href="flist.ad"><span class="hide-menu">FAQ</span></a></li>
+            <c:if test="${!empty mem && mem.typee ne 'a' }">
             <li><a class="has-arrow" href="mylist.qna"><span class="hide-menu">내 문의</span></a></li>
+            </c:if>
+            <c:if test="${!empty mem && mem.typee ne 's' }">
+            <li><a class="has-arrow" href="list.pro"><span class="hide-menu">문제관리</span></a></li>
+            <li><a class="has-arrow" href="list.hw"><span class="hide-menu">숙제관리</span></a></li>
+            </c:if>
             <li>
                 <a class="has-arrow aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">학생</span></a>
                 <ul aria-expanded="false" class="collapse">
@@ -128,69 +136,6 @@
                             <li><a href="pages-recover-password.html">Recover password</a></li>
                         </ul>
                     </li>
-                </ul>
-            </li>
-            <li>
-                <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-widgets"></i><span class="hide-menu">Extra</span></a>
-                <ul aria-expanded="false" class="collapse">
-                    <li>
-                        <a class="has-arrow " href="#" aria-expanded="false">Widgets</a>
-                        <ul aria-expanded="false" class="collapse">
-                            <li><a href="widget-apps.html">Widget Apps</a></li>
-                            <li><a href="widget-data.html">Widget Data</a></li>
-                            <li><a href="widget-charts.html">Widget Charts</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="has-arrow " href="#" aria-expanded="false">Maps</a>
-                        <ul aria-expanded="false" class="collapse">
-                            <li><a href="map-google.html">Google Maps</a></li>
-                            <li><a href="map-vector.html">Vector Maps</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="has-arrow " href="#" aria-expanded="false">Icons</a>
-                        <ul aria-expanded="false" class="collapse">
-                            <li><a href="icon-material.html">Material Icons</a></li>
-                            <li><a href="icon-fontawesome.html">Fontawesome Icons</a></li>
-                            <li><a href="icon-themify.html">Themify Icons</a></li>
-                            <li><a href="icon-linea.html">Linea Icons</a></li>
-                            <li><a href="icon-weather.html">Weather Icons</a></li>
-                            <li><a href="icon-simple-lineicon.html">Simple Lineicons</a></li>
-                            <li><a href="icon-flag.html">Flag Icons</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="has-arrow " href="#" aria-expanded="false">Charts</a>
-                        <ul aria-expanded="false" class="collapse">
-                            <li><a href="chart-morris.html">Morris Chart</a></li>
-                            <li><a href="chart-chartist.html">Chartis Chart</a></li>
-                            <li><a href="chart-echart.html">Echarts</a></li>
-                            <li><a href="chart-flot.html">Flot Chart</a></li>
-                            <li><a href="chart-knob.html">Knob Chart</a></li>
-                            <li><a href="chart-chart-js.html">Chartjs</a></li>
-                            <li><a href="chart-sparkline.html">Sparkline Chart</a></li>
-                            <li><a href="chart-extra-chart.html">Extra chart</a></li>
-                            <li><a href="chart-peity.html">Peity Charts</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-arrange-send-backward"></i><span class="hide-menu">Multi level dd</span></a>
-                <ul aria-expanded="false" class="collapse">
-                    <li><a href="#">item 1.1</a></li>
-                    <li><a href="#">item 1.2</a></li>
-                    <li>
-                        <a class="has-arrow" href="#" aria-expanded="false">Menu 1.3</a>
-                        <ul aria-expanded="false" class="collapse">
-                            <li><a href="#">item 1.3.1</a></li>
-                            <li><a href="#">item 1.3.2</a></li>
-                            <li><a href="#">item 1.3.3</a></li>
-                            <li><a href="#">item 1.3.4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">item 1.4</a></li>
                 </ul>
             </li>
         </ul>

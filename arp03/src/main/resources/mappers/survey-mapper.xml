@@ -33,7 +33,7 @@
 	
   <insert id="insertSurvey">
   	insert into insertsurvey values
-  	(seq_survey.nextval,  #{lec_no}, #{m_no}, 
+  	(seq_insertsurvey.nextval,  #{lec_no}, #{m_no}, 
   	#{title}, #{enrolldate},
   	#{q1}, #{q2}, #{q3})
   </insert>
