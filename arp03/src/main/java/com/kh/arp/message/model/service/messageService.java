@@ -1,7 +1,9 @@
 package com.kh.arp.message.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.kh.arp.message.model.vo.Dto;
 import com.kh.arp.message.model.vo.Message;
 
 public interface messageService{
@@ -20,4 +22,12 @@ public interface messageService{
 	
 	// 5. 수신확인용 리스트
 	int updateDate(int m_no);
+	
+	// 6. 자동완성용 
+	List<Dto> searchList(Dto dto);
+	
+	/*
+	 * // 7. 회원번호 검색용 리스트 int selectMno(String name);
+	 */
+	
 }

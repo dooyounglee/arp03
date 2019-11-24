@@ -22,4 +22,8 @@
  update message set r_date=sysdate where ms_no=#{ms_no}
 </update>
 
+<select id="searchList" parameterType="com.kh.arp.message.model.vo.Dto" resultType="com.kh.arp.message.model.vo.Dto">
+select name,m_no from member where name like '%${name}%' and m_no != #{m_no}
+</select> 
+
 </mapper>

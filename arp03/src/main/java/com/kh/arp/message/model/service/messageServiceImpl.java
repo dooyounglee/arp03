@@ -1,11 +1,13 @@
 package com.kh.arp.message.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.arp.message.model.dao.messageDao;
+import com.kh.arp.message.model.vo.Dto;
 import com.kh.arp.message.model.vo.Message;
 
 @Service
@@ -39,6 +41,17 @@ public class messageServiceImpl implements messageService {
 	public int updateDate(int m_no) {
 		return mDao.updateDate(m_no);
 	}
+
+	@Override
+	public List<Dto> searchList(Dto dto) {
+		System.out.println("impl"+ dto);
+		return mDao.searchList(dto);
+	}
+
+	/*
+	 * @Override public int selectMno(String name) { return mDao.selectMno(name); }
+	 */
+	
 
 
 

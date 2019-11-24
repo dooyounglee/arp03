@@ -1,16 +1,26 @@
 package com.kh.arp.message.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.message.model.service.messageService;
+import com.kh.arp.message.model.vo.Dto;
 import com.kh.arp.message.model.vo.Message;
 
 @Controller
@@ -81,5 +91,29 @@ public class messageController {
 		 mv.addObject("m",m).setViewName("message/detailMsg");
 		 return mv;
 	}
-
+	
+	// 받는사람 자동완성용
+	@RequestMapping(value="autocomplete", method=RequestMethod.POST)
+	public void auto(Locale locale,Model m, HttpServletRequest request,
+					HttpServletResponse resp,Dto dto,HttpSession session) throws IOException {
+	
+		dto.setName(request.getParameter("term"));
+		dto.setM_no(((Member)session.getAttribute("mem")).getM_no());
+		System.out.println(dto);
+		List<Dto> list = mService.searchList(dto);
+		System.out.println("list"+list);
+		JSONArray j = new JSONArray();
+		for(Dto jlist : list) {
+			String text = jlist.getName() + "-"+ jlist.getM_no() ;
+			j.add(text);
+		}
+		
+		PrintWriter out = resp.getWriter();
+		out.print(j.toString());
+		
+	}
+	
+	/*
+	 * @RequestMapping("selectMno")
+	 */
 }
