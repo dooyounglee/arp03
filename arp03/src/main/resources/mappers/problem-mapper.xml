@@ -36,6 +36,11 @@
 		where p_no=#{p_no}
 	</update>
 	
+	<delete id="delProblem">
+		delete from problem
+		where p_no=#{p_no}
+	</delete>
+	
 	<insert id="okVariables">
 		insert into variables values(seq_variables.nextval,#{p_no},#{val})
 	</insert>
