@@ -73,12 +73,18 @@
                 <!-- ============================================================== -->
                 <!-- Row -->
                 <div class="row">
+                
+                	<!-- 수강페이지 메뉴 -->
+                	<%@ include file="../../../include/blecturemenu.jsp" %>
+                	
                     <!-- column -->
-                    <div class="col-12">
+                    <div class="col-9">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">게시판관리</h4>
+                                <c:if test="${mem.typee eq 't' }">
                                 <button class="btn btn-success" onclick="add()">숙제 추가</button><br>
+                                </c:if>
                                 <div id="homeworkArea">
 									<div id="homeworkContent">
 		                                <div class="table-responsive">
