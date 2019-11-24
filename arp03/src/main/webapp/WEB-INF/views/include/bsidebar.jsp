@@ -7,13 +7,19 @@
     <nav class="sidebar-nav">
         <ul id="sidebarnav">
             <li class="nav-small-cap">PERSONAL</li>
+            <c:if test="${!empty lec }">
             <li><a class="has-arrow" href="lectureList.ad"><span class="hide-menu">나의 강좌 리스트</span></a></li>
+            </c:if>
             <li><a class="has-arrow" href="blist.do"><span class="hide-menu">자유게시판</span></a></li>
             <li><a class="has-arrow" href="nlist.ad"><span class="hide-menu">공지사항</span></a></li>
             <li><a class="has-arrow" href="flist.ad"><span class="hide-menu">FAQ</span></a></li>
+            <c:if test="${!empty mem && mem.typee ne 'a' }">
             <li><a class="has-arrow" href="mylist.qna"><span class="hide-menu">내 문의</span></a></li>
+            </c:if>
+            <c:if test="${!empty mem && mem.typee ne 's' }">
             <li><a class="has-arrow" href="list.pro"><span class="hide-menu">문제관리</span></a></li>
             <li><a class="has-arrow" href="list.hw"><span class="hide-menu">숙제관리</span></a></li>
+            </c:if>
             <li>
                 <a class="has-arrow aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">학생</span></a>
                 <ul aria-expanded="false" class="collapse">
