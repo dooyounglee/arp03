@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.arp.manager.model.dao.SurveyDao;
 import com.kh.arp.manager.model.vo.CompleteSurvey;
 import com.kh.arp.manager.model.vo.InsertSurvey;
+import com.kh.arp.manager.model.vo.SurveyQuestion;
 
 @Service("ss")
 public class SurveyServiceImpl implements SurveyService {
@@ -33,5 +34,10 @@ public class SurveyServiceImpl implements SurveyService {
 	@Override
 	public int insertcompletesurvey(CompleteSurvey s) {
 		return sDao.insertcompletesurvey(s);
+	}
+
+	@Override
+	public int insertsurveyquestion(SurveyQuestion s) {
+		return sDao.insertsurveyquestion(s);
 	}
 }

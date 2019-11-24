@@ -19,6 +19,7 @@
 	<input type="text" name="m_no" value="${mem.m_no }" readonly>
 	<input type="text" name="title" placeholder="제목" required>
 	<input id="point" type="text" name="enrolldate" value="${d }" readonly>
+	<input type="text" name="q1" value="11">
 	<div id ="div"></div>
 	<button id="insertquestion" type="button">질문추가</button>
 	<button id="deletequestion" type="button">질문삭제</button>
@@ -32,9 +33,11 @@
 		var removesucess=0;
 		var q=1;
 		$("#insertquestion").click(function(){
-			var hide = $("<input").attr("name", "sq_no["+lastq+"]").attr("type", "hidden").attr("value", q);
 			var input = $("<input>").attr("placeholder", "질문"+q).attr("name", "question["+lastq+"]").attr("required", true);
+			/* var hid = $("<input>").attr("type", "hidden").attr("name", "sq_no["+lastq+"]").attr("value", q);
+			$("#div").append(hid); */
 			$("#div").append(input);
+			
 			lastq+=1;
 			q+=1;	
 		});
