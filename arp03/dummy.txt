@@ -424,7 +424,17 @@ insert into member values(seq_member.nextval,'m','m5','1','name45','email45','ph
 
 INSERT INTO LECTURE VALUES (seq_lecture.nextval,21,'미적분',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
 INSERT INTO LECTURE VALUES (seq_lecture.nextval,21,'수학 10-가',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
-INSERT INTO LECTURE VALUES (seq_lecture.nextval,22,'수학 10-나',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
+INSERT INTO LECTURE VALUES (seq_lecture.nextval,21,'수학 10-나',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
+INSERT INTO LECTURE VALUES (seq_lecture.nextval,22,'수학 9-가',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
+INSERT INTO LECTURE VALUES (seq_lecture.nextval,22,'수학 9-나',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
+INSERT INTO LECTURE VALUES (seq_lecture.nextval,23,'수학 8-가',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
+INSERT INTO LECTURE VALUES (seq_lecture.nextval,23,'수학 8-나',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
+
+
+
+
+
+
 
 INSERT INTO CLASSDATE VALUES (1,TIMESTAMP '2019-11-28 00:00:00.000000',1);
 INSERT INTO CLASSDATE VALUES (1,TIMESTAMP '2019-12-03 00:00:00.000000',2);
@@ -493,6 +503,15 @@ INSERT INTO ARP.MYCLASS VALUES(1, 4);
 INSERT INTO ARP.MYCLASS VALUES(1, 5);
 INSERT INTO ARP.MYCLASS VALUES(1, 6);
 INSERT INTO ARP.MYCLASS VALUES(1, 7);
+INSERT INTO ARP.MYCLASS VALUES(2, 2);
+INSERT INTO ARP.MYCLASS VALUES(2, 3);
+INSERT INTO ARP.MYCLASS VALUES(2, 4);
+INSERT INTO ARP.MYCLASS VALUES(2, 5);
+INSERT INTO ARP.MYCLASS VALUES(2, 6);
+INSERT INTO ARP.MYCLASS VALUES(2, 7);
+INSERT INTO ARP.MYCLASS VALUES(3, 2);
+INSERT INTO ARP.MYCLASS VALUES(3, 3);
+INSERT INTO ARP.MYCLASS VALUES(3, 4);
 
 
 -- 이게 진짜
@@ -505,18 +524,27 @@ insert into question values(seq_question.nextval, 1, 3, '안녕하세요5', '반
 
 
 -- insertsurvey 더미
-insert into insertsurvey values(100, 2, 22, '1', SYSDATE);
+insert into insertsurvey values(100, 2, 21, '1', SYSDATE);
 insert into insertsurvey values(101, 2, 22, '2', SYSDATE);
-insert into insertsurvey values(102, 2, 22, '3', SYSDATE);
-insert into insertsurvey values(103, 2, 22, '4', SYSDATE);
-insert into insertsurvey values(104, 2, 22, '5', SYSDATE);
-insert into insertsurvey values(105, 2, 23, '6', SYSDATE);
-insert into insertsurvey values(106, 2, 23, '7', SYSDATE);
-insert into insertsurvey values(107, 2, 24, '8', SYSDATE);
-insert into insertsurvey values(108, 2, 25, '9', SYSDATE);
-insert into insertsurvey values(109, 2, 26, '10', SYSDATE);
-insert into insertsurvey values(110, 2, 27, '11', SYSDATE);
-insert into insertsurvey values(111, 2, 28, '12', SYSDATE);
+insert into insertsurvey values(102, 1, 23, '3', SYSDATE);
+insert into insertsurvey values(103, 1, 24, '4', SYSDATE);
+insert into insertsurvey values(104, 1, 21, '5', SYSDATE);
+insert into insertsurvey values(105, 3, 22, '6', SYSDATE);
+insert into insertsurvey values(106, 3, 23, '7', SYSDATE);
+insert into insertsurvey values(107, 4, 24, '8', SYSDATE);
+insert into insertsurvey values(108, 4, 25, '9', SYSDATE);
+insert into insertsurvey values(109, 5, 26, '10', SYSDATE);
+insert into insertsurvey values(110, 5, 27, '11', SYSDATE);
+insert into insertsurvey values(111, 6, 28, '12', SYSDATE);
+
+-- surveyquestion 더미
+insert into surveyquestion values(1, 100, 2, 1, null);
+insert into surveyquestion values(2, 100, 2, 2, null);
+insert into surveyquestion values(3, 100, 2, 3, null);
+insert into surveyquestion values(1, 100, 3, 11, null);
+insert into surveyquestion values(2, 100, 3, 21, null);
+insert into surveyquestion values(1, 101, 2, 33, null);
+insert into surveyquestion values(2, 101, 2, 3, null);
 
 
 INSERT INTO PROBLEM VALUES (seq_problem.nextval,'\(ㄱ+ㄴ=\)?','\(ㄱ+ㄴ=ㄷ\)','\(ㄷ\)','ㄱ,ㄴ,ㄷ');
