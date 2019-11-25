@@ -7,7 +7,10 @@
 	</select>
 	
 	<select id="getLecture" resultType="Lecture">
-		select * from lecture where lec_no=#{lec_no}
+		select l.*,m.name,cnt from
+		(select * from lecture where lec_no=#{lec_no}) l, member m,
+		(SELECT lec_no, count(*) cnt FROM myclass GROUP BY LEC_NO) myclass_cnt
+		where l.m_no=m.m_no and l.lec_no=myclass_cnt.lec_no(+)
 	</select>
 	
 	<insert id="makeLecture">
@@ -131,4 +134,12 @@
 			WHERE lec_no=#{lec_no})
 		GROUP BY M_NO, HW_NO
 	</select>
+	
+	<update id="deleteLecture">
+		update lecture set status='N' where lec_no=#{lec_no}
+	</update>
+	
+	<update id="deleteLectureCancle">
+		update lecture set status='Y' where lec_no=#{lec_no}
+	</update>
 </mapper>

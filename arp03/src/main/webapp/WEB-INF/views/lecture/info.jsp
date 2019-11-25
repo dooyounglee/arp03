@@ -82,15 +82,15 @@
                             <div class="card-body">
                                 <h1 class="card-title" id="1">${lec.title } 강의계획 입니다.</h1>
                                 <h4 class="card-title mt-4" id="22">담당 선생님</h4>
-                                <p>${lec.m_no }</p>
+                                <p>${lec.name }</p>
                                 <h4 class="card-title mt-4" id="3">개강일</h4>
-                                <p>${lec.startdate }</p>
+                                <p>${lec.startdate.split(' ')[0] }</p>
                                 <h4 class="card-title mt-4" id="4">강의시간</h4>
-                                <p>${lec.starttime }~${lec.inghour }시간</p>
+                                <p>${lec.starttime }~${lec.inghour }분</p>
                                 <h4 class="card-title mt-4" id="5">강의 소개</h4>
                                 <p>${lec.content }</p>
                                 <h4 class="card-title mt-4" id="6">참여인원</h4>
-                                <p>${lec.ingcount } / ${lec.headcount }</p>
+                                <p>${lec.cnt } / ${lec.headcount }</p>
                                 <h4 class="card-title mt-4" id="6">총 회차</h4>
                                 <p>${lec.nth }</p>
                                 <h4 class="card-title mt-4" id="6">장소</h4>

@@ -341,6 +341,19 @@ public class LectureController {
 		return "success";
 	}
 	
+	@PostMapping("/del.lec")
+	public ModelAndView deleteLecturePost(Lecture lec, ModelAndView mv) {
+		int result=ls.deleteLecture(lec);
+		mv.setViewName("redirect:/lectureList.ad");
+		return mv;
+	}
+	@PostMapping("/delCancel.lec")
+	public ModelAndView deleteLectureCanclePost(Lecture lec, ModelAndView mv) {
+		int result=ls.deleteLectureCancle(lec);
+		mv.setViewName("redirect:/lectureList.ad");
+		return mv;
+	}
+	
 	
 	
 	

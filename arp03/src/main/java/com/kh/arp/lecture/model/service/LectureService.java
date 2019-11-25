@@ -55,4 +55,8 @@ public interface LectureService {
 
 	List<ScoreH> getHomeworkScore(int lec_no);
 
+	int deleteLecture(Lecture lec);
+
+	int deleteLectureCancle(Lecture lec);
+
 }

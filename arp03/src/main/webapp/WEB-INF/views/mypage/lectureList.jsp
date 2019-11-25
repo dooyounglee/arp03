@@ -89,6 +89,9 @@
                                                 <th>dayofweek</th>
                                                 <th>place</th>
                                                 <th>count</th>
+                                                <c:if test="${mem.typee eq 'a' }">
+                                                <th>삭제</th>
+                                                </c:if>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -101,11 +104,11 @@
 	                                                <td>${l.place }</td>
 	                                                <td>${l.cnt }/${l.headcount }</td>
 	                                                <td>
-	                                                	<c:if test="${r.status eq 'Y'}">
-	                                                		<button class="btn btn-danger" onclick="deleteReply(${r.r_no})">삭제</button>
+	                                                	<c:if test="${mem.typee eq 'a' && l.status eq 'Y'}">
+	                                                		<button class="btn btn-danger" onclick="del(${l.lec_no})">삭제</button>
 	                                                	</c:if>
-	                                                	<c:if test="${r.status eq 'N'}">
-	           	                                     		<button class="btn btn-primary" onclick="deleteCancleReply(${r.r_no})">삭제취소</button>
+	                                                	<c:if test="${mem.typee eq 'a' && l.status eq 'N'}">
+	           	                                     		<button class="btn btn-primary" onclick="cancle(${l.lec_no})">삭제취소</button>
 	                                                	</c:if>
 	                                                </td>
 												</tr>
@@ -151,17 +154,20 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-<%-- 	<jsp:include page="../include/header.jsp"/>
-	<a href="make.lec">강의 만들기</a><br>
-	<c:forEach var="c" items="${list }">
-		<a href="main.lec?lec_no=${c.lec_no }">${c }</a><br>
-	</c:forEach>
-	<jsp:include page="../include/footer.jsp"/> --%>
+<form id="form" method='post'>
+	<input type="hidden" name="lec_no">
+</form>
+<script>
+	function del(lec_no){
+		var formm=$('#form').attr('action','del.lec')
+		formm.children('input').eq(0).val(lec_no)
+		formm.submit();
+	}
+	function cancle(lec_no){
+		var formm=$('#form').attr('action','delCancel.lec')
+		formm.children('input').eq(0).val(lec_no)
+		formm.submit();
+	}
+</script>
 </body>
 </html>
