@@ -42,4 +42,6 @@ public interface ProblemService {
 
 	List<Answer> getHomeworkAnswer(ProblemRelated lec_hw_m);
 
+	int delProblem(int p_no);
+
 }

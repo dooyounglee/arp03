@@ -7,9 +7,7 @@ public class CompleteSurvey {
 
 	private int su_no;
 	private int m_no;					// 학생 넘버
-	private String a1;
-	private String a2;
-	private String a3;
+	private int sq_no;
+	private String answer;
 	private String name;				// 학생이름
-	private String issurvey;			// 학생이 이 설문을 완료했는지 아는 컬럼
 }

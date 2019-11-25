@@ -45,9 +45,7 @@ public class ProblemController {
 	
 	@PostMapping("/make.pro")
 	public ModelAndView makeProblemPost(Problem p, ModelAndView mv) {
-		System.out.println(p);
 		int result=ps.makeProblem(p);
-		System.out.println(p);
 		mv.setViewName("redirect:/get.pro?p_no="+p.getP_no());
 		return mv;
 	}
@@ -62,11 +60,19 @@ public class ProblemController {
 	@GetMapping("/get.pro")
 	public ModelAndView get(int p_no, ModelAndView mv) {
 		Problem p=ps.getProblem(p_no);
-		//Problem p=sqlSession.selectOne("problemMapper.getProblem",p_no);
-		//mv=abc(p,mv);
-		//mv.addObject("vlist", vlist);
+		Problem ranp=abc(p);
+		
+		mv.addObject("ranp", ranp);
 		mv.addObject("p", p);
 		mv.setViewName("problem/get");
+		return mv;
+	}
+	
+	@GetMapping("/del.pro")
+	public ModelAndView del(int p_no, ModelAndView mv) {
+		int result=ps.delProblem(p_no);
+		
+		mv.setViewName("redirect:list.pro");
 		return mv;
 	}
 	
@@ -167,11 +173,11 @@ public class ProblemController {
 		return "success";
 	}
 	
-	@ResponseBody
 	@PostMapping("/delProblem.hw")
-	public String delProblem(ProblemRelated hw_p) {
+	public ModelAndView delProblem(ProblemRelated hw_p, ModelAndView mv) {
 		int result=ps.deleteProblemInHomework(hw_p);
-		return "success";
+		mv.setViewName("redirect:get.hw?hw_no="+hw_p.getHw_no());
+		return mv;
 	}
 	
 	
@@ -197,15 +203,13 @@ public class ProblemController {
 	
 	
 	
-	public ModelAndView abc(Problem p, ModelAndView mv) {
-		//Problem p=sqlSession.selectOne("problemMapper.getProblem",p_no);
+	public Problem abc(Problem p) {
+		Problem ranp=null;
 		List<Variables> vlist=ps.getVariables(p.getP_no());
 		if(vlist.size()>0) {
 			int random=(int)(Math.random()*vlist.size());
 			Variables v=vlist.get(random);
 			
-			System.out.println(p);
-			System.out.println(v);
 			String strp=p.getProblem();
 			String strs=p.getSolve();
 			String strsolu=p.getSolution();
@@ -226,15 +230,13 @@ public class ProblemController {
 				strsolu=strsolu.replaceAll(temp, (String)jo.get(temp));
 			}
 			
-			Problem ranp=new Problem();
+			ranp=new Problem();
+			ranp.setP_no(p.getP_no());
 			ranp.setProblem(strp);
 			ranp.setSolve(strs);
 			ranp.setSolution(strsolu);
-			
-			mv.addObject("ranp", ranp);
-			//mv.addObject("v", v);
+			ranp.setKeyval(p.getKeyval());
 		}
-		
-		return mv;
+		return ranp;
 	}
 }

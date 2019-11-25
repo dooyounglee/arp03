@@ -16,6 +16,7 @@ import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.lecture.model.vo.Score;
+import com.kh.arp.lecture.model.vo.ScoreH;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.problem.model.vo.Answer;
@@ -208,6 +209,10 @@ public class LectureDao {
 
 	public int submitAnswer(Answer ans) {
 		return sqlSession.insert("lectureMapper.submitAnswer",ans);
+	}
+
+	public List<ScoreH> getHomeworkScore(int lec_no) {
+		return sqlSession.selectList("lectureMapper.getHomeworkScore",lec_no);
 	}
 
 }

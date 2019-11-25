@@ -13,6 +13,7 @@ import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.lecture.model.vo.Score;
+import com.kh.arp.lecture.model.vo.ScoreH;
 import com.kh.arp.member.model.dao.MemberDao;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.problem.model.vo.Answer;
@@ -128,6 +129,11 @@ public class LectureServiceImple implements LectureService {
 	@Override
 	public int submitAnswer(Answer ans) {
 		return ld.submitAnswer(ans);
+	}
+
+	@Override
+	public List<ScoreH> getHomeworkScore(int lec_no) {
+		return ld.getHomeworkScore(lec_no);
 	}
 
 }

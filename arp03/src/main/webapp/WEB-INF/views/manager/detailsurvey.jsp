@@ -19,13 +19,7 @@ ${s };
 	<input type="text" value="${mem.name }" readonly>
 	<input type="text" name="title" value="${s.title }"placeholder="제목" readonly>
 	<input type="text" name="enrolldate" value="${d }" readonly>
-	<input type="text" name="q1" value="${s.q1 }" readonly> 
-	<input type="text" name="a1" required>
-	<input type="text" name="q2" value="${s.q2 }" readonly>
-	<input type="text" name="a2" required>
-	<input type="text" name="q3" value="${s.q3 }" readonly>
-	<input type="text" name="a3" required>
-	<input type="hidden" name="issurvey" value="Y">
+	
 	<button type="submit">설문완료</button>
 	
 </form>

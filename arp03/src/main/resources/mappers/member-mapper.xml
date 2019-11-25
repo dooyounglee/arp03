@@ -102,6 +102,9 @@
 	
 	<select id="getLectureList" resultType="Lecture">
 		<choose>
+			<when test="typee == 'a'.toString()">
+				select * from lecture
+			</when>
 			<when test="typee == 't'.toString()">
 				select * from lecture where m_no=#{m_no}
 			</when>

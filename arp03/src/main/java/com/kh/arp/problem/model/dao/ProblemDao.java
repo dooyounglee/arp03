@@ -78,5 +78,9 @@ public class ProblemDao {
 		return sqlSession.selectList("problemMapper.getHomeworkAnswer",lec_hw_m);
 	}
 
+	public int delProblem(int p_no) {
+		return sqlSession.delete("problemMapper.delProblem",p_no);
+	}
+
 
 }

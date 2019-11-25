@@ -122,4 +122,12 @@
 	<insert id="submitAnswer">
 		insert into homeworkanswer values(#{lec_no},#{hw_no},#{p_no},#{m_no},#{answer},#{ox})
 	</insert>
+	
+	<select id="getHomeworkScore" resultType="ScoreH">
+		SELECT m_no, hw_no, sum(ox) cnt FROM
+			(SELECT hw_no,M_NO,decode(ox,'O',1,'X',0) ox
+			FROM HOMEWORKANSWER
+			WHERE lec_no=#{lec_no})
+		GROUP BY M_NO, HW_NO
+	</select>
 </mapper>

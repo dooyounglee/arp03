@@ -18,6 +18,7 @@
 		<typeAlias type="com.kh.arp.declaree.model.vo.Declaree" alias="Declaree"/>
 		<typeAlias type="com.kh.arp.lecture.model.vo.Exam" alias="Exam"/>
 		<typeAlias type="com.kh.arp.lecture.model.vo.Score" alias="Score"/>
+		<typeAlias type="com.kh.arp.lecture.model.vo.ScoreH" alias="ScoreH"/>
 		<typeAlias type="com.kh.arp.lecture.model.vo.MyClass" alias="MyClass"/>
 		<typeAlias type="com.kh.arp.lecture.model.vo.Classdate" alias="Classdate"/>
 		<typeAlias type="com.kh.arp.lecture.model.vo.Attendence" alias="Attendence"/>
@@ -25,7 +26,9 @@
 		<typeAlias type="com.kh.arp.question.model.vo.QFile" alias="QFile"/>
 		<typeAlias type="com.kh.arp.manager.model.vo.InsertSurvey" alias="InsertSurvey"/>
 		<typeAlias type="com.kh.arp.manager.model.vo.CompleteSurvey" alias="CompleteSurvey"/>
+		<typeAlias type="com.kh.arp.manager.model.vo.SurveyQuestion" alias="SurveyQuestion"/>
 		<typeAlias type="com.kh.arp.question.model.vo.QReply" alias="QReply"/>
+		<typeAlias type="com.kh.arp.message.model.vo.Message" alias="Message"/>
 		<typeAlias type="com.kh.arp.problem.model.vo.Problem" alias="Problem"/>
 		<typeAlias type="com.kh.arp.problem.model.vo.Variables" alias="Variables"/>
 		<typeAlias type="com.kh.arp.problem.model.vo.Homework" alias="Homework"/>
@@ -45,6 +48,7 @@
 		<mapper resource="/mappers/qna-mapper.xml"/>
 		<mapper resource="/mappers/vacation-mapper.xml"/>
 		<mapper resource="/mappers/survey-mapper.xml"/>
+		<mapper resource="/mappers/msg-mapper.xml"/>
 		<mapper resource="/mappers/problem-mapper.xml"/>
 	</mappers>
 </configuration>

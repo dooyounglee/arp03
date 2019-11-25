@@ -23,6 +23,7 @@ import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.lecture.model.vo.Score;
+import com.kh.arp.lecture.model.vo.ScoreH;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.problem.model.service.ProblemService;
 import com.kh.arp.problem.model.vo.Answer;
@@ -158,6 +159,7 @@ public class LectureController {
 		Member mem=(Member)session.getAttribute("mem");
 		Lecture lec=(Lecture)session.getAttribute("lec");
 
+		
 		List<Exam> elist=ls.getExamList(lec.getLec_no());
 		List<MyClass> mlist=null;
 		if(mem.getTypee().equals("s")) {
@@ -170,10 +172,17 @@ public class LectureController {
 			mlist=ls.getStudentList(lec.getLec_no());
 		}
 		List<Score> slist=ls.getLectureScore(lec.getLec_no());
+		List<ScoreH> shlist=ls.getHomeworkScore(lec.getLec_no());
+		List<Homework> hlist=ls.getHomeworkListInLecture(lec.getLec_no());
+		
 		
 		mv.addObject("elist", elist);
 		mv.addObject("mlist", mlist);
 		mv.addObject("slist", slist);
+		
+		
+		mv.addObject("hlist", hlist);
+		mv.addObject("shlist", shlist);
 		mv.setViewName("mypage/teacher/score/list");
 		return mv;
 	}
@@ -319,7 +328,10 @@ public class LectureController {
 		Problem p=ps.getProblem(ans.getP_no());
 		Problem ranp=abc(p,mem.getM_no());
 		
-		if(ans.getAnswer().equals(ranp.getSolution())) {
+		System.out.println(ranp);
+		System.out.println(ans);
+		
+		if(ranp.getSolution().equals("\\("+ans.getAnswer()+"\\)")) {
 			ans.setOx("O");
 		}else {
 			ans.setOx("X");
