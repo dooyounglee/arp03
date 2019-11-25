@@ -80,11 +80,11 @@
                                 <h4 class="card-title">강좌관리</h4><a class="btn btn-primary float-right" href="make.lec">강좌 만들기</a>
                                 <h6 class="card-subtitle">Add class <code>.table</code></h6>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>m_no</th>
+                                                <th>Teacher</th>
                                                 <th>title</th>
                                                 <th>dayofweek</th>
                                                 <th>place</th>
@@ -95,11 +95,11 @@
                                         	<c:forEach var="l" items="${list }">
                                         		<tr>
 	                                        		<td>${l.lec_no }</td>
-	                                                <td>${l.m_no }</td>
+	                                                <td>${l.name }</td>
 	                                                <td><a href="main.lec?lec_no=${l.lec_no }">${l.title }</a></td>
-	                                                <td>${l.dayofweek }</td>
+	                                                <td>${l.dayofweek.replace('0','일').replace('1','월').replace('2','화').replace('3','수').replace('4','목').replace('5','금').replace('6','토') }</td>
 	                                                <td>${l.place }</td>
-	                                                <td>${l.ingcount }/${l.headcount }</td>
+	                                                <td>${l.cnt }/${l.headcount }</td>
 	                                                <td>
 	                                                	<c:if test="${r.status eq 'Y'}">
 	                                                		<button class="btn btn-danger" onclick="deleteReply(${r.r_no})">삭제</button>

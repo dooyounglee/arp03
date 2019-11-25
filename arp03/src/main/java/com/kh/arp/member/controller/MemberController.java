@@ -59,7 +59,6 @@ public class MemberController {
 		//status=y일떄만 되도록 해야겠는데?
 		
 		Member mem=ms.login(m);
-		System.out.println("로그인"+mem);
 		if(mem!=null) {
 			session.setAttribute("mem", mem);
 			session.setAttribute("myLec", ms.getLectureList(mem));

@@ -19,5 +19,6 @@ public class Lecture {
 	private int nth;
 	private String dayofweek;
 	private String place;
-
+	private String name;
+	private int cnt;
 }

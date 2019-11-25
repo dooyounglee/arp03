@@ -103,17 +103,23 @@
 	<select id="getLectureList" resultType="Lecture">
 		<choose>
 			<when test="typee == 'a'.toString()">
-				select * from lecture
+				select l.*,m.name,cnt from lecture l, member m,
+				(SELECT lec_no, count(*) cnt FROM myclass GROUP BY LEC_NO) myclass_cnt
+				where l.m_no=m.m_no and l.lec_no=myclass_cnt.lec_no
 			</when>
 			<when test="typee == 't'.toString()">
-				select * from lecture where m_no=#{m_no}
+				select l.*,m.name,cnt from (select * from lecture where m_no=#{m_no}) l, member m,
+				(SELECT lec_no, count(*) cnt FROM myclass GROUP BY LEC_NO) myclass_cnt
+				where l.m_no=m.m_no and l.lec_no=myclass_cnt.lec_no
 			</when>
 			<when test="typee == 's'.toString()">
-				select l.* from (select * from myclass where m_no=#{m_no}) mc, lecture l where mc.lec_no=l.lec_no
+				select l.*,m.name,cnt from (select * from myclass where m_no=#{m_no}) mc, lecture l, member m,
+				(SELECT lec_no, count(*) cnt FROM myclass GROUP BY LEC_NO) myclass_cnt
+				where mc.lec_no=l.lec_no and l.m_no=m.m_no and l.lec_no=myclass_cnt.lec_no
 			</when>
-			<when test="typee == 'm'.toString()">
-				select l.* from (select * from myclass where m_no=#{m_no}) mc, lecture l where mc.lec_no=l.lec_no
-			</when>
+			<!-- <when test="typee == 'm'.toString()">
+				select l.*,m.name from (select * from myclass where m_no=#{m_no}) mc, lecture l where mc.lec_no=l.lec_no
+			</when> -->
 		</choose>
 		
 	</select>

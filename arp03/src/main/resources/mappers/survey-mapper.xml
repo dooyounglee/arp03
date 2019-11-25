@@ -11,13 +11,15 @@
 		<result property="title_1" column="lec_title"/>
 	</resultMap>
 	
-		<resultMap id="surveyquestion" type="SurveyQuestion">
+	<resultMap id="surveyquestion" type="SurveyQuestion">
 		<id property="sq_no" column="sq_no"/>
 		<id property="su_no" column="su_no"/>
 		<id property="m_no" column ="m_no"/>
 		<result property="question" column="question"/>
 		<result property="answer" column="answer"/>
 		<result property="name" column="name"/>
+		<result property="enrolldate" column="enrolldate"/>
+		<result property="title" column="title"/>
 	</resultMap>
 	
 	
@@ -34,11 +36,6 @@
   	#{title}, #{enrolldate})
   </insert>
   
-  <select id="selectsu_no">
-  select seq_insertsurvey.nextval
-  from dual;
-  </select>
-  
   <select id="selectstudentmember" resultMap="surveyquestion">
   <!-- 
   select  mc.m_no
@@ -52,7 +49,7 @@
    -->
    select  m_no
 	from myclass
-	where lec_no=2
+	where lec_no=#{lec_no}
   </select>
   
   <insert id ="insertSurveyQuestion">
@@ -62,17 +59,19 @@
   
   
   
-	<select id="detailSurvey" resultType="InsertSurvey">
-		select *
-		from insertSurvey
-		where su_no=#{su_no}
+	<!-- <select id="detailSurvey" resultMap="surveyquestion"> -->
+	<select id="detailSurvey" resultMap="surveyquestion">
+		select sq.su_no, sq.sq_no, sq.question, ie.title, ie.enrolldate
+        from surveyquestion sq, insertsurvey ie
+		where sq.m_no=#{m_no} and sq.su_no=#{su_no} and sq.su_no=ie.su_no
 	</select>
 
-	<select id="detailsurveyquestion" resultMap="surveyquestion">
-		select sq_no, question, name
-		from surveyquestion s
-		join member m on s.m_no=m.m_no
-		where su_no=#{su_no} And m_no=#{m_no}
-	</select>
+	<update id="updatesurveyquestion">
+		update surveyquestion set 
+		answer=#{answer}
+		where m_no=#{m_no}
+		And su_no=#{su_no}
+		And sq_no=#{sq_no}
+	</update>
 	
 </mapper>

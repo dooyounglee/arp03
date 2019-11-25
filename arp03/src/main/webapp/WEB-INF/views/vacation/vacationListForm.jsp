@@ -26,7 +26,7 @@
 	<th width="50">일수</th>
 	<th>작성일</th>
 	<th>선생님</th>
-	<th>매니저</th>
+	<th>관리자</th>
 </tr>
 
 <c:forEach items="${ list }" var="v">
@@ -52,13 +52,13 @@
   		</c:if>
 			</td>
 		<td>
-		<c:if test = "${ v.mstatus eq 'N'}">
+		<c:if test = "${ v.astatus eq 'N'}">
 			 처리중
   		</c:if>
-  		<c:if test = "${ v.mstatus eq 'B'}">
+  		<c:if test = "${ v.astatus eq 'B'}">
 			 반려
   		</c:if>
-  		<c:if test = "${ v.mstatus eq 'Y'}">
+  		<c:if test = "${ v.astatus eq 'Y'}">
 			 승인
   		</c:if>
   		</td>

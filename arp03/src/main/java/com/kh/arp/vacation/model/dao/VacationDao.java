@@ -70,6 +70,18 @@ public class VacationDao {
 	}
 
 
+	public int adminpermission(int num) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("vacationMapper.adminpermission" , num);
+	}
+
+
+	public int multipermission(int num) {
+		
+		return sqlSession.update("vacationMapper.adminpermission" , num);
+	}
+
+
 	
 
 

@@ -11,14 +11,20 @@
 <body>
 ${s };
 <jsp:include page="../include/header.jsp"/>
-<fmt:parseDate value="${s.enrolldate }" pattern="yyyy-MM-dd" var="e"/>
-<fmt:formatDate value="${e }" pattern="yyyy-MM-dd" var = "d"/>
+<fmt:parseDate value="${ssq}" pattern="yyyy-MM-dd" var="e"/> 
+<fmt:formatDate value="${e}" pattern="yyyy-MM-dd" var = "d"/>
+
 <form action="insertcompletesurvey.ma">
-	<input type="hidden" name="su_no" value="${s.su_no }">
+	<input type="hidden" name="su_no" value="${ssu }">
 	<input type="text" name="lec_no" value="${lec.lec_no}" readonly>
 	<input type="text" value="${mem.name }" readonly>
-	<input type="text" name="title" value="${s.title }"placeholder="제목" readonly>
-	<input type="text" name="enrolldate" value="${d }" readonly>
+	<input type="text" name="title" value="${title }"placeholder="제목" readonly>
+	<input type="text" name="enrolldate" value="${d}" readonly>
+	
+	<c:forEach items="${s }" var="a" varStatus="status">
+	<input type="text" value="${a.question }"  readonly>
+	<input type="text" name="answer[${status.index }]" placeholder="답변" required>
+	</c:forEach>
 	
 	<button type="submit">설문완료</button>
 	
