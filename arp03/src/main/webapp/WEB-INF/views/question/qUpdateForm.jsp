@@ -50,6 +50,10 @@
 				</td>
 			</tr>
 			<tr>
+				<td>유튜브URL</td>
+				<td><input id="youtubeId" type="text" style="width:300px;" name="youtubelink" value="${ q.youtubelink }"></td>
+			</tr>
+			<tr>
 				<td colspan="2" align="right">
 					<button id="deleteaj" type="submit">확인</button>
 					<!-- <button type="button" onclick="window.history.back()">취소</button> -->
