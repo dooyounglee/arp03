@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%-- 	<!-- head태그. header.jsp말고 -->
-	<%@ include file="../../include/bhead.jsp"%> --%>
+	<!-- head태그. header.jsp말고 -->
+	<%@ include file="../../include/bhead.jsp"%>
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body class="fix-header card-no-border logo-center">
-<%-- 
+
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -78,7 +78,8 @@
                 	<!-- 수강페이지 메뉴 -->
                 	<%@ include file="../../include/blecturemenu.jsp" %>
                 	
-                    <div class="col-lg-9 col-xlg-10 col-md-8">
+                    <!-- <div class="col-lg-9 col-xlg-4 col-md-8"> -->
+                    <div class="col-lg-7 col-xlg-7 col-md-7">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-md-flex no-block align-items-center">
@@ -182,7 +183,7 @@
 	                                </div>
                                 </form>
                             </div>
-		<table style="text-align:center;float:left;">
+<!-- 		<table style="text-align:center;float:left;">
 			<thead>
 				<tr>
 					<td colspan=1 id='prevmonth'><</td>
@@ -201,7 +202,42 @@
 			</thead>
 			<tbody>
 			</tbody>
-		</table>
+		</table> -->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xlg-3 col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-md-flex no-block align-items-center">
+                                    <div>
+                                        <h4 class="card-title">Default Basic Forms</h4>
+                                        <h6 class="card-subtitle"> All bootstrap element classies </h6>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <button class="btn btn-danger btn-sm pull-right collapsed" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Get code <i class="ti-angle-down"></i></button>
+                                    </div>
+                                </div>
+								<table style="text-align:center;float:left;">
+									<thead>
+										<tr>
+											<td colspan=1 id='prevmonth'><</td>
+											<td colspan=5><span id="yyyy">2019</span>년 <span id="mm">8</span>월</td>
+											<td colspan=1 id='nextmonth'>></td>
+										</tr>
+										<tr>
+											<td>일</td>
+											<td>월</td>
+											<td>화</td>
+											<td>수</td>
+											<td>목</td>
+											<td>금</td>
+											<td>토</td>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+                            </div>
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -236,7 +272,7 @@
 	
 	
 	
-	 --%>
+	
 	
 	
 	

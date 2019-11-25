@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div class="col-lg-3 col-xlg-2 col-md-4">
+<div class="col-lg-2 col-xlg-2 col-md-2">
     <div class="stickyside">
         <div class="list-group" id="top-menu">
             <a href="main.lec?lec_no=${lec.lec_no }" class="list-group-item">메인</a>
