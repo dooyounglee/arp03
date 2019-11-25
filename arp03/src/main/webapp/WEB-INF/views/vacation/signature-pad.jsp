@@ -22,10 +22,6 @@
        </div>
   		</div> 
 <script>
-function myvacation() {
-	  window.print("#tb");
-	  
-	}
 		
 	var canvas = $("#signature-pad canvas")[0];
 	var sign = new SignaturePad(canvas, {

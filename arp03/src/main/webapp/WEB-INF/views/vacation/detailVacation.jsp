@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <script src="${pageContext.request.contextPath}/resources/js/signature_pad.min.js" type="text/javascript"></script>
-     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/css.css">
+<%--  <script src="${pageContext.request.contextPath}/resources/js/signature_pad.min.js" type="text/javascript"></script>
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/css.css"> --%>
 </head>
 <body>
 
@@ -136,65 +136,32 @@
 	<button onclick="location.href='sVlist.te';">리스트로돌아가기</button>
 	
 	<a onclick="location.href='permission.te?v_no=${v.v_no }'" style="cursor:pointer">허가</a>
+	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-example-modal-lg">허가</button>
 	<!--<button id="sign">사인하기</button>  -->
 	<a onclick="window.open('companiForm.me?v_no=${v.v_no}',width=300, height=300)" style="cursor:pointer">반려</a>
 	
 	<!-- iframe으로 가져오기 -->
 	
- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-example-modal-lg">Large modal</button>
-
-<div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
- <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                              <iframe id="sof" name="sof" src="signature-pad.te" width="100%" height="400"></iframe>
-											<div id="signature-pad" class="m-signature-pad">
-									      		<div class="m-signature-pad--body" id="signDiv">
-									          		<canvas id="signText"></canvas>
-									      		</div>
-											       <div class="m-signature-pad--footer">
-											           <div class="description">사인해 주세요~</div>
-											           <button type="button" class="button clear" data-action="clear">지우기</button>
-											           <button type="button" class="button save" data-action="save">저장</button>
-											       </div>
-									  		</div> 
-                                            </div>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div>                               
-
-<%-- <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#centermodal">Center modal</button>
-<div class="modal fade" id="centermodal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
+ 	
+ 
+	<div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myCenterModalLabel">Center modal</h4>
+                                                <h4 class="modal-title" id="myLargeModalLabel">싸인하기</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
                                             <div class="modal-body">
-                                               <div id="signature-pad" class="m-signature-pad">
-										        <div class="m-signature-pad--body">
-										            <canvas></canvas>
-										        </div>
-										        <div class="m-signature-pad--footer">
-										            <div class="description">사인해 주세요~</div>
-										            <button type="button" class="button clear" data-action="clear">지우기</button>
-										            <button type="button" class="button save" data-action="save">저장</button>
-										        </div>
-										    </div>
-                                           </div>
+ 												<iframe id="sof" name="sof" src="signature-pad.te" width="100%" height="400" frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>
+                                            </div>
                                         </div><!-- /.modal-content -->
                                     </div><!-- /.modal-dialog -->
-                                </div> --%>
-
-  	
-
-
-	 </c:if>
+                                </div>
+	</c:if>
 	
 	<c:if test="${mem.typee eq 's' }">
 	<button onclick="location.href='vlist.me';" align="center">리스트로 돌아가기</button>
-	
+	 
 	<c:if test="${v.tstatus eq 'N'}">
 	<a href="vupdateForm.me?v_no=${ v.v_no }">수정하기</a>
 	</c:if>
@@ -227,7 +194,7 @@
 	
 <script>
 
-$("#signText").click(function(){
+/* $("#signText").click(function(){
 	alert("ㅋㅋㅋ");
 })
 
@@ -289,7 +256,7 @@ function myvacation() {
 
 
 	
-
+ */
 
 
 
