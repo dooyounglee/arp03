@@ -68,7 +68,7 @@
 			</tr>
 			<tr>
 				<td>유튜브URL</td>
-				<td><input id="youtubeId" type="text" style="width:300px;" name="youtubeURL"></td>
+				<td><input id="youtubeId" type="text" style="width:300px;" name="youtubelink" value="${ q.youtubelink }"></td>
 				<iframe width="" height="" src="" frameborder="0"></iframe>
 			</tr>
 			<tr>

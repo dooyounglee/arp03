@@ -77,7 +77,7 @@ public class QController {
 		int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
 		q.setLec_no(lec_no);
 		QFile qf = new QFile();
-
+		System.out.println(q);
 		int resultqf = 0;
 
 		if (!file.getOriginalFilename().equals("")) {

@@ -50,25 +50,34 @@ public class SurveyController {
 		is.setM_no(m.getM_no());
 		System.out.println(is+"-------------");
 		System.out.println(q+"model");
-		int result=ss.insertsurvey(is);
+		/*
+		 * int su_no = ss.selectsu_no(); //설문조사 번호를 가져오는 메소드 is.setSu_no(su_no);
+		 */
+		int result=ss.insertsurvey(is);	// 설문조사 양식을 insert하는 메소드
+		/* System.out.println(su_no); */
 		//---------------------------- insertSurvey 구문-----------------
-		int ds =0;
+		int ds =0;			// 질문이 제대로 꽂혔는지 판단하는 변수
+		int dd =0;			// 제대로 트랜잭션 리턴값이 올때 판단하는 번수
 		if(result>0) {
-			List<SurveyQuestion> sq = ss.selectstudentmember();
-			int j = 1;
+			List<SurveyQuestion> sq = ss.selectstudentmember();	// 특정 수업의 학생들의 번호를 가져오는 메소드
+			int j = 1;		// 질문의 순서를 아는 변수
+		
 			for( Object qq : q.getQuestion()) {
 				System.out.println(qq+"========");
 				SurveyQuestion fs= new SurveyQuestion();
 				fs.setSq_no(j);
 				fs.setQuestion((String)qq);
-				for( Object osq:sq ) {
-					fs.setM_no((int)osq);
-					ds=ss.insertsurveyquestion(fs); 
+				for( SurveyQuestion osq:sq ) {
+					fs.setM_no(osq.getM_no());
+					ds=ss.insertsurveyquestion(fs); 					// 특정설문조사에 질문을 insert하는 메소드
+					System.out.println(ds);
 						if(ds<=0) {
+							dd+=1;
 							break;
 						}
 					}
 					if(ds<=0) {
+						dd+=1;
 						break;
 					}
 				j+=1;
@@ -76,7 +85,7 @@ public class SurveyController {
 		}
 //, @RequestParam("qlast") int qlast
 		
-		if(ds>0) {
+		if(dd==0) {
 			mv.setViewName("redirect:/selectsurvey.ma");
 		}else {
 			mv.setViewName("");

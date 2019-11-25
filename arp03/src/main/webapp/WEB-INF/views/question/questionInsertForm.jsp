@@ -43,7 +43,7 @@
 			</tr>
 			<tr>
 				<td>유튜브URL</td>
-				<td><input id="youtubeId" type="text" style="width:300px;" name="youtubeURL"></td>
+				<td><input id="youtubeId" type="text" style="width:300px;" name="youtubelink"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">

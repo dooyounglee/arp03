@@ -34,16 +34,33 @@
   	#{title}, #{enrolldate})
   </insert>
   
-  <insert id ="insertSurveyQuestion">
-  insert into surveyquestion values
-  (#{sq_no}, seq_insertsurvey.currval,#{m_no}, #{question})
-  </insert>
+  <select id="selectsu_no">
+  select seq_insertsurvey.nextval
+  from dual;
+  </select>
   
-  <select id="selectstudentmember">
+  <select id="selectstudentmember" resultMap="surveyquestion">
+  <!-- 
   select  mc.m_no
   from surveyquestion sq, insertsurvey iq , lecture l , myclass mc
-  where sq.su_no=seq_insertsurvey.currval And  sq.su_no=iq.su_no And iq.lec_no=l.lec_no And l.lec_no=mc.lec_no
+  where sq.sq_no=1 
+  And sq.m_no=mc.m_no 
+  And iq.su_no=2
+  And sq.su_no=iq.su_no 
+  And iq.lec_no=l.lec_no
+  And l.lec_no=mc.lec_no
+   -->
+   select  m_no
+	from myclass
+	where lec_no=2
   </select>
+  
+  <insert id ="insertSurveyQuestion">
+  insert into surveyquestion values
+  (#{sq_no}, seq_insertsurvey.currval,#{m_no}, #{question}, null)
+  </insert>
+  
+  
   
 	<select id="detailSurvey" resultType="InsertSurvey">
 		select *

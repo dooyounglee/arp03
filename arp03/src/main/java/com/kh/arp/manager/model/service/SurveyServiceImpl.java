@@ -50,4 +50,9 @@ public class SurveyServiceImpl implements SurveyService {
 	public List<SurveyQuestion> selectstudentmember() {
 		return sDao.selectstudentmember();
 	}
+
+	@Override
+	public int selectsu_no() {
+		return sDao.selectsu_no();
+	}
 }
