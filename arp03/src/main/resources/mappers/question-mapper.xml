@@ -145,7 +145,7 @@
 	<select id="qReplyListCount" resultType="_int">
 		select count(*)
 		from QReply
-		where q_no=#{q_no}
+		where q_no=#{q_no} and status='Y'
 	</select>
 	
 	<select id="selectTeacherName" resultMap="qList">
@@ -155,4 +155,15 @@
 		where lec_no=#{lec_no}
 	</select>
 	
+	<update id="deleteDatReply">
+		update QReply
+		set status='N'
+		where r_no=#{r_no}
+	</update>
+	
+	<select id="realTimeSelect" resultMap="qList">
+		select title
+		from question
+		order by vcount desc
+	</select>
 </mapper>

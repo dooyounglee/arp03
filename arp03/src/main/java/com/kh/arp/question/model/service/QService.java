@@ -70,6 +70,12 @@ public interface QService {
 	
 	// 선생님 이름 조회
 	Question selectTeacherName(int lec_no);
+	
+	// 대댓글 삭제(선생님댓글에대한 댓글)
+	int deleteDatReply(QReply qr);
+
+	// 질문게시판 조회수많은 질문 순서 리스트조회
+	ArrayList<Question> realTimeSelect();
 
 	/*
 	 * // QFile 검색 int selectQ(QFile qf);

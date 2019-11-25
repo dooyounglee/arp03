@@ -16,7 +16,7 @@
             <a href="list.at" class="list-group-item">출석관리</a>
             <a href="list.sc" class="list-group-item">점수관리</a>
             <a href="homeworklist.lec" class="list-group-item">숙제관리</a>
-            <a href="#9" class="list-group-item">Title will be 9</a>
+            <a href="selectsurvey.ma" class="list-group-item">설문조사</a>
             <a href="#10" class="list-group-item">Title will be 10</a>
             </c:if>
         </div>
