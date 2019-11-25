@@ -128,6 +128,16 @@ public class QServiceImple implements QService{
 		return qDao.selectTeacherName(lec_no);
 	}
 
+	@Override
+	public int deleteDatReply(QReply qr) {
+		return qDao.deleteDatReply(qr);
+	}
+
+	@Override
+	public ArrayList<Question> realTimeSelect() {
+		return qDao.realTimeSelect();
+	}
+
 
 	/*
 	 * @Override public int selectQ(QFile qf) { return qDao.selectQ(qf); }
