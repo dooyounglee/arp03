@@ -96,6 +96,7 @@ public class SurveyController {
 		sq.setM_no(m_no);
 		sq.setSu_no(su_no);
 		List<SurveyQuestion> s = ss.detailsurvey(sq);
+		System.out.println("dlendud"+s);
 		String ssq = s.get(0).getEnrolldate();
 		int ssu = s.get(0).getSu_no();
 		String title = s.get(0).getTitle();
