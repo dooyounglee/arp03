@@ -23,6 +23,7 @@ DROP TABLE Board;
 DROP TABLE BCategory;
 drop table auth;
 DROP TABLE Message;
+DROP TABLE completesurvey;
 DROP TABLE surveyquestion;
 DROP TABLE insertsurvey;
 --drop table survey;
