@@ -11,12 +11,13 @@ public class Vacation {
 	private String vacation_title;
 	private String reason;
 	private String start_date;
+	private String end_date;
 	private String start_count; // 휴가일수
 	private int date_count;
 	private String application_date;
 	private String tstatus;
 	private String companion_reason;
-	private String mstatus;
+	private String astatus;
 	private String status;
 	private String title;
 	private String name;
