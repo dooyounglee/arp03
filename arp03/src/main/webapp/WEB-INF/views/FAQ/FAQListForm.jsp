@@ -43,7 +43,7 @@ display:inline;
 
 		<!-- Page wrapper  -->
         <div class="page-wrapper">
-<br>
+<br><br><br>
 <h2 align="center">FAQ 입니다</h2>
 
 <c:if test="${ mem.id eq 'admin' }">
