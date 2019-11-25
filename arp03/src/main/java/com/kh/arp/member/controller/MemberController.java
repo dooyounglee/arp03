@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.arp.lecture.model.service.LectureService;
 import com.kh.arp.member.model.service.MemberService;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Member;
@@ -25,6 +26,9 @@ public class MemberController {
 	@Autowired
 	private MemberService ms;
 	
+	@Autowired
+	private LectureService ls;
+	
 	@GetMapping("/login.me")
 	public ModelAndView loginGet(ModelAndView mv, HttpServletRequest req, HttpSession session) {
 		
@@ -34,7 +38,9 @@ public class MemberController {
 				if(c.getName().equals("idid")) {
 					Member m=new Member();
 					m.setId(c.getValue());
-					session.setAttribute("mem", ms.getMember(m));
+					Member newm=ms.getMember(m);
+					session.setAttribute("mem", newm);
+					session.setAttribute("myLec", ms.getLectureList(newm));
 					mv.setViewName("redirect:/");
 					return mv;
 				}
@@ -53,8 +59,10 @@ public class MemberController {
 		//status=y일떄만 되도록 해야겠는데?
 		
 		Member mem=ms.login(m);
+		System.out.println("로그인"+mem);
 		if(mem!=null) {
 			session.setAttribute("mem", mem);
+			session.setAttribute("myLec", ms.getLectureList(mem));
 			if(remember!=null) {
 				Cookie cookie=new Cookie("idid", mem.getId());
 				cookie.setMaxAge(60*60*24*7);
@@ -101,6 +109,7 @@ public class MemberController {
 		Member mem=new Member();
 		mem.setEmail(getauth.getEmail());
 		mem=ms.getMember(mem);
+		System.out.println(mem);
 		mv.addObject("auth", mem);
 		mv.setViewName("member/join");
 		return mv;

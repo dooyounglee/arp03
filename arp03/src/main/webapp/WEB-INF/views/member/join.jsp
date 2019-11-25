@@ -82,12 +82,6 @@
                 <!-- ============================================================== -->
                 <!-- Row -->
                 <div class="row">
-                	<c:if test="${auth.typee eq 's' }">
-						<c:set var="s" value="checked"/>
-					</c:if>
-					<c:if test="${auth.typee eq 't' }">
-						<c:set var="t" value="checked"/>
-					</c:if>
                     <div class="col-lg-6 col-md-6 offset-3">
                         <div class="card card-body">
                             <h3 class="mb-0">가입</h3>
@@ -95,8 +89,9 @@
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <form action="join.me" method="post" autocomplete=off>
+                                    	${auth }
                                     	<input type="hidden" name="m_no" value="${auth.m_no }">
-										<input  name="typee" value="${auth.typee }" >학생
+										<input type="hidden" name="typee" value="${auth.typee }" >
                                         <div class="form-group">
                                             <label for="id">ID</label>
                                             <input type="text" class="form-control" name="id" id="id">
@@ -107,7 +102,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="pass">Confirm Password</label>
-                                            <input type="password" class="form-control" name="pw" id="pw2" placeholder="Password">
+                                            <input type="password" class="form-control" id="pw2" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <label for="id">Name</label>
@@ -191,7 +186,7 @@
 	</c:if> --%>
 		
 	<form action="join.me" method="post" autocomplete=off>
-		<input type="hidden" name="m_no" value="${auth.m_no }">
+		<input type="hidden" name="m_no" value="${auth.typee }">
 		<input type="radio" name="typee" value="s" ${s }>학생
 		<input type="radio" name="typee" value="t" ${t }>선생님<br>
 		id:<input name="id"><br>

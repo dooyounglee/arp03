@@ -2,7 +2,9 @@ package com.kh.arp.manager.model.service;
 
 import java.util.List;
 
+import com.kh.arp.manager.model.vo.CompleteSurvey;
 import com.kh.arp.manager.model.vo.InsertSurvey;
+import com.kh.arp.manager.model.vo.SurveyQuestion;
 
 public interface SurveyService {
 
@@ -13,6 +15,13 @@ public interface SurveyService {
 	
 	InsertSurvey detailsurvey(int su_no);
 	
-	int updatesurvey(InsertSurvey s);
+	List<SurveyQuestion> detailsurveyquestion(int su_no);
+	
+	List<SurveyQuestion> selectstudentmember();
+	
+	int insertcompletesurvey(CompleteSurvey s);
+	
+	int insertsurveyquestion(SurveyQuestion s);
+	
 	
 }

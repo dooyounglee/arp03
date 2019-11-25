@@ -2,6 +2,11 @@ package com.kh.arp.member.controller;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -49,7 +54,6 @@ public class AdminController {
 		}else {
 			list=ms.getLectureList(mem);
 		}
-		System.out.println(list);
 		mv.addObject("list",list);
 		mv.setViewName("mypage/lectureList");
 		return mv;
@@ -94,6 +98,7 @@ public class AdminController {
 		
 		//이미 있는 email인지 확인. 없으면 insert. 있으면 그걸로.
 		Member newm=ms.getMember(m);
+		System.out.println("이미있는이메일?"+newm);
 		if(newm!=null) {
 			result=1;
 		}else {
@@ -103,7 +108,7 @@ public class AdminController {
 			Auth auth=new Auth();
 			auth.setEmail(m.getEmail());
 			
-			//이미 있는 email인지 확인.
+			//Auth테이블에서 이미 있는 email인지 확인.
 			Auth newauth=ms.getAuth(auth);
 			if(newauth==null) {//없으면 insert. 
 				auth.setCode(randomCode(50));
@@ -113,13 +118,29 @@ public class AdminController {
 			}
 			
 			//이메일 전송
-			SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
-			simpleMailMessage.setFrom("gostbaducking2@gmail.com");
-			simpleMailMessage.setTo(auth.getEmail());
-			simpleMailMessage.setSubject("arp 인증 테스트");
-			simpleMailMessage.setText(req.getServerName()+":"+req.getServerPort()+"/arp/auth.me?code="+auth.getCode());
-			javaMailSenderImple.send(simpleMailMessage);
+			/*
+			 * SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
+			 * simpleMailMessage.setFrom("gostbaducking2@gmail.com");
+			 * simpleMailMessage.setTo(auth.getEmail());
+			 * simpleMailMessage.setSubject("arp 인증 테스트");
+			 * simpleMailMessage.setText(req.getServerName()+":"+req.getServerPort()+
+			 * "/arp/auth.me?code="+auth.getCode());
+			 * javaMailSenderImple.send(simpleMailMessage);
+			 */
 			
+			MimeMessage message = javaMailSenderImple.createMimeMessage();
+			try {
+				message.setFrom(new InternetAddress("gostbaducking2@gmail.com"));
+				message.addRecipient(RecipientType.TO, new InternetAddress(auth.getEmail()));
+				message.setSubject("arp 인증 테스트");
+				message.setText("<a href=\""+req.getServerName()+":"+req.getServerPort()+"/arp/auth.me?code="+auth.getCode()+"\" target=\"_blank\">여기를 누르면 가입페이지로 이동합니다.</a>","utf-8", "html");
+				javaMailSenderImple.send(message);
+			} catch (AddressException e) {
+				e.printStackTrace();
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}  
+			  
 			mv.setViewName("redirect:/memberList.ad");
 		}else {
 			mv.setViewName("mypage/admin/insertStudent");

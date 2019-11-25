@@ -8,41 +8,54 @@
 		<result property="m_no" column="m_no"/>
 		<result property="title" column="title"/>
 		<result property="enrolldate" column="enrolldate"/>
-		<result property="q1" column="q1"/>
-		<result property="q2" column="q2"/>
-		<result property="q3" column="q3"/>
-		<result property="name" column="name"/>
 		<result property="title_1" column="lec_title"/>
 	</resultMap>
 	
-	<resultMap id="completesurveyList" type="CompleteSurvey">
+		<resultMap id="surveyquestion" type="SurveyQuestion">
+		<id property="sq_no" column="sq_no"/>
 		<id property="su_no" column="su_no"/>
-		<result property="m_no" column="m_no"/>
-		<result property="a1" column="a1"/>
-		<result property="a2" column="a2"/>
-		<result property="a3" column="a3"/>
+		<id property="m_no" column ="m_no"/>
+		<result property="question" column="question"/>
+		<result property="answer" column="answer"/>
 		<result property="name" column="name"/>
-		<result property="issurvey" column="issurvey"/>
 	</resultMap>
 	
-  <insert id="insertSurvey">
-  	insert into survey values
-  	(seq_survey.nextval, #{m_no2}, #{lec_no}, #{m_no}, 
-  	#{title}, #{enrolldate},
-  	#{q1}, #{a1}, #{q2}, #{a2}, #{q3}, #{a3}, #{issurvey})
-  </insert>
-  
-  <select id="selectSurvey" resultMap="insertsurveyList">
+	
+	<select id="selectSurvey" resultMap="insertsurveyList">
   	select su_no, s.title, enrolldate, name, l.title lec_title
-	from Survey s 
+	from insertSurvey s 
 	join lecture l on s.lec_no=l.lec_no
 	join member m on s.m_no=m.m_no
   </select>
 	
+  <insert id="insertSurvey">
+  	insert into insertsurvey values
+  	(seq_insertsurvey.nextval,  #{lec_no}, #{m_no}, 
+  	#{title}, #{enrolldate})
+  </insert>
+  
+  <insert id ="insertSurveyQuestion">
+  insert into surveyquestion values
+  (#{sq_no}, seq_insertsurvey.currval,#{m_no}, #{question})
+  </insert>
+  
+  <select id="selectstudentmember">
+  select  mc.m_no
+  from surveyquestion sq, insertsurvey iq , lecture l , myclass mc
+  where sq.su_no=seq_insertsurvey.currval And  sq.su_no=iq.su_no And iq.lec_no=l.lec_no And l.lec_no=mc.lec_no
+  </select>
+  
 	<select id="detailSurvey" resultType="InsertSurvey">
 		select *
-		from Survey
+		from insertSurvey
 		where su_no=#{su_no}
 	</select>
 
+	<select id="detailsurveyquestion" resultMap="surveyquestion">
+		select sq_no, question, name
+		from surveyquestion s
+		join member m on s.m_no=m.m_no
+		where su_no=#{su_no} And m_no=#{m_no}
+	</select>
+	
 </mapper>

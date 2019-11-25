@@ -3,12 +3,17 @@ package com.kh.arp.lecture.model.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kh.arp.lecture.model.vo.Attendence;
 import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Exam;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.lecture.model.vo.Score;
+import com.kh.arp.lecture.model.vo.ScoreH;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.problem.model.vo.Answer;
+import com.kh.arp.problem.model.vo.Homework;
+import com.kh.arp.problem.model.vo.ProblemRelated;
 
 public interface LectureService {
 
@@ -35,5 +40,19 @@ public interface LectureService {
 	List<Score> getLectureScore(int lec_no);
 
 	List<Classdate> getLectureDatesList(int lec_no);
+
+	int insertAttendence(Attendence att);
+
+	List<Attendence> getLectureAttendence(int lec_no);
+
+	List<Homework> getHomeworkListInLecture(int lec_no);
+
+	int addHomeworkInLecture(ProblemRelated hw_lec);
+
+	int delHomeworkInLecture(ProblemRelated hw_lec);
+
+	int submitAnswer(Answer ans);
+
+	List<ScoreH> getHomeworkScore(int lec_no);
 
 }

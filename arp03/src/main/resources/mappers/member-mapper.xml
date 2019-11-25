@@ -31,10 +31,10 @@
 	</update>
 	
 	<insert id="insertMember">
-		<if test='typee == "s"'>
+		<if test='typee == "s".toString()'>
 			insert into member(m_no,typee,email,status) values(seq_member.nextval,#{typee},#{email},default)
 		</if>
-		<if test='typee == "t"'>
+		<if test='typee == "t".toString()'>
 			insert into member(m_no,typee,email,status,name,phone) values(seq_member.nextval,#{typee},#{email},default,#{name},#{phone})
 		</if>
 	</insert>
@@ -102,6 +102,9 @@
 	
 	<select id="getLectureList" resultType="Lecture">
 		<choose>
+			<when test="typee == 'a'.toString()">
+				select * from lecture
+			</when>
 			<when test="typee == 't'.toString()">
 				select * from lecture where m_no=#{m_no}
 			</when>
