@@ -27,12 +27,12 @@ public class SurveyServiceImpl implements SurveyService {
 	}
 
 	@Override
-	public InsertSurvey detailsurvey(int su_no) {
-		return sDao.detailsurvey(su_no);
+	public List<SurveyQuestion> detailsurvey(SurveyQuestion sq) {
+		return sDao.detailsurvey(sq);
 	}
 
 	@Override
-	public int insertcompletesurvey(CompleteSurvey s) {
+	public int insertcompletesurvey(SurveyQuestion s) {
 		return sDao.insertcompletesurvey(s);
 	}
 
@@ -41,18 +41,19 @@ public class SurveyServiceImpl implements SurveyService {
 		return sDao.insertsurveyquestion(s);
 	}
 
-	@Override
-	public List<SurveyQuestion> detailsurveyquestion(int su_no) {
-		return sDao.detailsurveyquestion(su_no);
-	}
 
 	@Override
-	public List<SurveyQuestion> selectstudentmember() {
-		return sDao.selectstudentmember();
+	public List<SurveyQuestion> selectstudentmember(int lec_no) {
+		return sDao.selectstudentmember(lec_no);
 	}
 
 	@Override
 	public int selectsu_no() {
 		return sDao.selectsu_no();
+	}
+
+	@Override
+	public int updatesurveyquestion(SurveyQuestion s) {
+		return sDao.updatesurveyquestion(s);
 	}
 }

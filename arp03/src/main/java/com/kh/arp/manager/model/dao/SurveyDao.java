@@ -1,5 +1,6 @@
 package com.kh.arp.manager.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -23,23 +24,25 @@ public class SurveyDao {
 	public List<InsertSurvey> selectsurvey(){
 		return sqlSession.selectList("surveyMapper.selectSurvey");
 	}
-	public InsertSurvey detailsurvey(int su_no){
-		return sqlSession.selectOne("surveyMapper.detailSurvey", su_no);
+	
+	public List<SurveyQuestion> detailsurvey(SurveyQuestion sq){
+		return sqlSession.selectList("surveyMapper.detailSurvey", sq);
 	}
 	
-	public int insertcompletesurvey(CompleteSurvey s) {
+	public int insertcompletesurvey(SurveyQuestion s) {
 		return sqlSession.insert("surveyMapper.insertCompleteSurvey", s);
 	}
 	public int insertsurveyquestion(SurveyQuestion s) {
 		return sqlSession.insert("surveyMapper.insertSurveyQuestion", s);
 	}
-	public List<SurveyQuestion> detailsurveyquestion(int su_no) {
-		return sqlSession.selectList("surveyMapper.detailsurveyquestion", su_no);
-	}
-	public List<SurveyQuestion> selectstudentmember(){
-		return sqlSession.selectList("surveyMapper.selectstudentmember");
+	
+	public List<SurveyQuestion> selectstudentmember(int lec_no){
+		return sqlSession.selectList("surveyMapper.selectstudentmember", lec_no);
 	}
 	public int selectsu_no() {
 		return sqlSession.selectOne("surveyMapper.selectsu_no");
+	}
+	public int updatesurveyquestion(SurveyQuestion sq) {
+		return sqlSession.update("surveyMapper.updatesurveyquestion",sq);
 	}
 }
