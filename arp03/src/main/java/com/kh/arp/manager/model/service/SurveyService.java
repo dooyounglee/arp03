@@ -17,6 +17,8 @@ public interface SurveyService {
 	
 	List<SurveyQuestion> detailsurveyquestion(int su_no);
 	
+	int selectsu_no();
+	
 	List<SurveyQuestion> selectstudentmember();
 	
 	int insertcompletesurvey(CompleteSurvey s);

@@ -39,4 +39,7 @@ public class SurveyDao {
 	public List<SurveyQuestion> selectstudentmember(){
 		return sqlSession.selectList("surveyMapper.selectstudentmember");
 	}
+	public int selectsu_no() {
+		return sqlSession.selectOne("surveyMapper.selectsu_no");
+	}
 }
