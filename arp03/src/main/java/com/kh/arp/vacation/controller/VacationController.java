@@ -223,4 +223,9 @@ public class VacationController {
 		//System.out.println(result);
 		return result;
 	}
+	
+	@RequestMapping("signature-pad.te")
+	public String signaturePad() {
+		return "vacation/signature-pad";
+	}
 }

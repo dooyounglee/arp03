@@ -135,15 +135,12 @@
 	<c:if test="${mem.typee eq 't' }">
 	<button onclick="location.href='sVlist.te';">리스트로돌아가기</button>
 	
-	<a onclick="location.href='permission.te?v_no=${v.v_no }'" style="cursor:pointer">허가</a>
+	<%-- <a onclick="location.href='permission.te?v_no=${v.v_no }'" style="cursor:pointer">허가</a> --%>
 	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-example-modal-lg">허가</button>
 	<!--<button id="sign">사인하기</button>  -->
 	<a onclick="window.open('companiForm.me?v_no=${v.v_no}',width=300, height=300)" style="cursor:pointer">반려</a>
 	
 	<!-- iframe으로 가져오기 -->
-	
- 	
- 
 	<div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">

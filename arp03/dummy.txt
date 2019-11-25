@@ -109,9 +109,11 @@ CREATE TABLE vacation (
 	date_count	Number		NOT NULL,
 	application_date	date	NOT NULL,
 	tstatus	varchar2(100)	DEFAULT 'N'	NOT NULL,
+	sign varchar2(1000) 	NOT NULL,
 	companion_reason varchar2(2000) NULL,
 	astatus  varchar2(100)	DEFAULT 'N' NOT NULL,
 	status	varchar2(100)	DEFAULT 'N'	NOT NULL
+	
 );
 
 CREATE TABLE Message (
