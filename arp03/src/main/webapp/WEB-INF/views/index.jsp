@@ -44,8 +44,9 @@
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
-                    <div class="col-md-7 col-4 align-self-center">
-                        <div class="d-flex m-t-10 justify-content-end">
+                    <div class="col-md-7 col-4 align-self-center" style="padding-left:30%;">
+                        <jsp:include page="question/qRealTime.jsp"></jsp:include>
+                        <!-- <div class="d-flex m-t-10 justify-content-end">
                             <div class="d-flex m-r-20 m-l-10 hidden-md-down">
                                 <div class="chart-text m-r-10">
                                     <h6 class="m-b-0"><small>THIS MONTH</small></h6>
@@ -68,7 +69,7 @@
                                 <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i
                                         class="ti-settings text-white"></i></button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- ============================================================== -->

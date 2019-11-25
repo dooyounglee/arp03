@@ -40,7 +40,7 @@
 	</c:if>
 	</h3>
 	
-	<%@ include file="qRealTime.jsp"%>
+	 <jsp:include page="qRealTime.jsp" />
 	
 	<table align="center" border="1" cellspacing="0" width="800">
 		<tr>

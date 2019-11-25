@@ -74,11 +74,20 @@ body {
 	font-size:15px;
 	color:white;
 }
+ol li{
+	margin:0px;
+	margin-top:0px;
+}
+.realText{
+	font-weight:bold;
+	color:yellow;
+}
 
 </style>
 </head>
 <body>
         	<div id="content">
+        	<div class="realText">많이 찾아본 질문 순위</div>
             <dl id="rank-list">
                 <dt>실시간 급상승 검색어</dt>
                 <dd>
