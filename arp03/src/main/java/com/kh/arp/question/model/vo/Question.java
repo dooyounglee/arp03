@@ -25,4 +25,5 @@ public class Question {
 	private String originalname;
 	private String changename;
 	private String tcname;	// 선생님이름
+	private String youtubelink;
 }

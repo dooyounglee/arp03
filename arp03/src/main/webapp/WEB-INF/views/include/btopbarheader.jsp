@@ -257,8 +257,8 @@
 	                            <div class="dw-user-box">
 	                                <div class="u-img"><img src="/${cp }/resources/material-pro/assets/images/users/1.jpg" alt="user"></div>
 	                                <div class="u-text">
-	                                    <h4>Steave Jobs</h4>
-	                                    <p class="text-muted"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f98f988b8c97b99e94989095d79a9694">[email&#160;protected]</a></p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+	                                    <h4>${mem.name }</h4>
+	                                    <p class="text-muted">${mem.email}<!-- <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f98f988b8c97b99e94989095d79a9694">[email&#160;protected]11</a> --></p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
 	                            </div>
 	                        </li>
 	                        <li role="separator" class="divider"></li>
