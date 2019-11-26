@@ -122,7 +122,8 @@
 	           	                                     		<button class="btn btn-primary" onclick="banishCancle(${m.m_no})">강퇴취소</button>
 	                                                	</c:if>
 	                                                	<c:if test="${m.status eq 'A'}">
-	           	                                     		<button class="btn btn-primary">A는 인증됐따는건가</button>
+	                                                		유저가 인증하기 전
+	           	                                     		<%-- <button class="btn btn-primary" onclick="accept(${m.m_no})">승인</button> --%>
 	                                                	</c:if>
 	                                                </td>
 												</tr>
@@ -187,6 +188,11 @@
 			formm.children('input').eq(0).val(m_no)
 			formm.submit();
 		}
+		/* function accept(m_no){
+			var formm=$('#form').attr('action','acceptMember.ad')
+			formm.children('input').eq(0).val(m_no)
+			formm.submit();
+		} */
 	</script>
 	<jsp:include page="../../include/footer.jsp"/>
 </body>

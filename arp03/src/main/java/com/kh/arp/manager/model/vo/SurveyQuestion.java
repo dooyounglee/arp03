@@ -13,4 +13,5 @@ public class SurveyQuestion {
 	private String name;		// 학생이름
 	private String enrolldate;   // 날짜
 	private String title;
+	private String issurvey;	// 설문조사 완료판단 필드
 }

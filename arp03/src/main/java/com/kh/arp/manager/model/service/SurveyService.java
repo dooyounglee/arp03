@@ -25,5 +25,11 @@ public interface SurveyService {
 	
 	int updatesurveyquestion(SurveyQuestion s);
 	
-	List<SurveyQuestion> detailsurveystudent(int su_no);
+	List<SurveyQuestion> detailsurveyYstudent(int su_no);
+	
+	List<SurveyQuestion> detailsurveyNstudent(int su_no);
+	
+	List<SurveyQuestion> resultsurvey(SurveyQuestion sq);
+	
+	List<SurveyQuestion> su_nosurvey(SurveyQuestion sq);
 }

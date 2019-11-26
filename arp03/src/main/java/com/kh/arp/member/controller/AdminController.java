@@ -301,6 +301,12 @@ public class AdminController {
 		return mv;
 	}
 	
+	@PostMapping("/acceptMember.ad")
+	public ModelAndView acceptMemberPost(Member mem, ModelAndView mv) {
+		int result=ms.acceptMember(mem);
+		mv.setViewName("redirect:/memberList.ad");
+		return mv;
+	}
 	
 	
 	

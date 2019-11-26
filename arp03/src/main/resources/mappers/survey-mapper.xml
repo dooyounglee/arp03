@@ -20,6 +20,7 @@
 		<result property="name" column="name"/>
 		<result property="enrolldate" column="enrolldate"/>
 		<result property="title" column="title"/>
+		<result property="issurvey" column="issurvey"/>
 	</resultMap>
 	
 	
@@ -54,7 +55,7 @@
   
   <insert id ="insertSurveyQuestion">
   insert into surveyquestion values
-  (#{sq_no}, seq_insertsurvey.currval,#{m_no}, #{question}, null)
+  (#{sq_no}, seq_insertsurvey.currval,#{m_no}, #{question}, null, 'N')
   </insert>
   
   
@@ -65,18 +66,39 @@
         from surveyquestion sq, insertsurvey ie
 		where sq.m_no=#{m_no} and sq.su_no=#{su_no} and sq.su_no=ie.su_no
 	</select>
-
-	<select id="detailSurveyStudent" resultMap="surveyquestion">
-		select m_no
-		from surveyquestion 
-		where su_no=#{su_no} and issurvey='N'
-	</select>
+	
+	
 	<update id="updatesurveyquestion">
 		update surveyquestion set 
-		answer=#{answer}
+		answer=#{answer},
+		issurvey='Y'
 		where m_no=#{m_no}
 		And su_no=#{su_no}
 		And sq_no=#{sq_no}
 	</update>
+
+	<select id="detailSurveyYStudent" resultMap="surveyquestion">
+		select sq.m_no, m.name
+		from surveyquestion  sq, member m 
+		where su_no=#{su_no} and issurvey='Y' and m.m_no=sq.m_no and sq_no=1
+	</select>
 	
+	<select id="detailSurveyNStudent" resultMap="surveyquestion">
+		select sq.m_no, m.name
+		from surveyquestion  sq, member m 
+		where su_no=#{su_no} and issurvey='N' and m.m_no=sq.m_no and sq_no=1
+	</select>
+	
+	<select id="sq_noSurvey" resultMap="surveyquestion">
+		select sq.sq_no sq.m_no
+        from surveyquestion sq
+		where sq.m_no=#{m_no} and sq.su_no=#{su_no}
+	</select>
+	
+	<!-- sq와 su넘버만 넣은 셀렉문 -->
+	<select id="resultSurvey" resultMap="surveyquestion">
+		select answer
+		from surveyquestion
+		where sq_no=#{sq_no} And su_no=#{su_no} And issurvey="Y"
+	</select>
 </mapper>

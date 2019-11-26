@@ -81,31 +81,7 @@
                     <li><a href="ui-toasts.html">Toasts</a></li>
                 </ul>
             </li>
-            <li class="nav-devider"></li>
-            <li class="nav-small-cap">FORMS, TABLE &amp; WIDGETS</li>
-            <li class="two-column">
-                <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">매니저</span></a>
-                <ul aria-expanded="false" class="collapse">
-                    <li><a href="studentconsulting.ma">학생상담</a></li>
-                    <li><a href="lectureList.ad">설문조사</a></li>
-                    <li><a href="form-addons.html">Form Addons</a></li>
-                    <li><a href="form-material.html">Form Material</a></li>
-                    <li><a href="form-float-input.html">Floating Lable</a></li>
-                    <li><a href="form-pickers.html">Form Pickers</a></li>
-                    <li><a href="form-upload.html">File Upload</a></li>
-                    <li><a href="form-mask.html">Form Mask</a></li>
-                    <li><a href="form-validation.html">Form Validation</a></li>
-                    <li><a href="form-dropzone.html">File Dropzone</a></li>
-                    <li><a href="form-icheck.html">Icheck control</a></li>
-                    <li><a href="form-img-cropper.html">Image Cropper</a></li>
-                    <li><a href="form-bootstrapwysihtml5.html">HTML5 Editor</a></li>
-                    <li><a href="form-typehead.html">Form Typehead</a></li>
-                    <li><a href="form-wizard.html">Form Wizard</a></li>
-                    <li><a href="form-xeditable.html">Xeditable Editor</a></li>
-                    <li><a href="form-summernote.html">Summernote Editor</a></li>
-                    <li><a href="form-tinymce.html">Tinymce Editor</a></li>
-                </ul>
-            </li>
+            
             
             <li class="nav-devider"></li>
             <li class="nav-small-cap">EXTRA COMPONENTS</li>

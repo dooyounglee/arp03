@@ -189,6 +189,11 @@ public class MemberServiceImple implements MemberService {
 		return md.getLectureList(mem);
 	}
 
+	@Override
+	public int acceptMember(Member mem) {
+		return md.acceptMember(mem);
+	}
+
 
 
 }
