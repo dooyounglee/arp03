@@ -58,6 +58,7 @@
                     <li><a href="myInfo.me">내 정보</a></li>
                     <li><a href="mainMsg.do">쪽지함</a></li>
                     <li><a href="sVlist.te">학생휴가 관리</a></li>
+                    <li><a href="calmain.ca">캘린더</a></li>
                     <li><a href="ui-tooltip-popover.html">Tooltip &amp; Popover</a></li>
                     <li><a href="ui-notification.html">Notification</a></li>
                     <li><a href="ui-progressbar.html">Progressbar</a></li>

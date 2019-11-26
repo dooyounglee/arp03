@@ -26,6 +26,7 @@ DROP TABLE Message;
 DROP TABLE surveyquestion;
 DROP TABLE insertsurvey;
 --drop table survey;
+DROP TABLE CALENDAR;
 DROP TABLE LECTURE;
 DROP TABLE member;
 
@@ -315,10 +316,12 @@ CREATE TABLE homeworkanswer(
 	PRIMARY key(lec_no,hw_no,p_no,m_no)
 );
 
-
-
-
-
+CREATE TABLE CALENDAR(	
+	"C_NO" NUMBER PRIMARY KEY, 
+	"M_NO" NUMBER REFERENCES MEMBER, 
+	"TITLE" VARCHAR2(100 BYTE) NOT NULL, 
+	"STARTDAY" DATE, 
+	"ENDDAY" DATE);
 
 
 
@@ -343,6 +346,7 @@ DROP SEQUENCE SEQ_insertSURVEY;		-- 설문조사 번호
 DROP SEQUENCE seq_homework;
 DROP SEQUENCE seq_problem;
 DROP SEQUENCE seq_variables;
+DROP SEQUENCE SEQ_CALENDAR;
 
 CREATE SEQUENCE SEQ_Notice; 		-- 공지사항 번호
 CREATE SEQUENCE SEQ_FAQ;			-- FAQ 번호
@@ -364,6 +368,7 @@ CREATE SEQUENCE SEQ_insertSURVEY;			-- 설문조사 번호
 CREATE SEQUENCE seq_homework;
 CREATE SEQUENCE seq_problem;
 CREATE SEQUENCE seq_variables;
+CREATE SEQUENCE SEQ_CALENDAR;		-- 캘린더 번호
 
 /*drop trigger filestatusTrigger;
 create or replace trigger filestatusTrigger -- 첨부파일 상태 트리거

@@ -49,6 +49,12 @@
 	<c:if test="${mem.typee ne 't' }">
 		<a onclick="no();">학생휴가 관리</a>
 	</c:if>
+	<c:if test="${ mem.typee eq 't' }">
+		<a href="calist.ca">캘린더</a>
+	</c:if>
+	<c:if test="${ mem.typee ne 't' }">
+		<a onclick="no();">캘린더</a>
+	</c:if>
 		<hr>
 		
 		매니저
