@@ -13,17 +13,23 @@ public interface SurveyService {
 	
 	List<InsertSurvey> selectsurvey();
 	
-	InsertSurvey detailsurvey(int su_no);
-	
-	List<SurveyQuestion> detailsurveyquestion(int su_no);
+	List<SurveyQuestion> detailsurvey(SurveyQuestion sq);
 	
 	int selectsu_no();
 	
-	List<SurveyQuestion> selectstudentmember();
+	List<SurveyQuestion> selectstudentmember(int lec_no);
 	
-	int insertcompletesurvey(CompleteSurvey s);
+	int insertcompletesurvey(SurveyQuestion s);
 	
 	int insertsurveyquestion(SurveyQuestion s);
 	
+	int updatesurveyquestion(SurveyQuestion s);
 	
+	List<SurveyQuestion> detailsurveyYstudent(int su_no);
+	
+	List<SurveyQuestion> detailsurveyNstudent(int su_no);
+	
+	List<SurveyQuestion> resultsurvey(SurveyQuestion sq);
+	
+	List<SurveyQuestion> su_nosurvey(SurveyQuestion sq);
 }

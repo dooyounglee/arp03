@@ -123,20 +123,16 @@
                                         	<c:forEach var="p" items="${plist }" varStatus="i">
                                         		<tr>
                                         			<c:if test="${empty alist || alist.size()==0}">
-														<td rowspan="3">
-															${p.problem }
-														</td>
+                                        			<td rowspan="3">
 													</c:if>
                                         			<c:if test="${alist.size()>0 && alist[i.index].ox eq 'O'}">
-														<td rowspan="3" class="rightAnswer">
-															${p.problem }
-														</td>
+                                        			<td rowspan="3" class="rightAnswer">
 													</c:if>
 													<c:if test="${alist.size()>0 && alist[i.index].ox eq 'X'}">
-														<td rowspan="3" class="wrongAnswer">
-															${p.problem }
-														</td>
+													<td rowspan="3" class="wrongAnswer">
 													</c:if>
+														${p.problem }
+													</td>
 													<td>
 														<c:if test="${empty alist || alist.size()==0 }">
 															답:<input data-p_no="${p.p_no }"><br>
@@ -145,26 +141,21 @@
 															제출답:\(${alist[i.index].answer }\)
 														</c:if>
 													</td>
-													<%-- <td rowspan="2">
-														<c:if test="${alist.size()>0 }">
-															${alist[i.index].ox }
-														</c:if>
-													</td> --%>
 												</tr>
+												<c:if test="${alist.size()>0 }">
 												<tr>
 													<td>
-														<c:if test="${alist.size()>0 }">
 															답: ${p.solution }
-														</c:if>
 													</td>
 												</tr>
+												</c:if>
+												<c:if test="${alist.size()>0 }">
 												<tr>
 													<td>
-														<c:if test="${alist.size()>0 }">
 														풀이:${p.solve }
-														</c:if>
 													</td>
 												</tr>
+												</c:if>
 											</c:forEach>
                                         	<%-- <c:forEach var="p" items="${list }">
                                         		<tr>

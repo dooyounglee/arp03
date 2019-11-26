@@ -80,32 +80,39 @@
                                 <h4 class="card-title">강좌관리</h4><a class="btn btn-primary float-right" href="make.lec">강좌 만들기</a>
                                 <h6 class="card-subtitle">Add class <code>.table</code></h6>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>m_no</th>
+                                                <th>Teacher</th>
                                                 <th>title</th>
                                                 <th>dayofweek</th>
                                                 <th>place</th>
                                                 <th>count</th>
+                                                <c:if test="${mem.typee eq 'a' }">
+                                                <th>삭제</th>
+                                                </c:if>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         	<c:forEach var="l" items="${list }">
                                         		<tr>
 	                                        		<td>${l.lec_no }</td>
-	                                                <td>${l.m_no }</td>
+	                                                <td>${l.name }</td>
 	                                                <td><a href="main.lec?lec_no=${l.lec_no }">${l.title }</a></td>
-	                                                <td>${l.dayofweek }</td>
+	                                                <td>${l.dayofweek.replace('0','일').replace('1','월').replace('2','화').replace('3','수').replace('4','목').replace('5','금').replace('6','토') }</td>
 	                                                <td>${l.place }</td>
-	                                                <td>${l.ingcount }/${l.headcount }</td>
+	                                                <td>${l.cnt }/${l.headcount }</td>
 	                                                <td>
-	                                                	<c:if test="${r.status eq 'Y'}">
-	                                                		<button class="btn btn-danger" onclick="deleteReply(${r.r_no})">삭제</button>
+	                                                	<c:if test="${mem.typee eq 'a' && l.status eq 'Y'}">
+	                                                		<button class="btn btn-danger" onclick="del(${l.lec_no})">삭제</button>
 	                                                	</c:if>
-	                                                	<c:if test="${r.status eq 'N'}">
-	           	                                     		<button class="btn btn-primary" onclick="deleteCancleReply(${r.r_no})">삭제취소</button>
+	                                                	<c:if test="${mem.typee eq 'a' && l.status eq 'N'}">
+	           	                                     		<button class="btn btn-primary" onclick="cancle(${l.lec_no})">삭제취소</button>
+	                                                	</c:if>
+	                                                	<c:if test="${mem.typee eq 'a' && l.status eq 'A'}">
+	           	                                     		<button class="btn btn-success" onclick="accept(${l.lec_no})">수락</button>
+	           	                                     		<button class="btn btn-warning" onclick="reject(${l.lec_no})">거절</button>
 	                                                	</c:if>
 	                                                </td>
 												</tr>
@@ -151,17 +158,30 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-<%-- 	<jsp:include page="../include/header.jsp"/>
-	<a href="make.lec">강의 만들기</a><br>
-	<c:forEach var="c" items="${list }">
-		<a href="main.lec?lec_no=${c.lec_no }">${c }</a><br>
-	</c:forEach>
-	<jsp:include page="../include/footer.jsp"/> --%>
+<form id="form" method='post'>
+	<input type="hidden" name="lec_no">
+</form>
+<script>
+	function del(lec_no){
+		var formm=$('#form').attr('action','del.lec')
+		formm.children('input').eq(0).val(lec_no)
+		formm.submit();
+	}
+	function cancle(lec_no){
+		var formm=$('#form').attr('action','delCancel.lec')
+		formm.children('input').eq(0).val(lec_no)
+		formm.submit();
+	}
+	function accept(lec_no){
+		var formm=$('#form').attr('action','accept.lec')
+		formm.children('input').eq(0).val(lec_no)
+		formm.submit();
+	}
+	function reject(lec_no){
+		var formm=$('#form').attr('action','reject.lec')
+		formm.children('input').eq(0).val(lec_no)
+		formm.submit();
+	}
+</script>
 </body>
 </html>

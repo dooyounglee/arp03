@@ -136,4 +136,29 @@ public class LectureServiceImple implements LectureService {
 		return ld.getHomeworkScore(lec_no);
 	}
 
+	@Override
+	public int deleteLecture(Lecture lec) {
+		return ld.deleteLecture(lec);
+	}
+
+	@Override
+	public int deleteLectureCancle(Lecture lec) {
+		return ld.deleteLectureCancle(lec);
+	}
+
+	@Override
+	public List<Lecture> getlectureList(int m_no) {
+		return ld.getlectureList(m_no);
+	}
+
+	@Override
+	public int acceptLecture(Lecture lec) {
+		return ld.acceptLecture(lec);
+	}
+
+	@Override
+	public int rejectLecture(Lecture lec) {
+		return ld.rejectLecture(lec);
+	}
+
 }

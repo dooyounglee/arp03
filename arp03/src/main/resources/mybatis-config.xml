@@ -33,6 +33,7 @@
 		<typeAlias type="com.kh.arp.problem.model.vo.Variables" alias="Variables"/>
 		<typeAlias type="com.kh.arp.problem.model.vo.Homework" alias="Homework"/>
 		<typeAlias type="com.kh.arp.problem.model.vo.Answer" alias="Answer"/>
+		<typeAlias type="com.kh.arp.calendar.model.vo.Calendar" alias="Calendar"/>
 	</typeAliases>
 	
 	<mappers>
@@ -50,5 +51,6 @@
 		<mapper resource="/mappers/survey-mapper.xml"/>
 		<mapper resource="/mappers/msg-mapper.xml"/>
 		<mapper resource="/mappers/problem-mapper.xml"/>
+		<mapper resource="/mappers/calendar-mapper.xml"/>
 	</mappers>
 </configuration>

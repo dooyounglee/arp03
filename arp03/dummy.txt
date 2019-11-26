@@ -27,6 +27,7 @@ DROP TABLE completesurvey;
 DROP TABLE surveyquestion;
 DROP TABLE insertsurvey;
 --drop table survey;
+DROP TABLE CALENDAR;
 DROP TABLE LECTURE;
 DROP TABLE member;
 
@@ -272,6 +273,7 @@ CREATE TABLE surveyquestion(
 	m_no number REFERENCES member,
 	question varchar2(4000) NOT NULL,
 	answer varchar2(4000) NULL,
+	issurvey varchar2(10) DEFAULT 'N' NOT NULL,
 	PRIMARY KEY(sq_no, su_no, m_no)
 );
 
@@ -318,10 +320,12 @@ CREATE TABLE homeworkanswer(
 	PRIMARY key(lec_no,hw_no,p_no,m_no)
 );
 
-
-
-
-
+CREATE TABLE CALENDAR(	
+	"C_NO" NUMBER PRIMARY KEY, 
+	"M_NO" NUMBER REFERENCES MEMBER, 
+	"TITLE" VARCHAR2(100 BYTE) NOT NULL, 
+	"STARTDAY" DATE, 
+	"ENDDAY" DATE);
 
 
 
@@ -346,6 +350,7 @@ DROP SEQUENCE SEQ_insertSURVEY;		-- 설문조사 번호
 DROP SEQUENCE seq_homework;
 DROP SEQUENCE seq_problem;
 DROP SEQUENCE seq_variables;
+DROP SEQUENCE SEQ_CALENDAR;
 
 CREATE SEQUENCE SEQ_Notice; 		-- 공지사항 번호
 CREATE SEQUENCE SEQ_FAQ;			-- FAQ 번호
@@ -367,6 +372,7 @@ CREATE SEQUENCE SEQ_insertSURVEY;			-- 설문조사 번호
 CREATE SEQUENCE seq_homework;
 CREATE SEQUENCE seq_problem;
 CREATE SEQUENCE seq_variables;
+CREATE SEQUENCE SEQ_CALENDAR;		-- 캘린더 번호
 
 /*drop trigger filestatusTrigger;
 create or replace trigger filestatusTrigger -- 첨부파일 상태 트리거
@@ -379,51 +385,51 @@ end;*/
 
  
 INSERT INTO member VALUES(-1, 'a', 'admin','admin', 'admin', 'email0', 'phone0', sysdate, sysdate, sysdate, 0, 'Y');
-insert into member values(seq_member.nextval,'s','s1','1','name1','email1','phone1',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s2','1','name2','email2','phone2',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s3','1','name3','email3','phone3',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s4','1','name4','email4','phone4',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s5','1','name5','email5','phone5',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s6','1','name6','email6','phone6',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s7','1','name7','email7','phone7',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s8','1','name8','email8','phone8',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s9','1','name9','email9','phone9',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s10','1','name10','email10','phone10',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s11','1','name11','email11','phone11',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s12','1','name12','email12','phone12',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s13','1','name13','email13','phone13',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s14','1','name14','email14','phone14',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s15','1','name15','email15','phone15',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s16','1','name16','email16','phone16',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s17','1','name17','email17','phone17',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s18','1','name18','email18','phone18',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s19','1','name19','email19','phone19',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'s','s20','1','name20','email20','phone20',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t1','1','name21','email21','phone21',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t2','1','name22','email22','phone22',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t3','1','name23','email23','phone23',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t4','1','name24','email24','phone24',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t5','1','name25','email25','phone25',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t6','1','name26','email26','phone26',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t7','1','name27','email27','phone27',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t8','1','name28','email28','phone28',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t9','1','name29','email29','phone29',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t10','1','name30','email30','phone30',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t11','1','name31','email31','phone31',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t12','1','name32','email32','phone32',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t13','1','name33','email33','phone33',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t14','1','name34','email34','phone34',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t15','1','name35','email35','phone35',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t16','1','name36','email36','phone36',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t17','1','name37','email37','phone37',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t18','1','name38','email38','phone38',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t19','1','name39','email39','phone39',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'t','t20','1','name40','email40','phone40',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'m','m1','1','name41','email41','phone41',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'m','m2','1','name42','email42','phone42',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'m','m3','1','name43','email43','phone43',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'m','m4','1','name44','email44','phone44',sysdate,sysdate,sysdate,default,default);
-insert into member values(seq_member.nextval,'m','m5','1','name45','email45','phone45',sysdate,sysdate,sysdate,default,default);
+insert into member values(seq_member.nextval,'s','s1','1','name1','email1','phone1',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s2','1','name2','email2','phone2',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s3','1','name3','email3','phone3',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s4','1','name4','email4','phone4',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s5','1','name5','email5','phone5',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s6','1','name6','email6','phone6',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s7','1','name7','email7','phone7',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s8','1','name8','email8','phone8',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s9','1','name9','email9','phone9',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s10','1','name10','email10','phone10',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s11','1','name11','email11','phone11',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s12','1','name12','email12','phone12',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s13','1','name13','email13','phone13',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s14','1','name14','email14','phone14',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s15','1','name15','email15','phone15',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s16','1','name16','email16','phone16',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s17','1','name17','email17','phone17',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s18','1','name18','email18','phone18',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s19','1','name19','email19','phone19',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'s','s20','1','name20','email20','phone20',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t1','1','name21','email21','phone21',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t2','1','name22','email22','phone22',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t3','1','name23','email23','phone23',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t4','1','name24','email24','phone24',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t5','1','name25','email25','phone25',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t6','1','name26','email26','phone26',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t7','1','name27','email27','phone27',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t8','1','name28','email28','phone28',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t9','1','name29','email29','phone29',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t10','1','name30','email30','phone30',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t11','1','name31','email31','phone31',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t12','1','name32','email32','phone32',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t13','1','name33','email33','phone33',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t14','1','name34','email34','phone34',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t15','1','name35','email35','phone35',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t16','1','name36','email36','phone36',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t17','1','name37','email37','phone37',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t18','1','name38','email38','phone38',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t19','1','name39','email39','phone39',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'t','t20','1','name40','email40','phone40',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'m','m1','1','name41','email41','phone41',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'m','m2','1','name42','email42','phone42',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'m','m3','1','name43','email43','phone43',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'m','m4','1','name44','email44','phone44',sysdate,sysdate,sysdate,default,'Y');
+insert into member values(seq_member.nextval,'m','m5','1','name45','email45','phone45',sysdate,sysdate,sysdate,default,'Y');
 
 INSERT INTO LECTURE VALUES (seq_lecture.nextval,21,'미적분',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
 INSERT INTO LECTURE VALUES (seq_lecture.nextval,21,'수학 10-가',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
@@ -540,28 +546,28 @@ insert into insertsurvey values(109, 5, 26, '10', SYSDATE);
 insert into insertsurvey values(110, 5, 27, '11', SYSDATE);
 insert into insertsurvey values(111, 6, 28, '12', SYSDATE);
 
--- surveyquestion 더미
-insert into surveyquestion values(1, 100, 2, 1, null);
-insert into surveyquestion values(2, 100, 2, 2, null);
-insert into surveyquestion values(3, 100, 2, 3, null);
-insert into surveyquestion values(1, 100, 3, 1, null);
-insert into surveyquestion values(2, 100, 3, 2, null);
-insert into surveyquestion values(3, 100, 3, 3, null);
-insert into surveyquestion values(1, 100, 4, 1, null);
-insert into surveyquestion values(2, 100, 4, 2, null);
-insert into surveyquestion values(3, 100, 4, 3, null);
-insert into surveyquestion values(1, 100, 5, 1, null);
-insert into surveyquestion values(2, 100, 5, 2, null);
-insert into surveyquestion values(3, 100, 5, 3, null);
-insert into surveyquestion values(1, 100, 6, 1, null);
-insert into surveyquestion values(2, 100, 6, 2, null);
-insert into surveyquestion values(3, 100, 6, 3, null);
-insert into surveyquestion values(1, 100, 7, 1, null);
-insert into surveyquestion values(2, 100, 7, 2, null);
-insert into surveyquestion values(3, 100, 7, 3, null);
-insert into surveyquestion values(1, 101, 2, 33, null);
-insert into surveyquestion values(2, 101, 2, 3, null);
 
+-- surveyquestion 더미
+insert into surveyquestion values(1, 100, 2, 1, null, 'N');
+insert into surveyquestion values(2, 100, 2, 2, null, 'N');
+insert into surveyquestion values(3, 100, 2, 3, null, 'N');
+insert into surveyquestion values(1, 100, 3, 1, null, 'N');
+insert into surveyquestion values(2, 100, 3, 2, null, 'N');
+insert into surveyquestion values(3, 100, 3, 3, null, 'N');
+insert into surveyquestion values(1, 100, 4, 1, null, 'N');
+insert into surveyquestion values(2, 100, 4, 2, null, 'N');
+insert into surveyquestion values(3, 100, 4, 3, null, 'N');
+insert into surveyquestion values(1, 100, 5, 1, null, 'N');
+insert into surveyquestion values(2, 100, 5, 2, null, 'N');
+insert into surveyquestion values(3, 100, 5, 3, null, 'N');
+insert into surveyquestion values(1, 100, 6, 1, null, 'N');
+insert into surveyquestion values(2, 100, 6, 2, null, 'N');
+insert into surveyquestion values(3, 100, 6, 3, null, 'N');
+insert into surveyquestion values(1, 100, 7, 1, null, 'N');
+insert into surveyquestion values(2, 100, 7, 2, null, 'N');
+insert into surveyquestion values(3, 100, 7, 3, null, 'N');
+insert into surveyquestion values(1, 101, 2, 33, null, 'N');
+insert into surveyquestion values(2, 101, 2, 3, null, 'N');
 
 INSERT INTO PROBLEM VALUES (seq_problem.nextval,'\(ㄱ+ㄴ=\)?','\(ㄱ+ㄴ=ㄷ\)','\(ㄷ\)','ㄱ,ㄴ,ㄷ');
 INSERT INTO PROBLEM VALUES (seq_problem.nextval,'''이차함수 \(f(x)=ax^2+bx+c\)의 \(x=1\)에서의 미분계수를 구하세요.','\(f\)를 \(x\)에 대해서 미분하면 \(f''(x)=2·ax+b\)이므로 \(f''(1)=2·a+b=c\)','\(c\)','a,b,c');
