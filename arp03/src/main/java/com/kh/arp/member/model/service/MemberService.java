@@ -81,4 +81,6 @@ public interface MemberService {
 
 	List<Lecture> getLectureList(Member mem);
 
+	int acceptMember(Member mem);
+
 }
