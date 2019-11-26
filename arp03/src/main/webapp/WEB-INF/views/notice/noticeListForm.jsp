@@ -150,6 +150,7 @@
 													</td>
 													</c:if>
 												</tr>
+											
                                     </table>
                           		 </div>
                             </div>
@@ -169,16 +170,6 @@
 
 
 	<%@ include file="../include/bjs.jsp" %>
-
-
-
-
-
-
-
-
-
-
 
 <script>
 

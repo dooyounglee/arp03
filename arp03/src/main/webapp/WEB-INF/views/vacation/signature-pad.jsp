@@ -18,7 +18,7 @@
        <div class="m-signature-pad--footer">
            <div class="description">사인해 주세요~</div>
            <button type="button" class="button clear" data-action="clear">지우기</button>
-           <button type="button" class="button save" data-action="save">저장</button>
+           <button type="button" class="button save" data-action="save">허가</button>
        </div>
   		</div> 
 <script>
@@ -39,6 +39,8 @@
 	            alert("사인해 주세요!!");
 	            window.close()
 	        } else {
+	        	var form_date
+	        	
 	            $.ajax({
 	                url : "save.jsp",
 	                method : "post",
@@ -57,7 +59,27 @@
 	        }
 	    }
 	});
-	 
+	/* function sendFile(file, el) {
+        var form_data = new FormData();
+        form_data.append('file', file);
+        $.ajax({
+          data: form_data,
+          type:"POST",
+          url:"imageUpload.do",
+          cache: false,
+          contentType: false,
+          enctype: 'multipart/form-data',
+          processData: false,
+          success: function(img_name) {
+          	//console.log(img_name);
+            $(el).summernote('editor.insertImage', img_name);
+          },
+          error: function(){
+          	console.log("ajax 통신 실패");
+          }
+        });
+      } */
+    
 	 
 	function resizeCanvas(){
 	    var canvas = $("#signature-pad canvas")[0];

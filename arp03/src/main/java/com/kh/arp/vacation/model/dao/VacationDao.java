@@ -1,6 +1,7 @@
 package com.kh.arp.vacation.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,25 @@ public class VacationDao {
 		
 		return sqlSession.update("vacationMapper.adminpermission" , num);
 	}
+
+
+	public int insertDate(Vacation v) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("vacationMapper.insertDate" , v);
+	}
+
+
+	/*
+	public int insertVacation(Vacation v, String[] rlaalstkd) {
+		List<Vacation> lec_no_date_list=sqlSession.selectList("vacationMapper.rlaalstkd" , v.getM_no());
+		for(int i=0;i<lec_no_date_list.size();i++) {
+			v.setLec_no(lec_no_date_list.get(0).getLec_no());
+			v.setVacation_date(lec_no_date_list.get(0).getVacation_date());
+			
+			sqlSession.insert("vacationMapper.insertDate" , v);
+		}
+		return 0;
+	}*/
 
 
 	
