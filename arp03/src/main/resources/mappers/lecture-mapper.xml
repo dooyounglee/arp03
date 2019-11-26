@@ -21,7 +21,7 @@
 			sysdate,<!-- to_date(#{startdate},'yyyy-mm-dd'), -->
 			sysdate,
 			#{inghour},
-			default,
+			'A',
 			#{content},
 			null,
 			#{headcount},
@@ -141,5 +141,18 @@
 	
 	<update id="deleteLectureCancle">
 		update lecture set status='Y' where lec_no=#{lec_no}
+	</update>
+	
+	<select id="getlectureList" resultType="Lecture">
+		select l.*,m.name from (select * from lecture where m_no=#{m_no} and status='Y') l, member m
+		where l.m_no=m.m_no
+	</select>
+	
+	<update id="acceptLecture">
+		update lecture set status='Y' where lec_no=#{lec_no}
+	</update>
+	
+	<update id="rejectLecture">
+		update lecture set status='R' where lec_no=#{lec_no}
 	</update>
 </mapper>

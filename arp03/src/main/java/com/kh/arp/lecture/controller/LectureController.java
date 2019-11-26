@@ -86,6 +86,15 @@ public class LectureController {
 		return mv;
 	}
 	
+	@GetMapping("/applyList.lec")
+	public ModelAndView apply(HttpSession session, ModelAndView mv) {
+		Member mem=(Member)session.getAttribute("mem");
+		List<Lecture> list=ls.getlectureList(mem.getM_no());
+		mv.addObject("list", list);
+		mv.setViewName("mypage/teacher/applyList");
+		return mv;
+	}
+	
 	@GetMapping("/test")
 	public ModelAndView test(ModelAndView mv) {
 		mv.setViewName("son");
@@ -350,6 +359,19 @@ public class LectureController {
 	@PostMapping("/delCancel.lec")
 	public ModelAndView deleteLectureCanclePost(Lecture lec, ModelAndView mv) {
 		int result=ls.deleteLectureCancle(lec);
+		mv.setViewName("redirect:/lectureList.ad");
+		return mv;
+	}
+	
+	@PostMapping("/accept.lec")
+	public ModelAndView acceptLecturePost(Lecture lec, ModelAndView mv) {
+		int result=ls.acceptLecture(lec);
+		mv.setViewName("redirect:/lectureList.ad");
+		return mv;
+	}
+	@PostMapping("/reject.lec")
+	public ModelAndView rejectLectureCanclePost(Lecture lec, ModelAndView mv) {
+		int result=ls.rejectLecture(lec);
 		mv.setViewName("redirect:/lectureList.ad");
 		return mv;
 	}

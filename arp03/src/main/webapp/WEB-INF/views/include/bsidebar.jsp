@@ -42,6 +42,7 @@
             <li class="one-column">
                 <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">선생님</span></a>
                 <ul aria-expanded="false" class="collapse">
+                    <li><a href="applyList.lec">신청 리스트</a></li>
                     <li><a href="blist.do">자유 게시판</a></li>
                     <li><a href="tblist.do">선생님 게시판</a></li>
                     
@@ -156,7 +157,4 @@
 		alert("선생님만 이용가능한 게시판입니다.");
 	
 	}
-	$("ul#sidebarnav a").each(function(index,value){
-		console.log(value.href)
-	})
 </script>
