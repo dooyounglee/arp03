@@ -24,4 +24,6 @@ public interface SurveyService {
 	int insertsurveyquestion(SurveyQuestion s);
 	
 	int updatesurveyquestion(SurveyQuestion s);
+	
+	List<SurveyQuestion> detailsurveystudent(int su_no);
 }

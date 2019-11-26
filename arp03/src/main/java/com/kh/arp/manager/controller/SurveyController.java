@@ -96,6 +96,7 @@ public class SurveyController {
 		sq.setM_no(m_no);
 		sq.setSu_no(su_no);
 		List<SurveyQuestion> s = ss.detailsurvey(sq);
+		System.out.println(sq+"김경수");
 		System.out.println("dlendud"+s);
 		String ssq = s.get(0).getEnrolldate();
 		int ssu = s.get(0).getSu_no();
@@ -106,7 +107,12 @@ public class SurveyController {
 			
 			return mv;
 		}
-	
+	@RequestMapping("detailsurveystudent")
+	public ModelAndView detailsurveystudent(ModelAndView mv, int su_no, SurveyQuestion sq) {
+		List<SurveyQuestion> lsq = ss.detailsurveystudent(su_no);
+		mv.addObject("lsq", lsq).setViewName("manager/detailsurveystudent");
+		return mv;
+	}
 	@RequestMapping("insertcompletesurvey.ma")
 	public ModelAndView updatesurvey(ModelAndView mv, int su_no, ForSurvey q,InsertSurvey is, HttpSession session) {
 		
