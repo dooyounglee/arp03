@@ -77,7 +77,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">게시판관리</h4>
+                                <h4 class="card-title">숙제 리스트</h4>
                                 <a class="btn btn-success" href="make.hw">숙제 만들기</a><br>
                                 <div class="table-responsive">
                                     <table class="table">

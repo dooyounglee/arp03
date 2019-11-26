@@ -94,6 +94,7 @@
 		                                                <th>#</th>
 		                                                <th>문제</th>
 		                                                <th>제출일</th>
+		                                                <th>마감</th>
 		                                                <th>정답확인(선생님이 마감 버튼 누르면 나타나게)</th>
 		                                                <c:if test="${mem.typee eq 't' }">
 		                                                <th>삭제</th>
@@ -106,6 +107,7 @@
 			                                        		<td>${hw.hw_no }</td>
 			                                                <td><a href="getHomework.lec?hw_no=${hw.hw_no }">${hw.title }</a></td>
 			                                                <td>${hw.enddate }</td>
+			                                                <td><button class="btn btn-success" onclick="end(${hw.hw_no })">정답확인</button></td>
 			                                                <td><button class="btn btn-success" onclick="answer(${hw.hw_no })">정답확인</button></td>
 															<c:if test="${mem.typee eq 't' }">
 															<td><button class="btn btn-success" onclick="del(${hw.hw_no })">삭제</button></td>
@@ -172,6 +174,13 @@
 </c:forEach>
 	</div>
 </div>
+
+	<form id="form" method='post'>
+		<input type="hidden" name="hw_no">
+	</form>
+	<script>
+		
+	</script>
 <script>
 	function add(){
 		var url="homework.te";
@@ -191,6 +200,11 @@
 				$('#homeworkArea').load('homeworklist.lec #homeworkContent')
 			},
 		})
+	}
+	function end(hw_no){
+		var formm=$('#form').attr('action','end.hw')
+		formm.children('input').eq(0).val(hw_no)
+		formm.submit();
 	}
 </script>
 </body>
