@@ -46,4 +46,6 @@ public interface ProblemService {
 
 	int endHomework(ProblemRelated lec_hw);
 
+	Homework getHomeworkInLecture(ProblemRelated hw_m_lec);
+
 }

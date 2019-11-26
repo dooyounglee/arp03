@@ -235,4 +235,8 @@ public class LectureDao {
 		return sqlSession.update("lectureMapper.rejectLecture",lec);
 	}
 
+	public List<Homework> getHomeworkListInLectureForScore(int lec_no) {
+		return sqlSession.selectOne("lectureMapper.getHomeworkListInLectureForScore",lec_no);
+	}
+
 }

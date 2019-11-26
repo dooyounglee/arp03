@@ -71,6 +71,12 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+                
+                <c:set var="hw_no" value="0"/>
+                <c:if test="${!empty hw }">
+	                <c:set var="hw_no" value="${hw.hw_no }"/>
+                </c:if>
+                                
                 <!-- Row -->
                 <div class="row">
                     <!-- column -->
@@ -82,11 +88,11 @@
                             	<input type="hidden" name="hw_no" value="${hw_no }">
                                 <div class="form-group">
                                 	<label>Homework Title</label>
-                                    <input id="prob" class="form-control" name="title"></input>
+                                    <input id="prob" class="form-control" name="title" value="${hw.title }"></input>
                                 </div>
 	                            <div class="form-group">
 	                            	<label>End Date</label>
-                                    <input id="prob" class="form-control" name="enddate"></input>
+                                    <input id="prob" class="form-control" name="enddate" value="${hw.enddate }"></input>
                                 </div>
                                 <button class="btn btn-success">완료</button>
                             </form>

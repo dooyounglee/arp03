@@ -122,48 +122,17 @@
                                         <tbody>
                                         	<c:forEach var="p" items="${plist }" varStatus="i">
                                         		<tr>
-                                        			<c:if test="${empty alist || alist.size()==0}">
-                                        			<td rowspan="3">
-													</c:if>
-                                        			<c:if test="${alist.size()>0 && alist[i.index].ox eq 'O'}">
-                                        			<td rowspan="3" class="rightAnswer">
-													</c:if>
-													<c:if test="${alist.size()>0 && alist[i.index].ox eq 'X'}">
-													<td rowspan="3" class="wrongAnswer">
-													</c:if>
-														${p.problem }
-													</td>
+                                        			<td>${p.problem }</td>
 													<td>
-														<c:if test="${empty alist || alist.size()==0 }">
-															답:<input data-p_no="${p.p_no }"><br>
+														<c:if test="${empty alist }">
+															답:<input data-p_no="${p.p_no }">
 														</c:if>
-														<c:if test="${alist.size()>0 }">
+														<c:if test="${!empty alist }">
 															제출답:\(${alist[i.index].answer }\)
 														</c:if>
 													</td>
 												</tr>
-												<c:if test="${alist.size()>0 }">
-												<tr>
-													<td>
-															답: ${p.solution }
-													</td>
-												</tr>
-												</c:if>
-												<c:if test="${alist.size()>0 }">
-												<tr>
-													<td>
-														풀이:${p.solve }
-													</td>
-												</tr>
-												</c:if>
 											</c:forEach>
-                                        	<%-- <c:forEach var="p" items="${list }">
-                                        		<tr>
-	                                        		<td>${p.p_no }</td>
-	                                                <td><a href="get.pro?p_no=${p.p_no }">${p.problem }</a></td>
-	                                                <td><button class="btn btn-danger" onclick="del(${p.p_no })">제거</button></td>
-												</tr>
-											</c:forEach> --%>
                                         </tbody>
                                     </table>
                                 </div>

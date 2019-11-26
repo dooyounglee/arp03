@@ -112,7 +112,14 @@
 	<select id="getHomeworkListInLecture" resultType="Homework">
 		select hw.*,status,
 		(select count(*) from problemsinhomework where hw_no=hw.hw_no) total
-		from homework hw, (select hw_no,status from homeworkinlecture where lec_no=2) hwl
+		from homework hw, (select hw_no,status from homeworkinlecture where lec_no=#{lec_no}) hwl
+		where hw.hw_no=hwl.hw_no
+	</select>
+	
+	<select id="getHomeworkListInLectureForScore" resultType="Homework">
+		select hw.*,status,
+		(select count(*) from problemsinhomework where hw_no=hw.hw_no) total
+		from homework hw, (select hw_no,status from homeworkinlecture where lec_no=#{lec_no}) hwl
 		where hw.hw_no=hwl.hw_no
 	</select>
 	

@@ -86,5 +86,9 @@ public class ProblemDao {
 		return sqlSession.delete("problemMapper.endHomework",lec_hw);
 	}
 
+	public Homework getHomeworkInLecture(ProblemRelated hw_m_lec) {
+		return sqlSession.selectOne("problemMapper.getHomeworkInLecture",hw_m_lec);
+	}
+
 
 }

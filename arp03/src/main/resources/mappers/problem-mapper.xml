@@ -92,4 +92,12 @@
 		update homeworkinlecture set status='N'
 		where lec_no=#{lec_no} and hw_no=#{hw_no}
 	</update>
+	
+	<select id="getHomeworkInLecture" resultType="Homework">
+		select hw.*,status,
+		(select count(*) from problemsinhomework where hw_no=hw.hw_no) total
+		from (select * from homework where hw_no=#{hw_no}) hw,
+		(select hw_no,status from homeworkinlecture where lec_no=#{lec_no}) hwl
+		where hw.hw_no=hwl.hw_no
+	</select>
 </mapper>

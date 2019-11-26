@@ -183,6 +183,7 @@ public class LectureController {
 		List<Score> slist=ls.getLectureScore(lec.getLec_no());
 		List<ScoreH> shlist=ls.getHomeworkScore(lec.getLec_no());
 		List<Homework> hlist=ls.getHomeworkListInLecture(lec.getLec_no());
+		//List<Homework> hlist=ls.getHomeworkListInLectureForScore(lec.getLec_no());
 		
 		
 		mv.addObject("elist", elist);
@@ -283,22 +284,25 @@ public class LectureController {
 	}
 	
 	@GetMapping("/getHomework.lec")
-	public ModelAndView getHomeworkInLecture(ProblemRelated hw_m, HttpSession session, ModelAndView mv) {
-		System.out.println(hw_m);
-		if(hw_m.getM_no()==0) {
+	public ModelAndView getHomeworkInLecture(ProblemRelated hw_m_lec, HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		System.out.println(hw_m_lec);
+		if(hw_m_lec.getM_no()==0) {
 			Member mem=(Member)session.getAttribute("mem");
-			hw_m.setM_no(mem.getM_no());
+			hw_m_lec.setM_no(mem.getM_no());
 		}
-		
-		Homework hw=ps.getHomework(hw_m.getHw_no());
-		List<Problem> plist=ps.getProblemListInHomework(hw_m.getHw_no());
+		hw_m_lec.setLec_no(lec.getLec_no());
+		Homework hw=ps.getHomeworkInLecture(hw_m_lec);
+		List<Problem> plist=ps.getProblemListInHomework(hw_m_lec.getHw_no());
 		List<Problem> newplist=new ArrayList<Problem>();
 		for(Problem p:plist) {
-			newplist.add(abc(p,hw_m.getM_no()));
+			newplist.add(abc(p,hw_m_lec.getM_no()));
 		}
+		List<Answer> alist=ps.getHomeworkAnswer(hw_m_lec);
 
 		mv.addObject("hw", hw);
 		mv.addObject("plist", newplist);
+		mv.addObject("alist",alist);
 		mv.setViewName("mypage/teacher/homework/get");
 		return mv;
 	}
@@ -317,9 +321,12 @@ public class LectureController {
 	@GetMapping("/checkAnswer.hw")
 	public ModelAndView checkAnswerHomework(ProblemRelated lec_hw_m, HttpSession session, ModelAndView mv) {
 		Member mem=(Member)session.getAttribute("mem");
+		if(lec_hw_m.getM_no()==0) {
+			lec_hw_m.setM_no(mem.getM_no());
+		}
 		Lecture lec=(Lecture)session.getAttribute("lec");
 		lec_hw_m.setLec_no(lec.getLec_no());
-		lec_hw_m.setM_no(mem.getM_no());
+		
 		
 		
 		Homework hw=ps.getHomework(lec_hw_m.getHw_no());
@@ -335,7 +342,7 @@ public class LectureController {
 		mv.addObject("hw", hw);
 		mv.addObject("plist", newplist);
 		mv.addObject("alist", alist);
-		mv.setViewName("mypage/teacher/homework/get");
+		mv.setViewName("mypage/teacher/homework/answer");
 		return mv;
 	}
 	

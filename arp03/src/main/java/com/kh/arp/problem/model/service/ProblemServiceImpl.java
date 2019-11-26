@@ -103,5 +103,10 @@ public class ProblemServiceImpl implements ProblemService {
 		return pd.endHomework(lec_hw);
 	}
 
+	@Override
+	public Homework getHomeworkInLecture(ProblemRelated hw_m_lec) {
+		return pd.getHomeworkInLecture(hw_m_lec);
+	}
+
 
 }
