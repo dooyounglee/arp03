@@ -60,7 +60,7 @@
 		매니저
 		<a href="studentconsulting.ma">학생상담</a>
 		<a href="lectureList.ad">설문조사</a>
-		<a href="vationList.ma">휴가관리</a>
+	
 		<hr>
 	</c:if>
 	
@@ -84,6 +84,7 @@
 	<a href="memberList.ad"><del>회원관리</del></a>
 	<a href="nlist.ad"><del>공지사항</del></a>
 	<a href="flist.ad"><del>faq</del></a>
+	<a href="sVlist.ad">학생휴가관리</a>
 	
 <hr>
 <script>

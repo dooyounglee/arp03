@@ -162,4 +162,8 @@ public class MemberDao {
 		return sqlSession.selectList("memberMapper.getLectureList",mem);
 	}
 
+	public int acceptMember(Member mem) {
+		return sqlSession.update("memberMapper.acceptMember",mem);
+	}
+
 }

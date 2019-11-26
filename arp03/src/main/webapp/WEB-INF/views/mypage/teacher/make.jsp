@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%-- 	<!-- head태그. header.jsp말고 -->
-	<%@ include file="../../include/bhead.jsp"%> --%>
+	<!-- head태그. header.jsp말고 -->
+	<%@ include file="../../include/bhead.jsp"%>
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body class="fix-header card-no-border logo-center">
-<%-- 
+
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -78,16 +78,14 @@
                 	<!-- 수강페이지 메뉴 -->
                 	<%@ include file="../../include/blecturemenu.jsp" %>
                 	
-                    <div class="col-lg-9 col-xlg-10 col-md-8">
+                    <!-- <div class="col-lg-9 col-xlg-4 col-md-8"> -->
+                    <div class="col-lg-7 col-xlg-7 col-md-7">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-md-flex no-block align-items-center">
                                     <div>
                                         <h4 class="card-title">Default Basic Forms</h4>
                                         <h6 class="card-subtitle"> All bootstrap element classies </h6>
-                                    </div>
-                                    <div class="ml-auto">
-                                        <button class="btn btn-danger btn-sm pull-right collapsed" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Get code <i class="ti-angle-down"></i></button>
                                     </div>
                                 </div>
                                 <form class="form" action="make.lec" method="post" autocomplete=off>
@@ -100,7 +98,7 @@
                                     <div class="form-group row">
                                         <label for="example-search-input" class="col-md-2 col-form-label">시작일</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="date" name="startdate" id="startdate">
+                                            <input class="form-control" type="datetime-local" name="startdate" id="startdate">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -136,7 +134,7 @@
                                     <div class="form-group row">
                                         <label for="example-datetime-local-input" class="col-md-2 col-form-label">총회차</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" name="nth" id="nth" value="10">
+                                            <input class="form-control" name="nth" id="nth">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -148,13 +146,29 @@
                                     <div class="form-group row">
 	                                    <label class="col-md-2 col-form-label">요일</label>
 	                                    <div class="col-md-10">
-	                                        <ul class="icheck-list">
+		                                    <div class="demo-checkbox">
+			                                    <input type="checkbox" id="md_checkbox_1" class="chk-col-red" name="week" value="0">
+			                                    <label for="md_checkbox_1" style="min-width: 70px;">일</label>
+			                                    <input type="checkbox" id="md_checkbox_2" class="chk-col-pink" name="week" value="1">
+			                                    <label for="md_checkbox_2" style="min-width: 70px;">월</label>
+			                                    <input type="checkbox" id="md_checkbox_3" class="chk-col-purple" name="week" value="2">
+			                                    <label for="md_checkbox_3" style="min-width: 70px;">화</label>
+			                                    <input type="checkbox" id="md_checkbox_4" class="chk-col-deep-purple" name="week" value="3">
+			                                    <label for="md_checkbox_4" style="min-width: 70px;">수</label>
+			                                    <input type="checkbox" id="md_checkbox_5" class="chk-col-indigo" name="week" value="4">
+			                                    <label for="md_checkbox_5" style="min-width: 70px;">목</label>
+			                                    <input type="checkbox" id="md_checkbox_6" class="chk-col-blue" name="week" value="5">
+			                                    <label for="md_checkbox_6" style="min-width: 70px;">금</label>
+			                                    <input type="checkbox" id="md_checkbox_7" class="chk-col-light-blue" name="week" value="6">
+			                                    <label for="md_checkbox_7" style="min-width: 70px;">토</label>
+			                                </div>
+	                                        <!-- <ul class="icheck-list">
 	                                        	<li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value=0>
+	                                                <input type="checkbox" class="check" name="week" value="0">
 	                                                <label for="minimal-checkbox-2">일</label>
 	                                            </li>
 	                                            <li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value=1>
+	                                                <input type="checkbox" class="check" name="week" value="1">
 	                                                <label for="minimal-checkbox-1">월</label>
 	                                            </li>
 	                                            <li class="float-left">
@@ -177,31 +191,51 @@
 	                                                <input type="checkbox" class="check" name="week" value="6">
 	                                                <label for="minimal-checkbox-2">토</label>
 	                                            </li>
-	                                        </ul>
+	                                        </ul> -->
 	                                    </div>
 	                                </div>
+	                                <button class="btn btn-success">요청</button>
+	                                <div id="chooseClassdate1" style="float:left;display:none">
+		
+									</div>
                                 </form>
                             </div>
-		<table style="text-align:center;float:left;">
-			<thead>
-				<tr>
-					<td colspan=1 id='prevmonth'><</td>
-					<td colspan=5><span id="yyyy">2019</span>년 <span id="mm">8</span>월</td>
-					<td colspan=1 id='nextmonth'>></td>
-				</tr>
-				<tr>
-					<td>일</td>
-					<td>월</td>
-					<td>화</td>
-					<td>수</td>
-					<td>목</td>
-					<td>금</td>
-					<td>토</td>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xlg-3 col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-md-flex no-block align-items-center">
+                                    <div>
+                                        <h4 class="card-title">Default Basic Forms</h4>
+                                        <h6 class="card-subtitle"> All bootstrap element classies </h6>
+                                    </div>
+                                </div>
+								<table style="text-align:center;float:left;">
+									<thead>
+										<tr>
+											<td colspan=1 id='prevmonth'><</td>
+											<td colspan=5><span id="yyyy">2019</span>년 <span id="mm">8</span>월</td>
+											<td colspan=1 id='nextmonth'>></td>
+										</tr>
+										<tr>
+											<td>일</td>
+											<td>월</td>
+											<td>화</td>
+											<td>수</td>
+											<td>목</td>
+											<td>금</td>
+											<td>토</td>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+								
+								<div id="chooseClassdate" style="float:left;">
+		
+								</div>
+                            </div>
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -236,7 +270,7 @@
 	
 	
 	
-	 --%>
+	
 	
 	
 	
@@ -258,21 +292,21 @@
 		강의내용:<input name="content"><br>
 		수정사유:<input name="updatecomment"><br>
 		학생정원:<input name="headcount"><br>
-		총회차:<input name="nth" id="nth" value="10"><br>
+		<!-- 총회차:<input name="nth" id="nth" value="10"><br> -->
 		요일:
-		<input type="checkbox" name="week" value=0>일
+		<!-- <input type="checkbox" name="week" value=0>일
 		<input type="checkbox" name="week" value=1>월
 		<input type="checkbox" name="week" value="2">화
 		<input type="checkbox" name="week" value="3">수
 		<input type="checkbox" name="week" value="4">목
 		<input type="checkbox" name="week" value="5">금
-		<input type="checkbox" name="week" value="6">토
+		<input type="checkbox" name="week" value="6">토 -->
 		<br>
 		장소:<input name="place"><br>
 		
 		<br>
 		
-		<table style="text-align:center;float:left;">
+		<!-- <table style="text-align:center;float:left;">
 			<thead>
 				<tr>
 					<td colspan=1 id='prevmonth'><</td>
@@ -291,7 +325,7 @@
 			</thead>
 			<tbody>
 			</tbody>
-		</table>
+		</table> -->
 	
 		<div id="chooseClassdate" style="float:left;">
 		
@@ -310,28 +344,43 @@
 		var arr=[];
 		
 		function listClassdates_arr(arr){
+			if(arr.length!=$('#nth').val()){
+				$('#nth').css('border-color','red')
+			}else{
+				$('#nth').css('border-color','#ced4da')
+			}
 			arr.sort()
 			var str='';
 			for(i=0;i<arr.length;i++){
-				str+='<input type="date" name="classdate" value="'+arr[i]+'"><br>'
+				str+='<input type="date" class="form-control col-10" name="classdate" value="'+arr[i]+'">';
+				str+='<button class="btn btn-danger removeDateBtn">X</button><br>'
 			}
 			$('#chooseClassdate').html('')
 			$('#chooseClassdate').append(str)
+			$('#chooseClassdate1').html('')
+			$('#chooseClassdate1').append(str)
 		}
 		
 		function listClassdates(){
-			console.log("list")
 			arr=[];
 			var c=0;
 			var limit=$('#nth').val();
 			var start=$('#startdate').val();
 			var ddd=new Date(start).getDay();
-			console.log(ddd)
 			$('input[name="week"]').eq(ddd).prop('checked',true)
+			
+			//하나라도 없으면 더 못하게
+			if(start==""){
+				alert("시작날짜입력해주세요.")
+				return;
+			}else{
+				
+			}
 			
 			var week=[];
 			$('input[name="week"]:checked').each(function(){
 				week.push(parseInt($(this).val()))
+				console.log(week)
 			})
 			
 			for(i=0;i<limit;i++){
@@ -354,9 +403,15 @@
 			calend(yyyy,mm);
 		}
 		
+		$(document).on('click','.removeDateBtn',function(){
+			var idx=arr.indexOf($(this).prev().val())
+			arr.splice(idx, 1)
+			listClassdates_arr(arr)
+			calend(yyyy,mm);
+		})
 		$('input[name="startdate"]').on('input',listClassdates)
 		$('input[name="week"]').on('input',listClassdates)
-		$('#nth').on('input',listClassdates)
+		$('#nth').on('focusout',listClassdates)
 		$(document).on('input','input[name="classdate"]',function(){
 			arr=[];
 			$('input[name="classdate"]').each(function(){

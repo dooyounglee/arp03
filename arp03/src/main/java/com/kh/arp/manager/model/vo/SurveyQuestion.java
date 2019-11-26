@@ -1,7 +1,5 @@
 package com.kh.arp.manager.model.vo;
 
-import java.util.List;
-
 import lombok.Data;
 
 @Data
@@ -13,4 +11,7 @@ public class SurveyQuestion {
 	private String question;	// 질문
 	private String answer;		// 답
 	private String name;		// 학생이름
+	private String enrolldate;   // 날짜
+	private String title;
+	private String issurvey;	// 설문조사 완료판단 필드
 }

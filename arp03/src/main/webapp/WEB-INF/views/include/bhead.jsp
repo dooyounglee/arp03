@@ -38,3 +38,12 @@
 <![endif]-->
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
 	<script src="/${cp }/resources/material-pro/assets/plugins/jquery/jquery.min.js"></script>
+	<!-- Custom CSS -->
+    <!-- page CSS -->
+    <link href="/${cp}/resources/material-pro/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="/${cp}/resources/material-pro/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="/${cp}/resources/material-pro/assets/plugins/switchery/dist/switchery.min.css" rel="stylesheet" />
+    <link href="/${cp}/resources/material-pro/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="/${cp}/resources/material-pro/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="/${cp}/resources/material-pro/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+    <link href="/${cp}/resources/material-pro/assets/plugins/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />

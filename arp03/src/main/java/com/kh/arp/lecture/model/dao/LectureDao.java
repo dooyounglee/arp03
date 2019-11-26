@@ -215,4 +215,24 @@ public class LectureDao {
 		return sqlSession.selectList("lectureMapper.getHomeworkScore",lec_no);
 	}
 
+	public int deleteLecture(Lecture lec) {
+		return sqlSession.update("lectureMapper.deleteLecture",lec);
+	}
+
+	public int deleteLectureCancle(Lecture lec) {
+		return sqlSession.update("lectureMapper.deleteLectureCancle",lec);
+	}
+
+	public List<Lecture> getlectureList(int m_no) {
+		return sqlSession.selectList("lectureMapper.getlectureList",m_no);
+	}
+
+	public int acceptLecture(Lecture lec) {
+		return sqlSession.update("lectureMapper.acceptLecture",lec);
+	}
+
+	public int rejectLecture(Lecture lec) {
+		return sqlSession.update("lectureMapper.rejectLecture",lec);
+	}
+
 }

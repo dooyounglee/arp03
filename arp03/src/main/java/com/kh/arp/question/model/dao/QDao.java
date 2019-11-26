@@ -110,6 +110,15 @@ public class QDao {
 		return sqlSession.selectOne("questionMapper.selectTeacherName", lec_no);
 	}
 
+	public int deleteDatReply(QReply qr) {
+		return sqlSession.update("questionMapper.deleteDatReply", qr);
+	}
+
+	public ArrayList<Question> realTimeSelect() {
+		ArrayList<Question> realList = (ArrayList)sqlSession.selectList("questionMapper.realTimeSelect");
+		return realList;
+	}
+
 	/*
 	 * public int selectQ(QFile qf) { return
 	 * sqlSession.selectOne("questionMapper.selectQ", qf); }
