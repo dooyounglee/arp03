@@ -31,6 +31,13 @@
 	.t1{
 		margin-top:50px;
 	}
+	.c5{
+		border:1px solid black;
+		width:800px;
+		height:auto;
+		margin-left:auto;
+		margin-right:auto;
+	}
 </style>
 </head>
 
@@ -42,7 +49,7 @@
 	<br><br><br>
 	<h1 align="center">상세보기 페이지</h1>
 	<br>
-	<form class="c1" action="qupdateForm.qu?q_no=${ q.q_no }" method="post" enctype="multipart/form-data">
+	<form class="c5" action="qupdateForm.qu?q_no=${ q.q_no }" method="post" enctype="multipart/form-data">
 		<h3 align="center">학생 질문</h3>
 		<table class="t1" align="center">
 			<tr>
@@ -56,20 +63,22 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td>${ q.content }</td>
+				<td>${ q.content }
+				<iframe id="youtuberealId" width="560" height="315" src="" frameborder="0"></iframe>
+				</td>
 			</tr>
+			<c:if test="${ !empty q.originalname }">
 			<tr>
 				<td>첨부파일</td>
 				<td>
-					<c:if test="${ !empty q.originalname }">
+					<%-- <c:if test="${ !empty q.originalname }"> --%>
 						<a href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${ q.changename }" download="${ q.originalname }">${ q.originalname }</a>
-					</c:if>
+					<%-- </c:if> --%>
 				</td>
 			</tr>
+			</c:if>
 			<tr>
-				<td>유튜브URL</td>
-				<td><input id="youtubeId" type="text" style="width:300px;" name="youtubelink" value="${ q.youtubelink }"></td>
-				<iframe width="" height="" src="" frameborder="0"></iframe>
+				<td><input id="youtubeId" type="hidden" style="width:300px;" name="youtubelink" value="${ q.youtubelink }"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
@@ -169,7 +178,7 @@
 				<td>${ qr.updatedate }</td>
 				<c:if test="${ qr.m_no eq mem.m_no }">
 				<td>
-					<button>X</button>
+					<button class="qrBtn" type="button">X</button>
 				</td>
 				</c:if>
 			</tr>
@@ -272,6 +281,36 @@
 			$("#dat").attr("style","display:none");
 			$("#qOpen").attr("style","display:block");
 		}
+		
+		$(document).on("click", ".qrBtn", function(){
+			var r_no = $(this).parent().parent().children().eq(0).text();
+			//alert(r_no);
+			if(confirm("삭제하시겠습니까?") == true){
+				$.ajax({
+					data: {r_no:r_no},
+					type: "POST",
+					url: "deleteDatReply.re",
+					success: function(success){
+						console.log("ajax통신 성공")
+						
+						if(success=="success"){
+							console.log("댓글삭제성공");
+							qRestart();
+						}else{
+							alert("댓글등록실패")
+						}
+						
+					}, error: function(){
+						console.log("ajax통신 실패");
+					}
+				});
+			}else{
+				false;
+			}
+			
+			
+		});
+		
 	</script>
 	
 	
@@ -302,7 +341,7 @@
 						console.log("댓글등록성공");
 						qRestart();
 						$("#repl").val("").focus();
-							webSocket.send("이두영");
+							/* webSocket.send("이두영"); */
 					}else{
 						alert("댓글등록실패")
 					}
@@ -314,7 +353,11 @@
 		}
 		
 		
-		
+		$(function(){
+			var youtubeIdChange = $("#youtubeId").val();
+			var youtubeId = youtubeIdChange.replace('watch?v=','embed/');
+			$("#youtuberealId").attr("src", youtubeId);
+		});
 		
 		
 		

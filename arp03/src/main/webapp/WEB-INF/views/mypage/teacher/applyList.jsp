@@ -5,7 +5,7 @@
 <html>
 <head>
 	<!-- head태그. header.jsp말고 -->
-	<%@ include file="../include/bhead.jsp"%>
+	<%@ include file="../../include/bhead.jsp"%>
 </head>
 <body class="fix-header card-no-border logo-center">
 
@@ -14,13 +14,13 @@
 	
         <!-- Topbar header - style you can find in pages.scss -->
         <header class="topbar">
-        	<%@ include file="../include/btopbarheader.jsp" %>
+        	<%@ include file="../../include/btopbarheader.jsp" %>
         </header>
         <!-- End Topbar header -->
         
         <!-- Left-sidebar -->
         <aside class="left-sidebar">
-        	<%@ include file="../include/bsidebar.jsp" %>
+        	<%@ include file="../../include/bsidebar.jsp" %>
         </aside>
         <!-- End of Left-sidebar -->
 
@@ -77,7 +77,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">강좌관리</h4><a class="btn btn-primary float-right" href="make.lec">강좌 만들기</a>
+                                <h4 class="card-title">신청리스트</h4><a class="btn btn-primary float-right" href="make.lec">강좌 만들기</a>
                                 <h6 class="card-subtitle">Add class <code>.table</code></h6>
                                 <div class="table-responsive">
                                     <table class="table table-hover">
@@ -88,10 +88,7 @@
                                                 <th>title</th>
                                                 <th>dayofweek</th>
                                                 <th>place</th>
-                                                <th>count</th>
-                                                <c:if test="${mem.typee eq 'a' }">
-                                                <th>삭제</th>
-                                                </c:if>
+                                                <th>상태</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -102,19 +99,7 @@
 	                                                <td><a href="main.lec?lec_no=${l.lec_no }">${l.title }</a></td>
 	                                                <td>${l.dayofweek.replace('0','일').replace('1','월').replace('2','화').replace('3','수').replace('4','목').replace('5','금').replace('6','토') }</td>
 	                                                <td>${l.place }</td>
-	                                                <td>${l.cnt }/${l.headcount }</td>
-	                                                <td>
-	                                                	<c:if test="${mem.typee eq 'a' && l.status eq 'Y'}">
-	                                                		<button class="btn btn-danger" onclick="del(${l.lec_no})">삭제</button>
-	                                                	</c:if>
-	                                                	<c:if test="${mem.typee eq 'a' && l.status eq 'N'}">
-	           	                                     		<button class="btn btn-primary" onclick="cancle(${l.lec_no})">삭제취소</button>
-	                                                	</c:if>
-	                                                	<c:if test="${mem.typee eq 'a' && l.status eq 'A'}">
-	           	                                     		<button class="btn btn-success" onclick="accept(${l.lec_no})">수락</button>
-	           	                                     		<button class="btn btn-warning" onclick="reject(${l.lec_no})">거절</button>
-	                                                	</c:if>
-	                                                </td>
+	                                                <td>${l.status }</td>
 												</tr>
 											</c:forEach>
                                         </tbody>
@@ -142,7 +127,7 @@
 
 		<!-- footer -->
         <footer class="footer">
-            <%@ include file="../include/bfooter.jsp" %>
+            <%@ include file="../../include/bfooter.jsp" %>
         </footer>
         <!-- End footer -->
 
@@ -152,7 +137,7 @@
 	</div>
 	<!-- End of Main wrapper -->
 	
-	<%@ include file="../include/bjs.jsp" %>
+	<%@ include file="../../include/bjs.jsp" %>
 	
 	
 	
@@ -169,16 +154,6 @@
 	}
 	function cancle(lec_no){
 		var formm=$('#form').attr('action','delCancel.lec')
-		formm.children('input').eq(0).val(lec_no)
-		formm.submit();
-	}
-	function accept(lec_no){
-		var formm=$('#form').attr('action','accept.lec')
-		formm.children('input').eq(0).val(lec_no)
-		formm.submit();
-	}
-	function reject(lec_no){
-		var formm=$('#form').attr('action','reject.lec')
 		formm.children('input').eq(0).val(lec_no)
 		formm.submit();
 	}

@@ -98,7 +98,7 @@
                                     <div class="form-group row">
                                         <label for="example-search-input" class="col-md-2 col-form-label">시작일</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="date" name="startdate" id="startdate">
+                                            <input class="form-control" type="datetime-local" name="startdate" id="startdate">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -347,7 +347,7 @@
 			if(arr.length!=$('#nth').val()){
 				$('#nth').css('border-color','red')
 			}else{
-				$('#nth').css('border-color','#99abb4')
+				$('#nth').css('border-color','#ced4da')
 			}
 			arr.sort()
 			var str='';

@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.arp.common.PageInfo;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
@@ -77,7 +79,7 @@ public class QController {
 		int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
 		q.setLec_no(lec_no);
 		QFile qf = new QFile();
-		System.out.println(q);
+		//System.out.println(q);
 		int resultqf = 0;
 
 		if (!file.getOriginalFilename().equals("")) {
@@ -384,7 +386,31 @@ public class QController {
 	 }
 	 
 	 
+	 @ResponseBody
+	 @RequestMapping("deleteDatReply.re")
+	 public String deleteDatReply(QReply qr) {
+		 
+		 int result = qService.deleteDatReply(qr);
+		 
+		 //System.out.println(qr);
+		// System.out.println(result);
+		 if(result > 0) {
+			 return "success";
+		 }else {
+			 return "fail";
+		 }
+	 }
 	 
+	 @RequestMapping("realTimeSelect.al")
+	 public void realTimeSelect(HttpServletResponse response) throws IOException {
+		 ArrayList<Question> realList = qService.realTimeSelect();
+		 response.setContentType("application/json; charset=UTF-8");
+		 
+		 
+		/* mv.addObject("realList", realList).setViewName("question/question"); */
+		Gson gson = new Gson();
+		gson.toJson(realList, response.getWriter());
+	 }
 	 
 
 }
