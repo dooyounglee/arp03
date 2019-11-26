@@ -41,9 +41,9 @@
 	<!-- End of Left-sidebar -->
 	<br><br><br>
 <h2 align="center">공지사항입니다.</h2>
-총게시물갯수 ${pi.listCount}
+
 <c:if test ="${mem.id eq 'admin' }">
-<button onclick ="location.href='ninsertForm.ad';">작성하기</button>
+<button onclick ="location.href='ninsertForm.ad';" class="btn waves-effect waves-light btn-rounded btn-danger">작성하기</button>
 </c:if>
 
 <br>
@@ -80,7 +80,7 @@
                             <div class="card-body" align="center">
                                 <div class="table-responsive">
                                     <table class="table color-table info-table">
-                                   
+                                   		
                                         <thead align="center">
                                         <tr>
 											<th>번호</th>
@@ -89,7 +89,7 @@
 											<th>작성일</th>
 											<th>조회수</th>
 										</tr>
-                                        
+                                       
                                          <c:if test="${pi.listCount eq 0 }">
 											<tr>
 											<td colspan="5" align="center">해당 게시판에 게시물이 없습니다</td>
@@ -150,6 +150,7 @@
 													</td>
 													</c:if>
 												</tr>
+											
                                     </table>
                           		 </div>
                             </div>
@@ -169,16 +170,6 @@
 
 
 	<%@ include file="../include/bjs.jsp" %>
-
-
-
-
-
-
-
-
-
-
 
 <script>
 

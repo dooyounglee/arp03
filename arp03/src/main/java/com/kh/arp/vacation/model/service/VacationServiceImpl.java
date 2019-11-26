@@ -19,23 +19,28 @@ public class VacationServiceImpl implements VacationService {
 		// TODO Auto-generated method stub
 		return vDao.insertVacation(v);
 	}
+	@Override
+	public int insertDate(Vacation v) {
+		// TODO Auto-generated method stub
+		return vDao.insertDate(v);
+	}
 
 	@Override
 	public ArrayList<Vacation> selectList(int m_no) {
 		// TODO Auto-generated method stub
 		return vDao.selectList(m_no);
 	}
-
+	@Override
 	public ArrayList<Lecture> selectLectureList(int m_no) {
 		// TODO Auto-generated method stub
 		return vDao.selectLectureList(m_no);
 	}
-
+	@Override
 	public Vacation selectVacation(int v_no) {
 		// TODO Auto-generated method stub
 		return vDao.selectVacation(v_no);
 	}
-
+	@Override
 	public Vacation updateVacationForm(int v_no) {
 		// TODO Auto-generated method stub
 		return vDao.selectVacation(v_no);
@@ -46,7 +51,7 @@ public class VacationServiceImpl implements VacationService {
 		// TODO Auto-generated method stub
 		return vDao.updateVacation(v);
 	}
-
+	@Override
 	public int deleteVacation(Vacation v) {
 		// TODO Auto-generated method stub
 		return vDao.deleteVacation(v);
@@ -57,12 +62,12 @@ public class VacationServiceImpl implements VacationService {
 		// TODO Auto-generated method stub
 		return vDao.studentVacation(m_no);
 	}
-
+	@Override
 	public int permission(int v_no) {
 		// TODO Auto-generated method stub
 		return vDao.permission(v_no);
 	}
-
+	@Override
 	public int companion(Vacation v) {
 		// TODO Auto-generated method stub
 		return vDao.companion(v);
@@ -77,6 +82,10 @@ public class VacationServiceImpl implements VacationService {
 		// TODO Auto-generated method stub
 		return vDao.multipermission(num);
 	}
+	/*
+	public int insertVacation(Vacation v, String[] rlaalstkd) {
+		return vDao.insertVacation(v,rlaalstkd);
+	}*/
 
 	
 
