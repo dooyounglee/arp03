@@ -90,15 +90,33 @@
 	</select>
 	
 	<select id="sq_noSurvey" resultMap="surveyquestion">
-		select sq.sq_no sq.m_no
+		select sq.sq_no, sq.question, sq.answer, sq.su_no
         from surveyquestion sq
 		where sq.m_no=#{m_no} and sq.su_no=#{su_no}
 	</select>
 	
 	<!-- sq와 su넘버만 넣은 셀렉문 -->
 	<select id="resultSurvey" resultMap="surveyquestion">
-		select answer
+		select m_no, question, answer 
 		from surveyquestion
-		where sq_no=#{sq_no} And su_no=#{su_no} And issurvey="Y"
+		where sq_no=#{sq_no} And su_no=#{su_no} And issurvey='Y'
 	</select>
+	
+	<select id="sumsurvey" resultType="_float">
+	     select sum(answer)
+        from surveyquestion
+        where question in (select question from surveyquestion where su_no=#{su_no}) 
+        and sq_no in (select sq_no from surveyquestion where su_no=#{su_no})
+        and issurvey='Y' and sq_no=#{sq_no}
+    </select>
+    <select id="selectstudent" resultMap="surveyquestion">
+      select  mc.m_no
+	  from surveyquestion sq, insertsurvey iq , lecture l , myclass mc
+	  where sq.sq_no=1 
+	  And sq.m_no=mc.m_no 
+	  And iq.su_no=#{su_no}
+	  And sq.su_no=iq.su_no 
+	  And iq.lec_no=l.lec_no
+	  And l.lec_no=mc.lec_no
+    </select>
 </mapper>

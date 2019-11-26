@@ -16,7 +16,7 @@
 제목 : <input type="text" name="title"><br>
 <input type="hidden" value="${ mem.m_no }" name="s_no">
 <input type="hidden"  name="g_no" id="g_no">
-받는사람 : <input type="text" name="name" id="g_list"><br>
+받는사람 : <input type="text" name="name" id="g_list" style="width:250px" placeholder="이름뒤에 -와 회원번호를 입력해주세요"><input type="checkbox" id="me" name="me" value="${mem.name}-${mem.m_no}">나에게 쓰기<br>
 <textarea rows="3" cols="50" name="content">
 </textarea>
 
@@ -59,6 +59,36 @@ $("#g_list").change(function(){
 	$("#g_no").val(mno);
 	
 });
+
+$("#me").on("click", function(){
+	var me = $(this).val();
+	console.log(me);
+	var mno =me.split("-")[1];
+	$("#g_list").val(me);
+	console.log(mno);
+	$("#g_no").val(mno)
+
+	
+})
+
+ $("#me").click(function(){ 
+       if($("#me").prop("checked")){ 
+          $("input[name=me]").prop("checked",true);
+	        var me = $(this).val();
+	      	console.log(me);
+	      	var mno =me.split("-")[1];
+	      	$("#g_list").val(me);
+	      	console.log(mno);
+	      	$("#g_no").val(mno);
+	        $("#g_list").prop("readonly",true);
+          
+      }else{
+         $("input[name=me]").prop("checked",false); 
+         $("#g_list").val("");
+         $("#g_no").val("");
+         $("#g_list").prop("readonly",false);
+      }    
+ })
 
 
 	/* $("#g_list").change(function(){

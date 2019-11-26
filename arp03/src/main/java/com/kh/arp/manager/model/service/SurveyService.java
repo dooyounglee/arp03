@@ -31,5 +31,9 @@ public interface SurveyService {
 	
 	List<SurveyQuestion> resultsurvey(SurveyQuestion sq);
 	
-	List<SurveyQuestion> su_nosurvey(SurveyQuestion sq);
+	List<SurveyQuestion> sq_nosurvey(SurveyQuestion sq);
+	
+	float sumsurvey(SurveyQuestion sq);
+	
+	List<SurveyQuestion> selectstudent(SurveyQuestion sq);
 }

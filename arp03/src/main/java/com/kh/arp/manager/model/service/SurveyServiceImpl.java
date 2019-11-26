@@ -73,7 +73,17 @@ public class SurveyServiceImpl implements SurveyService {
 	}
 
 	@Override
-	public List<SurveyQuestion> su_nosurvey(SurveyQuestion sq) {
-		return sDao.su_nosurvey(sq);
+	public List<SurveyQuestion> sq_nosurvey(SurveyQuestion sq) {
+		return sDao.sq_nosurvey(sq);
+	}
+
+	@Override
+	public float sumsurvey(SurveyQuestion sq) {
+		return sDao.sumsurvey(sq);
+	}
+
+	@Override
+	public List<SurveyQuestion> selectstudent(SurveyQuestion sq) {
+		return sDao.selectstudent(sq);
 	}
 }

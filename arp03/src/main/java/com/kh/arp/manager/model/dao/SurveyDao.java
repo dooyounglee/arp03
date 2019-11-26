@@ -51,10 +51,17 @@ public class SurveyDao {
 	public List<SurveyQuestion> detailsurveyNstudent(int su_no){
 		return sqlSession.selectList("surveyMapper.detailSurveyNStudent", su_no);
 	}
-	public List<SurveyQuestion> su_nosurvey(SurveyQuestion sq){
-		return sqlSession.selectList("surveyMapper.su_noSurvey", sq);
+	public List<SurveyQuestion> sq_nosurvey(SurveyQuestion sq){
+		return sqlSession.selectList("surveyMapper.sq_noSurvey", sq);
 	}
 	public List<SurveyQuestion> resultsurvey(SurveyQuestion sq){
 		return sqlSession.selectList("surveyMapper.resultSurvey", sq);
+	}
+	public float sumsurvey(SurveyQuestion sq){
+		System.out.println("sq"+sq);
+		return sqlSession.selectOne("surveyMapper.sumsurvey", sq);
+	}
+	public List<SurveyQuestion> selectstudent(SurveyQuestion sq){
+		return sqlSession.selectList("surveyMapper.selectstudent", sq);
 	}
 }
