@@ -51,7 +51,7 @@
 	    from question q
 	    join member m on(q.m_no=m.m_no)
 	    left join qfile f on(q.q_no=f.q_no)
-	    where q.lec_no=1 and q.status='Y'
+	    where q.lec_no=#{lec_no} and q.status='Y'
 	    order by q.q_no desc
 	</select>
 	

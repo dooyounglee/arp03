@@ -39,8 +39,8 @@
 		</c:forEach>	 --%>
 	</c:if>
 	</h3>
-	
-	 <jsp:include page="qRealTime.jsp" />
+	<%-- 
+	 <jsp:include page="qRealTime.jsp" /> --%>
 	
 	<table align="center" border="1" cellspacing="0" width="800">
 		<tr>
