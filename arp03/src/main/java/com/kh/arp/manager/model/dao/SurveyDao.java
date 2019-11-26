@@ -45,4 +45,7 @@ public class SurveyDao {
 	public int updatesurveyquestion(SurveyQuestion sq) {
 		return sqlSession.update("surveyMapper.updatesurveyquestion",sq);
 	}
+	public List<SurveyQuestion> detailsurveystudent(int su_no){
+		return sqlSession.selectList("surveyMapper.detailSurveyStudent", su_no);
+	}
 }
