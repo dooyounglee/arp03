@@ -283,23 +283,36 @@ public class LectureController {
 	}
 	
 	@GetMapping("/getHomework.lec")
-	public ModelAndView getHomeworkInLecture(int hw_no, HttpSession session, ModelAndView mv) {
-		Member mem=(Member)session.getAttribute("mem");
-		
-		Homework hw=ps.getHomework(hw_no);
-		List<Problem> plist=ps.getProblemListInHomework(hw_no);
-		List<Problem> newplist=new ArrayList<Problem>();
-		for(Problem p:plist) {
-			newplist.add(abc(p,mem.getM_no()));
+	public ModelAndView getHomeworkInLecture(ProblemRelated hw_m, HttpSession session, ModelAndView mv) {
+		System.out.println(hw_m);
+		if(hw_m.getM_no()==0) {
+			Member mem=(Member)session.getAttribute("mem");
+			hw_m.setM_no(mem.getM_no());
 		}
 		
+		Homework hw=ps.getHomework(hw_m.getHw_no());
+		List<Problem> plist=ps.getProblemListInHomework(hw_m.getHw_no());
+		List<Problem> newplist=new ArrayList<Problem>();
+		for(Problem p:plist) {
+			newplist.add(abc(p,hw_m.getM_no()));
+		}
 
 		mv.addObject("hw", hw);
 		mv.addObject("plist", newplist);
-		//mv.addObject("alist)
 		mv.setViewName("mypage/teacher/homework/get");
 		return mv;
 	}
+	
+	/*
+	 * @GetMapping("/getHomeworkforStudent.lec") public ModelAndView
+	 * getHomeworkForStudentInLecture(int hw_no, int m_no, HttpSession session,
+	 * ModelAndView mv) { Homework hw=ps.getHomework(hw_no); List<Problem>
+	 * plist=ps.getProblemListInHomework(hw_no); List<Problem> newplist=new
+	 * ArrayList<Problem>(); for(Problem p:plist) { newplist.add(abc(p,m_no)); }
+	 * 
+	 * mv.addObject("hw", hw); mv.addObject("plist", newplist);
+	 * mv.setViewName("mypage/teacher/homework/get"); return mv; }
+	 */
 	
 	@GetMapping("/checkAnswer.hw")
 	public ModelAndView checkAnswerHomework(ProblemRelated lec_hw_m, HttpSession session, ModelAndView mv) {
@@ -323,6 +336,16 @@ public class LectureController {
 		mv.addObject("plist", newplist);
 		mv.addObject("alist", alist);
 		mv.setViewName("mypage/teacher/homework/get");
+		return mv;
+	}
+	
+	@PostMapping("/end.hw")
+	public ModelAndView endHomework(ProblemRelated lec_hw, HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		lec_hw.setLec_no(lec.getLec_no());
+		
+		int result=ps.endHomework(lec_hw);
+		mv.setViewName("redirect:homeworklist.lec");
 		return mv;
 	}
 	

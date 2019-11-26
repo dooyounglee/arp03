@@ -87,4 +87,9 @@
 		select * from homeworkanswer
 		where lec_no=#{lec_no} and hw_no=#{hw_no} and m_no=#{m_no}
 	</select>
+	
+	<update id="endHomework">
+		update homeworkinlecture set status='N'
+		where lec_no=#{lec_no} and hw_no=#{hw_no}
+	</update>
 </mapper>

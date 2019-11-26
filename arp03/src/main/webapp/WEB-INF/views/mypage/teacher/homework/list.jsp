@@ -94,8 +94,14 @@
 		                                                <th>#</th>
 		                                                <th>문제</th>
 		                                                <th>제출일</th>
-		                                                <th>마감</th>
-		                                                <th>정답확인(선생님이 마감 버튼 누르면 나타나게)</th>
+		                                                <th>
+		                                                <c:if test="${mem.typee eq 't' }">
+			                                            	마감
+			                                            </c:if>
+			                                           	<c:if test="${mem.typee eq 's' }">
+															정답확인
+			                                            </c:if>
+		                                                </th>
 		                                                <c:if test="${mem.typee eq 't' }">
 		                                                <th>삭제</th>
 														</c:if>
@@ -104,11 +110,20 @@
 		                                        <tbody>
 		                                        	<c:forEach var="hw" items="${list }">
 		                                        		<tr>
-			                                        		<td>${hw.hw_no }</td>
+			                                        		<td>${hw.hw_no }${hw.status }</td>
 			                                                <td><a href="getHomework.lec?hw_no=${hw.hw_no }">${hw.title }</a></td>
 			                                                <td>${hw.enddate }</td>
-			                                                <td><button class="btn btn-success" onclick="end(${hw.hw_no })">정답확인</button></td>
-			                                                <td><button class="btn btn-success" onclick="answer(${hw.hw_no })">정답확인</button></td>
+			                                                <td>
+			                                                <c:if test="${mem.typee eq 's' && hw.status eq'Y' }">
+			                                                	진행중
+			                                                </c:if>
+			                                                <c:if test="${mem.typee eq 't' && hw.status eq'Y' }">
+			                                                	<button class="btn btn-success" onclick="end(${hw.hw_no })">마감</button>
+			                                                </c:if>
+			                                                <c:if test="${hw.status eq'N' }">
+			                                                	<button class="btn btn-success" onclick="answer(${hw.hw_no })">정답확인</button>
+			                                                </c:if>
+			                                                </td>
 															<c:if test="${mem.typee eq 't' }">
 															<td><button class="btn btn-success" onclick="del(${hw.hw_no })">삭제</button></td>
 															</c:if>

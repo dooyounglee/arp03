@@ -9,4 +9,6 @@ public class Homework {
 	private int m_no;
 	private String title;
 	private String enddate;
+	private String status;
+	private int total;
 }

@@ -98,5 +98,10 @@ public class ProblemServiceImpl implements ProblemService {
 		return pd.delProblem(p_no);
 	}
 
+	@Override
+	public int endHomework(ProblemRelated lec_hw) {
+		return pd.endHomework(lec_hw);
+	}
+
 
 }

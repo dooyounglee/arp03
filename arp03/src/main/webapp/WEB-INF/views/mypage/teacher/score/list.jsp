@@ -154,17 +154,10 @@
                                         	<tr>
 	                                        	<th></th>
 												<c:forEach var="h" items="${hlist }">
-													<th width="100px">${h.title }</th>
+													<th width="100px">${h.title }(${h.total })</th>
 												</c:forEach>
 												<th>총합</th>
 											</tr>
-<!--                                             <tr>
-                                                <th>Rendering engine</th>
-                                                <th>Browser</th>
-                                                <th>Platform(s)</th>
-                                                <th>Engine version</th>
-                                                <th>CSS grade</th>
-                                            </tr> -->
                                         </thead>
                                         <tbody>
                                         	<c:forEach var="m" items="${mlist }">
@@ -185,7 +178,12 @@
 														<!-- End of score선택 -->
 														
 														<td>
+															<c:if test="${mem.typee eq 't' }">
+															<a href="getHomework.lec?hw_no=${hw.hw_no }&m_no=${m.m_no}">${scoreh }</a>
+															</c:if>
+															<c:if test="${mem.typee eq 's' }">
 															${scoreh }
+															</c:if>
 														</td>
 													</c:forEach>
 														<td class=sum>${sum }</td>

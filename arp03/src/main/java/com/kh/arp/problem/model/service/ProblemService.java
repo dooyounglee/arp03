@@ -44,4 +44,6 @@ public interface ProblemService {
 
 	int delProblem(int p_no);
 
+	int endHomework(ProblemRelated lec_hw);
+
 }

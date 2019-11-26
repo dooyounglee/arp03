@@ -110,12 +110,14 @@
 	</select>
 	
 	<select id="getHomeworkListInLecture" resultType="Homework">
-		select * from homework where hw_no in
-		(select hw_no from homeworkinlecture where lec_no=#{lec_no})
+		select hw.*,status,
+		(select count(*) from problemsinhomework where hw_no=hw.hw_no) total
+		from homework hw, (select hw_no,status from homeworkinlecture where lec_no=2) hwl
+		where hw.hw_no=hwl.hw_no
 	</select>
 	
 	<insert id="addHomeworkInLecture">
-		insert into homeworkinlecture values(#{lec_no},#{hw_no})
+		insert into homeworkinlecture values(#{lec_no},#{hw_no},default)
 	</insert>
 	
 	<delete id="delHomeworkInLecture">
