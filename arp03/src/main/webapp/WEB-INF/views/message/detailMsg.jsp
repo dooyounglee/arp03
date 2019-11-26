@@ -22,11 +22,13 @@ ${m.content }
 <button onclick="location.href='listMsg.do';">목록으로</button>
 
 <script>
-
+var m_no= ${mem.m_no}
 var ws = new WebSocket("ws://localhost:8585/arp/Echo"); 
 
 ws.onopen= function(){
 	console.log('커넥션 open');
+	
+	ws.send(m_no);
 	
 	ws.onmessage= function(event){
 		console.log(event.data+'\n');
