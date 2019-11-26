@@ -111,7 +111,7 @@ public class SurveyController {
 	public ModelAndView detailsurveystudent(ModelAndView mv, int su_no, SurveyQuestion sq) {
 		List<SurveyQuestion> ysq = ss.detailsurveyYstudent(su_no);
 		List<SurveyQuestion> nsq = ss.detailsurveyNstudent(su_no);
-		mv.addObject("Ysq", ysq).addObject("Nsq",nsq).setViewName("manager/detailsurveystudent");
+		mv.addObject("Ysq", ysq).addObject("Nsq",nsq).addObject("su_no", su_no).setViewName("manager/detailsurveystudent");
 		return mv;
 	}
 	@RequestMapping("insertcompletesurvey.ma")
@@ -152,6 +152,23 @@ public class SurveyController {
 		}
 		return mv;
 	}
+
+	/*
+	 * int lam_no=lsq.get(lsq.size()).getM_no(); sq.setM_no(lam_no); m_no가 필요할때 코드
+	 */
+	@RequestMapping("resultsurvey.ma")
+	public ModelAndView resultsurvey(ModelAndView mv, int su_no, HttpSession session) {
+	SurveyQuestion sq = new SurveyQuestion();
+	sq.setSu_no(su_no);
+	List<SurveyQuestion> lsq= ss.su_nosurvey(sq);
+	int lastsq_no=lsq.get(lsq.size()).getSq_no();
+	
+	sq.setSq_no(lastsq_no);
+	
+	List<SurveyQuestion> rsq= ss.resultsurvey(sq);
+	mv.addObject("rsq", rsq).setViewName("manager/resultsurvey");
+		return mv;
 	}
+}
 
 
