@@ -51,4 +51,10 @@ public class SurveyDao {
 	public List<SurveyQuestion> detailsurveyNstudent(int su_no){
 		return sqlSession.selectList("surveyMapper.detailSurveyNStudent", su_no);
 	}
+	public List<SurveyQuestion> su_nosurvey(SurveyQuestion sq){
+		return sqlSession.selectList("surveyMapper.su_noSurvey", sq);
+	}
+	public List<SurveyQuestion> resultsurvey(SurveyQuestion sq){
+		return sqlSession.selectList("surveyMapper.resultSurvey", sq);
+	}
 }
