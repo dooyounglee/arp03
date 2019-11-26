@@ -227,7 +227,7 @@ ${hw }<br>
 					answer:$(value).val(),
 				},
 				success:function(data){
-					
+					console.log(data)
 				},
 			})
 		})

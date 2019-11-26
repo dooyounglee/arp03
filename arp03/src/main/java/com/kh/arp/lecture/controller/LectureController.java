@@ -377,7 +377,11 @@ public class LectureController {
 		}
 		
 		int result=ls.submitAnswer(ans);
-		return "success";
+		if(result>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
 	}
 	
 	@PostMapping("/del.lec")
