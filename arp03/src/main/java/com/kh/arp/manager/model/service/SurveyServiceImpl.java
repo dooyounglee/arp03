@@ -58,7 +58,12 @@ public class SurveyServiceImpl implements SurveyService {
 	}
 
 	@Override
-	public List<SurveyQuestion> detailsurveystudent(int su_no) {
-		return sDao.detailsurveystudent(su_no);
+	public List<SurveyQuestion> detailsurveyYstudent(int su_no) {
+		return sDao.detailsurveyYstudent(su_no);
+	}
+
+	@Override
+	public List<SurveyQuestion> detailsurveyNstudent(int su_no) {
+		return sDao.detailsurveyNstudent(su_no);
 	}
 }

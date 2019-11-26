@@ -109,8 +109,9 @@ public class SurveyController {
 		}
 	@RequestMapping("detailsurveystudent")
 	public ModelAndView detailsurveystudent(ModelAndView mv, int su_no, SurveyQuestion sq) {
-		List<SurveyQuestion> lsq = ss.detailsurveystudent(su_no);
-		mv.addObject("lsq", lsq).setViewName("manager/detailsurveystudent");
+		List<SurveyQuestion> ysq = ss.detailsurveyYstudent(su_no);
+		List<SurveyQuestion> nsq = ss.detailsurveyNstudent(su_no);
+		mv.addObject("Ysq", ysq).addObject("Nsq",nsq).setViewName("manager/detailsurveystudent");
 		return mv;
 	}
 	@RequestMapping("insertcompletesurvey.ma")
