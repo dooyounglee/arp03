@@ -11,13 +11,16 @@
 		<result property="title_1" column="lec_title"/>
 	</resultMap>
 	
-		<resultMap id="surveyquestion" type="SurveyQuestion">
+	<resultMap id="surveyquestion" type="SurveyQuestion">
 		<id property="sq_no" column="sq_no"/>
 		<id property="su_no" column="su_no"/>
 		<id property="m_no" column ="m_no"/>
 		<result property="question" column="question"/>
 		<result property="answer" column="answer"/>
 		<result property="name" column="name"/>
+		<result property="enrolldate" column="enrolldate"/>
+		<result property="title" column="title"/>
+		<result property="issurvey" column="issurvey"/>
 	</resultMap>
 	
 	
@@ -34,28 +37,68 @@
   	#{title}, #{enrolldate})
   </insert>
   
-  <insert id ="insertSurveyQuestion">
-  insert into surveyquestion values
-  (#{sq_no}, seq_insertsurvey.currval,#{m_no}, #{question})
-  </insert>
-  
-  <select id="selectstudentmember">
+  <select id="selectstudentmember" resultMap="surveyquestion">
+  <!-- 
   select  mc.m_no
   from surveyquestion sq, insertsurvey iq , lecture l , myclass mc
-  where sq.su_no=seq_insertsurvey.currval And  sq.su_no=iq.su_no And iq.lec_no=l.lec_no And l.lec_no=mc.lec_no
+  where sq.sq_no=1 
+  And sq.m_no=mc.m_no 
+  And iq.su_no=2
+  And sq.su_no=iq.su_no 
+  And iq.lec_no=l.lec_no
+  And l.lec_no=mc.lec_no
+   -->
+   select  m_no
+	from myclass
+	where lec_no=#{lec_no}
   </select>
   
-	<select id="detailSurvey" resultType="InsertSurvey">
-		select *
-		from insertSurvey
-		where su_no=#{su_no}
-	</select>
-
-	<select id="detailsurveyquestion" resultMap="surveyquestion">
-		select sq_no, question, name
-		from surveyquestion s
-		join member m on s.m_no=m.m_no
-		where su_no=#{su_no} And m_no=#{m_no}
+  <insert id ="insertSurveyQuestion">
+  insert into surveyquestion values
+  (#{sq_no}, seq_insertsurvey.currval,#{m_no}, #{question}, null, 'N')
+  </insert>
+  
+  
+  
+	<!-- <select id="detailSurvey" resultMap="surveyquestion"> -->
+	<select id="detailSurvey" resultMap="surveyquestion">
+		select sq.su_no, sq.sq_no, sq.question, ie.title, ie.enrolldate
+        from surveyquestion sq, insertsurvey ie
+		where sq.m_no=#{m_no} and sq.su_no=#{su_no} and sq.su_no=ie.su_no
 	</select>
 	
+	
+	<update id="updatesurveyquestion">
+		update surveyquestion set 
+		answer=#{answer},
+		issurvey='Y'
+		where m_no=#{m_no}
+		And su_no=#{su_no}
+		And sq_no=#{sq_no}
+	</update>
+
+	<select id="detailSurveyYStudent" resultMap="surveyquestion">
+		select sq.m_no, m.name
+		from surveyquestion  sq, member m 
+		where su_no=#{su_no} and issurvey='Y' and m.m_no=sq.m_no and sq_no=1
+	</select>
+	
+	<select id="detailSurveyNStudent" resultMap="surveyquestion">
+		select sq.m_no, m.name
+		from surveyquestion  sq, member m 
+		where su_no=#{su_no} and issurvey='N' and m.m_no=sq.m_no and sq_no=1
+	</select>
+	
+	<select id="sq_noSurvey" resultMap="surveyquestion">
+		select sq.sq_no sq.m_no
+        from surveyquestion sq
+		where sq.m_no=#{m_no} and sq.su_no=#{su_no}
+	</select>
+	
+	<!-- sq와 su넘버만 넣은 셀렉문 -->
+	<select id="resultSurvey" resultMap="surveyquestion">
+		select answer
+		from surveyquestion
+		where sq_no=#{sq_no} And su_no=#{su_no} And issurvey="Y"
+	</select>
 </mapper>

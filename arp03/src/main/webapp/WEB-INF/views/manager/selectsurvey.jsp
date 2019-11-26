@@ -30,14 +30,21 @@ ${list }
 		</tr>
 	</c:forEach>
 	</table>
+	
 	<script>
 		$("td").mouseenter(function(){
 			$(this).parent().children().css({"background":"darkgray","cursor":"pointer"})
 		}).click(function(){
 			var no=$(this).parent().children().eq(4).val();
+			if("${mem.typee}"=='s'){
 			location.href="detailsurvey.ma?su_no=" + no;
+			}
+			if("${mem.typee}"=='t'){
+				location.href="detailsurveystudent.ma?su_no=" + no;
+			}
 		});
 	</script>
+	
 	<button type="button" onclick="location.href='daysurvey.ma';">설문조사 만들기</button>
 <jsp:include page="../include/footer.jsp"/>
 </body>

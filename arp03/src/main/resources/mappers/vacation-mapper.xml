@@ -22,10 +22,10 @@ values(seq_vacation.nextval,
 </insert>
 
 <select id="selectList" resultType="Vacation">
-select v.* ,title
-from vacation v , lecture l
-where v.lec_no = l.lec_no
-order by l.lec_no desc
+select v.* ,title, m.name
+from vacation v , lecture l, member m
+where v.lec_no = l.lec_no and v.m_no = m.m_no
+order by v.v_no desc
 <!--select b.*, m.name 
 		from board b, member m
 		where b.ca_no=2 and b.status='Y' and b.m_no=m.m_no
@@ -80,6 +80,12 @@ where v_no=#{v_no}
 update vacation
 set tstatus='B', companion_reason=#{companion_reason}
 where v_no=#{v_no}
+</update>
+
+<update id="adminpermission">
+update vacation
+set astatus='Y', status='Y'
+where v_no=#{v_no} 
 </update>
 
 </mapper>

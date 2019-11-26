@@ -15,6 +15,7 @@
 		<result property="originalname" column="originalName"/>
 		<result property="changename" column="changeName"/>
 		<result property="tcname" column="tcname"/>
+		<result property="youtubelink" column="youtubelink"/>
 	</resultMap>
 	
 	<resultMap id="QFile1" type="QFile">
@@ -46,7 +47,7 @@
 	<select id="selectQuestionList" resultMap="qList">
 	    select q.q_no, q.lec_no, q.m_no, q.title, m.name,
 	           q.regdate, q.vcount, q.isreply, q.fileox, originalname,
-	           changename
+	           changename, youtubelink
 	    from question q
 	    join member m on(q.m_no=m.m_no)
 	    left join qfile f on(q.q_no=f.q_no)
@@ -57,7 +58,7 @@
 	<insert id="qInsert">
 		insert into question
 		values(seq_question.nextval, #{lec_no}, #{m_no}, #{title}, #{content}, 
-				sysdate, sysdate, default, 0, 0, 0, default, default, default, default, #{fileox})
+				sysdate, sysdate, default, 0, 0, 0, default, default, default, default, #{fileox}, #{youtubelink})
 	</insert>
 	
 	<insert id="qFileInsert">
@@ -81,7 +82,7 @@
 	
 	<update id="qUpdate">
 		update Question
-		set title=#{title}, content=#{content}, updatedate=sysdate
+		set title=#{title}, content=#{content}, updatedate=sysdate , youtubelink=#{youtubelink}
 		where q_no=#{q_no}
 	</update>
 	
@@ -144,7 +145,7 @@
 	<select id="qReplyListCount" resultType="_int">
 		select count(*)
 		from QReply
-		where q_no=#{q_no}
+		where q_no=#{q_no} and status='Y'
 	</select>
 	
 	<select id="selectTeacherName" resultMap="qList">
@@ -154,4 +155,15 @@
 		where lec_no=#{lec_no}
 	</select>
 	
+	<update id="deleteDatReply">
+		update QReply
+		set status='N'
+		where r_no=#{r_no}
+	</update>
+	
+	<select id="realTimeSelect" resultMap="qList">
+		select title
+		from question
+		order by vcount desc
+	</select>
 </mapper>

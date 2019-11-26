@@ -1,12 +1,17 @@
 package com.kh.arp.vacation.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.lecture.model.vo.Lecture;
@@ -164,5 +169,63 @@ public class VacationController {
 		}else {
 			return "common/errorPage";
 		}
+	}
+	
+	@RequestMapping("sVlist.ad")
+	public ModelAndView adminpermission(HttpSession session, ModelAndView mv) {
+		int m_no = ((Member)session.getAttribute("mem")).getM_no();
+		ArrayList<Vacation> list = vService.selectList(m_no);
+		
+		mv.addObject("list" , list).setViewName("vacation/adminVacation");
+		
+		return mv;
+		
+	}
+	
+	@ResponseBody  
+	@RequestMapping("permission.ad")
+	public int checkVnoTest(@RequestParam(value="checkList[]") List<String> Number) {
+		
+		
+	//	System.out.println(Number);
+		
+		int result=0;
+		
+		
+		for(String v : Number ) {
+			//System.out.println(v);
+			
+			int num =Integer.parseInt(v);
+			
+			result =vService.adminpermission(num); 	
+			//System.out.println(result);
+		}
+		
+		return result;
+
+		
+	}
+	
+	@ResponseBody  
+	@RequestMapping("multiPermission.ad")
+	public int MultiCheck(@RequestParam(value="MultiList[]") List<String> Number) {
+		//System.out.println(Number);
+		
+		int result =0;
+		
+		for(String v : Number) {
+			int num = Integer.parseInt(v);
+			
+			result = vService.multiPermission(num);
+			//System.out.println(result);
+		}
+		
+		//System.out.println(result);
+		return result;
+	}
+	
+	@RequestMapping("signature-pad.te")
+	public String signaturePad() {
+		return "vacation/signature-pad";
 	}
 }

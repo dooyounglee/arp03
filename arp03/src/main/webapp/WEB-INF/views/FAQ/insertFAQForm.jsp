@@ -8,15 +8,42 @@
 <title>Insert title here</title>
 </head>
 <!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+ <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 
 <!-- include summernote css/js-->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 <body>
-	<jsp:include page ="../include/header.jsp"/>
+	
+	<%@ include file="../include/bhead.jsp"%>
+<!-- <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script> -->
+</head>
+<body class="fix-header card-no-border logo-center">
+
+	<!-- Preloader - style you can find in spinners.css -->
+	 <%-- <%@ include file="../include/bpreloader.jsp" %>  --%>
+	<!-- End of Preloader - style you can find in spinners.css -->
+
+	<!-- Main wrapper -->
+	<div id="main-wrapper">
+	
+        <!-- Topbar header - style you can find in pages.scss -->
+        <header class="topbar">
+        	<%@ include file="../include/btopbarheader.jsp" %>
+        </header>
+        <!-- End Topbar header -->
+        
+        <!-- Left-sidebar -->
+        <aside class="left-sidebar">
+        	<%@ include file="../include/bsidebar.jsp" %>
+        </aside>
+        <!-- End of Left-sidebar -->
+
+		<!-- Page wrapper  -->
+        <div class="page-wrapper">
+        
 	
 	
 	<h2 align="center"> FAQ 작성하기</h2>
@@ -56,6 +83,20 @@
 		</table>
 	</form>
 	
+     <footer class="footer">
+        <%--     <%@ include file="../include/bfooter.jsp" %> --%>
+        </footer>
+        <!-- End footer -->
+
+		</div>
+        <!-- End of Page wrapper  -->
+        
+	</div>
+	<!-- End of Main wrapper -->
+
+
+	<%--  <%@ include file="../include/bjs.jsp" %>  --%>
+	
 	
 	
 	
@@ -67,13 +108,13 @@
 	</script>
 	
 	
-	  <script src='jquery-3.2.1.js'></script>
+	 <script src='jquery-3.2.1.js'></script>
    
    <script>
    
    var jq132 = jQuery.noConflict();
    
-   </script>
+   </script> 
 	
 </body>
 </html>
