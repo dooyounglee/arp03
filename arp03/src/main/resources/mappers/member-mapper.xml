@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
 	<select id="login" resultType="Member">
-		select * from member where id=#{id} and pw=#{pw}
+		select * from member where id=#{id} and pw=#{pw} and status='Y'
 	</select>
 	
 	<insert id="join">
@@ -119,6 +119,9 @@
 				and l.status='Y'
 			</when>
 		</choose>
-		
 	</select>
+	
+	<delete id="acceptMember">
+		update member set status='Y' where m_no=#{m_no}
+	</delete>
 </mapper>

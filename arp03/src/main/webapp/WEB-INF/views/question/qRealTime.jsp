@@ -114,6 +114,9 @@ $(function(){
 		for(var i=0; i<data.length; i++){
 			$('#rank-list ol').append("<li><a href='#'>"+"<span class='numberStyle'>"+count+"</span> &nbsp;<span class='titleStyle'>"+data[i].title+"</span></a></li>");
 			count++;
+			if(count == 11){
+				break;
+			}
 		}
 			var count = $('#rank-list li').length;
 		    var height = $('#rank-list li').height();

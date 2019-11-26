@@ -16,7 +16,8 @@
 		padding-right:60px;
 		text-align:left;
 		color:black;
-		width:700px;
+		width:auto;
+		height:auto;
 		margin-left:auto;
 		margin-right:auto;
 
@@ -39,11 +40,7 @@
 	font-size:13px;
 	}
 	
-	#content{
-	border:1px;
-		width:450px;
-		height:230px;
-	}
+	
 	#file,a{
 	font-size:15px;
 	}
@@ -53,6 +50,7 @@
 		margin-right:auto;
 		width:600px;
 	}
+
 	
 	
 	
@@ -83,9 +81,9 @@
 	
 	
 	<div id="formdiv" align="center">
+
 	<p align="center" style="font-size: 15px ">${ b.b_no }번 글</p>
-	<!-- <label>제목 : </label> -->
-	${ b.title }		
+	${ b.title }		<br>
 	<label id="bor" style="color: lightgray">---------------------------------------------------------------------------</label>
 	<div>
 	<label>${ b.name}</label>	
@@ -95,18 +93,21 @@
 	<div id="content">
 	${ b.content }	
 	</div>
+	<div>
+	<c:if test="${ !empty bfList}">
 	<img src="resources/image/fileIcon.jpg" width="15px" height="19px" >
 		<label id="file">첨부파일</label>
 	<br>
 	
-	<c:if test="${ !empty bfList}">
+
 	<c:forEach items="${ bfList }" var="bl">
 		<a href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bl.rename_filename}" download="${ bl.original_filename }">${ bl.original_filename }</a>
 		<br>
 				
 	</c:forEach>
-	</c:if>
 
+	</c:if>
+	</div>
 	
 		
 
@@ -120,18 +121,18 @@
 	
 	<br><br>
 
-	
+	<div id="re">
 	<!-- 댓글 등록 부분 -->
 
-		<table align="center" width="600" border="1" cellspacing="0">
+		<table align="center" width="700" border="1" cellspacing="0">
 		<tr>
-			<td width="508px"><textarea cols="57" rows="3" id="rContent" style=" border:0;overflow-y:hidden;background:clear;padding:0px"></textarea></td>
-			<td><button id="rBtn" class="btn waves-effect waves-light btn-info">등록하기</button></td>
+			<td width="508px"><textarea cols="65" rows="3" id="rContent" style=" border:0;overflow-y:hidden;background:clear;padding:0px"></textarea></td>
+			<td><button id="rBtn" class="btn btn-rounded btn-block btn-outline-info">등록하기</button></td>
 		</tr>
 	</table>
 	<br>
 	<!-- 댓글 목록 부분 -->	
-	<table align="center" width="600" cellspacing="0" id="rtb" style="color:black" >
+	<table align="center" width="700" cellspacing="0" id="rtb" style="color:black" >
 		<thead>
 			<tr>
 				<td colspan="3"><b id="rCount"></b></td>
@@ -156,8 +157,9 @@
 	<br><br><br><br>
 	</div>
 	</div>
+	</div>
 	
-
+</div>
 	<script>
 		$(function(){
 			getReplyList();
@@ -166,6 +168,10 @@
 		// 댓글등록하기 버튼 
 		$("#rBtn").on("click", function(){
 				var content = $("#rContent").val();
+				if(content == ""){
+					alert("댓글을 작성해주세요!");
+					return false;
+				}
 				var b_no= ${b.b_no};
 				var m_no = ${mem.m_no}; 
 				console.log(content);
