@@ -9,7 +9,7 @@
             <li class="nav-small-cap">PERSONAL</li>
             <li>
             	<c:if test="${!empty mem}">
-            	<a class="has-arrow" onclick="location.href='lectureList.ad'" href="#"><span class="hide-menu">나의 강좌 리스트</span></a>
+            	<a class="has-arrow" onclick="location.href='lectureList.ad'" href="lectureList.ad"><span class="hide-menu">나의 강좌 리스트</span></a>
             	<c:if test="${mem.typee ne 'a' }">
             	<ul aria-expanded="false" class="collapse">
             		<c:forEach var="l" items="${myLec }">
@@ -32,7 +32,6 @@
             <li>
                 <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">학생</span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="lectureList.ad">내 수강목록</a></li>
                     <li><a href="blist.do">자유 게시판</a></li>
                     <li><a href="mylist.qna">내 문의</a></li>
                     <li><a href="myInfo.me">내 정보</a></li>
@@ -43,7 +42,6 @@
             <li class="one-column">
                 <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">선생님</span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="lectureList.ad">내 수업목록</a></li>
                     <li><a href="blist.do">자유 게시판</a></li>
                     <li><a href="tblist.do">선생님 게시판</a></li>
                     
@@ -113,7 +111,6 @@
             <li class="two-column">
                 <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">관리자</span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li><a href="lectureList.ad">강좌관리</a></li>
                     <li><a href="boardList.ad">게시글 관리</a></li>
                     <li><a href="replyList.ad">댓글 관리</a></li>
                     <li><a href="qnaList.ad">문의관리</a></li>
@@ -159,4 +156,7 @@
 		alert("선생님만 이용가능한 게시판입니다.");
 	
 	}
+	$("ul#sidebarnav a").each(function(index,value){
+		console.log(value.href)
+	})
 </script>
