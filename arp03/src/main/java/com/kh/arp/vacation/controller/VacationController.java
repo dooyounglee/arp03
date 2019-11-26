@@ -1,19 +1,28 @@
 package com.kh.arp.vacation.controller;
 
+import java.io.File;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.vacation.model.service.VacationServiceImpl;
@@ -68,20 +77,63 @@ public class VacationController {
 	}
 	
 	@RequestMapping("vinsert.me")
-	public String vInsert(Vacation v) {
+	public String vinsert(Vacation v , String dateArea ) {
+		
 		
 		int result = vService.insertVacation(v);
-			
-		if(result>0) {
-			return "redirect:vlist.me";
 		
+		if(result>0) {
+			return"redirect:vlist.me";
 		}else {
-			return null;
+			return "common/errorPage";
 		}
+	}
+	
+	
+	/*
+	@RequestMapping("vinsert.me")
+	public String vinsert(Vacation v, String[] rlaalstkd) {
+		
+		System.out.println(v);
+		for(int i=0;i<rlaalstkd.length;i++) {
+			System.out.println(rlaalstkd[i]);
+		}
+		
+		int result = vService.insertVacation(v,rlaalstkd);
+		return "";
+		/*
+		 * int result = vService.insertVacation(v);
+		 * 
+		 * if(result>0) { return "redirect:vlist.me"; }else { return "common/errorPage";
+		 * }
+		 */
+	
+	/*
+	@ResponseBody
+	@RequestMapping("vinsertDate.me")
+	public String vinsertDate(@RequestParam(value="arrDate[]")List<String> DateList, 
+							  @RequestParam(value="m_no") int m_no,
+							  @RequestParam(value="lec_no") int lec_no,
+							  Vacation v , HttpServletResponse response) {
+		
+		
+		System.out.println("컨ㄷ트롤" + m_no + lec_no);
+		
+		String join = String.join(",", DateList);
+		System.out.println("포문밖"+join);
+		v.setM_no(m_no);
+		v.setLec_no(lec_no);
+		v.setVacation_date(join);
+		
+		int result = vService.insertDate(v);
+		
+		Gson gson = new GsonBuilder().create();
+		
+		return gson.toJson(result);
 		
 	
 	}
-	
+	*/
 	@RequestMapping("vDetail.me")
 	public ModelAndView vDetail(ModelAndView mv,int v_no) {
 		
@@ -228,4 +280,72 @@ public class VacationController {
 	public String signaturePad() {
 		return "vacation/signature-pad";
 	}
+	
+	
+	@RequestMapping("imageUpload.te")
+	public void imageUpload(MultipartFile file , HttpServletRequest request , HttpServletResponse response) throws Exception {
+		
+		response.setContentType("text/html;charset=utf-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String realFolder = root + "/tSignImages/";
+		
+		UUID uuid = UUID.randomUUID();
+		
+		String org_filename= file.getOriginalFilename();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + uuid + "."
+				+ org_filename.substring(org_filename.lastIndexOf(".") + 1);
+		
+		String filepath = realFolder + "\\" + renameFileName;
+		
+		File f = new File(filepath);
+		
+		if(!f.exists()) {
+			f.mkdir();
+		}
+		file.transferTo(f);
+		out.println("resources/tSignImages/" + renameFileName);
+		out.close();
+	}
+	
+	
+	
+	/*
+	 * @RequestMapping("imageUpload.te") public void imageUpload(MultipartFile file,
+	 * HttpServletRequest request, HttpServletResponse response) throws Exception {
+	 * response.setContentType("text/html;charset=utf-8"); PrintWriter out =
+	 * response.getWriter();
+	 * 
+	 * // 업로드할 폴더 경로 String root =
+	 * request.getSession().getServletContext().getRealPath("resources"); String
+	 * realFolder = root + "/tbuploadImages"; // String realFolder = //
+	 * request.getSession().getServletContext().getRealPath("buploadFiles");
+	 * 
+	 * UUID uuid = UUID.randomUUID();
+	 * 
+	 * // 업로드할 파일 이름 String org_filename = file.getOriginalFilename();
+	 * 
+	 * SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+	 * 
+	 * String renameFileName = sdf.format(new Date(System.currentTimeMillis())) +
+	 * uuid + "." + org_filename.substring(org_filename.lastIndexOf(".") + 1);
+	 * 
+	 * // System.out.println("원본 파일명 : " + org_filename); //
+	 * System.out.println("저장할 파일명 : " + renameFileName);
+	 * 
+	 * String filepath = realFolder + "\\" + renameFileName; //
+	 * System.out.println("파일경로 : " + filepath);
+	 * 
+	 * File f = new File(filepath); if (!f.exists()) { f.mkdirs(); }
+	 * file.transferTo(f); out.println("resources/tbuploadImages/" +
+	 * renameFileName); out.close(); }
+	 */
+	
+	
+	
 }

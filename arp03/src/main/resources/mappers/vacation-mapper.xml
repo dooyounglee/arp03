@@ -9,11 +9,11 @@ values(seq_vacation.nextval,
 	   #{lec_no},
 	   #{vacation_title},
 	   #{reason},
-	   #{start_date},
-	   #{date_count},
+	   0,
 	   sysdate,
 	   default,
 	   null,
+	   default,
 	   default,
 	   default
 	   )
@@ -21,10 +21,18 @@ values(seq_vacation.nextval,
 
 </insert>
 
+<insert id ="insertDate">
+insert into vacationdate
+values(#{m_no},
+	   #{lec_no},
+	   #{vacation_date})
+
+</insert>
+
 <select id="selectList" resultType="Vacation">
-select v.* ,title, m.name
-from vacation v , lecture l, member m
-where v.lec_no = l.lec_no and v.m_no = m.m_no
+select v.*, m.name , l.title 
+from vacation v , member m, lecture l
+where m.m_no = v.m_no and l.lec_no = v.lec_no
 order by v.v_no desc
 <!--select b.*, m.name 
 		from board b, member m
@@ -55,7 +63,7 @@ where v_no=#{v_no}
 <delete id="deleteVacation">
 
 delete vacation
-where v_no = #{v_no}
+where v_no = #{v_no} 
 
 
 </delete>
@@ -87,5 +95,10 @@ update vacation
 set astatus='Y', status='Y'
 where v_no=#{v_no} 
 </update>
+
+<select id="rlaalstkd" resultType="Vacation">
+select mc.lec_no,cd.classdate from myclass mc, classdate cd where m_no=#{m_no} and mc.lec_no=cd.lec_no --1번학생이 수강중인 수업날짜들
+and cd.classdate in (select vacation_date from vacationdate where m_no=#{m_no})
+</select>
 
 </mapper>
