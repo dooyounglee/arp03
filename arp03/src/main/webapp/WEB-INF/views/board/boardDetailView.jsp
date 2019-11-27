@@ -47,6 +47,42 @@
 		width:600px;
 	}
 	#reTb{text-align:center}
+	
+	.modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */   
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Could be more or less, depending on screen size */        
+                              
+        }
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+	
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" type="text/javascript"></script>
 <%@ include file="../include/bhead.jsp"%>
@@ -82,7 +118,7 @@
 	</div>
 	<br>
 	<div id="btns" align="center">
-		<button type="button" class="btn waves-effect waves-light btn-rounded btn-danger" onclick="declareBoard();">신고</button>
+		<button type="button" id="dBoard" class="btn waves-effect waves-light btn-rounded btn-danger" onclick="declareBoard();">신고</button>
 				<c:if test="${ mem.m_no eq b.m_no }">
 					<button class="btn waves-effect waves-light btn-rounded btn-info" type="button" onclick="location.href='bupdateView.do?b_no=${b.b_no}';">수정</button>
 					<button class="btn waves-effect waves-light btn-rounded btn-info" type="button" onclick="deleteCheck();">삭제</button>
@@ -121,6 +157,33 @@
 	</div>
 	</div>
 	
+	<!-- 모달 창 -->
+	<div class="modal" id="declareModal">
+        <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>신고하기</h6>
+                       	<input type="radio" name="kind" value="1">영리목적/홍보<br>
+						<input type="radio" name="kind" value="2">불법정보<br>
+						<input type="radio" name="kind" value="3">음란성/선정성<br>
+						<input type="radio" name="kind" value="4">욕설/인신공격<br>
+						<input type="radio" name="kind" value="5">개인정보노출<br>
+						<input type="hidden" name="obj" value="b">
+						<input type="hidden" id="obj_no" value="${b.b_no}">	
+						내용:<input type="text" name="content" id="deClarecontent">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light close" data-dismiss="modal">취소</button>
+                        <button type="submit" class="btn btn-primary">신고하기</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div>
+        </div>
+	
 	<script>
 		function declareBoard(){
 			 //var url="insertForm.de";
@@ -139,8 +202,8 @@
 				
 			input_id.setAttribute("type", "hidden");
 
-			input_id.setAttribute("name", "obj");      //name 속성 지정
-			input_id.setAttribute("value", "b");        //value 값 설정
+			input_id.setAttribute("name", "obj");
+			input_id.setAttribute("value", "b");
 
 			form.appendChild(input_id);
 				
@@ -148,8 +211,8 @@
 				
 			input_id2.setAttribute("type", "hidden");
 
-			input_id2.setAttribute("name", "obj_no");      //name 속성 지정
-			input_id2.setAttribute("value", ${b.b_no});        //value 값 설정
+			input_id2.setAttribute("name", "obj_no"); 
+			input_id2.setAttribute("value", ${b.b_no});
 
 			form.appendChild(input_id2);
 				
@@ -169,7 +232,7 @@
 	
 		$(function(){
 			getReplyList();
-			
+
 			$(document).on("click", ".dec", function(){
 				var form = document.createElement("form");
 					form.setAttribute("method", "post");          
