@@ -17,11 +17,11 @@
 <jsp:include page= "../include/header.jsp"/>
 
 	<h2 align="center"> 휴가 신청하기</h2>
-	<form align="center" action="vinsert.me" >
+	<form align="center" action="vinsert.me" method="POST" >
 	
 	<input type="hidden" name="m_no" id="m_no" value="${mem.m_no }" readonly><br>
-	강의번호:<input type="text" name="lec_no"  id="lec_no" value="${param.lec_no }" readonly><br>
-	강의명:<input type="text" name="title" id="title"value="${param.title }" readonly><br>
+<%-- 	강의번호:<input type="text" name="lec_no"  id="lec_no" value="${param.lec_no }" readonly><br> --%>
+	<%-- 강의명:<input type="text" name="title" id="title"value="${param.title }" readonly><br> --%>
 	제목:<input type="text" id="vacation_title" name="vacation_title"><br>
 	사유:<textarea name="reason"  id="reason" rows="4" cols="50" placeholder="사유입력"></textarea><br>
 	<table style="text-align:center;float:center;">
@@ -45,7 +45,7 @@
 			</tbody>
 		</table>
 				<!-- <input id="rlaalstkd" name=vacation_date> -->
-				<div id="dateArea" name ="dateArea">
+				<div id="dateArea">
 				</div>
 	<button type="submit" id="submit">등록하기</button> 
 	<button type="button" onclick="location.href='vlist.me';">목록으로</button>
@@ -275,7 +275,7 @@
 	    $('#dateArea').html('')
 	    var str=""
 	    for(i=0;i<arr.length;i++){
-	    	str+='<input name="rlaalstkd" value="'+arr[i]+'"><br>'
+	    	str+='<input name="dateArea" value="'+arr[i]+'"><br>'
 	    }
 	    $('#dateArea').append(str)
 	    calend(yyyy,mm);

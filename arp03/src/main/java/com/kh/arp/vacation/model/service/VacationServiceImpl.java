@@ -1,6 +1,7 @@
 package com.kh.arp.vacation.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.vacation.model.dao.VacationDao;
 import com.kh.arp.vacation.model.vo.Vacation;
+import com.kh.arp.vacation.model.vo.VacationDate;
 
 @Service
 public class VacationServiceImpl implements VacationService {
@@ -86,6 +88,15 @@ public class VacationServiceImpl implements VacationService {
 	public int insertVacation(Vacation v, String[] rlaalstkd) {
 		return vDao.insertVacation(v,rlaalstkd);
 	}*/
+	@Override
+	public List<VacationDate> selectLecNo(VacationDate vd) {
+		return vDao.selectLecNo(vd);
+	}
+	@Override
+	public int insertVacationDate(List<VacationDate> vDlist) {
+		return vDao.insertVacationDate(vDlist);
+	}
+	
 
 	
 

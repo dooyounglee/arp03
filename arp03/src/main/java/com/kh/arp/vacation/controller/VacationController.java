@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,13 +26,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.vacation.model.service.VacationService;
 import com.kh.arp.vacation.model.service.VacationServiceImpl;
 import com.kh.arp.vacation.model.vo.Vacation;
+import com.kh.arp.vacation.model.vo.VacationDate;
 
 @Controller
 public class VacationController {
 	@Autowired
-	private VacationServiceImpl vService;
+	private VacationService vService;
 	
 	@RequestMapping("myLlist.me")
 	public ModelAndView myLectrueList(ModelAndView mv, HttpSession session) {
@@ -76,18 +79,51 @@ public class VacationController {
 	return mv;
 	}
 	
-	@RequestMapping("vinsert.me")
-	public String vinsert(Vacation v , String dateArea ) {
+	@PostMapping("vinsert.me")
+	public String vinsert(Vacation v , String[] dateArea, HttpSession session ) {
 		
+		Member mem=(Member)session.getAttribute("mem");
 		
+		System.out.println(v);
+		System.out.println(dateArea);
 		int result = vService.insertVacation(v);
+		System.out.println(v);
 		
-		if(result>0) {
-			return"redirect:vlist.me";
-		}else {
-			return "common/errorPage";
+		for(int j =0; j<dateArea.length; j++) {
+			
+			VacationDate vd=new VacationDate();
+			vd.setM_no(mem.getM_no());
+			String temp=dateArea[j].replaceAll("-", "/");
+			temp=temp.substring(2);
+			vd.setClassdate(temp); // vacationdate 로 바꾸기
+			System.out.println(vd);
+			
+			List<VacationDate> list=vService.selectLecNo(vd);
+			
+			List<VacationDate> vDlist = new ArrayList<VacationDate>();
+			for(int i=0;i<list.size();i++) {
+				VacationDate vdd=new VacationDate();
+				vdd.setV_no(v.getV_no());
+				vdd.setLec_no(list.get(i).getLec_no());
+				vdd.setClassdate(list.get(i).getClassdate().split(" ")[0].replaceAll("-", "/"));
+				vDlist.add(vdd );
+			}
+			System.out.println(vDlist);
+			
+			int result1=vService.insertVacationDate(vDlist);
 		}
+		
+		return "";
+		
+		
+		
+//		if(result>0) {
+//			return"redirect:vlist.me";
+//		}else {
+//			return "common/errorPage";
+//		}
 	}
+	
 	
 	
 	/*

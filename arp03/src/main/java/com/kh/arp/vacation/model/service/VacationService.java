@@ -1,9 +1,11 @@
 package com.kh.arp.vacation.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.vacation.model.vo.Vacation;
+import com.kh.arp.vacation.model.vo.VacationDate;
 
 public interface VacationService {
 
@@ -45,6 +47,10 @@ public interface VacationService {
 	 
 	 //관리자 휴가처리
 	 int multiPermission(int num);
+
+	List<VacationDate> selectLecNo(VacationDate vd);
+
+	int insertVacationDate(List<VacationDate> vDlist);
 
 	
 }
