@@ -12,4 +12,7 @@ public interface CalendarService {
 	// 일정 리스트 조회
 	ArrayList<Calendar> selectCalList(int m_no);
 	
+	// 일정 수정
+	int updateCalendar(Calendar c);
+	
 }

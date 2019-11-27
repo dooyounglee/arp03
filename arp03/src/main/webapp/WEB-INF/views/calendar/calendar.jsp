@@ -106,9 +106,7 @@
 	            };
 	          }
 	        });
-	        
-	    
-	     
+
 	        // initialize the calendar
 	        // -----------------------------------------------------------------
 	     	
@@ -122,10 +120,10 @@
 	        function getCalList(){
 	        	$count++;
 	        	
-	        	if($count > 1) {
+	        	/* if($count > 1) {
         			$("#calendar").empty();
-        		}
-	        	
+        		} */
+	        	$("#calendar").empty();
 				var resultEvents = [];
 	        	
 	        	$.ajax({
@@ -135,8 +133,45 @@
 		   			success: function(data) {
 		   				
 		   				$.each(data,function(index, value){
-		   					resultEvents.push({title:value.title, start:value.start, end:value.end});
 		   					//calendar.addResource({title:value.title, start:value.start, end:value.end});
+		   					//console.log(value.start);
+		   					//console.log(value.end);
+		   					/* var yyyy = value.start.substr(0,4);
+		   				    var mm = value.start.substr(5,2);
+		   				    var dd = value.start.substr(8,2); */
+		   				    
+		   				 	//var newStart = new Date(yyyy, mm-1, dd);
+		   				 	//console.log("date형:" + newStart);
+		   				 	
+		   				 	var endy = value.end.substr(0,4);
+		   				 	var endm = value.end.substr(5,2);
+		   				 	var endd = value.end.substr(8,2);
+		   				 	
+		   				 	var newEnd = new Date(endy, endm, endd);
+ 				
+		   				 	//console.log("date형:" + newEnd);
+		   				 	//console.log("date형일자:" + endd);
+		   				 	//console.log("date형일자+1:" + endd+1);
+		   			 	
+		   				 	if(value.start != value.end) {
+		   				 		var endf = Number(endd) + 1;
+		   				 		newEnd = new Date(endy, endm, endf);
+		   					}
+		   					//console.log("date형:" + newEnd.getFullYear().toString());
+		   					
+		   					console.log("end Month : " + endm);
+		   				 	console.log("end date : " + newEnd);
+		   					
+		   					var y = newEnd.getFullYear().toString();
+		   					var m = newEnd.getMonth().toString();
+		   					var d = newEnd.getDate().toString();
+		   					
+		   					var ymd = (y + "-" + m + "-" + d);
+		   					console.log(index + ":" +  ymd);
+		   					
+		   					resultEvents.push({id:value.c_no, title:value.title, start:value.start, end:ymd});
+		   					console.log(resultEvents);
+		   					
 		   				});
 		   				
 		   			}
@@ -144,7 +179,6 @@
 		   				getCalendar(resultEvents); 
 		   		});
 	        }
-	        
 	        
 	        function getCalendar(arr){
         		console.log($count);
@@ -158,6 +192,8 @@
 	                },
 	                editable: true,
 	                droppable: true, // this allows things to be dropped onto the calendar
+	                /* minTime: '00:00:00',
+	                maxTime: '23:59:59', */
 	                drop: function(info) {
 	                  // is the "remove after drop" checkbox checked?
 	                  if (checkbox.checked) {
@@ -166,12 +202,57 @@
 	                  }
 	                },
 	        		  events: arr,
-	        		eventClick: function(event, element) {
+	        		eventClick: function(info) {
 	        	            //event.title = "CLICKED!";
 	        	            //$('#calendar').fullCalendar('updateEvent', event);
 	        	          	//window.alert("이벤트클릭");
-	        	          	console.log(event);
-	        	         }	
+	        	          	console.log(info.event.id);
+	        	          	console.log(info.event.start);
+	        	          	console.log(info.event.end);
+	        	          	//console.log(calendar.getEventById('1').title);
+	        	          
+	        	         },
+	        	         
+	        	     eventResize: function(info) {
+	        	        	    console.log(info.event.title + " end is now " + info.event.end);
+	        	        	    console.log(info.event.start);
+	        	        	    console.log(info.event.id);
+	        	        	    
+	        	        	    var newStart = (info.event.start.toISOString()).substr(0, 10);
+	        	        	    
+	        	        	    var yyyy = newStart.substr(0,4);
+			   				    var mm = newStart.substr(5,2);
+			   				    var dd = newStart.substr(8,2);
+			   				 	var d = Number(dd) + 1;
+	        	        	    
+			   				    var a = (yyyy + "-" + mm + "-" + d);
+			   				    console.log(a);
+	        	        	    
+	        	        	    var newEnd = (info.event.end.toISOString()).substring(0, 10);
+	        	        	    //console.log("newStart" + newStart);
+	        	        	    console.log("newEnd" + newEnd);
+	        	        	    $.ajax({
+	        	        	    	url:'update.ca',
+	 	                            type:'post',
+	 	                            async: false,
+	 	                            data:{c_no:info.event.id, m_no:${mem.m_no}, title:info.event.title, start:a, end:newEnd},
+	 	                            success:function(data){
+	 	                          	   if(data == "success") {
+	 	                          		console.log("성공");
+	 	                          		getCalList();
+	 	                          	  } else {
+	 	                          		  alert("일정 추가에 실패했습니당");
+	 	                          	  } 
+	 	                            	//console.log("성공");
+	 	                            },
+	 	                            error:function(){
+	 	                                console.log("ajax 통신 실패");
+	 	                            }
+	        	        	    });
+	        	        	    
+	        	       },
+	       
+	        	         
 	              });
 	            
 	   			calendar.render();
@@ -202,6 +283,7 @@
 	              	  }
 	              });
         	}
+
 	        
 	    });
         

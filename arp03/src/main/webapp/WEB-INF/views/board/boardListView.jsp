@@ -6,13 +6,63 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%@ include file="../include/bhead.jsp"%>
+<style>
+	.col-lg-10,#page{
+	margin-left:auto;
+	margin-right: auto;
+
+	}
+	.card{
+	margin-left:auto;
+	margin-right: auto;
+		width:1000px;
+	}
+	.table{text-align:center;}
+</style>
 </head>
 <body>
-	<jsp:include page="../include/header.jsp"/>
 	
-	<h1 align="center">게시판 리스트</h1>
+	<header class="topbar">
+		<%@ include file="../include/btopbarheader.jsp"%>
+	</header>
+	<!-- End Topbar header -->
+
+	<!-- Left-sidebar -->
+	<aside class="left-sidebar">
+		<%@ include file="../include/bsidebar.jsp"%>
+	</aside>
+	<!-- End of Left-sidebar -->
+
+	<div class="page-wrapper">
+	             <div class="row page-titles">
+                 
+                    <div class="col-md-7 col-4 align-self-center">
+                        <div clarss="d-flex m-t-10 justify-content-end">
+                            <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                            </div>
+                            <div class="">
+                                <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+	             <div class="row page-titles">
+                    <div class="col-md-7 col-4 align-self-center">
+                        <div clarss="d-flex m-t-10 justify-content-end">
+                            <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                            </div>
+                            <div class="">
+                                <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 	
-	<h3 align="center">총 게시글 갯수 : ${pi.listCount} 페이지 : 
+	<h3 align="center" style="color:black">게시판 리스트</h3>
+	
+	<h6 align="center">총 게시글 갯수 : ${pi.listCount} 페이지 : 
 	<c:if test="${ pi.listCount eq 0 }">
 		0
 	</c:if>
@@ -21,11 +71,16 @@
 	</c:if>
 		 / ${ pi.maxPage } 
 		<c:if test="${ !empty mem }">
-		<button onclick="location.href='binsertForm.do';">글쓰기</button>
+		<button class="btn waves-effect waves-light btn-info" onclick="location.href='binsertForm.do';">글쓰기</button>
 		</c:if>
-	</h3>
+	</h6>
 	
-	<table align="center" border="1" cellspacing="0" width="700">
+	<div class="row">
+			<div class="col-lg-12">
+					<div class="card" align="center">
+						<div class="table-responsive">
+	<table align="center" cellspacing="0" width="700" class="table color-table muted-table">
+		<thead>
 		<tr>
 			<th>번호</th>
 			<th width="300">제목</th>
@@ -33,6 +88,7 @@
 			<th>작성일</th>
 			<th>조회수</th>
 		</tr>
+		</thead>
 		<c:forEach items="${ list }" var="b">
 			<tr>
 				<td>${ b.b_no }</td>
@@ -55,48 +111,55 @@
 			<td align="center" colspan="5">존재하는 게시글이 없습니다.</td>
 			</tr>
 		</c:if>
-		
+		</table>
+		</div>
+		</div>
+		</div>
 		<!-- 페이징 처리 -->
+		<div id="page" align="center">
+		<ul class="pagination">
 		<c:if test="${pi.listCount ne 0}">
-		<tr align="center" height="20">
-			<td colspan="5">
+		<!-- <tr align="center" height="20">
+			<td colspan="5"> -->
 				<!-- 이전 -->
 				<c:if test="${ pi.currentPage eq 1 }">
-					[prev]
+					<li class="page-item"><a class="page-link">이전</a></li>
 				</c:if>
 				<c:if test="${ pi.currentPage ne 1 }">
 					<c:url value="blist.do" var="prev">
 						<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 					</c:url>
-					<a href="${ prev }">[prev]</a>
+					<li class="page-item"><a class="page-link" href="${ prev }">[prev]</a></li>
 				</c:if>
 				<!-- 페이지 -->
 				<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
 					<c:if test="${ p eq pi.currentPage }">
-						<font color="gray">${ p }</font>
+						<li class="page-item"><a class="page-link">${ p }</a></li>
 					</c:if>
 					<c:if test="${ p ne pi.currentPage }">
 						<c:url value="blist.do" var="page">
 							<c:param name="currentPage" value="${ p }"/>
 						</c:url>
-						<a href="${ page }"> ${ p } </a>
+						<li class="page-item"><a class="page-link" href="${ page }"> ${ p } </a></li>
 					</c:if>
 				</c:forEach>
 				<!-- 다음 -->
 				<c:if test="${ pi.currentPage eq pi.maxPage }">
-					[next]
+					<li class="page-item"><a class="page-link">다음</a></li>
 				</c:if>
 				<c:if test="${ pi.currentPage ne pi.maxPage }">
 					<c:url value="blist.do" var="next">
 						<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 					</c:url>
-					<a href="${ next }">[next]</a>
-				</c:if>
-				
-			</td>
-		</tr>
+					<li class="page-item"><a class="page-link" href="${ next }">[next]</a></li>
+				</c:if>	
+			<!-- </td>
+		</tr> -->
 		</c:if>
-	</table>
+		</ul>
+		</div>
+		</div>
+	</div>
 	
 	<jsp:include page="../include/footer.jsp"/>
 </body>

@@ -22,4 +22,8 @@ public class CalendarDao {
 		return (ArrayList) sqlSession.selectList("CalendarMapper.selectCalList", m_no);
 	}
 
+	public int updatetCalendar(Calendar c) {
+		return sqlSession.insert("CalendarMapper.updateCalendar", c);
+	}
+
 }

@@ -23,6 +23,11 @@ public class CalendarServiceImpl implements CalendarService {
 	public ArrayList<Calendar> selectCalList(int m_no) {
 		return cDao.selectCalList(m_no);
 	}
+
+	@Override
+	public int updateCalendar(Calendar c) {
+		return cDao.updatetCalendar(c);
+	}
 	
 	
 

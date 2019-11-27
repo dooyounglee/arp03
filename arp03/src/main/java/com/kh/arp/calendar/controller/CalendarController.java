@@ -28,7 +28,6 @@ public class CalendarController {
 	public String insertCalendar(Calendar c) {
 		//System.out.println(c);
 		int rst = cService.insertCalendar(c);
-		
 		if(rst > 0) {
 			return "success";
 		} else {
@@ -42,6 +41,18 @@ public class CalendarController {
 		ArrayList<Calendar> list = cService.selectCalList(m_no);
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		return gson.toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping("update.ca")
+	public String updateCalendar(Calendar c) {
+		//System.out.println(c);
+		int rst = cService.updateCalendar(c);
+		if(rst > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
 	}
 	
 	

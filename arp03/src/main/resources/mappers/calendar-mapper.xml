@@ -18,4 +18,8 @@
 	<select id="selectCalList" resultMap="calResultSet">
 		select * from calendar where m_no=#{m_no}
 	</select>
+	
+	<update id="updateCalendar">
+		update calendar set title=#{title}, startday=#{start}, endday=#{end} where c_no=#{c_no}
+	</update>
 </mapper>
