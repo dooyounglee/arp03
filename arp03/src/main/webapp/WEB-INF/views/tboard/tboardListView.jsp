@@ -68,7 +68,7 @@
 		
 		
 
-	
+	<div class="card">
 	             <div class="row page-titles">
                  
                     <div class="col-md-7 col-4 align-self-center">
@@ -172,6 +172,7 @@
 							</ui>
 							</div>
 			</div>
+		</div>
 		</div>
 
 	

@@ -65,4 +65,6 @@ public interface LectureService {
 
 	int rejectLecture(Lecture lec);
 
+	List<Homework> getHomeworkListInLectureForScore(int lec_no);
+
 }

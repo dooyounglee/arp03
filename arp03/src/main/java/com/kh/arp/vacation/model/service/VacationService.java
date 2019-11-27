@@ -9,6 +9,10 @@ public interface VacationService {
 
 	// 휴가작성용
 	int insertVacation(Vacation v);
+	
+	// 날짜 입력용 
+	int insertDate(Vacation v);
+	
 	// 휴가리스트
 	ArrayList<Vacation>selectList(int m_no);
 	
@@ -41,4 +45,6 @@ public interface VacationService {
 	 
 	 //관리자 휴가처리
 	 int multiPermission(int num);
+
+	
 }

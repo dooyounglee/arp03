@@ -104,18 +104,6 @@
 		<td>사유</td>
 		<td>${v.reason }</td>
 	</tr>	
-	<tr>
-		<td>휴가시작날짜</td>
-		<td>${ fn:substring(v.start_date,0,10) }</td>
-	</tr>
-	<tr>
-		<td>끝나는날짜</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>일수</td>
-		<td>${v.date_count }일</td>
-	</tr>
 	
 	<c:if test="${v.tstatus eq 'Y' && v.astatus eq 'Y'}">
 		<td>출력하기</td>
@@ -135,7 +123,7 @@
 	<c:if test="${mem.typee eq 't' }">
 	<button onclick="location.href='sVlist.te';">리스트로돌아가기</button>
 	
-	<%-- <a onclick="location.href='permission.te?v_no=${v.v_no }'" style="cursor:pointer">허가</a> --%>
+ 	<a onclick="location.href='permission.te?v_no=${v.v_no }'" style="cursor:pointer">허가</a> 
 	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-example-modal-lg">허가</button>
 	<!--<button id="sign">사인하기</button>  -->
 	<a onclick="window.open('companiForm.me?v_no=${v.v_no}',width=300, height=300)" style="cursor:pointer">반려</a>
@@ -160,10 +148,10 @@
 	<button onclick="location.href='vlist.me';" align="center">리스트로 돌아가기</button>
 	 
 	<c:if test="${v.tstatus eq 'N'}">
-	<a href="vupdateForm.me?v_no=${ v.v_no }">수정하기</a>
+	<a href="vdelete.me?v_no=${ v.v_no }" >삭제하기</a>
 	</c:if>
 	<c:if test="${v.tstatus eq 'B'}">
-	<a href="vdelete.me?v_no=${ v.v_no }" >삭제하기</a>
+	<a href="vdelete.me?v_no=${ v.v_no }" >삭제하기</a>	
 	</c:if>
 	</c:if>
 	

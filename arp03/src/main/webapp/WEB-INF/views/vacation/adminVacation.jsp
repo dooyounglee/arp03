@@ -39,9 +39,7 @@
 			<td>${v.name }</td>
 			<td>${ v.title }</td>
 			<td><a href="vDetail.me?v_no=${ v.v_no }">${ v.vacation_title }</a></td>
-			<td id="startDate">${ fn:substring(v.start_date,0,10) }</td>
 				<td id="endDate"></td>
-			<td id="dateCount"> ${v.date_count }일</td>
 			<td>${v.tstatus }</td>
 			
 			
@@ -115,7 +113,7 @@ $(function(){
 				}
 			},
 			error: function(){
-				console.log("에러 ㅅㅂ");
+				console.log("에러");
 			}
 			
 			

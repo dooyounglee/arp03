@@ -15,15 +15,14 @@
 <h1 align="center">내 휴가 리스트 </h1>
 
 <button onclick="location.href='myLlist.me?m_no=${mem.m_no}';">내수강목록으로가기</button>
+
 <table align="center" border="1" cellspacing="0" width="700"> 
 <tr>
 	<th>휴가번호</th>
 	<th>강의번호</th>
 	<th width="50">강의명</th>
+	<th>휴가</th>
 	<th width="100">제목</th>
-	<th width="100">휴가시작일</th>
-	<th width="100">휴가끝나는일</th>
-	<th width="50">일수</th>
 	<th>작성일</th>
 	<th>선생님</th>
 	<th>관리자</th>
@@ -35,10 +34,8 @@
 		<td>${ v.v_no }</td>
 		<td>${ v.lec_no }</td>
 		<td>${ v.title }</td>
+		<td>${v.vacation_date}</td>
 		<td><a href="vDetail.me?v_no=${ v.v_no }">${ v.vacation_title }</a></td>
-		<td id="startDate">${ fn:substring(v.start_date,0,10) }</td>
-			<td id="endDate"></td>
-		<td id="dateCount"> ${v.date_count }일</td>
 		<td>${v.application_date }</td>
 		<td>
 		<c:if test = "${ v.tstatus eq 'N'}">

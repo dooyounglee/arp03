@@ -17,9 +17,31 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 <body>
-	<jsp:include page ="../include/header.jsp"/>
+	<%@ include file="../include/bhead.jsp"%>
+</head>
+<body class="fix-header card-no-border logo-center">
+
+
+
+	<!-- Main wrapper -->
+	<div id="main-wrapper">
 	
-	<
+        <!-- Topbar header - style you can find in pages.scss -->
+        <header class="topbar">
+        	<%@ include file="../include/btopbarheader.jsp" %>
+        </header>
+        <!-- End Topbar header -->
+        
+        <!-- Left-sidebar -->
+        <aside class="left-sidebar">
+        	<%@ include file="../include/bsidebar.jsp" %>
+        </aside>
+        <!-- End of Left-sidebar -->
+
+		<!-- Page wrapper  -->
+        <div class="page-wrapper">
+	<!-- End of Left-sidebar -->
+	<br><br><br>
 	<h2 align="center"> 공지사항 작성하기</h2>
 	<br>
 	
@@ -28,24 +50,40 @@
 			<tr>
 				<td>제목</td>
 				<td><input type="text" name="title"></td>
+				
 			</tr>
+			
 			<tr>
-				<td>작성자</td>
-				<td><input type="text" name="m_no" value="${ mem.m_no }" readonly></td>
+				
+				<td><input type="hidden" name="m_no" value="${ mem.m_no }" readonly></td>
 			</tr>
+			<br>
 			<tr>
 				<td>내용</td>
-				<td><textarea id="summernote" cols="50" rows="7" name="content"></textarea></td>
+				<td><textarea id="summernote" cols="50" rows="7" name="content" ></textarea></td>
 			</tr>
 			
 			<tr>
 				<td colspan="2" align="center">
-					<button type="submit">등록하기</button> 
-					<button type="button" onclick="location.href='nlist.ad';">목록으로</button>
+					<button type="submit" class="btn waves-effect waves-light btn-outline-info">등록하기</button> 
+					<button type="button" onclick="location.href='nlist.ad';" class="btn waves-effect waves-light btn-outline-warning">목록으로</button>
 				</td>
 			</tr>
 		</table>
 	</form>
+	
+	  <footer class="footer">
+	            <%@ include file="../include/bfooter.jsp" %>
+	        </footer>
+	        <!-- End footer -->
+			</div>
+	        <!-- End of Page wrapper  -->
+			</div>
+		<!-- End of Main wrapper -->
+
+	
+	
+	
 	
 	
 	
@@ -53,10 +91,22 @@
 	<script>
 	
 	$(document).ready(function() {
-		  $('#summernote').summernote();
+		  $('#summernote').summernote({
+			  
+			  height:300,
+			  minheight:null,
+			  maxheight:null,
+			  focus:true
+		  });
+		 
 		});
 	</script>
 	
+   <script>
+   
+   var jq132 = jQuery.noConflict();
+   
+   </script>
 	
 	
 </body>

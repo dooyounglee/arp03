@@ -307,6 +307,7 @@ CREATE TABLE problemsInHomework(
 CREATE TABLE homeworkInLecture(
 	lec_no NUMBER REFERENCES LECTURE,
 	hw_no NUMBER REFERENCES HOMEWORK,
+	status varchar2(100) DEFAULT 'Y',
 	PRIMARY KEY(lec_no,hw_no)
 );
 
