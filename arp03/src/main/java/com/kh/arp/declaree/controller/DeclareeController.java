@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.arp.board.model.service.BoardService;
+import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.declaree.model.service.DeclareeService;
 import com.kh.arp.declaree.model.vo.Declaree;
 import com.kh.arp.member.model.vo.Member;
@@ -28,13 +30,13 @@ public class DeclareeController {
 	}
 	
 	@PostMapping("insert.de")
-	public ModelAndView declarePost(Declaree d, HttpSession session, ModelAndView mv) {
-		Member m=(Member)session.getAttribute("mem");
-		d.setM_no(m.getM_no());
-		System.out.println(d);
-		int result=ds.declare(d);
-		mv.setViewName("declare/declare");
-		return mv;
-	}
+	   public ModelAndView declarePost(Declaree d, HttpSession session, ModelAndView mv) {
+	      Member m=(Member)session.getAttribute("mem");
+	      d.setM_no(m.getM_no());
+	      //System.out.println(d);
+	      int result=ds.declare(d);
+	      mv.setViewName("declare/declare");
+	      return mv;
+	   }
 
 }
