@@ -40,7 +40,7 @@
 	<websocket:handlers>
 		<websocket:mapping handler="websocket" path="/echo" />
 		<websocket:handshake-interceptors>
-			<beans:bean class="com.kh.arp.qna.controller.WebsocketInterceptor" />
+			<beans:bean class="com.kh.arp.qna.controller.WebsocketTestInterceptor" />
 		</websocket:handshake-interceptors>
 		<websocket:sockjs />
 	</websocket:handlers>

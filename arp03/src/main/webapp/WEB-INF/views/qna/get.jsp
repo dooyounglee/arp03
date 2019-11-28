@@ -86,6 +86,10 @@
                                         <p>${qna.title }</p>
                                     </div>
                                     <div class="form-group">
+                                        <label>작성자</label>
+                                        <p>${qna.name }</p>
+                                    </div>
+                                    <div class="form-group">
                                         <label>내용</label>
                                         <p>${qna.content }</p>
                                     </div>

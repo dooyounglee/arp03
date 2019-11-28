@@ -104,7 +104,7 @@
                                         <tbody>
                                         	<c:forEach var="m" items="${mlist }">
 												<tr>
-													<td>${m.m_no }</td>
+													<td>${m.name }</td>
 													
 													<c:set var="sum" value="0"/>
 													<c:forEach var="e" items="${elist }">
@@ -164,7 +164,7 @@
                                         <tbody>
                                         	<c:forEach var="m" items="${mlist }">
 												<tr>
-													<td>${m.m_no }</td>
+													<td>${m.name }</td>
 													
 													<c:set var="sum" value="0"/>
 													<c:forEach var="hw" items="${hlist }">

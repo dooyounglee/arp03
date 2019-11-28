@@ -172,10 +172,11 @@ public class LectureController {
 		List<Exam> elist=ls.getExamList(lec.getLec_no());
 		List<MyClass> mlist=null;
 		if(mem.getTypee().equals("s")) {
-			mlist=new ArrayList();
+			mlist=new ArrayList<MyClass>();
 			MyClass mc=new MyClass();
 			mc.setLec_no(lec.getLec_no());
 			mc.setM_no(mem.getM_no());
+			mc.setName(mem.getName());
 			mlist.add(mc);
 		}else if(mem.getTypee().equals("t")) {
 			mlist=ls.getStudentList(lec.getLec_no());
@@ -212,10 +213,11 @@ public class LectureController {
 		List<Classdate> dlist=ls.getLectureDatesList(lec.getLec_no());
 		List<MyClass> mlist=null;
 		if(mem.getTypee().equals("s")) {
-			mlist=new ArrayList();
+			mlist=new ArrayList<MyClass>();
 			MyClass mc=new MyClass();
 			mc.setLec_no(lec.getLec_no());
 			mc.setM_no(mem.getM_no());
+			mc.setName(mem.getName());
 			mlist.add(mc);
 		}else if(mem.getTypee().equals("t")) {
 			mlist=ls.getStudentList(lec.getLec_no());
