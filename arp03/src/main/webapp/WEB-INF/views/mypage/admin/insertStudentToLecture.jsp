@@ -101,8 +101,8 @@
 										</select>
                                     </div>
                                     <div class="col-lg-1 col-xlg-1" style="text-align:center;margin-top:auto;margin-bottom:auto;">
-                                        <button onclick="insertStudent()"><<</button>
-										<button onclick="removeStudent()">>></button>
+                                        <button onclick="insertStudent()"><i class="fas fa-angle-double-left"></i></button>
+										<button onclick="removeStudent()"><i class="fas fa-angle-double-right"></i></button>
                                     </div>
                                     <div class="col-lg-2 col-xlg-2">
                                         <h5 class="p-2 rounded-title">다른 학생</h5>
@@ -110,6 +110,14 @@
 											<option>Not Exist</option>
 										</select>
                                     </div>
+                                    <div class="col-lg-12 col-xlg-4">
+										<h5 class="p-2 rounded-title">Public methods</h5>
+										<select id='pre-selected-options' multiple='multiple'>
+											<c:forEach var="t" items="${tlist }">
+												<option value="${t.m_no }">${t.name }</option>
+											</c:forEach>
+										</select>
+									</div>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +153,112 @@
 	
 	<%@ include file="../../include/bjs.jsp" %>
 	
-	
+	<script>
+        $(function () {
+            // Switchery
+            /* var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+            $('.js-switch').each(function () {
+                new Switchery($(this)[0], $(this).data());
+            }); */
+            // For select 2
+            $(".select2").select2();
+            $('.selectpicker').selectpicker();
+            //Bootstrap-TouchSpin
+            $(".vertical-spin").TouchSpin({
+                verticalbuttons: true
+            });
+            var vspinTrue = $(".vertical-spin").TouchSpin({
+                verticalbuttons: true
+            });
+            if (vspinTrue) {
+                $('.vertical-spin').prev('.bootstrap-touchspin-prefix').remove();
+            }
+            $("input[name='tch1']").TouchSpin({
+                min: 0,
+                max: 100,
+                step: 0.1,
+                decimals: 2,
+                boostat: 5,
+                maxboostedstep: 10,
+                postfix: '%'
+            });
+            $("input[name='tch2']").TouchSpin({
+                min: -1000000000,
+                max: 1000000000,
+                stepinterval: 50,
+                maxboostedstep: 10000000,
+                prefix: '$'
+            });
+            $("input[name='tch3']").TouchSpin();
+            $("input[name='tch3_22']").TouchSpin({
+                initval: 40
+            });
+            $("input[name='tch5']").TouchSpin({
+                prefix: "pre",
+                postfix: "post"
+            });
+            // For multiselect
+            $('#pre-selected-options').multiSelect();
+            $('#optgroup').multiSelect({
+                selectableOptgroup: true
+            });
+            $('#public-methods').multiSelect();
+            $('#select-all').click(function () {
+                $('#public-methods').multiSelect('select_all');
+                return false;
+            });
+            $('#deselect-all').click(function () {
+                $('#public-methods').multiSelect('deselect_all');
+                return false;
+            });
+            $('#refresh').on('click', function () {
+                $('#public-methods').multiSelect('refresh');
+                return false;
+            });
+            $('#add-option').on('click', function () {
+                $('#public-methods').multiSelect('addOption', {
+                    value: 42,
+                    text: 'test 42',
+                    index: 0
+                });
+                return false;
+            });
+            $(".ajax").select2({
+                ajax: {
+                    url: "https://api.github.com/search/repositories",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            q: params.term, // search term
+                            page: params.page
+                        };
+                    },
+                    processResults: function (data, params) {
+                        // parse the results into the format expected by Select2
+                        // since we are using custom formatting functions we do not need to
+                        // alter the remote JSON data, except to indicate that infinite
+                        // scrolling can be used
+                        params.page = params.page || 1;
+                        return {
+                            results: data.items,
+                            pagination: {
+                                more: (params.page * 30) < data.total_count
+                            }
+                        };
+                    },
+                    cache: true
+                },
+                escapeMarkup: function (markup) {
+                    return markup;
+                }, // let our custom formatter work
+                minimumInputLength: 1,
+                //templateResult: formatRepo, // omitted for brevity, see the source of this page
+                //templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+            });
+        });
+        $('#public-methods').multiSelect('refresh');
+    </script>
 	
 	
 	
@@ -281,27 +394,30 @@
 		
 		function insertStudent(){
 			var other=$('#other').val()
-			var flag=false;
 			for(i=0;i<other.length;i++){
+				console.log("시작"+i)
+				console.log("now>=total:"+now+":"+total)
 				if(now>=total){
 					alert("정원초과")
 					break;
-				}
-				$.ajax({
-					url:'insertStudentToIng.lec',
-					type:'post',
-					data:{
-						m_no:parseInt(other[i]),
-						lec_no:parseInt($('#lecture').val()),
-					},
-					success:function(data){
-						console.log("<<성공")
-						if(now<total){
+				}else if(now<total){
+					$.ajax({
+						url:'insertStudentToIng.lec',
+						async:'true',
+						type:'post',
+						data:{
+							m_no:parseInt(other[i]),
+							lec_no:parseInt($('#lecture').val()),
+						},
+						success:function(data){
+							console.log("<<성공")
+							now=now+1
+							console.log(now)
 							ingList($('#lecture').val())
 							otherList($('#lecture').val())
-						}
-					},
-				})
+						},
+					})
+				}
 			}
 		}
 		function removeStudent(){
