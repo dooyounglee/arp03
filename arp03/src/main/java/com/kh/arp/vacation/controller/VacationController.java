@@ -36,17 +36,18 @@ public class VacationController {
 	@Autowired
 	private VacationService vService;
 	
-	@RequestMapping("myLlist.me")
-	public ModelAndView myLectrueList(ModelAndView mv, HttpSession session) {
-		int m_no =	((Member)session.getAttribute("mem")).getM_no();
-		
-		
-		ArrayList<Lecture> list = vService.selectLectureList(m_no);	
-		System.out.println(list);
-		mv.addObject("list" , list).setViewName("vacation/myLectureListForm");
-		
-		return mv;
-	}
+	/*
+	 * @RequestMapping("myLlist.me") public ModelAndView myLectrueList(ModelAndView
+	 * mv, HttpSession session) { int m_no =
+	 * ((Member)session.getAttribute("mem")).getM_no();
+	 * 
+	 * 
+	 * ArrayList<Lecture> list = vService.selectLectureList(m_no);
+	 * System.out.println(list); mv.addObject("list" ,
+	 * list).setViewName("vacation/myLectureListForm");
+	 * 
+	 * return mv; }
+	 */
 	
 	
 	@RequestMapping("vlist.me")
@@ -89,13 +90,18 @@ public class VacationController {
 		int result = vService.insertVacation(v);
 		System.out.println(v);
 		
+		int result1 = 0;
 		for(int j =0; j<dateArea.length; j++) {
 			
 			VacationDate vd=new VacationDate();
 			vd.setM_no(mem.getM_no());
-			String temp=dateArea[j].replaceAll("-", "/");
-			temp=temp.substring(2);
-			vd.setClassdate(temp); // vacationdate 로 바꾸기
+//			String temp=dateArea[j].replaceAll("-", "/");
+//			temp=temp.substring(2);
+//			vd.setClassdate(temp); // vacationdate 로 바꾸기
+			// 날짜 YY/MM/DD 로바꾼뒤
+//			vd.setClassdate(dateArea[j]);
+			vd.setVacation_date(dateArea[j]);
+			
 			System.out.println(vd);
 			
 			List<VacationDate> list=vService.selectLecNo(vd);
@@ -105,15 +111,24 @@ public class VacationController {
 				VacationDate vdd=new VacationDate();
 				vdd.setV_no(v.getV_no());
 				vdd.setLec_no(list.get(i).getLec_no());
-				vdd.setClassdate(list.get(i).getClassdate().split(" ")[0].replaceAll("-", "/"));
+//				vdd.setClassdate(list.get(i).getClassdate().split(" ")[0].replaceAll("-", "/"));
+//				vdd.setClassdate(list.get(i).getClassdate().split(" ")[0]);
+				vdd.setVacation_date(list.get(i).getVacation_date().split(" ")[0]);
+				System.out.println(list);
 				vDlist.add(vdd );
 			}
 			System.out.println(vDlist);
 			
-			int result1=vService.insertVacationDate(vDlist);
+			 result1=vService.insertVacationDate(vDlist);
+
 		}
 		
-		return "";
+		if(result >0 && result1 >0) {
+			
+			return "redirect:vlist.me";
+		}else {
+			return "qcommons/errorPage";
+		}
 		
 		
 		
@@ -171,9 +186,10 @@ public class VacationController {
 	}
 	*/
 	@RequestMapping("vDetail.me")
-	public ModelAndView vDetail(ModelAndView mv,int v_no) {
+	public ModelAndView vDetail(ModelAndView mv, int lec_no) {
 		
-		Vacation v = vService.selectVacation(v_no);
+		Vacation v = vService.selectVacation(lec_no);
+		
 		
 		if(v!= null) {
 			
@@ -201,7 +217,7 @@ public class VacationController {
 	}
 	
 	@RequestMapping("vdelete.me")
-	public String vDelete(Vacation v) {
+	public String vDelete(VacationDate v) {
 		int result = vService.deleteVacation(v);
 		
 		if(result>0) {
@@ -217,16 +233,16 @@ public class VacationController {
 		int m_no = ((Member)session.getAttribute("mem")).getM_no();
 		
 		ArrayList<Vacation> list = vService.selectStudentList(m_no);
-		
-		mv.addObject("list",list).setViewName("vacation/studentVacationListForm");
+System.out.println(list);
+			mv.addObject("list", list).setViewName("vacation/studentVacationListForm");
 		
 		return mv;
 	}
 	
 	@RequestMapping("companiForm.me")
-	public ModelAndView companiForm(int v_no , ModelAndView mv) {
+	public ModelAndView companiForm(int lec_no , ModelAndView mv) {
 		
-		mv.addObject("v_no",v_no).setViewName("vacation/companion");
+		mv.addObject("lec_no",lec_no).setViewName("vacation/companion");
 		
 		return mv;
 	}
@@ -264,7 +280,8 @@ public class VacationController {
 		int m_no = ((Member)session.getAttribute("mem")).getM_no();
 		ArrayList<Vacation> list = vService.selectList(m_no);
 		
-		mv.addObject("list" , list).setViewName("vacation/adminVacation");
+			mv.addObject("list", list).setViewName("vacation/adminVacation");
+		
 		
 		return mv;
 		

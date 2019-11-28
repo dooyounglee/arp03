@@ -9,10 +9,7 @@ values(seq_vacation.nextval,
 	   #{vacation_title},
 	   #{reason},
 	   sysdate,
-	   default,
 	   null,
-	   default,
-	   default,
 	   default
 	   )
 	   <selectKey keyProperty="v_no" resultType="int" order="AFTER">
@@ -22,10 +19,10 @@ values(seq_vacation.nextval,
 
 <select id ="selectLecNo" resultType="VacationDate">
 
-SELECT * FROM CLASSDATE
+SELECT lec_no , classdate vacation_date FROM CLASSDATE
 WHERE LEC_NO IN (SELECT LEC_NO FROM MYCLASS
 WHERE m_no = #{m_no}) AND
-CLASSDATE= #{classdate} -- vacation date로 바꾸기
+classdate = #{vacation_date}<!-- #{classdate} --> -- vacation date로 바꾸기
 
 </select>
 
@@ -33,7 +30,11 @@ CLASSDATE= #{classdate} -- vacation date로 바꾸기
 insert into vacationdate
 values(#{v_no},
 	   #{lec_no},
-	   #{classdate})
+	  #{vacation_date},
+	  default,
+	  default,
+	  default
+	  <!-- #{classdate} -->)
 </insert>
 
 <!-- <insert id ="insertDate">
@@ -44,9 +45,9 @@ values(#{v_no},
 </insert> -->
 
 <select id="selectList" resultType="Vacation">
-select v.*, m.name
-from vacation v , member m 
-where m.m_no = v.m_no
+select v.*, m.name , l.title , vd.lec_no, vd.vacationdate , vd.tstatus , vd.astatus , vd.status
+from vacation v , member m , lecture l , vacationdate vd 
+where m.m_no = v.m_no and vd.lec_no = l.lec_no 
 order by v.v_no desc
 <!--select b.*, m.name 
 		from board b, member m
@@ -62,9 +63,10 @@ where l.lec_no=m.lec_no and m.m_no=#{m_no}
 </select>
 
 <select id="selectVacation" resultType="Vacation">
-select v.*, m.name
-from vacation v , member m
-where v_no=#{v_no} and v.m_no = m.m_no
+select vd.* , v.vacation_title , v.reason, v.companion_reason , v.m_no ,m.name , l.title
+from vacationdate vd , vacation v, member m , lecture l
+where vd.lec_no =#{lec_no} and m.m_no = v.m_no and vd.lec_no=l.lec_no
+
 
 </select>
 
@@ -76,18 +78,19 @@ where v_no=#{v_no}
 
 <delete id="deleteVacation">
 
-delete vacation
-where v_no = #{v_no} 
+delete vacationdate
+where lec_no = #{lec_no} 
 
 
 </delete>
 
 
 <select id="studentVacationList" resultType="Vacation">
-select v.* ,title ,name
-from vacation v , lecture l, member m 
-where v.lec_no = l.lec_no and v.m_no = m.m_no and l.m_no= #{m_no} and tstatus='N'
-order by l.lec_no desc
+select v.* ,vd.v_no , vd.lec_no ,vd.vacationdate, m.name , l.title  
+from vacationdate vd, vacation v, member m, lecture l
+where v.v_no = vd.v_no and vd.lec_no in (select lec_no from lecture
+where m_no=#{m_no}) and v.m_no = m.m_no and vd.lec_no = l.lec_no
+
 </select>
 
 <update id="permission">

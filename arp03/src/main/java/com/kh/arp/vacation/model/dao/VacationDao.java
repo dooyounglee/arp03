@@ -35,9 +35,9 @@ public class VacationDao {
 	}
 
 
-	public Vacation selectVacation(int v_no) {
+	public Vacation selectVacation(int lec_no) {
 		
-		return sqlSession.selectOne("vacationMapper.selectVacation",v_no);
+		return sqlSession.selectOne("vacationMapper.selectVacation",lec_no);
 	}
 
 
@@ -47,7 +47,7 @@ public class VacationDao {
 	}
 
 
-	public int deleteVacation(Vacation v) {
+	public int deleteVacation(VacationDate v) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("vacationMapper.deleteVacation",v);
 	}

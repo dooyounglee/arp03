@@ -35,7 +35,7 @@
                     <li><a href="blist.do">자유 게시판</a></li>
                     <li><a href="mylist.qna">내 문의</a></li>
                     <li><a href="myInfo.me">내 정보</a></li>
-                    <li><a href="myLlist.me">내 휴가</a></li>
+                    <li><a href="vlist.me">내 휴가</a></li>
                 </ul>
             </li>
             <li class="nav-devider"></li>

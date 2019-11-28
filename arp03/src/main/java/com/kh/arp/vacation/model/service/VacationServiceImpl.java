@@ -38,9 +38,9 @@ public class VacationServiceImpl implements VacationService {
 		return vDao.selectLectureList(m_no);
 	}
 	@Override
-	public Vacation selectVacation(int v_no) {
+	public Vacation selectVacation(int lec_no) {
 		// TODO Auto-generated method stub
-		return vDao.selectVacation(v_no);
+		return vDao.selectVacation(lec_no);
 	}
 	@Override
 	public Vacation updateVacationForm(int v_no) {
@@ -54,7 +54,7 @@ public class VacationServiceImpl implements VacationService {
 		return vDao.updateVacation(v);
 	}
 	@Override
-	public int deleteVacation(Vacation v) {
+	public int deleteVacation(VacationDate v) {
 		// TODO Auto-generated method stub
 		return vDao.deleteVacation(v);
 	}

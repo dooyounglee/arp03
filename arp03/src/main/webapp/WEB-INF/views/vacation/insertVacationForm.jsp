@@ -200,7 +200,7 @@
 		    var dd = $(this).data('dd');
 		    dd = (dd < 10) ? '0' + dd : dd;
 			for(i=0;i<arr.length;i++){
-				 if($('#yyyy').html()+'-'+mm+'-'+dd==arr[i]){
+				 if($('#yyyy').html()+'/'+mm+'/'+dd==arr[i]){
 					$(this).css('background','blue').css('cursor','pointer')
 					$(this).data('exist',true);
 					
@@ -260,11 +260,11 @@
 	    console.log(dd);
 	    
 	    
-	    var idx=arr.indexOf($('#yyyy').html()+"-"+$mm+"-"+dd)
+	    var idx=arr.indexOf($('#yyyy').html()+"/"+$mm+"/"+dd)
 	    if(idx>-1){
 	    	arr.splice(idx, 1)
 	    }else{
-		    arr.push($('#yyyy').html()+"-"+$mm+"-"+dd)
+		    arr.push($('#yyyy').html()+"/"+$mm+"/"+dd)
 	    }
 	    
 	    

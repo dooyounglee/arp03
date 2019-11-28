@@ -22,7 +22,7 @@ public interface VacationService {
 	ArrayList<Lecture>selectLectureList(int m_no);
 	
 	// 휴가 상세보기
-	Vacation selectVacation(int v_no);
+	Vacation selectVacation(int lec_no);
 	
 	// 휴가 수정하기폼
 	 Vacation updateVacationForm(int v_no);
@@ -31,7 +31,7 @@ public interface VacationService {
 	 int updateVacation(Vacation v);
 	 
 	// 휴가 삭제하기 
-	 int deleteVacation(Vacation v);
+	 int deleteVacation(VacationDate v);
 	 
 	 // 학생 휴가 조회
 	 ArrayList<Vacation>selectStudentList(int m_no);
@@ -50,6 +50,7 @@ public interface VacationService {
 
 	List<VacationDate> selectLecNo(VacationDate vd);
 
+	// 날짜조회용
 	int insertVacationDate(List<VacationDate> vDlist);
 
 	
