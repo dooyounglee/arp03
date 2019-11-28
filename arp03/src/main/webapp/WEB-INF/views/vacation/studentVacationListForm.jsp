@@ -22,6 +22,7 @@
 	<th width="50">사유</th>
 	<th width="100">휴가날짜</th>
 	<th>작성일</th>
+	<th>허가상태</th>
 
 </tr>
 
@@ -31,9 +32,10 @@
 		<td>${v.lec_no }</td>
 		<td>${v.title }</td>
 		<td>${v.name }</td>
-		<td><a href="vDetail.me?lec_no=${ v.lec_no }">${ v.vacation_title }</a></td>
+		<td><a href="vDetail.me?lec_no=${ v.lec_no }&v_no=${v.v_no}">${ v.vacation_title }</a></td>
 		<td>${fn:substring(v.vacationdate , 0 ,10) }</td>
 		<td>${v.application_date }</td>
+		<td>${v.tstatus }</td>
 		
 	</tr>		
 </c:forEach>

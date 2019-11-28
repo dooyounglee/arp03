@@ -18,11 +18,8 @@ public interface VacationService {
 	// 휴가리스트
 	ArrayList<Vacation>selectList(int m_no);
 	
-	// 내강의리스트
-	ArrayList<Lecture>selectLectureList(int m_no);
-	
 	// 휴가 상세보기
-	Vacation selectVacation(int lec_no);
+	Vacation detailVacation(VacationDate vd);
 	
 	// 휴가 수정하기폼
 	 Vacation updateVacationForm(int v_no);
@@ -37,16 +34,16 @@ public interface VacationService {
 	 ArrayList<Vacation>selectStudentList(int m_no);
 	 
 	 // 휴가 허가
-	 int permission(int v_no);
+	 int permission(VacationDate vd);
 	 
 	 // 휴가 반려
-	 int companion(Vacation v);
+	 int companion(VacationDate v);
 	 
 	 // 관리자 다중 휴가 처리
 	 int adminpermission(int num);
 	 
 	 //관리자 휴가처리
-	 int multiPermission(int num);
+	 int multiPermission(VacationDate vd);
 
 	List<VacationDate> selectLecNo(VacationDate vd);
 

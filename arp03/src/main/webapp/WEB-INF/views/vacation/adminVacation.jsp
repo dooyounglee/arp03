@@ -16,21 +16,20 @@
 
 <table align="center" border="1" cellspacing="0" width="700"> 
 <tr>
+	
 	<th><input type="checkbox" id="checkbox">체크</th>
 	<th>휴가번호</th>
 	<th>강의번호</th>
 	<th>학생명</th>
 	<th >강의명</th>
 	<th >제목</th>
-	<th>휴가시작일</th>
-	<th>휴가끝나는일</th>
-	<th>일수</th>
 	<th >선생님</th>
 	
 
 </tr>
 
 <c:forEach items="${ list }" var="v">
+<input type="hidden" name="lec_no" id="lec_no" value="${v.lec_no }">
 	<c:if test = "${v.tstatus ne 'N' and v.astatus ne 'Y'}">
 		<tr>
 			<td><input type="checkbox" id ="vl" class="check" name="vacationList" value="${ v.v_no }"></td>
@@ -38,8 +37,7 @@
 			<td>${ v.lec_no }</td>
 			<td>${v.name }</td>
 			<td>${ v.title }</td>
-			<td><a href="vDetail.me?v_no=${ v.v_no }">${ v.vacation_title }</a></td>
-				<td id="endDate"></td>
+			<td><a href="vDetail.me?v_no=${ v.v_no }&lec_no=${v.lec_no}">${ v.vacation_title }</a></td>
 			<td>${v.tstatus }</td>
 			
 			
@@ -71,7 +69,9 @@ $(function(){
 	var Multicheck =[];
 	// 하나 혹은 다중선택 처리
 	
+	var lec_no = $("#lec_no").val()
 	
+
 	
 	$(".check").click(function() {
 		$("input[name=vacationList]:checked").each(function() {
@@ -83,7 +83,8 @@ $(function(){
 			}
 
 			var test = $(this).val();
-			// alert(test);
+			
+			 alert(test);
 			console.log(test); 
 			Multicheck.push(test);
 			
@@ -92,8 +93,9 @@ $(function(){
 	});
 	
 	var objectMulti = {
-		"MultiList" : Multicheck
-	}
+		"MultiList" : Multicheck,
+		"lec_no":lec_no
+	}	
 	
 	$("#submit2").click(function(){
 		

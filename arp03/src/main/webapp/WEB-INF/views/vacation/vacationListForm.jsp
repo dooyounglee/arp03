@@ -64,11 +64,13 @@
                                 <h4 class="card-title">내가신청한휴가</h4>
                                 <h6 class="card-subtitle"></h6>
                                 <div class="table-responsive" align="center">
+                                
                                     <table class="table color-table info-table">
                                         <thead align="center">
                                             <tr>
                                                <th>휴가번호</th>
                                                <th>강의번호</th>
+                                               <th>이름</th>
                                                <th>과목명</th>
                                                <th>사유</th>
                                                <th>휴가날짜</th>
@@ -77,19 +79,21 @@
                                             </tr>
                                         </thead>
                                         <tbody align="center">
-                                       
                                         <c:forEach items="${list }" var="c">
+                                        <c:if test = "${mem.m_no eq c.m_no }">
 										<tr>
 											<td>${c.v_no }</td>
 											<td>${c.lec_no }</td>
+											<td>${c.name }</td>
 											<td>${c.title }</td>
-											<td><a href="vDetail.me?lec_no=${c.lec_no }">${c.vacation_title }</a></td>
+											<td><a href="vDetail.me?lec_no=${c.lec_no }&v_no=${c.v_no}">${c.vacation_title }</a></td>
 											<td>${fn:substring(c.vacationdate,0 ,10) }</td>
 											<td>${c.tstatus }</td>
 											<td>${c.astatus }</td>
 										</tr>
+										</c:if>
 										</c:forEach>
-                                          
+                                        
                                         </tbody>
                                     </table>
                                 </div>

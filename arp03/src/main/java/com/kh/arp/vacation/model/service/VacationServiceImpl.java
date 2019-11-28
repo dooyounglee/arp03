@@ -32,21 +32,17 @@ public class VacationServiceImpl implements VacationService {
 		// TODO Auto-generated method stub
 		return vDao.selectList(m_no);
 	}
+
 	@Override
-	public ArrayList<Lecture> selectLectureList(int m_no) {
+	public Vacation detailVacation(VacationDate vd) {
 		// TODO Auto-generated method stub
-		return vDao.selectLectureList(m_no);
+		return vDao.detailVacation(vd);
 	}
-	@Override
-	public Vacation selectVacation(int lec_no) {
-		// TODO Auto-generated method stub
-		return vDao.selectVacation(lec_no);
-	}
-	@Override
-	public Vacation updateVacationForm(int v_no) {
-		// TODO Auto-generated method stub
-		return vDao.selectVacation(v_no);
-	}
+//	@Override
+//	public Vacation updateVacationForm(int v_no) {
+//		// TODO Auto-generated method stub
+//		return vDao.selectVacation(v_no);
+//	}
 
 	@Override
 	public int updateVacation(Vacation v) {
@@ -65,24 +61,24 @@ public class VacationServiceImpl implements VacationService {
 		return vDao.studentVacation(m_no);
 	}
 	@Override
-	public int permission(int v_no) {
+	public int permission(VacationDate vd) {
 		// TODO Auto-generated method stub
-		return vDao.permission(v_no);
+		return vDao.permission(vd);
 	}
 	@Override
-	public int companion(Vacation v) {
+	public int companion(VacationDate v) {
 		// TODO Auto-generated method stub
 		return vDao.companion(v);
 	}
-
+	@Override
 	public int adminpermission(int num) {
 		// TODO Auto-generated method stub
 		return vDao.adminpermission(num);
 	}
-
-	public int multiPermission(int num) {
+	@Override
+	public int multiPermission(VacationDate vd) {
 		// TODO Auto-generated method stub
-		return vDao.multipermission(num);
+		return vDao.multipermission(vd);
 	}
 	/*
 	public int insertVacation(Vacation v, String[] rlaalstkd) {
@@ -95,6 +91,11 @@ public class VacationServiceImpl implements VacationService {
 	@Override
 	public int insertVacationDate(List<VacationDate> vDlist) {
 		return vDao.insertVacationDate(vDlist);
+	}
+	@Override
+	public Vacation updateVacationForm(int v_no) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

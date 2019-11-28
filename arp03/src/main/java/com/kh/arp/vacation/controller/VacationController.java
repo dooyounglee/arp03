@@ -186,9 +186,13 @@ public class VacationController {
 	}
 	*/
 	@RequestMapping("vDetail.me")
-	public ModelAndView vDetail(ModelAndView mv, int lec_no) {
+	public ModelAndView vDetail(ModelAndView mv, VacationDate vd , int lec_no , int v_no) {
 		
-		Vacation v = vService.selectVacation(lec_no);
+		vd.setLec_no(lec_no);
+		vd.setV_no(v_no);
+		
+		System.out.println(vd);
+		Vacation v = vService.detailVacation(vd);
 		
 		
 		if(v!= null) {
@@ -233,25 +237,31 @@ public class VacationController {
 		int m_no = ((Member)session.getAttribute("mem")).getM_no();
 		
 		ArrayList<Vacation> list = vService.selectStudentList(m_no);
-System.out.println(list);
+			System.out.println(list);
 			mv.addObject("list", list).setViewName("vacation/studentVacationListForm");
 		
 		return mv;
 	}
 	
 	@RequestMapping("companiForm.me")
-	public ModelAndView companiForm(int lec_no , ModelAndView mv) {
+	public ModelAndView companiForm(int v_no ,int lec_no , ModelAndView mv, VacationDate vd ) {
 		
-		mv.addObject("lec_no",lec_no).setViewName("vacation/companion");
+		vd.setV_no(v_no);
+		vd.setLec_no(lec_no);
+		
+		mv.addObject("vd",vd).setViewName("vacation/companion");
 		
 		return mv;
 	}
 	
 	
 	@RequestMapping("permission.te")
-	public String permission(int v_no) {
+	public String permission(VacationDate vd , int lec_no , int v_no) {
 		
-		int result = vService.permission(v_no);
+		vd.setLec_no(lec_no);
+		vd.setV_no(v_no);
+		
+		int result = vService.permission(vd);
 		
 		if(result >0) {
 			return "redirect:sVlist.te";
@@ -262,8 +272,10 @@ System.out.println(list);
 	}
 	
 	@RequestMapping("cReason.te")
-	public String companion(Vacation v) {
+	public String companion(VacationDate v, int v_no , int lec_no) {
 		
+		v.setV_no(v_no);
+		v.setLec_no(lec_no);
 		System.out.println("v"+v);
 		int result = vService.companion(v);
 		
@@ -296,16 +308,15 @@ System.out.println(list);
 		
 		int result=0;
 		
-		
 		for(String v : Number ) {
 			//System.out.println(v);
 			
 			int num =Integer.parseInt(v);
-			
+			System.out.println(num);
 			result =vService.adminpermission(num); 	
 			//System.out.println(result);
 		}
-		
+		System.out.println(result);
 		return result;
 
 		
@@ -313,19 +324,24 @@ System.out.println(list);
 	
 	@ResponseBody  
 	@RequestMapping("multiPermission.ad")
-	public int MultiCheck(@RequestParam(value="MultiList[]") List<String> Number) {
-		//System.out.println(Number);
-		
-		int result =0;
+	public int MultiCheck(@RequestParam(value="MultiList[]") List<String> Number ,
+						  @RequestParam(value="lec_no")int lec_no, VacationDate vd) {
+		System.out.println(Number);
+		//System.out.println(lec_no);
+	
+	int result =0;
 		
 		for(String v : Number) {
-			int num = Integer.parseInt(v);
 			
-			result = vService.multiPermission(num);
-			//System.out.println(result);
+			int num = Integer.parseInt(v);
+			vd.setV_no(num);
+			vd.setLec_no(lec_no);
+			
+			result = vService.multiPermission(vd);
+			System.out.println(result);
 		}
 		
-		//System.out.println(result);
+		System.out.println(result);
 		return result;
 	}
 	

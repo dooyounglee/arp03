@@ -12,7 +12,6 @@ public class Vacation {
 	private String application_date;
 	private String tstatus;
 	private String teacher_sign;
-	private String companion_reason;
 	private String astatus;
 	private String status;
 	private int lec_no;
