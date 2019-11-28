@@ -20,10 +20,12 @@
 	<th><input type="checkbox" id="checkbox">체크</th>
 	<th>휴가번호</th>
 	<th>강의번호</th>
+	<th>휴가날짜</th>
 	<th>학생명</th>
 	<th >강의명</th>
 	<th >제목</th>
 	<th >선생님</th>
+	<th>관리자</th>
 	
 
 </tr>
@@ -35,10 +37,12 @@
 			<td><input type="checkbox" id ="vl" class="check" name="vacationList" value="${ v.v_no }"></td>
 			<td>${ v.v_no }</td>
 			<td>${ v.lec_no }</td>
+			<td>${fn:substring(v.vacationdate,0,10) }</td>
 			<td>${v.name }</td>
 			<td>${ v.title }</td>
 			<td><a href="vDetail.me?v_no=${ v.v_no }&lec_no=${v.lec_no}">${ v.vacation_title }</a></td>
 			<td>${v.tstatus }</td>
+			<td>${v.astatus }</td>
 			
 			
 		</tr>

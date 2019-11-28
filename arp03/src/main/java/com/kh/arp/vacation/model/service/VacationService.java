@@ -43,12 +43,14 @@ public interface VacationService {
 	 int adminpermission(int num);
 	 
 	 //관리자 휴가처리
+	 
 	 int multiPermission(VacationDate vd);
 
 	List<VacationDate> selectLecNo(VacationDate vd);
 
 	// 날짜조회용
 	int insertVacationDate(List<VacationDate> vDlist);
+
 
 	
 }

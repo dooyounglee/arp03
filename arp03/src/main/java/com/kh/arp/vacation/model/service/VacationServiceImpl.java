@@ -75,11 +75,7 @@ public class VacationServiceImpl implements VacationService {
 		// TODO Auto-generated method stub
 		return vDao.adminpermission(num);
 	}
-	@Override
-	public int multiPermission(VacationDate vd) {
-		// TODO Auto-generated method stub
-		return vDao.multipermission(vd);
-	}
+	
 	/*
 	public int insertVacation(Vacation v, String[] rlaalstkd) {
 		return vDao.insertVacation(v,rlaalstkd);
@@ -96,6 +92,11 @@ public class VacationServiceImpl implements VacationService {
 	public Vacation updateVacationForm(int v_no) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public int multiPermission(VacationDate vd) {
+		
+		return vDao.multiPermission(vd);
 	}
 	
 

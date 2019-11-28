@@ -326,22 +326,25 @@ public class VacationController {
 	@RequestMapping("multiPermission.ad")
 	public int MultiCheck(@RequestParam(value="MultiList[]") List<String> Number ,
 						  @RequestParam(value="lec_no")int lec_no, VacationDate vd) {
-		System.out.println(Number);
+		System.out.println("배열"+Number);
+		
 		//System.out.println(lec_no);
 	
-	int result =0;
-		
+		int num=0;
 		for(String v : Number) {
-			
-			int num = Integer.parseInt(v);
-			vd.setV_no(num);
-			vd.setLec_no(lec_no);
-			
-			result = vService.multiPermission(vd);
-			System.out.println(result);
+			System.out.println(v);
+			 num = Integer.parseInt(v);
 		}
 		
-		System.out.println(result);
+		
+		vd.setV_no(num);
+		vd.setLec_no(lec_no);		
+		
+		System.out.println("dd" + num);
+		
+		int result = vService.multiPermission(vd);
+	
+	
 		return result;
 	}
 	

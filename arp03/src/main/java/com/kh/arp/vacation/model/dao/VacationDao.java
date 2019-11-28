@@ -74,11 +74,7 @@ public class VacationDao {
 	}
 
 
-	public int multipermission(VacationDate vd) {
-		
-		return sqlSession.update("vacationMapper.multipermission" , vd);
-	}
-
+	
 
 	public int insertDate(Vacation v) {
 		// TODO Auto-generated method stub
@@ -96,6 +92,12 @@ public class VacationDao {
 			sqlSession.insert("vacationMapper.insertVacationDate" , vDlist.get(i));
 		}
 		return 1;
+	}
+
+
+	public int multiPermission(VacationDate vd) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("vacationMapper.multipermission" , vd);
 	}
 
 
