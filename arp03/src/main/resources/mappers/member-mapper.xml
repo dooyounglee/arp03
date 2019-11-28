@@ -89,7 +89,7 @@
 	</select>
 	
 	<select id="getOtherStudentList" resultType="Member">
-		select * from member where m_no not in (select m_no from myclass where lec_no=#{lec_no})
+		select * from member where typee='s' and m_no not in (select m_no from myclass where lec_no=#{lec_no})
 	</select>
 
 	<insert id="insertStudentToIng">
