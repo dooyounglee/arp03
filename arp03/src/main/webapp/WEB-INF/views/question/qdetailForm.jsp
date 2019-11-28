@@ -319,7 +319,7 @@
 		// 다시 리로드 구역정하기 // 호출해서 쓰자
 		function qRestart(){
 			// replyArea안에있는 replyAreachildered를 리로드하겠다. 부모 안에 자식을 리로드
-			$('#replyArea').load("qdetail.qu?q_no=${q.q_no} #replyAreaChildren")
+			$('#replyArea').load("qdetail.qu?q_no=${q.q_no} #replyAreaChildren");
 		}
 		
 		// 댓글 등록
@@ -436,7 +436,7 @@ webSocket.onerror = function(message){
 webSocket.onmessage = function(message){
 console.log(message)
 qRestart();
-};
+}; 
 //Send 버튼을 누르면 실행되는 함수
 /* function sendMessage(){
 var message = document.getElementById("textMessage");

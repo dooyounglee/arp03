@@ -7,4 +7,5 @@ public class MyClass {
 
 	private int lec_no;
 	private int m_no;
+	private String name;
 }
