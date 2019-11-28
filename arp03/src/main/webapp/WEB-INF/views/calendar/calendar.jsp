@@ -14,7 +14,6 @@
 <link href='${pageContext.request.contextPath}/resources/fullcalendar/timegrid/main.min.css' rel='stylesheet' />
 <script src="${pageContext.request.contextPath}/resources/fullcalendar/interaction/main.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/fullcalendar/timegrid/main.min.js"></script>
-<%@ include file="../include/bhead.jsp"%>
 <style>
 	html, body {
   		margin: 0;
@@ -53,7 +52,7 @@
             position: fixed; /* Stay in place */
             z-index: 1; /* Sit on top */
             left: 0;
-            top: 500;
+            top: 700;
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
@@ -83,9 +82,15 @@
         }
         #xx{font-size: 28px;}
         #calendar:hover{cursor: pointer;}
+        .card{
+			margin-left:auto;
+			margin-right: auto;
+			width:1000px;
+		}
 </style>    
 </head>
 <body>
+<%@ include file="../include/bhead.jsp"%>
 	<header class="topbar">
 		<%@ include file="../include/btopbarheader.jsp"%>
 	</header>
@@ -99,9 +104,11 @@
 	<div class="page-wrapper">
 		<div class="row page-titles">
 		</div>
-	<div align="center" class="card">
-	<h1 class="card-title">Calendar</h1>
-	</div>
+		<div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                            
+		<h1 align="center" class="card-title">Calendar</h1>
 	<br>
 	
 	<!-- <div id="external-events">
@@ -123,11 +130,17 @@
     <!-- <input align="center" type="button" id="btnAddTest" value="일정추가"> -->
     </div>
     
+    	</div>
+	
+	                   </div>
+                        </div>
+    
+    
     <div class="modal" id="eventt">
         <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">일정 업데이트</h4>
+                        <h4 class="modal-title" id="myModalLabel">일정 변경</h4>
                         <button type="button" id="xx" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
@@ -232,6 +245,11 @@
 		   					
 		   					console.log("최종 들어갈 년도 :" + y);
 	   				 		console.log("최종 들어갈 월 : " + endm);
+	   				 		
+	   				 		if(d == '1' || d == '2' || d == '3' || d == '4' || d == '5' || d == '6' || d == '7' || d == '8' || d == '9') {
+	   				 			d = '0' + d;
+	   				 		}
+	   				 		
 	   				 		console.log("최종 들어갈 일 : " + d);
 		   					
 		   					var ymd = (y + "-" + endm + "-" + d);

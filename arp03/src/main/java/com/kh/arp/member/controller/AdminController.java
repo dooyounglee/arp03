@@ -25,6 +25,7 @@ import com.google.gson.GsonBuilder;
 import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.declaree.model.vo.Declaree;
+import com.kh.arp.lecture.model.service.LectureService;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.member.model.service.MemberService;
@@ -38,6 +39,9 @@ public class AdminController {
 
 	@Autowired
 	private MemberService ms;
+	
+	@Autowired
+	private LectureService ls;
 	
 	@Autowired
 	private QnaService qs;
@@ -173,6 +177,14 @@ public class AdminController {
 		List<Member> list=ms.getIngStudentList(lec_no);
 		Gson gson = new GsonBuilder().create();
 		return gson.toJson(list);
+	}
+	
+	@ResponseBody
+	@PostMapping(value="getInfo.lec", produces="application/json; charset=UTF-8")
+	public String getLectureInfo(int lec_no)  {
+		Lecture lec=ls.getLecture(lec_no);
+		Gson gson = new GsonBuilder().create();
+		return gson.toJson(lec);
 	}
 	
 	@ResponseBody

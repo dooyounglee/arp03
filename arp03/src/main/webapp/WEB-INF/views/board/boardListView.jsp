@@ -20,8 +20,13 @@
 	}
 	.table{text-align:center;}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 </head>
-<body>
+<body class="fix-header card-no-border logo-center">
+	
+	<%@ include file="../include/bpreloader.jsp" %>
+	
+	<div id="main-wrapper">
 	
 	<header class="topbar">
 		<%@ include file="../include/btopbarheader.jsp"%>
@@ -60,7 +65,11 @@
                     </div>
                 </div>
 	
-	<h3 align="center" style="color:black">게시판 리스트</h3>
+	<div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+	
+	<h3 align="center" style="color:black">자유 게시판</h3>
 	
 	<h6 align="center">총 게시글 갯수 : ${pi.listCount} 페이지 : 
 	<c:if test="${ pi.listCount eq 0 }">
@@ -77,7 +86,7 @@
 	
 	<div class="row">
 			<div class="col-lg-12">
-					<div class="card" align="center">
+					
 						<div class="table-responsive">
 	<table align="center" cellspacing="0" width="700" class="table color-table muted-table">
 		<thead>
@@ -113,7 +122,7 @@
 		</c:if>
 		</table>
 		</div>
-		</div>
+		
 		</div>
 		<!-- 페이징 처리 -->
 		<div id="page" align="center">
@@ -161,6 +170,17 @@
 		</div>
 	</div>
 	
-	<jsp:include page="../include/footer.jsp"/>
+	                            </div>
+                        </div>
+                        
+                        <footer class="footer">
+	            <%@ include file="../include/bfooter.jsp" %>
+	        </footer>
+                        
+                        
+</div>
+	</div>
+	
+	<%@ include file="../include/bjs.jsp" %>
 </body>
 </html>

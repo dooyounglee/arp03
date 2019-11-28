@@ -11,7 +11,7 @@
 	#title{align:center; height:100px;}
 	#demo-foo-pagination{width:700px;}
 	#formdiv{
-		border: 1px solid black;
+		<!--border: 1px solid black;-->
 		padding:20px;
 		padding-left:60px;
 		padding-right:60px;
@@ -27,8 +27,8 @@
 		text-align:left;
 		margin-left:auto;
 		margin-right:auto;
+		width:1000px;
 	}
-	
 	#bor{
 		margin:0px;	
 	}
@@ -84,9 +84,14 @@
         }
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 <%@ include file="../include/bhead.jsp"%>
 </head>
-<body>
+<body class="fix-header card-no-border logo-center">
+	
+	<%@ include file="../include/bpreloader.jsp" %>
+	
+	<div id="main-wrapper">
 	
 	<header class="topbar">
 		<%@ include file="../include/btopbarheader.jsp"%>
@@ -102,7 +107,9 @@
 	<div class="page-wrapper">
 		<div class="row page-titles">
 		</div>
-	<div align="center" class="card">
+		<div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
 	<br>
 	<div id="formdiv" align="center">
 	<p align="center" style="font-size: 15px ">${ b.b_no }번 글</p>
@@ -155,7 +162,17 @@
 	</div>
 		</div>
 	</div>
+		</div>
+	 </div>
+	 <footer class="footer">
+	            <%@ include file="../include/bfooter.jsp" %>
+	        </footer>
 	</div>
+	
+	
+	</div>
+	
+	<%@ include file="../include/bjs.jsp" %>
 	
 	<!-- 신고 모달 창 -->
 	<div class="modal" id="declareBModal">
@@ -656,6 +673,6 @@
 		
 	</script>
 	
-	//<jsp:include page="../include/footer.jsp"/>
+
 </body>
 </html>
