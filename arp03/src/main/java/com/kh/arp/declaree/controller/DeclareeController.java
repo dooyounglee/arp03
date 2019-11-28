@@ -35,7 +35,7 @@ public class DeclareeController {
 	 public ModelAndView declarePost(Declaree d,HttpSession session, ModelAndView mv) { 
 		 Member m=(Member)session.getAttribute("mem"); 
 		 d.setM_no(m.getM_no());
-		 System.out.println(d); 
+		 //System.out.println(d); 
 		 int result=ds.declare(d);
 		 mv.setViewName("declare/declare"); 
 		 return mv; 
