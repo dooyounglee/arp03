@@ -1,6 +1,7 @@
 package com.kh.arp.vacation.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.vacation.model.dao.VacationDao;
 import com.kh.arp.vacation.model.vo.Vacation;
+import com.kh.arp.vacation.model.vo.VacationDate;
 
 @Service
 public class VacationServiceImpl implements VacationService {
@@ -36,9 +38,9 @@ public class VacationServiceImpl implements VacationService {
 		return vDao.selectLectureList(m_no);
 	}
 	@Override
-	public Vacation selectVacation(int v_no) {
+	public Vacation selectVacation(int lec_no) {
 		// TODO Auto-generated method stub
-		return vDao.selectVacation(v_no);
+		return vDao.selectVacation(lec_no);
 	}
 	@Override
 	public Vacation updateVacationForm(int v_no) {
@@ -52,7 +54,7 @@ public class VacationServiceImpl implements VacationService {
 		return vDao.updateVacation(v);
 	}
 	@Override
-	public int deleteVacation(Vacation v) {
+	public int deleteVacation(VacationDate v) {
 		// TODO Auto-generated method stub
 		return vDao.deleteVacation(v);
 	}
@@ -86,6 +88,15 @@ public class VacationServiceImpl implements VacationService {
 	public int insertVacation(Vacation v, String[] rlaalstkd) {
 		return vDao.insertVacation(v,rlaalstkd);
 	}*/
+	@Override
+	public List<VacationDate> selectLecNo(VacationDate vd) {
+		return vDao.selectLecNo(vd);
+	}
+	@Override
+	public int insertVacationDate(List<VacationDate> vDlist) {
+		return vDao.insertVacationDate(vDlist);
+	}
+	
 
 	
 

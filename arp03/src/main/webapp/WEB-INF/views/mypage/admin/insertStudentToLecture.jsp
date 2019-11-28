@@ -77,15 +77,14 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Multiple Select</h4>
-                                <h6 class="card-subtitle"> Use a <code>select multiple</code> as your input element.
-                                </h6>
+                                <h4 class="card-title">학생을 강좌로 넣엉주기</h4>
+                                <h6 class="card-subtitle">인원제한시켜야 하는데</h6>
                                 <div class="row">
                                     <div class="col-lg-2 col-xlg-2 mb-4">
                                     	<h5 class="p-2 rounded-title">Teacher</h5>
-                                        <select id="teacher" name="t" size="10" style="width:100%;" class="ms-container">
+                                        <select id="teacher" name="t" size="10" style="width:100%;">
 											<c:forEach var="t" items="${tlist }">
-												<option value="${t.m_no }">${t.name }</option>
+												<option value="${t.m_no }">${t.name }(${t.m_no })</option>
 											</c:forEach>
 										</select>
                                     </div>
@@ -96,7 +95,7 @@
 										</select>
                                     </div>
                                     <div class="col-lg-2 col-xlg-2">
-                                        <h5 class="p-2 rounded-title">수강중인 학생</h5>
+                                        <h5 class="p-2 rounded-title" id="ingCount">수강중인 학생</h5>
                                         <select id="ings" name="s" size="10" style="width:100%;" multiple>
 											<option>Not Exist</option>
 										</select>
@@ -189,6 +188,9 @@
 	
 	
 	<script>
+		var total=0;//총원
+		var now=0;//현재인원
+		
 		$('#teacher').on('click',function(){
 			$.ajax({
 				url:'tlist.lec',
@@ -201,7 +203,7 @@
 					$('#lecture').empty()
 					if(data.length>0){
 						for(i=0;i<data.length;i++){
-							$('#lecture').append('<option value="'+data[i].lec_no+'">lec_no='+data[i].lec_no+'</option>')
+							$('#lecture').append('<option value="'+data[i].lec_no+'">'+data[i].title+'('+data[i].lec_no+')'+'</option>')
 						}
 					}else{
 						$('#lecture').html('<option>Not Exist</option>')
@@ -210,6 +212,19 @@
 			})
 		})
 		
+		function getInfo(lec_no){//getLectureInfo
+			$.ajax({
+				url:'getInfo.lec',
+				type:'post',
+				data:{
+					lec_no:lec_no,
+				},
+				dataType:'json',
+				success:function(data){
+					total=data.headcount
+				},
+			})
+		}
 		function ingList(lec_no){
 			$.ajax({
 				url:'inglist.lec',
@@ -219,21 +234,24 @@
 				},
 				dataType:'json',
 				success:function(data){
-					console.log(data)
+					now=data.length
 					$('#ings').empty()
 					if(data.length>0){
 						for(i=0;i<data.length;i++){
-							$('#ings').append('<option value="'+data[i].m_no+'">m_no='+data[i].m_no+'</option>')
+							$('#ings').append('<option value="'+data[i].m_no+'">'+data[i].name+'('+data[i].m_no+')'+'</option>')
 						}
 					}else{
 						$('#ings').html('<option>Not Exist</option>')
+						now=0
 					}
+					$('#ingCount').text('수강중인 학생('+now+'/'+total+')')
 				},
 			})
 		}
 		$('#lecture').on('click',function(){
-			console.log($('#teacher').val())
 			ingList($('#lecture').val())
+			getInfo($('#lecture').val())
+			
 		})
 		
 		function otherList(lec_no){
@@ -249,7 +267,7 @@
 					$('#other').empty()
 					if(data.length>0){
 						for(i=0;i<data.length;i++){
-							$('#other').append('<option value="'+data[i].m_no+'">m_no='+data[i].m_no+'</option>')
+							$('#other').append('<option value="'+data[i].m_no+'">'+data[i].name+'('+data[i].m_no+')'+'</option>')
 						}
 					}else{
 						$('#other').html('<option>Not Exist</option>')
@@ -263,7 +281,12 @@
 		
 		function insertStudent(){
 			var other=$('#other').val()
+			var flag=false;
 			for(i=0;i<other.length;i++){
+				if(now>=total){
+					alert("정원초과")
+					break;
+				}
 				$.ajax({
 					url:'insertStudentToIng.lec',
 					type:'post',
@@ -273,8 +296,10 @@
 					},
 					success:function(data){
 						console.log("<<성공")
-						ingList($('#lecture').val())
-						otherList($('#lecture').val())
+						if(now<total){
+							ingList($('#lecture').val())
+							otherList($('#lecture').val())
+						}
 					},
 				})
 			}
