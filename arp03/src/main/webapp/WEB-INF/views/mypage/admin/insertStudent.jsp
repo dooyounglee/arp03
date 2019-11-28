@@ -87,13 +87,23 @@
                             <p class="text-muted mb-4 font-13"> Bootstrap Elements </p>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form action="insertMember.ad" method="post" autocomplete=off>
+                                    <form id="studentForm" action="insertMember.ad" method="post" autocomplete=off>
                                     	<input type="hidden" name="typee" value="s">
+                                    	<div class="form-group">
+                                            <label for="id">이름</label>
+                                            <input class="form-control" name="name">
+                                        </div>
                                         <div class="form-group">
                                             <label for="id">Email</label>
-                                            <input type="text" class="form-control" name="email">
+                                            <input class="form-control" name="email" id="email">
+                                            <div class="form-control-feedback">중복값이 있습니다.</div>
                                         </div>
-                                        <button type="submit" class="btn btn-success waves-effect waves-light mr-2">등록</button>
+                                        <div class="form-group">
+                                            <label for="pass">phone</label>
+                                            <input class="form-control" name="phone" id="phone">
+                                            <div class="form-control-feedback">중복값이 있습니다.</div>
+                                        </div>
+                                        <button type="button" class="btn btn-success waves-effect waves-light mr-2" onclick="submitStudent()">등록</button>
                                     </form>
                                 </div>
                             </div>
@@ -105,46 +115,24 @@
                             <p class="text-muted mb-4 font-13"> Bootstrap Elements </p>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form action="insertMember.ad" method="post" autocomplete=off>
+                                    <form id="teacherForm" action="insertMember.ad" method="post" autocomplete=off>
                                     	<input type="hidden" name="typee" value="t">
                                         <div class="form-group">
                                             <label for="id">이름</label>
                                             <input class="form-control" name="name">
                                         </div>
                                         <div class="form-group">
-                                            <label for="pass">Email</label>
-                                            <input class="form-control" name="email">
+                                            <label for="email">Email</label>
+                                            <input class="form-control" name="email" id="email">
+                                            <div class="form-control-feedback">중복값이 있습니다.</div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="pass">Phone</label>
-                                            <input class="form-control" name="phone">
+                                            <label for="phone">Phone</label>
+                                            <input class="form-control" name="phone" id="phone">
+                                            <div class="form-control-feedback">중복값이 있습니다.</div>
                                         </div>
-                                        <button type="submit" class="btn btn-success waves-effect waves-light mr-2">등록</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card card-body">
-                            <h3 class="mb-0">매니저등록</h3>
-                            <p class="text-muted mb-4 font-13"> Bootstrap Elements </p>
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <form action="insertMember.ad" method="post" autocomplete=off>
-                                        <div class="form-group">
-                                            <label for="id">이름</label>
-                                            <input class="form-control" name="name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pass">Email</label>
-                                            <input class="form-control" name="email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pass">Phone</label>
-                                            <input class="form-control" name="phone">
-                                        </div>
-                                        <button type="submit" class="btn btn-success waves-effect waves-light mr-2">등록</button>
+                                        
+                                        <button type="button" class="btn btn-success waves-effect waves-light mr-2" onclick="submitTeacher()">등록</button>
                                     </form>
                                 </div>
                             </div>
@@ -200,11 +188,155 @@
 	
 	
 	
+	<script>
+		var isStudentEmail=false;
+		var isStudentPhone=false;
+		var isTeacherEmail=false;
+		var isTeacherPhone=false;
+		$('.form-control-feedback').hide()
+		
+		$('#studentForm #email').on('input',function(){
+			var this_=$(this)
+			var email=$(this).val()
+			if(email.length==0){
+				this_.parent().removeClass("has-success")
+				this_.parent().removeClass("has-danger")
+				this_.next().hide()
+				isStudentEmail=false
+				return;
+			}
+			$.ajax({
+				url:'existEmail.me',
+				type:'post',
+				data:{
+					email:email,
+				},
+				success:function(data){
+					if(data=="exist"){
+						this_.parent().removeClass("has-success")
+						this_.parent().addClass("has-danger")
+						this_.next().show()
+						isStudentEmail=false
+					}else if(data=="not"){
+						this_.parent().removeClass("has-danger")
+						this_.parent().addClass("has-success")
+						this_.next().hide()
+						isStudentEmail=true
+					}
+				}
+			})
+		})
+		$('#studentForm #phone').on('input',function(){
+			var this_=$(this)
+			var phone=$(this).val()
+			if(phone.length==0){
+				this_.parent().removeClass("has-success")
+				this_.parent().removeClass("has-danger")
+				this_.next().hide()
+				isStudentPhone=false
+				return;
+			}
+			$.ajax({
+				url:'existPhone.me',
+				type:'post',
+				data:{
+					email:phone,
+				},
+				success:function(data){
+					if(data=="exist"){
+						this_.parent().removeClass("has-success")
+						this_.parent().addClass("has-danger")
+						this_.next().show()
+						isStudentPhone=false
+					}else if(data=="not"){
+						this_.parent().removeClass("has-danger")
+						this_.parent().addClass("has-success")
+						this_.next().hide()
+						isStudentPhone=true
+					}
+				}
+			})
+		})
+		function submitStudent(){
+			if(isStudentEmail && isStudentPhone){
+				$('#studentForm').submit();
+			}
+		}
+		
+		$('#teacherForm #email').on('input',function(){
+			var this_=$(this)
+			var email=$(this).val()
+			if(email.length==0){
+				this_.parent().removeClass("has-success")
+				this_.parent().removeClass("has-danger")
+				this_.next().hide()
+				isTeacherEmail=false
+				return;
+			}
+			$.ajax({
+				url:'existEmail.me',
+				type:'post',
+				data:{
+					email:email,
+				},
+				success:function(data){
+					if(data=="exist"){
+						this_.parent().removeClass("has-success")
+						this_.parent().addClass("has-danger")
+						this_.next().show()
+						isStudentEmail=false
+					}else if(data=="not"){
+						this_.parent().removeClass("has-danger")
+						this_.parent().addClass("has-success")
+						this_.next().hide()
+						isTeacherEmail=true
+					}
+				}
+			})
+		})
+		$('#teacherForm #phone').on('input',function(){
+			var this_=$(this)
+			var phone=$(this).val()
+			if(phone.length==0){
+				this_.parent().removeClass("has-success")
+				this_.parent().removeClass("has-danger")
+				this_.next().hide()
+				isTeacherPhone=false
+				return;
+			}
+			$.ajax({
+				url:'existPhone.me',
+				type:'post',
+				data:{
+					email:phone,
+				},
+				success:function(data){
+					console.log(data)
+					if(data=="exist"){
+						this_.parent().removeClass("has-success")
+						this_.parent().addClass("has-danger")
+						this_.next().show()
+						isTeacherPhone=false
+					}else if(data=="not"){
+						this_.parent().removeClass("has-danger")
+						this_.parent().addClass("has-success")
+						this_.next().hide()
+						isTeacherPhone=true
+					}
+				}
+			})
+			return;
+		})
+		function submitTeacher(){
+			if(isTeacherEmail && isTeacherPhone){
+				$('#teacherForm').submit();
+			}
+		}
+	</script>
 	
 	
 	
-	
-	<jsp:include page="../../include/header.jsp"/>
+<%-- 	<jsp:include page="../../include/header.jsp"/>
 	
 	<h2>학생등록</h2>
 	<form action="insertMember.ad" method="post" autocomplete=off>
@@ -224,6 +356,6 @@
 		<button>등록</button>
 	</form>
 	
-	<jsp:include page="../../include/footer.jsp"/>
+	<jsp:include page="../../include/footer.jsp"/> --%>
 </body>
 </html>

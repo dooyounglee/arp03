@@ -90,18 +90,22 @@
                                                 <th>title</th>
                                                 <th>questiondate</th>
                                                 <th>answerdate</th>
+                                                <c:if test="${mem.typee eq 'a' }">
                                                 <th>status</th>
+                                                </c:if>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         	<c:forEach var="qna" items="${list }">
                                         		<tr>
 	                                        		<td>${qna.qna_no }</td>
-	                                        		<td>${qna.m_no }</td>
+	                                        		<td>${qna.name }</td>
 	                                                <td><a href="get.qna?qna_no=${qna.qna_no }">${qna.title }</a></td>
 	                                                <td>${qna.questiondate }</td>
 	                                                <td>${qna.answerdate }</td>
+	                                                <c:if test="${mem.typee eq 'a' }">
 	                                                <td>${qna.status }</td>
+	                                                </c:if>
 												</tr>
 											</c:forEach>
                                         </tbody>

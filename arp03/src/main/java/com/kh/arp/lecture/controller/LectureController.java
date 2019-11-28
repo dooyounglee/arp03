@@ -172,10 +172,11 @@ public class LectureController {
 		List<Exam> elist=ls.getExamList(lec.getLec_no());
 		List<MyClass> mlist=null;
 		if(mem.getTypee().equals("s")) {
-			mlist=new ArrayList();
+			mlist=new ArrayList<MyClass>();
 			MyClass mc=new MyClass();
 			mc.setLec_no(lec.getLec_no());
 			mc.setM_no(mem.getM_no());
+			mc.setName(mem.getName());
 			mlist.add(mc);
 		}else if(mem.getTypee().equals("t")) {
 			mlist=ls.getStudentList(lec.getLec_no());
@@ -212,10 +213,11 @@ public class LectureController {
 		List<Classdate> dlist=ls.getLectureDatesList(lec.getLec_no());
 		List<MyClass> mlist=null;
 		if(mem.getTypee().equals("s")) {
-			mlist=new ArrayList();
+			mlist=new ArrayList<MyClass>();
 			MyClass mc=new MyClass();
 			mc.setLec_no(lec.getLec_no());
 			mc.setM_no(mem.getM_no());
+			mc.setName(mem.getName());
 			mlist.add(mc);
 		}else if(mem.getTypee().equals("t")) {
 			mlist=ls.getStudentList(lec.getLec_no());
@@ -333,7 +335,7 @@ public class LectureController {
 		List<Problem> plist=ps.getProblemListInHomework(lec_hw_m.getHw_no());
 		List<Problem> newplist=new ArrayList<Problem>();
 		for(Problem p:plist) {
-			newplist.add(abc(p,mem.getM_no()));
+			newplist.add(abc(p,lec_hw_m.getM_no()));
 		}
 		
 		List<Answer> alist=ps.getHomeworkAnswer(lec_hw_m);
@@ -359,6 +361,7 @@ public class LectureController {
 	@ResponseBody
 	@PostMapping("/submitAnswer.hw")
 	public String submitAnswer(Answer ans, HttpSession session, ModelAndView mv) {
+		System.out.println("===========제출하고 넘겨받은 값"+ans);
 		Member mem=(Member)session.getAttribute("mem");
 		Lecture lec=(Lecture)session.getAttribute("lec");
 		ans.setLec_no(lec.getLec_no());
@@ -367,15 +370,16 @@ public class LectureController {
 		Problem p=ps.getProblem(ans.getP_no());
 		Problem ranp=abc(p,mem.getM_no());
 		
-		System.out.println(ranp);
-		System.out.println(ans);
+		System.out.println("학생꺼 문제"+ranp);
+		System.out.println("여전히 넘겨받은 값"+ans);
 		
 		if(ranp.getSolution().equals("\\("+ans.getAnswer()+"\\)")) {
 			ans.setOx("O");
 		}else {
 			ans.setOx("X");
 		}
-		
+		System.out.println("ox까지 넘겨받은 값"+ans);
+		System.out.println("=====================");
 		int result=ls.submitAnswer(ans);
 		if(result>0) {
 			return "success";

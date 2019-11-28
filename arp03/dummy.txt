@@ -330,7 +330,8 @@ CREATE TABLE CALENDAR(
 	"M_NO" NUMBER REFERENCES MEMBER, 
 	"TITLE" VARCHAR2(100 BYTE) NOT NULL, 
 	"STARTDAY" DATE, 
-	"ENDDAY" DATE);
+	"ENDDAY" DATE,
+	STATUS VARCHAR2(3) DEFAULT 'Y');
 
 
 
@@ -577,8 +578,19 @@ insert into surveyquestion values(2, 101, 2, 3, null, 'N');
 INSERT INTO PROBLEM VALUES (seq_problem.nextval,'\(ㄱ+ㄴ=\)?','\(ㄱ+ㄴ=ㄷ\)','\(ㄷ\)','ㄱ,ㄴ,ㄷ');
 INSERT INTO PROBLEM VALUES (seq_problem.nextval,'''이차함수 \(f(x)=ax^2+bx+c\)의 \(x=1\)에서의 미분계수를 구하세요.','\(f\)를 \(x\)에 대해서 미분하면 \(f''(x)=2·ax+b\)이므로 \(f''(1)=2·a+b=c\)','\(c\)','a,b,c');
 INSERT INTO PROBLEM VALUES (seq_problem.nextval,'\(ㄱ+ㄴ\cdot ㄷ=?\)','\(ㄱ+ㄴ\cdot ㄷ= ㄱ+ㄹ=ㅁ\)','\(ㅁ\)','ㄱ,ㄴ,ㄷ,ㄹ,ㅁ');
-INSERT INTO PROBLEM VALUES (seq_problem.nextval,'5','5','5','5');
 
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,2,'1,2,4');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,2,'1,3,5');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,2,'2,4,8');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,2,'3,2,8');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,3,'1,2,3,6,7');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,3,'4,2,2,4,8');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,3,'4,3,1,3,7');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,3,'1,4,5,20,21');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,1,'1,2,3');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,1,'2,4,6');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,1,'3,1,4');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,1,'5,4,9');
 
 COMMIT;
 
