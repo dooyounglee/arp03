@@ -32,7 +32,7 @@
 	
 	<insert id="insertMember">
 		<if test='typee == "s".toString()'>
-			insert into member(m_no,typee,email,status) values(seq_member.nextval,#{typee},#{email},default)
+			insert into member(m_no,typee,email,status,name,phone) values(seq_member.nextval,#{typee},#{email},default,#{name},#{phone})
 		</if>
 		<if test='typee == "t".toString()'>
 			insert into member(m_no,typee,email,status,name,phone) values(seq_member.nextval,#{typee},#{email},default,#{name},#{phone})
