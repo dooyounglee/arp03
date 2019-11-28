@@ -44,10 +44,46 @@ public class CalendarController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("update.ca")
+	@RequestMapping("updatedate.ca")
 	public String updateCalendar(Calendar c) {
 		//System.out.println(c);
 		int rst = cService.updateCalendar(c);
+		if(rst > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("updatetitle.ca")
+	public String updateTitle(Calendar c) {
+		//System.out.println(c);
+		int rst = cService.updateTitle(c);
+		if(rst > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("deleteCal.ca")
+	public String deleteCalendar(Calendar c) {
+		//System.out.println(c);
+		int rst = cService.deleteCalendar(c);
+		if(rst > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("movedate.ca")
+	public String moveCalendar(Calendar c) {
+		//System.out.println(c);
+		int rst = cService.moveCalendar(c);
 		if(rst > 0) {
 			return "success";
 		} else {

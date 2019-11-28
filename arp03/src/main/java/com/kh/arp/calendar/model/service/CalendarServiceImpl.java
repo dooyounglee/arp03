@@ -28,6 +28,21 @@ public class CalendarServiceImpl implements CalendarService {
 	public int updateCalendar(Calendar c) {
 		return cDao.updatetCalendar(c);
 	}
+
+	@Override
+	public int updateTitle(Calendar c) {
+		return cDao.updateTitle(c);
+	}
+
+	@Override
+	public int deleteCalendar(Calendar c) {
+		return cDao.deleteCalendar(c);
+	}
+
+	@Override
+	public int moveCalendar(Calendar c) {
+		return cDao.moveCalendar(c);
+	}
 	
 	
 
