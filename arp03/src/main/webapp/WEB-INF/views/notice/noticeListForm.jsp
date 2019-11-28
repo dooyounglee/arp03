@@ -1,20 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-
-
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
-<body>
+<!-- head태그. header.jsp말고 -->
 	<%@ include file="../include/bhead.jsp"%>
 </head>
+	
 <body class="fix-header card-no-border logo-center">
 
 	<!-- Preloader - style you can find in spinners.css -->
@@ -38,15 +33,12 @@
 
 		<!-- Page wrapper  -->
         <div class="page-wrapper">
-	<!-- End of Left-sidebar -->
-	<br><br><br>
-<h2 align="center">공지사항입니다.</h2>
+
 
 <c:if test ="${mem.id eq 'admin' }">
 <button onclick ="location.href='ninsertForm.ad';" class="btn waves-effect waves-light btn-rounded btn-danger">작성하기</button>
 </c:if>
 
-<br>
 <!--
 <table align="center" border="1" cellspacing="0" width="700"> 
 <tr>
@@ -78,9 +70,10 @@
 	  <div class="col-lg-6" align="center" style="margin:auto">
                         <div class="card" align="center">
                             <div class="card-body" align="center">
+                                <h2 class="card-title">공지사항</h2><br><br>
+                            <div class="card-body" align="center">
                                 <div class="table-responsive">
                                     <table class="table color-table info-table">
-                                   		
                                         <thead align="center">
                                         <tr>
 											<th>번호</th>
@@ -156,21 +149,23 @@
                             </div>
                         </div>
                     </div>
+				</div>
+				
+					<!-- footer -->
+    		<!-- footer -->
+        <footer class="footer">
+            <%@ include file="../include/bfooter.jsp" %>
+        </footer>
+        <!-- End footer -->
 
-            <footer class="footer">
-	            <%@ include file="../include/bfooter.jsp" %>
-	        </footer>
-	        <!-- End footer -->
-	
-			</div>
-	        <!-- End of Page wrapper  -->
-	        
-			</div>
-		<!-- End of Main wrapper -->
-
-
+		</div>
+        <!-- End of Page wrapper  -->
+        
+	</div>
+	<!-- End of Main wrapper -->
 	<%@ include file="../include/bjs.jsp" %>
-
+	
+		 
 <script>
 
 

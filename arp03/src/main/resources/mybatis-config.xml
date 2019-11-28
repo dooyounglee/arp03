@@ -23,6 +23,7 @@
 		<typeAlias type="com.kh.arp.lecture.model.vo.Classdate" alias="Classdate"/>
 		<typeAlias type="com.kh.arp.lecture.model.vo.Attendence" alias="Attendence"/>
 		<typeAlias type="com.kh.arp.vacation.model.vo.Vacation" alias="Vacation"/>
+		<typeAlias type="com.kh.arp.vacation.model.vo.VacationDate" alias="VacationDate"/>
 		<typeAlias type="com.kh.arp.question.model.vo.QFile" alias="QFile"/>
 		<typeAlias type="com.kh.arp.manager.model.vo.InsertSurvey" alias="InsertSurvey"/>
 		<typeAlias type="com.kh.arp.manager.model.vo.CompleteSurvey" alias="CompleteSurvey"/>
@@ -34,6 +35,7 @@
 		<typeAlias type="com.kh.arp.problem.model.vo.Homework" alias="Homework"/>
 		<typeAlias type="com.kh.arp.problem.model.vo.Answer" alias="Answer"/>
 		<typeAlias type="com.kh.arp.calendar.model.vo.Calendar" alias="Calendar"/>
+		
 	</typeAliases>
 	
 	<mappers>

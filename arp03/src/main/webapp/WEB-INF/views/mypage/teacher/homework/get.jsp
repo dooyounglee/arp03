@@ -112,7 +112,7 @@
                                 <button class="btn btn-success" onclick="add()">추가하기</button><br>
                                 </c:if>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table id="homework" class="table">
                                         <thead>
                                             <tr>
                                                 <th width="50%">문제</th>
@@ -214,25 +214,36 @@ ${hw }<br>
 
 <script>
 	function ok(){
-		$('input').each(function(index,value){
-			var p_no=$(value).data('p_no')
+		var flag=false;
+		$('#homework input').each(function(index){
+			var p_no=$(this).data('p_no')
 			var hw_no=${hw.hw_no}
+			var answer=$(this).val();
 			
 			$.ajax({
 				url:'submitAnswer.hw',
 				type:'post',
+				async:'true',
 				data:{
 					p_no:p_no,
 					hw_no:hw_no,
-					answer:$(value).val(),
+					answer:answer,
 				},
 				success:function(data){
-					console.log(data)
+					if(data=="success"){
+						
+					}else{
+						flag=true;
+					}
 				},
 			})
 		})
-		alert("제출완료")
-		location.href="homeworklist.lec"
+		if(flag){
+			alert("실패")
+		}else{
+			alert("제출완료")
+			location.href="homeworklist.lec"
+		}
 	}
 </script>
 </body>

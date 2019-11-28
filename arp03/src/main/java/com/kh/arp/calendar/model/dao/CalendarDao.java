@@ -22,4 +22,20 @@ public class CalendarDao {
 		return (ArrayList) sqlSession.selectList("CalendarMapper.selectCalList", m_no);
 	}
 
+	public int updatetCalendar(Calendar c) {
+		return sqlSession.update("CalendarMapper.updateCalendar", c);
+	}
+
+	public int updateTitle(Calendar c) {
+		return sqlSession.update("CalendarMapper.updateTitle", c);
+	}
+
+	public int deleteCalendar(Calendar c) {
+		return sqlSession.update("CalendarMapper.deleteCalendar", c);
+	}
+
+	public int moveCalendar(Calendar c) {
+		return sqlSession.update("CalendarMapper.moveCalendar", c);
+	}
+
 }

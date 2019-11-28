@@ -13,4 +13,5 @@ public class Qna {
 	private String questiondate;
 	private String answerdate;
 	private String status;
+	private String name;
 }

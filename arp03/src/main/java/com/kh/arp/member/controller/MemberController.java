@@ -190,4 +190,26 @@ public class MemberController {
 		mv.setViewName("redirect:/find.me");
 		return mv;
 	}
+	
+	@ResponseBody
+	@PostMapping("/existEmail.me")
+	public String existEmailPost(Member m) {
+		Member newm=ms.find(m);
+		if(newm!=null) {
+			return "exist";
+		}else {
+			return "not";
+		}
+	}
+	
+	@ResponseBody
+	@PostMapping("/existPhone.me")
+	public String existPhonePost(Member m) {
+		Member newm=ms.find(m);
+		if(newm!=null) {
+			return "exist";
+		}else {
+			return "not";
+		}
+	}
 }

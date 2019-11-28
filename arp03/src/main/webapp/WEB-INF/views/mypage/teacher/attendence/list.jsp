@@ -90,7 +90,7 @@
                     <div class="col-lg-9 col-xlg-10 col-md-8">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Simple Editable table</h5>
+                                <h5 class="card-title">출석 관리</h5>
                                 <h6 class="card-subtitle">Just click on the table cell you want to edit.</h6>
                                 <div class="table-responsive">
                                     <table class="table striped editable-table no-wrap">
@@ -106,7 +106,7 @@
                                         <tbody>
                                         	<c:forEach var="m" items="${mlist }">
 												<tr>
-													<td>${m.m_no }</td>
+													<td>${m.name }</td>
 													<c:forEach var="d" items="${dlist }" varStatus="i">
 													
 														<!-- attendence선택 -->
