@@ -5,7 +5,7 @@
 
 <button onclick="sendMessage_Count()">qq</button>
 <script>
-	var ws_count = new WebSocket("ws://localhost:8090/arp/count/websocket");
+	var ws_count = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/${cp}/count/websocket");
 	ws_count.onopen=function() {
 		console.log("성공")
 	}
@@ -26,7 +26,7 @@
 <c:if test="${!empty mem }">
 <button onclick="sendMessage_Test()">qq</button>
 <script>
-	var ws = new WebSocket("ws://localhost:8090/arp/echo/websocket?m_no=${mem.m_no}");
+	var ws = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/${cp}/echo/websocket?m_no=${mem.m_no}");
 	ws.onopen=function() {
 		console.log("성공")
 	}
