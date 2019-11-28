@@ -36,14 +36,18 @@
         </websocket:handshake-interceptors>
     </websocket:handlers>
 
-	<beans:bean id="websocket"
-	class="com.kh.arp.qna.controller.WebSocket" />
+	<beans:bean id="websocket" class="com.kh.arp.qna.controller.WebSocketTest" />
 	<websocket:handlers>
 		<websocket:mapping handler="websocket" path="/echo" />
 		<websocket:handshake-interceptors>
-			<!-- <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" /> -->
 			<beans:bean class="com.kh.arp.qna.controller.WebsocketInterceptor" />
 		</websocket:handshake-interceptors>
+		<websocket:sockjs />
+	</websocket:handlers>
+	
+	<beans:bean id="websocketCount" class="com.kh.arp.qna.controller.WebSocketCount" />
+	<websocket:handlers>
+		<websocket:mapping handler="websocketCount" path="/count" />
 		<websocket:sockjs />
 	</websocket:handlers>
 
