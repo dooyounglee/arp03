@@ -12,14 +12,27 @@
 	</resultMap>
 
 	<insert id="insertCalendar">
-		insert into calendar values(SEQ_CALENDAR.nextval, #{m_no}, #{title}, #{start}, #{end})
+		insert into calendar values(SEQ_CALENDAR.nextval, #{m_no}, #{title}, #{start}, #{end}, default)
 	</insert>
 	
 	<select id="selectCalList" resultMap="calResultSet">
-		select * from calendar where m_no=#{m_no}
+		select * from calendar where m_no=#{m_no} and status = 'Y'
 	</select>
 	
 	<update id="updateCalendar">
 		update calendar set title=#{title}, startday=#{start}, endday=#{end} where c_no=#{c_no}
 	</update>
+	
+	<update id="updateTitle">
+		update calendar set title=#{title} where c_no=#{c_no}
+	</update>
+	
+	<update id="deleteCalendar">
+		update calendar set status='N' where c_no=#{c_no}
+	</update>
+	
+	<update id="moveCalendar">
+		update calendar set startday=#{start}, endday=#{end} where c_no=#{c_no}
+	</update>
+	
 </mapper>
