@@ -1,5 +1,6 @@
 package com.kh.arp.manager.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.arp.lecture.model.service.LectureService;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.manager.model.service.SurveyService;
-import com.kh.arp.manager.model.vo.CompleteSurvey;
 import com.kh.arp.manager.model.vo.ForSurvey;
 import com.kh.arp.manager.model.vo.InsertSurvey;
 import com.kh.arp.manager.model.vo.SurveyQuestion;
@@ -159,14 +159,40 @@ public class SurveyController {
 	@RequestMapping("resultsurvey.ma")
 	public ModelAndView resultsurvey(ModelAndView mv, int su_no, HttpSession session) {
 	SurveyQuestion sq = new SurveyQuestion();
+	
 	sq.setSu_no(su_no);
-	List<SurveyQuestion> lsq= ss.su_nosurvey(sq);
-	int lastsq_no=lsq.get(lsq.size()).getSq_no();
+	//그 수업과 설문에 들어가있는 m_no 리스트
+	List<SurveyQuestion> list = ss.selectstudent(sq);
+	System.out.println(list);
+	//그수업과 설문에 들어가있는 m_no의 번호
+	int lsm=list.get(0).getM_no();
+	sq.setM_no(lsm);
+	System.out.println(sq);
+	//sq, 질문, 답 값을 불러오는 메소드
+	List<SurveyQuestion> lsq= ss.sq_nosurvey(sq);
+	System.out.println(lsq+"lsq");
+	// 최종 질문 순서번호를 알기위한 메소드
+	int lastsq_no=lsq.size();
 	
 	sq.setSq_no(lastsq_no);
-	
-	List<SurveyQuestion> rsq= ss.resultsurvey(sq);
-	mv.addObject("rsq", rsq).setViewName("manager/resultsurvey");
+	// 질문과 답과 m_no이 담겨있는 List변수
+	List<SurveyQuestion> sm= ss.resultsurvey(sq);
+	System.out.println("sm"+sm);
+	float su_total_m_no=sm.size();
+	ArrayList a=new ArrayList();
+	// 수업의 만족도의 평균 메소드==============
+	for(SurveyQuestion msq: lsq) {
+		System.out.println("msq"+msq);
+		float m = ss.sumsurvey(msq);// 질문에 대답한 학생들의 답들을 더한값
+		System.out.println("m"+m);
+		float b=m/su_total_m_no;  // 더한값/질문에 대답한 총 학생수
+		String.format("%.2f",b);
+		a.add(b);					
+	}
+	System.out.println(a);
+	// =============================
+	System.out.println(sm+"----------"+a);
+	mv.addObject("rsq", lsq).addObject("a", a).setViewName("manager/resultsurvey");
 		return mv;
 	}
 }

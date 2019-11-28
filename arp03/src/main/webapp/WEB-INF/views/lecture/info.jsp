@@ -86,7 +86,7 @@
                                 <h4 class="card-title mt-4" id="3">개강일</h4>
                                 <p>${lec.startdate.split(' ')[0] }</p>
                                 <h4 class="card-title mt-4" id="4">강의시간</h4>
-                                <p>${lec.starttime }~${lec.inghour }분</p>
+                                <p>${lec.starttime.split(' ')[1] }~${lec.inghour }분</p>
                                 <h4 class="card-title mt-4" id="5">강의 소개</h4>
                                 <p>${lec.content }</p>
                                 <h4 class="card-title mt-4" id="6">참여인원</h4>

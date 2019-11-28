@@ -172,10 +172,11 @@ public class LectureController {
 		List<Exam> elist=ls.getExamList(lec.getLec_no());
 		List<MyClass> mlist=null;
 		if(mem.getTypee().equals("s")) {
-			mlist=new ArrayList();
+			mlist=new ArrayList<MyClass>();
 			MyClass mc=new MyClass();
 			mc.setLec_no(lec.getLec_no());
 			mc.setM_no(mem.getM_no());
+			mc.setName(mem.getName());
 			mlist.add(mc);
 		}else if(mem.getTypee().equals("t")) {
 			mlist=ls.getStudentList(lec.getLec_no());
@@ -183,6 +184,7 @@ public class LectureController {
 		List<Score> slist=ls.getLectureScore(lec.getLec_no());
 		List<ScoreH> shlist=ls.getHomeworkScore(lec.getLec_no());
 		List<Homework> hlist=ls.getHomeworkListInLecture(lec.getLec_no());
+		//List<Homework> hlist=ls.getHomeworkListInLectureForScore(lec.getLec_no());
 		
 		
 		mv.addObject("elist", elist);
@@ -211,10 +213,11 @@ public class LectureController {
 		List<Classdate> dlist=ls.getLectureDatesList(lec.getLec_no());
 		List<MyClass> mlist=null;
 		if(mem.getTypee().equals("s")) {
-			mlist=new ArrayList();
+			mlist=new ArrayList<MyClass>();
 			MyClass mc=new MyClass();
 			mc.setLec_no(lec.getLec_no());
 			mc.setM_no(mem.getM_no());
+			mc.setName(mem.getName());
 			mlist.add(mc);
 		}else if(mem.getTypee().equals("t")) {
 			mlist=ls.getStudentList(lec.getLec_no());
@@ -283,37 +286,56 @@ public class LectureController {
 	}
 	
 	@GetMapping("/getHomework.lec")
-	public ModelAndView getHomeworkInLecture(int hw_no, HttpSession session, ModelAndView mv) {
-		Member mem=(Member)session.getAttribute("mem");
-		
-		Homework hw=ps.getHomework(hw_no);
-		List<Problem> plist=ps.getProblemListInHomework(hw_no);
+	public ModelAndView getHomeworkInLecture(ProblemRelated hw_m_lec, HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		System.out.println(hw_m_lec);
+		if(hw_m_lec.getM_no()==0) {
+			Member mem=(Member)session.getAttribute("mem");
+			hw_m_lec.setM_no(mem.getM_no());
+		}
+		hw_m_lec.setLec_no(lec.getLec_no());
+		Homework hw=ps.getHomeworkInLecture(hw_m_lec);
+		List<Problem> plist=ps.getProblemListInHomework(hw_m_lec.getHw_no());
 		List<Problem> newplist=new ArrayList<Problem>();
 		for(Problem p:plist) {
-			newplist.add(abc(p,mem.getM_no()));
+			newplist.add(abc(p,hw_m_lec.getM_no()));
 		}
-		
+		List<Answer> alist=ps.getHomeworkAnswer(hw_m_lec);
 
 		mv.addObject("hw", hw);
 		mv.addObject("plist", newplist);
-		//mv.addObject("alist)
+		mv.addObject("alist",alist);
 		mv.setViewName("mypage/teacher/homework/get");
 		return mv;
 	}
 	
+	/*
+	 * @GetMapping("/getHomeworkforStudent.lec") public ModelAndView
+	 * getHomeworkForStudentInLecture(int hw_no, int m_no, HttpSession session,
+	 * ModelAndView mv) { Homework hw=ps.getHomework(hw_no); List<Problem>
+	 * plist=ps.getProblemListInHomework(hw_no); List<Problem> newplist=new
+	 * ArrayList<Problem>(); for(Problem p:plist) { newplist.add(abc(p,m_no)); }
+	 * 
+	 * mv.addObject("hw", hw); mv.addObject("plist", newplist);
+	 * mv.setViewName("mypage/teacher/homework/get"); return mv; }
+	 */
+	
 	@GetMapping("/checkAnswer.hw")
 	public ModelAndView checkAnswerHomework(ProblemRelated lec_hw_m, HttpSession session, ModelAndView mv) {
 		Member mem=(Member)session.getAttribute("mem");
+		if(lec_hw_m.getM_no()==0) {
+			lec_hw_m.setM_no(mem.getM_no());
+		}
 		Lecture lec=(Lecture)session.getAttribute("lec");
 		lec_hw_m.setLec_no(lec.getLec_no());
-		lec_hw_m.setM_no(mem.getM_no());
+		
 		
 		
 		Homework hw=ps.getHomework(lec_hw_m.getHw_no());
 		List<Problem> plist=ps.getProblemListInHomework(lec_hw_m.getHw_no());
 		List<Problem> newplist=new ArrayList<Problem>();
 		for(Problem p:plist) {
-			newplist.add(abc(p,mem.getM_no()));
+			newplist.add(abc(p,lec_hw_m.getM_no()));
 		}
 		
 		List<Answer> alist=ps.getHomeworkAnswer(lec_hw_m);
@@ -322,13 +344,24 @@ public class LectureController {
 		mv.addObject("hw", hw);
 		mv.addObject("plist", newplist);
 		mv.addObject("alist", alist);
-		mv.setViewName("mypage/teacher/homework/get");
+		mv.setViewName("mypage/teacher/homework/answer");
+		return mv;
+	}
+	
+	@PostMapping("/end.hw")
+	public ModelAndView endHomework(ProblemRelated lec_hw, HttpSession session, ModelAndView mv) {
+		Lecture lec=(Lecture)session.getAttribute("lec");
+		lec_hw.setLec_no(lec.getLec_no());
+		
+		int result=ps.endHomework(lec_hw);
+		mv.setViewName("redirect:homeworklist.lec");
 		return mv;
 	}
 	
 	@ResponseBody
 	@PostMapping("/submitAnswer.hw")
 	public String submitAnswer(Answer ans, HttpSession session, ModelAndView mv) {
+		System.out.println("===========제출하고 넘겨받은 값"+ans);
 		Member mem=(Member)session.getAttribute("mem");
 		Lecture lec=(Lecture)session.getAttribute("lec");
 		ans.setLec_no(lec.getLec_no());
@@ -337,17 +370,22 @@ public class LectureController {
 		Problem p=ps.getProblem(ans.getP_no());
 		Problem ranp=abc(p,mem.getM_no());
 		
-		System.out.println(ranp);
-		System.out.println(ans);
+		System.out.println("학생꺼 문제"+ranp);
+		System.out.println("여전히 넘겨받은 값"+ans);
 		
 		if(ranp.getSolution().equals("\\("+ans.getAnswer()+"\\)")) {
 			ans.setOx("O");
 		}else {
 			ans.setOx("X");
 		}
-		
+		System.out.println("ox까지 넘겨받은 값"+ans);
+		System.out.println("=====================");
 		int result=ls.submitAnswer(ans);
-		return "success";
+		if(result>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
 	}
 	
 	@PostMapping("/del.lec")

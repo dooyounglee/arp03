@@ -106,7 +106,7 @@
                                         <tbody>
                                         	<c:forEach var="m" items="${mlist }">
 												<tr>
-													<td>${m.m_no }</td>
+													<td>${m.name }</td>
 													<c:forEach var="d" items="${dlist }" varStatus="i">
 													
 														<!-- attendence선택 -->

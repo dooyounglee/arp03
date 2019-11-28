@@ -27,6 +27,7 @@ DROP TABLE completesurvey;
 DROP TABLE surveyquestion;
 DROP TABLE insertsurvey;
 --drop table survey;
+DROP TABLE CALENDAR;
 DROP TABLE LECTURE;
 DROP TABLE member;
 
@@ -306,6 +307,7 @@ CREATE TABLE problemsInHomework(
 CREATE TABLE homeworkInLecture(
 	lec_no NUMBER REFERENCES LECTURE,
 	hw_no NUMBER REFERENCES HOMEWORK,
+	status varchar2(100) DEFAULT 'Y',
 	PRIMARY KEY(lec_no,hw_no)
 );
 
@@ -319,10 +321,12 @@ CREATE TABLE homeworkanswer(
 	PRIMARY key(lec_no,hw_no,p_no,m_no)
 );
 
-
-
-
-
+CREATE TABLE CALENDAR(	
+	"C_NO" NUMBER PRIMARY KEY, 
+	"M_NO" NUMBER REFERENCES MEMBER, 
+	"TITLE" VARCHAR2(100 BYTE) NOT NULL, 
+	"STARTDAY" DATE, 
+	"ENDDAY" DATE);
 
 
 
@@ -347,6 +351,7 @@ DROP SEQUENCE SEQ_insertSURVEY;		-- 설문조사 번호
 DROP SEQUENCE seq_homework;
 DROP SEQUENCE seq_problem;
 DROP SEQUENCE seq_variables;
+DROP SEQUENCE SEQ_CALENDAR;
 
 CREATE SEQUENCE SEQ_Notice; 		-- 공지사항 번호
 CREATE SEQUENCE SEQ_FAQ;			-- FAQ 번호
@@ -368,6 +373,7 @@ CREATE SEQUENCE SEQ_insertSURVEY;			-- 설문조사 번호
 CREATE SEQUENCE seq_homework;
 CREATE SEQUENCE seq_problem;
 CREATE SEQUENCE seq_variables;
+CREATE SEQUENCE SEQ_CALENDAR;		-- 캘린더 번호
 
 /*drop trigger filestatusTrigger;
 create or replace trigger filestatusTrigger -- 첨부파일 상태 트리거
@@ -567,8 +573,19 @@ insert into surveyquestion values(2, 101, 2, 3, null, 'N');
 INSERT INTO PROBLEM VALUES (seq_problem.nextval,'\(ㄱ+ㄴ=\)?','\(ㄱ+ㄴ=ㄷ\)','\(ㄷ\)','ㄱ,ㄴ,ㄷ');
 INSERT INTO PROBLEM VALUES (seq_problem.nextval,'''이차함수 \(f(x)=ax^2+bx+c\)의 \(x=1\)에서의 미분계수를 구하세요.','\(f\)를 \(x\)에 대해서 미분하면 \(f''(x)=2·ax+b\)이므로 \(f''(1)=2·a+b=c\)','\(c\)','a,b,c');
 INSERT INTO PROBLEM VALUES (seq_problem.nextval,'\(ㄱ+ㄴ\cdot ㄷ=?\)','\(ㄱ+ㄴ\cdot ㄷ= ㄱ+ㄹ=ㅁ\)','\(ㅁ\)','ㄱ,ㄴ,ㄷ,ㄹ,ㅁ');
-INSERT INTO PROBLEM VALUES (seq_problem.nextval,'5','5','5','5');
 
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,2,'1,2,4');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,2,'1,3,5');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,2,'2,4,8');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,2,'3,2,8');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,3,'1,2,3,6,7');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,3,'4,2,2,4,8');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,3,'4,3,1,3,7');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,3,'1,4,5,20,21');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,1,'1,2,3');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,1,'2,4,6');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,1,'3,1,4');
+INSERT INTO VARIABLES VALUES(seq_variables.nextval,1,'5,4,9');
 
 COMMIT;
 

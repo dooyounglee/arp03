@@ -20,8 +20,6 @@
 	<th width="50">강의명</th>
 	<th width="100">제목</th>
 	<th width="100">휴가시작일</th>
-	<th width="100">휴가끝나는일</th>
-	<th width="50">일수</th>
 	<th>작성일</th>
 
 </tr>
@@ -33,9 +31,6 @@
 		<td>${v.name }</td>
 		<td>${ v.title }</td>
 		<td><a href="vDetail.me?v_no=${ v.v_no }">${ v.vacation_title }</a></td>
-		<td id="startDate">${ fn:substring(v.start_date,0,10) }</td>
-			<td id="endDate"></td>
-		<td id="dateCount"> ${v.date_count }일</td>
 		<td>${v.application_date }</td>
 		
 	</tr>		

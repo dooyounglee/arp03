@@ -104,7 +104,7 @@
                                         <tbody>
                                         	<c:forEach var="m" items="${mlist }">
 												<tr>
-													<td>${m.m_no }</td>
+													<td>${m.name }</td>
 													
 													<c:set var="sum" value="0"/>
 													<c:forEach var="e" items="${elist }">
@@ -154,39 +154,41 @@
                                         	<tr>
 	                                        	<th></th>
 												<c:forEach var="h" items="${hlist }">
-													<th width="100px">${h.title }</th>
+													<c:if test="${h.status eq 'N' }">
+													<th width="100px">${h.title }(${h.total })</th>
+													</c:if>
 												</c:forEach>
 												<th>총합</th>
 											</tr>
-<!--                                             <tr>
-                                                <th>Rendering engine</th>
-                                                <th>Browser</th>
-                                                <th>Platform(s)</th>
-                                                <th>Engine version</th>
-                                                <th>CSS grade</th>
-                                            </tr> -->
                                         </thead>
                                         <tbody>
                                         	<c:forEach var="m" items="${mlist }">
 												<tr>
-													<td>${m.m_no }</td>
+													<td>${m.name }</td>
 													
 													<c:set var="sum" value="0"/>
 													<c:forEach var="hw" items="${hlist }">
+														<c:if test="${hw.status eq 'N' }">
 														
-														<!-- score선택 -->
-														<c:set var="scoreh" value="0"/>
-														<c:forEach var="sh" items="${shlist }">
-																<c:if test="${sh.m_no eq m.m_no && sh.hw_no eq hw.hw_no }">
-																	<c:set var="scoreh" value="${sh.cnt }"/>
-																	<c:set var="sum" value="${sum+scoreh }"/>
+															<!-- score선택 -->
+															<c:set var="scoreh" value="0"/>
+															<c:forEach var="sh" items="${shlist }">
+																	<c:if test="${sh.m_no eq m.m_no && sh.hw_no eq hw.hw_no }">
+																		<c:set var="scoreh" value="${sh.cnt }"/>
+																		<c:set var="sum" value="${sum+scoreh }"/>
+																	</c:if>
+															</c:forEach>
+															<!-- End of score선택 -->
+															
+															<td>
+																<c:if test="${mem.typee eq 't' }">
+																<a href="checkAnswer.hw?hw_no=${hw.hw_no }&m_no=${m.m_no}">${scoreh }</a>
 																</c:if>
-														</c:forEach>
-														<!-- End of score선택 -->
-														
-														<td>
-															${scoreh }
-														</td>
+																<c:if test="${mem.typee eq 's' }">
+																${scoreh }
+																</c:if>
+															</td>
+														</c:if>
 													</c:forEach>
 														<td class=sum>${sum }</td>
 												</tr>
