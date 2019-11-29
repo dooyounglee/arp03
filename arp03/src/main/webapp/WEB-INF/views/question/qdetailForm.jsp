@@ -240,8 +240,7 @@
 									<br> <input size="10" type="text" name="name"
 										value="${ qt.tcname }" readonly> <br>
 									<br>
-									<textarea id="summernote" cols="50" rows="7"
-										name="replycontent">${ q.replycontent }</textarea>
+									<textarea id="summernote" cols="50" rows="7" name="replycontent" required>${ q.replycontent }</textarea>
 									<script>
 								      $('#summernote').summernote({
 								        tabsize: 2,
@@ -249,26 +248,14 @@
 										minHeight: null,
 										maxHeight: null,
 										focus: true,
-										callbacks:{
-											
-											onImageUpload: function(files, editor, weleditable){
-												for(var i = files.length - 1; i >= 0; i--){
-													sendFile(files[i], this);
-												}
-											}
-											
-										},
 										lang:"ko-KR",
 								      });
 								    </script>
 									<br>
 									<div style="text-align: center;">
 										<button
-											class="btn waves-effect waves-light btn-rounded btn-info"
-											id="qReOk" type="submit">확인</button>
-										<button
-											class="btn waves-effect waves-light btn-rounded btn-info"
-											type="button" onclick="qReX();">취소</button>
+											class="btn waves-effect waves-light btn-rounded btn-info" id="qReOk" onclick="return noteTextUp()" type="submit">확인</button>
+										<button class="btn waves-effect waves-light btn-rounded btn-info" type="button" onclick="qReX();">취소</button>
 									</div>
 								</div>
 							</form>
@@ -297,8 +284,7 @@
 															style="font-weight: bold; font-size: 25px; color: black;"
 															size="20">선생님 답변</span>
 														<hr class="mt-4">
-														<input size="10" style="color: black;" type="text"
-															name="name" value="${ qt.tcname }" readonly>
+														<input size="10" style="color: black;" type="text" name="name" value="${ qt.tcname }" readonly>
 														<div style="float: right; color: black;">${ q.replydate }</div>
 														<br>
 														<br> ${ q.replycontent }
@@ -614,6 +600,13 @@
 			});
 			
 		}); */
+		
+		function noteTextUp(){
+			if($(".note-editable").text().trim() == ""){
+				alert("내용을 입력해주세요.");
+				false;
+			}
+		}
 		
 		function sendFile(file, el){
 			var form_data = new FormData();
