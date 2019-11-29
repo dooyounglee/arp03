@@ -123,7 +123,7 @@ $(function(){
 		
 		var count = 1;
 		for(var i=0; i<data.length; i++){
-			$('#rank-list ol').append("<li><a href='#'>"+"<span class='numberStyle'>"+count+"</span> &nbsp;<span class='titleStyle'>"+data[i].title+"</span></a></li>");
+			$('#rank-list ol').append("<li><a href='bdetail.do?b_no=" + data[i].b_no +"'>"+"<span class='numberStyle'>"+count+"</span> &nbsp;<span class='titleStyle'>"+data[i].title+"</span></a></li>");
 			count++;
 			if(count == 11){
 				break;
