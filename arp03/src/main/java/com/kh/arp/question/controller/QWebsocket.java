@@ -34,7 +34,7 @@ System.out.println("확인요");
 */
 @OnMessage
 public void handleMessage(String message, Session session){
-System.out.println("클라이언특 ㅗ보낸거 : "+message);
+System.out.println("클라이언톡보낸거 : "+message);
 synchronized (clients) {
 	for(Session client:clients) {
 		try {
