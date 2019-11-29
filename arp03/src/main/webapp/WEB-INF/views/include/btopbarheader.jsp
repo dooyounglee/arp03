@@ -148,8 +148,9 @@
 	            <!-- ============================================================== -->
 	            <li class="nav-item dropdown">
 	                <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-message"></i>
-	                    <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+	                    <div class="notify"> <!-- <span class="heartbit"></span> <span class="point"></span> --> </div>
 	                </a>
+	       
 	                <div class="dropdown-menu dropdown-menu-right mailbox scale-up">
 	                    <ul>
 	                        <li>
@@ -188,6 +189,8 @@
 	                        </li>
 	                    </ul>
 	                </div>
+	                
+	              
 	            </li>
 	            <!-- ============================================================== -->
 	            <!-- End Comment -->
@@ -195,16 +198,16 @@
 	            <!-- ============================================================== -->
 	            <!-- Messages -->
 	            <!-- ============================================================== -->
-	            <li class="nav-item dropdown">
-	                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-email"></i>
-	                    <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+	            <li class="nav-item dropdown"  >
+	                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" > <i class="mdi mdi-email"></i>
+	                    <div class="notify" > <span id="heart" class="" ></span> <span id="point" class=""></span>  </div>
 	                </a>
 	                <div class="dropdown-menu mailbox dropdown-menu-right scale-up" aria-labelledby="2">
 	                    <ul>
 	                        <li>
-	                            <div class="drop-title">You have 4 new messages</div>
+	                            <div class="drop-title"><label id="alram">새로운 메세지가 없습니다.</label></div>
 	                        </li>
-	                        <li>
+	                       <%--  <li>
 	                            <div class="message-center">
 	                                <!-- Message -->
 	                                <a href="#">
@@ -231,9 +234,9 @@
 	                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
 	                                </a>
 	                            </div>
-	                        </li>
+	                        </li> --%>
 	                        <li>
-	                            <a class="nav-link text-center" href="javascript:void(0);"> <strong>See all e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
+	                            <a class="nav-link text-center" href="javascript:void(0);"> <strong id="see">메일 확인하기</strong> <i class="fa fa-angle-right"></i> </a>
 	                        </li>
 	                    </ul>
 	                </div>
@@ -283,3 +286,56 @@
 	            </ul>
 	        </div>
 	    </nav>
+	    
+	    <script>
+			var m_no= ${mem.m_no}
+			var ws = new WebSocket("ws://localhost:8585/arp/Echo"); 
+			
+			ws.onopen= function(){
+				console.log('헤더 커넥션 open');
+				
+				ws.onmessage= function(event){
+					console.log(event.data);
+					var arr = new Array()
+				/* 	arr = (event.data).split(","); */
+					
+					if(m_no == event.data){
+						$("#heart").attr("class","heartbit");
+						$("#point").attr("class","point");
+					
+	 				$("#alram").text("새로운 메시지가 있습니다"); 
+					 alert("새로운 메시지가 있습니다");
+				}
+			}
+				
+		};
+			
+			
+			ws.onclose = function (event) {
+				console.log('close');
+				
+				};
+				
+			ws.onerror= function (event) {
+				console.log('error');
+				};
+			 
+			$("#see").on("click", function(){
+				
+				$("#heart").attr("class","");
+				$("#point").attr("class","");
+				
+				location.href="mainMsg.do";
+				
+			})
+			 
+	
+		
+		
+		
+		
+		
+		</script>
+		
+		
+		

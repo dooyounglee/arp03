@@ -59,108 +59,154 @@
 <title>Insert title here</title>
 </head>
 <body>
+<body class="fix-header card-no-border logo-center">
 
-	<header class="topbar">
-		<%@ include file="../include/btopbarheader.jsp"%>
-	</header>
-	<!-- End Topbar header -->
+	<!-- Main wrapper -->
+	<div id="main-wrapper">
+	
+        <!-- Topbar header - style you can find in pages.scss -->
+        <header class="topbar">
+        	<%@ include file="../include/btopbarheader.jsp" %>
+        </header>
+        <!-- End Topbar header -->
+        
+        <!-- Left-sidebar -->
+        <aside class="left-sidebar">
+        	<%@ include file="../include/bsidebar.jsp" %>
+        </aside>
+        <!-- End of Left-sidebar -->
 
-	<!-- Left-sidebar -->
-	<aside class="left-sidebar">
-		<%@ include file="../include/bsidebar.jsp"%>
-	</aside>
-	<!-- End of Left-sidebar -->
+		<!-- Page wrapper  -->
+		<div class="page-wrapper">
+        <!-- Page wrapper  -->
 
-	<div class="page-wrapper">
-		<div class="row page-titles">
-	</div>
-	<div align="center">
-	<div class="card">
-	<br><br>
-	
-	
-	
-	<div id="formdiv" align="center">
+        	<!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+			<div class="container-fluid">
+				<!-- ============================================================== -->
+				<!-- Bread crumb and right sidebar toggle -->
+				<!-- ============================================================== -->
+				<div class="row page-titles">
+					<div class="col-md-5 col-12 align-self-center">
+						<h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+							<li class="breadcrumb-item active">Form</li>
+						</ol>
+					</div>
+					<div class="col-md-7 col-12 align-self-center d-none d-md-block">
+						<div class="d-flex mt-2 justify-content-end">
+							<div class="d-flex mr-3 ml-2">
+								<div class="chart-text mr-2">
+									<h6 class="mb-0">
+										<small>THIS MONTH</small>
+									</h6>
+									<h4 class="mt-0 text-info">$58,356</h4>
+								</div>
+								<div class="spark-chart">
+									<div id="monthchart"></div>
+								</div>
+							</div>
+							<div class="d-flex mr-3 ml-2">
+								<div class="chart-text mr-2">
+									<h6 class="mb-0">
+										<small>LAST MONTH</small>
+									</h6>
+									<h4 class="mt-0 text-primary">$48,356</h4>
+								</div>
+								<div class="spark-chart">
+									<div id="lastmonthchart"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ============================================================== -->
+				<!-- End Bread crumb and right sidebar toggle -->
+				<!-- ============================================================== -->
+				<!-- ============================================================== -->
+				<!-- Start Page Content -->
+				<!-- ============================================================== -->
+				<!-- Row -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
 
-	<p align="center" style="font-size: 15px ">${ b.b_no }번 글</p>
-	${ b.title }		<br>
-	<label id="bor" style="color: lightgray">---------------------------------------------------------------------------</label>
-	<div>
-	<label>${ b.name}</label>	
-	
-	<label id="regDate">${ b.regdate }</label>
-	</div>
-	<div id="content">
-	${ b.content }	
-	</div>
-	<div>
-	<c:if test="${ !empty bfList}">
-	<img src="resources/image/fileIcon.jpg" width="15px" height="19px" >
-		<label id="file">첨부파일</label>
-	<br>
-	
+								<div id="formdiv" align="center">
 
-	<c:forEach items="${ bfList }" var="bl">
-		<a href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bl.rename_filename}" download="${ bl.original_filename }">${ bl.original_filename }</a>
-		<br>
-				
-	</c:forEach>
+									<p align="center" style="font-size: 15px">${ b.b_no }번글</p>
+									${ b.title } <br> <label id="bor" style="color: lightgray">---------------------------------------------------------------------------</label>
+									<div>
+										<label>${ b.name}</label> <label id="regDate">${ b.regdate }</label>
+									</div>
+									<div id="content">${ b.content }</div>
+									<div>
+										<c:if test="${ !empty bfList}">
+											<img src="resources/image/fileIcon.jpg" width="15px"
+												height="19px">
+											<label id="file">첨부파일</label>
+											<br>
 
-	</c:if>
-	</div>
-	
-		
 
-	
-	
-		
-	
+											<c:forEach items="${ bfList }" var="bl">
+												<a
+													href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bl.rename_filename}"
+													download="${ bl.original_filename }">${ bl.original_filename }</a>
+												<br>
 
-			
-	
-	
-	<br><br>
+											</c:forEach>
 
-	<div id="re">
-	<!-- 댓글 등록 부분 -->
+										</c:if>
+									</div>
 
-		<table align="center" width="700" border="1" cellspacing="0">
-		<tr>
-			<td width="508px"><textarea cols="65" rows="3" id="rContent" style=" border:0;overflow-y:hidden;background:clear;padding:0px"></textarea></td>
-			<td><button id="rBtn" class="btn btn-rounded btn-block btn-outline-info">등록하기</button></td>
-		</tr>
-	</table>
-	<br>
-	<!-- 댓글 목록 부분 -->	
-	<table align="center" width="700" cellspacing="0" id="rtb" style="color:black" >
-		<thead>
-			<tr>
-				<td colspan="3"><b id="rCount"></b></td>
-			</tr>
-		</thead>
-		<tbody>
-			
-		</tbody>
-		
-	</table>
-	</div>
-	<br>
-	<div align="right"  id="btn">
-	<c:if test="${ mem.m_no eq b.m_no }">
-		<a href="tbupdateView.do?b_no=${ b.b_no }">수정하기</a>
-		<a href="tbdelete.do?b_no=${ b.b_no }">삭제하기</a>
-	</c:if>
-	<a href="tblist.do;">목록으로</a>
-	</div>
-	
-	
-	<br><br><br><br>
-	</div>
-	</div>
-	</div>
-	
-</div>
-	<script>
+									<br> <br>
+
+									<div id="re">
+										<!-- 댓글 등록 부분 -->
+
+										<table align="center" width="700" border="1" cellspacing="0">
+											<tr>
+												<td width="508px"><textarea cols="65" rows="3"
+														id="rContent"
+														style="border: 0; overflow-y: hidden; background: clear; padding: 0px"></textarea></td>
+												<td><button id="rBtn"
+														class="btn btn-rounded btn-block btn-outline-info">등록하기</button></td>
+											</tr>
+										</table>
+										<br>
+										<!-- 댓글 목록 부분 -->
+										<table align="center" width="700" cellspacing="0" id="rtb"
+											style="color: black">
+											<thead>
+												<tr>
+													<td colspan="3"><b id="rCount"></b></td>
+												</tr>
+											</thead>
+											<tbody>
+
+											</tbody>
+
+										</table>
+									</div>
+									<br>
+									<div align="right" id="btn">
+										<c:if test="${ mem.m_no eq b.m_no }">
+											<a href="tbupdateView.do?b_no=${ b.b_no }">수정하기</a>
+											<a href="tbdelete.do?b_no=${ b.b_no }">삭제하기</a>
+										</c:if>
+										<a href="tblist.do;">목록으로</a>
+									</div>
+
+
+									<br> <br> <br> <br>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<script>
 		$(function(){
 			getReplyList();
 			
@@ -488,7 +534,19 @@
 			
 	 
 	</script>
-	
 
-</body>
+					<!-- footer -->
+					<footer class="footer">
+						<%@ include file="../include/bfooter.jsp"%>
+					</footer>
+					<!-- End footer -->
+
+				</div>
+				<!-- End of Page wrapper  -->
+
+			</div>
+			<!-- End of Main wrapper -->
+
+
+			<%@ include file="../include/bjs.jsp"%></body>
 </html>

@@ -2,15 +2,115 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-
+ <%@ include file="../include/bhead.jsp"%> 
 <html>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
 <meta charset="UTF-8">
 <title>Send Message</title>
 </head>
-<body>
+<body class="fix-header card-no-border logo-center">
+<!-- Main wrapper -->
+	<div id="main-wrapper">
+	
+        <!-- Topbar header - style you can find in pages.scss -->
+        <header class="topbar">
+        	<%@ include file="../include/btopbarheader.jsp" %>
+        </header>
+        <!-- End Topbar header -->
+        
+        <!-- Left-sidebar -->
+        <aside class="left-sidebar">
+        	<%@ include file="../include/bsidebar.jsp" %>
+        </aside>
+        <!-- End of Left-sidebar -->
+
+		<!-- Page wrapper  -->
+		<div class="page-wrapper">
+        <!-- Page wrapper  -->
+
+        	<!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 col-12 align-self-center">
+                      <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active">Form</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+                        <div class="d-flex mt-2 justify-content-end">
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                    <h6 class="mb-0"><small>THIS MONTH</small></h6>
+                                    <h4 class="mt-0 text-info">$58,356</h4>
+                                </div>
+                                <div class="spark-chart">
+                                    <div id="monthchart"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                    <h6 class="mb-0"><small>LAST MONTH</small></h6>
+                                    <h4 class="mt-0 text-primary">$48,356</h4>
+                                </div>
+                                <div class="spark-chart">
+                                    <div id="lastmonthchart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+
+			  <div class="row">
+			      <div class="col-lg-12">
+			          <div class="card">
+	                        <div class="card-body">
+	                            <h3 class="card-title mdi mdi-email">쪽지 보내기</h3>
+	                     <form action="insertMsg.do" >
+	                            <div class="form-group">
+	                                <input class="form-control" name="title" placeholder="제목을 입력해주세요" required>
+	                            </div>
+	                            <div class="form-group">
+	                           		 <input type="hidden" value="${ mem.m_no }" name="s_no">
+	                            	<input type="hidden"  name="g_no" id="g_no">
+	                                <input class="form-control"  name="name" id="g_list" placeholder="ex) 강보람-5" required>
+	                                    <input type="checkbox" id="basic_checkbox_1" value="${mem.name}-${mem.m_no}">
+	                                    <label for="basic_checkbox_1">나에게쓰기</label>
+	                                
+	                                 <%--   <input type="checkbox" id="me" name="me" value="${mem.name}-${mem.m_no}">나에게 쓰기<br> --%>
+	                            </div>
+	                            <div class="form-group">
+	                                <textarea class="textarea_editor form-control" name="content" rows="15"
+	                                    placeholder="내용을 입력해주세요" required></textarea>
+	                            </div>
+	                     
+	                            <button type="submit" onclick="sub()" class="btn btn-success mt-3"><i
+	                                    class="fa fa-envelope-o"></i> Send</button>
+	                            <button type="button" class="btn btn-inverse mt-3" onclick="history.back();"><i class="fa fa-times"></i>
+	                                Discard</button>
+	           					</form>
+	                        </div>
+	                       </div>
+	                    </div>
+	                  </div>
+	                </div>
+	                
+              
+<%--                  
 <form action="insertMsg.do">
 <h3>쪽지보내기</h3>
 제목 : <input type="text" name="title"><br>
@@ -20,8 +120,17 @@
 <textarea rows="3" cols="50" name="content">
 </textarea>
 
-<button type="submit">보내기</button>
-</form>
+<button onclick="abc()">보내기</button>
+</form> --%>
+
+<script>
+function abc(){
+	//....
+	var gno = $("#g_no").val();
+	ws.send(gno);
+    submit(); 
+}
+</script>
 <script>
 
 $(document).ready(function() {
@@ -60,20 +169,20 @@ $("#g_list").change(function(){
 	
 });
 
-$("#me").on("click", function(){
+$("#basic_checkbox_1").on("click", function(){
 	var me = $(this).val();
 	console.log(me);
 	var mno =me.split("-")[1];
 	$("#g_list").val(me);
 	console.log(mno);
-	$("#g_no").val(mno)
+	$("#g_no").val(mno);
 
 	
 })
 
- $("#me").click(function(){ 
-       if($("#me").prop("checked")){ 
-          $("input[name=me]").prop("checked",true);
+ $("#basic_checkbox_1").click(function(){ 
+       if($("#basic_checkbox_1").prop("checked")){ 
+          $("input[name=basic_checkbox_1]").prop("checked",true);
 	        var me = $(this).val();
 	      	console.log(me);
 	      	var mno =me.split("-")[1];
@@ -83,7 +192,7 @@ $("#me").on("click", function(){
 	        $("#g_list").prop("readonly",true);
           
       }else{
-         $("input[name=me]").prop("checked",false); 
+         $("input[name=basic_checkbox_1]").prop("checked",false); 
          $("#g_list").val("");
          $("#g_no").val("");
          $("#g_list").prop("readonly",false);
@@ -91,29 +200,41 @@ $("#me").on("click", function(){
  })
 
 
-	/* $("#g_list").change(function(){
-		var name = $(this).text();
-			
-		$.ajax({
-			url:"selectMno",
-			type:"post",
-			data:{name:name},
-			success:function(data){
-				if(data>0){
-					console.log(data);
-				}else{
-					console.log("실패");
-				}
-			},
-			error:function(){
-				console.log("ajax 통신 실패");
-			}
-			})
-		}) */
+	function sub(){
+		
+	
+		var gno = $("#g_no").val();
+		console.log(gno);
+		ws.send(gno);
+		submit();
+		
+		/* alert("전송되었습니다");
+		opener.location.reload();	// window창 닫히면서 부모창 새로고침
+		window.close();
+ 		submit();  */
+}
 
-
+	
 
 </script>
+
+	<!-- footer -->
+        <footer class="footer">
+            <%@ include file="../include/bfooter.jsp" %>
+        </footer>
+        <!-- End footer -->
+
+		</div>
+        <!-- End of Page wrapper  -->
+        
+	</div>
+	<!-- End of Main wrapper -->
+	
+	<%@ include file="../include/bjs.jsp" %>
+	
+<!-- 	<script src="//code.jquery.com/jquery.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>   -->
+	
 </body>
 </html>
 

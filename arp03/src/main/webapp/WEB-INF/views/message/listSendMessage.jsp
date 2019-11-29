@@ -9,34 +9,41 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>받은 쪽지함</h3>
 
 
 
 
-				<table class="table color-table muted-table" border="1">
-				
+						 <div class="table-responsive">
+							<table class="table">
 								<thead>
 									<tr>
 										<th>번호</th>		
 										<th>보낸 사람</th>
 										<th width="300">제목</th>
 										<th>날짜</th>
+										<th>확인여부</th>
 									
 									</tr>
 								<thead>
 									<c:forEach items="${ mList }" var="m">
 										<tr>
 											<td>${ m.ms_no }</td>
-											<td>${ m.s_no }</td>
+											<td>${ m.name }</td>
 											<td><a href="detailMsg.do?ms_no=${m.ms_no}" >${ m.title }</a></td>
 											<td>${ m.s_date }</td>
+											<c:if test="${m.read_status eq 'N'}">
+											<td>읽지않음</td>
+											</c:if>
+											<c:if test="${m.read_status eq 'Y'}">
+											<td>읽음</td>
+											</c:if>
+								
 											
 										</tr>
 									</c:forEach>
 
 								</table>
-								<button onclick="location.href='mainMsg.do';">목록으로</button>
+						
 </body>
 
 </html>
