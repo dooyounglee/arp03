@@ -92,6 +92,9 @@
                                                 <th>작성일</th>
                                                 <th>작성자</th>
                                                 <th>강의명</th>
+                                                <c:if test="${mem.typee=='s' }">
+                                                <th>설문조사 여부 </th>
+                                                </c:if>
                                                 <!-- 설문조사 인원/ 설문조사 총인원 있으면 좋을듯 -->
                                             </tr>
                                         </thead>
@@ -101,13 +104,17 @@
                                         <tbody>
                                         <c:forEach var="d" items="${ list}">
 											<tr>
+												<input id="su_no" type="hidden" value="${d.su_no }">
 												<fmt:parseDate value="${d.enrolldate}" pattern="yyyy-MM-dd" var="e"/> 
 												<fmt:formatDate value="${e}" pattern="yyyy-MM-dd" var = "a"/>
 												<td>${d.title }</td>
 												<td>${a }</td>
 												<td>${d.name }</td>
 												<td>${d.title_1 }</td>
-												<input id="su_no" type="hidden" value="${d.su_no }">
+												<c:if test="${mem.typee=='s' }">
+												<td>${d.issurvey }</td>
+												</c:if>
+												
 											</tr>
 										</c:forEach>
                                         </tbody>
@@ -144,7 +151,7 @@
 		$("td").mouseenter(function(){
 			$(this).parent().children().css("cursor", "pointer");
 		}).click(function(){
-			var no=$(this).parent().children().eq(4).val();
+			var no=$(this).parent().children().eq(0).val();
 			if("${mem.typee}"=='s'){
 			location.href="detailsurvey.ma?su_no=" + no;
 			}

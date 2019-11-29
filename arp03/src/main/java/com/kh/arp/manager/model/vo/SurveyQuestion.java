@@ -12,6 +12,7 @@ public class SurveyQuestion {
 	private String answer;		// 답
 	private String name;		// 학생이름
 	private String enrolldate;   // 날짜
-	private String title;
+	private String title;		// 설문조사명
 	private String issurvey;	// 설문조사 완료판단 필드
+	private String title_1;				// 강의명
 }

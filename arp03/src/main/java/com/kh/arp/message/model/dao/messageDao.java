@@ -44,4 +44,8 @@ public class messageDao {
 	public int selectMcount(int m_no) {
 		return sqlSession.selectOne("msg-mapper.selectMcount",m_no);
 	}
+	
+	public ArrayList<Message> selectNList(int m_no){
+		return (ArrayList)sqlSession.selectList("msg-mapper.selectNList",m_no);
+	}
 }

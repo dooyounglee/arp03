@@ -31,25 +31,29 @@ public class DeclareeController {
 	}
 
 	
+	
 	 @PostMapping("insert.de") 
 	 public ModelAndView declarePost(Declaree d,HttpSession session, ModelAndView mv) { 
 		 Member m=(Member)session.getAttribute("mem"); 
 		 d.setM_no(m.getM_no());
 		 //System.out.println(d); 
 		 int result=ds.declare(d);
-		 mv.setViewName("declare/declare"); 
+		 if(result > 0) {
+			 mv.setViewName("declare/declare"); 
+		 }		
 		 return mv; 
 	 }
 	 
+	 
+	
 	/*
 	 * @ResponseBody
 	 * 
 	 * @PostMapping("insert.de") public String declarePost(Declaree d, HttpSession
 	 * session) { Member m=(Member)session.getAttribute("mem");
 	 * d.setM_no(m.getM_no()); //System.out.println(d); int result=ds.declare(d);
-	 * if(result > 0) { return "success"; } else { return "fail"; }
-	 * 
-	 * }
+	 * if(result > 0) { return "success"; } else { return "fail"; } }
 	 */
+	 
 
 }

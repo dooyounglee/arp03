@@ -216,7 +216,7 @@
 	<%@ include file="../include/bjs.jsp" %>
 	
 	<!-- 신고 모달 창 -->
-	<div class="modal" id="declareBModal">
+	<!-- <div class="modal" id="declareBModal">
         <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -245,9 +245,9 @@
                         <button type="button" class="btn btn-light close" data-dismiss="modal">취소</button>
                         <button type="button" id="declareB" class="btn btn-primary">신고하기</button>
                     </div>
-                </div><!-- /.modal-content -->
+                </div>/.modal-content
             </div>
-        </div>
+        </div> -->
         
         
         <div class="modal" id="declareRModal">
@@ -270,8 +270,9 @@
                                     <label for="radio_4">욕설/인신공격</label>
                                     <input name="kind" type="radio" id="radio_5" value="5">
                                     <label for="radio_5">개인정보노출</label>
-                                    <h6>신고사유</h6>
-                                    <input name="content" id="declareContents" type="text" required>
+                                    <div class="form-group">
+                         			<label><h6>신고사유</h6></label>
+                     			<input type="text" class="form-control form-control-line" id="declareContents" name="content" required> </div>
                                 </div>
                             </div>
                     </div>
@@ -335,12 +336,13 @@
 			// 신고 모달창용 function
 			/* $(document).on("click", "#dBoard", function(){
 	        	 $("#declareBModal").css({"display":"block"});
-	 		});
+	 		}); */
 			
-			$(document).on("click", ".close", function(){
+			/* $(document).on("click", ".close", function(){
 	        	 $(".modal").css({"display":"none"});
-	 		});
+	 		}); */
 			
+			/*
 			$(document).on("click", "#declareB", function(){
 				var kind=$('input[name="kind"]:checked').val()
 				
@@ -447,6 +449,8 @@
 				//$(this).parent().parent().after("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button class='rrsb'>등록</button>" + "<input type='button' class='cancel' value='취소'/></td></tr>");
 				$(this).parent().parent().after("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button class='rrsb btn waves-effect waves-light btn-rounded btn-outline-info btn-xs'>등록</button>" + "<input type='button' class='cancel btn waves-effect waves-light btn-rounded btn-outline-secondary btn-xs' value='취소'/></td></tr>");
 				$(this).hide();
+				$(this).next().hide();
+				console.log($(this).next())
 				//console.log($clicked);
 				//$clicked++;
 				//console.log($clicked);
