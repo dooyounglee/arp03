@@ -20,16 +20,31 @@
 		<result property="name" column="name"/>
 		<result property="enrolldate" column="enrolldate"/>
 		<result property="title" column="title"/>
+		<result property="title_1" column="lec_title"/>
 		<result property="issurvey" column="issurvey"/>
 	</resultMap>
 	
 	
-	<select id="selectSurvey" resultMap="insertsurveyList">
-  	select s.su_no, s.title, s.enrolldate, m.name, l.title lec_title
+	<select id="selectSurvey" resultMap="insertsurveyList"> <!-- 선생님 전용 셀렉문 -->
+  	 select s.su_no, s.title, s.enrolldate, m.name, l.title lec_title
 	from insertSurvey s ,lecture l, member m 
-	where s.lec_no=l.lec_no And s.m_no=m.m_no And s.lec_no=#{lec_no}
+	where s.lec_no=l.lec_no And s.m_no=m.m_no And s.lec_no=#{lec_no} and s.m_no=l.m_no
 	
   </select>
+	
+	<select id="selectSurveyStudent" resultMap="surveyquestion"> <!-- 학생 전용 셀렉문 -->
+	select    	s.su_no, s.title, s.enrolldate, m.name, l.title lec_title, sq.issurvey
+	from insertSurvey s ,lecture l, member m , surveyquestion sq, myclass mc
+	where s.lec_no=l.lec_no 
+	And s.m_no=m.m_no 
+	And l.m_no=s.m_no  
+	And mc.m_no=sq.m_no
+	And s.su_no=sq.su_no 
+	And s.lec_no=#{lec_no}
+	and mc.m_no=#{m_no}  <!-- 학생넘버 -->
+	And mc.lec_no=#{lec_no}
+	And sq.sq_no=1
+	</select>
 	
   <insert id="insertSurvey">
   	insert into insertsurvey values
