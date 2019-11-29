@@ -3,27 +3,42 @@
 <mapper namespace="msg-mapper">
 
 <insert id="insertMsg">
-	insert into message values(SEQ_MESSAGE.nextval,#{g_no},#{s_no},#{title},#{content},default,sysdate)
+	insert into message values(SEQ_MESSAGE.nextval,#{g_no},#{s_no},#{title},#{content},default,sysdate,default)
 </insert>
 
 <select id="selectList" resultType="Message">
-	select * from message where s_no=#{m_no}
+	select ms.*,m.name
+	from message ms, member m 
+	where ms.s_no=#{m_no} and ms.g_no=m.m_no
+	order by s_date desc
 </select>
+
+
 
 <select id="detailMsg" resultType="Message">
 	select * from message where ms_no=#{ms_no}
 </select>
 
 <select id="listSendMsg" resultType="Message">
-	select * from message where g_no=#{m_no}
+	select ms.*,m.name
+	from message ms, member m 
+	where ms.g_no=21 and ms.s_no=m.m_no
+	order by s_date desc
 </select>
 
 <update id="updateDate">
- update message set r_date=sysdate where ms_no=#{ms_no}
+ update message set r_date=sysdate, read_status = 'Y' where ms_no=#{ms_no}
 </update>
 
 <select id="searchList" parameterType="com.kh.arp.message.model.vo.Dto" resultType="com.kh.arp.message.model.vo.Dto">
 select name,m_no from member where name like '%${name}%' and m_no != #{m_no}
 </select> 
+
+<select id="selectMcount" resultType="_int">
+select count(*)
+from message 
+where g_no = #{m_no} and read_status='N'
+
+</select>
 
 </mapper>

@@ -26,8 +26,6 @@ public interface messageService{
 	// 6. 자동완성용 
 	List<Dto> searchList(Dto dto);
 	
-	/*
-	 * // 7. 회원번호 검색용 리스트 int selectMno(String name);
-	 */
-	
+	// 7. 메세지 카운트용 
+	int selectMcount(int m_no);
 }

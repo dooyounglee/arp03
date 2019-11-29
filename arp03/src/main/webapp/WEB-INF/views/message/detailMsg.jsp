@@ -5,12 +5,32 @@
 <html>
 <%@ include file="../include/bhead.jsp"%>
 <head>
+<style>
+	.col-lg-8{
+	margin-left:auto;
+	margin-right:auto;
+	}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
-<h3>쪽지 상세보기</h3>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+				 <h3 class="card-title mb-0">${m.title}</h3>
+				   <div>
+                       <hr class="mt-0">
+                   </div>
+				 <input type="hidden" value="${ m.g_no }" name="m_no" >
+				 <h5 >From: ${m.s_no}</h5>
+				 <h5>${m.content }</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%-- <h3>쪽지 상세보기</h3>
 제목 :<label>${m.title}</label><br>
 <input type="hidden" value="${ m.g_no }" name="m_no" >
 상대 번호 : <label>${m.s_no}</label><br>
@@ -18,35 +38,9 @@
 <label>
 ${m.content }
 </label>
-<br><br>
-<button onclick="location.href='listMsg.do';">목록으로</button>
-
-<script>
-var m_no= ${mem.m_no}
-var ws = new WebSocket("ws://localhost:8585/arp/Echo"); 
-
-ws.onopen= function(){
-	console.log('커넥션 open');
-	
-	ws.send(m_no);
-	
-	ws.onmessage= function(event){
-		console.log(event.data+'\n');
-		
-	}
-	
-}
+<br><br> --%>
 
 
 
-ws.onclose = function (event) {
-	console.log('close');
-	};
-	
-ws.onerror= function (event) {
-	console.log('error');
-	};
-
-</script>
 </body>
 </html>

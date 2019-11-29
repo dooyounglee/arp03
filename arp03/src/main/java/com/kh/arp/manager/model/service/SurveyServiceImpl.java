@@ -22,8 +22,8 @@ public class SurveyServiceImpl implements SurveyService {
 	}
 
 	@Override
-	public List<InsertSurvey> selectsurvey() {
-		return sDao.selectsurvey();
+	public List<InsertSurvey> selectsurvey(int lec_no) {
+		return sDao.selectsurvey(lec_no);
 	}
 
 	@Override

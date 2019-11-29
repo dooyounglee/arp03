@@ -14,6 +14,8 @@ public class Message {
 	private String content;			// 내용
 	private String r_date;			// 열람일자 
 	private String s_date;			// 발송일자
+	private String read_status;		// 내가 메일을 읽었는지 확인여부
+	private String name;
 	
 
 }
