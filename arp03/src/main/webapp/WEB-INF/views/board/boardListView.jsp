@@ -16,12 +16,17 @@
 	.card{
 	margin-left:auto;
 	margin-right: auto;
-		width:1000px;
+		/* width:1000px; */
 	}
 	.table{text-align:center;}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 </head>
-<body>
+<body class="fix-header card-no-border logo-center">
+	
+	<%@ include file="../include/bpreloader.jsp" %>
+	
+	<div id="main-wrapper">
 	
 	<header class="topbar">
 		<%@ include file="../include/btopbarheader.jsp"%>
@@ -35,32 +40,47 @@
 	<!-- End of Left-sidebar -->
 
 	<div class="page-wrapper">
+	
+		<div class="container-fluid">
+	
 	             <div class="row page-titles">
-                 
-                    <div class="col-md-7 col-4 align-self-center">
-                        <div clarss="d-flex m-t-10 justify-content-end">
-                            <div class="d-flex m-r-20 m-l-10 hidden-md-down">
-                            </div>
-                            <div class="">
-                                <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
-                            </div>
-                        </div>
+                    <div class="col-md-5 col-12 align-self-center">
+                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active">Form</li>
+                        </ol>
                     </div>
-                </div>
-
-	             <div class="row page-titles">
-                    <div class="col-md-7 col-4 align-self-center">
-                        <div clarss="d-flex m-t-10 justify-content-end">
-                            <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+                        <div class="d-flex mt-2 justify-content-end">
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                    <h6 class="mb-0"><small>THIS MONTH</small></h6>
+                                    <h4 class="mt-0 text-info">$58,356</h4>
+                                </div>
+                                <div class="spark-chart">
+                                    <div id="monthchart"></div>
+                                </div>
                             </div>
-                            <div class="">
-                                <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                    <h6 class="mb-0"><small>LAST MONTH</small></h6>
+                                    <h4 class="mt-0 text-primary">$48,356</h4>
+                                </div>
+                                <div class="spark-chart">
+                                    <div id="lastmonthchart"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 	
-	<h3 align="center" style="color:black">게시판 리스트</h3>
+	<div class="row">
+	<div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+	
+	<h3 align="center" style="color:black">자유 게시판</h3>
 	
 	<h6 align="center">총 게시글 갯수 : ${pi.listCount} 페이지 : 
 	<c:if test="${ pi.listCount eq 0 }">
@@ -77,7 +97,7 @@
 	
 	<div class="row">
 			<div class="col-lg-12">
-					<div class="card" align="center">
+					
 						<div class="table-responsive">
 	<table align="center" cellspacing="0" width="700" class="table color-table muted-table">
 		<thead>
@@ -113,7 +133,7 @@
 		</c:if>
 		</table>
 		</div>
-		</div>
+		
 		</div>
 		<!-- 페이징 처리 -->
 		<div id="page" align="center">
@@ -129,7 +149,7 @@
 					<c:url value="blist.do" var="prev">
 						<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 					</c:url>
-					<li class="page-item"><a class="page-link" href="${ prev }">[prev]</a></li>
+					<li class="page-item"><a class="page-link" href="${ prev }">이전</a></li>
 				</c:if>
 				<!-- 페이지 -->
 				<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
@@ -151,7 +171,7 @@
 					<c:url value="blist.do" var="next">
 						<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 					</c:url>
-					<li class="page-item"><a class="page-link" href="${ next }">[next]</a></li>
+					<li class="page-item"><a class="page-link" href="${ next }">다음</a></li>
 				</c:if>	
 			<!-- </td>
 		</tr> -->
@@ -161,6 +181,24 @@
 		</div>
 	</div>
 	
-	<jsp:include page="../include/footer.jsp"/>
+	                            </div>
+                        </div>
+                        
+                        </div>
+                        
+                        </div>
+                         <!-- ============================================================== -->
+            			<!-- End Container fluid  -->
+            			<!-- ============================================================== -->
+                        
+                        <footer class="footer">
+	            <%@ include file="../include/bfooter.jsp" %>
+	        </footer>
+                        
+                        
+</div>
+	</div>
+	
+	<%@ include file="../include/bjs.jsp" %>
 </body>
 </html>

@@ -58,7 +58,7 @@
         type="text/javascript"></script>
     <script src="/${cp }/resources/material-pro/assets/plugins/dff/dff.js" type="text/javascript"></script>
     <script type="text/javascript" src="/${cp }/resources/material-pro/assets/plugins/multiselect/js/jquery.multi-select.js"></script>
-    <script>
+    <!-- <script>
         $(function () {
             // Switchery
             var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
@@ -162,7 +162,7 @@
                 //templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
             });
         });
-    </script>
+    </script> -->
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->

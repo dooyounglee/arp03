@@ -10,7 +10,7 @@
 <body class="fix-header card-no-border logo-center">
 
 	<!-- Preloader - style you can find in spinners.css -->
-	<%@ include file="include/bpreloader.jsp" %>
+ 	<%@ include file="include/bpreloader.jsp" %> 
 	<!-- End of Preloader - style you can find in spinners.css -->
 
 	<!-- Main wrapper -->

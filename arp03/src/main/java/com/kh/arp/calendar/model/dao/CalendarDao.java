@@ -23,7 +23,19 @@ public class CalendarDao {
 	}
 
 	public int updatetCalendar(Calendar c) {
-		return sqlSession.insert("CalendarMapper.updateCalendar", c);
+		return sqlSession.update("CalendarMapper.updateCalendar", c);
+	}
+
+	public int updateTitle(Calendar c) {
+		return sqlSession.update("CalendarMapper.updateTitle", c);
+	}
+
+	public int deleteCalendar(Calendar c) {
+		return sqlSession.update("CalendarMapper.deleteCalendar", c);
+	}
+
+	public int moveCalendar(Calendar c) {
+		return sqlSession.update("CalendarMapper.moveCalendar", c);
 	}
 
 }

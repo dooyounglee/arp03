@@ -14,6 +14,7 @@ DROP TABLE QUESTION;
 DROP TABLE ATTENDENCE;
 DROP TABLE myclass;
 DROP TABLE Classdate;
+DROP TABLE VACATIONDATE;
 DROP TABLE vacation;
 drop table score;
 DROP TABLE exam;
@@ -103,18 +104,21 @@ CREATE TABLE QnA (
 CREATE TABLE vacation (
 	v_no	Number		PRIMARY KEY,
 	m_no	Number		REFERENCES MEMBER,
-	lec_no	number	    REFERENCES LECTURE,
 	vacation_title varchar2(2000) NOT NULL,
 	reason	varchar2(2000)		NOT NULL,
-	start_date	date		NOT NULL,
-	date_count	Number		NOT NULL,
 	application_date	date	NOT NULL,
 	tstatus	varchar2(100)	DEFAULT 'N'	NOT NULL,
-	sign varchar2(1000) 	NOT NULL,
+	sign varchar2(1000)     NULL,
 	companion_reason varchar2(2000) NULL,
 	astatus  varchar2(100)	DEFAULT 'N' NOT NULL,
-	status	varchar2(100)	DEFAULT 'N'	NOT NULL
-	
+	status	varchar2(100)	DEFAULT 'N'	NOT NULL 
+    );
+    
+CREATE TABLE VACATIONDATE (
+V_NO NUMBER REFERENCES VACATION,
+LEC_NO NUMBER REFERENCES LECTURE,
+VACATIONDATE DATE,
+PRIMARY KEY(V_NO,LEC_NO , VACATIONDATE)
 );
 
 CREATE TABLE Message (
@@ -326,7 +330,8 @@ CREATE TABLE CALENDAR(
 	"M_NO" NUMBER REFERENCES MEMBER, 
 	"TITLE" VARCHAR2(100 BYTE) NOT NULL, 
 	"STARTDAY" DATE, 
-	"ENDDAY" DATE);
+	"ENDDAY" DATE,
+	STATUS VARCHAR2(3) DEFAULT 'Y');
 
 
 

@@ -5,6 +5,12 @@
 <head>
 	<!-- head태그. header.jsp말고 -->
 	<%@ include file="../include/bhead.jsp"%>
+<!-- 	
+<style type="text/css">
+	.ttt{
+		color:red !important;
+	} 
+</style> -->
 </head>
 <body class="fix-header card-no-border logo-center">
 
@@ -13,7 +19,7 @@
 	
         <!-- Topbar header - style you can find in pages.scss -->
         <header class="topbar">
-        	<%@ include file="../include/btopbarheader.jsp" %>
+        <%@ include file="../include/btopbarheader.jsp" %>
         </header>
         <!-- End Topbar header -->
         
@@ -80,7 +86,7 @@
                     <div class="col-lg-9 col-xlg-10 col-md-8">
                         <div class="card">
                             <div class="card-body">
-                                <h1 class="card-title" id="1">${lec.title } 강의 페이지 입니다.</h1>
+                                <h1 class="card-title ttt" id="1">${lec.title } 강의 페이지 입니다.</h1>
                                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.</p>
                                 <h4 class="card-title mt-4" id="22">2. Title will be here</h4>
                                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.</p>

@@ -89,7 +89,6 @@
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <form action="join.me" method="post" autocomplete=off>
-                                    	${auth }
                                     	<input type="hidden" name="m_no" value="${auth.m_no }">
 										<input type="hidden" name="typee" value="${auth.typee }" >
                                         <div class="form-group">

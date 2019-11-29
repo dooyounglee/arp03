@@ -8,105 +8,114 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+	<%@ include file="../include/bhead.jsp"%>
+</head>
+<body class="fix-header card-no-border logo-center">
 
-<jsp:include page= "../include/header.jsp"/>
+	<!-- Preloader - style you can find in spinners.css -->
+	<%@ include file="../include/bpreloader.jsp" %>
+	<!-- End of Preloader - style you can find in spinners.css -->
 
-<h1 align="center">내 휴가 리스트 </h1>
+	<!-- Main wrapper -->
+	<div id="main-wrapper">
+	
+        <!-- Topbar header - style you can find in pages.scss -->
+        <header class="topbar">
+        	<%@ include file="../include/btopbarheader.jsp" %>
+        </header>
+        <!-- End Topbar header -->
+        
+        <!-- Left-sidebar -->
+        <aside class="left-sidebar">
+        	<%@ include file="../include/bsidebar.jsp" %>
+        </aside>
+        <!-- End of Left-sidebar -->
 
-<button onclick="location.href='myLlist.me?m_no=${mem.m_no}';">내수강목록으로가기</button>
+		<!-- Page wrapper  -->
+        <div class="page-wrapper">
+	<!-- End of Left-sidebar -->
 
-<table align="center" border="1" cellspacing="0" width="700"> 
-<tr>
-	<th>휴가번호</th>
-	<th>강의번호</th>
-	<th width="50">강의명</th>
-	<th>휴가</th>
-	<th width="100">제목</th>
-	<th>작성일</th>
-	<th>선생님</th>
-	<th>관리자</th>
-</tr>
 
-<c:forEach items="${ list }" var="v">
-<c:if test="${ v.m_no eq mem.m_no}">
+<%-- <table  align="center" border="1" cellspacing="0" width="700" method="post">
 	<tr>
-		<td>${ v.v_no }</td>
-		<td>${ v.lec_no }</td>
-		<td>${ v.title }</td>
-		<td>${v.vacation_date}</td>
-		<td><a href="vDetail.me?v_no=${ v.v_no }">${ v.vacation_title }</a></td>
-		<td>${v.application_date }</td>
-		<td>
-		<c:if test = "${ v.tstatus eq 'N'}">
-			 처리중
-  		</c:if>
-  		<c:if test = "${ v.tstatus eq 'B'}">
-			 반려
-  		</c:if>
-  		<c:if test = "${ v.tstatus eq 'Y'}">
-			 승인
-  		</c:if>
-			</td>
-		<td>
-		<c:if test = "${ v.astatus eq 'N'}">
-			 처리중
-  		</c:if>
-  		<c:if test = "${ v.astatus eq 'B'}">
-			 반려
-  		</c:if>
-  		<c:if test = "${ v.astatus eq 'Y'}">
-			 승인
-  		</c:if>
-  		</td>
-	</tr>		
-</c:if>
-</c:forEach>
-</table>
-
-<script>
-
-$(function(){
+		<th>강의번호</th>
+		<th>강의명</th>
+		<th>시작일</th>
+		<th>요일</th>
+		<th>시작시간</th>
+		<th>휴가신청</th>
+	</tr>
 	
-	var start_date = $("#startDate").text()//2019-01-01
-	console.log(start_date)
-	var yyyy= start_date.substr(0,4)
-	console.log(yyyy)
-	var MM = parseInt(start_date.substr(5,2))-1
-	console.log(MM)
-	var dd = parseInt(start_date.substr(8,2))
-	console.log(dd)
-	var howdate = parseInt($("#dateCount").text())
-	
-	var today=new Date(yyyy,MM,dd+howdate)			
-	console.log(today.getFullYear())
-	console.log(today.getMonth()+1)
-	console.log(today.getDate())
-	console.log(today)
+	<c:forEach items="${list }" var="c">
+	<tr>
+		<td>${c.lec_no }</td>
+		<td>${c.title }</td>
+		<td>${c.startdate }</td>
+		<td>${c.dayofweek}</td>
+		<td>${c.starttime }</td>
+		<td><a href="vinsertForm.me?m_no=${c.m_no }&lec_no=${c.lec_no}&title=${c.title}">휴가신청하기</a></td>
+	</tr>
+	</c:forEach>
+	 --%>
+<button onclick="location.href='vinsertForm.me';">휴가신청하기</button>
+	<div class="col-lg-6" align="center">
+                        <div class="card" align="center">
+                            <div class="card-body" align="center">
+                                <h4 class="card-title">내가신청한휴가</h4>
+                                <h6 class="card-subtitle"></h6>
+                                <div class="table-responsive" align="center">
+                                    <table class="table color-table info-table">
+                                        <thead align="center">
+                                            <tr>
+                                               <th>휴가번호</th>
+                                               <th>강의번호</th>
+                                               <th>과목명</th>
+                                               <th>사유</th>
+                                               <th>휴가날짜</th>
+                                               <th>선생님</th>
+											   <th>관리자</th>	
+                                            </tr>
+                                        </thead>
+                                        <tbody align="center">
+                                       
+                                        <c:forEach items="${list }" var="c">
+										<tr>
+											<td>${c.v_no }</td>
+											<td>${c.lec_no }</td>
+											<td>${c.title }</td>
+											<td><a href="vDetail.me?lec_no=${c.lec_no }">${c.vacation_title }</a></td>
+											<td>${fn:substring(c.vacationdate,0 ,10) }</td>
+											<td>${c.tstatus }</td>
+											<td>${c.astatus }</td>
+										</tr>
+										</c:forEach>
+                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 		
-			var date = String(today.getDate());
-			var zerodate = "";
-			
-			if(today.getDate() < 10){
-				
-				var zerodate ="0"+date
-				
-			}else{
-				
-				var zerodate = date
-			}
-
+	       <footer class="footer">
+	            <%@ include file="../include/bfooter.jsp" %>
+	        </footer>
+	        <!-- End footer -->
 	
+			</div>
+	        <!-- End of Page wrapper  -->
+	        
+			</div>
+		<!-- End of Main wrapper -->
+
+
+	<%@ include file="../include/bjs.jsp" %>
 	
-	 $("#endDate").text(today.getFullYear() + "-" + String(today.getMonth()+1)+"-" + zerodate)
-	
-	
-});
 
 
 
 
-</script>
+
 
 </body>
 </html>

@@ -81,7 +81,7 @@
                     <div class="col-lg-9 col-xlg-10 col-md-8">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Simple Editable table</h5>
+                                <h5 class="card-title">시험 점수 관리</h5>
                                 <h6 class="card-subtitle">Just click on the table cell you want to edit.</h6>
                                 <div class="table-responsive">
                                     <table class="table striped editable-table no-wrap">
@@ -93,13 +93,6 @@
 												</c:forEach>
 												<th>총합</th>
 											</tr>
-<!--                                             <tr>
-                                                <th>Rendering engine</th>
-                                                <th>Browser</th>
-                                                <th>Platform(s)</th>
-                                                <th>Engine version</th>
-                                                <th>CSS grade</th>
-                                            </tr> -->
                                         </thead>
                                         <tbody>
                                         	<c:forEach var="m" items="${mlist }">
@@ -146,7 +139,7 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Simple Editable table</h5>
+                                <h5 class="card-title">숙제 점수 관리</h5>
                                 <h6 class="card-subtitle">Just click on the table cell you want to edit.</h6>
                                 <div class="table-responsive">
                                     <table class="table striped editable-table no-wrap">

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,25 +26,28 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.vacation.model.service.VacationService;
 import com.kh.arp.vacation.model.service.VacationServiceImpl;
 import com.kh.arp.vacation.model.vo.Vacation;
+import com.kh.arp.vacation.model.vo.VacationDate;
 
 @Controller
 public class VacationController {
 	@Autowired
-	private VacationServiceImpl vService;
+	private VacationService vService;
 	
-	@RequestMapping("myLlist.me")
-	public ModelAndView myLectrueList(ModelAndView mv, HttpSession session) {
-		int m_no =	((Member)session.getAttribute("mem")).getM_no();
-		
-		
-		ArrayList<Lecture> list = vService.selectLectureList(m_no);	
-		System.out.println(list);
-		mv.addObject("list" , list).setViewName("vacation/myLectureListForm");
-		
-		return mv;
-	}
+	/*
+	 * @RequestMapping("myLlist.me") public ModelAndView myLectrueList(ModelAndView
+	 * mv, HttpSession session) { int m_no =
+	 * ((Member)session.getAttribute("mem")).getM_no();
+	 * 
+	 * 
+	 * ArrayList<Lecture> list = vService.selectLectureList(m_no);
+	 * System.out.println(list); mv.addObject("list" ,
+	 * list).setViewName("vacation/myLectureListForm");
+	 * 
+	 * return mv; }
+	 */
 	
 	
 	@RequestMapping("vlist.me")
@@ -76,18 +80,65 @@ public class VacationController {
 	return mv;
 	}
 	
-	@RequestMapping("vinsert.me")
-	public String vinsert(Vacation v , String dateArea ) {
+	@PostMapping("vinsert.me")
+	public String vinsert(Vacation v , String[] dateArea, HttpSession session ) {
 		
+		Member mem=(Member)session.getAttribute("mem");
 		
+		System.out.println(v);
+		System.out.println(dateArea);
 		int result = vService.insertVacation(v);
+		System.out.println(v);
 		
-		if(result>0) {
-			return"redirect:vlist.me";
-		}else {
-			return "common/errorPage";
+		int result1 = 0;
+		for(int j =0; j<dateArea.length; j++) {
+			
+			VacationDate vd=new VacationDate();
+			vd.setM_no(mem.getM_no());
+//			String temp=dateArea[j].replaceAll("-", "/");
+//			temp=temp.substring(2);
+//			vd.setClassdate(temp); // vacationdate 로 바꾸기
+			// 날짜 YY/MM/DD 로바꾼뒤
+//			vd.setClassdate(dateArea[j]);
+			vd.setVacation_date(dateArea[j]);
+			
+			System.out.println(vd);
+			
+			List<VacationDate> list=vService.selectLecNo(vd);
+			
+			List<VacationDate> vDlist = new ArrayList<VacationDate>();
+			for(int i=0;i<list.size();i++) {
+				VacationDate vdd=new VacationDate();
+				vdd.setV_no(v.getV_no());
+				vdd.setLec_no(list.get(i).getLec_no());
+//				vdd.setClassdate(list.get(i).getClassdate().split(" ")[0].replaceAll("-", "/"));
+//				vdd.setClassdate(list.get(i).getClassdate().split(" ")[0]);
+				vdd.setVacation_date(list.get(i).getVacation_date().split(" ")[0]);
+				System.out.println(list);
+				vDlist.add(vdd );
+			}
+			System.out.println(vDlist);
+			
+			 result1=vService.insertVacationDate(vDlist);
+
 		}
+		
+		if(result >0 && result1 >0) {
+			
+			return "redirect:vlist.me";
+		}else {
+			return "qcommons/errorPage";
+		}
+		
+		
+		
+//		if(result>0) {
+//			return"redirect:vlist.me";
+//		}else {
+//			return "common/errorPage";
+//		}
 	}
+	
 	
 	
 	/*
@@ -135,9 +186,10 @@ public class VacationController {
 	}
 	*/
 	@RequestMapping("vDetail.me")
-	public ModelAndView vDetail(ModelAndView mv,int v_no) {
+	public ModelAndView vDetail(ModelAndView mv, int lec_no) {
 		
-		Vacation v = vService.selectVacation(v_no);
+		Vacation v = vService.selectVacation(lec_no);
+		
 		
 		if(v!= null) {
 			
@@ -165,7 +217,7 @@ public class VacationController {
 	}
 	
 	@RequestMapping("vdelete.me")
-	public String vDelete(Vacation v) {
+	public String vDelete(VacationDate v) {
 		int result = vService.deleteVacation(v);
 		
 		if(result>0) {
@@ -181,16 +233,16 @@ public class VacationController {
 		int m_no = ((Member)session.getAttribute("mem")).getM_no();
 		
 		ArrayList<Vacation> list = vService.selectStudentList(m_no);
-		
-		mv.addObject("list",list).setViewName("vacation/studentVacationListForm");
+System.out.println(list);
+			mv.addObject("list", list).setViewName("vacation/studentVacationListForm");
 		
 		return mv;
 	}
 	
 	@RequestMapping("companiForm.me")
-	public ModelAndView companiForm(int v_no , ModelAndView mv) {
+	public ModelAndView companiForm(int lec_no , ModelAndView mv) {
 		
-		mv.addObject("v_no",v_no).setViewName("vacation/companion");
+		mv.addObject("lec_no",lec_no).setViewName("vacation/companion");
 		
 		return mv;
 	}
@@ -228,7 +280,8 @@ public class VacationController {
 		int m_no = ((Member)session.getAttribute("mem")).getM_no();
 		ArrayList<Vacation> list = vService.selectList(m_no);
 		
-		mv.addObject("list" , list).setViewName("vacation/adminVacation");
+			mv.addObject("list", list).setViewName("vacation/adminVacation");
+		
 		
 		return mv;
 		
