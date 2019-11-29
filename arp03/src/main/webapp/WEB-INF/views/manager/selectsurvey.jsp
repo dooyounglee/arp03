@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,7 +92,6 @@
                                                 <th>작성일</th>
                                                 <th>작성자</th>
                                                 <th>강의명</th>
-                                                <th>Role</th>
                                                 <!-- 설문조사 인원/ 설문조사 총인원 있으면 좋을듯 -->
                                             </tr>
                                         </thead>
@@ -102,8 +101,10 @@
                                         <tbody>
                                         <c:forEach var="d" items="${ list}">
 											<tr>
+												<fmt:parseDate value="${d.enrolldate}" pattern="yyyy-MM-dd" var="e"/> 
+												<fmt:formatDate value="${e}" pattern="yyyy-MM-dd" var = "a"/>
 												<td>${d.title }</td>
-												<td>${d.enrolldate }</td>
+												<td>${a }</td>
 												<td>${d.name }</td>
 												<td>${d.title_1 }</td>
 												<input id="su_no" type="hidden" value="${d.su_no }">
@@ -139,8 +140,9 @@
 	<%@ include file="../include/bjs.jsp" %>
 	
 	<script>
+	$(document).ready(function(){
 		$("td").mouseenter(function(){
-			$(this).parent().children().css({"background":"darkgray","cursor":"pointer"})
+			$(this).parent().children().css("cursor", "pointer");
 		}).click(function(){
 			var no=$(this).parent().children().eq(4).val();
 			if("${mem.typee}"=='s'){
@@ -149,7 +151,9 @@
 			if("${mem.typee}"=='t'){
 				location.href="detailsurveystudent.ma?su_no=" + no;
 			}
-		});
+		})
+	
+	});
 	</script>
 </body>
 </html>

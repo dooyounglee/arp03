@@ -30,8 +30,8 @@ public class SurveyController {
 	private SurveyService ss;
 	
 	@RequestMapping("selectsurvey.ma")
-	public ModelAndView selectsurvey(ModelAndView mv) {
-		List<InsertSurvey> s= ss.selectsurvey();
+	public ModelAndView selectsurvey(ModelAndView mv, int lec_no) {
+		List<InsertSurvey> s= ss.selectsurvey(lec_no);
 		mv.addObject("list", s).setViewName("manager/selectsurvey");
 		return mv;
 	}
@@ -44,12 +44,14 @@ public class SurveyController {
 	
 	@RequestMapping("insertsurvey.ma")
 	public ModelAndView insertsurvey(ModelAndView mv, ForSurvey q, InsertSurvey is, HttpSession session) {
-		Member m = new Member();
-		m.setM_no(((Member)session.getAttribute("mem")).getM_no());
-		is.setM_no(m.getM_no());
-		System.out.println(is+"-------------");
-		System.out.println(q+"model");
-		
+		/*
+		 * Member m = new Member();
+		 * m.setM_no(((Member)session.getAttribute("mem")).getM_no());
+		 * is.setM_no(m.getM_no());
+		 */
+		/*
+		 *  System.out.println(q+"model");
+		 */
 		int result=ss.insertsurvey(is);	// 설문조사 양식을 insert하는 메소드
 		int lec_no=((Lecture)session.getAttribute("lec")).getLec_no();
 		//---------------------------- insertSurvey 구문-----------------
@@ -60,14 +62,12 @@ public class SurveyController {
 			int j = 1;		// 질문의 순서를 아는 변수
 		
 			for( Object qq : q.getQuestion()) {
-				System.out.println(qq+"========");
 				SurveyQuestion fs= new SurveyQuestion();
 				fs.setSq_no(j);
 				fs.setQuestion((String)qq);
 				for( SurveyQuestion osq:sq ) {
 					fs.setM_no(osq.getM_no());
 					ds=ss.insertsurveyquestion(fs); 					// 특정설문조사에 질문을 insert하는 메소드
-					System.out.println(ds);
 						if(ds<=0) {
 							dd+=1;
 							break;
@@ -83,7 +83,7 @@ public class SurveyController {
 //, @RequestParam("qlast") int qlast
 		
 		if(dd==0) {
-			mv.setViewName("redirect:/selectsurvey.ma");
+			mv.setViewName("redirect:/selectsurvey.ma?lec_no="+lec_no);
 		}else {
 			mv.setViewName("");
 		}

@@ -10,7 +10,7 @@
             <a href="list.at" class="list-group-item">내 출석</a>
             <a href="list.sc" class="list-group-item">내 점수</a>
             <a href="homeworklist.lec" class="list-group-item">숙제</a>
-            <a href="selectsurvey.ma" class="list-group-item">설문조사</a>
+            <a href="selectsurvey.ma?lec_no=${lec.lec_no }" class="list-group-item">설문조사</a>
             <a href="#5" class="list-group-item">--------</a>
             <c:if test="${mem.typee eq 't' && lec.m_no eq mem.m_no }">
             <a href="list.ex" class="list-group-item">시험관리</a>
