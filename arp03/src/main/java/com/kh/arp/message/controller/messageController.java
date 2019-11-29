@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.message.model.service.messageService;
 import com.kh.arp.message.model.vo.Dto;
@@ -130,12 +132,13 @@ public class messageController {
 	  
 	  @ResponseBody
 	  @RequestMapping("selectNList.do")
-	  public ModelAndView selectNList(int m_no, ModelAndView mv) {
+	  public String selectNList(int m_no, ModelAndView mv) {
 		  ArrayList<Message> mlist = mService.selectNList(m_no);
 		  
-		  mv.addObject("mlist",mlist).setViewName("include/btopbarheader");
 		  
-		  return mv;
+		  Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			return gson.toJson(mlist);
 	  }
 	  
 	  

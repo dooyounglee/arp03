@@ -209,30 +209,7 @@
 	                        </li> -->
 	                        <li>
 	                            <div class="message-center">
-	                                <!-- Message -->
-	                                <a href="#">
-	                                    <div class="user-img"> <img src="/${cp }/resources/material-pro/assets/images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-	                                    <div class="mail-contnet">
-	                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </div>
-	                                </a>
-	                                <!-- Message -->
-	                                <a href="#">
-	                                    <div class="user-img"> <img src="/${cp }/resources/material-pro/assets/images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
-	                                    <div class="mail-contnet">
-	                                        <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
-	                                </a>
-	                                <!-- Message -->
-	                                <a href="#">
-	                                    <div class="user-img"> <img src="/${cp }/resources/material-pro/assets/images/users/3.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
-	                                    <div class="mail-contnet">
-	                                        <h5>Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span> </div>
-	                                </a>
-	                                <!-- Message -->
-	                                <a href="#">
-	                                    <div class="user-img"> <img src="/${cp }/resources/material-pro/assets/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-	                                    <div class="mail-contnet">
-	                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
-	                                </a>
+	                 
 	                            </div>
 	                        </li>
 	                        <li>
@@ -308,8 +285,7 @@
 						$("#heart").attr("class","heartbit");
 						$("#point").attr("class","point");
 					
-	 					//$("#alram").text("새로운 메시지가 있습니다"); 
-	 					ddd();
+	 					list(); // 새로운 메시지가오면 리스트 새로
 						alert("새로운 메시지가 있습니다");
 					}
 			}
@@ -328,10 +304,10 @@
 			 
 			$("#see").on("click", function(){
 				
-				$("#heart").attr("class","");
+/* 				$("#heart").attr("class","");
 				$("#point").attr("class","");
-				
-				location.href="mainMsg.do";
+				 */
+				location.href="listMsg.do";
 				
 			})
 		
@@ -340,14 +316,45 @@
 			$.ajax({
 					url:"selectNList.do",
 					data:{m_no:m_no},
-					success:function(dataa){
-						 console.log(dataa) 
+					dataType:"json",
+					success:function(data){
+						 console.log(data.length)
+						 
+					if(data.length > 0){ 
+						
 					
-					//.drop-list에 뿌려주기 새로운거만.
+						$.each(data, function(index, value){ 
+						
+						$a=$("<a href='#' class='border-bottom d-block text-decoration-none py-2 px-3'></a>");
+						$img = $("<div class='user-img position-relative d-inline-block mr-2 mb-3'><img src='/${cp }/resources/image/mailicon.png' alt='user' class='img-circle'></div>")
+						$con = $("<div class='mail-contnet d-inline-block align-middle'>").text(value.content);
+						$h5= $("<h5 class='name1'></h5>").text(value.s_no);
+						$desc = $("<span class='mail-desc font-12 text-truncate overflow-hidden text-nowrap d-block'></span> ")
+						$time=$("<span class='time font-12 mt-1 text-truncate overflow-hidden text-nowrap d-block'></span> </div></a>").text(value.s_date);
+						
+						$con.append($h5);
+						$con.append($desc);
+						$con.append($time);
+
+						$a.append($img)
+						$a.append($con);
+						
+						
+                     
+                      
+                         
+							
+				   			$(".message-center").append($a);
+							
+							
+						
+						});
+							
+					}	
 				}
 			})
 		}
-			
+		
 		list();
 		
 		
