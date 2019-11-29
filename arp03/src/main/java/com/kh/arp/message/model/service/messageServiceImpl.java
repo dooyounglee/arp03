@@ -48,10 +48,11 @@ public class messageServiceImpl implements messageService {
 		return mDao.searchList(dto);
 	}
 
-	/*
-	 * @Override public int selectMno(String name) { return mDao.selectMno(name); }
-	 */
-	
+
+	@Override
+	public int selectMcount(int m_no) {
+		return mDao.selectMcount(m_no);
+	}
 
 
 

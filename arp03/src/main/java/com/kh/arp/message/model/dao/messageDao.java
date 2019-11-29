@@ -41,7 +41,7 @@ public class messageDao {
 		return (List)sqlSession.selectList("msg-mapper.searchList",name);
 	}
 	
-	/*
-	 * public int selectMno(String name) { return sqlSession.selectList }
-	 */
+	public int selectMcount(int m_no) {
+		return sqlSession.selectOne("msg-mapper.selectMcount",m_no);
+	}
 }
