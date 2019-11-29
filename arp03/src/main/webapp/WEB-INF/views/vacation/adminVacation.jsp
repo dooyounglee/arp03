@@ -130,7 +130,10 @@
                                         <thead>
                                       	<tr>
 	
-											<th><input type="checkbox" id="checkbox">체크</th>
+											<th>
+												<input type="checkbox" id="basic_checkbox_1" >
+                                    			<label for="basic_checkbox_1">체크</label>
+												</th>
 											<th>휴가번호</th>
 											<th>강의번호</th>
 											<th>휴가날짜</th>
@@ -148,7 +151,12 @@
 										<input type="hidden" name="lec_no" id="lec_no" value="${v.lec_no }">
 											<c:if test = "${v.tstatus ne 'N' and v.astatus ne 'Y'}">
 												<tr>
-													<td><input type="checkbox" id ="vl" class="check" name="vacationList" value="${ v.v_no }"></td>
+													<td>
+													<%-- <input type="checkbox" id ="vl" class="check" name="vacationList" value="${ v.v_no }"> --%>
+													<input type="checkbox" id="basic_checkbox_1" name="vacationList" value="${ v.v_no }">
+                                    					<label for="basic_checkbox_1"></label>
+													
+													</td>
 													<td>${ v.v_no }</td>
 													<td>${ v.lec_no }</td>
 													<td>${fn:substring(v.vacationdate,0,10) }</td>
@@ -271,8 +279,8 @@ $(function(){
 	// 전체 처리
 	var checkVno =[];
 	
-	 $("#checkbox").click(function(){ 
-		 if($("#checkbox").prop("checked")){ 
+	 $("#basic_checkbox_1").click(function(){ 
+		 if($("#basic_checkbox_1").prop("checked")){ 
 			 $("input[name=vacationList]").prop("checked",true);
 			 
 		}else{
