@@ -111,29 +111,67 @@
                                             <div class="form-group">
                                                 <label for="example-email" class="col-md-12">이름</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" placeholder="홍길동" class="form-control form-control-line" name="name" id="example-email" value="${mem.name }">
+                                                    <input type="text" class="form-control form-control-line" name="name" id="name" value="${mem.name }">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="example-email" class="col-md-12">Email</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" placeholder="johnathan@admin.com" class="form-control form-control-line" name="email" id="example-email" value="${mem.email }">
+                                                    <input type="text" class="form-control form-control-line" name="email" id="email" value="${mem.email }">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-12">Phone</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" placeholder="123 456 7890" class="form-control form-control-line" name="phone" value="${mem.phone }">
+                                                    <input type="text" class="form-control form-control-line" name="phone" id="phone" value="${mem.phone }">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-sm-12">
-                                                    <button class="btn btn-success">Update Profile</button>
+                                                    <button type="button" class="btn btn-success" onclick="update(this)">Update Profile</button>
                                                     <button type="button" class="btn btn-success" onclick="leave(this)">Leave</button>
                                                 </div>
                                             </div>
                                         </form>
                                         <script>
+	                                        function update(this_){
+	                                        	var isEmail=false
+	                                        	var isPhone=false
+	                                        	var email=$('#email').val()
+	                                        	var phone=$('#phone').val()
+	                                        	
+	                                        	$.ajax({
+	                                				url:'existEmail.me',
+	                                				type:'post',
+	                                				data:{
+	                                					email:email,
+	                                				},
+	                                				success:function(data){
+	                                					if(data=="exist"){
+	                                						isEmail=false
+	                                					}else if(data=="not"){
+	                                						isEmail=true
+	                                					}
+	                                				}
+	                                			})
+	                                			$.ajax({
+													url:'existPhone.me',
+													type:'post',
+													data:{
+														email:phone,
+													},
+													success:function(data){
+														if(data=="exist"){
+															isPhone=false
+														}else if(data=="not"){
+															isPhone=true
+														}
+													}
+												})
+												if(isEmail || isPhone){
+	                                    			$(this_).closest('form').attr('action','update.me').submit();
+												}
+	                                    	}
                                         	function leave(this_){
                                         		$(this_).closest('form').attr('action','leave.me').submit();
                                         	}
@@ -153,7 +191,7 @@
                                             <div class="form-group">
                                                 <label for="example-email" class="col-md-12">Password</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" placeholder="ID" class="form-control form-control-line" name="pw">
+                                                    <input class="form-control form-control-line" name="pw">
                                                 </div>
                                             </div>
                                             <div class="form-group">

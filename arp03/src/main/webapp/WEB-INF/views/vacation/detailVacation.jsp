@@ -9,10 +9,11 @@
 <title>Insert title here</title>
 <%--  <script src="${pageContext.request.contextPath}/resources/js/signature_pad.min.js" type="text/javascript"></script>
      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/css.css"> --%>
-</head>
-<body>
 
 <%@ include file="../include/bhead.jsp"%>
+</head>
+<body class="fix-header card-no-border logo-center">
+
 	<!-- Preloader - style you can find in spinners.css -->
 	<%@ include file="../include/bpreloader.jsp" %>
 	<!-- End of Preloader - style you can find in spinners.css -->
@@ -35,10 +36,10 @@
 		<!-- Page wrapper  -->
         <div class="page-wrapper">
 	<!-- End of Left-sidebar -->
-	<br><br><br><br>
-	<h1 align="center">휴가 상세보기</h1>
+	
 	<br>
-<c:if test ="${mem.typee eq 's'}">
+	<br>
+<%-- <c:if test ="${mem.typee eq 's'}">
 	<table border="1px">
 	<tr>
 	<th>선생님</th>
@@ -90,7 +91,7 @@
 	
 	</table>
 	</c:if>
-	<input type="hidden" value="${v.title }">
+	
 	<table align="center" border="1px">
 	<tr>
 		<td>강의제목</td>
@@ -125,17 +126,17 @@
 	
 	</tr>
 	</table>
-	
-	<c:if test="${mem.typee eq 't' }">
+	 --%>
+	<%-- <c:if test="${mem.typee eq 't' }">
 	<button onclick="location.href='sVlist.te';">리스트로돌아가기</button>
 	
- 	<a onclick="location.href='permission.te?lec_no=${v.lec_no }'" style="cursor:pointer">허가</a> 
-	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-example-modal-lg">허가</button>
+ 	<a onclick="location.href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }'" style="cursor:pointer">허가</a> 
+	<!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-example-modal-lg">허가</button> -->
 	<!--<button id="sign">사인하기</button>  -->
-	<a onclick="window.open('companiForm.me?lec_no=${v.lec_no}',width=300, height=300)" style="cursor:pointer">반려</a>
+	<a onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }',width=300, height=300)" style="cursor:pointer">반려</a>
 	
 	<!-- iframe으로 가져오기 -->
-	<div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+	<!-- <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -145,21 +146,179 @@
                                             <div class="modal-body">
  												<iframe id="sof" name="sof" src="signature-pad.te" width="100%" height="400" frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>
                                             </div>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div>
+                                        </div>/.modal-content
+                                    </div>/.modal-dialog
+                                </div> -->
 	</c:if>
 	
 	<c:if test="${mem.typee eq 's' }">
 	<button onclick="location.href='vlist.me';" align="center">리스트로 돌아가기</button>
 	 
 	<c:if test="${v.tstatus eq 'N'}">
-	<a href="vdelete.me?lec_no=${ v.lec_no }" >삭제하기</a>
+	<a href="vdelete.me?lec_no=${ v.lec_no }&v_no="${v.v_no }">삭제하기</a>
 	</c:if>
 	<c:if test="${v.tstatus eq 'B'}">
 	<a href="vdelete.me?v_no=${ v.v_no }" >삭제하기</a>	
 	</c:if>
-	</c:if>
+	</c:if> --%>
+	
+	
+					<div class="col-md-12" align="center" >
+						<div class="card">
+                            <div class="card-body" >
+                                <h4 class="card-title">휴가 상세보기</h4>
+                                <h6 class="card-subtitle">Add class <code>.table</code></h6>
+                                 <c:if test ="${mem.typee eq 's'}">
+							<table border="1px" align="left">
+					<tr>
+					<th>선생님</th>
+					<th>관리자</th>
+					</tr>
+					<tr>
+					 	<td>
+							 <c:if test = "${ v.tstatus eq 'N'}">
+							 처리중
+					  		 </c:if>
+							 <c:if test = "${ v.tstatus eq 'B'}">
+							 반려
+					  		 </c:if>
+					  	 	<c:if test ="${v.tstatus eq 'Y' }">
+					  	 	승인
+					  	 </c:if>
+					 	</td>
+					<td>
+						<c:if test = "${ v.astatus eq 'N'}">
+							 처리중
+				  		</c:if>
+						<c:if test ="${ v.astatus eq 'Y' }">
+							승인
+						</c:if>
+					
+					</td>
+					</tr>
+					</table>
+				</c:if>
+					<c:if test ="${mem.typee eq 'a'}">
+					
+					<table border="1px">
+					<tr>
+					<th>선생님</th>
+					</tr>
+					<tr>
+					 	<td>
+							 <c:if test = "${ v.tstatus eq 'N'}">
+							 처리중
+					  		 </c:if>
+							 <c:if test = "${ v.tstatus eq 'B'}">
+							 반려
+					  		 </c:if>
+					  	 	<c:if test ="${v.tstatus eq 'Y' }">
+					  	 	<!-- <img src ="resources/image/sign.png" width="200" height="100"> -->
+					  	 	승인
+					  	 </c:if>
+					 	</td>
+					</tr>
+					
+					</table>
+					</c:if>
+               <div class="table-responsive">
+          <table class="table">
+         <thead>
+             
+         </thead>
+         <tbody>
+                                      
+		
+		<table align="center" border="1px">
+		<tr>
+			<td>강의제목</td>
+			<td>${v.title }</td>
+		<tr>
+		
+		<tr>
+			<td>휴가제목</td>
+			<td colspan="2">${v.vacation_title}</td>
+		</tr>
+		<tr>
+			
+			<td>작성자</td>
+			<td>${v.name}</td>
+		</tr>
+		<tr>
+			<td>사유</td>
+			<td>${v.reason }</td>
+		</tr>	
+		
+		<c:if test="${v.tstatus eq 'Y' && v.astatus eq 'Y'}">
+			<td>출력하기</td>
+			<td><button onclick="myvacation()">인쇄</button></td>
+		</c:if>
+		
+		<tr>
+		<c:if test="${v.tstatus eq 'B'}">
+			
+			<td>반려사유</td>
+			<td>${v.companion_reason }</td>
+		</c:if>
+		
+		</tr>
+		</table>
+		
+		<c:if test="${mem.typee eq 't' }">
+		<button onclick="location.href='sVlist.te';">리스트로돌아가기</button>
+		<c:if test ="${v.tstatus eq 'N' }">
+	 	<a onclick="location.href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }'" style="cursor:pointer">허가</a> 
+		<!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-example-modal-lg">허가</button> -->
+		<!--<button id="sign">사인하기</button>  -->
+		<a onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }',width=300, height=300)" style="cursor:pointer">반려</a>
+		</c:if>
+		<!-- iframe으로 가져오기 -->
+		<!-- <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+	                                    <div class="modal-dialog modal-lg">
+	                                        <div class="modal-content">
+	                                            <div class="modal-header">
+	                                                <h4 class="modal-title" id="myLargeModalLabel">싸인하기</h4>
+	                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	                                            </div>
+	                                            <div class="modal-body">
+	 												<iframe id="sof" name="sof" src="signature-pad.te" width="100%" height="400" frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>
+	                                            </div>
+	                                        </div>/.modal-content
+	                                    </div>/.modal-dialog
+	                                </div> -->
+		</c:if>
+		<br><br>
+		<c:if test="${mem.typee eq 's' }">
+		<button onclick="location.href='vlist.me';" align="center">리스트로 돌아가기</button>
+		 
+		<c:if test="${v.tstatus eq 'N'}">
+		<a href="vdelete.me?lec_no=${ v.lec_no }&v_no="${v.v_no }">삭제하기</a>
+		</c:if>
+		<c:if test="${v.tstatus eq 'B'}">
+		<a href="vdelete.me?v_no=${ v.v_no }" >삭제하기</a>	
+		</c:if>
+		</c:if>
+		
+		<c:if test="${mem.typee eq 's' }">
+		<button onclick="location.href='vlist.me';" align="center">리스트로 돌아가기</button>
+		 
+		<c:if test="${v.tstatus eq 'N'}">
+		<a href="vdelete.me?lec_no=${ v.lec_no }&v_no="${v.v_no }">삭제하기</a>
+		</c:if>
+		<c:if test="${v.tstatus eq 'B'}">
+		<a href="vdelete.me?v_no=${ v.v_no }" >삭제하기</a>	
+		</c:if>
+		</c:if>
+		
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+	
+	
+	
 	
 	            <footer class="footer">
 	            <%@ include file="../include/bfooter.jsp" %>
@@ -172,6 +331,18 @@
 			</div>
 		<!-- End of Main wrapper -->
 	<%@ include file="../include/bjs.jsp" %>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	 <!--  헤더 제이쿼리 충돌 방지  -->
 	

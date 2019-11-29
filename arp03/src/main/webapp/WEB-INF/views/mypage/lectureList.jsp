@@ -77,7 +77,10 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">강좌관리</h4><a class="btn btn-primary float-right" href="make.lec">강좌 만들기</a>
+                                <h4 class="card-title">강좌관리</h4>
+                                <c:if test="${mem.typee eq 't' }">
+                                <a class="btn btn-primary float-right" href="make.lec">강좌 만들기</a>
+                            	</c:if>
                                 <h6 class="card-subtitle">Add class <code>.table</code></h6>
                                 <div class="table-responsive">
                                     <table class="table table-hover">
