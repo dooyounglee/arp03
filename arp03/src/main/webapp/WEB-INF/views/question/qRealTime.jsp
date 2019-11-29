@@ -10,19 +10,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-body {
+/* body {
     font-size: 12px;
     background: #FFF;
     color: #333;
     margin: 0;
 }
-
+ *//* 
 #content {
     margin: 20px;
     width: 250px;
     padding: 10px;
-    background: #007bff;
-}
+    background: #eef5f9;
+} */
 
 #rank-list a {
     color: #FFF;
@@ -40,16 +40,16 @@ body {
     margin: 0;
 }
 
-#rank-list dt {
+#rank-List-Content dt {
     display: none;
 }
 
-#rank-list dd {
+#rank-List-Content dd {
     position: relative;
     margin: 0;
 }
 
-#rank-list ol {
+#rank-List-Content ol {
     position: absolute;
     top: 0;
     left: 0;
@@ -58,37 +58,39 @@ body {
     list-style-type: none;
 }
 
-#rank-list li {
+#rank-List-Content li {
     height: 20px;
     line-height: 20px;
 }
-.numberStyle{
+#rank-List-Content .numberStyle{
 	font-size:17px;
 	font-weight:bold;
 	vertical-align:super;
-	color:yellow;
+	color:#007bff;
 }
-.titleStyle{
+#rank-List-Content .titleStyle{
 	vertical-align:super;
 	font-weight:bold;
 	font-size:15px;
-	color:white;
+	color:black;
 }
-ol li{
+#rank-List-Content ol li{
 	margin:0px;
 	margin-top:0px;
 }
-.realText{
-	font-weight:bold;
-	color:yellow;
+#rank-List-Content .realText{
+	margin-bottom:3px;
+	font-size:13px;
+	color:gray;
+	font-weight:900px;
 }
 
 </style>
 </head>
 <body>
-        	<div id="content">
-        	<div class="realText">많이 찾아본 질문 순위</div>
-            <dl id="rank-list">
+        	<div id="rank-List-Content">
+        	<div class="realText">많이 찾아본 질문 순위 ▼</div>
+            <dl id="rank-list" style="width:400px;">
                 <dt>실시간 급상승 검색어</dt>
                 <dd>
                     <ol>
