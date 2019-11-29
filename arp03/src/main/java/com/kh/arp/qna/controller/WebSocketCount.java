@@ -16,11 +16,15 @@ public class WebSocketCount extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		sessionList.add(session);
+		for (WebSocketSession sess : sessionList) {
+			sess.sendMessage(new TextMessage(sessionList.size()+""));
+		}
 	}
 
 	// 클라이언트가 서버로 메시지를 전송했을 때 실행되는 메서드
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+		System.out.println(message);
 		for (WebSocketSession sess : sessionList) {
 			sess.sendMessage(new TextMessage(sessionList.size()+""));
 		}
@@ -30,5 +34,8 @@ public class WebSocketCount extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		sessionList.remove(session);
+		for (WebSocketSession sess : sessionList) {
+			sess.sendMessage(new TextMessage(sessionList.size()+""));
+		}
 	}
 }
