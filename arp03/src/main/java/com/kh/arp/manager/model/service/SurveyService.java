@@ -11,7 +11,7 @@ public interface SurveyService {
 
 	int insertsurvey(InsertSurvey s);
 	
-	List<InsertSurvey> selectsurvey();
+	List<InsertSurvey> selectsurvey(int lec_no);
 	
 	List<SurveyQuestion> detailsurvey(SurveyQuestion sq);
 	

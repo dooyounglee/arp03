@@ -29,15 +29,11 @@ public class VacationDao {
 	}
 
 
-	public ArrayList<Lecture> selectLectureList(int m_no) {
-		// TODO Auto-generated method stub
-		return (ArrayList)sqlSession.selectList("vacationMapper.selectLecture" , m_no);
-	}
 
 
-	public Vacation selectVacation(int lec_no) {
+	public Vacation detailVacation(VacationDate vd) {
 		
-		return sqlSession.selectOne("vacationMapper.selectVacation",lec_no);
+		return sqlSession.selectOne("vacationMapper.detailVacation",vd);
 	}
 
 
@@ -59,13 +55,13 @@ public class VacationDao {
 	}
 
 
-	public int permission(int v_no) {
+	public int permission(VacationDate vd) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("vacationMapper.permission" , v_no );
+		return sqlSession.update("vacationMapper.permission" , vd);
 	}
 
 
-	public int companion(Vacation v) {
+	public int companion(VacationDate v) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("vacationMapper.companion" , v);
 		
@@ -78,11 +74,7 @@ public class VacationDao {
 	}
 
 
-	public int multipermission(int num) {
-		
-		return sqlSession.update("vacationMapper.adminpermission" , num);
-	}
-
+	
 
 	public int insertDate(Vacation v) {
 		// TODO Auto-generated method stub
@@ -100,6 +92,12 @@ public class VacationDao {
 			sqlSession.insert("vacationMapper.insertVacationDate" , vDlist.get(i));
 		}
 		return 1;
+	}
+
+
+	public int multiPermission(VacationDate vd) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("vacationMapper.multipermission" , vd);
 	}
 
 

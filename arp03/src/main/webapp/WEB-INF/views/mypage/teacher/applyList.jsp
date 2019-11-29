@@ -99,7 +99,17 @@
 	                                                <td><a href="main.lec?lec_no=${l.lec_no }">${l.title }</a></td>
 	                                                <td>${l.dayofweek.replace('0','일').replace('1','월').replace('2','화').replace('3','수').replace('4','목').replace('5','금').replace('6','토') }</td>
 	                                                <td>${l.place }</td>
-	                                                <td>${l.status }</td>
+	                                                <td>
+	                                                	<c:if test="${l.status eq 'A' }">
+	                                                		허락대기
+	                                                	</c:if>
+	                                                	<c:if test="${l.status eq 'Y' }">
+	                                                		수락
+	                                                	</c:if>
+	                                                	<c:if test="${l.status eq 'R' }">
+	                                                		거절
+	                                                	</c:if>
+	                                                </td>
 												</tr>
 											</c:forEach>
                                         </tbody>
