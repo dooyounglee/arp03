@@ -22,7 +22,7 @@
 	             <%-- <img src="/${cp }/resources/material-pro/assets/images/logo-text.png" alt="homepage" class="dark-logo" /> --%>
 	             <!-- Light Logo text -->    
 	             <%-- <img src="/${cp }/resources/material-pro/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /> --%>
-	             KH정보교육원</span> </a>
+	             KH수학교육원</span> </a>
 	             <!-- <span class="dark-logo" style="font-weight:bold;color:white;font-size:1em;">KH정보교육원</span> -->
 	    </div>
 	    <!-- ============================================================== -->
