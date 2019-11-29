@@ -17,11 +17,6 @@
 <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet"> -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
-
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script> -->
-
 <title>Summernote Lite</title>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
@@ -170,8 +165,7 @@
 										<form class="c5" action="qupdateForm.qu?q_no=${ q.q_no }"
 											method="post" enctype="multipart/form-data">
 											<br>
-											<h3 align="center" style="font-size: 20px; color: gray;">상세보기
-												페이지</h3>
+											<h3 align="center" style="font-size: 20px; color: gray;">상세보기 페이지</h3>
 											<br>
 											<br>
 											<div class="selected">
@@ -337,12 +331,11 @@
 												<hr>
 													<c:forEach items="${ qRList }" var="qr">
 													<!-- 	<table border="1"> -->
-														<div style="width:auto; height:auto; border:1px solid black;">
 															<tr align="center">
-																<td style="width: 20px;">${ qr.r_no }</td>
+																<td style="width: 20px;margin-left:auto; margin-right:auto;">${ qr.r_no }</td>
 																<td style="width: 70px;">${ qr.name }</td>
-																<td style="width: 310px;"><textarea
-																		class="textAreaRe" cols="38" rows="1" readonly>${ qr.content }</textarea></td>
+																<td style="width: 400px;">
+																	<textarea class="textAreaRe" cols="38"readonly>${ qr.content }</textarea></td>
 																<td>${ qr.updatedate }</td>
 																<c:if test="${ qr.m_no eq mem.m_no }">
 																	<td>
@@ -354,9 +347,11 @@
 																	</td>
 																</c:if>
 															</tr>
-														</div>
 													<!-- 	</table> -->
 													</c:forEach>
+												</c:if>
+												<c:if test="${ qRListCount eq 0 }">
+													<div style="text-align:center">아직 작성된 댓글이 없습니다.</div>
 												</c:if>
 										</table>
 								</div>
@@ -367,14 +362,18 @@
 			</div>
 						<!-- row4끝 -->
 						<!-- row5시작 (댓글 등록하는 칸부분) -->
-						<textarea style="border: 1px solid black;" cols="60" rows="3"
-							id="repl" cols="50" rows="2" name="content"></textarea>
-						<button class="btn waves-effect waves-light btn-info"
-							style="height: 47px;" id="datUp" type="submit"
-							onclick="qRestartInsert()">댓글등록</button>
+						<div class="row">
+						<div class="col-lg-4"></div>
+						<div class="col-lg-8">
+						<div>
+						<textarea style="border: 1px solid black;" cols="60" rows="3" id="repl" cols="50" rows="2" name="content"></textarea>
+						<button class="btn waves-effect waves-light btn-info" style="height:47px; margin-left:auto; margin-right:auto; margin-top:-55px;" id="datUp" type="submit" onclick="qRestartInsert()">댓글등록</button>
 						</div>
-					</c:if>
+						</div>
+						</div>
 					</div>
+				</c:if>
+				</div>
 					
 					<!-- row5끝 -->
 				</div>
