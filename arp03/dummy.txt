@@ -101,26 +101,27 @@ CREATE TABLE QnA (
 );
 
 
+
 CREATE TABLE vacation (
-   v_no   Number      PRIMARY KEY,
-   m_no   Number      REFERENCES MEMBER,
-   vacation_title varchar2(2000) NOT NULL,
-   reason   varchar2(2000)      NOT NULL,
-   application_date   date   NOT NULL,
-   tstatus   varchar2(100)   DEFAULT 'N'   NOT NULL,
-   sign varchar2(1000)     NULL,
-   companion_reason varchar2(2000) NULL,
-   astatus  varchar2(100)   DEFAULT 'N' NOT NULL,
-   status   varchar2(100)   DEFAULT 'N'   NOT NULL 
+	v_no	Number		PRIMARY KEY,
+	m_no	Number		REFERENCES MEMBER,
+	vacation_title varchar2(2000) NOT NULL,
+	reason	varchar2(2000)		NOT NULL,
+	application_date	date	NOT NULL,
+	sign varchar2(1000)     NULL
     );
-    
     
 CREATE TABLE VACATIONDATE (
 V_NO NUMBER REFERENCES VACATION,
 LEC_NO NUMBER REFERENCES LECTURE,
 VACATIONDATE DATE,
-PRIMARY KEY(V_NO,LEC_NO , VACATIONDATE)
-);
+tstatus	varchar2(100)	DEFAULT 'N'	NOT NULL,
+companion_reason varchar2(2000) NULL,
+astatus  varchar2(100)	DEFAULT 'N' NOT NULL,
+status	varchar2(100)	DEFAULT 'N'	NOT NULL, 
+PRIMARY KEY(V_NO,LEC_NO , VACATIONDATE);
+
+
 CREATE TABLE Message (
     ms_no   Number      PRIMARY KEY ,
    g_no   Number      REFERENCES MEMBER,
