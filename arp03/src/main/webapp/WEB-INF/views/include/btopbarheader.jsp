@@ -204,10 +204,10 @@
 	                </a>
 	                <div class="dropdown-menu mailbox dropdown-menu-right scale-up" aria-labelledby="2">
 	                    <ul>
-	                        <li>
+	                        <!-- <li>
 	                            <div class="drop-title"><label id="alram">새로운 메세지가 없습니다.</label></div>
-	                        </li>
-	                       <%--  <li>
+	                        </li> -->
+	                        <li>
 	                            <div class="message-center">
 	                                <!-- Message -->
 	                                <a href="#">
@@ -234,7 +234,7 @@
 	                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
 	                                </a>
 	                            </div>
-	                        </li> --%>
+	                        </li>
 	                        <li>
 	                            <a class="nav-link text-center" href="javascript:void(0);"> <strong id="see">메일 확인하기</strong> <i class="fa fa-angle-right"></i> </a>
 	                        </li>
@@ -288,35 +288,41 @@
 	    </nav>
 	    
 	    <script>
+	    	
+	    
 			var m_no= ${mem.m_no}
-			var ws = new WebSocket("ws://localhost:8585/arp/Echo"); 
+			var wsa = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/arp/Echo"); 
 			
-			ws.onopen= function(){
+			wsa.onopen= function(){
 				console.log('헤더 커넥션 open');
 				
-				ws.onmessage= function(event){
-					console.log(event.data);
-					var arr = new Array()
-				/* 	arr = (event.data).split(","); */
+				wsa.onmessage= function(event){
+					console.log("이벤트데이타"+event.data);
+					
+					//리스트뿌리기?
+					$("#alram").text(event.data)
+					//$('.drop-list').append(event.data)
+		
 					
 					if(m_no == event.data){
 						$("#heart").attr("class","heartbit");
 						$("#point").attr("class","point");
 					
-	 				$("#alram").text("새로운 메시지가 있습니다"); 
-					 alert("새로운 메시지가 있습니다");
-				}
+	 					//$("#alram").text("새로운 메시지가 있습니다"); 
+	 					ddd();
+						alert("새로운 메시지가 있습니다");
+					}
 			}
 				
 		};
 			
 			
-			ws.onclose = function (event) {
+			wsa.onclose = function (event) {
 				console.log('close');
 				
 				};
 				
-			ws.onerror= function (event) {
+			wsa.onerror= function (event) {
 				console.log('error');
 				};
 			 
@@ -328,8 +334,21 @@
 				location.href="mainMsg.do";
 				
 			})
-			 
-	
+		
+		
+		function list(){
+			$.ajax({
+					url:"selectNList.do",
+					data:{m_no:m_no},
+					success:function(dataa){
+						 console.log(dataa) 
+					
+					//.drop-list에 뿌려주기 새로운거만.
+				}
+			})
+		}
+			
+		list();
 		
 		
 		
