@@ -158,6 +158,11 @@
 		where l.m_no=m.m_no
 	</select>
 	
+	<select id="applylectureList" resultType="Lecture">
+		select l.*,m.name from (select * from lecture where m_no=#{m_no}) l, member m
+		where l.m_no=m.m_no
+	</select>
+	
 	<update id="acceptLecture">
 		update lecture set status='Y' where lec_no=#{lec_no}
 	</update>

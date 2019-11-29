@@ -91,9 +91,14 @@
                                     	<thead>
                                     		<tr>
                                     			<th><p>과목명 : ${lec.title}</p></th>
-												<th><p>선생님 : ${mem.name }</p></th>
-												<th><p>작성 날짜 : ${d }</p></th>
+												<th><p >선생님 : ${mem.name }</p></th>
+												<th><p >작성 날짜 : ${d }</p></th>
 												<th><input type="text" name="title" placeholder="제목" required></th>
+												
+												<th><input type="hidden" name="lec_no" value="${lec.lec_no }">
+													<input type="hidden" name="m_no" value="${mem.m_no }">
+													<input type="hidden" name="enrolldate" value="${d }">
+												</th>	
                                     		</tr>
                                     	</thead>
                                         <tbody id="tbody">

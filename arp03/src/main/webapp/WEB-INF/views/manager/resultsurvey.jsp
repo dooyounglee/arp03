@@ -89,8 +89,8 @@
                                         <tbody>
                                         	<c:forEach var="d" items="${rsq }" varStatus="status">
                                         	<tr>
-												<td>${d.question }</td>
-												<td>${a[status.index] }</td>
+												<td>질문 ${status.count} : ${d.question }</td>
+												<td>평균 점수: ${a[status.index] }</td>
                                             </tr>
                                         	</c:forEach>
                                         </tbody>

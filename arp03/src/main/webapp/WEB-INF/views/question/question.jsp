@@ -81,8 +81,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title" align="center">${ lec.lec_no }번 강의_${ lec.title } 게시판</h4>
-                                <h6 class="card-subtitle" align="center">
-                                	<code>총 게시글 갯수 : ${ pi.listCount }&nbsp;&nbsp;&nbsp;페이지 : ${ pi.currentPage } / ${ pi.maxPage }</code>
+                                <h6 class="card-subtitle" align="center" style="color:black;">
+                                	총 게시글 갯수 : ${ pi.listCount }&nbsp;&nbsp;&nbsp;페이지 : ${ pi.currentPage } / ${ pi.maxPage }
 	                                 &nbsp;&nbsp;
 	                                 <c:if test="${ !empty mem }">
 										<span><button class="btn waves-effect waves-light btn-info" style="cursor:pointer;" onclick="location.href='qWriteForm.qu'">글쓰기</button></span>
@@ -135,7 +135,7 @@
 								<td colspan="7">
 									<!-- 이전 -->
 									<c:if test="${ pi.currentPage eq 1 }">
-										
+										 이전 &nbsp;
 									</c:if>
 									<c:if test="${ pi.currentPage ne 1 }">
 										<c:url value="question.qu" var="before">
@@ -159,7 +159,7 @@
 										</c:forEach>
 									<!-- 다음 -->
 									<c:if test="${ pi.currentPage eq pi.maxPage }">
-										
+										 다음 &nbsp;
 									</c:if>
 									<c:if test="${ pi.currentPage ne pi.maxPage && pi.currentPage eq 1 && pi.maxPage ne 0 }">
 										<c:url value="question.qu" var="after">

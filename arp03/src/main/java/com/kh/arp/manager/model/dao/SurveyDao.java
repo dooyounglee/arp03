@@ -21,8 +21,8 @@ public class SurveyDao {
 		return sqlSession.insert("surveyMapper.insertSurvey",s);
 	}
 
-	public List<InsertSurvey> selectsurvey(){
-		return sqlSession.selectList("surveyMapper.selectSurvey");
+	public List<InsertSurvey> selectsurvey(int lec_no){
+		return sqlSession.selectList("surveyMapper.selectSurvey", lec_no);
 	}
 	
 	public List<SurveyQuestion> detailsurvey(SurveyQuestion sq){
