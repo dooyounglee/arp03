@@ -287,7 +287,7 @@
 					
 	 					list(); // 새로운 메시지가오면 리스트 새로
 						alert("새로운 메시지가 있습니다");
-					}
+					} 
 			}
 				
 		};
@@ -326,7 +326,7 @@
 						$.each(data, function(index, value){ 
 						
 						$a=$("<a href='#' class='border-bottom d-block text-decoration-none py-2 px-3'></a>");
-						$img = $("<div class='user-img position-relative d-inline-block mr-2 mb-3'><img src='/${cp }/resources/image/mailicon.png' alt='user' class='img-circle'></div>")
+						$img = $("<div class='user-img position-relative d-inline-block mr-2 mb-3'><img src='/${cp }/resources/image/mailicon1.png' alt='user' class='img-circle'></div>")
 						$con = $("<div class='mail-contnet d-inline-block align-middle'>").text(value.content);
 						$h5= $("<h5 class='name1'></h5>").text(value.s_no);
 						$desc = $("<span class='mail-desc font-12 text-truncate overflow-hidden text-nowrap d-block'></span> ")

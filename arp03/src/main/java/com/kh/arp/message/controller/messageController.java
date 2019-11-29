@@ -132,10 +132,10 @@ public class messageController {
 	  
 	  @ResponseBody
 	  @RequestMapping("selectNList.do")
-	  public String selectNList(int m_no, ModelAndView mv) {
+	  public String selectNList(int m_no) {
 		  ArrayList<Message> mlist = mService.selectNList(m_no);
 		  
-		  
+		    
 		  Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 			
 			return gson.toJson(mlist);
