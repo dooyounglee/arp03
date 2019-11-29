@@ -115,8 +115,8 @@
                                             <label for="pass">Email</label>
                                             <input class="form-control" name="email" value="${auth.email }" readonly>
                                         </div>
-                                        <button type="submit" class="btn btn-success waves-effect waves-light mr-2">login</button>
-                                        <button type="button" class="btn btn-inverse waves-effect waves-light" onclick="location.href='find.me'">id/pw찾기</button>
+                                        <button type="submit" class="btn btn-success waves-effect waves-light mr-2">join</button>
+                                        <!-- <button type="button" class="btn btn-inverse waves-effect waves-light" onclick="location.href='find.me'">id/pw찾기</button> -->
                                     </form>
                                 </div>
                             </div>
