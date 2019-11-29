@@ -162,36 +162,6 @@
 			                                    <input type="checkbox" id="md_checkbox_7" class="chk-col-light-blue" name="week" value="6">
 			                                    <label for="md_checkbox_7" style="min-width: 70px;">토</label>
 			                                </div>
-	                                        <!-- <ul class="icheck-list">
-	                                        	<li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="0">
-	                                                <label for="minimal-checkbox-2">일</label>
-	                                            </li>
-	                                            <li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="1">
-	                                                <label for="minimal-checkbox-1">월</label>
-	                                            </li>
-	                                            <li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="2">
-	                                                <label for="minimal-checkbox-2">화</label>
-	                                            </li>
-	                                            <li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="3">
-	                                                <label for="minimal-checkbox-1">수</label>
-	                                            </li>
-	                                            <li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="4">
-	                                                <label for="minimal-checkbox-2">목</label>
-	                                            </li>
-	                                            <li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="5">
-	                                                <label for="minimal-checkbox-1">금</label>
-	                                            </li>
-	                                            <li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="6">
-	                                                <label for="minimal-checkbox-2">토</label>
-	                                            </li>
-	                                        </ul> -->
 	                                    </div>
 	                                </div>
 	                                <button class="btn btn-success">요청</button>
