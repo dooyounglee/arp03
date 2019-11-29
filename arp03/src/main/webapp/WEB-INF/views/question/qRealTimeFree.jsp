@@ -89,10 +89,12 @@
 	z-index:9999;
 }
 
+
 </style>
 </head>
 <body>
-        	<div id="rank-List-Content">
+	<c:if test="${!empty mem }">
+        <div id="rank-List-Content">
         	<div class="realText">자유게시판 조회 순위 ▼</div>
             <dl id="rank-list" style="width:250px;">
                 <dt>실시간 급상승 검색어</dt>
@@ -102,6 +104,7 @@
                 </dd>
             </dl>
         </div>
+	</c:if>
 </body>
 <script>
 
