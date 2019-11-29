@@ -380,7 +380,7 @@ CREATE SEQUENCE SEQ_insertSURVEY;         -- 설문조사 번호
 CREATE SEQUENCE seq_homework;
 CREATE SEQUENCE seq_problem;
 CREATE SEQUENCE seq_variables;
-CREATE SEQUENCE SEQ_CALENDAR;      -- 캘린더 번
+CREATE SEQUENCE SEQ_CALENDAR;      -- 캘린더 번호
 CREATE SEQUENCE SEQ_MESSAGE;
 
 /*drop trigger filestatusTrigger;

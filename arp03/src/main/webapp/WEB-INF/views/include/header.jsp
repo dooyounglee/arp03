@@ -28,7 +28,7 @@
 		<a href="mylist.qna"><del>내 문의</del></a>
 		<a href="myInfo.me"><del>내 정보</del></a>
 		<c:if test="${mem.typee eq 's' }">
-		<a href="myLlist.me">내 휴가</a>
+		<a href="vlist.me">내 휴가</a>
 		</c:if>
 		<hr>
 		

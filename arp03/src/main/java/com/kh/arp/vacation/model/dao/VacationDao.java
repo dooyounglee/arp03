@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.vacation.model.vo.Vacation;
+import com.kh.arp.vacation.model.vo.VacationDate;
 
 @Repository
 public class VacationDao {
@@ -34,9 +35,9 @@ public class VacationDao {
 	}
 
 
-	public Vacation selectVacation(int v_no) {
+	public Vacation selectVacation(int lec_no) {
 		
-		return sqlSession.selectOne("vacationMapper.selectVacation",v_no);
+		return sqlSession.selectOne("vacationMapper.selectVacation",lec_no);
 	}
 
 
@@ -46,7 +47,7 @@ public class VacationDao {
 	}
 
 
-	public int deleteVacation(Vacation v) {
+	public int deleteVacation(VacationDate v) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("vacationMapper.deleteVacation",v);
 	}
@@ -86,6 +87,19 @@ public class VacationDao {
 	public int insertDate(Vacation v) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("vacationMapper.insertDate" , v);
+	}
+
+
+	public List<VacationDate> selectLecNo(VacationDate vd) {
+		return sqlSession.selectList("vacationMapper.selectLecNo" , vd);
+	}
+
+
+	public int insertVacationDate(List<VacationDate> vDlist) {
+		for(int i=0;i<vDlist.size();i++) {
+			sqlSession.insert("vacationMapper.insertVacationDate" , vDlist.get(i));
+		}
+		return 1;
 	}
 
 

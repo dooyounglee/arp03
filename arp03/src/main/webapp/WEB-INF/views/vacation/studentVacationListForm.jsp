@@ -13,24 +13,26 @@
 <jsp:include page= "../include/header.jsp"/>
 
 <table align="center" border="1" cellspacing="0" width="700"> 
+
 <tr>
 	<th>휴가번호</th>
 	<th>강의번호</th>
+	<th>강의명</th>
 	<th>학생명</th>
-	<th width="50">강의명</th>
-	<th width="100">제목</th>
-	<th width="100">휴가시작일</th>
+	<th width="50">사유</th>
+	<th width="100">휴가날짜</th>
 	<th>작성일</th>
 
 </tr>
 
 <c:forEach items="${ list }" var="v">
 	<tr>
-		<td>${ v.v_no }</td>
-		<td>${ v.lec_no }</td>
+		<td>${v.v_no}</td>
+		<td>${v.lec_no }</td>
+		<td>${v.title }</td>
 		<td>${v.name }</td>
-		<td>${ v.title }</td>
-		<td><a href="vDetail.me?v_no=${ v.v_no }">${ v.vacation_title }</a></td>
+		<td><a href="vDetail.me?lec_no=${ v.lec_no }">${ v.vacation_title }</a></td>
+		<td>${fn:substring(v.vacationdate , 0 ,10) }</td>
 		<td>${v.application_date }</td>
 		
 	</tr>		

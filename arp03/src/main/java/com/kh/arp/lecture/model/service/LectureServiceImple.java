@@ -161,4 +161,9 @@ public class LectureServiceImple implements LectureService {
 		return ld.rejectLecture(lec);
 	}
 
+	@Override
+	public List<Homework> getHomeworkListInLectureForScore(int lec_no) {
+		return ld.getHomeworkListInLectureForScore(lec_no);
+	}
+
 }

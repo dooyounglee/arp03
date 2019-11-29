@@ -87,7 +87,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">게시판관리</h4>
+                                <h4 class="card-title">숙제 상세보기</h4>
                                 <button class="btn btn-success" onclick="add()">추가하기</button><br>
                                 <div class="table-responsive">
                                     <table class="table">

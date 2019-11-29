@@ -67,7 +67,7 @@
 			</tr>
 			<tr>
 				<td>질문</td>
-				<td><input type="text" name="question"></td>
+				<td><input type="text" name="question" class="form-control form-control-line"></td>
 			</tr>
 			<tr>
 				<td>답변</td>
@@ -84,7 +84,7 @@
 	</form>
 	
      <footer class="footer">
-        <%--     <%@ include file="../include/bfooter.jsp" %> --%>
+            <%@ include file="../include/bfooter.jsp" %>
         </footer>
         <!-- End footer -->
 
