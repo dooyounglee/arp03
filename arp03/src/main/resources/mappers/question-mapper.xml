@@ -36,7 +36,20 @@
 		<result property="status" column="status"/>
 		<result property="name" column="name"/>
 	</resultMap>
-	
+		<resultMap id="bFreeList" type="Board">
+		<id property="b_no" column="b_no"/>
+		<result property="m_no" column="m_no"/>
+		<result property="ca_no" column="ca_no"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="regdate" column="regdate"/>
+		<result property="update_date" column="update_date"/>
+		<result property="vcount" column="vcount"/>
+		<result property="status" column="status"/>
+		<result property="dcount" column="dcount"/>
+		<result property="rcount" column="rcount"/>
+		<result property="fileStatus" column="filestatus"/>
+	</resultMap>
 	
 	<select id="getListCount" resultType="_int">
 		select count(*)
@@ -164,6 +177,14 @@
 	<select id="realTimeSelect" resultMap="qList">
 		select title
 		from question
+		where lec_no=#{lec_no}
 		order by vcount desc
+	</select>
+	
+	<select id="realTimeFreeSelect" resultMap="bFreeList">
+		select title
+        from board
+        where ca_no=1 and status='Y'
+        order by vcount desc
 	</select>
 </mapper>

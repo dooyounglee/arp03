@@ -93,7 +93,7 @@
 </head>
 <body>
         	<div id="rank-List-Content">
-        	<div class="realText">많이 찾아본 질문 순위 ▼</div>
+        	<div class="realText">자유게시판 조회 순위 ▼</div>
             <dl id="rank-list" style="width:250px;">
                 <dt>실시간 급상승 검색어</dt>
                 <dd>
@@ -108,7 +108,7 @@
 
 $(function(){
 	$.ajax({
-		url: "realTimeSelect.al",
+		url: "realTimeFreeSelect.al",
 		dataType:"json",
 		success: function(data){
 			console.log("ajax통신 성공")
@@ -123,6 +123,7 @@ $(function(){
 			if(count == 11){
 				break;
 			}
+			
 		}
 			var count = $('#rank-list li').length;
 		    var height = $('#rank-list li').height();

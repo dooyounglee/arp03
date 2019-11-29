@@ -3,6 +3,7 @@ package com.kh.arp.question.model.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.common.PageInfo;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.question.model.vo.QFile;
@@ -74,8 +75,11 @@ public interface QService {
 	// 대댓글 삭제(선생님댓글에대한 댓글)
 	int deleteDatReply(QReply qr);
 
-	// 질문게시판 조회수많은 질문 순서 리스트조회
-	ArrayList<Question> realTimeSelect();
+	// 각 질문게시판 조회수많은 질문 순서 리스트조회
+	ArrayList<Question> realTimeSelect(int lec_no);
+	
+	// 자유게시판 조회수 많은 글 리스트 조회
+	ArrayList<Board> realTimeFreeSelect();
 
 	/*
 	 * // QFile 검색 int selectQ(QFile qf);
