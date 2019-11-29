@@ -114,10 +114,22 @@
                                         </tbody>
                                     </table>
                                  <!--    </form> -->
+                                    <!-- <script>
+                                    	$(document).ready(function(){
+                                    		function result(){
+                                    			console.log(${Ysq});
+                                    			if(${!empty Ysq}){
+                                    			
+                                    			location.href="resultsurvey.ma?su_no=${su_no}";
+                                    			}
+ 		                                   		}
+                                    		});
+                                    </script> -->
                                     <script>
                                     	$(document).ready(function(){
                                     		function result(){
-                                    			if(${!empty Ysq}){
+                                    			console.log(${Ysq});
+                                    			if(true){
                                     			
                                     			location.href="resultsurvey.ma?su_no=${su_no}";
                                     			}
