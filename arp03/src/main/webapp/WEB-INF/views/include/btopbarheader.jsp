@@ -45,7 +45,11 @@
 	            <!-- ============================================================== -->
 	            <!-- Messages -->
 	            <!-- ============================================================== -->
-	            <li class="nav-item dropdown mega-dropdown"><!--  <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-view-grid"></i></a> -->
+	            <li class="nav-item hidden-sm-down mega-dropdown">
+	            	 <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	            	 	<i class="mdi mdi-account" style="color:white;"></i>
+	            	 	<span id="user_count" style="color:white;">: 1명</span>
+	            	 </a>
 	                <%-- <div class="dropdown-menu scale-up-left">
 	                    <ul class="mega-dropdown-menu row">
 	                        <li class="col-lg-3 col-xlg-2 m-b-30">
@@ -134,7 +138,6 @@
 	                        </li>
 	                    </ul>
 	                </div> --%>
-	                <i class="mdi mdi-account" style="color:white;font-size:1.0em;"></i><span id="user_count" style="color:white;font-size:1.0em;">: 1명</span>
 	            </li>
 	            <!-- ============================================================== -->
 	            <!-- End Messages -->
