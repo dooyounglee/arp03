@@ -143,10 +143,10 @@
 											</c:if>
 										</c:forEach>
 									<!-- 다음 -->
-									<c:if test="${ pi.currentPage eq pi.maxPage }">
+									<c:if test="${ pi.currentPage eq pi.maxPage}">
 										 다음 &nbsp;
 									</c:if>
-									<c:if test="${ pi.currentPage ne pi.maxPage && pi.currentPage eq 1 && pi.maxPage ne 0 }">
+									<c:if test="${ pi.currentPage ne pi.maxPage &&  pi.maxPage eq pi.endPage }">
 										<c:url value="question.qu" var="after">
 											<c:param name="currentPage" value="${ pi.currentPage+1 }"/>
 											<c:param name="lec_no" value="${ lec.lec_no }"/>

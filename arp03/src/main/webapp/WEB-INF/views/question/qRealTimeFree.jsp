@@ -113,9 +113,14 @@ $(function(){
 		success: function(data){
 			console.log("ajax통신 성공")
 			
-		/* 	console.log(data[0].title); */
-			
+		/* console.log(data[0].title); */
+		
 			//var list = data[]
+
+			if(data.length == 0){
+				$('#rank-list ol').append("<li>"+"<span class='numberStyle'></span><span class='titleStyle'>아직 게시글이 존재하지 않습니다.</span></li>");
+			}
+		
 		var count = 1;
 		for(var i=0; i<data.length; i++){
 			$('#rank-list ol').append("<li><a href='#'>"+"<span class='numberStyle'>"+count+"</span> &nbsp;<span class='titleStyle'>"+data[i].title+"</span></a></li>");
@@ -127,7 +132,7 @@ $(function(){
 		}
 			var count = $('#rank-list li').length;
 		    var height = $('#rank-list li').height();
-			
+		    
 		    function step(index) {
 		        $('#rank-list ol').delay(2000).animate({
 		            top: -height * index,
