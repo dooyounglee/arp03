@@ -24,7 +24,7 @@
                      <label for="radio_5">개인정보노출</label><br>
                      <div class="form-group">
                          <label><h6>신고사유</h6></label>
-                     <input type="text" class="form-control form-control-line" name="content" required> </div>
+                     <input type="text" class="form-control form-control-line" id="declareContents" name="content" required> </div>
                <input type="hidden" id="obj" value="${ obj }">
                <input type="hidden" id="obj_no" value="${ obj_no }">
               </div>
