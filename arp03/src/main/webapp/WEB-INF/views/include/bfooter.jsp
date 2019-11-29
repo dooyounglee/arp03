@@ -7,14 +7,16 @@
 <script>
 	var ws_count = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/${cp}/count/websocket");
 	ws_count.onopen=function() {
-		console.log("성공")
+		console.log("count성공")
+		ws_count.send("들어오셨다");
 	}
 	ws_count.onmessage = function(msg) {
 		var data = msg.data;
-		alert(data)
+		$('#user_count').text(': '+data+"명")
 	}
 	ws_count.onclose = function(evt) {
-		console.log("연결 끊김");
+		console.log("count연결 끊김");
+		ws_count.send("나가셨다");
 	}
 
 	// 메시지 전송
