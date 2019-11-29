@@ -156,8 +156,7 @@
 
 					<div class="col-lg-10">
 						<div class="card">
-							<div class="card-body"
-								style="padding-left: 40px; padding-right: 40px;">
+							<div class="card-body" style="padding-left: 100px; padding-right: 100px; padding-top:70px;">
 								<section class="cd-horizontal-timeline loaded">
 
 									<!-- .timeline -->
@@ -269,7 +268,7 @@
 						<div class="col-lg-2"></div>
 							<div class="col-lg-10">
 								<div class="card">
-									<div class="card-body" style="padding-left: 40px; padding-right: 40px;">
+									<div class="card-body" style="padding-left: 100px; padding-right: 100px;">
 										<section class="cd-horizontal-timeline loaded">
 
 											<!-- .timeline -->
@@ -296,11 +295,10 @@
 																	class="btn waves-effect waves-light btn-rounded btn-info"
 																	type="button" onclick="qReUpdate();">수정</button>
 															</div>
-															<br>
-															<br>
+															<br><br>
 														</c:if>
 													</div>
-													<br>
+													<br><br><br><br>
 												</form>
 											</div>
 											<!-- .events-content -->

@@ -129,7 +129,7 @@ $(function(){
 		
 		var count = 1;
 		for(var i=0; i<data.length; i++){
-			$('#rank-list ol').append("<li><a href='#'>"+"<span class='numberStyle'>"+count+"</span> &nbsp;<span class='titleStyle'>"+data[i].title+"</span></a></li>");
+			$('#rank-list ol').append("<li><a href='qdetail.qu?q_no=" + data[i].q_no +"'>"+"<span class='numberStyle'>"+count+"</span> &nbsp;<span class='titleStyle'>"+data[i].title+"</span></a></li>");
 			count++;
 			if(count == 11){
 				break;

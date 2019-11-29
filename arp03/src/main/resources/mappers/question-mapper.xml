@@ -175,14 +175,14 @@
 	</update>
 	
 	<select id="realTimeSelect" resultMap="qList">
-		select title
+		select title, q_no
 		from question
 		where lec_no=#{lec_no}
 		order by vcount desc
 	</select>
 	
 	<select id="realTimeFreeSelect" resultMap="bFreeList">
-		select title
+		select title, b_no
         from board
         where ca_no=1 and status='Y'
         order by vcount desc
