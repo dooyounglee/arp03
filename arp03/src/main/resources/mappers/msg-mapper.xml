@@ -16,13 +16,15 @@
 
 
 <select id="detailMsg" resultType="Message">
-	select * from message where ms_no=#{ms_no}
+select ms.*, m.name 
+from message ms , member m
+where ms_no=#{ms_no} and ms.g_no = m.m_no
 </select>
 
 <select id="listSendMsg" resultType="Message">
 	select ms.*,m.name
 	from message ms, member m 
-	where ms.g_no=21 and ms.s_no=m.m_no
+	where ms.g_no=#{m_no} and ms.s_no=m.m_no
 	order by s_date desc
 </select>
 
@@ -39,6 +41,14 @@ select count(*)
 from message 
 where g_no = #{m_no} and read_status='N'
 
+</select>
+
+<select id="selectNList" resultType="Message">
+<![CDATA[
+select * 
+from message
+where g_no= 1 and rownum <= 3 and read_status='N'order by s_date desc 
+ ]]>
 </select>
 
 </mapper>

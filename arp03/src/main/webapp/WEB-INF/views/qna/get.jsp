@@ -99,19 +99,33 @@
                                         <p>${qna.answer }</p>
                                     </div>
                                     </c:if>
+                                    <c:if test="${mem.typee eq 'a' }">
+                                    <a class="btn btn-success" href="qnaList.ad">목록</a>
+                                    </c:if>
+                                    <c:if test="${mem.typee eq 's' || mem.typee eq 't'}">
                                     <a class="btn btn-success" href="mylist.qna">목록</a>
+                                    </c:if>
                                     <button type="button" class="btn btn-success" onclick="del(${qna.qna_no})">삭제</button>
                                 <c:if test="${empty qna.answer && mem.typee eq 'a' }">
-                                <form class="form-material mt-4" action="answerQna.ad" method="post" autocomplete=off>
+                                <form id="answerForm" class="form-material mt-4" action="answerQna.ad" method="post" autocomplete=off>
                                 	<input type="hidden" name="qna_no" value="${qna.qna_no }">
                                     <div class="form-group">
                                         <label>답변</label>
                                         <textarea class="form-control" rows="5" name="answer"></textarea>
                                     </div>
-                                    <button class="btn btn-success">답</button>
+                                    <button type="button" class="btn btn-success" onclick="ok()">답</button>
                                 </form>
                                 </c:if>
-                                
+                                <script>
+                                	function ok(){
+                                		var answer=$('#answerForm textarea').eq(0).val()
+                                		if(answer==""){
+                                			alert("답변내용이 비어 있어요.")
+                                			return;
+                                		}
+                                		$('#answerForm').submit()
+                                	}
+                                </script>
                             </div>
                         </div>
                     </div>

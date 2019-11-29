@@ -101,25 +101,26 @@ CREATE TABLE QnA (
 );
 
 
+
 CREATE TABLE vacation (
-   v_no   Number      PRIMARY KEY,
-   m_no   Number      REFERENCES MEMBER,
-   vacation_title varchar2(2000) NOT NULL,
-   reason   varchar2(2000)      NOT NULL,
-   application_date   date   NOT NULL,
-   tstatus   varchar2(100)   DEFAULT 'N'   NOT NULL,
-   sign varchar2(1000)     NULL,
-   companion_reason varchar2(2000) NULL,
-   astatus  varchar2(100)   DEFAULT 'N' NOT NULL,
-   status   varchar2(100)   DEFAULT 'N'   NOT NULL 
+	v_no	Number		PRIMARY KEY,
+	m_no	Number		REFERENCES MEMBER,
+	vacation_title varchar2(2000) NOT NULL,
+	reason	varchar2(2000)		NOT NULL,
+	application_date	date	NOT NULL,
+	sign varchar2(1000)     NULL
     );
     
 CREATE TABLE VACATIONDATE (
 V_NO NUMBER REFERENCES VACATION,
 LEC_NO NUMBER REFERENCES LECTURE,
 VACATIONDATE DATE,
-PRIMARY KEY(V_NO,LEC_NO , VACATIONDATE)
-);
+tstatus	varchar2(100)	DEFAULT 'N'	NOT NULL,
+companion_reason varchar2(2000) NULL,
+astatus  varchar2(100)	DEFAULT 'N' NOT NULL,
+status	varchar2(100)	DEFAULT 'N'	NOT NULL, 
+PRIMARY KEY(V_NO,LEC_NO , VACATIONDATE);
+
 
 CREATE TABLE Message (
     ms_no   Number      PRIMARY KEY ,
@@ -594,6 +595,14 @@ INSERT INTO VARIABLES VALUES(seq_variables.nextval,1,'1,2,3');
 INSERT INTO VARIABLES VALUES(seq_variables.nextval,1,'2,4,6');
 INSERT INTO VARIABLES VALUES(seq_variables.nextval,1,'3,1,4');
 INSERT INTO VARIABLES VALUES(seq_variables.nextval,1,'5,4,9');
+
+
+-- question 더미 데이터 추가
+insert into question values(seq_question.nextval, 2, 19, '질문있습니다', '3번문제에 좌표공간의 두 점 A(2,a,-2), B(5,-2,1)에 대하여 선분 AB를 2:1로 내분하는 점이 x축 위에 있을 때, a의 값이 4가 맞나요?', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, default, 'N', default, 'https://www.youtube.com/watch?v=3Mn8HZ6Sw6Y');
+insert into question values(seq_question.nextval, 2, 17, '수업시간에 궁금했던점이요!', '선생님 여자친구있나요?', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, default, 'N', default, default);
+insert into question values(seq_question.nextval, 1, 8, '어렵네요ㅠ', '11번문제 해석좀 다시 부탁드려도 될까요?', sysdate, sysdate, 'Y', 0, 0, 0, 'N', null, default, 'N', default, default);
+
+
 
 COMMIT;
 

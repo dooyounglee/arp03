@@ -56,7 +56,7 @@ public class messageController {
 		
 	}
 	
-	// 받은 쪽지
+	// 보낸 쪽지
 	@RequestMapping("listMsg.do")
 	public ModelAndView listMsg(ModelAndView mv, HttpSession session) {
 	
@@ -68,11 +68,13 @@ public class messageController {
 		
 	}
 	
+	// 받은 쪽지
 	@RequestMapping("listSendMsg.do")
 	public ModelAndView listSendMsg(ModelAndView mv, HttpSession session) {
 		
 		int m_no =	((Member)session.getAttribute("mem")).getM_no();
 		ArrayList<Message> mList = mService.listSendMsg(m_no);
+		System.out.println("받은쪽지"+mList);
 		mv.addObject("mList",mList).setViewName("message/listSendMessage");
 		
 		return mv;
@@ -124,6 +126,16 @@ public class messageController {
 	  
 	  return result;
 	  
+	  }
+	  
+	  @ResponseBody
+	  @RequestMapping("selectNList.do")
+	  public ModelAndView selectNList(int m_no, ModelAndView mv) {
+		  ArrayList<Message> mlist = mService.selectNList(m_no);
+		  
+		  mv.addObject("mlist",mlist).setViewName("include/btopbarheader");
+		  
+		  return mv;
 	  }
 	  
 	  

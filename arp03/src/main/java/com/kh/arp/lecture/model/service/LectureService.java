@@ -67,4 +67,6 @@ public interface LectureService {
 
 	List<Homework> getHomeworkListInLectureForScore(int lec_no);
 
+	List<Lecture> applylectureList(int m_no);
+
 }

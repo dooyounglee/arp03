@@ -6,7 +6,6 @@
 %>
 <!DOCTYPE html>
 <html>
-<!-- <script src="https://code.jquery.com/jquery-3.1.0.min.js" type="text/javascript"></script> -->
 <%@ include file="../include/bhead.jsp"%>
 <head>
 <meta charset="UTF-8">
@@ -21,9 +20,15 @@
 </style>
 
 <title>게시판 작성하기 </title>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
 </head>
 <title>Insert title here</title>
 </head>
@@ -193,23 +198,21 @@
 		</form>
 		</c:if>
 		 --%>
-	<script>
-      $('#summernote').summernote({
-        placeholder: 'Hello stand alone ui',
-        tabsize: 2,
-        height: 400
-        
-        
-      });
-    </script> 
+	
+	
 
 	
-	
 	 <script>
+	 
+	 
 	 $(document).ready(function() {
          $('#summernote').summernote({ // summernote를 사용하기 위한 선언
         
              height: 400,
+             minHeight: null,
+				maxHeight: null,
+				focus: true,
+				
 				callbacks: { // 콜백을 사용
                  // 이미지를 업로드할 경우 이벤트를 발생
 				    onImageUpload: function(files, editor, welEditable) {
@@ -220,7 +223,7 @@
 				}
 			});
 		});
-	 
+	  */
 
 	 
 

@@ -7,14 +7,32 @@
 <meta charset="UTF-8">
 <title>휴가 신청하기</title>
 <!-- jQuery UI CSS파일 --> 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
-<!--  jQuery 기본 js파일 -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
-<!--jQuery UI 라이브러리 js파일  -->
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
+<%@ include file="../include/bhead.jsp"%>
 </head>
 <body>
-<jsp:include page= "../include/header.jsp"/>
+<body class="fix-header card-no-border logo-center">
+
+	<!-- Main wrapper -->
+	<div id="main-wrapper">
+	
+        <!-- Topbar header - style you can find in pages.scss -->
+        <header class="topbar">
+        	<%@ include file="../include/btopbarheader.jsp" %>
+        </header>
+        <!-- End Topbar header -->
+        
+        <!-- Left-sidebar -->
+        <aside class="left-sidebar">
+        	<%@ include file="../include/bsidebar.jsp" %>
+        </aside>
+        <!-- End of Left-sidebar -->
+
+		<!-- Page wrapper  -->
+        <div class="page-wrapper">
+
+
+
+
 
 	<h2 align="center"> 휴가 신청하기</h2>
 	<form align="center" action="vinsert.me" method="POST" >
@@ -52,7 +70,26 @@
 	</form>
 	
 	
-   
+	
+	
+	
+	
+
+		<!-- footer -->
+        <footer class="footer">
+            <%@ include file="../include/bfooter.jsp" %>
+        </footer>
+        <!-- End footer -->
+
+		</div>
+        <!-- End of Page wrapper  -->
+        
+	</div>
+	<!-- End of Main wrapper -->
+	
+	<%@ include file="../include/bjs.jsp" %>
+	
+	
    <script>
    
    var jq132 = jQuery.noConflict();
