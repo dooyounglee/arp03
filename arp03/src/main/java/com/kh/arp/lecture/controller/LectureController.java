@@ -104,6 +104,10 @@ public class LectureController {
 	@GetMapping("/info.lec")
 	public ModelAndView info(HttpSession session, ModelAndView mv) {
 		Lecture lec=(Lecture)session.getAttribute("lec");
+		
+		List<Classdate> list=ls.getLectureDatesList(lec.getLec_no());
+		
+		mv.addObject("list", list);
 		mv.addObject("lec", lec);
 		mv.setViewName("lecture/info");
 		return mv;
