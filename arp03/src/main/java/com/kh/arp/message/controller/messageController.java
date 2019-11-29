@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.member.model.vo.Member;
@@ -51,7 +52,8 @@ public class messageController {
 			System.out.println("저장실패");
 		}
 		
-		return "redirect:listMsg.do";
+		return "message/main";
+		
 	}
 	
 	// 받은 쪽지
@@ -85,8 +87,9 @@ public class messageController {
 
 		if( m_no == m.getG_no()) {
 			
-			int result = mService.updateDate(ms_no);
-			System.out.println("실행되나여"+result);
+			 mService.updateDate(ms_no);	// 보낸사람이 보게될 수신확인여부 + 받은 당사자가 확인했는지 여부
+			
+	
 		}
 		 mv.addObject("m",m).setViewName("message/detailMsg");
 		 return mv;
@@ -113,7 +116,16 @@ public class messageController {
 		
 	}
 	
-	/*
-	 * @RequestMapping("selectMno")
-	 */
+	  @ResponseBody
+	  @RequestMapping("selectMcount.do")
+	  public int selectMcount(int m_no) {
+		  
+	  int result = mService.selectMcount(m_no);
+	  
+	  return result;
+	  
+	  }
+	  
+	  
+	 
 }

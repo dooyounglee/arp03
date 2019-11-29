@@ -21,13 +21,12 @@
 		height:auto;
 		margin-left:auto;
 		margin-right:auto;
-
 	}	
 	.card{
 		text-align:left;
 		margin-left:auto;
 		margin-right:auto;
-		width:1000px;
+		/* width:1000px; */
 	}
 	#bor{
 		margin:0px;	
@@ -105,8 +104,42 @@
 	<!-- End of Left-sidebar -->
 
 	<div class="page-wrapper">
+	
+		<div class="container-fluid">
+	
 		<div class="row page-titles">
-		</div>
+                    <div class="col-md-5 col-12 align-self-center">
+                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active">Form</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+                        <div class="d-flex mt-2 justify-content-end">
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                    <h6 class="mb-0"><small>THIS MONTH</small></h6>
+                                    <h4 class="mt-0 text-info">$58,356</h4>
+                                </div>
+                                <div class="spark-chart">
+                                    <div id="monthchart"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                    <h6 class="mb-0"><small>LAST MONTH</small></h6>
+                                    <h4 class="mt-0 text-primary">$48,356</h4>
+                                </div>
+                                <div class="spark-chart">
+                                    <div id="lastmonthchart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+         <div class="row">  
 		<div class="col-12">
                         <div class="card">
                             <div class="card-body">
@@ -164,6 +197,14 @@
 	</div>
 		</div>
 	 </div>
+	 
+	 </div>
+	 
+	 			</div>
+                         <!-- ============================================================== -->
+            			<!-- End Container fluid  -->
+            			<!-- ============================================================== -->
+	 
 	 <footer class="footer">
 	            <%@ include file="../include/bfooter.jsp" %>
 	        </footer>
@@ -274,7 +315,7 @@
 
 			form.appendChild(input_id2);
 				
-			var wintype = "width=500, height=430, left=600, resizable=no";
+			var wintype = "width=500, height=470, left=600, resizable=no";
 			open("", "reportForm", wintype);
 				
 			form.submit();
@@ -365,7 +406,7 @@
 
 				form.appendChild(input_id2);
 					
-				var wintype = "width=500, height=430, left=600, resizable=no";
+				var wintype = "width=500, height=470, left=600, resizable=no";
 				open("", "reportForm", wintype);
 					
 				form.submit();
@@ -404,20 +445,22 @@
 				$parent_no = $(this).parent().parent().children("#hrno").val();
 				
 				//$(this).parent().parent().after("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button class='rrsb'>등록</button>" + "<input type='button' class='cancel' value='취소'/></td></tr>");
-				
-				if($clicked%2 == 0) {
-					$(this).parent().parent().after("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button class='rrsb btn waves-effect waves-light btn-rounded btn-outline-info btn-xs'>등록</button>" + "<input type='button' class='cancel btn waves-effect waves-light btn-rounded btn-outline-secondary btn-xs' value='취소'/></td></tr>");
-				} else {
-					$(this).parent().parent().next().remove();
-				}
+				$(this).parent().parent().after("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button class='rrsb btn waves-effect waves-light btn-rounded btn-outline-info btn-xs'>등록</button>" + "<input type='button' class='cancel btn waves-effect waves-light btn-rounded btn-outline-secondary btn-xs' value='취소'/></td></tr>");
+				$(this).hide();
 				//console.log($clicked);
-				$clicked++;
+				//$clicked++;
 				//console.log($clicked);
 			});
 			
 			jQuery(document).on("click", ".rrsb", function(){
 				//console.log($("#reContent").val());
 				//console.log($parent_no);
+				
+				var content = $("#reContent").val();
+				if(content == ""){
+					alert("댓글을 작성해주세요!");
+					return false;
+				}
 				
 				$.ajax({
 					url:"reinsert.do",

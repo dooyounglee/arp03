@@ -21,77 +21,125 @@
 </style>
 
 <title>게시판 작성하기 </title>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
 </head>
+<title>Insert title here</title>
+</head>
+<body class="fix-header card-no-border logo-center">
 
-<body>
-
-<!-- Topbar header - style you can find in pages.scss -->
-	<header class="topbar">
-		<%@ include file="../include/btopbarheader.jsp"%>
-	</header>
-	<!-- End Topbar header -->
-
-	<!-- Left-sidebar -->
-	<aside class="left-sidebar">
-		<%@ include file="../include/bsidebar.jsp"%>
-	</aside>
-	<!-- End of Left-sidebar -->
-
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-
-<!-- include summernote css/js -->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
-
-
-
-	<jsp:include page="../include/header.jsp"/>
+	<!-- Main wrapper -->
+	<div id="main-wrapper">
 	
-	<div class="page-wrapper">
-	
+        <!-- Topbar header - style you can find in pages.scss -->
+        <header class="topbar">
+        	<%@ include file="../include/btopbarheader.jsp" %>
+        </header>
+        <!-- End Topbar header -->
+        
+        <!-- Left-sidebar -->
+        <aside class="left-sidebar">
+        	<%@ include file="../include/bsidebar.jsp" %>
+        </aside>
+        <!-- End of Left-sidebar -->
 
-	<h3 align="center">글 작성하기</h3>
-	<br><br>
-	<form method="post" id="MultiUpload" action="insertTBoard.do" enctype="multipart/form-data" id="boardInsertForm" >
+		<!-- Page wrapper  -->
+		<div class="page-wrapper">
+        <!-- Page wrapper  -->
+
+        	<!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 col-12 align-self-center">
+                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active">Form</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+                        <div class="d-flex mt-2 justify-content-end">
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                    <h6 class="mb-0"><small>THIS MONTH</small></h6>
+                                    <h4 class="mt-0 text-info">$58,356</h4>
+                                </div>
+                                <div class="spark-chart">
+                                    <div id="monthchart"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                    <h6 class="mb-0"><small>LAST MONTH</small></h6>
+                                    <h4 class="mt-0 text-primary">$48,356</h4>
+                                </div>
+                                <div class="spark-chart">
+                                    <div id="lastmonthchart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+				
+								<h4 class="card-title">게시판 리스트</h4>
 		
-			<div align="center" id="formDiv">
-
-					
-					<input name="m_no" value="${mem.m_no}" type="hidden">
-					
-					<div class="form-material">
-					<input type="text" name="title" id="title" required placeholder="제목을 입력해주세요" value="${b.title }" class="form-control"><br>
-                     </div>
-				
-				
-					<input type="hidden" name="m_no" value="${ mem.m_no }">
-					
-					
-			
-			
-					<c:if test="${ empty b }">
-						<label>파일첨부</label>
-						<input type="file"  name="file" id="file" multiple="multiple">
-						<div id="fileArea">
-						
+								<form method="post" id="MultiUpload" action="insertTBoard.do" enctype="multipart/form-data" id="boardInsertForm" >
+									
+							
+												
+												<input name="m_no" value="${mem.m_no}" type="hidden">
+												
+												<div class="form-material">
+												<input type="text" name="title" id="title" required placeholder="제목을 입력해주세요" value="${b.title }" class="form-control"><br>
+							                     </div>
+											
+											
+												<input type="hidden" name="m_no" value="${ mem.m_no }">
+												
+												
+										
+										
+												<c:if test="${ empty b }">
+													<label>파일첨부</label>
+													<input type="file"  name="file" id="file" multiple="multiple">
+													<div id="fileArea">
+													
+													</div>
+												</c:if>
+							
+													<textarea id="summernote" cols="50" rows="7" name="content" id="content"required >${b.content }</textarea>
+							
+							
+											<div align="center">
+											<button type="submit" id="subBtn" class="btn waves-effect waves-light btn-info">등록하기</button> 
+											<button type="button" class="btn waves-effect waves-light btn-info" onclick="location.href='tblist.do';">목록으로</button>
+											</div>		
+							
+								</form>
+									
+									
+								</div>
+							</div>
 						</div>
-					</c:if>
-
-						<textarea id="summernote" cols="50" rows="7" name="content" id="content"required >${b.content }</textarea>
-
-
-				<div align="center">
-				<button type="submit" id="subBtn" class="btn waves-effect waves-light btn-info">등록하기</button> 
-				<button type="button" class="btn waves-effect waves-light btn-info" onclick="location.href='tblist.do';">목록으로</button>
-				</div>		
-			</div>
-		</div>
-	</form>
-		
-		
-	
+					</div>
+				</body>
 		
 	<%-- 	<c:if test="${ !empty b }">
 			<h3 align="center">글 수정하기</h3>
@@ -145,6 +193,16 @@
 		</form>
 		</c:if>
 		 --%>
+	<script>
+      $('#summernote').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 400
+        
+        
+      });
+    </script> 
+
 	
 	
 	 <script>
@@ -324,11 +382,25 @@
 	}
 	
 	</script> -->
-	 
-	 
-	 
-	
-  
+
+<!-- footer -->
+<footer class="footer">
+	<%@ include file="../include/bfooter.jsp"%>
+</footer>
+<!-- End footer -->
+
+</div>
+<!-- End of Page wrapper  -->
+
+</div>
+<!-- End of Main wrapper -->
+
+
+<%@ include file="../include/bjs.jsp"%>
+
+
+
+
 
 </body>
  
