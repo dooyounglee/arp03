@@ -38,15 +38,15 @@
 	            <!-- Search -->
 	            <!-- ============================================================== -->
 	            <li class="nav-item hidden-sm-down search-box">
-	                <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+	                <!-- <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
 	                <form class="app-search">
-	                    <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+	                    <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form> -->
 	            </li>
 	            <!-- ============================================================== -->
 	            <!-- Messages -->
 	            <!-- ============================================================== -->
-	            <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-view-grid"></i></a>
-	                <div class="dropdown-menu scale-up-left">
+	            <li class="nav-item dropdown mega-dropdown"><!--  <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-view-grid"></i></a> -->
+	                <%-- <div class="dropdown-menu scale-up-left">
 	                    <ul class="mega-dropdown-menu row">
 	                        <li class="col-lg-3 col-xlg-2 m-b-30">
 	                            <h4 class="m-b-20">CAROUSEL</h4>
@@ -133,7 +133,8 @@
 	                            </ul>
 	                        </li>
 	                    </ul>
-	                </div>
+	                </div> --%>
+	                <i class="mdi mdi-account" style="color:white;font-size:1.0em;"></i><span id="user_count" style="color:white;font-size:1.0em;">: 1명</span>
 	            </li>
 	            <!-- ============================================================== -->
 	            <!-- End Messages -->

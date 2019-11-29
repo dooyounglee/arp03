@@ -22,7 +22,7 @@ public class WebSocketCount extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		for (WebSocketSession sess : sessionList) {
-			sess.sendMessage(new TextMessage("현재 접속자수"+sessionList.size()));
+			sess.sendMessage(new TextMessage(sessionList.size()+""));
 		}
 	}
 
