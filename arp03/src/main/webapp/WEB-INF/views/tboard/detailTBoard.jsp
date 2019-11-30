@@ -128,12 +128,22 @@
 				<!-- ============================================================== -->
 				<!-- Start Page Content -->
 				<!-- ============================================================== -->
-				<!-- Row -->
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="card">
-							<div class="card-body">
-
+ 				<div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-body printableArea">
+                            <h3><b>${ b.title }</b> <span class="pull-right">#${ b.b_no }</span></h3>
+                            <hr>
+							   <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                     <address>
+                                            <b class="text-info">${ b.name}</b>
+                                            <p class="text-muted ml-1">E 104, Dharti-2,
+                                                <br /> Nr' Viswakarma Temple,
+                                                <br /> Talaja Road,
+                                                <br /> Bhavnagar - 364002</p>
+                                        </address>
+                                    
 								<div id="formdiv" align="center">
 
 									<p align="center" style="font-size: 15px">${ b.b_no }번글</p>
