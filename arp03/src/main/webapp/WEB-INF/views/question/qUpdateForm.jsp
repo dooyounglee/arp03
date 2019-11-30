@@ -115,24 +115,21 @@
 						<div class="card">
 							<div class="card-body"
 								style="padding-left: 40px; padding-right: 40px;">
-								<form action="qupdate.qu?q_no=${ q.q_no }" method="post"
-									enctype="multipart/form-data">
+								<form action="qupdate.qu?q_no=${ q.q_no }" method="post" enctype="multipart/form-data">
 									<div class="card-body">
 										<input type="hidden" name="lec_no" value="${q.lec_no }">
 										<input type="hidden" name="originalname"
 											value="${ q.originalname }"> <input type="hidden"
 											name="changename" value="${ q.changename }">
-										<h3 align="center" style="font-size: 20px; color: gray">수정
-											페이지</h3>
+										<h3 align="center" style="font-size: 20px; color: gray">수정 페이지</h3>
 										<br>
 										<br>
-										<br> <input class="form-control" style="width: 300px;"
-											type="text" name="title" value="${ q.title }"> <br>
-										<input style="border: none;" size="10" type="text" name="name"
-											value="${ mem.name }" readonly><br>
+										<br> 
+										<input class="form-control" style="width: 300px;" type="text" name="title" value="${ q.title }" required> <br>
+										<input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly><br>
 										<br>
 
-										<textarea id="summernote" cols="50" rows="7" name="content">${ q.content }</textarea>
+										<textarea id="summernote" cols="50" rows="7" name="content" required>${ q.content }</textarea>
 										<script>
 											$('#summernote')
 													.summernote(
@@ -148,28 +145,20 @@
 										<br> 첨부파일 &nbsp; <input style="display: inline-block;"
 											type="file" name="fileReload">
 										<c:if test="${ !empty q.originalname }">
-											<a
-												href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${q.changename}"
-												download="${ q.originalname }" id="fName">${ q.originalname }</a>
-											<button type="button" class="btn btn-secondary btn-outline"
-												id="fileDelete">
-												<span class="docs-tooltip"><span class="fas fa-trash"></span></span>
+											<a href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${q.changename}" download="${ q.originalname }" id="fName">${ q.originalname }</a>
+											<button type="button" class="btn btn-secondary btn-outline" id="fileDelete">
+												<span class="docs-tooltip">
+													<span class="fas fa-trash"></span>
+												</span>
 											</button>
 										</c:if>
 										<br>
-										<br> 유튜브URL &nbsp; <input class="form-control"
-											id="youtubeId" type="text" style="width: 300px;"
-											name="youtubelink" value="${ q.youtubelink }"> <br>
+										<br> 유튜브URL &nbsp; <input class="form-control" id="youtubeId" type="text" style="width: 300px;" name="youtubelink" value="${ q.youtubelink }"> <br>
 										<br>
 										<div style="text-align: center;">
-											<button
-												class="btn waves-effect waves-light btn-rounded btn-info"
-												id="deleteaj" type="submit">확인</button>
+											<button class="btn waves-effect waves-light btn-rounded btn-info" id="deleteaj" onclick="return note2UpText()" type="submit">확인</button>
 											<!-- <button type="button" onclick="window.history.back()">취소</button> -->
-											<button
-												class="btn waves-effect waves-light btn-rounded btn-info"
-												type="button"
-												onclick="location.href='question.qu?lec_no=${q.lec_no}';">목록</button>
+											<button class="btn waves-effect waves-light btn-rounded btn-info" type="button" onclick="location.href='question.qu?lec_no=${q.lec_no}';">목록</button>
 										</div>
 										<br>
 										<br>
@@ -255,6 +244,13 @@
 				
 			});
 		}); */
+		
+		function note2UpText(){
+			if($(".note-editable").text().trim() == ""){
+				alert("내용을 입력해주세요.");
+				return false;
+			}
+		}
 		
 		
 		function sendFile(file, el){

@@ -46,10 +46,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">Problem</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
+                            <li class="breadcrumb-item active">Problem</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -87,7 +87,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">게시판관리</h4>
+                                <h4 class="card-title">문제관리</h4>
                                 <a class="btn btn-success" href="make.pro">문제 만들기</a><br>
                                 <div class="table-responsive">
                                     <table class="table">

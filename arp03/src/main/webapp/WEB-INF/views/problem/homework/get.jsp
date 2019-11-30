@@ -46,10 +46,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">Homework</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="${cp }">Home</a></li>
+                            <li class="breadcrumb-item active">Homework</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -99,6 +99,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        	<c:if test="${empty list }">
+                                        		<tr><td colspan="3">문제를 추가해 주세요.</td></tr>
+                                        	</c:if>
                                         	<c:forEach var="p" items="${list }">
                                         		<tr>
 	                                        		<td>${p.p_no }</td>

@@ -9,13 +9,13 @@
 	<%@ include file="../include/bhead.jsp"%>
 <title>상세보기 페이지</title>
 <!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> -->
 
 <!-- include summernote css/js -->
 <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet"> -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
 
 <title>Summernote Lite</title>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -156,8 +156,7 @@
 
 					<div class="col-lg-10">
 						<div class="card">
-							<div class="card-body"
-								style="padding-left: 40px; padding-right: 40px;">
+							<div class="card-body" style="padding-left: 100px; padding-right: 100px; padding-top:70px;">
 								<section class="cd-horizontal-timeline loaded">
 
 									<!-- .timeline -->
@@ -240,8 +239,7 @@
 									<br> <input size="10" type="text" name="name"
 										value="${ qt.tcname }" readonly> <br>
 									<br>
-									<textarea id="summernote" cols="50" rows="7"
-										name="replycontent">${ q.replycontent }</textarea>
+									<textarea id="summernote" cols="50" rows="7" name="replycontent" required>${ q.replycontent }</textarea>
 									<script>
 								      $('#summernote').summernote({
 								        tabsize: 2,
@@ -249,26 +247,14 @@
 										minHeight: null,
 										maxHeight: null,
 										focus: true,
-										callbacks:{
-											
-											onImageUpload: function(files, editor, weleditable){
-												for(var i = files.length - 1; i >= 0; i--){
-													sendFile(files[i], this);
-												}
-											}
-											
-										},
 										lang:"ko-KR",
 								      });
 								    </script>
 									<br>
 									<div style="text-align: center;">
 										<button
-											class="btn waves-effect waves-light btn-rounded btn-info"
-											id="qReOk" type="submit">확인</button>
-										<button
-											class="btn waves-effect waves-light btn-rounded btn-info"
-											type="button" onclick="qReX();">취소</button>
+											class="btn waves-effect waves-light btn-rounded btn-info" id="qReOk" onclick="return noteTextUp()" type="submit">확인</button>
+										<button class="btn waves-effect waves-light btn-rounded btn-info" type="button" onclick="qReX();">취소</button>
 									</div>
 								</div>
 							</form>
@@ -282,7 +268,7 @@
 						<div class="col-lg-2"></div>
 							<div class="col-lg-10">
 								<div class="card">
-									<div class="card-body" style="padding-left: 40px; padding-right: 40px;">
+									<div class="card-body" style="padding-left: 100px; padding-right: 100px;">
 										<section class="cd-horizontal-timeline loaded">
 
 											<!-- .timeline -->
@@ -297,8 +283,7 @@
 															style="font-weight: bold; font-size: 25px; color: black;"
 															size="20">선생님 답변</span>
 														<hr class="mt-4">
-														<input size="10" style="color: black;" type="text"
-															name="name" value="${ qt.tcname }" readonly>
+														<input size="10" style="color: black;" type="text" name="name" value="${ qt.tcname }" readonly>
 														<div style="float: right; color: black;">${ q.replydate }</div>
 														<br>
 														<br> ${ q.replycontent }
@@ -310,11 +295,10 @@
 																	class="btn waves-effect waves-light btn-rounded btn-info"
 																	type="button" onclick="qReUpdate();">수정</button>
 															</div>
-															<br>
-															<br>
+															<br><br>
 														</c:if>
 													</div>
-													<br>
+													<br><br><br><br>
 												</form>
 											</div>
 											<!-- .events-content -->
@@ -614,6 +598,13 @@
 			});
 			
 		}); */
+		
+		function noteTextUp(){
+			if($(".note-editable").text().trim() == ""){
+				alert("내용을 입력해주세요.");
+				false;
+			}
+		}
 		
 		function sendFile(file, el){
 			var form_data = new FormData();

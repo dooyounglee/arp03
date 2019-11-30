@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.common.PageInfo;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.question.model.vo.QFile;
@@ -114,8 +115,13 @@ public class QDao {
 		return sqlSession.update("questionMapper.deleteDatReply", qr);
 	}
 
-	public ArrayList<Question> realTimeSelect() {
-		ArrayList<Question> realList = (ArrayList)sqlSession.selectList("questionMapper.realTimeSelect");
+	public ArrayList<Question> realTimeSelect(int lec_no) {
+		ArrayList<Question> realList = (ArrayList)sqlSession.selectList("questionMapper.realTimeSelect", lec_no);
+		return realList;
+	}
+
+	public ArrayList<Board> realTimeFreeSelect() {
+		ArrayList<Board> realList = (ArrayList)sqlSession.selectList("questionMapper.realTimeFreeSelect");
 		return realList;
 	}
 

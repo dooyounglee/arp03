@@ -85,17 +85,19 @@
                     <div class="col-lg-9 col-xlg-10 col-md-8">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title"></h4>
+                                <h4 class="card-title">설문조사하기</h4>
                                 <div class="table-responsive">
                                 	<form action="insertcompletesurvey.ma">
+                                
                                     <table class="table table-hover no-wrap">
                                     	<thead>
                                     		<tr>
-                                    			<input type="hidden" name="su_no" value="${ssu }">
+                                    			<input type="hidden" name="lec_no" value="${lec.lec_no}" >
+                                    			<input type="hidden" name="su_no" value="${ssu}">
 												<td><p>${lec.lec_no}</p></td>
-												<td><p >${mem.name }</p></td>
-												<td><p >${title }</p></td>
-												<td><p >${d}</p></td>
+												<td><p>${mem.name }</p></td>
+												<td><p>${title }</p></td>
+												<td><p>${d}</p></td>
                                     		</tr>
                                     	</thead>
                                         <tbody>
@@ -106,7 +108,7 @@
 												</tr>
 											</c:forEach>
 												
-												<button type="submit">설문완료</button>
+											<button class="btn btn-success" type="submit">설문완료</button>
                                         </tbody>
                                     </table>
                                     </form>

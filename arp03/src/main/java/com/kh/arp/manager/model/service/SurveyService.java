@@ -2,8 +2,8 @@ package com.kh.arp.manager.model.service;
 
 import java.util.List;
 
-import com.kh.arp.manager.model.vo.CompleteSurvey;
 import com.kh.arp.manager.model.vo.InsertSurvey;
+import com.kh.arp.manager.model.vo.SelectSurveyStudent;
 import com.kh.arp.manager.model.vo.SurveyQuestion;
 
 public interface SurveyService {
@@ -12,6 +12,8 @@ public interface SurveyService {
 	int insertsurvey(InsertSurvey s);
 	
 	List<InsertSurvey> selectsurvey(int lec_no);
+	
+	List<SurveyQuestion>selectsurveystudent(SelectSurveyStudent sss);
 	
 	List<SurveyQuestion> detailsurvey(SurveyQuestion sq);
 	

@@ -83,21 +83,31 @@
 	font-size:13px;
 	color:gray;
 	font-weight:900px;
+	
 }
+/* #rank-List-Content{
+	z-index:1 !important;
+}
+#tatatarget{
+	z-index:2;
+	display:none;
+} */
 
 </style>
 </head>
-<body>
-        	<div id="rank-List-Content">
+<body>		
+<!-- 	<div id="tatatarget" style="width:280px; height:400px; background:white; position:absolute; left:450px;"></div> -->
+        <div id="rank-List-Content" style="display:inline">
         	<div class="realText">많이 찾아본 질문 순위 ▼</div>
-            <dl id="rank-list" style="width:400px;">
-                <dt>실시간 급상승 검색어</dt>
-                <dd>
-                    <ol>
-                    </ol>
-                </dd>
-            </dl>
-        </div>
+	            <dl id="rank-list" style="width:250px;">
+	                <dt>실시간 급상승 검색어</dt>
+	                <dd>
+	                    <ol>
+	                    </ol>
+	                </dd>
+	            </dl>
+		</div>
+<!-- 	</div> -->
 </body>
 <script>
 
@@ -112,9 +122,14 @@ $(function(){
 		/* 	console.log(data[0].title); */
 			
 			//var list = data[]
+		
+			if(data.length == 0){
+				$('#rank-list ol').append("<li>"+"<span class='numberStyle'></span><span class='titleStyle'>아직 게시글이 존재하지 않습니다.</span></li>");
+			}
+		
 		var count = 1;
 		for(var i=0; i<data.length; i++){
-			$('#rank-list ol').append("<li><a href='#'>"+"<span class='numberStyle'>"+count+"</span> &nbsp;<span class='titleStyle'>"+data[i].title+"</span></a></li>");
+			$('#rank-list ol').append("<li><a href='qdetail.qu?q_no=" + data[i].q_no +"'>"+"<span class='numberStyle'>"+count+"</span> &nbsp;<span class='titleStyle'>"+data[i].title+"</span></a></li>");
 			count++;
 			if(count == 11){
 				break;
@@ -140,9 +155,14 @@ $(function(){
 
 
 
+/* id="rank-List-Content" */
+/*  	$(document).on("mouseover", ".realText", function(){
+		$("#tatatarget").attr("style","display:inline");
+	});  */
 
-
-
+/* 	$(".realText").click(function(){
+		$("#tatatarget").attr("style","display:inline");
+	}); */
 
 
 

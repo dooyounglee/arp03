@@ -107,6 +107,7 @@
                                         		<td colspan="4">
                                         		
                                         			<div id="div">
+                                        			
                                         			</div>
                                         		</td>
                                         	</tr>
@@ -153,34 +154,36 @@
 <script>
 	$(document).ready(function(){
 		var lastq=0;
-		var removesucess=0;
+		var removesuccess=0;
 		var q=1;
 		$("#insertquestion").click(function(){
-			var table = $("<table></table>");
+			var table = $("<table></table>").attr("id", "table");
 			var tr = $("<tr></tr>").attr("class", "tr");
 			var td = $("<td></td>").attr("class", "td");
-			var input = $("<input>").attr("placeholder", "질문"+q).attr("name", "question["+lastq+"]").attr("required", true).attr("class", "empty");
+			var div =$("<div></div>").attr("id", "div"+lastq);
+			var input = $("<input><br><br>").attr("placeholder", "질문"+q).attr("name", "question["+lastq+"]").attr("required", true).attr("id", "question["+lastq+"]");
 			/* var hid = $("<input>").attr("type", "hidden").attr("name", "sq_no["+lastq+"]").attr("value", q);
 			$("#div").append(hid); */
-			$("#div").append(table).append(tr).append(td).append(input);
-			
+			$("#div").append(div);
+			$("#div"+lastq).append(input);
+			/* .append(table).append(tr).append(td) */
+			removesuccess=lastq;
 			lastq+=1;
+		
 			q+=1;	
 		});
 		$("#deletequestion").click(function(){
 			if(lastq>0){
-			var emp = confirm("확인을 누르시면 질문이 모두 사라집니다.");
+		/* 	var emp = confirm("확인을 누르시면 질문이 모두 사라집니다.");
 			if(emp==true){
 			
-			$("#div").empty();
-		}
-		/* 	removesucess=1;
-			if(removesucess==1){
-			removesucess=0;
+			$("#div").empty(); 
+		}*/
+			
+			$("#div").children().eq(removesuccess).remove();
 			lastq-=1;
-			} */
-			lastq=0;
-			q=1;
+			removesuccess-=1;
+			q-=1;
 			}
 		});	
 	/* 	$("#submitquestion").click(function(){		

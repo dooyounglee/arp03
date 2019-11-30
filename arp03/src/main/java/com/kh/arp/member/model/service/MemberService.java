@@ -48,12 +48,16 @@ public interface MemberService {
 	int deleteBoard(Board b);
 
 	int deleteCancleBoard(Board b);
+	
+	int declareBoard(Board b);
 
 	List<BReply> getReplyList();
 
 	int deleteReply(BReply r);
 
 	int deleteCancleReply(BReply r);
+	
+	int declareReplyAdmin(BReply r);
 
 	List<Declaree> getDeclareList();
 
@@ -82,5 +86,8 @@ public interface MemberService {
 	List<Lecture> getLectureList(Member mem);
 
 	int acceptMember(Member mem);
+
+
+	
 
 }

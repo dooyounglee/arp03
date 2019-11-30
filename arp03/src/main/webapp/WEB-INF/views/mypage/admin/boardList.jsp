@@ -36,10 +36,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">Board List</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
+                            <li class="breadcrumb-item active">Board List</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -80,14 +80,13 @@
                                 <h4 class="card-title">게시판관리</h4>
                                 <h6 class="card-subtitle">Add class <code>.table</code></h6>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table id="zero_config" class="table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>title</th>
                                                 <th>regdate</th>
                                                 <th>updatedate</th>
-                                                <th>dcount</th>
                                                 <th>status</th>
                                             </tr>
                                         </thead>
@@ -98,19 +97,35 @@
 	                                                <td>${b.title }</td>
 	                                                <td>${b.regdate }</td>
 	                                                <td>${b.update_date }</td>
-	                                                <td>${b.dcount }</td>
 	                                                <td>
 	                                                	<c:if test="${b.status eq 'Y'}">
 	                                                		<button class="btn btn-danger" onclick="deleteBoard(${b.b_no})">삭제</button>
+	                                                		<button class="btn btn-secondary" onclick="declareBoard(${b.b_no})">신고</button>
 	                                                	</c:if>
 	                                                	<c:if test="${b.status eq 'N'}">
 	           	                                     		<button class="btn btn-primary" onclick="deleteCancleBoard(${b.b_no})">삭제취소</button>
+	                                                	</c:if>
+	                                                	<c:if test="${b.status eq 'D'}">
+	                                                		신고
 	                                                	</c:if>
 	                                                </td>
 												</tr>
 											</c:forEach>
                                         </tbody>
+                                        <tfoot>
+                                        	<tr>
+                                                <th>#</th>
+                                                <th>title</th>
+                                                <th>regdate</th>
+                                                <th>updatedate</th>
+                                                <th>dcount</th>
+                                                <th>status</th>
+                                            </tr>
+                                        </tfoot>
                                     </table>
+                                    <script>
+								   		$('#zero_config').DataTable();
+								    </script>
                                 </div>
                             </div>
                         </div>
@@ -166,6 +181,11 @@
 		}
 		function deleteCancleBoard(b_no){
 			var formm=$('#form').attr('action','deleteCancleBoard.ad')
+			formm.children('input').eq(0).val(b_no)
+			formm.submit();
+		}
+		function declareBoard(b_no){
+			var formm=$('#form').attr('action','declareBoard.ad')
 			formm.children('input').eq(0).val(b_no)
 			formm.submit();
 		}
