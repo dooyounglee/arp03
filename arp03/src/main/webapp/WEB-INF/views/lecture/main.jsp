@@ -46,8 +46,8 @@
                         <h3 class="text-themecolor mb-0 mt-0">Lecture List</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="${cp }">Home</a></li>
-                            <li class="breadcrumb-item"><a href="${cp }/">Home</a></li>
-                            <li class="breadcrumb-item active">Lecture List</li>
+                            <li class="breadcrumb-item"><a href="lectureList.ad">Lecture List</a></li>
+                            <li class="breadcrumb-item active">${lec.title }</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
