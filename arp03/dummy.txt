@@ -24,7 +24,7 @@ DROP TABLE Board;
 DROP TABLE BCategory;
 drop table auth;
 DROP TABLE Message;
-DROP TABLE completesurvey;
+--DROP TABLE completesurvey;
 DROP TABLE surveyquestion;
 DROP TABLE insertsurvey;
 --drop table survey;
@@ -119,7 +119,8 @@ tstatus	varchar2(100)	DEFAULT 'N'	NOT NULL,
 companion_reason varchar2(2000) NULL,
 astatus  varchar2(100)	DEFAULT 'N' NOT NULL,
 status	varchar2(100)	DEFAULT 'N'	NOT NULL, 
-PRIMARY KEY(V_NO,LEC_NO , VACATIONDATE);
+PRIMARY KEY(V_NO,LEC_NO , VACATIONDATE)
+);
 
 
 CREATE TABLE Message (
@@ -442,13 +443,13 @@ insert into member values(seq_member.nextval,'m','m3','1','name43','email43','ph
 insert into member values(seq_member.nextval,'m','m4','1','name44','email44','phone44',sysdate,sysdate,sysdate,default,'Y');
 insert into member values(seq_member.nextval,'m','m5','1','name45','email45','phone45',sysdate,sysdate,sysdate,default,'Y');
 
-INSERT INTO LECTURE VALUES (seq_lecture.nextval,21,'미적분',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
-INSERT INTO LECTURE VALUES (seq_lecture.nextval,21,'수학 10-가',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
-INSERT INTO LECTURE VALUES (seq_lecture.nextval,21,'수학 10-나',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
-INSERT INTO LECTURE VALUES (seq_lecture.nextval,22,'수학 9-가',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
-INSERT INTO LECTURE VALUES (seq_lecture.nextval,22,'수학 9-나',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
-INSERT INTO LECTURE VALUES (seq_lecture.nextval,23,'수학 8-가',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
-INSERT INTO LECTURE VALUES (seq_lecture.nextval,23,'수학 8-나',sysdate,sysdate,1,'N','1',NULL,1,0,10,'2,4','1');
+INSERT INTO LECTURE VALUES (seq_lecture.nextval,21,'미적분',sysdate,sysdate,1,'Y','1',NULL,1,0,10,'2,4','1');
+INSERT INTO LECTURE VALUES (seq_lecture.nextval,21,'수학 10-가',sysdate,sysdate,1,'Y','1',NULL,1,0,10,'2,4','1');
+INSERT INTO LECTURE VALUES (seq_lecture.nextval,21,'수학 10-나',sysdate,sysdate,1,'Y','1',NULL,1,0,10,'2,4','1');
+INSERT INTO LECTURE VALUES (seq_lecture.nextval,22,'수학 9-가',sysdate,sysdate,1,'Y','1',NULL,1,0,10,'2,4','1');
+INSERT INTO LECTURE VALUES (seq_lecture.nextval,22,'수학 9-나',sysdate,sysdate,1,'Y','1',NULL,1,0,10,'2,4','1');
+INSERT INTO LECTURE VALUES (seq_lecture.nextval,23,'수학 8-가',sysdate,sysdate,1,'Y','1',NULL,1,0,10,'2,4','1');
+INSERT INTO LECTURE VALUES (seq_lecture.nextval,23,'수학 8-나',sysdate,sysdate,1,'Y','1',NULL,1,0,10,'2,4','1');
 
 
 

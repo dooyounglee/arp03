@@ -36,10 +36,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">Reply List</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
+                            <li class="breadcrumb-item active">Reply List</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -80,7 +80,7 @@
                                 <h4 class="card-title">댓글관리</h4>
                                 <h6 class="card-subtitle">Add class <code>.table</code></h6>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table id="zero_config" class="table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -89,6 +89,7 @@
                                                 <th>updatedate</th>
                                                 <th>m_no</th>
                                                 <th>status</th>
+                                                <th>dcount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -102,15 +103,34 @@
 	                                                <td>
 	                                                	<c:if test="${r.status eq 'Y'}">
 	                                                		<button class="btn btn-danger" onclick="deleteReply(${r.r_no})">삭제</button>
+		                                                	<button class="btn btn-secondary" onclick="declareReply(${r.r_no})">신고</button>
+	                                                	</c:if>
+	                                                	<c:if test="${r.status eq 'D'}">
+	                                                		신고
 	                                                	</c:if>
 	                                                	<c:if test="${r.status eq 'N'}">
-	           	                                     		<button class="btn btn-primary" onclick="deleteCancleReply(${r.r_no})">삭제취소</button>
+	           	                                     		<button class="btn btn-primary" onclick="deleteCancleReply(${r.r_no})">삭제 취소</button>
 	                                                	</c:if>
+	                                                </td>
+	                                                <td>
 	                                                </td>
 												</tr>
 											</c:forEach>
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>title</th>
+                                                <th>regdate</th>
+                                                <th>updatedate</th>
+                                                <th>m_no</th>
+                                                <th>status</th>
+                                            </tr>
+                                        </tfoot>
                                     </table>
+                                    <script>
+								   		$('#zero_config').DataTable();
+								    </script>
                                 </div>
                             </div>
                         </div>
@@ -173,6 +193,12 @@
 			formm.children('input').eq(0).val(r_no)
 			formm.submit();
 		}
+		function declareReply(r_no){
+			var formm=$('#form').attr('action','declareReply.ad')
+			formm.children('input').eq(0).val(r_no)
+			formm.submit();
+		}
+		
 	</script>
 	<jsp:include page="../../include/footer.jsp"/>
 </body>

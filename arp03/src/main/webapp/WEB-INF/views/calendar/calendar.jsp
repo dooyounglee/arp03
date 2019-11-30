@@ -112,10 +112,10 @@
 	
 		<div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">캘린더</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
+                            <li class="breadcrumb-item active">캘린더</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -458,9 +458,57 @@
 			   				    var mm = newStart.substr(5,2);
 			   				    var dd = newStart.substr(8,2);
 			   				 	var d = Number(dd) + 1;
+			   				 	
+			   				 	if(d == 32 && mm == '10') {
+			   				 		d = 1;
+			   				 		mm = '11';
+			   				 		//console.log("11월테스트");
+			   				 	} else if(d == 32 && mm == '11') {
+			   				 		d = 1;
+			   				 		mm = '12';
+			   				 		//console.log("12월테스트");
+			   				 	} else if(d == 32 && mm == '12') {
+			   				 		d = 1;
+		   				 			mm = '1';
+		   				 			yyyy = Number(yyyy) + 1;
+		   				 			//console.log("yyyy : " + yyyy);
+		   				 			//console.log("1월테스트");
+			   				 	} else if(d == 32 && mm == '01') {
+				   				 	d = 1;
+		   				 			mm = '2';
+			   				 	} else if(d == 30 && mm == '02' && Number(yyyy) % 4 == 0) {
+				   				 	d = 1;
+		   				 			mm = '3';
+			   				 	} else if(d == 29 && mm == '02' && Number(yyyy) % 4 != 0) {
+				   				 	d = 1;
+		   				 			mm = '3';
+			   				 	} else if(d == 32 && mm == '03') {
+				   				 	d = 1;
+		   				 			mm = '4';
+			   				 	} else if(d == 31 && mm == '04') {
+				   				 	d = 1;
+		   				 			mm = '5';
+			   				 	} else if(d == 32 && mm == '05') {
+				   				 	d = 1;
+		   				 			mm = '6';
+			   				 	} else if(d == 31 && mm == '06') {
+				   				 	d = 1;
+		   				 			mm = '7';
+			   				 	} else if(d == 32 && mm == '07') {
+				   				 	d = 1;
+		   				 			mm = '8';
+			   				 	} else if(d == 32 && mm == '08') {
+				   				 	d = 1;
+		   				 			mm = '9';
+			   				 	} else if(d == 31 && mm == '09') {
+				   				 	d = 1;
+		   				 			mm = '10';
+			   				 	}
 	        	        	    
-			   				    var a = (yyyy + "-" + mm + "-" + d);
-			   				    console.log(a);
+			   				 	console.log("월 : " + mm);
+			   				    console.log("일  : " + d)
+			   				 	var a = (yyyy + "-" + mm + "-" + d);
+			   				    console.log("시작날짜: " + a);
 	        	        	    
 	        	        	    var newEnd = (info.event.end.toISOString()).substring(0, 10);
 	        	        	    //console.log("newStart" + newStart);
@@ -496,6 +544,52 @@
 		   				    var mm = newStart.substr(5,2);
 		   				    var dd = newStart.substr(8,2);
 		   				 	var d = Number(dd) + 1;
+		   				 	
+		   				 if(d == 32 && mm == '10') {
+		   				 		d = 1;
+		   				 		mm = '11';
+		   				 		//console.log("11월테스트");
+		   				 	} else if(d == 32 && mm == '11') {
+		   				 		d = 1;
+		   				 		mm = '12';
+		   				 		//console.log("12월테스트");
+		   				 	} else if(d == 32 && mm == '12') {
+		   				 		d = 1;
+	   				 			mm = '1';
+	   				 			yyyy = Number(yyyy) + 1;
+	   				 			//console.log("yyyy : " + yyyy);
+	   				 			//console.log("1월테스트");
+		   				 	} else if(d == 32 && mm == '01') {
+			   				 	d = 1;
+	   				 			mm = '2';
+		   				 	} else if(d == 30 && mm == '02' && Number(yyyy) % 4 == 0) {
+			   				 	d = 1;
+	   				 			mm = '3';
+		   				 	} else if(d == 29 && mm == '02' && Number(yyyy) % 4 != 0) {
+			   				 	d = 1;
+	   				 			mm = '3';
+		   				 	} else if(d == 32 && mm == '03') {
+			   				 	d = 1;
+	   				 			mm = '4';
+		   				 	} else if(d == 31 && mm == '04') {
+			   				 	d = 1;
+	   				 			mm = '5';
+		   				 	} else if(d == 32 && mm == '05') {
+			   				 	d = 1;
+	   				 			mm = '6';
+		   				 	} else if(d == 31 && mm == '06') {
+			   				 	d = 1;
+	   				 			mm = '7';
+		   				 	} else if(d == 32 && mm == '07') {
+			   				 	d = 1;
+	   				 			mm = '8';
+		   				 	} else if(d == 32 && mm == '08') {
+			   				 	d = 1;
+	   				 			mm = '9';
+		   				 	} else if(d == 31 && mm == '09') {
+			   				 	d = 1;
+	   				 			mm = '10';
+		   				 	}
 
 		   				    var a = (yyyy + "-" + mm + "-" + d);
 		   				    
