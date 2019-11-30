@@ -367,6 +367,7 @@
 														<span style="float:left; white-space:nowrap; color:white; display:none;">${ qr.r_no }</span>
 														<span style="float:left; white-space:nowrap; font-weight:bold;">${ qr.name }</span>
 														<!-- 내글일경우에만 표시해주자 ex) 내 글 -->
+														<c:if test="${ qr.name eq mem.name }">
 														<!-- 박스 -->
 														<span style="height:19px; margin:3px 0 0 6px; padding:0 8px; border-width:1px 1px 1px 1px; 
 														border-style:solid; font-weight:bold; border-radius:17px; position:relative; float:left; vertical-align:top;">
@@ -375,6 +376,7 @@
 															내 글
 															</span>
 														</span>
+														</c:if>
 													</div>
 													<div class="contentWordText" style="display:inline;">
 													<span class="contentWordText" style="color:black; font:fantasy;">
