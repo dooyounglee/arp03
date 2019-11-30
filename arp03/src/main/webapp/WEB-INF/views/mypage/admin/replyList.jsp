@@ -80,7 +80,7 @@
                                 <h4 class="card-title">댓글관리</h4>
                                 <h6 class="card-subtitle">Add class <code>.table</code></h6>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table id="zero_config" class="table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -89,6 +89,7 @@
                                                 <th>updatedate</th>
                                                 <th>m_no</th>
                                                 <th>status</th>
+                                                <th>dcount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -100,18 +101,42 @@
 	                                                <td>${r.update_date }</td>
 	                                                <td>${r.m_no }</td>
 	                                                <td>
-	                                                	<c:if test="${r.status eq 'Y'}">
+	                                                	<c:if test="${r.status eq 'Y' || r.status eq 'D'}">
 	                                                		<button class="btn btn-danger" onclick="deleteReply(${r.r_no})">삭제</button>
-	                                                		<button class="btn btn-danger" onclick="declare(${r.r_no})">신고</button>
 	                                                	</c:if>
-	                                                	<c:if test="${r.status eq 'N' || r.status eq 'D'}">
-	           	                                     		<button class="btn btn-primary" onclick="deleteCancleReply(${r.r_no})">삭제/신고 취소</button>
+	                                                	<c:if test="${r.status eq 'D'}">
+	                                                		<button class="btn btn-danger" onclick="deleteReply(${r.r_no})">삭제</button>
+	                                                		신고누적
 	                                                	</c:if>
+	                                                	<c:if test="${r.status eq 'N'}">
+	           	                                     		<button class="btn btn-primary" onclick="deleteCancleReply(${r.r_no})">삭제 취소</button>
+	                                                	</c:if>
+	                                                	<%-- <c:if test="${r.status eq 'D'}">
+	           	                                     		신고누적
+	                                                	</c:if> --%>
+	                                                </td>
+	                                                <td>
+	                                                	<span>${r.dcount }</span>
+	                                                	<button class="btn btn-secondary" onclick="minusDeclare(${r.r_no})">-</button>
+	                                                	<button class="btn btn-secondary" onclick="plusDeclare(${r.r_no})">+</button>
 	                                                </td>
 												</tr>
 											</c:forEach>
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>title</th>
+                                                <th>regdate</th>
+                                                <th>updatedate</th>
+                                                <th>m_no</th>
+                                                <th>status</th>
+                                            </tr>
+                                        </tfoot>
                                     </table>
+                                    <script>
+								   		$('#zero_config').DataTable();
+								    </script>
                                 </div>
                             </div>
                         </div>
@@ -174,11 +199,16 @@
 			formm.children('input').eq(0).val(r_no)
 			formm.submit();
 		}
-		function declare(r_no){
+		/* function plusDeclare(r_no){
 			var formm=$('#form').attr('action','declareReply.ad')
 			formm.children('input').eq(0).val(r_no)
 			formm.submit();
 		}
+		function minusDeclare(r_no){
+			var formm=$('#form').attr('action','declareReply.ad')
+			formm.children('input').eq(0).val(r_no)
+			formm.submit();
+		} */
 	</script>
 	<jsp:include page="../../include/footer.jsp"/>
 </body>

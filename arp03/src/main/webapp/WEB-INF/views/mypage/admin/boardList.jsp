@@ -80,7 +80,7 @@
                                 <h4 class="card-title">게시판관리</h4>
                                 <h6 class="card-subtitle">Add class <code>.table</code></h6>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table id="zero_config" class="table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -110,7 +110,20 @@
 												</tr>
 											</c:forEach>
                                         </tbody>
+                                        <tfoot>
+                                        	<tr>
+                                                <th>#</th>
+                                                <th>title</th>
+                                                <th>regdate</th>
+                                                <th>updatedate</th>
+                                                <th>dcount</th>
+                                                <th>status</th>
+                                            </tr>
+                                        </tfoot>
                                     </table>
+                                    <script>
+								   		$('#zero_config').DataTable();
+								    </script>
                                 </div>
                             </div>
                         </div>

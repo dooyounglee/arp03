@@ -14,7 +14,9 @@
 	</update>
 	
 	<select id="getReplyList" resultType="BReply">
-		select * from breply
+		select br.*,dcount from breply br,
+		(select obj_no,count(*) dcount from declaree where obj='r' group by obj_no) de
+		where br.r_no=de.obj_no(+)
 	</select>
 	
 	<update id="deleteReply">
