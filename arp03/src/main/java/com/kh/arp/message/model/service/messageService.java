@@ -31,4 +31,7 @@ public interface messageService{
 	
 	// 8. 상단바 리스트용 
 	ArrayList<Message> selectNList(int m_no);
+	
+	// 9. 알람상태 변경용
+	int updateAlram(int m_no);
 }

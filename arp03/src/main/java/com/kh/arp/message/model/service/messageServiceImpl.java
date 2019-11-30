@@ -59,6 +59,14 @@ public class messageServiceImpl implements messageService {
 		return mDao.selectNList(m_no);
 	}
 
+	@Override
+	public int updateAlram(int m_no) {
+
+		return mDao.updateAlram(m_no);
+	}
+	
+	
+
 
 
 }
