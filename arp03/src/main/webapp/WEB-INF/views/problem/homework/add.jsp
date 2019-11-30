@@ -87,7 +87,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">게시판관리</h4>
+                                <h4 class="card-title">문제 리스트</h4>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>

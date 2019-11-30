@@ -48,4 +48,8 @@ public class messageDao {
 	public ArrayList<Message> selectNList(int m_no){
 		return (ArrayList)sqlSession.selectList("msg-mapper.selectNList",m_no);
 	}
+	
+	public int updateAlram(int m_no) {
+		return sqlSession.update("msg-mapper.updateAlram",m_no);
+	}
 }

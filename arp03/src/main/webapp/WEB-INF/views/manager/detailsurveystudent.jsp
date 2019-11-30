@@ -9,10 +9,6 @@
 	<%@ include file="../include/bhead.jsp"%>
 </head>
 <body class="fix-header card-no-border logo-center">
-<script>
-console.log("111111");
-</script>
-<%System.out.println("111"); %>
 <!--=========================<jsp:include page="../include/header.jsp"/>-->
 <fmt:parseDate value="${ssq}" pattern="yyyy-MM-dd" var="e"/> 
 <fmt:formatDate value="${e}" pattern="yyyy-MM-dd" var = "d"/>

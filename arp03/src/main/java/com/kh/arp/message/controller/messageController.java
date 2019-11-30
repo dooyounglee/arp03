@@ -54,7 +54,7 @@ public class messageController {
 			System.out.println("저장실패");
 		}
 		
-		return "message/main";
+		return "redirect:listMsg.do";
 		
 	}
 	
@@ -140,6 +140,20 @@ public class messageController {
 			
 			return gson.toJson(mlist);
 	  }
+	  
+	  @ResponseBody
+	  @RequestMapping("updateAlram.do")
+	  public String updateAlram(int m_no) {
+		  
+		  int result = mService.updateAlram(m_no);
+		  
+		  if(result > 0) {
+			  return "success";
+		  }else {
+			  return "fail";
+		  }
+	  }
+	  
 	  
 	  
 	 
