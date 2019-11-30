@@ -85,7 +85,7 @@
                     <div class="col-lg-9 col-xlg-10 col-md-8">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title"></h4>
+                                <h4 class="card-title">설문조사하기</h4>
                                 <div class="table-responsive">
                                 	<form action="insertcompletesurvey.ma">
                                 

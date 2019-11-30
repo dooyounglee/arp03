@@ -82,8 +82,10 @@
                     <div class="col-lg-9 col-xlg-10 col-md-8">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">시험관리</h4>
+                                <h4 class="card-title">설문조사목록</h4>
+                                <c:if test="${mem.typee=='t' }">
                                 <a class="btn btn-success float-left" href="daysurvey.ma">설문조사 만들기</a>
+                                </c:if>
                                 <div class="table-responsive">
                                     <table class="table table-hover no-wrap">
                                         <thead>
