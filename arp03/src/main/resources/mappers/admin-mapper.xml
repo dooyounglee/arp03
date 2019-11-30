@@ -13,10 +13,12 @@
 		update board set status='Y' where b_no=#{b_no}
 	</update>
 	
+	<update id="declareBoard">
+		update board set status='D' where b_no=#{b_no}
+	</update>
+	
 	<select id="getReplyList" resultType="BReply">
-		select br.*,dcount from breply br,
-		(select obj_no,count(*) dcount from declaree where obj='r' group by obj_no) de
-		where br.r_no=de.obj_no(+)
+		select * from breply
 	</select>
 	
 	<update id="deleteReply">

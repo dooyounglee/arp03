@@ -101,24 +101,18 @@
 	                                                <td>${r.update_date }</td>
 	                                                <td>${r.m_no }</td>
 	                                                <td>
-	                                                	<c:if test="${r.status eq 'Y' || r.status eq 'D'}">
+	                                                	<c:if test="${r.status eq 'Y'}">
 	                                                		<button class="btn btn-danger" onclick="deleteReply(${r.r_no})">삭제</button>
+		                                                	<button class="btn btn-secondary" onclick="declareReply(${r.r_no})">신고</button>
 	                                                	</c:if>
 	                                                	<c:if test="${r.status eq 'D'}">
-	                                                		<button class="btn btn-danger" onclick="deleteReply(${r.r_no})">삭제</button>
-	                                                		신고누적
+	                                                		신고
 	                                                	</c:if>
 	                                                	<c:if test="${r.status eq 'N'}">
 	           	                                     		<button class="btn btn-primary" onclick="deleteCancleReply(${r.r_no})">삭제 취소</button>
 	                                                	</c:if>
-	                                                	<%-- <c:if test="${r.status eq 'D'}">
-	           	                                     		신고누적
-	                                                	</c:if> --%>
 	                                                </td>
 	                                                <td>
-	                                                	<span>${r.dcount }</span>
-	                                                	<button class="btn btn-secondary" onclick="minusDeclare(${r.r_no})">-</button>
-	                                                	<button class="btn btn-secondary" onclick="plusDeclare(${r.r_no})">+</button>
 	                                                </td>
 												</tr>
 											</c:forEach>
@@ -199,16 +193,12 @@
 			formm.children('input').eq(0).val(r_no)
 			formm.submit();
 		}
-		/* function plusDeclare(r_no){
+		function declareReply(r_no){
 			var formm=$('#form').attr('action','declareReply.ad')
 			formm.children('input').eq(0).val(r_no)
 			formm.submit();
 		}
-		function minusDeclare(r_no){
-			var formm=$('#form').attr('action','declareReply.ad')
-			formm.children('input').eq(0).val(r_no)
-			formm.submit();
-		} */
+		
 	</script>
 	<jsp:include page="../../include/footer.jsp"/>
 </body>

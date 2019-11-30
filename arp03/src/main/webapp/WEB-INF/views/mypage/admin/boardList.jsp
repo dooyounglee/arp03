@@ -87,7 +87,6 @@
                                                 <th>title</th>
                                                 <th>regdate</th>
                                                 <th>updatedate</th>
-                                                <th>dcount</th>
                                                 <th>status</th>
                                             </tr>
                                         </thead>
@@ -98,13 +97,16 @@
 	                                                <td>${b.title }</td>
 	                                                <td>${b.regdate }</td>
 	                                                <td>${b.update_date }</td>
-	                                                <td>${b.dcount }</td>
 	                                                <td>
 	                                                	<c:if test="${b.status eq 'Y'}">
 	                                                		<button class="btn btn-danger" onclick="deleteBoard(${b.b_no})">삭제</button>
+	                                                		<button class="btn btn-secondary" onclick="declareBoard(${b.b_no})">신고</button>
 	                                                	</c:if>
 	                                                	<c:if test="${b.status eq 'N'}">
 	           	                                     		<button class="btn btn-primary" onclick="deleteCancleBoard(${b.b_no})">삭제취소</button>
+	                                                	</c:if>
+	                                                	<c:if test="${b.status eq 'D'}">
+	                                                		신고
 	                                                	</c:if>
 	                                                </td>
 												</tr>
@@ -179,6 +181,11 @@
 		}
 		function deleteCancleBoard(b_no){
 			var formm=$('#form').attr('action','deleteCancleBoard.ad')
+			formm.children('input').eq(0).val(b_no)
+			formm.submit();
+		}
+		function declareBoard(b_no){
+			var formm=$('#form').attr('action','declareBoard.ad')
 			formm.children('input').eq(0).val(b_no)
 			formm.submit();
 		}

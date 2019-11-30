@@ -97,6 +97,10 @@ public class MemberDao {
 	public int deleteCancleBoard(Board b) {
 		return sqlSession.update("adminMapper.deleteCancleBoard",b);
 	}
+	
+	public int declareBoard(Board b) {
+		return sqlSession.update("adminMapper.declareBoard",b);
+	}
 
 	public List<BReply> getReplyList() {
 		return sqlSession.selectList("adminMapper.getReplyList",null);
@@ -169,6 +173,8 @@ public class MemberDao {
 	public int acceptMember(Member mem) {
 		return sqlSession.update("memberMapper.acceptMember",mem);
 	}
+
+	
 
 	
 

@@ -256,6 +256,15 @@ public class AdminController {
 		return mv;
 	}
 	
+	@PostMapping("/declareBoard.ad")
+	public ModelAndView declareBoardAdmin(Board b, ModelAndView mv) {
+		int result=ms.declareBoard(b);
+		if(result>0) {
+			mv.setViewName("redirect:/boardList.ad");
+		}
+		return mv;
+	}
+	
 	@RequestMapping("/replyList.ad")
 	public ModelAndView replyList(ModelAndView mv) {
 		List<BReply> list=ms.getReplyList();
