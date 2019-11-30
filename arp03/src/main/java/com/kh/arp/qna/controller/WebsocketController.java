@@ -12,4 +12,10 @@ public class WebsocketController {
 		mv.setViewName("qna/websocket");
 		return mv;
 	}
+	
+	@RequestMapping("/error.do")
+	public ModelAndView error(ModelAndView mv) {
+		mv.setViewName("common/error");
+		return mv;
+	}
 }
