@@ -1,5 +1,6 @@
 package com.kh.arp.member.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -134,16 +135,18 @@ public class AdminController {
 			
 			MimeMessage message = javaMailSenderImple.createMimeMessage();
 			try {
-				message.setFrom(new InternetAddress("gostbaducking2@gmail.com"));
+				message.setFrom(new InternetAddress("gostbaducking2@gmail.com","KH수학교육원","utf-8"));
 				message.addRecipient(RecipientType.TO, new InternetAddress(auth.getEmail()));
-				message.setSubject("arp 인증 테스트");
-				message.setText("<a href=\""+req.getServerName()+":"+req.getServerPort()+"/arp/auth.me?code="+auth.getCode()+"\" target=\"_blank\">여기를 누르면 가입페이지로 이동합니다.</a>","utf-8", "html");
+				message.setSubject("[KH수학교육원]가입인증메일 입니다.");
+				message.setText("<a href=\"http://"+req.getServerName()+":"+req.getServerPort()+"/arp/auth.me?code="+auth.getCode()+"\">여기를 누르면 가입페이지로 이동합니다.</a>","utf-8", "html");
 				javaMailSenderImple.send(message);
 			} catch (AddressException e) {
 				e.printStackTrace();
 			} catch (MessagingException e) {
 				e.printStackTrace();
-			}  
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} 
 			  
 			mv.setViewName("redirect:/memberList.ad");
 		}else {
@@ -253,6 +256,15 @@ public class AdminController {
 		return mv;
 	}
 	
+	@PostMapping("/declareBoard.ad")
+	public ModelAndView declareBoardAdmin(Board b, ModelAndView mv) {
+		int result=ms.declareBoard(b);
+		if(result>0) {
+			mv.setViewName("redirect:/boardList.ad");
+		}
+		return mv;
+	}
+	
 	@RequestMapping("/replyList.ad")
 	public ModelAndView replyList(ModelAndView mv) {
 		List<BReply> list=ms.getReplyList();
@@ -273,6 +285,15 @@ public class AdminController {
 	@PostMapping("/deleteCancleReply.ad")
 	public ModelAndView deleteCancleReplyPost(BReply r, ModelAndView mv) {
 		int result=ms.deleteCancleReply(r);
+		if(result>0) {
+			mv.setViewName("redirect:/replyList.ad");
+		}
+		return mv;
+	}
+	
+	@PostMapping("/declareReply.ad")
+	public ModelAndView declareReplyAdmin(BReply r, ModelAndView mv) {
+		int result=ms.declareReplyAdmin(r);
 		if(result>0) {
 			mv.setViewName("redirect:/replyList.ad");
 		}

@@ -9,6 +9,10 @@
 	<%@ include file="../include/bhead.jsp"%>
 </head>
 <body class="fix-header card-no-border logo-center">
+<script>
+console.log("111111");
+</script>
+<%System.out.println("111"); %>
 <!--=========================<jsp:include page="../include/header.jsp"/>-->
 <fmt:parseDate value="${ssq}" pattern="yyyy-MM-dd" var="e"/> 
 <fmt:formatDate value="${e}" pattern="yyyy-MM-dd" var = "d"/>
@@ -86,7 +90,6 @@
                             <div class="card-body">
                                 <h4 class="card-title">설문조사 인원</h4>
                                 <div class="table-responsive">
-                                   <!--  <form action="resultsurvey.ma"> -->
                                     <table class="table table-hover no-wrap">
                                         <tbody>
                                         <tr>
@@ -105,38 +108,25 @@
 										<td>${N.m_no }, ${N.name }</td>
 										</tr>
 										</c:forEach>
-										<%-- <input type="hidden" value="${su_no }" name="su_no"> --%>
+										<input type="hidden" value="${su_no }" name="su_no">
 										<tr>
-										<td><button id="btns" onclick="result();" class="btn btn-success waves-effect waves-light">설문조사 결과보기</button>
+										<td><button id="result" class="btn btn-success waves-effect waves-light" type="button">설문조사 결과보기</button>
 										<a class="btn btn-inverse waves-effect waves-light" href="selectsurvey.ma?lec_no=${lec.lec_no}">뒤로가기</a></td>
 										</tr>
 										
                                         </tbody>
                                     </table>
-                                 <!--    </form> -->
-                                    <!-- <script>
+									<script>
                                     	$(document).ready(function(){
-                                    		function result(){
-                                    			console.log(${Ysq});
-                                    			if(${!empty Ysq}){
-                                    			
-                                    			location.href="resultsurvey.ma?su_no=${su_no}";
-                                    			}
- 		                                   		}
-                                    		});
-                                    </script> -->
-                                    <script>
-                                    	$(document).ready(function(){
-                                    		function result(){
-                                    			console.log(${Ysq});
-                                    			if(true){
-                                    			
-                                    			location.href="resultsurvey.ma?su_no=${su_no}";
-                                    			}
- 		                                   		}
-                                    		});
+                                    		$("#result").click(function(){
+                                    			if(${!empty Ysq.get(0)}){
+													location.href='resultsurvey.ma?su_no=${su_no}'; 
+													
+												}
+ 		                                   	})
+                                    	});
                                     </script>
-                                </div>
+								</div>
                             </div>
                         </div>
                     </div>
@@ -163,5 +153,8 @@
 	
 	<%@ include file="../include/bjs.jsp" %>
 
-</body>
+</body> 
+<script>
+console.log("222");
+</script>
 </html>

@@ -13,6 +13,10 @@
 		update board set status='Y' where b_no=#{b_no}
 	</update>
 	
+	<update id="declareBoard">
+		update board set status='D' where b_no=#{b_no}
+	</update>
+	
 	<select id="getReplyList" resultType="BReply">
 		select * from breply
 	</select>
@@ -23,6 +27,10 @@
 	
 	<update id="deleteCancleReply">
 		update breply set status='Y' where r_no=#{r_no}
+	</update>
+	
+	<update id="declareReplyAdmin">
+		update breply set status='D' where r_no=#{r_no}
 	</update>
 	
 	<select id="getDeclareList" resultType="Declaree">

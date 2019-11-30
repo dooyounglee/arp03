@@ -155,9 +155,9 @@ public class SurveyController {
 //, @RequestParam("qlast") int qlast
 		
 		if(dd==0) {
-			mv.setViewName("redirect:/selectsurvey.ma?lec_no="+lec_no);
+			mv.setViewName("redirect:/selectsurveystudent.ma?lec_no="+lec_no);
 		}else {
-			mv.setViewName("");
+			mv.setViewName("common/error");
 		}
 		return mv;
 	}

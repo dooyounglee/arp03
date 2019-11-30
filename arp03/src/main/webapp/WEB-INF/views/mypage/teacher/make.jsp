@@ -38,10 +38,11 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">Apply Lecture</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="${cp }">Home</a></li>
+                            <li class="breadcrumb-item"><a href="applyList.lec">Apply List</a></li>
+                            <li class="breadcrumb-item active">Apply Lecture</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -76,10 +77,10 @@
                 <div class="row">
                 	
                 	<!-- 수강페이지 메뉴 -->
-                	<%@ include file="../../include/blecturemenu.jsp" %>
+                	<%-- <%@ include file="../../include/blecturemenu.jsp" %> --%>
                 	
                     <!-- <div class="col-lg-9 col-xlg-4 col-md-8"> -->
-                    <div class="col-lg-7 col-xlg-7 col-md-7">
+                    <div class="col-lg-9 col-xlg-9 col-md-9">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-md-flex no-block align-items-center">
