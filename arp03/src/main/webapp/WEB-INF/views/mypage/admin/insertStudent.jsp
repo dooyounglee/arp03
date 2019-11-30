@@ -97,7 +97,13 @@
                                         <div class="form-group">
                                             <label for="id">Email</label>
                                             <input class="form-control" name="email" id="email">
-                                            <div class="form-control-feedback">중복값이 있습니다.</div>
+                                            <div class="form-control-feedback">
+                                            	중복값이 있습니다.
+                                            	<div class="checkbox checkbox-success float-right">
+	                                                <input id="studentResend" type="checkbox">
+	                                                <label for="studentResend">다시 보내기</label>
+	                                            </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="pass">phone</label>
@@ -125,7 +131,13 @@
                                         <div class="form-group">
                                             <label for="email">Email</label>
                                             <input class="form-control" name="email" id="email">
-                                            <div class="form-control-feedback">중복값이 있습니다.</div>
+                                            <div class="form-control-feedback">
+                                            	중복값이 있습니다.
+                                            	<div class="checkbox checkbox-success float-right">
+	                                                <input id="teacherResend" type="checkbox">
+	                                                <label for="teacherResend">다시 보내기</label>
+                                            	</div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">Phone</label>
@@ -197,6 +209,7 @@
 		$('.form-control-feedback').hide()
 		
 		$('#studentForm #email').on('input',function(){
+			$('#studentResend').prop('checked',false)
 			var this_=$(this)
 			var email=$(this).val()
 			if(email.length==0){
@@ -259,12 +272,13 @@
 			})
 		})
 		function submitStudent(){
-			if(isStudentEmail && isStudentPhone){
+			if(isStudentEmail && isStudentPhone || $('#studentResend').prop('checked')){
 				$('#studentForm').submit();
 			}
 		}
 		
 		$('#teacherForm #email').on('input',function(){
+			$('#teecherResend').prop('checked',false)
 			var this_=$(this)
 			var email=$(this).val()
 			if(email.length==0){
@@ -329,7 +343,7 @@
 			return;
 		})
 		function submitTeacher(){
-			if(isTeacherEmail && isTeacherPhone){
+			if((isTeacherEmail && isTeacherPhone) || $('#teacherResend').prop('checked')){
 				$('#teacherForm').submit();
 			}
 		}
