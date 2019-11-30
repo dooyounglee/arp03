@@ -32,9 +32,7 @@
 		margin:0px;	
 	}
 	#regDate{
-		float:right;
-		color :gray;
-		font-size:13px;
+		float:right !important;
 	}	
 	#file,a{
 	font-size:15px;
@@ -81,6 +79,11 @@
             text-decoration: none;
             cursor: pointer;
         }
+        hr{margin-top:0 !important;}
+        #btns{
+        margin-left:auto;
+		margin-right:auto;
+		}
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
@@ -109,10 +112,10 @@
 	
 		<div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">자유게시판</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
+                            <li class="breadcrumb-item active">자유게시판</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -141,6 +144,81 @@
               
          <div class="row">  
 		<div class="col-12">
+		
+		
+		<div class="card card-body">
+                            <h3><b>${ b.title }</b></h3>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                    <span id="regDate" class="pull-right text-right">${ b.regdate }</span>
+                                    	<br><br>
+                                        <address>
+                                            <p class="text-muted ml-1">${ b.content }</p>
+                                        </address>
+                                    </div>
+                                </div>
+                                <div id="btns" class="text-center">
+		<button type="button" class="btn waves-effect waves-light btn-danger" onclick="declareBoard();">신고</button>
+				<c:if test="${ mem.m_no eq b.m_no }">
+					<button class="btn waves-effect waves-light btn-info" type="button" onclick="location.href='bupdateView.do?b_no=${b.b_no}';">수정</button>
+					<button class="btn waves-effect waves-light btn-info" type="button" onclick="deleteCheck();">삭제</button>
+				</c:if>
+	</div>
+                                
+                                <div class="col-md-12">
+                                    <div class="table-responsive mt-4" style="clear: both;">
+                                        <table class="table table-hover no-wrap">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">#</th>
+                                                    <th>Description</th>
+                                                    <th class="text-right">Quantity</th>
+                                                    <th class="text-right">Unit Cost</th>
+                                                    <th class="text-right">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center">1</td>
+                                                    <td>Milk Powder</td>
+                                                    <td class="text-right">2 </td>
+                                                    <td class="text-right"> $24 </td>
+                                                    <td class="text-right"> $48 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">2</td>
+                                                    <td>Air Conditioner</td>
+                                                    <td class="text-right"> 3 </td>
+                                                    <td class="text-right"> $500 </td>
+                                                    <td class="text-right"> $1500 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">3</td>
+                                                    <td>RC Cars</td>
+                                                    <td class="text-right"> 20 </td>
+                                                    <td class="text-right"> %600 </td>
+                                                    <td class="text-right"> $12000 </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">4</td>
+                                                    <td>Down Coat</td>
+                                                    <td class="text-right"> 60 </td>
+                                                    <td class="text-right">$5 </td>
+                                                    <td class="text-right"> $300 </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+		
+		
+		
+		
+		
                         <div class="card">
                             <div class="card-body">
 	<br>
