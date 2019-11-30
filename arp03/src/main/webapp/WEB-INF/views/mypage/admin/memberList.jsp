@@ -6,11 +6,6 @@
 <head>
 	<!-- head태그. header.jsp말고 -->
 	<%@ include file="../../include/bhead.jsp"%>
-	<!-- CSS Here -->
-	<link rel="stylesheet" type="text/css" href="/arp/resources/material-pro/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-	<!-- Javascript Here -->
-	<script src="/arp/resources/material-pro/assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
-	<script src="/arp/resources/material-pro/assets/plugins/datatables.net-bs4/js/dataTables.responsive.min.js"></script>
 </head>
 <body class="fix-header card-no-border logo-center">
 
@@ -87,21 +82,21 @@
                                 <a class="btn btn-success float-right" href="insertMemberToLecture.ad">회원을 강좌로 넣기</a>
                                 <h6 class="card-subtitle"><a class="btn btn-success" href="insertMember.ad">회원등록</a></code></h6>
                                 <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
+								    <table id="zero_config" class="table no-wrap">
+								        <thead>
+								            <tr>
+								                <th>#</th>
                                                 <th>Name</th>
                                                 <th>email</th>
                                                 <th>phone</th>
                                                 <th>Role</th>
                                                 <th>강퇴</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        	<c:forEach var="m" items="${list }">
-                                        		<tr>
-	                                        		<td>${m.m_no }</td>
+								            </tr>
+								        </thead>
+								        <tbody>
+								        	<c:forEach var="m" items="${list }">
+								        		<tr>
+													<td>${m.m_no }</td>
 	                                                <td><a href="DetailStudent.ad?m_no=${m.m_no }">${m.name }</a></td>
 	                                                <td>${m.email }</td>
 	                                                <td>${m.phone }</td>
@@ -133,51 +128,15 @@
 	                                                </td>
 												</tr>
 											</c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- column -->
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">회원관리</h4>
-                                <a class="btn btn-success float-right" href="insertMemberToLecture.ad">회원을 강좌로 넣기</a>
-                                <h6 class="card-subtitle"><a class="btn btn-success" href="insertMember.ad">회원등록</a></code></h6>
-                                <div class="table-responsive">
-								    <table id="zero_config" class="table table-striped table-bordered no-wrap">
-								        <thead>
-								            <tr>
-								                <th>Name</th>
-								                <th>Position</th>
-								                <th>Office</th>
-								                <th>Age</th>
-								                <!-- <th>Start date</th> -->
-								            </tr>
-								        </thead>
-								        <tbody>
-								        	<c:forEach var="m" items="${list }">
-								        		<tr>
-													<td>${m.m_no }</td>
-													<td>${m.name }</td>
-													<td>${m.email }</td>
-													<td>${m.phone }</td>
-													<%-- <td>${m.id }</td> --%>
-												</tr>
-											</c:forEach>
 								        </tbody>
 								        <tfoot>
 								            <tr>
-								                <th>Name</th>
-								                <th>Position</th>
-								                <th>Office</th>
-								                <th>Age</th>
-								                <!-- <th>Start date</th>
-								                <th>Salary</th> -->
+								                <th>#</th>
+                                                <th>Name</th>
+                                                <th>email</th>
+                                                <th>phone</th>
+                                                <th>Role</th>
+                                                <th>강퇴</th>
 								            </tr>
 								        </tfoot>
 								    </table>

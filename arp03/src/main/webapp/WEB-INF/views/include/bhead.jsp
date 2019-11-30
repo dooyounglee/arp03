@@ -47,3 +47,8 @@
     <link href="/${cp}/resources/material-pro/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />
     <link href="/${cp}/resources/material-pro/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
     <link href="/${cp}/resources/material-pro/assets/plugins/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />
+    <!-- CSS Here Datatable-->
+	<link rel="stylesheet" type="text/css" href="/arp/resources/material-pro/assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+	<!-- Javascript Here -->
+	<script src="/arp/resources/material-pro/assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="/arp/resources/material-pro/assets/plugins/datatables.net-bs4/js/dataTables.responsive.min.js"></script>
