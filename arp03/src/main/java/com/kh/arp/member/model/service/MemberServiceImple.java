@@ -123,6 +123,11 @@ public class MemberServiceImple implements MemberService {
 	public int deleteCancleReply(BReply r) {
 		return md.deleteCancleReply(r);
 	}
+	
+	@Override
+	public int declareReplyAdmin(BReply r) {
+		return md.declareReplyAdmin(r);
+	}
 
 	@Override
 	public List<Declaree> getDeclareList() {
@@ -193,6 +198,8 @@ public class MemberServiceImple implements MemberService {
 	public int acceptMember(Member mem) {
 		return md.acceptMember(mem);
 	}
+
+	
 
 
 

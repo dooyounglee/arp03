@@ -102,9 +102,10 @@
 	                                                <td>
 	                                                	<c:if test="${r.status eq 'Y'}">
 	                                                		<button class="btn btn-danger" onclick="deleteReply(${r.r_no})">삭제</button>
+	                                                		<button class="btn btn-danger" onclick="declare(${r.r_no})">신고</button>
 	                                                	</c:if>
-	                                                	<c:if test="${r.status eq 'N'}">
-	           	                                     		<button class="btn btn-primary" onclick="deleteCancleReply(${r.r_no})">삭제취소</button>
+	                                                	<c:if test="${r.status eq 'N' || r.status eq 'D'}">
+	           	                                     		<button class="btn btn-primary" onclick="deleteCancleReply(${r.r_no})">삭제/신고 취소</button>
 	                                                	</c:if>
 	                                                </td>
 												</tr>
@@ -170,6 +171,11 @@
 		}
 		function deleteCancleReply(r_no){
 			var formm=$('#form').attr('action','deleteCancleReply.ad')
+			formm.children('input').eq(0).val(r_no)
+			formm.submit();
+		}
+		function declare(r_no){
+			var formm=$('#form').attr('action','declareReply.ad')
 			formm.children('input').eq(0).val(r_no)
 			formm.submit();
 		}

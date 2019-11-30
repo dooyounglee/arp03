@@ -25,6 +25,10 @@
 		update breply set status='Y' where r_no=#{r_no}
 	</update>
 	
+	<update id="declareReplyAdmin">
+		update breply set status='D' where r_no=#{r_no}
+	</update>
+	
 	<select id="getDeclareList" resultType="Declaree">
 		select * from declaree
 	</select>
