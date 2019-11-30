@@ -131,7 +131,8 @@ CREATE TABLE Message (
    content   varchar2(1000)      NOT NULL,
    r_date   Date      DEFAULT NULL NULL ,
    s_date   Date      NULL,
-   read_status varchar2(20) DEFAULT 'N' NOT NULL
+   read_status varchar2(20) DEFAULT 'N' NOT NULL,
+   alram varchar2(10) DEFAULT 'N' NOT NULL
 );
 
 CREATE TABLE declaree (

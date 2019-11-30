@@ -59,17 +59,17 @@
 	#bor{
 		margin:0px;	
 	}
-	
+/* 	
 	#regDate{
 	float:right;
 	color :gray;
 	font-size:13px;
-	}
+	} */
 	
 	
-	#file,a{
+/* 	#file,a{
 	font-size:15px;
-	}
+	} */
 	#btn{
 		text-align:right;
 		margin-left:auto;

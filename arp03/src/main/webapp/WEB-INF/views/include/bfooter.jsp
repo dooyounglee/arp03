@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 © 2019 Material Pro Admin by wrappixel.com
 
-<button onclick="sendMessage_Count()">qq</button>
 <script>
 	var ws_count = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/${cp}/count/websocket");
 	ws_count.onopen=function() {
@@ -16,14 +15,9 @@
 	ws_count.onclose = function(evt) {
 		console.log("count연결 끊김");
 	}
-
-	// 메시지 전송
-	function sendMessage_Count() {
-		ws_count.send("들어오셨다");
-	}
 </script>
 
-<c:if test="${!empty mem }">
+<%-- <c:if test="${!empty mem }">
 <button onclick="sendMessage_Test()">qq</button>
 <script>
 	var ws = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/${cp}/echo/websocket?m_no=${mem.m_no}");
@@ -43,4 +37,4 @@
 		ws.send(6+"");
 	}
 </script>
-</c:if>
+</c:if> --%>
