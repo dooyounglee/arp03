@@ -44,10 +44,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">Account Update</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
+                            <li class="breadcrumb-item active">Account Update</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -87,6 +87,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="settings" role="tabpanel">
                                     <div class="card-body">
+                                    	<h4 class="card-title">내 정보 수정</h4>
                                         <form action="update.me" method="post" class="form-horizontal form-material" autocomplete=off>
                                             <div class="form-group">
                                             	<c:if test="${mem.typee eq 's' }">
@@ -187,6 +188,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="settings" role="tabpanel">
                                     <div class="card-body">
+                                    	<h4 class="card-title">비번 수정</h4>
                                         <form action="changePw.me" method="post" class="form-horizontal form-material" autocomplete=off>
                                             <div class="form-group">
                                                 <label for="example-email" class="col-md-12">Password</label>
