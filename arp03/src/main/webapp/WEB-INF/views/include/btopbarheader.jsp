@@ -17,7 +17,7 @@
 	            </b>
 	            <!--End Logo icon -->
 	            <!-- Logo text -->
-	            <span class="light-logo">
+	            <span class="light-logo" style="font-weight:bold;color:white;">
 	             <!-- dark Logo text -->
 	             <%-- <img src="/${cp }/resources/material-pro/assets/images/logo-text.png" alt="homepage" class="dark-logo" /> --%>
 	             <!-- Light Logo text -->    

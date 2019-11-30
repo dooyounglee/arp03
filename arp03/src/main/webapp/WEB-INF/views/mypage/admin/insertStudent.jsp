@@ -44,10 +44,11 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">Insert Member</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
+                            <li class="breadcrumb-item"><a href="memberList.ad">Member List</a></li>
+                            <li class="breadcrumb-item active">Insert Member</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -84,7 +85,7 @@
                     <div class="col-md-6">
                         <div class="card card-body">
                             <h3 class="mb-0">학생등록</h3>
-                            <p class="text-muted mb-4 font-13"> Bootstrap Elements </p>
+                            <p class="text-muted mb-4 font-13"> Insert Student </p>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <form id="studentForm" action="insertMember.ad" method="post" autocomplete=off>
@@ -96,7 +97,13 @@
                                         <div class="form-group">
                                             <label for="id">Email</label>
                                             <input class="form-control" name="email" id="email">
-                                            <div class="form-control-feedback">중복값이 있습니다.</div>
+                                            <div class="form-control-feedback">
+                                            	중복값이 있습니다.
+                                            	<div class="checkbox checkbox-success float-right">
+	                                                <input id="studentResend" type="checkbox">
+	                                                <label for="studentResend">다시 보내기</label>
+	                                            </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="pass">phone</label>
@@ -112,7 +119,7 @@
                     <div class="col-md-6">
                         <div class="card card-body">
                             <h3 class="mb-0">선생님등록</h3>
-                            <p class="text-muted mb-4 font-13"> Bootstrap Elements </p>
+                            <p class="text-muted mb-4 font-13"> Insert Teacher </p>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <form id="teacherForm" action="insertMember.ad" method="post" autocomplete=off>
@@ -124,7 +131,13 @@
                                         <div class="form-group">
                                             <label for="email">Email</label>
                                             <input class="form-control" name="email" id="email">
-                                            <div class="form-control-feedback">중복값이 있습니다.</div>
+                                            <div class="form-control-feedback">
+                                            	중복값이 있습니다.
+                                            	<div class="checkbox checkbox-success float-right">
+	                                                <input id="teacherResend" type="checkbox">
+	                                                <label for="teacherResend">다시 보내기</label>
+                                            	</div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">Phone</label>
@@ -196,6 +209,7 @@
 		$('.form-control-feedback').hide()
 		
 		$('#studentForm #email').on('input',function(){
+			$('#studentResend').prop('checked',false)
 			var this_=$(this)
 			var email=$(this).val()
 			if(email.length==0){
@@ -258,12 +272,13 @@
 			})
 		})
 		function submitStudent(){
-			if(isStudentEmail && isStudentPhone){
+			if(isStudentEmail && isStudentPhone || $('#studentResend').prop('checked')){
 				$('#studentForm').submit();
 			}
 		}
 		
 		$('#teacherForm #email').on('input',function(){
+			$('#teecherResend').prop('checked',false)
 			var this_=$(this)
 			var email=$(this).val()
 			if(email.length==0){
@@ -328,7 +343,7 @@
 			return;
 		})
 		function submitTeacher(){
-			if(isTeacherEmail && isTeacherPhone){
+			if((isTeacherEmail && isTeacherPhone) || $('#teacherResend').prop('checked')){
 				$('#teacherForm').submit();
 			}
 		}
