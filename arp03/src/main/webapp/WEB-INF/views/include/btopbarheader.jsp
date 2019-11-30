@@ -242,13 +242,14 @@
 			console.log("이벤트데이타" + event.data);
 
 			if (m_no == event.data) {
-				list(); // 새로운 메시지가오면 리스트 새로
+			
 
 				$("#heart").attr("class", "heartbit");
 				$("#point").attr("class", "point");
 
 				
 				alert("새로운 메시지가 있습니다");
+				list(); // 새로운 메시지가오면 리스트 새로
 							}
 		}
 
@@ -301,8 +302,9 @@
 					dataType : "json",
 					success : function(data) {
 						console.log(data.length)
+						console.log(data)
 							$(".message-center").children().remove();
-
+			
 						if (data.length > 0) {
 
 							$.each(data,function(index, value) {
