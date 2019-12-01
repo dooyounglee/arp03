@@ -11,4 +11,11 @@ public class VacationDate {
 //	private String classdate;
 	private int m_no;
 	private String companion_reason;
+	private String vacation_title;
+	private String name;
+	private String reason;
+	private String tstatus;
+	private String astatus;
+	private String status;
+	private String title;
 }

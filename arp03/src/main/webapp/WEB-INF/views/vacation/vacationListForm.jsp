@@ -153,13 +153,9 @@
                                         <thead>
                                                <tr>
                                                <th>휴가번호</th>
-                                               <th>강의번호</th>
                                                <th>이름</th>
-                                               <th>과목명</th>
-                                               <th>사유</th>
-                                               <th>휴가날짜</th>
-                                               <th>선생님</th>
-											   <th>관리자</th>	
+                                               <th>제목</th>
+                                               <th>입력날짜</th>	
                                             	</tr>
                                         </thead>
                                         <tbody >
@@ -167,13 +163,9 @@
                                         <c:if test = "${mem.m_no eq c.m_no }">
 										<tr>
 											<td>${c.v_no }</td>
-											<td>${c.lec_no }</td>
 											<td>${c.name }</td>
-											<td>${c.title }</td>
-											<td><a href="vDetail.me?lec_no=${c.lec_no }&v_no=${c.v_no}">${c.vacation_title }</a></td>
-											<td>${fn:substring(c.vacationdate,0 ,10) }</td>
-											<td>${c.tstatus }</td>
-											<td>${c.astatus }</td>
+											<td><a href="vDetail.me?v_no=${c.v_no}">${c.vacation_title }</a></td>
+											<td>${c.application_date}</td>
 										</tr>
 										</c:if>
 										</c:forEach>

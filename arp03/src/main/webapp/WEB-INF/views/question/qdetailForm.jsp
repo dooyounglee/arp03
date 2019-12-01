@@ -79,6 +79,14 @@
 	.btn-info{
 		background:#1e88e5;
 	}
+	
+	.contentWordText{
+		line-height:22px;
+		word-break:break-word;
+	}
+	.spanTrashColor:hover{
+		color:navy;
+	}
 </style>
 </head>
 <body class="fix-header card-no-border logo-center">
@@ -320,15 +328,27 @@
 								<table id="demo-foo-pagination" align="center" cellspacing="0">
 									<input type="hidden" id="q_nohidden" name="q_no" value="${ q.q_no }">
 												<c:if test="${ qRListCount ne 0 }">
-												댓글(${ qRListCount })
+												<span style="color:gray; font:fantasy; font-weight:bold;">댓글(${ qRListCount })</span>
 												<hr>
 													<c:forEach items="${ qRList }" var="qr">
 													<!-- 	<table border="1"> -->
-															<tr align="center">
-																<td style="width: 20px;margin-left:auto; margin-right:auto;">${ qr.r_no }</td>
-																<td style="width: 70px;">${ qr.name }</td>
+<%--  															<tr align="center">
+																<td style="width:auto;">${ qr.r_no } &nbsp;</td>
+																<td style="width:auto;">
+																	${ qr.name }
+																	<!-- 내글일경우에만 표시해주자 ex) 내 글 -->
+																		<!-- 박스 -->
+																		<span style="height:19px; margin:3px 0 0 6px; padding:0 8px; border-width:1px 1px 1px 1px; 
+																		border-style:solid; border-radius:17px; position:relative; float:right; vertical-align:top;">
+																			<!-- 글 -->
+																			<span style="height:17px; line-height:17px; margin:0; color:rgb(81, 143, 187); font-size:10px; letter-spacing:-1px; float:left;">
+																				내 글
+																			</span>
+																		</span>
+																</td>
 																<td style="width: 400px;">
-																	<textarea class="textAreaRe" cols="38"readonly>${ qr.content }</textarea></td>
+																	${ qr.content }
+																</td>
 																<td>${ qr.updatedate }</td>
 																<c:if test="${ qr.m_no eq mem.m_no }">
 																	<td>
@@ -339,8 +359,49 @@
 																		</button>
 																	</td>
 																</c:if>
-															</tr>
+															</tr> --%>
 													<!-- 	</table> -->
+													<!-- 이름부분 -->
+												<div>
+													<div style="padding-bottom:7px; height:30px;">
+														<span style="float:left; white-space:nowrap; color:white; display:none;">${ qr.r_no }</span>
+														<span style="float:left; white-space:nowrap; font-weight:bold;">${ qr.name }</span>
+														<!-- 내글일경우에만 표시해주자 ex) 내 글 -->
+														<c:if test="${ qr.name eq mem.name }">
+														<!-- 박스 -->
+														<span style="height:19px; margin:3px 0 0 6px; padding:0 8px; border-width:1px 1px 1px 1px; 
+														border-style:solid; font-weight:bold; border-radius:17px; position:relative; float:left; vertical-align:top;">
+															<!-- 글 -->
+															<span style="height:17px; line-height:17px; margin:0; color:rgb(81, 143, 187); font-size:10px; letter-spacing:-1px; float:left;">
+															내 글
+															</span>
+														</span>
+														</c:if>
+													</div>
+													<div class="contentWordText" style="display:inline;">
+													<span class="contentWordText" style="color:black; font:fantasy;">
+														${ qr.content }
+													</span>
+													<!-- <script>
+														$(function(){
+															${ qr.content }.replace("\n","<br>");
+														});
+													</script> -->
+													</div>
+													<div style="float:right;">
+													<span>
+														${ qr.updatedate }
+													</span>
+													<span>
+														<c:if test="${ qr.m_no eq mem.m_no }">
+															<button class="qrBtn btn-outline" style="outline:0; border:none; font-size:13px;" type="button">
+																	<span class="fas fa-trash spanTrashColor"></span>
+															</button>
+														</c:if>
+													</span>
+													</div>
+												</div>
+												<br>
 													</c:forEach>
 												</c:if>
 												<c:if test="${ qRListCount eq 0 }">
@@ -353,17 +414,19 @@
 					</div>
 				</div>
 			</div>
+			
 						<!-- row4끝 -->
 						<!-- row5시작 (댓글 등록하는 칸부분) -->
 						<div class="row">
 						<div class="col-lg-4"></div>
 						<div class="col-lg-8">
 						<div>
-						<textarea style="border: 1px solid black;" cols="60" rows="3" id="repl" cols="50" rows="2" name="content"></textarea>
-						<button class="btn waves-effect waves-light btn-info" style="height:47px; margin-left:auto; margin-right:auto; margin-top:-55px;" id="datUp" type="submit" onclick="qRestartInsert()">댓글등록</button>
+						<textarea class="contentWordText" style="border: 1px solid lightgray; padding:10px; border-radius:5px;" cols="60" rows="3" id="repl" cols="50" rows="2" name="content"></textarea>
+						<button class="btn waves-effect waves-light btn-info" style="height:47px; margin-left:auto; margin-right:auto; margin-top:-70px;" id="datUp" type="submit" onclick="qRestartInsert()">댓글등록</button>
 						</div>
 						</div>
 						</div>
+						<br><br><br>
 					</div>
 				</c:if>
 				</div>
@@ -658,8 +721,8 @@
 		}
 		
 		$(document).on("click", ".qrBtn", function(){
-			var r_no = $(this).parent().parent().children().eq(0).text();
-			//alert(r_no);
+ 			var r_no = $(this).parent().parent().parent().children().children().eq(0).text();
+			/* var r_no = $(this).parent().parent().children().eq(0).text(); */
 			if(confirm("삭제하시겠습니까?") == true){
 				$.ajax({
 					data: {r_no:r_no},
