@@ -134,12 +134,12 @@
 										</c:if>
 										<br>
 										<br> ＃youtube＃naver＃kakao URL &nbsp; <input class="form-control inputtexturl" style="width: 300px;" id="youtubeId" type="text" name="youtubelink">
-											<button id="addURLTest" type="button">추가</button>
+											<img style="width:30px; height:30px; cursor:pointer;" id="addURLTest" src="resources/siraFile/plus버튼.png">
 										<br>
 										<br>	
 										
 										<div style="text-align: center;">
-											<button class="btn waves-effect waves-light btn-rounded btn-info" onclick="return upContent()" type="submit">등록</button>
+											<button class="btn waves-effect waves-light btn-rounded btn-warning" onclick="return upContent()" type="submit">등록</button>
 											<button class="btn waves-effect waves-light btn-rounded btn-info" type="button" onclick="location.href='question.qu';">목록</button>
 										</div>
 										<br>
