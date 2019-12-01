@@ -68,7 +68,12 @@ public class MemberController {
 				cookie.setPath("/");
 				res.addCookie(cookie);
 			}
-			return "redirect:/";
+			String referer=(String)session.getAttribute("referer");
+			if(referer==null) {
+				return "redirect:/";
+			}else {
+				return "redirect:"+referer;
+			}
 		}else {
 			return "member/login";
 		}
