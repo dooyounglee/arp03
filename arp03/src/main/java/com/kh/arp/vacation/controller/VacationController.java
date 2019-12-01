@@ -2,7 +2,6 @@ package com.kh.arp.vacation.controller;
 
 import java.io.File;
 import java.io.PrintWriter;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -313,6 +312,20 @@ public class VacationController {
 		}
 		
 
+		
+	}
+	
+	@RequestMapping("status.me")
+	public ModelAndView statusCheck(int v_no , VacationDate vd , ModelAndView mv) {
+		
+	
+		vd = vService.statusCheck(v_no);
+		
+		mv.addObject("vd" , vd).setViewName("vacation/vacationListForm");
+		
+	
+		return mv;
+		
 		
 	}
 	

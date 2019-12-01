@@ -43,242 +43,7 @@
         <div class="page-wrapper">
 	<!-- End of Left-sidebar -->
 	
-	<br>
-	<br>
-<%-- <c:if test ="${mem.typee eq 's'}">
-	<table border="1px">
-	<tr>
-	<th>선생님</th>
-	<th>관리자</th>
-	</tr>
-	<tr>
-	 	<td>
-			 <c:if test = "${ v.tstatus eq 'N'}">
-			 처리중
-	  		 </c:if>
-			 <c:if test = "${ v.tstatus eq 'B'}">
-			 반려
-	  		 </c:if>
-	  	 	<c:if test ="${v.tstatus eq 'Y' }">
-	  	 	<input type="text" id="txt" style="border-radius: 5px;" readonly>
-	  	 </c:if>
-	 	</td>
-	<td>
-		<c:if test = "${ v.astatus eq 'N'}">
-			 처리중
-  		</c:if>
-		<c:if test ="${ v.astatus eq 'Y' }">
-			승인
-		</c:if>
-	
-	</td>
-	</tr>
-	</table>
-</c:if>
-	<c:if test ="${mem.typee eq 'a'}">
-	
-	<table border="1px">
-	<tr>
-	<th>선생님</th>
-	</tr>
-	<tr>
-	 	<td>
-			 <c:if test = "${ v.tstatus eq 'N'}">
-			 처리중
-	  		 </c:if>
-			 <c:if test = "${ v.tstatus eq 'B'}">
-			 반려
-	  		 </c:if>
-	  	 	<c:if test ="${v.tstatus eq 'Y' }">
-	  	 	<img src ="resources/image/sign.png" width="200" height="100">
-	  	 </c:if>
-	 	</td>
-	</tr>
-	
-	</table>
-	</c:if>
-	
-	<table align="center" border="1px">
-	<tr>
-		<td>강의제목</td>
-		<td>${v.title }</td>
-	<tr>
-	
-	<tr>
-		<td>휴가제목</td>
-		<td colspan="2">${v.vacation_title}</td>
-	</tr>
-	<tr>
-		
-		<td>작성자</td>
-		<td>${v.name}</td>
-	</tr>
-	<tr>
-		<td>사유</td>
-		<td>${v.reason }</td>
-	</tr>	
-	
-	<c:if test="${v.tstatus eq 'Y' && v.astatus eq 'Y'}">
-		<td>출력하기</td>
-		<td><button onclick="myvacation()">인쇄</button></td>
-	</c:if>
-	
-	<tr>
-	<c:if test="${v.tstatus eq 'B'}">
-		
-		<td>반려사유</td>
-		<td>${v.companion_reason }</td>
-	</c:if>
-	
-	</tr>
-	</table>
-	 --%>
-	<%-- <c:if test="${mem.typee eq 't' }">
-	<button onclick="location.href='sVlist.te';">리스트로돌아가기</button>
-	
- 	<a onclick="location.href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }'" style="cursor:pointer">허가</a> 
-	<!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-example-modal-lg">허가</button> -->
-	<!--<button id="sign">사인하기</button>  -->
-	<a onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }',width=300, height=300)" style="cursor:pointer">반려</a>
-	
-	<!-- iframe으로 가져오기 -->
-	<!-- <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" id="myLargeModalLabel">싸인하기</h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            </div>
-                                            <div class="modal-body">
- 												<iframe id="sof" name="sof" src="signature-pad.te" width="100%" height="400" frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>
-                                            </div>
-                                        </div>/.modal-content
-                                    </div>/.modal-dialog
-                                </div> -->
-	</c:if>
-	
-	<c:if test="${mem.typee eq 's' }">
-	<button onclick="location.href='vlist.me';" align="center">리스트로 돌아가기</button>
-	 
-	<c:if test="${v.tstatus eq 'N'}">
-	<a href="vdelete.me?lec_no=${ v.lec_no }&v_no="${v.v_no }">삭제하기</a>
-	</c:if>
-	<c:if test="${v.tstatus eq 'B'}">
-	<a href="vdelete.me?v_no=${ v.v_no }" >삭제하기</a>	
-	</c:if>
-	</c:if> --%>
-	
-                                 
-						<%-- 	<table border="1px" align="left">
-					
-					<tr>
-					<th>선생님</th>
-					<th>관리자</th>
-					</tr>
-					<tr>
-					 	<td>
-							 <c:if test = "${ v.tstatus eq 'N'}">
-							 처리중
-					  		 </c:if>
-							 <c:if test = "${ v.tstatus eq 'B'}">
-							 반려
-					  		 </c:if>
-					  	 	<c:if test ="${v.tstatus eq 'Y' }">
-					  	 	승인
-					  	 </c:if>
-					 	</td>
-					<td>
-						<c:if test = "${ v.astatus eq 'N'}">
-							 처리중
-				  		</c:if>
-						<c:if test ="${ v.astatus eq 'Y' }">
-							승인
-						</c:if>
-					
-					</td>
-					</tr>
-					</table>
-				</c:if>
-					<c:if test ="${mem.typee eq 'a'}">
-					
-					<table border="1px">
-					<tr>
-					<th>선생님</th>
-					</tr>
-					<tr>
-					 	<td>
-							 <c:if test = "${ v.tstatus eq 'N'}">
-							 처리중
-					  		 </c:if>
-							 <c:if test = "${ v.tstatus eq 'B'}">
-							 반려
-					  		 </c:if>
-					  	 	<c:if test ="${v.tstatus eq 'Y' }">
-					  	 	<!-- <img src ="resources/image/sign.png" width="200" height="100"> -->
-					  	 	승인
-					  	 </c:if>
-					 	</td>
-					</tr>
-					
-					</table> --%>
-					
-               <%-- <div class="table-responsive">
-          <table class="table">
-         <thead>
-             
-         </thead>
-         <tbody>
-                                  
-	
-		<table align="center">
-            <c:forEach items="${list}" var="v">  
-			
-		<tr>
-			<td>강의제목</td>
-			<td>${v.title }</td>
-		</tr>
-		
-		<tr>
-			<td>휴가제목</td>
-			<td colspan="2">${v.vacation_title}</td>
-		</tr>
-		<tr>
-			
-			<td>작성자</td>
-			<td>${v.name}</td>
-		</tr>
-		<tr>
-			<td>사유</td>
-			<td>${v.reason }</td>
-		</tr>
-		<tr>
-			<td>날짜</td>
-			<td>${fn:substring(v.vacationdate,0,10) }</td>
-		</tr>	
-		<tr>
-			<td>선생님</td>
-			<td>${v.tstatus }</td>
-		</tr>
-		<tr>
-			<td>관리자</td>
-			<td>${v.astatus }</td>
-		</tr>
-		 --%>
-		
-		<%-- 
-		<c:if test="${v.tstatus eq 'Y' && v.astatus eq 'Y'}">
-			<td>출력하기</td>
-			<td><button onclick="myvacation()">인쇄</button></td>
-		</c:if>
-		
-		<tr>
-		<c:if test="${v.tstatus eq 'B'}">
-			
-			<td>반려사유</td>
-			<td>${v.companion_reason }</td>
-		</c:if>
-		
-		</tr>
+	<%-- 
 		
 		<c:if test="${mem.typee eq 't' }">
 		<button onclick="location.href='sVlist.te';">리스트로돌아가기</button>
@@ -330,7 +95,8 @@
                     <div class="col-md-5 col-12 align-self-center">
                         <h3 class="text-themecolor mb-0 mt-0">휴가상세보기</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/arp">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="vlist.me">휴가신청하기</a></li>
                             <li class="breadcrumb-item active">휴가상세보기</li>
                         </ol>
                     </div>
@@ -397,6 +163,9 @@
 				
 				<c:forEach items="${list}" var="v" >  
 				<div class="col-md-3 col-xs-10 col-sm-2 no-padding" style="display:inline-block" >
+								 
+								 <input type="hidden" name="lec_no" value="${v.lec_no }">
+								 <input type="hidden" name="v_no" value="${v.v_no }">
 								 
                                         <div class="pricing-box featured-plan">
                                             <div class="pricing-body"  >

@@ -82,10 +82,12 @@
         
 	<!-- End of Left-sidebar -->
 	<br><br><br>
-	<h2 align="center"> 공지사항 작성하기</h2>
+	
 	<br>
 	
-	<form action="ninsert.ad" method="post" enctype="multipart/form-data">
+	
+	<form action="nupdate.ad" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="n_no" value="${n.n_no }">
 		<table align="center">
 			<tr>
 			

@@ -82,6 +82,16 @@ where lec_no = #{lec_no}
 
 </delete>
 
+<select id="statusCheck" resultType="VacationDate">
+
+select status
+from vacationdate
+where v_no=#{v_no}
+group by (status)
+
+</select>
+
+
 
 <select id="studentVacationList" resultType="Vacation">
 select v.* , m.name 

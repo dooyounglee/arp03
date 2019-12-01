@@ -7,55 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<style>
-	#formdiv{
-		border: 1px solid black;
-		padding:20px;
-		padding-left:60px;
-		padding-right:60px;
-		text-align:left;
-		color:black;
-		width:700px;
-		margin-left:auto;
-		margin-right:auto;
 
-	}	
-	
-	.card{
-		text-align:left;
-		margin-left:auto;
-		margin-right:auto;
-	
-	}
-	
-	#bor{
-		margin:0px;	
-	}
-	
-	#regDate{
-	float:right;
-	color :gray;
-	font-size:13px;
-	}
-	
-	#content{
-	border:1px;
-		width:450px;
-		height:230px;
-	}
-	#file,a{
-	font-size:15px;
-	}
-	#btn{
-		text-align:right;
-		margin-left:auto;
-		margin-right:auto;
-		width:600px;
-	}
-	
-	
-	
-</style>
 <body>
 
 
@@ -92,7 +44,7 @@
 	<br><br><br>
 	
 	
-	<h1 align="center">게시글 상세보기</h1>
+	
 	
 <%-- 	<h1 align="center">게시글 상세보기</h1>
 	<br>
@@ -118,7 +70,7 @@
 	</table> --%>
 	
 	
-	
+	<%-- 
 	<div class="page-wrapper">
 		<div class="row page-titles">
 	</div>
@@ -158,8 +110,78 @@
 	<br><br><br><br>
 	</div>
 	</div>
+	 --%>
+<div class="container-fluid">	
 	
 	
+	<div class="row page-titles">
+                    <div class="col-md-5 col-12 align-self-center">
+                        <h2 class="text-themecolor mb-0 mt-0">공지사항</h2>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/arp">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="nlist.ad">공지사항목록</a></li>
+                            <li class="breadcrumb-item active">공지사항상세보기</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+                        <div class="d-flex mt-2 justify-content-end">
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                   
+                                </div>
+                                <div class="spark-chart">
+                                </div>
+                            </div>
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                   
+                                </div>
+                                <div class="spark-chart">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-body printableArea">
+                        <h2 class="card-title">공지사항</h2>
+                        <h5 class="card-subtitle">반갑습니다 kh수학교육원에 오신걸 환영합니다.</h5><br>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                        <address>
+                                          <p style="display:inline">${n.title }</p>
+                                          <p style="float:right" >관리자 | ${ n.regdate }</p>
+                                          <hr>
+                                          
+                                          <div style="padding: 30px 0 30px 0;">
+                                          	<p>${ n.content }</p>
+                                          </div>		
+                                        </address>
+                                    </div>
+                                    <button onclick="location.href= 'nlist.ad';" align="center" class="btn waves-effect waves-light btn-rounded btn-info">리스트로 돌아가기</button>
+                                    <div class="pull-right text-right">
+                                        <address>
+                                            <c:if test="${mem.id eq 'admin' }">
+												<div align="right"  id="btn">
+												
+												<button onclick="location.href= 'nlist.ad';" align="center" class="btn waves-effect waves-light btn-rounded btn-info">리스트로 돌아가기</button>
+												<a href="nupdateForm.ad?n_no=${ n.n_no }" class="btn waves-effect waves-light btn-rounded btn-success">수정하기</a>
+												<a href="ndelete.ad?n_no=${ n.n_no }" class="btn waves-effect waves-light btn-rounded btn-danger">삭제하기</a>
+												</div>
+											</c:if>	
+                                        </address>
+                                    </div>
+                                </div>
+                              
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+	</div>
 	
 
 	
@@ -176,5 +198,19 @@
 
 
 	<%@ include file="../include/bjs.jsp" %>	
+	
+	
+	
+	<script>
+	
+	
+	
+	
+	
+	
+	
+	</script>
+	
+	
 </body>
 </html>

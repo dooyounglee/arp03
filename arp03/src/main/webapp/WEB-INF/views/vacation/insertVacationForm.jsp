@@ -8,13 +8,13 @@
 <title>휴가 신청하기</title>
 <!-- jQuery UI CSS파일 --> 
 <%@ include file="../include/bhead.jsp"%>
-</head>
 <body>
+</head>
 <body class="fix-header card-no-border logo-center">
 
+	<%@ include file="../include/bpreloader.jsp" %> 
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
-	
         <!-- Topbar header - style you can find in pages.scss -->
         <header class="topbar">
         	<%@ include file="../include/btopbarheader.jsp" %>
@@ -61,15 +61,44 @@
 			<tbody>
 			</tbody>
 		</table> -->
-	<div class="container-fluid">
+		<div class="container-fluid">
+		   <div class="row page-titles">
+                    <div class="col-md-5 col-12 align-self-center">
+                        <h3 class="text-themecolor mb-0 mt-0">작성하기</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/arp">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="vlist.me">휴가신청하기</a></li>
+                            <li class="breadcrumb-item active">작성하기</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+                        <div class="d-flex mt-2 justify-content-end">
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                   
+                                </div>
+                                <div class="spark-chart">
+                                </div>
+                            </div>
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                   
+                                </div>
+                                <div class="spark-chart">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+	
 			<div class="row">
                     <div class="col-lg-8 col-xlg-8 col-md-8">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-md-flex no-block align-items-center">
                                     <div>
-                                        <h4 class="card-title">휴가신청하기</h4>
-                                        <h6 class="card-subtitle">휴가신청하기</h6>
+                                        <h4 class="card-title">휴가작성하기</h4>
+                                        <h6 class="card-subtitle">제목과 사유를 적어주세요</h6>
                                         <div class="form-group mt-4 row">
                                         <label class="col-md-2 col-form-label">제목:</label>
                                         <div class="col-md-10">
@@ -104,9 +133,9 @@
 								<table style="text-align:center;">
 									<thead>
 										<tr>
-											<td colspan="1" id="prevmonth">&lt;</td>
+											<td colspan="1" id="prevmonth" style="cursor:pointer">&lt;</td>
 											<td colspan="5"><span id="yyyy">2020</span>년 <span id="mm">2</span>월</td>
-											<td colspan="1" id="nextmonth">&gt;</td>
+											<td colspan="1" id="nextmonth" style="cursor:pointer">&gt;</td>
 										</tr>
 										<tr>
 											<td>일</td>
@@ -119,7 +148,7 @@
 										</tr>
 									</thead>
 
-									<tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td class="real" data-dd="1">1</td></tr><tr><td class="real" data-dd="2">2</td><td class="real" data-dd="3">3</td><td class="real" data-dd="4">4</td><td class="real" data-dd="5">5</td><td class="real" data-dd="6">6</td><td class="real" data-dd="7">7</td><td class="real" data-dd="8">8</td></tr><tr><td class="real" data-dd="9">9</td><td class="real" data-dd="10">10</td><td class="real" data-dd="11">11</td><td class="real" data-dd="12">12</td><td class="real" data-dd="13">13</td><td class="real" data-dd="14">14</td><td class="real" data-dd="15">15</td></tr><tr><td class="real" data-dd="16">16</td><td class="real" data-dd="17">17</td><td class="real" data-dd="18">18</td><td class="real" data-dd="19">19</td><td class="real" data-dd="20">20</td><td class="real" data-dd="21">21</td><td class="real" data-dd="22">22</td></tr><tr><td class="real" data-dd="23">23</td><td class="real" data-dd="24">24</td><td class="real" data-dd="25">25</td><td class="real" data-dd="26">26</td><td class="real" data-dd="27">27</td><td class="real" data-dd="28">28</td><td class="real" data-dd="29">29</td></tr></tbody>
+									<tbody style="cursor:pointer"><tr><td></td><td></td><td></td><td></td><td></td><td></td><td class="real" data-dd="1">1</td></tr><tr><td class="real" data-dd="2">2</td><td class="real" data-dd="3">3</td><td class="real" data-dd="4">4</td><td class="real" data-dd="5">5</td><td class="real" data-dd="6">6</td><td class="real" data-dd="7">7</td><td class="real" data-dd="8">8</td></tr><tr><td class="real" data-dd="9">9</td><td class="real" data-dd="10">10</td><td class="real" data-dd="11">11</td><td class="real" data-dd="12">12</td><td class="real" data-dd="13">13</td><td class="real" data-dd="14">14</td><td class="real" data-dd="15">15</td></tr><tr><td class="real" data-dd="16">16</td><td class="real" data-dd="17">17</td><td class="real" data-dd="18">18</td><td class="real" data-dd="19">19</td><td class="real" data-dd="20">20</td><td class="real" data-dd="21">21</td><td class="real" data-dd="22">22</td></tr><tr><td class="real" data-dd="23">23</td><td class="real" data-dd="24">24</td><td class="real" data-dd="25">25</td><td class="real" data-dd="26">26</td><td class="real" data-dd="27">27</td><td class="real" data-dd="28">28</td><td class="real" data-dd="29">29</td></tr></tbody>
 								
 								</table>
 							<div id="dateArea"></div>
@@ -161,6 +190,15 @@
    
    </script>
    
+   
+   <script>
+   
+   	$("#vacation_title").
+   
+   
+   
+   
+   </script>
    
    
    

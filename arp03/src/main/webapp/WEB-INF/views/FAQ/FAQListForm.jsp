@@ -99,10 +99,10 @@ display:inline;
                 <!-- ============================================================== -->
                  <div class="row page-titles">
                     <div class="col-md-3 col-10 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Faqs</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">FAQ</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/arp">Home</a></li>
-                            <li class="breadcrumb-item active">Faqs</li>
+                            <li class="breadcrumb-item active">FAQ</li>
                         </ol>
                     </div>
                
