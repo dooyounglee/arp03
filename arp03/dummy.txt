@@ -118,10 +118,6 @@ VACATION_DATE DATE,
 tstatus	varchar2(100)	DEFAULT 'N'	NOT NULL,
 companion_reason varchar2(2000) NULL,
 astatus  varchar2(100)	DEFAULT 'N' NOT NULL,
-status	varchar2(100)	DEFAULT 'N'	NOT NULL,
-PRIMARY KEY(V_NO,LEC_NO , VACATIONDATE)
-);
-
 status	varchar2(100)	DEFAULT 'N'	NOT NULL, 
 PRIMARY KEY(V_NO,LEC_NO , VACATION_DATE)
 );
