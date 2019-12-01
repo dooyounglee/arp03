@@ -17,11 +17,11 @@
 <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet"> -->
 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
 
-<title>Summernote Lite</title>
+<!-- <title>Summernote Lite</title>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
-
+ -->
 <style>
 	input, textarea{
 		border:none;
@@ -248,7 +248,7 @@
 										value="${ qt.tcname }" readonly> <br>
 									<br>
 									<textarea id="summernote" cols="50" rows="7" name="replycontent" required>${ q.replycontent }</textarea>
-									<script>
+<!-- 									<script>
 								      $('#summernote').summernote({
 								        tabsize: 2,
 								        height:300,
@@ -257,7 +257,7 @@
 										focus: true,
 										lang:"ko-KR",
 								      });
-								    </script>
+								    </script> -->
 									<br>
 									<div style="text-align: center;">
 										<button
@@ -432,14 +432,7 @@
 				</div>
 					
 					<!-- row5끝 -->
-				</div>
-				<!-- ============================================================== -->
-				<!-- End PAge Content -->
-				<!-- ============================================================== -->
-			</div>
-			<!-- ============================================================== -->
-			<!-- End Container fluid  -->
-			<!-- ============================================================== -->
+
 
 
 
@@ -638,8 +631,9 @@
 
 
 				<script>
-	
-/* 		$(document).ready(function(){
+				
+				
+ 		$(document).ready(function(){
 			$("#summernote").summernote({
 				height:300,
 				minHeight: null,
@@ -660,13 +654,14 @@
 				
 			});
 			
-		}); */
+		});
 		
 		function noteTextUp(){
-			if($(".note-editable").text().trim() == ""){
+			if($(".note-editable").text().trim() == "" || ("#summernote").text().trim() == ""){
 				alert("내용을 입력해주세요.");
 				false;
 			}
+			
 		}
 		
 		function sendFile(file, el){
@@ -690,6 +685,9 @@
 			});
 			
 		}
+		
+	
+		
 		
 		function Qre(){
 			$("#qOpen").attr("style","display:block");

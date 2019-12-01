@@ -22,10 +22,10 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script> -->
 
-<title>Summernote Lite</title>
+<!-- <title>Summernote Lite</title>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script> -->
 
 <style>
 	.btn-info{
@@ -129,18 +129,6 @@
 										<br>
 										<input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly><br>
 										<textarea id="summernote" cols="50" rows="7" name="content" required>${ q.content }</textarea>
-										<script>
-											$('#summernote')
-													.summernote(
-															{
-																placeholder : '※ 이 게시판은 수업시간에 궁금했던점들을 선생님께 질문할수있는 질문게시판입니다. 도배, 욕설 및 부적절한 내용을 올릴 경우 신고 및 삭제될 수 있습니다. 참고하여 작성해주세요.',
-																tabsize : 2,
-																height : 300,
-																minHeight : null,
-																maxHeight : null,
-																focus : true
-															});
-										</script>
 										<br> 첨부파일 &nbsp; <input style="display: inline-block;"
 											type="file" name="fileReload">
 										<c:if test="${ !empty q.originalname }">
@@ -152,7 +140,9 @@
 											</button>
 										</c:if>
 										<br>
-										<br> ＃youtube＃naver＃kakao URL &nbsp; <input class="form-control" id="youtubeId" type="text" style="width: 300px;" name="youtubelink" value="${ q.youtubelink }"> <br>
+										<br> ＃youtube＃naver＃kakao URL &nbsp; <input class="form-control inputtexturl" id="youtubeId" type="text" style="width: 300px;" name="youtubelink" value="${ q.youtubelink }">
+											<button id="addURLTest" type="button">추가</button>
+										<br>
 										<br>
 										<div style="text-align: center;">
 											<button class="btn waves-effect waves-light btn-rounded btn-info" id="deleteaj" onclick="return note2UpText()" type="submit">확인</button>
@@ -222,7 +212,7 @@
 	
 	<script>
 	
-		/* $(document).ready(function(){
+		$(document).ready(function(){
 			$("#summernote").summernote({
 				height:300,
 				minHeight: null,
@@ -242,10 +232,51 @@
 				placeholder: '※ 이 게시판은 수업시간에 궁금했던점들을 선생님께 질문할수있는 질문게시판입니다. 도배, 욕설 및 부적절한 내용을 올릴 경우 신고 및 삭제될 수 있습니다. 참고하여 작성해주세요.'
 				
 			});
-		}); */
+		});
+		
+		
+		$("#addURLTest").click(function(){ // 추가 버튼
+			
+			// 사용자가 입력한 값
+			var youtubeaaa = $(".inputtexturl").val();
+			// summernote 내용 textarea부분
+		/* 	var upText = $(".upText").text(); */
+		/* 	alert(youtubeaaa);
+			alert(upText); */
+			/* var youtubeIdChange = $("#youtubeId").val(); */
+			/* var youtubeId = youtubeIdChange.replace('watch?v=','embed/'); */
+			if($(".inputtexturl").val().trim() != ""){
+				$('#summernote').summernote('pasteHTML', '<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');
+			}
+			var youtu = "https://youtu.be/";
+			var naver = "/v/";
+			var kakao = "https://tv.kakao.com/v/";
+			var daum = "https://kakaotv.daum.net/v/";
+			var youtubeId = youtubeaaa.replace('https://youtu.be/','https://www.youtube.com/embed/');
+			var naverId = youtubeaaa.replace('/v/','/embed/');
+			var kakaoId = youtubeaaa.replace('https://tv.kakao.com/v/','https://play-tv.kakao.com/embed/player/cliplink/');
+			var daumNewsId = youtubeaaa.replace('https://kakaotv.daum.net/v/','https://play-tv.kakao.com/embed/player/cliplink/');
+			if(youtubeaaa.indexOf(youtu) != -1){
+				$("#youtuberealId").attr("src", youtubeId);
+			}
+			if(youtubeaaa.indexOf(naver) != -1){
+				$("#youtuberealId").attr("src", naverId);
+			}
+			if(youtubeaaa.indexOf(kakao) != -1){
+				$("#youtuberealId").attr("src", kakaoId);
+			}
+			if(youtubeaaa.indexOf(daum) != -1){
+				("#youtuberealId").attr("src", daumNewsId);
+			}
+			
+			
+			/* 값 비우기 */
+			$(".inputtexturl").val("").focus();
+		});
+		
 		
 		function note2UpText(){
-			if($(".note-editable").text().trim() == ""){
+			if($(".note-editable").text().trim() == "" && $("#summernote").val() == ""){
 				alert("내용을 입력해주세요.");
 				return false;
 			}
