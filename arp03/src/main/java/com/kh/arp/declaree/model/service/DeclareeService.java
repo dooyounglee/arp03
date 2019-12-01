@@ -6,4 +6,6 @@ public interface DeclareeService {
 
 	int declare(Declaree d);
 
+	Declaree getDeclare(Declaree d);
+
 }

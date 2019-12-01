@@ -82,7 +82,7 @@
                                 <a class="btn btn-success float-left" href="write.qna">문의하기</a><br>
                                 <h6 class="card-subtitle"></code></h6>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table id="zero_config" class="table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -110,6 +110,9 @@
 											</c:forEach>
                                         </tbody>
                                     </table>
+                                    <script>
+								   		$('#zero_config').DataTable();
+								    </script>
                                 </div>
                             </div>
                         </div>

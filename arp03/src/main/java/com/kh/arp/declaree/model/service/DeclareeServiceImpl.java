@@ -16,4 +16,9 @@ public class DeclareeServiceImpl implements DeclareeService {
 	public int declare(Declaree d) {
 		return dd.declare(d);
 	}
+
+	@Override
+	public Declaree getDeclare(Declaree d) {
+		return dd.getDeclare(d);
+	}
 }

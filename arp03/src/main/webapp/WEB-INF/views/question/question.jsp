@@ -190,7 +190,7 @@
                                  </div>
                                     <input type="text" class="form-control" placeholder="Search for...">
                                     <div class="input-group-append col-lg-5">
-                                        <button class="btn btn-info" type="button">Go!</button>
+                                        <button class="btn btn-warning" type="button">Search</button>
                                     </div>
                                 </div>
                                 
