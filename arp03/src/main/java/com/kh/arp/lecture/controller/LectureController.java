@@ -60,23 +60,18 @@ public class LectureController {
 	public ModelAndView makeLecturePost(Lecture lec, HttpSession session, ModelAndView mv, String[] classdate, String[] week) {
 		
 		Member mem=(Member)session.getAttribute("mem");
-		System.out.println(lec+ "lec");
-		System.out.println(mem+"mem");
 		lec.setM_no(mem.getM_no());
-		lec.setDayofweek(String.join(",", week));
-		System.out.println(lec);
+		String str_week=(String.join(",", week)).replace('0','일').replace('1','월').replace('2','화').replace('3','수').replace('4','목').replace('5','금').replace('6','토');
+		lec.setDayofweek(str_week);
 		
 		int result=ls.makeLecture(lec);
-		System.out.println(result+"ddddddddd");
 		if(result>0) {
 			Lecture newlec=ls.getLastestLecture();
-			System.out.println(newlec);
 			ArrayList<Classdate> list=new ArrayList<>();
 			for(int i=0;i<classdate.length;i++) {
 				Classdate cd=new Classdate(newlec.getLec_no(),classdate[i],i+1);
 				list.add(cd);
 			}
-			System.out.println(list);
 			
 			int result1=ls.insertClassdate(list);
 			mv.setViewName("redirect:/lectureList.ad");
