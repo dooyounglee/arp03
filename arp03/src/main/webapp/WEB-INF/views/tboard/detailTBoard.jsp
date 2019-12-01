@@ -89,10 +89,10 @@
 				<!-- ============================================================== -->
 				<div class="row page-titles">
 					<div class="col-md-5 col-12 align-self-center">
-						<h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+						<h3 class="text-themecolor mb-0 mt-0">선생님 게시판</h3>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-							<li class="breadcrumb-item active">Form</li>
+							<li class="breadcrumb-item"><a href="${ cp }">Home</a></li>
+							<li class="breadcrumb-item active">선생님 게시판</li>
 						</ol>
 					</div>
 					<div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -132,19 +132,64 @@
                     <div class="col-md-12">
                         <div class="card card-body printableArea">
                             <h3><b>${ b.title }</b> <span class="pull-right">#${ b.b_no }</span></h3>
+                             
                             <hr>
 							   <div class="row">
                                 <div class="col-md-12">
-                                    <div class="pull-left">
+                                <!--     <div class="pull-left">  -->
                                      <address>
-                                            <b class="text-info">${ b.name}</b>
-                                            <p class="text-muted ml-1">E 104, Dharti-2,
-                                                <br /> Nr' Viswakarma Temple,
-                                                <br /> Talaja Road,
-                                                <br /> Bhavnagar - 364002</p>
+                                           <span><b class="text-info pull-left">${ b.name}</b></span> 
+                                           <span class="text-right" >${ b.regdate }</b></span>
+                                            <p class="text-muted ml-1">
+                                            ${ b.content }
                                         </address>
-                                    
-								<div id="formdiv" align="center">
+                                          <div class="pull-right text-right">
+                                        <address>
+                                        	<c:if test="${ !empty bfList}">
+                                        	<img src="resources/image/fileIcon.jpg" width="15px"
+												height="19px">
+                                            <label class="font-bold">첨부파일</label><br>
+                                            <c:forEach items="${ bfList }" var="bl">
+												<a class="text-success ml-4" href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bl.rename_filename}"
+													download="${ bl.original_filename }">${ bl.original_filename }</a>
+												<br>
+
+											</c:forEach>
+											</c:if>
+                                        </address>
+                                    </div>
+                               
+                                  <!-- 댓글 등록 -->
+                                <div class="col-md-12"  align="center">
+								 <div class="card-body">
+									<!-- 댓글 등록 부분 -->
+									<!-- <div class="card"> -->
+									<div id="re">
+									<table id="reTb" width="600px" align="center" cellspacing="0">
+										<tr>
+										
+											<td><textarea cols="60" rows="3" id="rContent"></textarea></td>
+											<td><button class="btn waves-effect waves-light btn-info" id="rBtn">등록</button></td>
+										</tr>
+									</table>
+										<hr>
+									<!-- 댓글 목록	 -->
+									 <div class="col-md-8">
+										<table class="table table-hover no-wrap" align="center" id="rtb" style="color:black" cellspacing="0">
+											<thead>
+												<tr>
+													<td colspan="4"><b id="rCount"></b></td>
+												</tr>
+											</thead>
+											<tbody>
+
+											</tbody>
+
+										</table>
+                                     </div>   
+                                   </div>      
+                                 </div>   
+				<%-- 				<div id="formdiv" align="center">
 
 									<p align="center" style="font-size: 15px">${ b.b_no }번글</p>
 									${ b.title } <br> <label id="bor" style="color: lightgray">---------------------------------------------------------------------------</label>
@@ -170,11 +215,11 @@
 
 										</c:if>
 									</div>
-
-									<br> <br>
+ --%>
+									<!-- <br> <br>
 
 									<div id="re">
-										<!-- 댓글 등록 부분 -->
+										댓글 등록 부분
 
 										<table align="center" width="700" border="1" cellspacing="0">
 											<tr>
@@ -186,7 +231,7 @@
 											</tr>
 										</table>
 										<br>
-										<!-- 댓글 목록 부분 -->
+										댓글 목록 부분
 										<table align="center" width="700" cellspacing="0" id="rtb"
 											style="color: black">
 											<thead>
@@ -199,7 +244,7 @@
 											</tbody>
 
 										</table>
-									</div>
+									</div> -->
 									<br>
 									<div align="right" id="btn">
 										<c:if test="${ mem.m_no eq b.m_no }">
@@ -216,6 +261,8 @@
 						</div>
 
 					</div>
+				</div>
+			</div>
 					<script>
 		$(function(){
 			getReplyList();
@@ -254,25 +301,32 @@
 				});
 				
 			});
-		
+	//	눌렀을떄 this를 제외하고 class 닫히게 
 		// 수정버튼을 눌렀을때
+	
 		$(document).on("click",".upBtn",function(){
-			
-			console.log("44");
-			console.log($(this).parent().parent().children(".content").text());
-			console.log($(this).parent().parent().children())
-			// content자리가 textarea로 변경되게 
-			 var upContent=$(this).parent().parent().children(".content");	
-			 var contentText= upContent.text();
-			 
-		 	upContent.replaceWith( '<textarea id="upcontent">'+contentText+'</textarea>' );
 		 	
-		 	var delNo =$(this).parent().parent().children(".delBtn");
+	/* 		console.log("hhhhh"+($(".content").attr("class")))
+	
+			console.log($(this).parent().parent().children(".content").text());
+			console.log($(this).parent().parent().children()) */
+			// content자리가 textarea로 변경되게 
+			
+			
+			 var upContent=$(this).parent().parent().children(".content")
+		  	 var contentText= upContent.text();
+			
+		 	upContent.replaceWith( '<textarea id="upcontent">'+contentText+'</textarea>');
+		 	
+		 	var delNo =$(this).parent().parent().children(".delBtn"); 
 		 	// 삭제버튼, 수	정버튼 안보이고 등록버튼 보임
 		 	delNo.hide(); // 삭제버튼
 		 	$(this).hide(); // 수정버튼
 			$(this).parent().parent().children("#subBtn").show();		// 등록버튼	
 		 	$(this).parent().parent().children("#reBtn").hide();	// 답글버튼
+		 	
+		 	$(".upBtn").hide();
+		 
 		 				
 		});
 		
@@ -324,8 +378,9 @@
 			var updateContent = $(this).parent().parent().children(".content");
 			var name = $(this).parent().parent().children(".name").text();
 			console.log(name);
-			updateContent.parent().after("<tr><td>┖></td><td><textarea></textarea></td><td><button class='resubBtn btn waves-effect waves-light btn-info' >등록</button></td></tr>");
+			updateContent.parent().after("<tr><td>┖></td><td><textarea></textarea></td><td><button class='resubBtn btn waves-effect waves-light btn-rounded btn-outline-success btn-xs' >등록</button></td></tr>");
 			
+			$(this).parent().parent().children("#reBtn").hide();	// 답글버튼
 			
 		});
 		
@@ -337,8 +392,8 @@
 			var content = $(this).parent().prev().children().val(); 
 			console.log(content);
 			
-			
-			
+			if(content != ""){
+
 			  $.ajax({
 				url:"reReplyInsert.do",
 				data:{parent_no: r_no,
@@ -358,10 +413,14 @@
 						}	
 						  
 				});	
+	
 		
-		});
+	}else{
+		alert("내용을 입력해주세요!");
+		$(this).parent().prev().children().focus();
+	}
 		
-		
+		});		
 		 
 	/* 	 // 대댓글 삭제 버튼을 눌렀을때
 		 $(document).on("click",".delReBtn", function(){
@@ -427,20 +486,6 @@
 		
 		
 
-	/* 	// 제목을 눌렀을때 대댓글
-		$contentTd.hover(function() {
-			console.log($(this).parent().text());
-			  $(this).css("color", "blue");
-			}, function(){
-			  $(this).css("color", "black");
-			});
-		$contentTd.on("click", function(){
-			
-			$(this).parent().after("<tr><td>"+r_no+"</td><td><textarea></textarea></td></tr>");
-			})
-		
-			
-		});	 */
 	
 	function getReplyList(){
 			
@@ -449,8 +494,7 @@
 				data:{b_no:${b.b_no}},
 				dataType:"json",
 				success:function(data){
-					console.log(data);
-					
+		
 					$tbody = $("#rtb tbody");	
 					$tbody.html("");
 					
@@ -468,13 +512,13 @@
 							$writerReTd = $("<td>┖>"+"  "+value.name+"</td>");
 							$contentTd = $("<td class='content' width='200'></td>").text(value.content);
 							$dateTd = $("<td></td>").text(value.regdate);
-							$upBtn = $("<td><button class='upBtn btn waves-effect waves-light btn-xs btn-info'>수정</button></td>");
-							$delBtn = $("<td><button class='delBtn btn waves-effect waves-light btn-xs btn-info'>삭제</button></td>");
+							$upBtn = $("<td><button class='upBtn btn waves-effect waves-light btn-rounded btn-outline-warning btn-xs'>수정</button></td>");
+							$delBtn = $("<td><button class='delBtn btn waves-effect waves-light btn-rounded btn-outline-danger btn-xs'>삭제</button></td>");
 							$upForm =$("<textarea></textarea>");
-							$subBtn = $("<td id='subBtn'><button class='subBtn btn waves-effect waves-light btn-xs btn-info'>sub</button></td>");
+							$subBtn = $("<td id='subBtn'><button class='subBtn btn waves-effect waves-light btn-rounded btn-outline-success btn-xs'>등록</button></td>");
 							$r_no = $("<input type='hidden' id='r_no' class='r_no'>").val(value.r_no);
 							$depth = $("<input type='hidden' class='depth'>").val(value.depth);
-							$reBtn = $("<td id='reBtn'><button class='re btn waves-effect waves-light btn-xs btn-info'>답글</button></td>");
+							$reBtn = $("<td id='reBtn'><button class='re btn waves-effect waves-light btn-rounded btn-outline-info btn-xs'>답글</button></td>");
 							$delString = $("<td>삭제된 댓글입니다.</td>");
 							$parent_no = $("<input type='hidden'  class='parent_no'>").val(value.parent_no);
 							
@@ -487,6 +531,8 @@
 								var status = value.status;
 								if(status == "N"){			//삭제된 댓글일때
 								$tr.append($delString);
+								$dateTd =$("<td>").text("");
+								
 								}else{											
 							
 									$tr.append($contentTd);
@@ -498,7 +544,8 @@
 							
 							}
 							$tr.append($dateTd);
-							if(${mem.m_no} == value.m_no){
+							var status = value.status;
+							if(${mem.m_no} == value.m_no && status=="Y"){
 								$tr.append($upBtn);
 								$tr.append($delBtn);
 							}
@@ -506,7 +553,7 @@
 							$tr.append($subBtn);
 							$tr.append($depth);
 							$tr.append($r_no);
-							if(value.depth == 1){
+							if(value.depth == 1 && status=="Y"){
 								$tr.append($reBtn);
 							}
 							$tr.append($parent_no);

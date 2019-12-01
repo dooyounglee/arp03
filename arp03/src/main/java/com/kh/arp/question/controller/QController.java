@@ -154,7 +154,7 @@ public class QController {
 		if (q != null) {
 			mv.addObject("q", q).addObject("qRList", qRList).addObject("qt", qt).addObject("qRListCount", qReplyListCount).setViewName("question/qdetailForm");
 		} else {
-			mv.addObject("msg", "게시글 상세조회 실패").setViewName("qcommon/errorPage");
+			mv.addObject("msg", "게시글 상세조회 실패").setViewName("common/error");
 		}
 
 		return mv;
@@ -230,7 +230,7 @@ public class QController {
 		if(result > 0) {
 			mv.addObject("q_no", q.getQ_no()).setViewName("redirect:qdetail.qu");
 		}else {
-			mv.addObject("msg", "게시판 수정 실패").setViewName("qcommon/errorPage");
+			mv.addObject("msg", "게시판 수정 실패").setViewName("common/error");
 		}
 		
 		return mv;
@@ -251,7 +251,7 @@ public class QController {
 		if (result > 0) {
 			return "redirect:question.qu";
 		} else {
-			return "qcommon/errorPage";
+			return "common/error";
 		}
 	}
 
@@ -337,7 +337,7 @@ public class QController {
 			 System.out.println(q1);
 			 mv.addObject("q1", q1).setViewName("redirect:qdetail.qu?q_no="+ q_no);
 		 }else {
-			 mv.addObject("msg", "게시판 수정 실패").setViewName("qcommon/errorPage");
+			 mv.addObject("msg", "게시판 수정 실패").setViewName("common/error");
 		 }
 		 
 		 return mv;
