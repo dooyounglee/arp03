@@ -7,6 +7,10 @@
 		)
 	</select>
 	
+	<select id="getDeclare" resultType="Declaree">
+		select * from declaree where d_no=#{d_no}
+	</select>
+	
 	
 	
 	

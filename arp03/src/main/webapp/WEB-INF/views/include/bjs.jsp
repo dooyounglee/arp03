@@ -59,6 +59,9 @@
         type="text/javascript"></script>
     <script src="/${cp }/resources/material-pro/assets/plugins/dff/dff.js" type="text/javascript"></script>
     <script type="text/javascript" src="/${cp }/resources/material-pro/assets/plugins/multiselect/js/jquery.multi-select.js"></script>
+    <!-- Range slider  -->
+    <script src="/${cp }/resources/material-pro/assets/plugins/ion-rangeslider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
+    <script src="/${cp }/resources/material-pro/assets/plugins/ion-rangeslider/js/ion-rangeSlider/ion.rangeSlider-init.js"></script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->

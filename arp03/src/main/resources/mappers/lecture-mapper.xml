@@ -18,8 +18,8 @@
 			seq_lecture.nextval,
 			#{m_no},
 			#{title},
-			sysdate,<!-- to_date(#{startdate},'yyyy-mm-dd'), -->
-			sysdate,
+			to_date(#{startdate},'yyyy-mm-dd'),<!-- to_date(#{startdate},'yyyy-mm-dd'), -->
+			to_date(#{starttime},'hh24:mi'),
 			#{inghour},
 			'A',
 			#{content},
@@ -30,9 +30,6 @@
 			#{dayofweek},
 			#{place}
 		)
-		<!-- <selectKey keyProperty="abc">
-			select seq_lecture.currval from dual
-		</selectKey> -->
 	</insert>
 	
 	<select id="getLastestLecture" resultType="Lecture">
@@ -40,7 +37,7 @@
 	</select>
 	
 	<insert id="insertClassdate">
-		insert into classdate values(#{lec_no},#{classdate},#{nth})
+		insert into classdate values(seq_lecture.currval,#{classdate},#{nth})
 	</insert>
 	
 	<select id="getExamList" resultType="Exam">

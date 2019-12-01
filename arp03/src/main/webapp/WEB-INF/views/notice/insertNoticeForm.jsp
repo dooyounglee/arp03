@@ -70,7 +70,16 @@
 			</tr>
 		</table>
 	</form>
-
+<input id="movie"><button onclick="movie()">부미</button>
+<script>
+function movie(){
+	//<iframe id="youtuberealId" width="560" height="315" src="https://play-tv.kakao.com/embed/player/cliplink/404312441" frameborder="0"></iframe>
+	//$('#summernote').summernote('editor.insertImage', "resources/upload/"+data);
+	//$('#summernote').summernote('insertText', '<iframe id="youtuberealId" width="560" height="315" src="https://play-tv.kakao.com/embed/player/cliplink/404312441" frameborder="0"></iframe>');
+	$('#summernote').summernote('pasteHTML', '<iframe id="youtuberealId" width="560" height="315" src="https://play-tv.kakao.com/embed/player/cliplink/404312441" frameborder="0"></iframe>');
+	
+}
+</script>
 	<br><br>
 	
 	<footer class="footer">
