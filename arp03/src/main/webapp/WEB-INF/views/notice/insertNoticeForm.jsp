@@ -6,25 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
 </head>
-<!-- include libraries(jQuery, bootstrap) -->
-<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
-<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-
-include summernote css/js
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
 <body>
 <%@ include file="../include/bhead.jsp"%>
 </head>
 <body class="fix-header card-no-border logo-center">
 
-<!-- Preloader - style you can find in spinners.css -->
-
+	<!-- Preloader - style you can find in spinners.css -->
+ 	<%@ include file="../include/bpreloader.jsp" %> 
+	<!-- End of Preloader - style you can find in spinners.css -->
 
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
@@ -43,6 +33,9 @@ include summernote css/js
 
 		<!-- Page wrapper  -->
         <div class="page-wrapper">
+        
+        
+        
 	<!-- End of Left-sidebar -->
 	<br><br><br>
 	<h2 align="center"> 공지사항 작성하기</h2>
@@ -65,7 +58,7 @@ include summernote css/js
 			<tr>
 				<td>내용</td>
 				<td>
-				<textarea id="summernote" cols="50" rows="7" name="content" id="content"required >${b.content }</textarea>
+				<textarea id="summernote" cols="50" rows="7" name="content" id="content" required >${b.content }</textarea>
 				</td>
 			</tr>
 			
@@ -89,7 +82,7 @@ include summernote css/js
         <!-- End of Page wrapper  -->
         
 	</div>
-	<%--  <%@ include file="../include/bjs.jsp" %>    --%>
+	 <%@ include file="../include/bjs.jsp" %>   
 	
 						
 	
@@ -97,29 +90,33 @@ include summernote css/js
 	
 	
 	<script>
-	
+	//jQuery.noConflict();
 	$(document).ready(function() {
-		  $('#summernote').summernote({
-			  
-			  height:300,
-			  minheight:null,
-			  maxheight:null,
-			  focus:true
-		  });
-		 
-		});
-	</script>
-	<!-- <script>
-      $('#summernote').summernote({
-        placeholder: 'Hello stand alone ui',
-        tabsize: 2,
-        height: 100
-      });
-    </script> -->
+		$('#summernote').summernote({
+            callbacks : {
+				onImageUpload : function(files) {
+					var _this=this;
+					    for(var i=0; i<files.length; i++){
+					    	var formData = new FormData();
+					        formData.append('uploadFile', files[i]);
+						    $.ajax({
+						        url: "upload",
+						        data: formData,
+						        processData: false,
+						        contentType: false,
+						        type: 'POST',
+						        success: function (data) {
+						            $(_this).summernote('editor.insertImage', "resources/upload/"+data);
+						        }
+						    });
+					    }
+		            alert("이미지 업로드 성공");
+				}
+			},
+        });
+	});
 	
-   <script>
    
-   var jq132 = jQuery.noConflict();
    
    </script>
 	
