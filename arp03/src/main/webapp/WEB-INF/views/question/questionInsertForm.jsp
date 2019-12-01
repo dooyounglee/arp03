@@ -115,7 +115,8 @@
 										<br>
 										<br>
 										<br> 
-										<input class="form-control" style="width: 300px;" type="text" name="title" required>
+										<input class="form-control" style="width: 300px;" type="text" name="title" required><br>
+										<br>
 										<input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly>
 										<br>
 										<textarea class="upText" id="summernote" cols="50" rows="7" name="content" required></textarea>
@@ -146,7 +147,7 @@
 											</button>
 										</c:if>
 										<br>
-										<br> 유튜브URL &nbsp; <input class="form-control" style="width: 300px;" id="youtubeId" type="text" name="youtubelink">
+										<br> ＃youtube＃naver＃kakao URL &nbsp; <input class="form-control" style="width: 300px;" id="youtubeId" type="text" name="youtubelink">
 											
 										<br>
 										<br>	

@@ -90,9 +90,7 @@
 		${ pi.currentPage }
 	</c:if>
 		 / ${ pi.maxPage } 
-		<c:if test="${ !empty mem }">
 		<button class="btn waves-effect waves-light btn-info" onclick="location.href='binsertForm.do';">글쓰기</button>
-		</c:if>
 	</h6>
 	
 	<div class="row">
@@ -112,14 +110,7 @@
 		<c:forEach items="${ list }" var="b">
 			<tr>
 				<td>${ b.b_no }</td>
-				<td>
-					<c:if test="${ !empty mem }">
-						<a href="bdetail.do?b_no=${ b.b_no }">${ b.title }</a>
-					</c:if>
-					<c:if test="${ empty mem }">
-						${ b.title }
-					</c:if>
-				</td>
+				<td><a href="bdetail.do?b_no=${ b.b_no }">${ b.title }</a></td>
 				<td>익명</td>
 				<td>${ b.regdate }</td>
 				<td>${ b.vcount }</td>

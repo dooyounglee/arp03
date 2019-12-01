@@ -125,10 +125,9 @@
 										<br>
 										<br>
 										<br> 
-										<input class="form-control" style="width: 300px;" type="text" name="title" value="${ q.title }" required> <br>
-										<input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly><br>
+										<input class="form-control" style="width: 300px;" type="text" name="title" value="${ q.title }" required><br>
 										<br>
-
+										<input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly><br>
 										<textarea id="summernote" cols="50" rows="7" name="content" required>${ q.content }</textarea>
 										<script>
 											$('#summernote')
@@ -153,7 +152,7 @@
 											</button>
 										</c:if>
 										<br>
-										<br> 유튜브URL &nbsp; <input class="form-control" id="youtubeId" type="text" style="width: 300px;" name="youtubelink" value="${ q.youtubelink }"> <br>
+										<br> ＃youtube＃naver＃kakao URL &nbsp; <input class="form-control" id="youtubeId" type="text" style="width: 300px;" name="youtubelink" value="${ q.youtubelink }"> <br>
 										<br>
 										<div style="text-align: center;">
 											<button class="btn waves-effect waves-light btn-rounded btn-info" id="deleteaj" onclick="return note2UpText()" type="submit">확인</button>

@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ import com.kh.arp.board.model.service.BoardService;
 import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.common.PageInfo;
+import com.kh.arp.member.model.vo.Member;
 
 @Controller
 public class BoardController {
@@ -45,7 +47,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping("binsertForm.do")
-	public String boardInserView() {
+	public String boardInserView(HttpSession session) {
+		Member mem=(Member)session.getAttribute("mem");
+		if(mem==null) {
+			session.setAttribute("myreferer", "binsertForm.do");
+			return "redirect:login.me";
+		}
 		return "board/boardWriteForm";
 	}
 	
@@ -96,7 +103,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping("bdetail.do")
-	public ModelAndView boardDetail(int b_no, ModelAndView mv) {
+	public ModelAndView boardDetail(int b_no, HttpSession session, ModelAndView mv) {
+		Member mem=(Member)session.getAttribute("mem");
+		if(mem==null) {
+			session.setAttribute("myreferer", "bdetail.do?b_no="+b_no);
+			mv.setViewName("redirect:login.me");
+			return mv;
+		}
+		
 		Board b = bService.selectBoard(b_no);
 		bService.updateVcount(b_no);
 		//System.out.println(a);
