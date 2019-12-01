@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.arp.manager.model.dao.SurveyDao;
-import com.kh.arp.manager.model.vo.CompleteSurvey;
 import com.kh.arp.manager.model.vo.InsertSurvey;
+import com.kh.arp.manager.model.vo.SelectSurveyStudent;
 import com.kh.arp.manager.model.vo.SurveyQuestion;
 
 @Service("ss")
@@ -25,7 +25,12 @@ public class SurveyServiceImpl implements SurveyService {
 	public List<InsertSurvey> selectsurvey(int lec_no) {
 		return sDao.selectsurvey(lec_no);
 	}
-
+	
+	@Override
+	public List<SurveyQuestion> selectsurveystudent(SelectSurveyStudent sss) {
+		return sDao.selectsurveystudent(sss);
+	}
+	
 	@Override
 	public List<SurveyQuestion> detailsurvey(SurveyQuestion sq) {
 		return sDao.detailsurvey(sq);
@@ -86,4 +91,6 @@ public class SurveyServiceImpl implements SurveyService {
 	public List<SurveyQuestion> selectstudent(SurveyQuestion sq) {
 		return sDao.selectstudent(sq);
 	}
+
+	
 }

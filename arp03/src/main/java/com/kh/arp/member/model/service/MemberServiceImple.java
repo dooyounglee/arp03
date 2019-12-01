@@ -108,6 +108,11 @@ public class MemberServiceImple implements MemberService {
 	public int deleteCancleBoard(Board b) {
 		return md.deleteCancleBoard(b);
 	}
+	
+	@Override
+	public int declareBoard(Board b) {
+		return md.declareBoard(b);
+	}
 
 	@Override
 	public List<BReply> getReplyList() {
@@ -122,6 +127,11 @@ public class MemberServiceImple implements MemberService {
 	@Override
 	public int deleteCancleReply(BReply r) {
 		return md.deleteCancleReply(r);
+	}
+	
+	@Override
+	public int declareReplyAdmin(BReply r) {
+		return md.declareReplyAdmin(r);
 	}
 
 	@Override
@@ -193,6 +203,10 @@ public class MemberServiceImple implements MemberService {
 	public int acceptMember(Member mem) {
 		return md.acceptMember(mem);
 	}
+
+	
+
+	
 
 
 

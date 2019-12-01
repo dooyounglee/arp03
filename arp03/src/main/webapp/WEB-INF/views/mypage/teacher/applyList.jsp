@@ -36,10 +36,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">Apply List</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
+                            <li class="breadcrumb-item active">Apply List</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -99,7 +99,17 @@
 	                                                <td><a href="main.lec?lec_no=${l.lec_no }">${l.title }</a></td>
 	                                                <td>${l.dayofweek.replace('0','일').replace('1','월').replace('2','화').replace('3','수').replace('4','목').replace('5','금').replace('6','토') }</td>
 	                                                <td>${l.place }</td>
-	                                                <td>${l.status }</td>
+	                                                <td>
+	                                                	<c:if test="${l.status eq 'A' }">
+	                                                		허락대기
+	                                                	</c:if>
+	                                                	<c:if test="${l.status eq 'Y' }">
+	                                                		수락
+	                                                	</c:if>
+	                                                	<c:if test="${l.status eq 'R' }">
+	                                                		거절
+	                                                	</c:if>
+	                                                </td>
 												</tr>
 											</c:forEach>
                                         </tbody>

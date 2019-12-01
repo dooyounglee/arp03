@@ -15,6 +15,7 @@ import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.manager.model.service.SurveyService;
 import com.kh.arp.manager.model.vo.ForSurvey;
 import com.kh.arp.manager.model.vo.InsertSurvey;
+import com.kh.arp.manager.model.vo.SelectSurveyStudent;
 import com.kh.arp.manager.model.vo.SurveyQuestion;
 import com.kh.arp.member.model.service.MemberService;
 import com.kh.arp.member.model.vo.Member;
@@ -36,6 +37,13 @@ public class SurveyController {
 		return mv;
 	}
 	
+	@RequestMapping("selectsurveystudent.ma")
+	public ModelAndView selectsurveystudent(SelectSurveyStudent sss, ModelAndView mv, HttpSession session, int lec_no, SurveyQuestion sq) {
+		sss.setM_no(((Member)session.getAttribute("mem")).getM_no());
+		List<SurveyQuestion> s= ss.selectsurveystudent(sss);
+		mv.addObject("list", s).setViewName("manager/selectsurvey");
+		return mv;
+	}
 	@RequestMapping("daysurvey.ma")
 	public ModelAndView daysurvey(ModelAndView mv) {
 		mv.setViewName("manager/insertFormSurvey");
@@ -115,9 +123,9 @@ public class SurveyController {
 		return mv;
 	}
 	@RequestMapping("insertcompletesurvey.ma")
-	public ModelAndView updatesurvey(ModelAndView mv, int su_no, ForSurvey q,InsertSurvey is, HttpSession session) {
+	public ModelAndView updatesurvey(ModelAndView mv, int lec_no, int su_no, ForSurvey q, HttpSession session) {
 		
-		
+		System.out.println("20319371===="+q);
 		//---------------------------- insertSurvey 구문-----------------
 		int ds =0;			// 질문이 제대로 꽂혔는지 판단하는 변수
 		int dd =0;			// 제대로 트랜잭션 리턴값이 올때 판단하는 번수
@@ -127,6 +135,7 @@ public class SurveyController {
 			SurveyQuestion fs= new SurveyQuestion();
 			fs.setM_no(((Member)session.getAttribute("mem")).getM_no());
 			fs.setSu_no(su_no);
+			
 			for( Object qq : q.getAnswer()) {
 				System.out.println(qq+"========");
 				fs.setAnswer((String)qq);
@@ -146,9 +155,9 @@ public class SurveyController {
 //, @RequestParam("qlast") int qlast
 		
 		if(dd==0) {
-			mv.setViewName("redirect:/selectsurvey.ma");
+			mv.setViewName("redirect:/selectsurveystudent.ma?lec_no="+lec_no);
 		}else {
-			mv.setViewName("");
+			mv.setViewName("common/error");
 		}
 		return mv;
 	}
@@ -163,6 +172,7 @@ public class SurveyController {
 	sq.setSu_no(su_no);
 	//그 수업과 설문에 들어가있는 m_no 리스트
 	List<SurveyQuestion> list = ss.selectstudent(sq);
+	
 	System.out.println(list);
 	//그수업과 설문에 들어가있는 m_no의 번호
 	int lsm=list.get(0).getM_no();

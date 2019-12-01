@@ -45,10 +45,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">Join</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
+                            <li class="breadcrumb-item active">Join</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -85,7 +85,7 @@
                     <div class="col-lg-6 col-md-6 offset-3">
                         <div class="card card-body">
                             <h3 class="mb-0">가입</h3>
-                            <p class="text-muted mb-4 font-13"> Bootstrap Elements </p>
+                            <p class="text-muted mb-4 font-13"> Join </p>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <form action="join.me" method="post" autocomplete=off>
@@ -115,8 +115,8 @@
                                             <label for="pass">Email</label>
                                             <input class="form-control" name="email" value="${auth.email }" readonly>
                                         </div>
-                                        <button type="submit" class="btn btn-success waves-effect waves-light mr-2">login</button>
-                                        <button type="button" class="btn btn-inverse waves-effect waves-light" onclick="location.href='find.me'">id/pw찾기</button>
+                                        <button type="submit" class="btn btn-success waves-effect waves-light mr-2">join</button>
+                                        <!-- <button type="button" class="btn btn-inverse waves-effect waves-light" onclick="location.href='find.me'">id/pw찾기</button> -->
                                     </form>
                                 </div>
                             </div>

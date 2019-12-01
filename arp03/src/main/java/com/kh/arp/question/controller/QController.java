@@ -22,7 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.common.PageInfo;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
@@ -402,14 +403,26 @@ public class QController {
 	 }
 	 
 	 @RequestMapping("realTimeSelect.al")
-	 public void realTimeSelect(HttpServletResponse response) throws IOException {
-		 ArrayList<Question> realList = qService.realTimeSelect();
+	 public void realTimeSelect(HttpServletResponse response, HttpSession session) throws IOException {
+		 int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+		 ArrayList<Question> realList = qService.realTimeSelect(lec_no);
 		 response.setContentType("application/json; charset=UTF-8");
 		 
 		 
 		/* mv.addObject("realList", realList).setViewName("question/question"); */
 		Gson gson = new Gson();
 		gson.toJson(realList, response.getWriter());
+	 }
+	 
+	 @RequestMapping("realTimeFreeSelect.al")
+	 public void realTimeFreeSelect(HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
+		 ArrayList<Board> realList = qService.realTimeFreeSelect();
+		 
+		 response.setContentType("application/json; charset=UTF-8");
+		 
+		 Gson gson = new Gson();
+		 gson.toJson(realList, response.getWriter());
+		 
 	 }
 	 
 

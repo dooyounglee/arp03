@@ -26,7 +26,6 @@
 		<typeAlias type="com.kh.arp.vacation.model.vo.VacationDate" alias="VacationDate"/>
 		<typeAlias type="com.kh.arp.question.model.vo.QFile" alias="QFile"/>
 		<typeAlias type="com.kh.arp.manager.model.vo.InsertSurvey" alias="InsertSurvey"/>
-		<typeAlias type="com.kh.arp.manager.model.vo.CompleteSurvey" alias="CompleteSurvey"/>
 		<typeAlias type="com.kh.arp.manager.model.vo.SurveyQuestion" alias="SurveyQuestion"/>
 		<typeAlias type="com.kh.arp.question.model.vo.QReply" alias="QReply"/>
 		<typeAlias type="com.kh.arp.message.model.vo.Message" alias="Message"/>

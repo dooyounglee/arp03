@@ -36,10 +36,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">Q&A</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
+                            <li class="breadcrumb-item active">Q&A</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -80,7 +80,7 @@
                                 <h4 class="card-title">문의하기</h4>
                                 <h6 class="card-subtitle">Just add <code>form-material</code> class to the form that's
                                     it.</h6>
-                                <form class="form-material mt-4" action="write.qna" method="post" autocomplete=off>
+                                <form id="qnaForm" class="form-material mt-4" action="write.qna" method="post" autocomplete=off>
                                     <div class="form-group">
                                         <label>제목</label>
                                         <input type="text" class="form-control form-control-line" name="title"> </div>
@@ -88,8 +88,19 @@
                                         <label>내용</label>
                                         <textarea class="form-control" rows="5" name="content"></textarea>
                                     </div>
-                                    <button class="btn btn-success">완료</button>
+                                    <button type="button" class="btn btn-success" onclick="ok()">완료</button>
                                 </form>
+                                <script>
+                                	function ok(){
+                                		var title=$('#qnaForm input').eq(0).val()
+                                		var content=$('#qnaForm textarea').eq(0).val()
+                                		if(title=="" || content==""){
+                                			alert("제목 또는 내용이 비어 있어요.")
+                                			return;
+                                		}
+                                		$('#qnaForm').submit()
+                                	}
+                                </script>
                             </div>
                         </div>
                     </div>

@@ -91,7 +91,7 @@
 				<div class="card">
 					<div class="card-body">
 		
-						<h4 class="card-title">게시판 리스트</h4>
+						<h3 class="card-title" align="center" style="color:black">게시판 리스트</h3>
 		
 					
 					<%-- <c:if test="${ !empty mem }"> --%>

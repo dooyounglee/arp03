@@ -3,7 +3,6 @@ package com.kh.arp.message.handler;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
@@ -13,7 +12,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.message.model.vo.Message;
 
 public class EchoHandler extends TextWebSocketHandler{
 
@@ -46,25 +45,14 @@ public class EchoHandler extends TextWebSocketHandler{
 		 	System.out.println("me"+ message.getPayload());
 		 
 		 	int gno = Integer.parseInt(message.getPayload());	
-		
-
-		 	int mCount = sqlSession.selectOne("msg-mapper.selectMcount", gno); 
-		 	System.out.println("mCount"+mCount);
-
-
-			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-			String g_no= gson.toJson(gno);
-		/* gson.toJson(mCount); */
-		/* String list = gson.toJson(gno)+","+gson.toJson(mCount); */
-				
-
+		 	
 			
-
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			String g_no = gson.toJson(gno);
 		
 		for(WebSocketSession s : sessionList) {
 		 
-		  s.sendMessage(new TextMessage(g_no)); 
-		  System.out.println(g_no);
+		  s.sendMessage(new TextMessage(g_no));
 		}
 		
 		

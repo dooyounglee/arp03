@@ -9,13 +9,13 @@
 	<%@ include file="../include/bhead.jsp"%>
 <title>상세보기 페이지</title>
 <!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> -->
 
 <!-- include summernote css/js -->
 <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet"> -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
 
 <title>Summernote Lite</title>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -59,17 +59,17 @@
 	#bor{
 		margin:0px;	
 	}
-	
+/* 	
 	#regDate{
 	float:right;
 	color :gray;
 	font-size:13px;
-	}
+	} */
 	
 	
-	#file,a{
+/* 	#file,a{
 	font-size:15px;
-	}
+	} */
 	#btn{
 		text-align:right;
 		margin-left:auto;
@@ -78,6 +78,14 @@
 	}
 	.btn-info{
 		background:#1e88e5;
+	}
+	
+	.contentWordText{
+		line-height:22px;
+		word-break:break-word;
+	}
+	.spanTrashColor:hover{
+		color:navy;
 	}
 </style>
 </head>
@@ -156,8 +164,7 @@
 
 					<div class="col-lg-10">
 						<div class="card">
-							<div class="card-body"
-								style="padding-left: 40px; padding-right: 40px;">
+							<div class="card-body" style="padding-left: 100px; padding-right: 100px; padding-top:70px;">
 								<section class="cd-horizontal-timeline loaded">
 
 									<!-- .timeline -->
@@ -240,26 +247,22 @@
 									<br> <input size="10" type="text" name="name"
 										value="${ qt.tcname }" readonly> <br>
 									<br>
-									<textarea id="summernote" cols="50" rows="7"
-										name="replycontent">${ q.replycontent }</textarea>
+									<textarea id="summernote" cols="50" rows="7" name="replycontent" required>${ q.replycontent }</textarea>
 									<script>
 								      $('#summernote').summernote({
-								        placeholder: '※ 이 게시판은 수업시간에 궁금했던점들을 선생님께 질문할수있는 질문게시판입니다. 도배, 욕설 및 부적절한 내용을 올릴 경우 신고 및 삭제될 수 있습니다. 참고하여 작성해주세요.',
 								        tabsize: 2,
 								        height:300,
 										minHeight: null,
 										maxHeight: null,
-										focus: true
+										focus: true,
+										lang:"ko-KR",
 								      });
 								    </script>
 									<br>
 									<div style="text-align: center;">
 										<button
-											class="btn waves-effect waves-light btn-rounded btn-info"
-											id="qReOk" type="submit">확인</button>
-										<button
-											class="btn waves-effect waves-light btn-rounded btn-info"
-											type="button" onclick="qReX();">취소</button>
+											class="btn waves-effect waves-light btn-rounded btn-info" id="qReOk" onclick="return noteTextUp()" type="submit">확인</button>
+										<button class="btn waves-effect waves-light btn-rounded btn-info" type="button" onclick="qReX();">취소</button>
 									</div>
 								</div>
 							</form>
@@ -273,7 +276,7 @@
 						<div class="col-lg-2"></div>
 							<div class="col-lg-10">
 								<div class="card">
-									<div class="card-body" style="padding-left: 40px; padding-right: 40px;">
+									<div class="card-body" style="padding-left: 100px; padding-right: 100px;">
 										<section class="cd-horizontal-timeline loaded">
 
 											<!-- .timeline -->
@@ -284,12 +287,11 @@
 													<br>
 													<div class="selected">
 														<!-- <h3 style="font-size: 18px; font-weight:bold;"><img width="55" src="resources/siraFile/Q2.png">&nbsp;&nbsp;&nbsp;학생질문</h3> -->
-														<br> <img width="60" src="resources/siraFile/A.png">&nbsp;&nbsp;&nbsp;<span
+														<br> <img width="60" src="resources/siraFile/A2.png">&nbsp;&nbsp;&nbsp;<span
 															style="font-weight: bold; font-size: 25px; color: black;"
 															size="20">선생님 답변</span>
 														<hr class="mt-4">
-														<input size="10" style="color: black;" type="text"
-															name="name" value="${ qt.tcname }" readonly>
+														<input size="10" style="color: black;" type="text" name="name" value="${ qt.tcname }" readonly>
 														<div style="float: right; color: black;">${ q.replydate }</div>
 														<br>
 														<br> ${ q.replycontent }
@@ -301,11 +303,10 @@
 																	class="btn waves-effect waves-light btn-rounded btn-info"
 																	type="button" onclick="qReUpdate();">수정</button>
 															</div>
-															<br>
-															<br>
+															<br><br>
 														</c:if>
 													</div>
-													<br>
+													<br><br><br><br>
 												</form>
 											</div>
 											<!-- .events-content -->
@@ -327,15 +328,27 @@
 								<table id="demo-foo-pagination" align="center" cellspacing="0">
 									<input type="hidden" id="q_nohidden" name="q_no" value="${ q.q_no }">
 												<c:if test="${ qRListCount ne 0 }">
-												댓글(${ qRListCount })
+												<span style="color:gray; font:fantasy; font-weight:bold;">댓글(${ qRListCount })</span>
 												<hr>
 													<c:forEach items="${ qRList }" var="qr">
 													<!-- 	<table border="1"> -->
-															<tr align="center">
-																<td style="width: 20px;margin-left:auto; margin-right:auto;">${ qr.r_no }</td>
-																<td style="width: 70px;">${ qr.name }</td>
+<%--  															<tr align="center">
+																<td style="width:auto;">${ qr.r_no } &nbsp;</td>
+																<td style="width:auto;">
+																	${ qr.name }
+																	<!-- 내글일경우에만 표시해주자 ex) 내 글 -->
+																		<!-- 박스 -->
+																		<span style="height:19px; margin:3px 0 0 6px; padding:0 8px; border-width:1px 1px 1px 1px; 
+																		border-style:solid; border-radius:17px; position:relative; float:right; vertical-align:top;">
+																			<!-- 글 -->
+																			<span style="height:17px; line-height:17px; margin:0; color:rgb(81, 143, 187); font-size:10px; letter-spacing:-1px; float:left;">
+																				내 글
+																			</span>
+																		</span>
+																</td>
 																<td style="width: 400px;">
-																	<textarea class="textAreaRe" cols="38"readonly>${ qr.content }</textarea></td>
+																	${ qr.content }
+																</td>
 																<td>${ qr.updatedate }</td>
 																<c:if test="${ qr.m_no eq mem.m_no }">
 																	<td>
@@ -346,8 +359,49 @@
 																		</button>
 																	</td>
 																</c:if>
-															</tr>
+															</tr> --%>
 													<!-- 	</table> -->
+													<!-- 이름부분 -->
+												<div>
+													<div style="padding-bottom:7px; height:30px;">
+														<span style="float:left; white-space:nowrap; color:white; display:none;">${ qr.r_no }</span>
+														<span style="float:left; white-space:nowrap; font-weight:bold;">${ qr.name }</span>
+														<!-- 내글일경우에만 표시해주자 ex) 내 글 -->
+														<c:if test="${ qr.name eq mem.name }">
+														<!-- 박스 -->
+														<span style="height:19px; margin:3px 0 0 6px; padding:0 8px; border-width:1px 1px 1px 1px; 
+														border-style:solid; font-weight:bold; border-radius:17px; position:relative; float:left; vertical-align:top;">
+															<!-- 글 -->
+															<span style="height:17px; line-height:17px; margin:0; color:rgb(81, 143, 187); font-size:10px; letter-spacing:-1px; float:left;">
+															내 글
+															</span>
+														</span>
+														</c:if>
+													</div>
+													<div class="contentWordText" style="display:inline;">
+													<span class="contentWordText" style="color:black; font:fantasy;">
+														${ qr.content }
+													</span>
+													<!-- <script>
+														$(function(){
+															${ qr.content }.replace("\n","<br>");
+														});
+													</script> -->
+													</div>
+													<div style="float:right;">
+													<span>
+														${ qr.updatedate }
+													</span>
+													<span>
+														<c:if test="${ qr.m_no eq mem.m_no }">
+															<button class="qrBtn btn-outline" style="outline:0; border:none; font-size:13px;" type="button">
+																	<span class="fas fa-trash spanTrashColor"></span>
+															</button>
+														</c:if>
+													</span>
+													</div>
+												</div>
+												<br>
 													</c:forEach>
 												</c:if>
 												<c:if test="${ qRListCount eq 0 }">
@@ -360,17 +414,19 @@
 					</div>
 				</div>
 			</div>
+			
 						<!-- row4끝 -->
 						<!-- row5시작 (댓글 등록하는 칸부분) -->
 						<div class="row">
 						<div class="col-lg-4"></div>
 						<div class="col-lg-8">
 						<div>
-						<textarea style="border: 1px solid black;" cols="60" rows="3" id="repl" cols="50" rows="2" name="content"></textarea>
-						<button class="btn waves-effect waves-light btn-info" style="height:47px; margin-left:auto; margin-right:auto; margin-top:-55px;" id="datUp" type="submit" onclick="qRestartInsert()">댓글등록</button>
+						<textarea class="contentWordText" style="border: 1px solid lightgray; padding:10px; border-radius:5px;" cols="60" rows="3" id="repl" cols="50" rows="2" name="content"></textarea>
+						<button class="btn waves-effect waves-light btn-info" style="height:47px; margin-left:auto; margin-right:auto; margin-top:-70px;" id="datUp" type="submit" onclick="qRestartInsert()">댓글등록</button>
 						</div>
 						</div>
 						</div>
+						<br><br><br>
 					</div>
 				</c:if>
 				</div>
@@ -606,6 +662,13 @@
 			
 		}); */
 		
+		function noteTextUp(){
+			if($(".note-editable").text().trim() == ""){
+				alert("내용을 입력해주세요.");
+				false;
+			}
+		}
+		
 		function sendFile(file, el){
 			var form_data = new FormData();
 			form_data.append("file", file);
@@ -658,8 +721,8 @@
 		}
 		
 		$(document).on("click", ".qrBtn", function(){
-			var r_no = $(this).parent().parent().children().eq(0).text();
-			//alert(r_no);
+ 			var r_no = $(this).parent().parent().parent().children().children().eq(0).text();
+			/* var r_no = $(this).parent().parent().children().eq(0).text(); */
 			if(confirm("삭제하시겠습니까?") == true){
 				$.ajax({
 					data: {r_no:r_no},
@@ -671,6 +734,7 @@
 						if(success=="success"){
 							console.log("댓글삭제성공");
 							qRestart();
+							webSocket.send("댓글삭제성공");
 						}else{
 							alert("댓글등록실패")
 						}
@@ -716,7 +780,7 @@
 						console.log("댓글등록성공");
 						qRestart();
 						$("#repl").val("").focus();
-							/* webSocket.send("이두영"); */
+						webSocket.send("댓글성공");
 					}else{
 						alert("댓글등록실패")
 					}
@@ -784,51 +848,6 @@
 
 
 
-
-
-
-
-
-
-				<script type="text/javascript">
-//WebSocketEx는 프로젝트 이름
-//websocket 클래스 이름
-var webSocket = new WebSocket("ws://192.168.130.115:8888/arp/websocket");
-var messageTextArea = document.getElementById("messageTextArea");
-//웹 소켓이 연결되었을 때 호출되는 이벤트
-webSocket.onopen = function(message){
-console.log("연결성공")
-};
-//웹 소켓이 닫혔을 때 호출되는 이벤트
-webSocket.onclose = function(message){
-	console.log("연결닫힘")
-};
-//웹 소켓이 에러가 났을 때 호출되는 이벤트
-webSocket.onerror = function(message){
-	console.log("연결에러")
-};
-//웹 소켓에서 메시지가 날라왔을 때 호출되는 이벤트
-webSocket.onmessage = function(message){
-console.log(message)
-qRestart();
-}; 
-//Send 버튼을 누르면 실행되는 함수
-/* function sendMessage(){
-var message = document.getElementById("textMessage");
-messageTextArea.value += "Send to Server => "+message.value+"\n";
-//웹소켓으로 textMessage객체의 값을 보낸다.
-//webSocket.send(message.value);
-//textMessage객체의 값 초기화
-message.value = "";
-} */
-//웹소켓 종료
-function disconnect(){
-webSocket.close();
-}
-</script>
-
-
-
 				<!-- footer -->
 				<footer class="footer">
 					<%@ include file="../include/bfooter.jsp"%>
@@ -841,6 +860,52 @@ webSocket.close();
 	<!-- End of Main wrapper -->
 	
 	<%@ include file="../include/bjs.jsp" %>
+
+
+
+
+
+
+
+<script type="text/javascript">
+//WebSocketEx는 프로젝트 이름
+//websocket 클래스 이름"ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/${cp}/count/websocket"
+var webSocket = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/arp/websocket");
+//"ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/arp/websocket"
+var messageTextArea = document.getElementById("messageTextArea");
+//웹 소켓이 연결되었을 때 호출되는 이벤트
+webSocket.onopen = function(message){
+console.log("연결성공flekd")
+};
+//웹 소켓이 닫혔을 때 호출되는 이벤트
+webSocket.onclose = function(message){
+	console.log("연결닫힘www")
+};
+//웹 소켓이 에러가 났을 때 호출되는 이벤트
+webSocket.onerror = function(message){
+	console.log("연결에러ww")
+};
+//웹 소켓에서 메시지가 날라왔을 때 호출되는 이벤트
+webSocket.onmessage = function(message){
+console.log(message)
+qRestart();
+}; 
+//Send 버튼을 누르면 실행되는 함수
+function sendMessage(){
+var message = document.getElementById("textMessage");
+messageTextArea.value += "Send to Server => "+message.value+"\n";
+//웹소켓으로 textMessage객체의 값을 보낸다.
+//webSocket.send(message.value);
+//textMessage객체의 값 초기화
+message.value = "";
+}
+//웹소켓 종료
+function disconnect(){
+webSocket.close();
+}
+</script>
+
+
 
 
 

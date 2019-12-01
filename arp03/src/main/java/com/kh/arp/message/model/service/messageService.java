@@ -28,4 +28,10 @@ public interface messageService{
 	
 	// 7. 메세지 카운트용 
 	int selectMcount(int m_no);
+	
+	// 8. 상단바 리스트용 
+	ArrayList<Message> selectNList(int m_no);
+	
+	// 9. 알람상태 변경용
+	int updateAlram(int m_no);
 }

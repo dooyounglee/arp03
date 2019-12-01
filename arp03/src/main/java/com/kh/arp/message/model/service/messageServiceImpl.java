@@ -54,6 +54,19 @@ public class messageServiceImpl implements messageService {
 		return mDao.selectMcount(m_no);
 	}
 
+	@Override
+	public ArrayList<Message> selectNList(int m_no) {
+		return mDao.selectNList(m_no);
+	}
+
+	@Override
+	public int updateAlram(int m_no) {
+
+		return mDao.updateAlram(m_no);
+	}
+	
+	
+
 
 
 }

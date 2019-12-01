@@ -38,10 +38,11 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">Apply Lecture</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="${cp }">Home</a></li>
+                            <li class="breadcrumb-item"><a href="applyList.lec">Apply List</a></li>
+                            <li class="breadcrumb-item active">Apply Lecture</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -76,10 +77,10 @@
                 <div class="row">
                 	
                 	<!-- 수강페이지 메뉴 -->
-                	<%@ include file="../../include/blecturemenu.jsp" %>
+                	<%-- <%@ include file="../../include/blecturemenu.jsp" %> --%>
                 	
                     <!-- <div class="col-lg-9 col-xlg-4 col-md-8"> -->
-                    <div class="col-lg-7 col-xlg-7 col-md-7">
+                    <div class="col-lg-9 col-xlg-9 col-md-9">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-md-flex no-block align-items-center">
@@ -162,36 +163,6 @@
 			                                    <input type="checkbox" id="md_checkbox_7" class="chk-col-light-blue" name="week" value="6">
 			                                    <label for="md_checkbox_7" style="min-width: 70px;">토</label>
 			                                </div>
-	                                        <!-- <ul class="icheck-list">
-	                                        	<li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="0">
-	                                                <label for="minimal-checkbox-2">일</label>
-	                                            </li>
-	                                            <li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="1">
-	                                                <label for="minimal-checkbox-1">월</label>
-	                                            </li>
-	                                            <li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="2">
-	                                                <label for="minimal-checkbox-2">화</label>
-	                                            </li>
-	                                            <li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="3">
-	                                                <label for="minimal-checkbox-1">수</label>
-	                                            </li>
-	                                            <li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="4">
-	                                                <label for="minimal-checkbox-2">목</label>
-	                                            </li>
-	                                            <li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="5">
-	                                                <label for="minimal-checkbox-1">금</label>
-	                                            </li>
-	                                            <li class="float-left">
-	                                                <input type="checkbox" class="check" name="week" value="6">
-	                                                <label for="minimal-checkbox-2">토</label>
-	                                            </li>
-	                                        </ul> -->
 	                                    </div>
 	                                </div>
 	                                <button class="btn btn-success">요청</button>

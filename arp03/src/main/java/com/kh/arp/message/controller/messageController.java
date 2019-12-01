@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.message.model.service.messageService;
 import com.kh.arp.message.model.vo.Dto;
@@ -52,11 +54,11 @@ public class messageController {
 			System.out.println("저장실패");
 		}
 		
-		return "message/main";
+		return "redirect:listMsg.do";
 		
 	}
 	
-	// 받은 쪽지
+	// 보낸 쪽지
 	@RequestMapping("listMsg.do")
 	public ModelAndView listMsg(ModelAndView mv, HttpSession session) {
 	
@@ -68,11 +70,13 @@ public class messageController {
 		
 	}
 	
+	// 받은 쪽지
 	@RequestMapping("listSendMsg.do")
 	public ModelAndView listSendMsg(ModelAndView mv, HttpSession session) {
 		
 		int m_no =	((Member)session.getAttribute("mem")).getM_no();
 		ArrayList<Message> mList = mService.listSendMsg(m_no);
+		System.out.println("받은쪽지"+mList);
 		mv.addObject("mList",mList).setViewName("message/listSendMessage");
 		
 		return mv;
@@ -125,6 +129,31 @@ public class messageController {
 	  return result;
 	  
 	  }
+	  
+	  @ResponseBody
+	  @RequestMapping("selectNList.do")
+	  public String selectNList(int m_no) {
+		  ArrayList<Message> mlist = mService.selectNList(m_no);
+		  
+		    
+		  Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			return gson.toJson(mlist);
+	  }
+	  
+	  @ResponseBody
+	  @RequestMapping("updateAlram.do")
+	  public String updateAlram(int m_no) {
+		  
+		  int result = mService.updateAlram(m_no);
+		  
+		  if(result > 0) {
+			  return "success";
+		  }else {
+			  return "fail";
+		  }
+	  }
+	  
 	  
 	  
 	 

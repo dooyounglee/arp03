@@ -80,7 +80,7 @@
 			          <div class="card">
 	                        <div class="card-body">
 	                            <h3 class="card-title mdi mdi-email">쪽지 보내기</h3>
-	                     <form action="insertMsg.do" >
+	                      <form action="insertMsg.do" >
 	                            <div class="form-group">
 	                                <input class="form-control" name="title" placeholder="제목을 입력해주세요" required>
 	                            </div>
@@ -205,8 +205,9 @@ $("#basic_checkbox_1").on("click", function(){
 	
 		var gno = $("#g_no").val();
 		console.log(gno);
-		ws.send(gno);
+		wsa.send(gno);
 		submit();
+		
 		
 		/* alert("전송되었습니다");
 		opener.location.reload();	// window창 닫히면서 부모창 새로고침

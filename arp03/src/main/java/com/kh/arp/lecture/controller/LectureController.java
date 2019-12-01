@@ -89,7 +89,7 @@ public class LectureController {
 	@GetMapping("/applyList.lec")
 	public ModelAndView apply(HttpSession session, ModelAndView mv) {
 		Member mem=(Member)session.getAttribute("mem");
-		List<Lecture> list=ls.getlectureList(mem.getM_no());
+		List<Lecture> list=ls.applylectureList(mem.getM_no());
 		mv.addObject("list", list);
 		mv.setViewName("mypage/teacher/applyList");
 		return mv;
@@ -104,6 +104,10 @@ public class LectureController {
 	@GetMapping("/info.lec")
 	public ModelAndView info(HttpSession session, ModelAndView mv) {
 		Lecture lec=(Lecture)session.getAttribute("lec");
+		
+		List<Classdate> list=ls.getLectureDatesList(lec.getLec_no());
+		
+		mv.addObject("list", list);
 		mv.addObject("lec", lec);
 		mv.setViewName("lecture/info");
 		return mv;

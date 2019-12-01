@@ -7,13 +7,13 @@
 <title>글 작성하기 페이지</title>
 <%@ include file="../include/bhead.jsp"%>
 <!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> -->
 
 <!-- include summernote css/js -->
 <!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet"> -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
 
 
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -115,10 +115,10 @@
 										<br>
 										<br>
 										<br> 
-										<input class="form-control" style="width: 300px;" type="text" name="title">
+										<input class="form-control" style="width: 300px;" type="text" name="title" required>
 										<input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly>
 										<br>
-										<textarea id="summernote" cols="50" rows="7" name="content"></textarea>
+										<textarea class="upText" id="summernote" cols="50" rows="7" name="content" required></textarea>
 										<script>
 											$('#summernote')
 													.summernote(
@@ -152,7 +152,7 @@
 										<br>	
 										
 										<div style="text-align: center;">
-											<button class="btn waves-effect waves-light btn-rounded btn-info" type="submit">등록</button>
+											<button class="btn waves-effect waves-light btn-rounded btn-info" onclick="return upContent()" type="submit">등록</button>
 											<button class="btn waves-effect waves-light btn-rounded btn-info" type="button" onclick="location.href='question.qu';">목록</button>
 										</div>
 										<br>
@@ -195,6 +195,14 @@
 				
 			});
 		});
+		
+		
+		function upContent(){
+			if($(".note-editable").text().trim() == ""){
+				alert("내용을 입력해주세요.");
+				false;
+			}
+		}
 		
 		
 		function sendFile(file, el){

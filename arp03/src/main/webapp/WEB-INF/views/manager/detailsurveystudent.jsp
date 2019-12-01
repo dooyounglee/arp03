@@ -86,7 +86,6 @@
                             <div class="card-body">
                                 <h4 class="card-title">설문조사 인원</h4>
                                 <div class="table-responsive">
-                                   <!--  <form action="resultsurvey.ma"> -->
                                     <table class="table table-hover no-wrap">
                                         <tbody>
                                         <tr>
@@ -105,26 +104,26 @@
 										<td>${N.m_no }, ${N.name }</td>
 										</tr>
 										</c:forEach>
-										<%-- <input type="hidden" value="${su_no }" name="su_no"> --%>
+										<input type="hidden" value="${su_no }" name="su_no">
 										<tr>
-										<td><button id="btns" onclick="result();" class="btn btn-success waves-effect waves-light">설문조사 결과보기</button>
+										<td><button id="result" class="btn btn-success waves-effect waves-light" type="button" >설문조사 결과보기</button>
 										<a class="btn btn-inverse waves-effect waves-light" href="selectsurvey.ma?lec_no=${lec.lec_no}">뒤로가기</a></td>
 										</tr>
 										
                                         </tbody>
                                     </table>
-                                 <!--    </form> -->
-                                    <script>
+									<script>
                                     	$(document).ready(function(){
-                                    		function result(){
-                                    			if(${!empty Ysq}){
-                                    			
-                                    			location.href="resultsurvey.ma?su_no=${su_no}";
-                                    			}
- 		                                   		}
-                                    		});
+                                    		$("#result").click(function(){
+                                    			 if(${Ysq[0]!= null }){
+													 location.href='resultsurvey.ma?su_no=${su_no}'; 
+												}else{
+													
+												}
+ 		                                   	})
+                                    	});
                                     </script>
-                                </div>
+								</div>
                             </div>
                         </div>
                     </div>
@@ -151,5 +150,8 @@
 	
 	<%@ include file="../include/bjs.jsp" %>
 
-</body>
+</body> 
+<script>
+console.log("222");
+</script>
 </html>
