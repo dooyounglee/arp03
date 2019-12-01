@@ -232,11 +232,11 @@ public class VacationController {
 	}
 	
 	@RequestMapping("companiForm.me")
-	public ModelAndView companiForm(int v_no ,int lec_no , ModelAndView mv, VacationDate vd ) {
+	public ModelAndView companiForm(int v_no ,int lec_no ,String vacation_date, ModelAndView mv, VacationDate vd ) {
 		
 		vd.setV_no(v_no);
 		vd.setLec_no(lec_no);
-		
+		vd.setVacation_date(vacation_date);
 		mv.addObject("vd",vd).setViewName("vacation/companion");
 		
 		return mv;
@@ -249,7 +249,7 @@ public class VacationController {
 		vd.setLec_no(lec_no);
 		vd.setV_no(v_no);
 		vd.setVacation_date(vacation_date);
-		System.out.println(vd);
+		
 		int result = vService.permission(vd);
 		
 		if(result >0) {
@@ -265,7 +265,6 @@ public class VacationController {
 		
 		v.setV_no(v_no);
 		v.setLec_no(lec_no);
-		System.out.println("v"+v);
 		int result = vService.companion(v);
 		
 		 
@@ -280,17 +279,14 @@ public class VacationController {
 	public ModelAndView adminpermission(HttpSession session, ModelAndView mv) {
 		int m_no = ((Member)session.getAttribute("mem")).getM_no();
 		ArrayList<Vacation> list = vService.adminList(m_no);
-		
 			mv.addObject("list", list).setViewName("vacation/adminVacation");
-		
-		
 		return mv;
 		
 	}
 	
 	@ResponseBody  
 	@RequestMapping("permission.ad")
-	public int checkVnoTest(@RequestParam(value="checkList[]") List<String> Number) {
+	public String checkVnoTest(@RequestParam(value="checkList[]") List<String> Number) {
 		
 		
 	//	System.out.println(Number);
@@ -298,15 +294,22 @@ public class VacationController {
 		int result=0;
 		
 		for(String v : Number ) {
-			//System.out.println(v);
+			System.out.println("값이 넘어오는" + v);
 			
 			int num =Integer.parseInt(v);
 			System.out.println(num);
 			result =vService.adminpermission(num); 	
 			//System.out.println(result);
 		}
-		System.out.println(result);
-		return result;
+	
+		
+		
+		if(result>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
 
 		
 	}
@@ -314,11 +317,12 @@ public class VacationController {
 	@ResponseBody  
 	@RequestMapping("multiPermission.ad")
 	public int MultiCheck(@RequestParam(value="MultiList[]") List<String> Number ,
-						  @RequestParam(value="lec_no")int lec_no, VacationDate vd) {
+						  @RequestParam(value="lec_no")int lec_no,
+						  @RequestParam(value="vacation_date")String vacation_date, VacationDate vd) {
 		System.out.println("배열"+Number);
 		
-		//System.out.println(lec_no);
-	
+		System.out.println(lec_no);
+		System.out.println(vacation_date);
 		int num=0;
 		for(String v : Number) {
 			System.out.println(v);
@@ -327,7 +331,8 @@ public class VacationController {
 		
 		
 		vd.setV_no(num);
-		vd.setLec_no(lec_no);		
+		vd.setLec_no(lec_no);
+		vd.setVacation_date(vacation_date);
 		
 		System.out.println("dd" + num);
 		

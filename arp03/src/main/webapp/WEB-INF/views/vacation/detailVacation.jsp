@@ -420,17 +420,18 @@
                                                 <div class="price-table-content">
                                                     <div class="price-row"><i class="mdi mdi-calendar-check"></i>${fn:substring(v.vacation_date,0,10) }</div>
                                                     <div class="price-row"><i class="icon-note"></i> ${v.reason }</div>
+                                                     <div class="price-row"><i class="ti-user">학생 : </i>${v.name }</div>
                                                      <div class="price-row">
                                                   <c:if test="${v.tstatus eq 'N'}">
-                                                  		<i class="ti-user"></i> 선생님 : 처리중
+                                                  		<i class="ti-user">선생님 :</i>  처리중
                                                   </c:if>
                                                   <c:if test="${v.tstatus eq 'B' }">
-                                                  		<i class="ti-user"></i> 선생님 : 반려
+                                                  		<i class="ti-user">선생님 :</i>  반려
                                                   </c:if>
                                                   <c:if test="${v.tstatus eq 'Y' }">
-                                                  		<i class="ti-user"></i> 선생님 : 승인
+                                                  		<i class="ti-user">선생님 :</i>  승인
                                                   </c:if>
-                                                  
+                                                
                                                     </div>
                                                     <div class="price-row">
                                                  <c:if test="${mem.typee eq 't' }">
@@ -439,7 +440,7 @@
 														<a onclick="location.href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}'" style="cursor:pointer">허가</a>
 													</td>
 													<td>	
-														<a onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }',width=300, height=300)" style="cursor:pointer">반려</a>
+														<a onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}',width=300, height=300)" style="cursor:pointer">반려</a>
 													</td>
 													</c:if>	
 												</c:if>          
