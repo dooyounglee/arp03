@@ -172,6 +172,7 @@ public class SurveyController {
 	sq.setSu_no(su_no);
 	//그 수업과 설문에 들어가있는 m_no 리스트
 	List<SurveyQuestion> list = ss.selectstudent(sq);
+	
 	System.out.println(list);
 	//그수업과 설문에 들어가있는 m_no의 번호
 	int lsm=list.get(0).getM_no();

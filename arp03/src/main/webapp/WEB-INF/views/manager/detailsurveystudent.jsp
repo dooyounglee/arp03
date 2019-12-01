@@ -106,7 +106,7 @@
 										</c:forEach>
 										<input type="hidden" value="${su_no }" name="su_no">
 										<tr>
-										<td><button id="result" class="btn btn-success waves-effect waves-light" type="button">설문조사 결과보기</button>
+										<td><button id="result" class="btn btn-success waves-effect waves-light" type="button" >설문조사 결과보기</button>
 										<a class="btn btn-inverse waves-effect waves-light" href="selectsurvey.ma?lec_no=${lec.lec_no}">뒤로가기</a></td>
 										</tr>
 										
@@ -115,8 +115,9 @@
 									<script>
                                     	$(document).ready(function(){
                                     		$("#result").click(function(){
-                                    			if(${!empty Ysq.get(0)}){
-													location.href='resultsurvey.ma?su_no=${su_no}'; 
+                                    			 if(${Ysq[0]!= null }){
+													 location.href='resultsurvey.ma?su_no=${su_no}'; 
+												}else{
 													
 												}
  		                                   	})
