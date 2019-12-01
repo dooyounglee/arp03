@@ -123,10 +123,10 @@ PRIMARY KEY(V_NO,LEC_NO , VACATIONDATE)
 );
 
 status	varchar2(100)	DEFAULT 'N'	NOT NULL, 
-PRIMARY KEY(V_NO,LEC_NO , VACATIONDATE)
+PRIMARY KEY(V_NO,LEC_NO , VACATION_DATE)
 );
 
->>>>>>> branch 'dev' of https://github.com/dooyounglee/arp03
+
 
 CREATE TABLE Message (
     ms_no   Number      PRIMARY KEY ,
