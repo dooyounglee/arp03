@@ -91,6 +91,7 @@
                                                 <th>regdate</th>
                                                 <th>okdate</th>
                                                 <th>status</th>
+                                                <th>status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -104,7 +105,7 @@
 	                                                <td>${d.regdate }</td>
 	                                                <td>${d.okdate }</td>
 	                                                <td>${d.status }</td>
-	                                                <td><button onclick="ok(${d.d_no})">처리완료</button></td>
+	                                                <td><button class="btn btn-success" onclick="ok(${d.d_no})">처리완료</button></td>
 												</tr>
 											</c:forEach>
                                         </tbody>
@@ -117,6 +118,7 @@
                                                 <th>obj_no</th>
                                                 <th>regdate</th>
                                                 <th>okdate</th>
+                                                <th>status</th>
                                                 <th>status</th>
                                             </tr>
                                         </tfoot>
