@@ -177,6 +177,25 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <!-- 검색창 -->
+                                
+                                <div class="input-group">
+                                <div class="col-lg-3">
+                                     <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
+                                         <option value="Category 1">제목</option>
+                                         <option value="Category 2">내용</option>
+                                         <option value="Category 3">내가 쓴 글</option>
+                                         <option value="Category 4">작성자</option>
+                                     </select>
+                                 </div>
+                                    <input type="text" class="form-control" placeholder="Search for...">
+                                    <div class="input-group-append col-lg-5">
+                                        <button class="btn btn-info" type="button">Go!</button>
+                                    </div>
+                                </div>
+                                
+                                
+                                
                             </div>
                         </div>
                     </div>
