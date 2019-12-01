@@ -69,10 +69,12 @@ public class MemberController {
 				res.addCookie(cookie);
 			}
 			String referer=(String)session.getAttribute("referer");
-			if(referer==null) {
-				return "redirect:/";
-			}else {
+			String myreferer=(String)session.getAttribute("myreferer");
+			if(myreferer==null){
 				return "redirect:"+referer;
+			}else {
+				session.removeAttribute("myreferer");
+				return "redirect:"+myreferer;
 			}
 		}else {
 			return "member/login";

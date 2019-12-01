@@ -48,12 +48,10 @@ public class UrlRequesstPreventFilter implements Filter {
 				!requestURI.equals("/arp/websocket") &&
 				!requestURI.equals("/arp/")) {
 			String referer=hreq.getHeader("Referer");
-			System.out.println("referere="+referer);
 			if(referer==null) {
 				hreq.getRequestDispatcher("WEB-INF/views/common/error.jsp").forward(request, response);
 			}else {
 				if(!referer.equals("http://localhost:8090/arp/login.me")){
-					System.out.println("세션에referer="+referer.substring(referer.lastIndexOf("/")));
 					session.setAttribute("referer", referer.substring(referer.lastIndexOf("/")));
 				}
 			}
