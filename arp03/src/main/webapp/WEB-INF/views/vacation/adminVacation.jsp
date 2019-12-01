@@ -187,6 +187,8 @@
 
 
 
+
+
  <footer class="footer">
 	            <%@ include file="../include/bfooter.jsp" %>
 	        </footer>

@@ -93,6 +93,9 @@
 	//jQuery.noConflict();
 	$(document).ready(function() {
 		$('#summernote').summernote({
+			tabsize: 2,
+			height: 300,
+			
             callbacks : {
 				onImageUpload : function(files) {
 					var _this=this;

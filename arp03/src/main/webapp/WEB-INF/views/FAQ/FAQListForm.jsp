@@ -45,11 +45,8 @@ display:inline;
         <div class="page-wrapper">
 <br><br><br>
 
-<h2 align="center">FAQ 입니다</h2>
 
-<c:if test="${ mem.id eq 'admin' }">
-	<button onclick="location.href='finsertForm.ad';">작성하기</button>
-</c:if>
+
 
   <%-- <div class="col-lg-12" align="center" style="margin:auto">
                         <div class="card" align="center">
@@ -104,19 +101,10 @@ display:inline;
                     <div class="col-md-3 col-10 align-self-center">
                         <h3 class="text-themecolor mb-0 mt-0">Faqs</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/arp">Home</a></li>
                             <li class="breadcrumb-item active">Faqs</li>
                         </ol>
                     </div>
-                <nav align="left">
-				<ul align="left">
-					<li><a href="flist.ad" class="mt-2 waves-effect waves-dark btn btn-primary btn-md btn-rounded">전체</a></li>
-					<li><a href="fcategory.ad?category=로그인" class="mt-2 waves-effect waves-dark btn btn-primary btn-md btn-rounded">로그인</a></li>
-					<li><a href="fcategory.ad?category=수강"  class="mt-2 waves-effect waves-dark btn btn-primary btn-md btn-rounded">수강</a></li>
-					<li><a href="fcategory.ad?category=홈페이지" class="mt-2 waves-effect waves-dark btn btn-primary btn-md btn-rounded">홈페이지</a></li>
-					<li><a href="fcategory.ad?category=기타" class="mt-2 waves-effect waves-dark btn btn-primary btn-md btn-rounded">기타</a></li>
-				</ul>
-				</nav>
                
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
                         <div class="d-flex mt-2 justify-content-end">
@@ -156,6 +144,19 @@ display:inline;
                                 <!-- Accordian-part -->
                                 <div id="accordian-part">
                                     <div id="accordian-3">
+								<c:if test="${ mem.id eq 'admin' }">
+								<button class="btn waves-effect waves-light btn-rounded btn-danger" onclick="location.href='finsertForm.ad';">작성하기</button>
+								</c:if>
+								<h2 align="center">FAQ 입니다</h2>                                    
+                <nav align="center">
+				<ul align="center">
+					<li><a href="flist.ad" class="btn waves-effect waves-light btn-rounded btn-outline-secondary">전체</a></li>
+					<li><a href="fcategory.ad?category=수강"  class="btn waves-effect waves-light btn-rounded btn-outline-danger">수강</a></li>
+					<li><a href="fcategory.ad?category=로그인" class="btn waves-effect waves-light btn-rounded btn-outline-warning">로그인</a></li>
+					<li><a href="fcategory.ad?category=홈페이지" class="btn waves-effect waves-light btn-rounded btn-outline-info">홈페이지</a></li>
+					<li><a href="fcategory.ad?category=기타" class="btn waves-effect waves-light btn-rounded btn-outline-primary">기타</a></li>
+				</ul>
+				</nav><br><br>                                         
                                          <table class="table color-table info-table">
                                         <thead align="center">
                                          <tr>
@@ -177,6 +178,9 @@ display:inline;
                                         	</c:if>	
                                     		<c:if test="${ f.category eq '홈페이지' }">
                                     			<span class="badge badge-info">${f.category }</span>
+                                    		</c:if>
+                                    		<c:if test="${ f.category eq '기타' }">
+                                    			<span class="badge badge-primary">${f.category }</span>
                                     		</c:if>
 											</td>
 											<td colspan="3"  class="question" style="cursor:pointer">${ f.question }</td>

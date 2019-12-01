@@ -365,7 +365,7 @@
                     <div class="col-12" align="center">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">휴가관리</h4><br>
+                                <h2 class="card-title">휴가상세보기</h2><br>
                                 <h6 class="card-subtitle"> vacation <code>.table</code></h6>
                                 <div class="table-responsive">
                                     <table class="table color-table info-table">
@@ -463,13 +463,13 @@
                                  
                                 </div>	
 										<c:if test="${mem.typee eq 's' }">
-									`<a href="vdelete.me?v_no=${v.v_no }" style="float:right;" >삭제하기</a>
+									`<a href="vdelete.me?v_no=${v.v_no }" class="btn waves-effect waves-light btn-rounded btn-outline-warning" style="float:right;" >삭제하기</a>
 										</c:if>	
 										<c:if test="${mem.typee eq 't' }">		
-                                 <button onclick="location.href='sVlist.te';" style="float:right;">리스트로돌아가기</button>
+                                 <button onclick="location.href='sVlist.te';" class="btn waves-effect waves-light btn-rounded btn-outline-info" style="float:right;">리스트로돌아가기</button>
                                  		</c:if>
                                  		<c:if test="${mem.typee eq 's' }">		
-                                 <button onclick="location.href='vlist.me';" style="float:right;">리스트로돌아가기</button>
+                                 <button onclick="location.href='vlist.me';" class="btn waves-effect waves-light btn-rounded btn-outline-info"style="float:right;">리스트로돌아가기</button>
                                  		</c:if>
                                  		
                             </div>

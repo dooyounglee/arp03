@@ -34,15 +34,14 @@
 
 
 
-	<h2 align="center"> 휴가 신청하기</h2>
-	<form align="center" action="vinsert.me" method="POST" >
+	<form action="vinsert.me" method="POST" class="form-material mt-4" >
 	
 	<input type="hidden" name="m_no" id="m_no" value="${mem.m_no }" readonly><br>
 <%-- 	강의번호:<input type="text" name="lec_no"  id="lec_no" value="${param.lec_no }" readonly><br> --%>
 	<%-- 강의명:<input type="text" name="title" id="title"value="${param.title }" readonly><br> --%>
-	제목:<input type="text" id="vacation_title" name="vacation_title"><br>
-	사유:<textarea name="reason"  id="reason" rows="4" cols="50" placeholder="사유입력"></textarea><br>
-	<table style="text-align:center;float:center;">
+<!-- 	제목:<input type="text" id="vacation_title" name="vacation_title"><br>
+	사유:<textarea name="reason"  id="reason" rows="4" cols="50" placeholder="사유입력"></textarea><br> -->
+<!-- 	<table style="text-align:center;float:center;">
 			<thead style="text-align:center;float:center;">
 				<tr>
 					<td colspan=1 id='prevmonth'><</td>
@@ -61,18 +60,84 @@
 			</thead>
 			<tbody>
 			</tbody>
-		</table>
-				<!-- <input id="rlaalstkd" name=vacation_date> -->
-				<div id="dateArea">
-				</div>
-	<button type="submit" id="submit">등록하기</button> 
-	<button type="button" onclick="location.href='vlist.me';">목록으로</button>
+		</table> -->
+	<div class="container-fluid">
+			<div class="row">
+                    <div class="col-lg-8 col-xlg-8 col-md-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-md-flex no-block align-items-center">
+                                    <div>
+                                        <h4 class="card-title">휴가신청하기</h4>
+                                        <h6 class="card-subtitle">휴가신청하기</h6>
+                                        <div class="form-group mt-4 row">
+                                        <label class="col-md-2 col-form-label">제목:</label>
+                                        <div class="col-md-10">
+                                           <input type="text" class="form-control form-control-line" id="vacation_title" name="vacation_title">
+                                        </div>
+                                    </div>
+                                    	<div class="form-group mt-4 row">
+                                        <label class="col-md-2 col-form-label">사유:</label>
+                                        <div class="col-md-10">
+                                           <textarea name="reason" class="form-control" id="reason" rows="5" cols="50" placeholder="사유입력"></textarea>
+                                        </div>
+                                    </div>    
+          						<div class="col-lg-13 col-xlg-7 col-mid-5" style="float:right">                                              
+    <button type="submit" id="submit" style="float:right" class="btn waves-effect waves-light btn-outline-info">등록하기</button>&nbsp;
+	<button type="button" onclick="location.href='vlist.me';" style="float:right" class="btn waves-effect waves-light btn-outline-warning">목록으로</button>
+                                </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                    </div>
+                </div>
+              	<div class="col-lg-3 col-xlg-3 col-md-3" style="float:right; vertical-align: middle;">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-md-flex no-block align-items-center">
+                                    <div>
+                                        <h4 class="card-title">휴가 날짜 선택하기</h4>
+                                        <h6 class="card-subtitle"> 수강일에 맞춰서 휴가신청해주세요</h6>
+                                    </div>
+                                </div>
+								<table style="text-align:center;">
+									<thead>
+										<tr>
+											<td colspan="1" id="prevmonth">&lt;</td>
+											<td colspan="5"><span id="yyyy">2020</span>년 <span id="mm">2</span>월</td>
+											<td colspan="1" id="nextmonth">&gt;</td>
+										</tr>
+										<tr>
+											<td>일</td>
+											<td>월</td>
+											<td>화</td>
+											<td>수</td>
+											<td>목</td>
+											<td>금</td>
+											<td>토</td>
+										</tr>
+									</thead>
+
+									<tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td class="real" data-dd="1">1</td></tr><tr><td class="real" data-dd="2">2</td><td class="real" data-dd="3">3</td><td class="real" data-dd="4">4</td><td class="real" data-dd="5">5</td><td class="real" data-dd="6">6</td><td class="real" data-dd="7">7</td><td class="real" data-dd="8">8</td></tr><tr><td class="real" data-dd="9">9</td><td class="real" data-dd="10">10</td><td class="real" data-dd="11">11</td><td class="real" data-dd="12">12</td><td class="real" data-dd="13">13</td><td class="real" data-dd="14">14</td><td class="real" data-dd="15">15</td></tr><tr><td class="real" data-dd="16">16</td><td class="real" data-dd="17">17</td><td class="real" data-dd="18">18</td><td class="real" data-dd="19">19</td><td class="real" data-dd="20">20</td><td class="real" data-dd="21">21</td><td class="real" data-dd="22">22</td></tr><tr><td class="real" data-dd="23">23</td><td class="real" data-dd="24">24</td><td class="real" data-dd="25">25</td><td class="real" data-dd="26">26</td><td class="real" data-dd="27">27</td><td class="real" data-dd="28">28</td><td class="real" data-dd="29">29</td></tr></tbody>
+								
+								</table>
+							<div id="dateArea"></div>
+                            
+                    </div>
+                </div>
+	
+			</div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+          </div> 
+	
 	</form>
 	
 	
-	
-	
-	
+
 	
 
 		<!-- footer -->
@@ -95,6 +160,10 @@
    var jq132 = jQuery.noConflict();
    
    </script>
+   
+   
+   
+   
 	
 	<script>
 		var arr=[];
@@ -238,7 +307,7 @@
 		    dd = (dd < 10) ? '0' + dd : dd;
 			for(i=0;i<arr.length;i++){
 				 if($('#yyyy').html()+'/'+mm+'/'+dd==arr[i]){
-					$(this).css('background','blue').css('cursor','pointer')
+					$(this).css('background','yellow').css('cursor','pointer')
 					$(this).data('exist',true);
 					
 				 }
@@ -312,11 +381,14 @@
 	    $('#dateArea').html('')
 	    var str=""
 	    for(i=0;i<arr.length;i++){
-	    	str+='<input name="dateArea" value="'+arr[i]+'"><br>'
+	    	str+='<input name="dateArea" class="form-control col-6" value="'+arr[i]+'"><br>';
+	    	
 	    }
+	    		  
 	    $('#dateArea').append(str)
 	    calend(yyyy,mm);
-		
+	    		
+	    	
 			
 
 	});
