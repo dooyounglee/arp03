@@ -25,9 +25,6 @@ include summernote css/js
 
 <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
 <style>
 	.card{
 		text-align:left;
@@ -35,7 +32,7 @@ include summernote css/js
 		margin-right:auto;
 		/* width:1000px; */
 	}
-	#writeTb{width:800px;}
+	#writeTb{width:80%;}
 </style>
 </head>
 <body class="fix-header card-no-border logo-center">
@@ -103,61 +100,17 @@ include summernote css/js
 
 	<c:if test="${ empty b }">
 	<h3 align="center" style="color:black">글쓰기</h3>
-	<br>
 	<form action="binsert.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name=m_no value=${ mem.m_no }>
 		<table id="writeTb" align="center">
-			<tr>
-				<td><input type="text" name="title" id="title" class="form-control" required placeholder="제목을 입력해주세요" required></td>
+			<tr>	
+				<td><input type="text" name="title" id="title" class="form-control" required></td>
 			</tr>
 			
 			<tr>
 				<td>
-                	<textarea cols="50" rows="7" name="content" id="summernote" required></textarea>
-                	<script>
-							$("#summernote").summernote({
-									tabsize : 2,
-									height : 300,
-									minHeight : null,
-									maxHeight : null,
-									focus : true,
-									callbacks: {
-						  				onImageUpload: function(files, editor, welEditable) {
-						  		            for (var i = files.length - 1; i >= 0; i--) {
-						  		            	sendFile(files[i], this);
-						  		            	console.log(this);
-						  		            	console.log("연결성공");
-						  		            }
-						  		        }
-						  			}
-							});
-							
-							function sendFile(file, el) {
-						          var form_data = new FormData();
-						          form_data.append('file', file);
-						          $.ajax({
-						            data: form_data,
-						            type:"POST",
-						            url:"image.do",
-						            cache: false,
-						            contentType: false,
-						            enctype: 'multipart/form-data',
-						            processData: false,
-						            success: function(img_name) {
-						            	/* console.log(img_name);
-						             	console.log(el); */
-						             	$(el).summernote("editor.insertImage", img_name);
-						             	//$('#summernote > ul').append('<li><img src="'+img_name+'" width="480" height="auto"/></li>');
-						             	//$('#summernote').append('<img src="' + +img_name + '"width="480" height="auto"/>')
-						            },
-						            error: function(){
-						            	console.log("ajax 통신 실패");
-						            }
-						          });
-						        }
-						
-					</script>
-                </td>
+				<textarea cols="50" rows="7" name="content" id="summernote" required></textarea>
+				</td>
 			</tr>
 			<tr>
 				<td align="center">
@@ -173,7 +126,7 @@ include summernote css/js
 	<h3 align="center" style="color:black">글 수정</h3>
 	<form action="bupdate.do?b_no=${b.b_no}" method="post" enctype="multipart/form-data">
 		<input type="hidden" name=m_no value=${ mem.m_no }>
-		<table width="800px" align="center">
+		<table id="writeTb" align="center">
 			<tr>	
 				<td><input type="text" name="title" id="title" class="form-control" value="${ b.title }" required></td>
 			</tr>
@@ -181,45 +134,6 @@ include summernote css/js
 			<tr>
 				<td>
 				<textarea cols="50" rows="7" name="content" id="summernote" required>${ b.content }</textarea>
-				<script>
-		
-							$('#summernote').summernote({
-									tabsize : 2,
-									height : 300,
-									minHeight : null,
-									maxHeight : null,
-									focus : true,
-									callbacks: {
-						  				onImageUpload: function(files, editor, welEditable) {
-						  		            for (var i = files.length - 1; i >= 0; i--) {
-						  		            	sendFile(files[i], this);
-						  		            	
-						  		            }
-						  		        }
-						  			}
-							});
-				
-							function sendFile(file, el) {
-						          var form_data = new FormData();
-						          form_data.append('file', file);
-						          $.ajax({
-						            data: form_data,
-						            type:"POST",
-						            url:"image.do",
-						            cache: false,
-						            contentType: false,
-						            enctype: 'multipart/form-data',
-						            processData: false,
-						            success: function(img_name) {
-						            	//console.log(img_name);
-						              $(el).summernote('editor.insertImage', img_name);
-						            },
-						            error: function(){
-						            	console.log("ajax 통신 실패");
-						            }
-						          });
-						        }
-					</script>
 				</td>
 			</tr>
 			<tr>
@@ -254,7 +168,7 @@ include summernote css/js
 	<%@ include file="../include/bjs.jsp" %>
 	
 	 <script>
-      /* $(function(){
+      $(function(){
   		$("#summernote").summernote({
   			height: 300,
   			fontNames : [ '맑은고딕', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New' ],
@@ -271,9 +185,9 @@ include summernote css/js
   			
   		});
 
-  	}); */
+  	});
       
-      /* function sendFile(file, el) {
+      function sendFile(file, el) {
           var form_data = new FormData();
           form_data.append('file', file);
           $.ajax({
@@ -292,7 +206,7 @@ include summernote css/js
             	console.log("ajax 통신 실패");
             }
           });
-        } */
+        }
  
     </script>
 </body>
