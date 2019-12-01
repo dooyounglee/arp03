@@ -1,14 +1,20 @@
 package com.kh.arp.notice.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.common.PageInfo;
@@ -121,7 +127,21 @@ public String deleteNotice(int n_no ,ModelAndView mv) {
 	
 }
 
-
+	@PostMapping("/upload")
+	public void upload(MultipartHttpServletRequest req,HttpServletResponse res) {
+		System.out.println("들어왔고");
+		MultipartFile file=req.getFile("uploadFile");
+		String savePath=req.getSession().getServletContext().getRealPath("resources");
+		String filePath=savePath+"\\upload\\"+file.getOriginalFilename();
+		try {
+			file.transferTo(new File(filePath));
+			res.getWriter().println(file.getOriginalFilename());
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 }

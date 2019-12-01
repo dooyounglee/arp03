@@ -790,12 +790,31 @@
 				}
 			});
 		}
-		
+
 		
 		$(function(){
 			var youtubeIdChange = $("#youtubeId").val();
-			var youtubeId = youtubeIdChange.replace('watch?v=','embed/');
-			$("#youtuberealId").attr("src", youtubeId);
+			/* var youtubeId = youtubeIdChange.replace('watch?v=','embed/'); */
+			var youtu = "https://youtu.be/";
+			var naver = "/v/";
+			var kakao = "https://tv.kakao.com/v/";
+			var daum = "https://kakaotv.daum.net/v/";
+			var youtubeId = youtubeIdChange.replace('https://youtu.be/','https://www.youtube.com/embed/');
+			var naverId = youtubeIdChange.replace('/v/','/embed/');
+			var kakaoId = youtubeIdChange.replace('https://tv.kakao.com/v/','https://play-tv.kakao.com/embed/player/cliplink/');
+			var daumNewsId = youtubeIdChange.replace('https://kakaotv.daum.net/v/','https://play-tv.kakao.com/embed/player/cliplink/');
+			if(youtubeIdChange.indexOf(youtu) != -1){
+				$("#youtuberealId").attr("src", youtubeId);
+			}
+			if(youtubeIdChange.indexOf(naver) != -1){
+				$("#youtuberealId").attr("src", naverId);
+			}
+ 			if(youtubeIdChange.indexOf(kakao) != -1){
+				$("#youtuberealId").attr("src", kakaoId);
+			}
+ 			if(youtubeIdChange.indexOf(daum) != -1){
+				("#youtuberealId").attr("src", daumNewsId);
+			}
 		});
 		
 		

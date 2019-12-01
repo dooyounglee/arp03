@@ -16,7 +16,7 @@
                     	<li><a href="main.lec?lec_no=${l.lec_no }">${l.title }</a></li>
             		</c:forEach>
                 </ul>
-            	</c:if>
+            	</c:if>    
             	</c:if>
             </li>
             <li><a class="has-arrow" href="blist.do"><span class="hide-menu">자유게시판</span></a></li>
@@ -29,6 +29,7 @@
             <li><a class="has-arrow" href="list.pro"><span class="hide-menu">문제관리</span></a></li>
             <li><a class="has-arrow" href="list.hw"><span class="hide-menu">숙제관리</span></a></li>
             </c:if>
+            <c:if test="${!empty mem }">
             <li>
                 <a class="has-arrow" href="#" aria-expanded="false"><i class=" mdi mdi-email"></i><span class="hide-menu">쪽지함</span></a>
                 <ul aria-expanded="false" class="collapse">
@@ -36,6 +37,7 @@
                     <li><a href="listSendMsg.do">받은 쪽지함</a></li>
                 </ul>
             </li>
+            </c:if>
             <li>
                 <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">학생</span></a>
                 <ul aria-expanded="false" class="collapse">

@@ -98,13 +98,17 @@
 												<td><p>${mem.name }</p></td>
 												<td><p>${title }</p></td>
 												<td><p>${d}</p></td>
+												<td><p>점수</p></td>
                                     		</tr>
                                     	</thead>
                                         <tbody>
                                         	<c:forEach items="${s }" var="a" varStatus="status">
                                         		<tr>
 													<td colspan="2"><p>질문 ${status.count} : ${a.question }</p></td>
-													<td colspan="2"><input type="text" name="answer[${status.index }]" placeholder="답변" required></td>
+													<td colspan="2"><input type="range" id="answer[${status.index }]" 
+													class="inputrange" name="answer[${status.index }]" placeholder="답변" 
+													min="1" max="5" step="1" required oninput="document.getElementById('value[${status.index}]').innerHTML=this.value;"></td>
+													<td><span id="value[${status.index}]">0</span> </td>
 												</tr>
 											</c:forEach>
 												
@@ -112,6 +116,77 @@
                                         </tbody>
                                     </table>
                                     </form>
+                                    <script>
+                                    	/* $(document).ready(function(){
+                                    		var value=$("answer[0]").val()
+                                    		console.log("11---");
+                                    			 $.ajax({
+                                    			
+                            					url:"detailsurvey.jsp",
+                            					data:{value:value},
+                            					type:"get",
+                            					success:function(value){
+		                            				console.log(value);
+		                            				console.log("333");
+                            					},
+                            					error:function(){
+                            						console.log("ajax!!~ 실행 실패");
+                            					}
+                            				}) */
+                            				/*
+                                    		var inputrange= $(".inputrange");
+                                    		var rangevalue=$(".rangevalue");
+                                    		
+                                    		
+                                    			$("#answer[0]").on("input", function(){
+                                    				var value=$(this).val()
+                                    				$.ajax({
+                                    					url:"resultsurvey.jsp",
+                                    					data:{value:value},
+                                    					success:function(){
+                                    				console.log(inputrange.val());
+                                    				console.log("333");
+                                    				 $(this).next().html(value); 
+                                    					},
+                                    					error:function(){
+                                    						console.log("ajax!! 실행 실패");
+                                    					}
+                                    				})
+                                    			}) 
+
+                                    			$("#answer[1]").on("input", function(){
+                                    				var value=$(this).val()
+                                    				$.ajax({
+                                    					url:"resultsurvey.jsp",
+                                    					data:{value:value},
+                                    					success:function(){
+                                    				console.log(inputrange.val());
+                                    				console.log("44");
+                                    				 $(this).next().html(value); 
+                                    					},
+                                    					error:function(){
+                                    						console.log("ajax!! 실행 실패");
+                                    					}
+                                    				})
+                                    			}) 
+
+                                    			$("#answer[2]").on("input", function(){
+                                    				var value=$(this).val()
+                                    				$.ajax({
+                                    					url:"resultsurvey.jsp",
+                                    					data:{value:value},
+                                    					success:function(){
+                                    				console.log(inputrange.val());
+                                    				console.log("55");
+                                    				 $(this).next().html(value); 
+                                    					},
+                                    					error:function(){
+                                    						console.log("ajax!! 실행 실패");
+                                    					}
+                                    				})
+                                    			})  
+                                    	});*/
+                                    </script>
                                 </div>
                             </div>
                         </div>
