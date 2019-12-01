@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.arp.board.model.service.BoardService;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.declaree.model.service.DeclareeService;
@@ -44,6 +46,17 @@ public class DeclareeController {
 		 return mv; 
 	 }
 	 
+	 @ResponseBody
+	 @PostMapping(value="get.de", produces="application/json; charset=UTF-8") 
+	 public String getDeclarePost(Declaree d) {
+		 Declaree newd=ds.getDeclare(d);
+		 if(newd!=null) {
+			 Gson gson=new GsonBuilder().create();
+			 return gson.toJson(newd);
+		 }else {
+			 return "fail";
+		 }
+	 }
 	 
 	
 	/*

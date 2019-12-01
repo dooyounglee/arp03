@@ -74,7 +74,7 @@
                 <!-- Row -->
                 <div class="row">
                     <!-- column -->
-                    <div class="col-9">
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">신고관리</h4>
@@ -104,7 +104,7 @@
 	                                                <td>${d.obj_no }</td>
 	                                                <td>${d.regdate }</td>
 	                                                <td>${d.okdate }</td>
-	                                                <td>${d.status }</td>
+	                                                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#info-header-modal" onclick="fillModal(${d.d_no })">보기</button></td>
 	                                                <td><button class="btn btn-success" onclick="ok(${d.d_no})">처리완료</button></td>
 												</tr>
 											</c:forEach>
@@ -132,6 +132,33 @@
                     </div>
                 </div>
                 <!-- Row -->
+                
+                <!-- Info Header Modal -->
+                <div id="info-header-modal" class="modal fade" tabindex="-1" role="dialog"
+                    aria-labelledby="info-header-modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header modal-colored-header bg-info">
+                                <h4 class="modal-title text-white" id="info-header-modalLabel">신고내용</h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">×</button>
+                            </div>
+                            <div class="modal-body">
+                                <h5 class="mt-0">Info Background</h5>
+                                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+                                    ac consectetur ac, vestibulum at eros.</p>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+                                    Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
+                                    auctor.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light"
+                                    data-dismiss="modal">Close</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -171,11 +198,7 @@
         
         
         
-        
-	<jsp:include page="../../include/header.jsp"/>
-	
-	<h1>신고관리</h1>
-	
+
 	<form id="form" method='post'>
 		<input type="hidden" name="d_no">
 	</form>
@@ -185,7 +208,34 @@
 			formm.children('input').eq(0).val(d_no)
 			formm.submit();
 		}
+		function fillModal(d_no){
+			$.ajax({
+				url:'get.de',
+				type:'post',
+				data:{
+					d_no:d_no,
+				},
+				dataType:'json',
+				success:function(data){
+					var kind;
+					if(data.kind==0){
+						kind='영리목적/홍보'
+					}else if(data.kind==1){
+						kind='불법정보'
+					}else if(data.kind==2){
+						kind='음란성/선정성'
+					}else if(data.kind==3){
+						kind='욕설/인신공격'
+					}else if(data.kind==4){
+						kind='개인정보노출'
+					}
+					var obj=data.obj=="b"?"게시글":"댓글"
+					$('#info-header-modal .modal-body').children().eq(0).text(obj+" "+data.obj_no+"번")
+					$('#info-header-modal .modal-body').children().eq(1).text(kind)
+					$('#info-header-modal .modal-body').children().eq(2).text(data.content)
+				},
+			})
+		}
 	</script>
-	<jsp:include page="../../include/footer.jsp"/>
 </body>
 </html>
