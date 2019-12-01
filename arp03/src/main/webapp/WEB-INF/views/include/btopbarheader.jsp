@@ -231,6 +231,7 @@
 </nav>
 
 <script>
+
 	var m_no = ${mem.m_no}
 	var wsa = new WebSocket(
 			"ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/arp/Echo");
@@ -250,7 +251,7 @@
 				
 				alert("새로운 메시지가 있습니다");
 				list(); // 새로운 메시지가오면 리스트 새로
-							}
+			}
 		}
 
 	};
@@ -263,6 +264,7 @@
 	wsa.onerror = function(event) {
 		console.log('error');
 	};
+
 
 	$("#see").on("click", function() {
 		
@@ -301,8 +303,6 @@
 
 					dataType : "json",
 					success : function(data) {
-						console.log(data.length)
-						console.log(data)
 							$(".message-center").children().remove();
 			
 						if (data.length > 0) {
@@ -342,9 +342,14 @@
 						
 				}
 			})
+			
+}
+	
+if( ${mem ne null}){
+
+	list(); // 들어오자마자 list 새로 불러오기
 }
 
-list(); // 들어오자마자 list 새로 불러오기
 </script>
 
 

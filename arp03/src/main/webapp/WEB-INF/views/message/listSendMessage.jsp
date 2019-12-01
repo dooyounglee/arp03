@@ -41,7 +41,7 @@
 						<h3 class="text-themecolor mb-0 mt-0">쪽지함</h3>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
-							<li class="breadcrumb-item active">Form</li>
+							<li class="breadcrumb-item active">쪽지함</li>
 						</ol>
 					</div>
 					<div class="col-md-7 col-12 align-self-center d-none d-md-block">
