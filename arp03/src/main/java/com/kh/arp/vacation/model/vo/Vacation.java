@@ -10,13 +10,12 @@ public class Vacation {
 	private String vacation_title;
 	private String reason;
 	private String application_date;
-	private String tstatus;
 	private String teacher_sign;
-	private String astatus;
-	private String status;
 	private int lec_no;
-	private String vacationdate;
+	private String vacation_date;
+	private String tstatus;
 	private String name;
 	private String title;
+	private String astatus;
 	
 }
