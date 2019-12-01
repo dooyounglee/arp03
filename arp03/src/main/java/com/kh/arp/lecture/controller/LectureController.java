@@ -63,18 +63,18 @@ public class LectureController {
 		lec.setM_no(mem.getM_no());
 		String str_week=(String.join(",", week)).replace('0','일').replace('1','월').replace('2','화').replace('3','수').replace('4','목').replace('5','금').replace('6','토');
 		lec.setDayofweek(str_week);
-		
+		System.out.println(lec);
 		int result=ls.makeLecture(lec);
 		if(result>0) {
-			Lecture newlec=ls.getLastestLecture();
+			//Lecture newlec=ls.getLastestLecture();
 			ArrayList<Classdate> list=new ArrayList<>();
 			for(int i=0;i<classdate.length;i++) {
-				Classdate cd=new Classdate(newlec.getLec_no(),classdate[i],i+1);
+				Classdate cd=new Classdate(0,classdate[i],i+1);
 				list.add(cd);
 			}
 			
 			int result1=ls.insertClassdate(list);
-			mv.setViewName("redirect:/lectureList.ad");
+			mv.setViewName("redirect:/applyList.lec");
 		}else {
 			;
 		}

@@ -99,7 +99,7 @@
                                     <div class="form-group row">
                                         <label for="example-search-input" class="col-md-2 col-form-label">시작일</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="datetime-local" name="startdate" id="startdate">
+                                            <input class="form-control" type="date" name="startdate" id="startdate">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -109,7 +109,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-url-input" class="col-md-2 col-form-label">몇시간</label>
+                                        <label for="example-url-input" class="col-md-2 col-form-label">수업시간(분)</label>
                                         <div class="col-md-10">
                                             <input class="form-control" name="inghour">
                                         </div>
@@ -120,12 +120,12 @@
                                             <input class="form-control" name="content">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="example-password-input" class="col-md-2 col-form-label">수정사유</label>
                                         <div class="col-md-10">
                                             <input class="form-control" name="updatecomment">
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group row">
                                         <label for="example-number-input" class="col-md-2 col-form-label">학생정원</label>
                                         <div class="col-md-10">
@@ -338,6 +338,7 @@
 			var limit=$('#nth').val();
 			var start=$('#startdate').val();
 			var ddd=new Date(start).getDay();
+			//$('input[name="week"]').prop('checked',false)
 			$('input[name="week"]').eq(ddd).prop('checked',true)
 			
 			//하나라도 없으면 더 못하게

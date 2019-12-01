@@ -574,6 +574,78 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- .row -->
+                                <div class="row">
+                                    <!-- .col-lg-12 -->
+                                    <div class="col-md-12">
+                                        <h4 class="card-title">Start without params</h4>
+                                        <div id="range_01"></div>
+                                    </div>
+                                    <!-- /.col-lg-12 -->
+                                    <div class="col-md-12 mt-4 mb-5">
+                                        <hr>
+                                    </div>
+                                    <!-- .col-lg-12 -->
+                                    <div class="col-md-12">
+                                        <h4 class="card-title">Set min value, max value and start point</h4>
+                                        <div id="range_02"></div>
+                                    </div>
+                                    <!-- /.col-lg-12 -->
+                                    <div class="col-md-12 mt-4 mb-5">
+                                        <hr>
+                                    </div>
+                                    <!-- .col-lg-12 -->
+                                    <div class="col-md-12">
+                                        <h4 class="card-title">Set type to double and specify range, also showing grid and adding prefix "$"</h4>
+                                        <div id="range_03"></div>
+                                    </div>
+                                    <!-- /.col-lg-12 -->
+                                    <div class="col-md-12 mt-4 mb-5">
+                                        <hr>
+                                    </div>
+                                    <!-- .col-lg-12 -->
+                                    <div class="col-md-12">
+                                        <h4 class="card-title">Set up range with negative values</h4>
+                                        <div id="range_04"></div>
+                                    </div>
+                                    <!-- /.col-lg-12 -->
+                                    <div class="col-md-12 mt-4 mb-5">
+                                        <hr>
+                                    </div>
+                                    <!-- .col-lg-12 -->
+                                    <div class="col-md-12">
+                                        <h4 class="card-title">Whant to show that max number is not the biggest one?</h4>
+                                        <div id="range_16"></div>
+                                    </div>
+                                    <!-- /.col-lg-12 -->
+                                    <div class="col-md-12 mt-4 mb-5">
+                                        <hr>
+                                    </div>
+                                    <!-- .col-lg-12 -->
+                                    <div class="col-md-12">
+                                        <h4 class="card-title">Remove double decoration</h4>
+                                        <div id="range_18"></div>
+                                    </div>
+                                    <!-- /.col-lg-12 -->
+                                    <div class="col-md-12 mt-4 mb-5">
+                                        <hr>
+                                    </div>
+                                    <!-- .col-lg-12 -->
+                                    <div class="col-md-12">
+                                        <h4 class="card-title">Visual details</h4>
+                                        <div id="range_22"></div>
+                                    </div>
+                                    <!-- /.col-lg-12 -->
+                                </div>
+                                <!-- .row -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
