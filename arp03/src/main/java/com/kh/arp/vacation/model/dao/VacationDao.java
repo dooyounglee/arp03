@@ -31,9 +31,9 @@ public class VacationDao {
 
 
 
-	public Vacation detailVacation(VacationDate vd) {
+	public ArrayList<VacationDate> detailVacation(int v_no) {
 		
-		return sqlSession.selectOne("vacationMapper.detailVacation",vd);
+		return (ArrayList)sqlSession.selectList("vacationMapper.detailVacation",v_no);
 	}
 
 
@@ -54,6 +54,10 @@ public class VacationDao {
 		return (ArrayList)sqlSession.selectList("vacationMapper.studentVacationList" ,m_no);
 	}
 
+	public ArrayList<Vacation> adminList(int m_no) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("vacationMapper.adminList" ,m_no);
+	}
 
 	public int permission(VacationDate vd) {
 		// TODO Auto-generated method stub
@@ -99,6 +103,8 @@ public class VacationDao {
 		// TODO Auto-generated method stub
 		return sqlSession.update("vacationMapper.multipermission" , vd);
 	}
+
+
 
 
 	/*

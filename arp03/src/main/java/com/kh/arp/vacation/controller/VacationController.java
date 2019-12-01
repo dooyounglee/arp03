@@ -2,6 +2,7 @@ package com.kh.arp.vacation.controller;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,18 +17,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.vacation.model.service.VacationService;
-import com.kh.arp.vacation.model.service.VacationServiceImpl;
 import com.kh.arp.vacation.model.vo.Vacation;
 import com.kh.arp.vacation.model.vo.VacationDate;
 
@@ -185,24 +181,16 @@ public class VacationController {
 	
 	}
 	*/
+	
 	@RequestMapping("vDetail.me")
-	public ModelAndView vDetail(ModelAndView mv, VacationDate vd , int lec_no , int v_no) {
+	public ModelAndView vDetail(ModelAndView mv,int v_no) {
+		//vd.setVacationdate(vacationD);
+		ArrayList<VacationDate> list = vService.detailVacation(v_no);
 		
-		vd.setLec_no(lec_no);
-		vd.setV_no(v_no);
+		System.out.println(list);
 		
-		System.out.println(vd);
-		Vacation v = vService.detailVacation(vd);
-		
-		
-		if(v!= null) {
+			mv.addObject("list", list).setViewName("vacation/detailVacation");
 			
-			mv.addObject("v", v).setViewName("vacation/detailVacation");
-			
-		}else {
-			mv.addObject("msg","게시글조회실패").setViewName("common/errorPage");
-		}
-		
 		return mv;
 	}
 	
@@ -256,11 +244,12 @@ public class VacationController {
 	
 	
 	@RequestMapping("permission.te")
-	public String permission(VacationDate vd , int lec_no , int v_no) {
+	public String permission(VacationDate vd , int lec_no , int v_no , String vacation_date) {
 		
 		vd.setLec_no(lec_no);
 		vd.setV_no(v_no);
-		
+		vd.setVacation_date(vacation_date);
+		System.out.println(vd);
 		int result = vService.permission(vd);
 		
 		if(result >0) {
@@ -290,7 +279,7 @@ public class VacationController {
 	@RequestMapping("sVlist.ad")
 	public ModelAndView adminpermission(HttpSession session, ModelAndView mv) {
 		int m_no = ((Member)session.getAttribute("mem")).getM_no();
-		ArrayList<Vacation> list = vService.selectList(m_no);
+		ArrayList<Vacation> list = vService.adminList(m_no);
 		
 			mv.addObject("list", list).setViewName("vacation/adminVacation");
 		
