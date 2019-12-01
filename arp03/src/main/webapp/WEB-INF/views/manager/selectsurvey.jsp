@@ -159,7 +159,9 @@
 		}).click(function(){
 			var no=$(this).parent().children().eq(0).val();
 			if("${mem.typee}"=='s'){
-			location.href="detailsurvey.ma?su_no=" + no;
+				if($(this).parent().children().eq(5).text()=="N"){
+					location.href="detailsurvey.ma?su_no=" + no;
+				}
 			}
 			if("${mem.typee}"=='t'){
 				location.href="detailsurveystudent.ma?su_no=" + no;

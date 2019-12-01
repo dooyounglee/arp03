@@ -51,7 +51,7 @@ public class UrlRequesstPreventFilter implements Filter {
 			if(referer==null) {
 				hreq.getRequestDispatcher("WEB-INF/views/common/error.jsp").forward(request, response);
 			}else {
-				if(!referer.equals("http://localhost:8090/arp/login.me")){
+				if(!referer.substring(referer.lastIndexOf("/")).equals("/login.me")){
 					session.setAttribute("referer", referer.substring(referer.lastIndexOf("/")));
 				}
 			}
