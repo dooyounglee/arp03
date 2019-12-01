@@ -172,6 +172,7 @@ public class SurveyController {
 	sq.setSu_no(su_no);
 	//그 수업과 설문에 들어가있는 m_no 리스트
 	List<SurveyQuestion> list = ss.selectstudent(sq);
+	
 	System.out.println(list);
 	//그수업과 설문에 들어가있는 m_no의 번호
 	int lsm=list.get(0).getM_no();
@@ -195,8 +196,8 @@ public class SurveyController {
 		float m = ss.sumsurvey(msq);// 질문에 대답한 학생들의 답들을 더한값
 		System.out.println("m"+m);
 		float b=m/su_total_m_no;  // 더한값/질문에 대답한 총 학생수
-		String.format("%.2f",b);
-		a.add(b);					
+		String c=String.format("%.1f",b);
+		a.add(c);					
 	}
 	System.out.println(a);
 	// =============================

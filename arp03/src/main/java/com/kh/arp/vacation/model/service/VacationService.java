@@ -19,7 +19,7 @@ public interface VacationService {
 	ArrayList<Vacation>selectList(int m_no);
 	
 	// 휴가 상세보기
-	Vacation detailVacation(VacationDate vd);
+	ArrayList<VacationDate> detailVacation(int v_no);
 	
 	// 휴가 수정하기폼
 	 Vacation updateVacationForm(int v_no);
@@ -38,6 +38,8 @@ public interface VacationService {
 	 
 	 // 휴가 반려
 	 int companion(VacationDate v);
+	 // 관리자 휴가리스트
+	 ArrayList<Vacation> adminList(int m_no);
 	 
 	 // 관리자 다중 휴가 처리
 	 int adminpermission(int num);
@@ -50,6 +52,7 @@ public interface VacationService {
 
 	// 날짜조회용
 	int insertVacationDate(List<VacationDate> vDlist);
+
 
 
 	

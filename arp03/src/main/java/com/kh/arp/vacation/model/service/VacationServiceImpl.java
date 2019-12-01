@@ -32,12 +32,13 @@ public class VacationServiceImpl implements VacationService {
 		// TODO Auto-generated method stub
 		return vDao.selectList(m_no);
 	}
-
+	
 	@Override
-	public Vacation detailVacation(VacationDate vd) {
+	public ArrayList<VacationDate> detailVacation(int v_no) {
 		// TODO Auto-generated method stub
-		return vDao.detailVacation(vd);
-	}
+		return vDao.detailVacation(v_no);
+	
+	};
 //	@Override
 //	public Vacation updateVacationForm(int v_no) {
 //		// TODO Auto-generated method stub
@@ -60,6 +61,13 @@ public class VacationServiceImpl implements VacationService {
 		// TODO Auto-generated method stub
 		return vDao.studentVacation(m_no);
 	}
+
+	@Override
+	public ArrayList<Vacation> adminList(int m_no) {
+		// TODO Auto-generated method stub
+		return vDao.adminList(m_no);
+	}
+	
 	@Override
 	public int permission(VacationDate vd) {
 		// TODO Auto-generated method stub
@@ -98,6 +106,8 @@ public class VacationServiceImpl implements VacationService {
 		
 		return vDao.multiPermission(vd);
 	}
+
+	}
 	
 
 	
@@ -114,4 +124,4 @@ public class VacationServiceImpl implements VacationService {
 
 	
 	
-}
+

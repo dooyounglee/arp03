@@ -45,9 +45,10 @@ values(#{v_no},
 </insert> -->
 
 <select id="selectList" resultType="Vacation">
-select v.*, l.lec_no , vd.lec_no , m.name ,vd.tstatus , vd.astatus , vd.status , l.title, vd.vacationdate
-from vacation v , lecture l, vacationdate vd , member m
-where v.v_no = vd.v_no and l.lec_no = vd.lec_no and m.m_no = v.m_no
+select v.*, m.name 
+from vacation v , member m 
+where v.m_no =#{v_no} and v.m_no=m.m_no
+order by v.v_no desc
 <!--select b.*, m.name 
 		from board b, member m
 		where b.ca_no=2 and b.status='Y' and b.m_no=m.m_no
@@ -61,10 +62,10 @@ from myclass m, lecture l
 where l.lec_no=m.lec_no and m.m_no=#{m_no}
 </select>
 
-<select id="detailVacation" resultType="Vacation">
-select vd.* , v.vacation_title , v.reason , v.m_no ,m.name , l.title
-from vacationdate vd , vacation v, member m , lecture l
-where v.v_no =#{v_no} and m.m_no = v.m_no and vd.lec_no=l.lec_no and v.v_no = vd.v_no and vd.lec_no =#{lec_no}
+<select id="detailVacation" resultType="VacationDate">
+select vd.* , v.vacation_title , v.reason , l.title , m.name
+from vacationdate vd , vacation v , lecture l , member m
+where vd.v_no=#{v_no} and vd.v_no = v.v_no and l.lec_no = vd.lec_no and m.m_no = v.m_no
 </select>
 
 <update id="updateVacation">
@@ -83,18 +84,22 @@ where lec_no = #{lec_no}
 
 
 <select id="studentVacationList" resultType="Vacation">
-select v.* ,vd.v_no , vd.lec_no ,vd.vacationdate, m.name , l.title , vd.tstatus 
-from vacationdate vd, vacation v, member m, lecture l
-where v.v_no = vd.v_no and vd.lec_no in (select lec_no from lecture
-where m_no=#{m_no}) and v.m_no = m.m_no and vd.lec_no = l.lec_no
+select v.* , vd.tstatus , vd.astatus,vd.status , m.name , vd.vacation_date , vd.lec_no , l.title
+from vacation v, vacationdate vd , member m ,lecture l 
+where vd.v_no= v.v_no and m.m_no = v.m_no and vd.lec_no = l.lec_no
+</select>
 
+<select id="adminList" resultType="Vacation">
+select v.* , vd.tstatus , vd.astatus,vd.status , m.name , vd.vacation_date , vd.lec_no , l.title
+from vacation v, vacationdate vd , member m ,lecture l 
+where vd.v_no= v.v_no and m.m_no = v.m_no and vd.lec_no = l.lec_no
 </select>
 
 <update id="permission">
 
 update vacationdate
 set tstatus='Y'
-where v_no=#{v_no} and lec_no=#{lec_no}
+where v_no=#{v_no} and lec_no=#{lec_no} and vacation_date = #{vacation_date}
 
 </update>
 

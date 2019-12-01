@@ -7,6 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+
+
+
+
+</style>
 <%--  <script src="${pageContext.request.contextPath}/resources/js/signature_pad.min.js" type="text/javascript"></script>
      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/css.css"> --%>
 
@@ -162,14 +168,9 @@
 	</c:if>
 	</c:if> --%>
 	
-	
-					<div class="col-md-12" align="center" >
-						<div class="card">
-                            <div class="card-body" >
-                                <h4 class="card-title">휴가 상세보기</h4>
-                                <h6 class="card-subtitle">Add class <code>.table</code></h6>
-                                 <c:if test ="${mem.typee eq 's'}">
-							<table border="1px" align="left">
+                                 
+						<%-- 	<table border="1px" align="left">
+					
 					<tr>
 					<th>선생님</th>
 					<th>관리자</th>
@@ -219,21 +220,23 @@
 					 	</td>
 					</tr>
 					
-					</table>
-					</c:if>
-               <div class="table-responsive">
+					</table> --%>
+					
+               <%-- <div class="table-responsive">
           <table class="table">
          <thead>
              
          </thead>
          <tbody>
-                                      
-		
-		<table align="center" border="1px">
+                                  
+	
+		<table align="center">
+            <c:forEach items="${list}" var="v">  
+			
 		<tr>
 			<td>강의제목</td>
 			<td>${v.title }</td>
-		<tr>
+		</tr>
 		
 		<tr>
 			<td>휴가제목</td>
@@ -247,8 +250,22 @@
 		<tr>
 			<td>사유</td>
 			<td>${v.reason }</td>
+		</tr>
+		<tr>
+			<td>날짜</td>
+			<td>${fn:substring(v.vacationdate,0,10) }</td>
 		</tr>	
+		<tr>
+			<td>선생님</td>
+			<td>${v.tstatus }</td>
+		</tr>
+		<tr>
+			<td>관리자</td>
+			<td>${v.astatus }</td>
+		</tr>
+		 --%>
 		
+		<%-- 
 		<c:if test="${v.tstatus eq 'Y' && v.astatus eq 'Y'}">
 			<td>출력하기</td>
 			<td><button onclick="myvacation()">인쇄</button></td>
@@ -262,12 +279,11 @@
 		</c:if>
 		
 		</tr>
-		</table>
 		
 		<c:if test="${mem.typee eq 't' }">
 		<button onclick="location.href='sVlist.te';">리스트로돌아가기</button>
 		<c:if test ="${v.tstatus eq 'N' }">
-	 	<a onclick="location.href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }'" style="cursor:pointer">허가</a> 
+	 
 		<!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-example-modal-lg">허가</button> -->
 		<!--<button id="sign">사인하기</button>  -->
 		<a onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }',width=300, height=300)" style="cursor:pointer">반려</a>
@@ -288,6 +304,7 @@
 	                                </div> -->
 		</c:if>
 		<br><br>
+	
 		<c:if test="${mem.typee eq 's' }">
 		<button onclick="location.href='vlist.me';" align="center">리스트로 돌아가기</button>
 		 
@@ -297,29 +314,198 @@
 		<c:if test="${v.tstatus eq 'B'}">
 		<a href="vdelete.me?v_no=${ v.v_no }" >삭제하기</a>	
 		</c:if>
-		</c:if>
+		</c:if> --%>
 		
-		<c:if test="${mem.typee eq 's' }">
-		<button onclick="location.href='vlist.me';" align="center">리스트로 돌아가기</button>
-		 
-		<c:if test="${v.tstatus eq 'N'}">
-		<a href="vdelete.me?lec_no=${ v.lec_no }&v_no="${v.v_no }">삭제하기</a>
-		</c:if>
-		<c:if test="${v.tstatus eq 'B'}">
-		<a href="vdelete.me?v_no=${ v.v_no }" >삭제하기</a>	
-		</c:if>
-		</c:if>
+	
 		
-                                        </tbody>
-                                    </table>
+<%-- 		</c:forEach> --%>
+	
+	
+	
+	<div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 col-12 align-self-center">
+                        <h3 class="text-themecolor mb-0 mt-0">휴가상세보기</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active">휴가상세보기</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+                        <div class="d-flex mt-2 justify-content-end">
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                   
+                                </div>
+                                <div class="spark-chart">
+                                </div>
+                            </div>
+                            <div class="d-flex mr-3 ml-2">
+                                <div class="chart-text mr-2">
+                                   
+                                </div>
+                                <div class="spark-chart">
                                 </div>
                             </div>
                         </div>
-					</div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-12" align="center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">휴가관리</h4><br>
+                                <h6 class="card-subtitle"> vacation <code>.table</code></h6>
+                                <div class="table-responsive">
+                                    <table class="table color-table info-table">
+                                        <thead>
+                                           
+                                  
+                          <%--                    <c:if test="${mem.typee eq 's' }">
+                                               <th></th>
+                                              </c:if>
+                                             <c:if test="${mem.typee eq 't' }">
+                                             	<th colspan="2" textalign="center">결제</th>
+                                             </c:if>	 --%>
+                                           
+                                        </thead>
+                                        <tbody >
+                                     	<c:forEach items="${list}" var="v">  
+										<tr>
+											
+											
+					
+									
+										</c:forEach>
+																			
+			
+                                        </tbody>
+     				                                
+                                    </table>
+       	
+				
+				<c:forEach items="${list}" var="v" >  
+				<div class="col-md-3 col-xs-10 col-sm-2 no-padding" style="display:inline-block" >
+								 
+                                        <div class="pricing-box featured-plan">
+                                            <div class="pricing-body"  >
+                                                   
+                                                <div class="pricing-header">
+                                                    <h4 class="price-lable text-white bg-warning">${v.lec_no }</h4>
+                                                    <h4 class="text-center">강의명</h4>
+                                                    <h1 class="text-center"><span class="price-sign"></span>${v.title }</h1>
+                                                  <c:if test="${mem.typee eq 's' }">  
+                                                    <c:if test="${v.status eq 'N'}">
+                                                    <p class="uppercase badge badge-danger">처리중</p>
+                                                    </c:if>
+                                                    <c:if test="${v.tstatus eq 'B' }">
+                                                     <p class="uppercase badge badge-warning">반려</p>
+                                                    </c:if>
+                                                    <c:if test="${v.status eq 'Y'}">
+                                                    <p class="uppercase badge badge-info">처리완료</p>
+                                                    </c:if>
+                                                   </c:if> 
+                                                </div>
+                                                <div class="price-table-content">
+                                                    <div class="price-row"><i class="mdi mdi-calendar-check"></i>${fn:substring(v.vacation_date,0,10) }</div>
+                                                    <div class="price-row"><i class="icon-note"></i> ${v.reason }</div>
+                                                     <div class="price-row">
+                                                  <c:if test="${v.tstatus eq 'N'}">
+                                                  		<i class="ti-user"></i> 선생님 : 처리중
+                                                  </c:if>
+                                                  <c:if test="${v.tstatus eq 'B' }">
+                                                  		<i class="ti-user"></i> 선생님 : 반려
+                                                  </c:if>
+                                                  <c:if test="${v.tstatus eq 'Y' }">
+                                                  		<i class="ti-user"></i> 선생님 : 승인
+                                                  </c:if>
+                                                  
+                                                    </div>
+                                                    <div class="price-row">
+                                                 <c:if test="${mem.typee eq 't' }">
+                                              	   <c:if test="${v.tstatus eq 'N' }">
+													<td>
+														<a onclick="location.href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}'" style="cursor:pointer">허가</a>
+													</td>
+													<td>	
+														<a onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }',width=300, height=300)" style="cursor:pointer">반려</a>
+													</td>
+													</c:if>	
+												</c:if>          
+												 <c:if test="${mem.typee eq 's' }">
+													 <c:if test="${v.tstatus eq 'B' }">
+												 	 사유 : ${v.companion_reason }
+													 </c:if> 
+                                                 </c:if>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                         
+                                        </div>
+                                         <br>
+                                    </div>
+                                   
+										</tr>
+                              </c:forEach>
+                                 
+                                </div>	
+										<c:if test="${mem.typee eq 's' }">
+									`<a href="vdelete.me?v_no=${v.v_no }" style="float:right;" >삭제하기</a>
+										</c:if>	
+										<c:if test="${mem.typee eq 't' }">		
+                                 <button onclick="location.href='sVlist.te';" style="float:right;">리스트로돌아가기</button>
+                                 		</c:if>
+                                 		<c:if test="${mem.typee eq 's' }">		
+                                 <button onclick="location.href='vlist.me';" style="float:right;">리스트로돌아가기</button>
+                                 		</c:if>
+                                 		
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
 	
 	
-	
-	
+		<%-- <c:if test="${mem.typee eq 't' }">
+		<button onclick="location.href='sVlist.te';">리스트로돌아가기</button>
+		<c:if test ="${v.tstatus eq 'N' }">
+	 	<a onclick="location.href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }'" style="cursor:pointer">허가</a> 
+		<!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-example-modal-lg">허가</button> -->
+		<!--<button id="sign">사인하기</button>  -->
+		<a onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }',width=300, height=300)" style="cursor:pointer">반려</a>
+		</c:if> --%>
+		<!-- iframe으로 가져오기 -->
+		<!-- <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+	                                    <div class="modal-dialog modal-lg">
+	                                        <div class="modal-content">
+	                                            <div class="modal-header">
+	                                                <h4 class="modal-title" id="myLargeModalLabel">싸인하기</h4>
+	                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	                                            </div>
+	                                            <div class="modal-body">
+	 												<iframe id="sof" name="sof" src="signature-pad.te" width="100%" height="400" frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>
+	                                            </div>
+	                                        </div>/.modal-content
+	                                    </div>/.modal-dialog
+	                                </div> -->
+		
+		<br><br>
 	            <footer class="footer">
 	            <%@ include file="../include/bfooter.jsp" %>
 	        </footer>
@@ -331,18 +517,6 @@
 			</div>
 		<!-- End of Main wrapper -->
 	<%@ include file="../include/bjs.jsp" %>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	 <!--  헤더 제이쿼리 충돌 방지  -->
 	
