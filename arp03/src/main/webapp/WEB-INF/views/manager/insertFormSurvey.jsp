@@ -116,7 +116,7 @@
                                         			<button class =" btn btn-success" id="insertquestion" type="button">질문추가</button>
 													<button class = "btn btn-success" id="submitquestion" type="submit">등록</button>
 													<button class =" btn btn-inverse" id="deletequestion" type="button">질문삭제</button>
-													<button class = "btn btn-inverse"type="reset">취소</button>
+													<button class = "btn btn-inverse"type="reset">질문 다시만들기</button>
 												</td>
 											</tr>
                                         </tbody>
