@@ -141,11 +141,11 @@
 										</c:if>
 										<br>
 										<br> ＃youtube＃naver＃kakao URL &nbsp; <input class="form-control inputtexturl" id="youtubeId" type="text" style="width: 300px;" name="youtubelink" value="${ q.youtubelink }">
-											<button id="addURLTest" type="button">추가</button>
+											<img style="width:30px; height:30px; cursor:pointer;" id="addURLTest" src="resources/siraFile/plus버튼.png">
 										<br>
 										<br>
 										<div style="text-align: center;">
-											<button class="btn waves-effect waves-light btn-rounded btn-info" id="deleteaj" onclick="return note2UpText()" type="submit">확인</button>
+											<button class="btn waves-effect waves-light btn-rounded btn-warning" id="deleteaj" onclick="return note2UpText()" type="submit">확인</button>
 											<!-- <button type="button" onclick="window.history.back()">취소</button> -->
 											<button class="btn waves-effect waves-light btn-rounded btn-info" type="button" onclick="location.href='question.qu?lec_no=${q.lec_no}';">목록</button>
 										</div>

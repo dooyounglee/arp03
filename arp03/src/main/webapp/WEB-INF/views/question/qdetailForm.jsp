@@ -164,16 +164,17 @@
 
 					<div class="col-lg-10">
 						<div class="card">
-							<div class="card-body" style="padding-left: 100px; padding-right: 100px; padding-top:70px;">
+							<div class="card-body"
+								style="padding-left: 100px; padding-right: 100px; padding-top: 70px;">
 								<section class="cd-horizontal-timeline loaded">
 
 									<!-- .timeline -->
 									<div class="events-content">
 										<form class="c5" action="qupdateForm.qu?q_no=${ q.q_no }"
 											method="post" enctype="multipart/form-data">
-											<br>
-											<h3 align="center" style="font-size: 20px; color: gray;">상세보기 페이지</h3>
-											<br>
+											
+											<h3 align="center" style="font-size: 20px; color: gray;">상세보기
+												페이지</h3>
 											<br>
 											<div class="selected">
 												<!-- <h3 style="font-size: 18px; font-weight:bold;"><img width="55" src="resources/siraFile/Q2.png">&nbsp;&nbsp;&nbsp;학생질문</h3> -->
@@ -184,8 +185,7 @@
 												<input size="10" type="text" name="name" value="${ q.name }"
 													readonly>
 												<div style="float: right; color: black;">${ q.updatedate }</div>
-												<br>
-												<br> ${ q.content }
+												<br> <br> ${ q.content }
 												<c:if test="${ !empty q.youtubelink }">
 													<iframe id="youtuberealId" width="560" height="315" src=""
 														frameborder="0"></iframe>
@@ -202,11 +202,8 @@
 											<input id="youtubeId" type="hidden" style="width: 300px;"
 												name="youtubelink" value="${ q.youtubelink }"> <br>
 											<br>
-											<br>
-											<br>
-											<br>
 											<div id="btns" align="center">
-												<c:if test="${ mem.name eq q.name }">
+												<c:if test="${ mem.m_no eq q.m_no }">
 													<button type="submit"
 														class="btn waves-effect waves-light btn-rounded btn-info">수정</button>
 													<button type="button" id="qDel"
@@ -217,13 +214,12 @@
 												<c:if
 													test="${empty q.replycontent && mem.typee eq 't' && mem.m_no eq lec.m_no}">
 													<button type="button" onclick="Qre();"
-														class="btn waves-effect waves-light btn-rounded btn-info">답변하기</button>
+														class="btn waves-effect waves-light btn-rounded btn-danger">답변하기</button>
 												</c:if>
 												<button type="button"
 													class="btn waves-effect waves-light btn-rounded btn-info"
 													onclick="location.href='question.qu';">목록</button>
-												<br>
-												<br>
+												<br> <br>
 											</div>
 											<br>
 										</form>
@@ -245,10 +241,10 @@
 								method="post" enctype="multipart/form-data">
 								<div class="card-body">
 									<br> <input size="10" type="text" name="name"
-										value="${ qt.tcname }" readonly> <br>
-									<br>
-									<textarea id="summernote" cols="50" rows="7" name="replycontent" required>${ q.replycontent }</textarea>
-<!-- 									<script>
+										value="${ qt.tcname }" readonly> <br> <br>
+									<textarea id="summernote" cols="50" rows="7"
+										name="replycontent" required>${ q.replycontent }</textarea>
+									<!-- 									<script>
 								      $('#summernote').summernote({
 								        tabsize: 2,
 								        height:300,
@@ -261,78 +257,84 @@
 									<br>
 									<div style="text-align: center;">
 										<button
-											class="btn waves-effect waves-light btn-rounded btn-info" id="qReOk" onclick="return noteTextUp()" type="submit">확인</button>
-										<button class="btn waves-effect waves-light btn-rounded btn-info" type="button" onclick="qReX();">취소</button>
+											class="btn waves-effect waves-light btn-rounded btn-warning"
+											id="qReOk" onclick="return noteTextUp()" type="submit">확인</button>
+										<button
+											class="btn waves-effect waves-light btn-rounded btn-info"
+											type="button" onclick="qReX();">취소</button>
 									</div>
 								</div>
 							</form>
 						</div>
 					</div>
 				</div>
-						<!-- row2끝 -->
-						<!-- row3시작 (선생님답변 올린부분) -->
-			<c:if test="${!empty q.replycontent}">
-						<div class="row">
-						<div class="col-lg-2"></div>
-							<div class="col-lg-10">
-								<div class="card">
-									<div class="card-body" style="padding-left: 100px; padding-right: 100px;">
-										<section class="cd-horizontal-timeline loaded">
-
-											<!-- .timeline -->
-											<div class="events-content">
-												<form class="c1" id="qOpen1" method="post"
-													enctype="multipart/form-data">
-													<br> <br>
-													<br>
-													<div class="selected">
-														<!-- <h3 style="font-size: 18px; font-weight:bold;"><img width="55" src="resources/siraFile/Q2.png">&nbsp;&nbsp;&nbsp;학생질문</h3> -->
-														<br> <img width="60" src="resources/siraFile/A2.png">&nbsp;&nbsp;&nbsp;<span
-															style="font-weight: bold; font-size: 25px; color: black;"
-															size="20">선생님 답변</span>
-														<hr class="mt-4">
-														<input size="10" style="color: black;" type="text" name="name" value="${ qt.tcname }" readonly>
-														<div style="float: right; color: black;">${ q.replydate }</div>
-														<br>
-														<br> ${ q.replycontent }
-														<c:if
-															test="${ mem.typee eq 't' && mem.m_no eq lec.m_no }">
-															<br>
-															<div style="text-align: center;">
-																<button
-																	class="btn waves-effect waves-light btn-rounded btn-info"
-																	type="button" onclick="qReUpdate();">수정</button>
-															</div>
-															<br><br>
-														</c:if>
-													</div>
-													<br><br><br><br>
-												</form>
-											</div>
-											<!-- .events-content -->
-										</section>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- row3끝 -->
-						<!-- row4시작 (댓글리스트부분) -->
-					<div id="dat">
+				<!-- row2끝 -->
+				<!-- row3시작 (선생님답변 올린부분) -->
+				<c:if test="${!empty q.replycontent}">
 					<div class="row">
 						<div class="col-lg-2"></div>
 						<div class="col-lg-10">
-						<div class="card">
-							<div class="card-body">
-							<div id="replyArea">
-							<div id="replyAreaChildren">
-								<table id="demo-foo-pagination" align="center" cellspacing="0">
-									<input type="hidden" id="q_nohidden" name="q_no" value="${ q.q_no }">
-												<c:if test="${ qRListCount ne 0 }">
-												<span style="color:gray; font:fantasy; font-weight:bold;">댓글(${ qRListCount })</span>
-												<hr>
-													<c:forEach items="${ qRList }" var="qr">
-													<!-- 	<table border="1"> -->
-<%--  															<tr align="center">
+							<div class="card">
+								<div class="card-body"
+									style="padding-left: 100px; padding-right: 100px;">
+									<section class="cd-horizontal-timeline loaded">
+
+										<!-- .timeline -->
+										<div class="events-content">
+											<form class="c1" id="qOpen1" method="post"
+												enctype="multipart/form-data">
+												<br> <br> <br>
+												<div class="selected">
+													<!-- <h3 style="font-size: 18px; font-weight:bold;"><img width="55" src="resources/siraFile/Q2.png">&nbsp;&nbsp;&nbsp;학생질문</h3> -->
+													<br> <img width="60" src="resources/siraFile/A2.png">&nbsp;&nbsp;&nbsp;<span
+														style="font-weight: bold; font-size: 25px; color: black;"
+														size="20">선생님 답변</span>
+													<hr class="mt-4">
+													<input size="10" style="color: black;" type="text"
+														name="name" value="${ qt.tcname }" readonly>
+													<div style="float: right; color: black;">${ q.replydate }</div>
+													<br> <br> ${ q.replycontent }
+													<c:if test="${ mem.typee eq 't' && mem.m_no eq lec.m_no }">
+														<br>
+														<div style="text-align: center;">
+															<button
+																class="btn waves-effect waves-light btn-rounded btn-info"
+																type="button" onclick="qReUpdate();">수정</button>
+														</div>
+														<br>
+														<br>
+													</c:if>
+												</div>
+												<br>
+											</form>
+										</div>
+										<!-- .events-content -->
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- row3끝 -->
+					<!-- row4시작 (댓글리스트부분) -->
+					<div id="dat">
+						<div class="row">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-10">
+								<div class="card">
+									<div class="card-body">
+										<div id="replyArea">
+											<div id="replyAreaChildren">
+												<table id="demo-foo-pagination" align="center"
+													cellspacing="0">
+													<input type="hidden" id="q_nohidden" name="q_no"
+														value="${ q.q_no }">
+													<c:if test="${ qRListCount ne 0 }">
+														<span
+															style="color: gray; font: fantasy; font-weight: bold;">댓글(${ qRListCount })</span>
+														<hr>
+														<c:forEach items="${ qRList }" var="qr">
+															<!-- 	<table border="1"> -->
+															<%--  															<tr align="center">
 																<td style="width:auto;">${ qr.r_no } &nbsp;</td>
 																<td style="width:auto;">
 																	${ qr.name }
@@ -360,78 +362,84 @@
 																	</td>
 																</c:if>
 															</tr> --%>
-													<!-- 	</table> -->
-													<!-- 이름부분 -->
-												<div>
-													<div style="padding-bottom:7px; height:30px;">
-														<span style="float:left; white-space:nowrap; color:white; display:none;">${ qr.r_no }</span>
-														<span style="float:left; white-space:nowrap; font-weight:bold;">${ qr.name }</span>
-														<!-- 내글일경우에만 표시해주자 ex) 내 글 -->
-														<c:if test="${ qr.name eq mem.name }">
-														<!-- 박스 -->
-														<span style="height:19px; margin:3px 0 0 6px; padding:0 8px; border-width:1px 1px 1px 1px; 
-														border-style:solid; font-weight:bold; border-radius:17px; position:relative; float:left; vertical-align:top;">
-															<!-- 글 -->
-															<span style="height:17px; line-height:17px; margin:0; color:rgb(81, 143, 187); font-size:10px; letter-spacing:-1px; float:left;">
-															내 글
-															</span>
-														</span>
-														</c:if>
-													</div>
-													<div class="contentWordText" style="display:inline;">
-													<span class="contentWordText" style="color:black; font:fantasy;">
-														${ qr.content }
-													</span>
-													<!-- <script>
+															<!-- 	</table> -->
+															<!-- 이름부분 -->
+															<div>
+																<div style="padding-bottom: 7px; height: 30px;">
+																	<span
+																		style="float: left; white-space: nowrap; color: white; display: none;">${ qr.r_no }</span>
+																	<span
+																		style="float: left; white-space: nowrap; font-weight: bold;">${ qr.name }</span>
+																	<!-- 내글일경우에만 표시해주자 ex) 내 글 -->
+																	<c:if test="${ qr.m_no eq mem.m_no }">
+																		<!-- 박스 -->
+																		<span
+																			style="color: red; height: 19px; margin: 3px 0 0 6px; padding: 0 8px; border-width: 1px 1px 1px 1px; border-style: solid; font-weight: bold; border-radius: 17px; position: relative; float: left; vertical-align: top;">
+																			<!-- 글 --> <span
+																			style="height: 17px; line-height: 17px; margin: 0; color: red; font-size: 10px; letter-spacing: -1px; float: left;">
+																				내 글 </span>
+																		</span>
+																	</c:if>
+																</div>
+																<div class="contentWordText" style="display: inline;">
+																	<span class="contentWordText"
+																		style="color: black; font: fantasy;"> ${ qr.content }
+																	</span>
+																	<!-- <script>
 														$(function(){
 															${ qr.content }.replace("\n","<br>");
 														});
 													</script> -->
-													</div>
-													<div style="float:right;">
-													<span>
-														${ qr.updatedate }
-													</span>
-													<span>
-														<c:if test="${ qr.m_no eq mem.m_no }">
-															<button class="qrBtn btn-outline" style="outline:0; border:none; font-size:13px;" type="button">
-																	<span class="fas fa-trash spanTrashColor"></span>
-															</button>
-														</c:if>
-													</span>
-													</div>
-												</div>
-												<br>
-													</c:forEach>
-												</c:if>
-												<c:if test="${ qRListCount eq 0 }">
-													<div style="text-align:center">아직 작성된 댓글이 없습니다.</div>
-												</c:if>
-										</table>
+																</div>
+																<div style="float: right;">
+																	<span> ${ qr.updatedate } </span> <span> <c:if
+																			test="${ qr.m_no eq mem.m_no }">
+																			<button class="qrBtn btn-outline"
+																				style="outline: 0; border: none; font-size: 13px;"
+																				type="button">
+																				<span class="fas fa-trash spanTrashColor"></span>
+																			</button>
+																		</c:if>
+																	</span>
+																</div>
+															</div>
+															<br>
+														</c:forEach>
+													</c:if>
+													<c:if test="${ qRListCount eq 0 }">
+														<div style="text-align: center">아직 작성된 댓글이 없습니다.</div>
+													</c:if>
+												</table>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-			
+
 						<!-- row4끝 -->
 						<!-- row5시작 (댓글 등록하는 칸부분) -->
 						<div class="row">
-						<div class="col-lg-4"></div>
-						<div class="col-lg-8">
-						<div>
-						<textarea class="contentWordText" style="border: 1px solid lightgray; padding:10px; border-radius:5px;" cols="60" rows="3" id="repl" cols="50" rows="2" name="content"></textarea>
-						<button class="btn waves-effect waves-light btn-info" style="height:47px; margin-left:auto; margin-right:auto; margin-top:-70px;" id="datUp" type="submit" onclick="qRestartInsert()">댓글등록</button>
+							<div class="col-lg-4"></div>
+							<div class="col-lg-8">
+								<div>
+									<textarea class="contentWordText"
+										style="border: 1px solid lightgray; padding: 10px; border-radius: 5px;"
+										cols="60" rows="3" id="repl" name="content"></textarea>
+									<button class="btn waves-effect waves-light btn-warning"
+										style="height: 47px; margin-left: auto; margin-right: auto; margin-top: -70px;"
+										id="datUp" type="submit" onclick="qRestartInsert()">댓글등록</button>
+								</div>
+							</div>
 						</div>
-						</div>
-						</div>
-						<br><br><br>
+						<br>
+						<br>
+						<br>
 					</div>
 				</c:if>
-				</div>
-					
-					<!-- row5끝 -->
+			</div>
+
+			<!-- row5끝 -->
 
 
 
@@ -865,20 +873,6 @@
 
 
 
-				<!-- footer -->
-				<footer class="footer">
-					<%@ include file="../include/bfooter.jsp"%>
-				</footer>
-				<!-- End footer -->
-		</div>
-		<!-- End of Page wrapper  -->
-        
-	</div>
-	<!-- End of Main wrapper -->
-	
-	<%@ include file="../include/bjs.jsp" %>
-
-
 
 
 
@@ -925,7 +919,18 @@ webSocket.close();
 
 
 
-
+				<!-- footer -->
+				<footer class="footer">
+					<%@ include file="../include/bfooter.jsp"%>
+				</footer>
+				<!-- End footer -->
+		</div>
+		<!-- End of Page wrapper  -->
+        
+	</div>
+	<!-- End of Main wrapper -->
+	
+	<%@ include file="../include/bjs.jsp" %>
 
 
 
