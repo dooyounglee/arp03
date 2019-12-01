@@ -16,7 +16,7 @@
                     	<li><a href="main.lec?lec_no=${l.lec_no }">${l.title }</a></li>
             		</c:forEach>
                 </ul>
-            	</c:if>
+            	</c:if>    
             	</c:if>
             </li>
             <li><a class="has-arrow" href="blist.do"><span class="hide-menu">자유게시판</span></a></li>
