@@ -44,10 +44,10 @@
 	
 	<select id="selectNList" resultType="Message">
 	<![CDATA[
-	 select *
-	 from  (select *
-	       from message 
-	       where g_no=#{m_no} and read_status='N'and alram='N' order by s_date desc )
+select *
+	 from (select ms.*, m.name
+	       from message ms , member m
+	       where g_no=#{m_no} and read_status='N'and alram='N' and ms.s_no=m.m_no order by s_date desc ) 
 	where rownum <= 3 
 	 ]]>
 	</select>
