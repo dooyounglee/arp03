@@ -203,7 +203,7 @@
                                                 
                                                     </div>
                                                     <div class="price-row">
-                                                 <c:if test="${mem.typee eq 't' }">
+                                                 <c:if test="${mem.typee eq 't' and mem.m_no eq lec.m_no }">
                                               	   <c:if test="${v.tstatus eq 'N' }">
 													<td>
 														<a onclick="location.href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}'" style="cursor:pointer">허가</a>
