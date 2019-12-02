@@ -99,6 +99,7 @@
 												<th>제목</th>
 												<th>날짜</th>
 												<th>확인여부</th>
+											
 
 											</tr>
 										<thead>
@@ -114,12 +115,55 @@
 													<c:if test="${m.read_status eq 'Y'}">
 														<td>읽음</td>
 													</c:if>
-
+												<%-- 	<td><a class="btn btn waves-effect waves-light btn-rounded btn-outline-success"  href="reSendMsgForm.do?ms_no=${m.ms_no}">답장보내기</a>
+													</td>
+ --%>
 
 												</tr>
 											</c:forEach>
 									</table>
 								</div>
+							</div>
+							<!-- 페이징 처리 -->
+							<div id="page">
+								<ul class="pagination">
+									<c:if test="${ pi.currentPage eq 1 }">
+										<li class="page-item"><a class="page-link">이전</a></li>
+									</c:if>
+									<c:if test="${ pi.currentPage ne 1 }">
+										<c:url value="listSendMsg.do" var="before">
+											<c:param name="currentPage" value="${ pi.currentPage-1 }" />
+										</c:url>
+										<li class="page-item"><a class="page-link"
+											href="${ before }">이전</a></li>
+									</c:if>
+
+									<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }"
+										var="p">
+										<c:if test="${ p eq pi.currentPage }">
+											<li class="page-item"><a class="page-link">${ p }</a></li>
+
+										</c:if>
+										<c:if test="${ p ne pi.currentPage }">
+											<c:url value="listSendMsg.do" var="page">
+												<c:param name="currentPage" value="${ p }" />
+											</c:url>
+											<li class="page-item"><a class="page-link"
+												href="${ page }"> ${ p }</a></li>
+										</c:if>
+									</c:forEach>
+
+									<c:if test="${ pi.currentPage eq pi.maxPage }">
+										<li class="page-item"><a class="page-link">다음</a></li>
+									</c:if>
+									<c:if test="${ pi.currentPage ne pi.maxPage }">
+										<c:url value="listSendMsg.do" var="after">
+											<c:param name="currentPage" value="${ pi.currentPage+1 }" />
+										</c:url>
+										<li class="page-item"><a class="page-link"
+											href="${ after }"> 다음</a></li>
+									</c:if>
+								</ul>
 							</div>
 						</div>
 					</div>
