@@ -258,9 +258,10 @@ public class AdminController {
 	
 	@PostMapping("/declareBoard.ad")
 	public ModelAndView declareBoardAdmin(Board b, ModelAndView mv) {
+		System.out.println(b);
 		int result=ms.declareBoard(b);
 		if(result>0) {
-			mv.setViewName("redirect:/boardList.ad");
+			mv.setViewName("redirect:/declareList.ad");
 		}
 		return mv;
 	}
@@ -293,9 +294,10 @@ public class AdminController {
 	
 	@PostMapping("/declareReply.ad")
 	public ModelAndView declareReplyAdmin(BReply r, ModelAndView mv) {
+		System.out.println(r);
 		int result=ms.declareReplyAdmin(r);
 		if(result>0) {
-			mv.setViewName("redirect:/replyList.ad");
+			mv.setViewName("redirect:/declareList.ad");
 		}
 		return mv;
 	}

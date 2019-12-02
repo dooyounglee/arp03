@@ -228,14 +228,9 @@
 								</section>
 							</div>
 						</div>
-					</div>
-				</div>
-				<!-- row1끝 -->
-
-				<!-- row2시작 (선생님답변 쓰는부분)  -->
+						<!-- row2시작 (선생님답변 쓰는부분)  -->
 				<div class="row">
-					<div class="col-2"></div>
-					<div class="col-10">
+					<div class="col-12">
 						<div class="card">
 							<form id="qOpen" action="qTCInsertReply?q_no=${ q.q_no }"
 								method="post" enctype="multipart/form-data">
@@ -272,8 +267,7 @@
 				<!-- row3시작 (선생님답변 올린부분) -->
 				<c:if test="${!empty q.replycontent}">
 					<div class="row">
-						<div class="col-lg-2"></div>
-						<div class="col-lg-10">
+						<div class="col-lg-12">
 							<div class="card">
 								<div class="card-body"
 									style="padding-left: 100px; padding-right: 100px;">
@@ -318,8 +312,7 @@
 					<!-- row4시작 (댓글리스트부분) -->
 					<div id="dat">
 						<div class="row">
-							<div class="col-lg-2"></div>
-							<div class="col-lg-10">
+							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-body">
 										<div id="replyArea">
@@ -420,8 +413,8 @@
 						<!-- row4끝 -->
 						<!-- row5시작 (댓글 등록하는 칸부분) -->
 						<div class="row">
-							<div class="col-lg-4"></div>
-							<div class="col-lg-8">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-9">
 								<div>
 									<textarea class="contentWordText"
 										style="border: 1px solid lightgray; padding: 10px; border-radius: 5px;"
@@ -437,6 +430,12 @@
 						<br>
 					</div>
 				</c:if>
+					</div>
+					
+				</div>
+				<!-- row1끝 -->
+
+				
 			</div>
 
 			<!-- row5끝 -->

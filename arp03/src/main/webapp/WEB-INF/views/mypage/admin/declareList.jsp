@@ -9,6 +9,10 @@
 </head>
 <body class="fix-header card-no-border logo-center">
 
+	<!-- Preloader - style you can find in spinners.css -->
+ 	<%@ include file="../../include/bpreloader.jsp" %> 
+	<!-- End of Preloader - style you can find in spinners.css -->
+	
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -90,8 +94,9 @@
                                                 <th>obj_no</th>
                                                 <th>regdate</th>
                                                 <th>okdate</th>
-                                                <th>status</th>
-                                                <th>status</th>
+                                                <th>보기</th>
+                                                <th>처리</th>
+                                                <th>신고</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -105,7 +110,25 @@
 	                                                <td>${d.regdate }</td>
 	                                                <td>${d.okdate }</td>
 	                                                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#info-header-modal" onclick="fillModal(${d.d_no })">보기</button></td>
-	                                                <td><button class="btn btn-success" onclick="ok(${d.d_no})">처리완료</button></td>
+	                                                <td>
+	                                                	<c:if test="${d.status eq 'A' }">
+	                                                		처리완료
+	                                                	</c:if>
+	                                                	<c:if test="${d.status eq 'N' }">
+	                                                		<button class="btn btn-success" onclick="ok(${d.d_no})">처리완료</button>
+	                                                	</c:if>
+	                                                </td>
+	                                                <td>
+	                                                	<c:if test="${d.status eq 'A' }">
+	                                                		
+	                                                	</c:if>
+	                                                	<c:if test="${d.status eq 'N' && d.obj eq 'b' }">
+	                                                		<button class="btn btn-secondary" onclick="declareBoard(${d.obj_no})">신고</button>
+	                                                	</c:if>
+	                                                	<c:if test="${d.status eq 'N' && d.obj eq 'r' }">
+	                                                		<button class="btn btn-secondary" onclick="declareReply(${d.obj_no})">신고</button>
+	                                                	</c:if>
+	                                                </td>
 												</tr>
 											</c:forEach>
                                         </tbody>
@@ -118,8 +141,9 @@
                                                 <th>obj_no</th>
                                                 <th>regdate</th>
                                                 <th>okdate</th>
-                                                <th>status</th>
-                                                <th>status</th>
+                                                <th>보기</th>
+                                                <th>처리</th>
+                                                <th>신고</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -197,8 +221,12 @@
         
         
         
-        
-
+    <form id="formB" method='post'>
+		<input type="hidden" name="b_no">
+	</form>
+	<form id="formR" method='post'>
+		<input type="hidden" name="r_no">
+	</form>    
 	<form id="form" method='post'>
 		<input type="hidden" name="d_no">
 	</form>
@@ -235,6 +263,16 @@
 					$('#info-header-modal .modal-body').children().eq(2).text(data.content)
 				},
 			})
+		}
+		function declareBoard(b_no){
+			var formm=$('#formB').attr('action','declareBoard.ad')
+			formm.children('input').eq(0).val(b_no)
+			formm.submit();
+		}
+		function declareReply(r_no){
+			var formm=$('#formR').attr('action','declareReply.ad')
+			formm.children('input').eq(0).val(r_no)
+			formm.submit();
 		}
 	</script>
 </body>

@@ -65,7 +65,7 @@ public class BoardController {
 			return "redirect:blist.do";
 		} else {
 			model.addAttribute("msg", "글 작성에 실패했습니다.");
-			return "common/errorPage";
+			return "common/error";
 		}
 	}
 	
@@ -120,7 +120,7 @@ public class BoardController {
 			mv.setViewName("board/boardDetailView");
 		} else {
 			mv.addObject("msg", "게시글 상세조회 실패");
-			mv.setViewName("common/errorPage");
+			mv.setViewName("common/error");
 		}
 		return mv;
 	}
@@ -145,7 +145,6 @@ public class BoardController {
 	public String insertReply(BReply r) {
 		int result =  bService.insertReply(r);
 		//System.out.println(r);
-		
 		if(result > 0) {
 			return "success";
 		} else {
@@ -156,9 +155,9 @@ public class BoardController {
 	
 	@ResponseBody
 	@RequestMapping("deleteReply.do")
-	public String deleteReply(int r_no, int depth) {
+	public String deleteReply(BReply r) {
 		//System.out.println(depth);
-		int rst = bService.deleteReply(r_no, depth);
+		int rst = bService.deleteReply(r);
 		if(rst > 0) {
 			return "success";
 		} else {
@@ -206,7 +205,7 @@ public class BoardController {
 			return "redirect:blist.do";
 		} else {
 			model.addAttribute("msg", "글 작성에 실패했습니다.");
-			return "common/errorPage";
+			return "common/error";
 		}
 	}
 	
@@ -216,8 +215,24 @@ public class BoardController {
 		if(rst > 0) {
 			return "redirect:blist.do";
 		} else {
-			return "common/errorPage";
+			return "common/error";
 		}
 	}
+	
+	@RequestMapping("search.do")
+	public ModelAndView searchBoard(ModelAndView mv, int condition, String search,
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
+		HashMap map = new HashMap();
+		map.put("condition", condition);
+		map.put("search", search);
+		int listCount = bService.searchListCount(map);
+		//System.out.println(listCount);
+		PageInfo pi = new PageInfo(currentPage, listCount, 10, 10);
+		ArrayList<Board> list = bService.searchList(map, pi);
+		//System.out.println(list);
+		mv.addObject("pi", pi).addObject("list", list).setViewName("board/boardListView");
+		return mv;
+	}
+	
 	
 }

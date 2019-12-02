@@ -9,6 +9,10 @@
 </head>
 <body class="fix-header card-no-border logo-center">
 
+	<!-- Preloader - style you can find in spinners.css -->
+ 	<%@ include file="../include/bpreloader.jsp" %> 
+	<!-- End of Preloader - style you can find in spinners.css -->
+	
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -105,7 +109,9 @@
                                     <c:if test="${mem.typee eq 's' || mem.typee eq 't'}">
                                     <a class="btn btn-success" href="mylist.qna">목록</a>
                                     </c:if>
+                                    <c:if test="${mem.typee eq 's' && mem.m_no eq qna.m_no && qna.answer ne 'null'}">
                                     <button type="button" class="btn btn-success" onclick="del(${qna.qna_no})">삭제</button>
+                                    </c:if>
                                 <c:if test="${empty qna.answer && mem.typee eq 'a' }">
                                 <form id="answerForm" class="form-material mt-4" action="answerQna.ad" method="post" autocomplete=off>
                                 	<input type="hidden" name="qna_no" value="${qna.qna_no }">
