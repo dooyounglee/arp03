@@ -90,6 +90,7 @@
 								        <thead>
 								            <tr>
 								                <th>#</th>
+								                <th>id</th>
                                                 <th>Name</th>
                                                 <th>email</th>
                                                 <th>phone</th>
@@ -101,6 +102,7 @@
 								        	<c:forEach var="m" items="${list }">
 								        		<tr>
 													<td>${m.m_no }</td>
+													<td>${m.id }</td>
 	                                                <td><a href="DetailStudent.ad?m_no=${m.m_no }">${m.name }</a></td>
 	                                                <td>${m.email }</td>
 	                                                <td>${m.phone }</td>

@@ -277,7 +277,7 @@
                                     </table>
                           		 </div>
 <c:if test ="${mem.id eq 'admin' }">
-<button onclick ="location.href='ninsertForm.ad';" class="btn waves-effect waves-light btn-rounded btn-danger">작성하기</button>
+<button onclick ="location.href='ninsertForm.ad';" class="btn waves-effect waves-light btn-danger">작성하기</button>
 </c:if>                                      
                                         
                                     </div>
