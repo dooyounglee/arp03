@@ -74,7 +74,7 @@
                     <li><a href="qnaList.ad">문의관리</a></li>
                     <li><a href="declareList.ad">신고관리</a></li>
                     <li><a href="memberList.ad">회원관리</a></li>
-                    <li><a href="sVlist.ad">휴가관리</a></li>
+                    <li><a href="vlist.me">휴가관리</a></li>
                 </ul>
             </li>
         </ul>

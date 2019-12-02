@@ -47,11 +47,15 @@ public class VacationController {
 	
 	@RequestMapping("vlist.me")
 	public ModelAndView vacationListForm(ModelAndView mv, HttpSession session ) {
+		Member mem=(Member)session.getAttribute("mem");
 		
-		int m_no = ((Member)session.getAttribute("mem")).getM_no();
-		
-		ArrayList<Vacation> list = vService.selectList(m_no);
-				
+		ArrayList<Vacation> list=null;
+		if(mem.getTypee().equals("s")) {
+			list = vService.selectList(mem.getM_no());
+		}else if(mem.getTypee().equals("a")){
+			list=vService.selectListAdmin();
+		}
+		System.out.println(list);
 		mv.addObject("list" , list).setViewName("vacation/vacationListForm");
 		
 		
@@ -184,9 +188,20 @@ public class VacationController {
 	*/
 	
 	@RequestMapping("vDetail.me")
-	public ModelAndView vDetail(ModelAndView mv,int v_no) {
+	public ModelAndView vDetail(ModelAndView mv,int v_no, HttpSession session) {
 		//vd.setVacationdate(vacationD);
-		ArrayList<VacationDate> list = vService.detailVacation(v_no);
+		Member mem=(Member)session.getAttribute("mem");
+		
+		ArrayList<VacationDate> list=null;
+		Vacation v=new Vacation();
+		v.setV_no(v_no);
+		v.setM_no(mem.getM_no());
+		if(mem.getTypee().equals("t")) {
+			list=vService.detailVactionT(v);
+		}else {
+			list=vService.detailVacation(v_no);
+		}
+		
 		
 		System.out.println(list);
 		
@@ -254,7 +269,7 @@ public class VacationController {
 		int result = vService.permission(vd);
 		
 		if(result >0) {
-			return "redirect:sVlist.te";
+			return "redirect:vDetail.me?v_no="+v_no;
 		}else {
 			return "common/errorPage";
 		}
