@@ -45,7 +45,7 @@
 	</select>
 	
 	<insert id="makeExam" >
-		INSERT INTO exam VALUES(seq_exam.nextval,#{lec_no},#{title},to_date(#{examdate},'yyyy-MM-dd'),default,default)
+		INSERT INTO exam VALUES(seq_exam.nextval,#{lec_no},#{title},to_date(#{examdate},'yyyy-MM-dd hh24:mi'),default,default)
 		<selectKey keyProperty="e_no" resultType="int" order="AFTER">
 			select seq_exam.currval from dual
 		</selectKey>
@@ -58,7 +58,7 @@
 	<update id="editExam">
 		update exam set
 		title=#{title},
-		examdate=#{examdate}
+		examdate=to_date(#{examdate},'yyyy-MM-dd hh24:mi')
 		where e_no=#{e_no}
 	</update>
 	

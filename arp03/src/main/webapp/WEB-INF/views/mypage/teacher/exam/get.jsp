@@ -94,7 +94,7 @@
                                 <h4 class="card-title mt-4" id="3">시험일</h4>
                                 <p>${e.examdate.split(' ')[0] }</p>
                                 <h4 class="card-title mt-4" id="4">시험시간</h4>
-                                <p>자정</p>
+                                <p>${e.examdate.split(' ')[1].substring(0,5) }</p>
 	                            <a class="btn btn-success" href="edit.ex?e_no=${e.e_no }">수정</a>
 	                            <a class="btn btn-success" href="list.ex">목록</a>
                             </div>
