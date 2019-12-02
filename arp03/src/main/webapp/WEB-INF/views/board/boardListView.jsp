@@ -8,17 +8,27 @@
 <title>Insert title here</title>
 <%@ include file="../include/bhead.jsp"%>
 <style>
-	.col-lg-10,#page{
-	margin-left:auto;
-	margin-right: auto;
-
+	.col-lg-10, #page{
+		margin-left:auto;
+		margin-right: auto;
 	}
 	.card{
-	margin-left:auto;
-	margin-right: auto;
+		margin-left:auto;
+		margin-right: auto;
 		/* width:1000px; */
 	}
 	.table{text-align:center;}
+	#searchArea{
+		width:100%;
+		margin-left:auto;
+		margin-right:auto;
+		margin-top:0.5rem;
+	}
+	#realSearch{
+		margin-left:35%;
+		margin-right:35%;
+		width:100%;
+	}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 </head>
@@ -101,10 +111,11 @@
 		<thead>
 		<tr>
 			<th>번호</th>
-			<th width="300">제목</th>
+			<th width="400">제목</th>
 			<th>글쓴이</th>
 			<th>작성일</th>
 			<th>조회수</th>
+			<th>댓글수</th>
 		</tr>
 		</thead>
 		<c:forEach items="${ list }" var="b">
@@ -114,6 +125,7 @@
 				<td>익명</td>
 				<td>${ b.regdate }</td>
 				<td>${ b.vcount }</td>
+				<td>${ b.rcount }</td>
 			</tr>
 		</c:forEach>
 		
@@ -128,7 +140,7 @@
 		</div>
 		<!-- 페이징 처리 -->
 		<div id="page" align="center">
-		<ul class="pagination">
+		<ul id="pageul" class="pagination">
 		<c:if test="${pi.listCount ne 0}">
 		<!-- <tr align="center" height="20">
 			<td colspan="5"> -->
@@ -169,6 +181,21 @@
 		</c:if>
 		</ul>
 		</div>
+					<div id="searchArea" class="center-block text-center col-lg-12" align="center">
+						<form id="searchDo" action="search.do" method="get">
+                                            <div align="center" id="realSearch" class="input-group text-center">
+                                            	<select class="col-md-1 custom-select" id="searchCondition" name="condition">
+                                                <option value=1>제목</option>
+                                                <option value=2>제목+내용</option>
+                                            	</select>
+                                                    <input type="text" id="searchform" class="form-control col-sm-2" name="search">
+                                             <div class="input-group-append">
+                                            <button class="btn btn-info" type="button" onclick="check();">검색</button>
+                                     </div>
+                         </div>
+						</form>	
+					</div>
+				
 		</div>
 	</div>
 	
@@ -191,5 +218,14 @@
 	</div>
 	
 	<%@ include file="../include/bjs.jsp" %>
+	<script>
+	function check(){
+		if($("#searchform").val().trim() == ""){
+			alert("내용을 입력해주세요.");
+			return false;
+		} 
+		$("#searchDo").submit();
+	}
+	</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.kh.arp.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -45,14 +46,20 @@ public class BoardDao {
 	}
 
 	public int insertReply(BReply r) {
-		return sqlSession.insert("boardMapper.insertReply", r);
+		int con = sqlSession.update("boardMapper.plusBReplyCount", r);
+		int rst = 0;
+		if(con > 0) {
+			rst = sqlSession.insert("boardMapper.insertReply", r);
+		}
+		return rst;
 	}
 
-	public int deleteReply(int r_no, int depth) {
-		if(depth == 2) {
-			sqlSession.update("boardMapper.minusCount", r_no);
+	public int deleteReply(BReply r) {
+		sqlSession.update("boardMapper.minusBReplyCount", r);
+		if(r.getDepth() == 2) {
+			sqlSession.update("boardMapper.minusCount", r);
 		}
-		return sqlSession.update("boardMapper.deleteReply", r_no);
+		return sqlSession.update("boardMapper.deleteReply", r);
 	}
 
 	public int updateReply(BReply r) {
@@ -60,6 +67,7 @@ public class BoardDao {
 	}
 
 	public int insertReReply(BReply r) {
+		sqlSession.update("boardMapper.plusBReplyCount", r);
 		int con = sqlSession.update("boardMapper.updateRecount", r);
 		
 		int rst = 0;
@@ -84,6 +92,16 @@ public class BoardDao {
 
 	public int updateVcount(int b_no) {
 		return sqlSession.update("boardMapper.updateVcount", b_no);
+	}
+
+	public int searchListCount(HashMap map) {
+		return sqlSession.selectOne("boardMapper.searchListCount", map);
+	}
+
+	public ArrayList<Board> searchList(HashMap map, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList) sqlSession.selectList("boardMapper.searchList", map, rowBounds);
 	}
 	
 }

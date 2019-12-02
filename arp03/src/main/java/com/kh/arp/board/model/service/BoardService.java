@@ -1,7 +1,9 @@
 package com.kh.arp.board.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import com.kh.arp.board.model.vo.BCategory;
 import com.kh.arp.board.model.vo.BReply;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.common.PageInfo;
@@ -27,7 +29,7 @@ public interface BoardService {
 	int insertReply(BReply r);
 		
 	// 댓글 삭제
-	int deleteReply(int r_no, int depth);
+	int deleteReply(BReply r);
 		
 	// 댓글 수정
 	int updateReply(BReply r);
@@ -46,5 +48,12 @@ public interface BoardService {
 	
 	// 게시글 뷰카운트 증가
 	int updateVcount(int b_no);
+	
+	// 게시글 검색 갯수
+	int searchListCount(HashMap map);
+	
+	// 게시글 검색 목록
+	ArrayList<Board> searchList(HashMap map, PageInfo pi);
+	
 	
 }
