@@ -217,6 +217,8 @@
 		});
 		
 		$("#addURLTest").click(function(){ // 추가 버튼
+			var currentStr = $('#summernote').summernote('code');
+		//alert(currentStr);
 			
 			// 사용자가 입력한 값
 			var youtubeaaa = $(".inputtexturl").val();
@@ -227,7 +229,24 @@
 			/* var youtubeIdChange = $("#youtubeId").val(); */
 			/* var youtubeId = youtubeIdChange.replace('watch?v=','embed/'); */
 			if($(".inputtexturl").val().trim() != ""){
-				$('#summernote').summernote('pasteHTML', '<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');
+				//$('#summernote').summernote('pasteHTML', '<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');
+				
+				// 현재 내용에 있는 값들
+				var currentStr = $('#summernote').summernote('code');//현재 에디터꺼 불러왔고,
+				//$('#summernote').summernote('insertText', currentStr);//그걸 에디터로 넣었네. 여기까지만 해보자. 이거까지는 뒤로 붙여주네.
+				// 앞에 붙는 기능에 현재내용 넣고 변수에담음
+				//var real = $('#summernote').summernote('pasteHTML', currentStr);//$('#summernote').summernote('pasteHTML', currentStr);이걸 실행하고, 그 return값을 real에 저장.
+				//근데 $('#summernote').summernote('pasteHTML', currentStr);의 return값이 없나봐? 그래서 undefined찍히는거 같고.
+				//$('#summernote').summernote('pasteHTML', currentStr);이거는 뭐하는 메서드임? 현재 가져온값을 앞에 추가욤 그치
+				//$('#summernote').summernote('pasteHTML', currentStr);//이거만 하면 현제 에디터에서 맨 앞에 currentStr이 붙을꺼야. 맞나?????????새
+				// 다시 summernote로 보냄
+				//$('#summernote').summernote('code', real +'<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');
+				$('#summernote').summernote('code', currentStr +'<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">')//이제 영상이 하나 들어갈꺼고
+				//클릭을 아무리 해도 영상 하나만 들어갈꺼야. 잘 되는거 같애.//<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">
+				//<iframe>태그 앞에 원래 있던 str만 붙여넣고 에디터에 갖다 붙이자. ㄱㄱ 이렇게용?.?ㅇㅇ 이제 뒤로 잘 붙어? 새로고침하기전까진 붙었는데 또 안돼요 ㄷㄷ ㅇ
+						//되는거 아니야??ㅏㅍㅇ앞에 붙었나? 방금?네 첨엔 뒤에붙엇는데 갑자기 앞에..그런가봐여 ㄷㄷ
+				//봤음? 계속 클릭한거야넵// return ㅣㅈ우니까 안된것같은..일단 지금까지꺼 푸시하고 넘겨줘봐 ㅋㅋ 나도 만져볼꼐 네 ㅠㅠ 감사해영 ㅠㅠㅃㅃ
+				//인터치고 하면 되는건가 커서위치 때문인가?흠..
 			}
 			var youtu = "https://youtu.be/";
 			var naver = "/v/";
