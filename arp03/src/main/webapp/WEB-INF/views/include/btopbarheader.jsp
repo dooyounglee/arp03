@@ -232,39 +232,48 @@
 
 <script>
 
-	var m_no = ${mem.m_no}
-	var wsa = new WebSocket(
-			"ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/arp/Echo");
+	var m_no = '${mem.m_no}'
+		
+		var wsa = new WebSocket(
+		"ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/arp/Echo");
 
-	wsa.onopen = function() {
-		console.log('헤더 커넥션 open');
-
-		wsa.onmessage = function(event) {
-			console.log("이벤트데이타" + event.data);
-
-			if (m_no == event.data) {
+			wsa.onopen = function() {
+				console.log('헤더 커넥션 open');
 			
+				wsa.onmessage = function(event) {
+					console.log("이벤트데이타" + event.data);
+			
+					if (m_no == event.data) {
+					
+			
+						$("#heart").attr("class", "heartbit");
+						$("#point").attr("class", "point");
+			
+						
+						alert("새로운 메시지가 있습니다");
+						list(); // 새로운 메시지가오면 리스트 새로
+					}
+				}
+			
+			};
+			
+			wsa.onclose = function(event) {
+				console.log('close');
+			
+			};
+			
+			wsa.onerror = function(event) {
+				console.log('error');
+			};
 
-				$("#heart").attr("class", "heartbit");
-				$("#point").attr("class", "point");
+		
 
-				
-				alert("새로운 메시지가 있습니다");
-				list(); // 새로운 메시지가오면 리스트 새로
-			}
-		}
 
-	};
+		
 
-	wsa.onclose = function(event) {
-		console.log('close');
 
-	};
-
-	wsa.onerror = function(event) {
-		console.log('error');
-	};
-
+	
+	
 
 	$("#see").on("click", function() {
 		

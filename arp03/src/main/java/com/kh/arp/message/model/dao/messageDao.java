@@ -2,14 +2,12 @@ package com.kh.arp.message.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.arp.common.PageInfo;
+import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.message.model.vo.Dto;
 import com.kh.arp.message.model.vo.Message;
 
@@ -66,6 +64,10 @@ public class messageDao {
 	
 	public Message reSendMsgForm(int ms_no) {
 		return sqlSession.selectOne("msg-mapper.reSendMsgForm",ms_no);
+	}
+	
+	public ArrayList<Member> selectMember(){
+		return (ArrayList)sqlSession.selectList("msg-mapper.selectMember");
 	}
 	
 	

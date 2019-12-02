@@ -1,8 +1,10 @@
 package com.kh.arp.message.model.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
+import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.message.model.vo.Dto;
 import com.kh.arp.message.model.vo.Message;
 
@@ -40,4 +42,7 @@ public interface messageService{
 	
 	// 11.답장보내기용 서비스 
 	Message reSendMsgForm(int ms_no);
+	
+	// 12. 전체회원리스트
+	ArrayList<Member> selectMember();
 }

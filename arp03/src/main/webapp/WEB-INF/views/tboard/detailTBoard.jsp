@@ -165,7 +165,7 @@
 									<!-- 댓글 등록 부분 -->
 									<!-- <div class="card"> -->
 									<div id="re">
-									<table id="reTb" width="600px" align="center" cellspacing="0">
+									<table id="reTb" width="200px" align="center" cellspacing="0">
 										<tr>
 										
 											<td><textarea cols="60" rows="3" id="rContent"></textarea></td>
@@ -174,7 +174,7 @@
 									</table>
 										<hr>
 									<!-- 댓글 목록	 -->
-									 <div class="col-md-8">
+									 <div class="col-md-8" style="">
 										<table class="table table-hover no-wrap" align="center" id="rtb" style="color:black" cellspacing="0">
 											<thead>
 												<tr>
@@ -508,9 +508,9 @@
 							$tr = $("<tr></tr>");
 							
 							
-							$writerTd = $("<td width='120' class='name'></td>").text(value.name);
+							$writerTd = $("<td width='120' class='name' width='100px'style='word-break:break-all'></td>").text(value.name);
 							$writerReTd = $("<td>┖>"+"  "+value.name+"</td>");
-							$contentTd = $("<td class='content' width='200'></td>").text(value.content);
+							$contentTd = $("<td width='100px' class='content' style='word-wrap:break-word'></td>").text(value.content);
 							$dateTd = $("<td></td>").text(value.regdate);
 							$upBtn = $("<td><button class='upBtn btn waves-effect waves-light btn-rounded btn-outline-warning btn-xs'>수정</button></td>");
 							$delBtn = $("<td><button class='delBtn btn waves-effect waves-light btn-rounded btn-outline-danger btn-xs'>삭제</button></td>");
