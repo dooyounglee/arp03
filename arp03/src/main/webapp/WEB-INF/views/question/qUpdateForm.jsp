@@ -27,12 +27,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script> -->
 
-<style>
-	.btn-info{
-		background:#1e88e5;
-	}
-</style>
-
 </head>
 
 <body class="fix-header card-no-border logo-center">
@@ -63,14 +57,18 @@
 				<!-- Bread crumb and right sidebar toggle -->
 				<!-- ============================================================== -->
 				<div class="row page-titles">
-					<div class="col-md-5 col-12 align-self-center">
+					<div class="col-md-7 col-12 align-self-center">
 						<h3 class="text-themecolor mb-0 mt-0">Forms</h3>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-							<li class="breadcrumb-item active">Form</li>
+							<li class="breadcrumb-item"><a href="/arp">Home</a></li>
+                            <li class="breadcrumb-item"><a href="lectureList.ad">Lecture List</a></li>
+                            <li class="breadcrumb-item"><a href="main.lec?lec_no=${lec.lec_no}">${ lec.title }</a></li>
+                            <li class="breadcrumb-item"><a href="question.qu">질문게시판</a></li>
+                            <li class="breadcrumb-item"><a href="qdetail.qu?q_no=${q.q_no}">상세보기 페이지</a></li>
+                            <li class="breadcrumb-item active">수정 페이지</li>
 						</ol>
 					</div>
-					<div class="col-md-7 col-12 align-self-center d-none d-md-block">
+					<div class="col-md-5 col-12 align-self-center d-none d-md-block">
 						<div class="d-flex mt-2 justify-content-end">
 							<div class="d-flex mr-3 ml-2">
 								<div class="chart-text mr-2">
@@ -125,9 +123,9 @@
 										<br>
 										<br>
 										<br> 
-										<input class="form-control" style="width: 300px;" type="text" name="title" value="${ q.title }" required><br>
+										<input class="form-control" style="width: 300px;" type="text" name="title" value="${ q.title }" required placeholder="제목을 입력해주세요."><br>
 										<br>
-										<input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly><br>
+										<%-- <input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly><br> --%>
 										<textarea id="summernote" cols="50" rows="7" name="content" required>${ q.content }</textarea>
 										<br> 첨부파일 &nbsp; <input style="display: inline-block;"
 											type="file" name="fileReload">

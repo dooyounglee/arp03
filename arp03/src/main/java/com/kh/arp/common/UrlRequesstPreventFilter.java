@@ -46,7 +46,8 @@ public class UrlRequesstPreventFilter implements Filter {
 		if(!requestURI.equals("/arp/count/websocket") &&
 				!requestURI.equals("/arp/Echo") &&
 				!requestURI.equals("/arp/websocket") &&
-				!requestURI.equals("/arp/")) {
+				!requestURI.equals("/arp/") &&
+				requestURI.indexOf("/arp/resources/")==-1) {
 			String referer=hreq.getHeader("Referer");
 			if(referer==null) {
 				hreq.getRequestDispatcher("WEB-INF/views/common/error.jsp").forward(request, response);

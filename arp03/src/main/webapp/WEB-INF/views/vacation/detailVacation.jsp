@@ -7,12 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-
-
-
-
-</style>
 <%--  <script src="${pageContext.request.contextPath}/resources/js/signature_pad.min.js" type="text/javascript"></script>
      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/css.css"> --%>
 
@@ -206,10 +200,10 @@
                                                  <c:if test="${mem.typee eq 't' }">
                                               	   <c:if test="${v.tstatus eq 'N' }">
 													<td>
-														<a onclick="location.href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}'" style="cursor:pointer">허가</a>
+														<a class="btn btn-success" href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}' >허가</a>
 													</td>
 													<td>	
-														<a onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}',width=300, height=300)" style="cursor:pointer">반려</a>
+														<a class="btn btn-success" onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}',width=300, height=300)">반려</a>
 													</td>
 													</c:if>	
 												</c:if>          
@@ -227,18 +221,34 @@
                                          <br>
                                     </div>
                                    
-										</tr>
+										
                               </c:forEach>
                                  
                                 </div>	
 										<c:if test="${mem.typee eq 's' }">
-									`<a href="vdelete.me?v_no=${v.v_no }" class="btn waves-effect waves-light btn-rounded btn-outline-warning" style="float:right;" >삭제하기</a>
+											<a href="vdelete.me?v_no=${v.v_no }" class="btn waves-effect waves-light btn-rounded btn-outline-warning" style="float:right;" >삭제하기</a>
 										</c:if>	
 										<c:if test="${mem.typee eq 't' }">		
-                                 <button onclick="location.href='sVlist.te';" class="btn waves-effect waves-light btn-rounded btn-outline-info" style="float:right;">리스트로돌아가기</button>
+                                 			<a href='sVlist.te' class="btn waves-effect waves-light btn-rounded btn-outline-info" style="float:right;">리스트로돌아가기</a>
                                  		</c:if>
                                  		<c:if test="${mem.typee eq 's' }">		
-                                 <button onclick="location.href='vlist.me';" class="btn waves-effect waves-light btn-rounded btn-outline-info"style="float:right;">리스트로돌아가기</button>
+                                 			<a href='vlist.me' class="btn waves-effect waves-light btn-rounded btn-outline-info"style="float:right;">리스트로돌아가기</a>
+                                 		</c:if>
+                                 		<c:if test="${mem.typee eq 'a' }">
+                                 			<c:set var="flag" value="true"/>
+                                 			<c:forEach var="v" items="${list }">
+                                 				<c:if test="${v.tstatus eq 'B' || v.tstatus eq 'N'}">
+                                 					<c:set var="flag" value="false"/>
+                                 				</c:if>
+                                 			</c:forEach>
+                                 			<c:if test="${flag eq 'false' }">
+                                 				선생님 반려 또는 미처리
+                                 			</c:if>
+                                 			<c:if test="${flag eq 'true' }">
+                                 				<a href="" class="btn waves-effect waves-light btn-rounded btn-outline-info">처리하기</a>
+                                 				<!-- 버튼구현 -->
+                                 			</c:if>
+                                 			<a href="vlist.me" class="btn waves-effect waves-light btn-rounded btn-outline-info">목록</a>
                                  		</c:if>
                                  		
                             </div>

@@ -118,6 +118,9 @@
 	           	                                     		<button class="btn btn-success" onclick="accept(${l.lec_no})">수락</button>
 	           	                                     		<button class="btn btn-warning" onclick="reject(${l.lec_no})">거절</button>
 	                                                	</c:if>
+	                                                	<c:if test="${mem.typee eq 'a' && l.status eq 'R'}">
+	           	                                     		<button class="btn">거절</button>
+	                                                	</c:if>
 	                                                </td>
 												</tr>
 											</c:forEach>

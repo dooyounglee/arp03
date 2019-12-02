@@ -111,6 +111,16 @@ public class VacationDao {
 	}
 
 
+	public ArrayList<VacationDate> detailVactionT(Vacation v) {
+		return (ArrayList)sqlSession.selectList("vacationMapper.detailVactionT" , v);
+	}
+
+
+	public ArrayList<Vacation> selectListAdmin() {
+		return (ArrayList)sqlSession.selectList("vacationMapper.selectListAdmin" , null);
+	}
+
+
 
 
 	/*
