@@ -105,6 +105,12 @@ public class VacationDao {
 	}
 
 
+	public VacationDate statusCheck(int v_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("vacationMapper.statusCheck" , v_no);
+	}
+
+
 
 
 	/*

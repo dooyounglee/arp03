@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,9 +36,7 @@
         <div class="page-wrapper">
 
 
-<c:if test ="${mem.id eq 'admin' }">
-<button onclick ="location.href='ninsertForm.ad';" class="btn waves-effect waves-light btn-rounded btn-danger">작성하기</button>
-</c:if>
+
 
 <!--
 <table align="center" border="1" cellspacing="0" width="700"> 
@@ -157,9 +156,9 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">공지사항</h3>
+                        <h2 class="text-themecolor mb-2 mt-0">공지사항</h2>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/arp">Home</a></li>
                             <li class="breadcrumb-item active">공지사항</li>
                         </ol>
                     </div>
@@ -199,16 +198,18 @@
                             <div class="card-body">
                                 <h2 class="card-title" align="center">공지사항</h2><br><br>
                                 <!-- Accordian-part -->
-                                <div id="accordian-part">
+                                <div id="accordian-part">                                 
                                     <div id="accordian-3">
                                     <div class="table-responsive">
+                      
                                     <table class="table color-table info-table">
+                              
                                         <thead align="center">
                                         <tr>
 											<th>번호</th>
-											<th width="300">제목</th>
-											<th>작성자</th>
+											<th width="400">제목</th>
 											<th>작성일</th>
+											<th>작성자</th>
 											<th>조회수</th>
 										</tr>
                                        
@@ -225,8 +226,8 @@
 											<tr>	
 												<td>${ n.n_no }</td>
 												<td><a href="ndetail.ad?n_no=${ n.n_no }">${ n.title }</a></td>
+												<td>${ fn:substring(n.regdate,0,10) }</td>
 											  	<td>admin</td>
-												<td>${ n.regdate }</td>
 												<td>${ n.vcount }</td>
 											</tr>
 											
@@ -275,7 +276,9 @@
 											
                                     </table>
                           		 </div>
-                                        
+<c:if test ="${mem.id eq 'admin' }">
+<button onclick ="location.href='ninsertForm.ad';" class="btn waves-effect waves-light btn-rounded btn-danger">작성하기</button>
+</c:if>                                      
                                         
                                     </div>
                                 </div>

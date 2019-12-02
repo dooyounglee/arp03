@@ -167,6 +167,8 @@
 											<td><a href="vDetail.me?v_no=${c.v_no}">${c.vacation_title }</a></td>
 											<td>${c.application_date}</td>
 										</tr>
+										<tr>
+										</tr>
 										</c:if>
 										</c:forEach>
                                         

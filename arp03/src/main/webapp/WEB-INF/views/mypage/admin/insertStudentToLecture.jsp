@@ -9,6 +9,10 @@
 </head>
 <body class="fix-header card-no-border logo-center">
 
+	<!-- Preloader - style you can find in spinners.css -->
+ 	<%@ include file="../../include/bpreloader.jsp" %> 
+	<!-- End of Preloader - style you can find in spinners.css -->
+	
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -75,50 +79,52 @@
                 <!-- Row -->
                 <div class="row">
                     <!-- column -->
-                    <div class="col-12">
+                    <div class="col-6">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">학생을 강좌로 넣엉주기</h4>
-                                <h6 class="card-subtitle">인원제한시켜야 하는데</h6>
+                                <h6 class="card-subtitle"></h6>
                                 <div class="row">
-                                    <div class="col-lg-2 col-xlg-2 mb-4">
+                                    <div class="col-lg-6 col-xlg-6">
                                     	<h5 class="p-2 rounded-title">Teacher</h5>
-                                        <select id="teacher" name="t" size="10" style="width:100%;">
+										<select id="teacher" class="form-control" size="10">
 											<c:forEach var="t" items="${tlist }">
 												<option value="${t.m_no }">${t.name }(${t.m_no })</option>
 											</c:forEach>
 										</select>
                                     </div>
-                                    <div class="col-lg-2 col-xlg-2">
+                                    <div class="col-lg-6 col-xlg-6">
                                         <h5 class="p-2 rounded-title">Lecture</h5>
-                                        <select id="lecture" name="lec" size="10" style="width:100%;">
+										<select id="lecture" class="form-control" size="10">
 											<option>Not Exist</option>
 										</select>
                                     </div>
-                                    <div class="col-lg-2 col-xlg-2">
-                                        <h5 class="p-2 rounded-title" id="ingCount">수강중인 학생</h5>
-                                        <select id="ings" name="s" size="10" style="width:100%;" multiple>
-											<option>Not Exist</option>
-										</select>
-                                    </div>
-                                    <div class="col-lg-1 col-xlg-1" style="text-align:center;margin-top:auto;margin-bottom:auto;">
-                                        <button onclick="insertStudent()"><i class="fas fa-angle-double-left"></i></button>
-										<button onclick="removeStudent()"><i class="fas fa-angle-double-right"></i></button>
-                                    </div>
-                                    <div class="col-lg-2 col-xlg-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">학생을 강좌로 넣엉주기</h4>
+                                <h6 class="card-subtitle"></h6>
+                                <div class="row">
+                                    <div class="col-lg-5 col-xlg-5">
                                         <h5 class="p-2 rounded-title">다른 학생</h5>
-                                        <select id="other" name="s" size="10" style="width:100%;" multiple>
+                                        <select id="other" class="form-control" size="10" multiple>
 											<option>Not Exist</option>
 										</select>
                                     </div>
-                                    <div class="col-lg-12 col-xlg-4">
-										<h5 class="p-2 rounded-title">Public methods</h5>
-										<select id='pre-selected-options' multiple='multiple'>
-											<c:forEach var="t" items="${tlist }">
-												<option value="${t.m_no }">${t.name }</option>
-											</c:forEach>
+                                    <div class="col-lg-2 col-xlg-2" style="text-align:center;margin-top:auto;margin-bottom:auto;">
+										<button onclick="removeStudent()"><i class="fas fa-angle-double-left"></i></button>
+                                        <button onclick="insertStudent()"><i class="fas fa-angle-double-right"></i></button>
+                                    </div>
+                                    <div class="col-lg-5 col-xlg-5">
+                                        <h5 class="p-2 rounded-title" id="ingCount">수강중인 학생</h5>
+                                        <select id="ings" multiple class="form-control" size="10">
+											<option>Not Exist</option>
 										</select>
-									</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -270,7 +276,7 @@
 	
 	
 	
-	<jsp:include page="../../include/header.jsp"/>
+<%-- 	<jsp:include page="../../include/header.jsp"/>
 	
 	<h1>학생을 강의에 꽂아주기</h1>
 	
@@ -297,7 +303,7 @@
 	다른학생
 	<select id="other" name="s" size="10" style="width:100px;" multiple>
 
-	</select>
+	</select> --%>
 	
 	
 	
@@ -305,7 +311,7 @@
 		var total=0;//총원
 		var now=0;//현재인원
 		
-		$('#teacher').on('click',function(){
+		$('#teacher').on('click change',function(){
 			$.ajax({
 				url:'tlist.lec',
 				type:'post',
@@ -337,6 +343,12 @@
 				success:function(data){
 					total=data.headcount
 				},
+				error:function(){
+					console.log("에러")
+				},
+				complete:function(){
+					console.log("완료")
+				}
 			})
 		}
 		function ingList(lec_no){
@@ -363,9 +375,9 @@
 			})
 		}
 		$('#lecture').on('click',function(){
-			ingList($('#lecture').val())
 			getInfo($('#lecture').val())
-			
+			ingList($('#lecture').val())
+			otherList($('#lecture').val())
 		})
 		
 		function otherList(lec_no){
@@ -377,7 +389,6 @@
 				},
 				dataType:'json',
 				success:function(data){
-					console.log(data)
 					$('#other').empty()
 					if(data.length>0){
 						for(i=0;i<data.length;i++){
@@ -389,15 +400,11 @@
 				},
 			})
 		}
-		$('#lecture').on('click',function(){
-			otherList($('#lecture').val())
-		})
+		
 		
 		function insertStudent(){
 			var other=$('#other').val()
 			for(i=0;i<other.length;i++){
-				console.log("시작"+i)
-				console.log("now>=total:"+now+":"+total)
 				if(now>=total){
 					alert("정원초과")
 					break;
@@ -411,9 +418,7 @@
 							lec_no:parseInt($('#lecture').val()),
 						},
 						success:function(data){
-							console.log("<<성공")
 							now=now+1
-							console.log(now)
 							ingList($('#lecture').val())
 							otherList($('#lecture').val())
 						},
@@ -432,7 +437,6 @@
 						lec_no:parseInt($('#lecture').val()),
 					},
 					success:function(data){
-						console.log(">>성공")
 						ingList($('#lecture').val())
 						otherList($('#lecture').val())
 					},
@@ -441,6 +445,6 @@
 		}
 	</script>
 	
-	<jsp:include page="../../include/footer.jsp"/>
+	<%-- <jsp:include page="../../include/footer.jsp"/> --%>
 </body>
 </html>

@@ -9,6 +9,10 @@
 </head>
 <body class="fix-header card-no-border logo-center">
 
+	<!-- Preloader - style you can find in spinners.css -->
+ 	<%@ include file="../include/bpreloader.jsp" %> 
+	<!-- End of Preloader - style you can find in spinners.css -->
+	
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -100,7 +104,7 @@
 	                                        		<td>${l.lec_no }</td>
 	                                                <td>${l.name }</td>
 	                                                <td><a href="main.lec?lec_no=${l.lec_no }">${l.title }</a></td>
-	                                                <td>${l.dayofweek.replace('0','일').replace('1','월').replace('2','화').replace('3','수').replace('4','목').replace('5','금').replace('6','토') }</td>
+	                                                <td>${l.dayofweek }</td>
 	                                                <td>${l.place }</td>
 	                                                <td>${l.cnt }/${l.headcount }</td>
 	                                                <td>

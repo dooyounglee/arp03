@@ -16,4 +16,8 @@ public class DeclareeDao {
 		return sqlSession.insert("declareMapper.declare", d);
 	}
 
+	public Declaree getDeclare(Declaree d) {
+		return sqlSession.selectOne("declareMapper.getDeclare", d);
+	}
+
 }
