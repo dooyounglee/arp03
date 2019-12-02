@@ -110,7 +110,8 @@ public class MemberServiceImple implements MemberService {
 	}
 	
 	@Override
-	public int declareBoard(Board b) {
+	public int declareBoard(Board b, Declaree d) {
+		md.declareDeclare(d);
 		return md.declareBoard(b);
 	}
 
@@ -130,7 +131,8 @@ public class MemberServiceImple implements MemberService {
 	}
 	
 	@Override
-	public int declareReplyAdmin(BReply r) {
+	public int declareReplyAdmin(BReply r, Declaree d) {
+		md.declareDeclare(d);
 		return md.declareReplyAdmin(r);
 	}
 

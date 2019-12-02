@@ -174,6 +174,10 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.acceptMember",mem);
 	}
 
+	public int declareDeclare(Declaree d) {
+		return sqlSession.update("adminMapper.declareDeclare",d);
+	}
+
 	
 
 	

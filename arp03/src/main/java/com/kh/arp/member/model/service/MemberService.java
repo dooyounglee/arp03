@@ -49,7 +49,7 @@ public interface MemberService {
 
 	int deleteCancleBoard(Board b);
 	
-	int declareBoard(Board b);
+	int declareBoard(Board b, Declaree d);
 
 	List<BReply> getReplyList();
 
@@ -57,7 +57,7 @@ public interface MemberService {
 
 	int deleteCancleReply(BReply r);
 	
-	int declareReplyAdmin(BReply r);
+	int declareReplyAdmin(BReply r, Declaree d);
 
 	List<Declaree> getDeclareList();
 

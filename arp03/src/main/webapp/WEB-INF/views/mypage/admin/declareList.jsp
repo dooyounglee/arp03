@@ -96,7 +96,6 @@
                                                 <th>okdate</th>
                                                 <th>보기</th>
                                                 <th>처리</th>
-                                                <th>신고</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -111,22 +110,20 @@
 	                                                <td>${d.okdate }</td>
 	                                                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#info-header-modal" onclick="fillModal(${d.d_no })">보기</button></td>
 	                                                <td>
-	                                                	<c:if test="${d.status eq 'A' }">
+	                                                	<c:if test="${d.status eq 'Y' }">
 	                                                		처리완료
+	                                                	</c:if>
+	                                                	<c:if test="${d.status eq 'D' }">
+	                                                		신고처리
 	                                                	</c:if>
 	                                                	<c:if test="${d.status eq 'N' }">
 	                                                		<button class="btn btn-success" onclick="ok(${d.d_no})">처리완료</button>
-	                                                	</c:if>
-	                                                </td>
-	                                                <td>
-	                                                	<c:if test="${d.status eq 'A' }">
-	                                                		
-	                                                	</c:if>
-	                                                	<c:if test="${d.status eq 'N' && d.obj eq 'b' }">
-	                                                		<button class="btn btn-secondary" onclick="declareBoard(${d.obj_no})">신고</button>
-	                                                	</c:if>
-	                                                	<c:if test="${d.status eq 'N' && d.obj eq 'r' }">
-	                                                		<button class="btn btn-secondary" onclick="declareReply(${d.obj_no})">신고</button>
+	                                                		<c:if test="${d.obj eq 'b' }">
+	                                                		<button class="btn btn-secondary" onclick="declareBoard(${d.d_no}${d.obj_no})">신고</button>
+		                                                	</c:if>
+		                                                	<c:if test="${d.obj eq 'r' }">
+		                                                		<button class="btn btn-secondary" onclick="declareReply(${d.d_no},${d.obj_no})">신고</button>
+		                                                	</c:if>
 	                                                	</c:if>
 	                                                </td>
 												</tr>
@@ -143,7 +140,6 @@
                                                 <th>okdate</th>
                                                 <th>보기</th>
                                                 <th>처리</th>
-                                                <th>신고</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -223,9 +219,11 @@
         
     <form id="formB" method='post'>
 		<input type="hidden" name="b_no">
+		<input type="hidden" name="d_no">
 	</form>
 	<form id="formR" method='post'>
 		<input type="hidden" name="r_no">
+		<input type="hidden" name="d_no">
 	</form>    
 	<form id="form" method='post'>
 		<input type="hidden" name="d_no">
@@ -264,14 +262,16 @@
 				},
 			})
 		}
-		function declareBoard(b_no){
+		function declareBoard(d_no,b_no){
 			var formm=$('#formB').attr('action','declareBoard.ad')
 			formm.children('input').eq(0).val(b_no)
+			formm.children('input').eq(1).val(d_no)
 			formm.submit();
 		}
-		function declareReply(r_no){
+		function declareReply(d_no,r_no){
 			var formm=$('#formR').attr('action','declareReply.ad')
 			formm.children('input').eq(0).val(r_no)
+			formm.children('input').eq(1).val(d_no)
 			formm.submit();
 		}
 	</script>
