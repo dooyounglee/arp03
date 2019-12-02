@@ -39,8 +39,10 @@
                     <div class="col-md-5 col-12 align-self-center">
                         <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="/arp">Home</a></li>
+                            <li class="breadcrumb-item"><a href="lectureList.ad">Lecture List</a></li>
+                            <li class="breadcrumb-item"><a href="main.lec?lec_no=${lec.lec_no}">${ lec.title }</a></li>
+                            <li class="breadcrumb-item active">질문게시판</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -65,12 +67,13 @@
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
+                            <br>
                                 <h4 class="card-title" align="center">${ lec.lec_no }번 강의_${ lec.title } 게시판</h4>
-                                <h6 class="card-subtitle" align="center" style="color:black;">
-                                	총 게시글 갯수 : ${ pi.listCount }&nbsp;&nbsp;&nbsp;페이지 : ${ pi.currentPage } / ${ pi.maxPage }
-	                                 &nbsp;&nbsp;
+                                <h6 class="card-subtitle" align="right" style="color:black;">
+                                	<%-- 총 게시글 갯수 : ${ pi.listCount }&nbsp;&nbsp;&nbsp;페이지 : ${ pi.currentPage } / ${ pi.maxPage }
+	                                 &nbsp;&nbsp; --%>
 	                                 <c:if test="${ !empty mem }">
-										<span><button class="btn waves-effect waves-light btn-info" style="cursor:pointer;" onclick="location.href='qWriteForm.qu'">글쓰기</button></span>
+										<span><button class="btn waves-effect waves-light btn-info" style="align:right; cursor:pointer;" onclick="location.href='qWriteForm.qu'">글쓰기</button></span>
 									 </c:if>
                                 </h6>
                                 <div class="table-responsive">
