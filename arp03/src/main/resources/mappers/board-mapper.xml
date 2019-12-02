@@ -61,4 +61,33 @@
 		update breply set re_count = re_count-1 where parent_no = (select parent_no from breply where r_no = #{r_no}) and parent_no = r_no
 	</update>
 	
+	<select id="searchListCount" parameterType="hashMap" resultType="_int">
+		select count(*) from board where ca_no=1 and status = 'Y'
+		<if test="condition == 1">
+			and title like '%' || #{search} || '%'
+		</if>
+		<if test="condition == 2">
+			and (title like '%' || #{search} || '%' or content like '%' || #{search} || '%')
+		</if>
+	</select>
+	
+	<select id="searchList" parameterType="hashMap" resultType="Board">
+		select * from board where ca_no=1 and status = 'Y'
+		<if test="condition == 1">
+			and title like '%' || #{search} || '%'
+		</if>
+		<if test="condition == 2">
+			and (title like '%' || #{search} || '%' or content like '%' || #{search} || '%')
+		</if>
+		order by b_no desc
+	</select>
+	
+	<update id="plusBReplyCount">
+		update board set rcount = rcount + 1 where b_no = #{b_no}
+	</update>
+	
+	<update id="minusBReplyCount">
+		update board set rcount = rcount - 1 where b_no = #{b_no}
+	</update>
+	
 </mapper>

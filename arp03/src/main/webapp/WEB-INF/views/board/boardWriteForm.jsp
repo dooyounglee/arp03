@@ -115,7 +115,7 @@ include summernote css/js
 			<tr>
 				<td align="center">
 					<button class="btn waves-effect waves-light btn-info" type="button" onclick="location.href='blist.do';">목록으로</button>
-					<button class="btn waves-effect waves-light btn-info" type="submit">등록하기</button>
+					<button class="btn waves-effect waves-light btn-info" type="submit" onclick="check();">등록하기</button>
 				</td>
 			</tr>
 		</table>	
@@ -139,7 +139,7 @@ include summernote css/js
 			<tr>
 				<td align="center">
 					<button class="btn waves-effect waves-light btn-info" type="button" onclick="location.href='blist.do';">목록으로</button>
-					<button class="btn waves-effect waves-light btn-info" type="submit">등록하기</button>
+					<button class="btn waves-effect waves-light btn-info" type="submit" onclick="check();">등록하기</button>
 				</td>
 			</tr>
 		</table>	
@@ -207,7 +207,13 @@ include summernote css/js
             }
           });
         }
- 
+      
+      function check(){
+    	  if ($('#summernote').summernote('isEmpty')) {
+        	  alert('글 내용을 작성해주세요.');
+        	}
+      }
+      
     </script>
 </body>
 </html>
