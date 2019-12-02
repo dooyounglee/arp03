@@ -88,18 +88,19 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>title</th>
+                                                <th>m_no</th>
+                                                <th>content</th>
                                                 <th>regdate</th>
                                                 <th>updatedate</th>
                                                 <th>m_no</th>
                                                 <th>status</th>
-                                                <th>dcount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         	<c:forEach var="r" items="${list }">
                                         		<tr>
 	                                        		<td>${r.r_no }</td>
+	                                        		<td>${r.m_no }</td>
 	                                                <td>${r.content }</td>
 	                                                <td>${r.regdate }</td>
 	                                                <td>${r.update_date }</td>
@@ -107,7 +108,6 @@
 	                                                <td>
 	                                                	<c:if test="${r.status eq 'Y'}">
 	                                                		<button class="btn btn-danger" onclick="deleteReply(${r.r_no})">삭제</button>
-		                                                	<button class="btn btn-secondary" onclick="declareReply(${r.r_no})">신고</button>
 	                                                	</c:if>
 	                                                	<c:if test="${r.status eq 'D'}">
 	                                                		신고
@@ -121,7 +121,7 @@
 												</tr>
 											</c:forEach>
                                         </tbody>
-                                        <tfoot>
+                                        <!-- <tfoot>
                                             <tr>
                                                 <th>#</th>
                                                 <th>title</th>
@@ -130,7 +130,7 @@
                                                 <th>m_no</th>
                                                 <th>status</th>
                                             </tr>
-                                        </tfoot>
+                                        </tfoot> -->
                                     </table>
                                     <script>
 								   		$('#zero_config').DataTable();
@@ -197,12 +197,6 @@
 			formm.children('input').eq(0).val(r_no)
 			formm.submit();
 		}
-		function declareReply(r_no){
-			var formm=$('#form').attr('action','declareReply.ad')
-			formm.children('input').eq(0).val(r_no)
-			formm.submit();
-		}
-		
 	</script>
 	<jsp:include page="../../include/footer.jsp"/>
 </body>
