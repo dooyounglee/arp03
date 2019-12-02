@@ -8,6 +8,10 @@
 </head>
 <body class="fix-header card-no-border logo-center" onselectstart="return false" ondragstart="return false">
 
+	<!-- Preloader - style you can find in spinners.css -->
+ 	<%@ include file="../include/bpreloader.jsp" %> 
+	<!-- End of Preloader - style you can find in spinners.css -->
+	
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -79,7 +83,7 @@
                 	<!-- 수강페이지 메뉴 -->
                 	<%@ include file="../include/blecturemenu.jsp" %>
                 	
-                    <div class="col-lg-9 col-xlg-10 col-md-8">
+                    <div class="col-lg-10 col-xlg-10 col-md-8">
                         <div class="card">
                             <div class="card-body">
                                 <h1 class="card-title" id="1">${lec.title } 강의계획 입니다.</h1>
