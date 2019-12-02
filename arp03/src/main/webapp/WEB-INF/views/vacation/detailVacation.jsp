@@ -200,7 +200,7 @@
                                                  <c:if test="${mem.typee eq 't' }">
                                               	   <c:if test="${v.tstatus eq 'N' }">
 													<td>
-														<a class="btn btn-success" onclick="location.href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}'" >허가</a>
+														<a class="btn btn-success" href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}' >허가</a>
 													</td>
 													<td>	
 														<a class="btn btn-success" onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}',width=300, height=300)">반려</a>
@@ -229,10 +229,10 @@
 											<a href="vdelete.me?v_no=${v.v_no }" class="btn waves-effect waves-light btn-rounded btn-outline-warning" style="float:right;" >삭제하기</a>
 										</c:if>	
 										<c:if test="${mem.typee eq 't' }">		
-                                 			<button onclick="location.href='sVlist.te';" class="btn waves-effect waves-light btn-rounded btn-outline-info" style="float:right;">리스트로돌아가기</button>
+                                 			<a href='sVlist.te' class="btn waves-effect waves-light btn-rounded btn-outline-info" style="float:right;">리스트로돌아가기</a>
                                  		</c:if>
                                  		<c:if test="${mem.typee eq 's' }">		
-                                 			<button onclick="location.href='vlist.me';" class="btn waves-effect waves-light btn-rounded btn-outline-info"style="float:right;">리스트로돌아가기</button>
+                                 			<a href='vlist.me' class="btn waves-effect waves-light btn-rounded btn-outline-info"style="float:right;">리스트로돌아가기</a>
                                  		</c:if>
                                  		<c:if test="${mem.typee eq 'a' }">
                                  			<c:set var="flag" value="true"/>
@@ -246,6 +246,7 @@
                                  			</c:if>
                                  			<c:if test="${flag eq 'true' }">
                                  				<a href="" class="btn waves-effect waves-light btn-rounded btn-outline-info">처리하기</a>
+                                 				<!-- 버튼구현 -->
                                  			</c:if>
                                  			<a href="vlist.me" class="btn waves-effect waves-light btn-rounded btn-outline-info">목록</a>
                                  		</c:if>
