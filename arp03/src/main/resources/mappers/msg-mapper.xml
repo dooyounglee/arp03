@@ -67,5 +67,11 @@
 	from message
 	where ms_no=#{ms_no}
 	</select>
+	
+	<select id="selectMember" resultType="Member">
+	select * 
+	from member 
+	where status='Y'and typee != 'a' and typee != 'm'
+	</select>
 
 </mapper>
