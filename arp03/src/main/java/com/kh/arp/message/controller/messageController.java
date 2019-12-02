@@ -1,6 +1,7 @@
 package com.kh.arp.message.controller;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,10 +43,15 @@ public class messageController {
 	}
 	
 	@RequestMapping("sendMsgFrom.do")
-	public String sendMsgForm() {
+	public ModelAndView sendMsgForm(ModelAndView mv) {
 		
-		return "message/sendMessage";
-	}
+	  ArrayList<Member> list = mService.selectMember();
+	 
+	  mv.addObject("list",list).setViewName("message/sendMessage");
+	  System.out.println("list"+list);
+				  
+		  return mv;
+	  }
 	
 	@RequestMapping("insertMsg.do")
 	public String insertMsg(Message m) {
@@ -163,6 +169,8 @@ public class messageController {
 			  return "fail";
 		  }
 	  }
+	  
+	
 	  
 	 
 		  
