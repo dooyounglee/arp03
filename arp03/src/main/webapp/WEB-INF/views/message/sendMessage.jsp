@@ -141,7 +141,7 @@
 				                                                      </table>
 						                                             <script>
 																		$('#zero_config').DataTable();
-																		</script>
+																	</script>
 																						                                                     
 									                                  
 									                                </div>

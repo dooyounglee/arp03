@@ -44,10 +44,10 @@
 				<!-- ============================================================== -->
 				<div class="row page-titles">
 					<div class="col-md-5 col-12 align-self-center">
-						<h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+						<h3 class="text-themecolor mb-0 mt-0">쪽지 상세보기</h3>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-							<li class="breadcrumb-item active">Form</li>
+							<li class="breadcrumb-item"><a href="${cp }">Home</a></li>
+							<li class="breadcrumb-item active">쪽지 상세보기</li>
 						</ol>
 					</div>
 					<div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -94,7 +94,7 @@
                        <hr class="mt-0">
                    </div>
 				 <input type="hidden" value="${ m.g_no }" name="m_no" >
-				 <h5 >From: ${m.name}</h5>
+				 <h5 > ${m.name}</h5>
 				 <h5>${m.content }</h5>
 				 <div id="btn" align="right">
 				 	<button  class="btn btn waves-effect waves-light btn-rounded btn-outline-info"  onclick="location.href='listMsg.do';">목록으로</button>

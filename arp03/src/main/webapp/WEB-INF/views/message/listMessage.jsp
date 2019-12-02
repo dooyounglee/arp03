@@ -125,36 +125,6 @@
 	</div>
 
 
-	<%-- 	<table class="table-responsive" >
-				
-								<thead>
-									<tr>
-										<thead>번호</thead>		
-										<thead>받은 사람</thead>
-									
-										<thead width="300">제목</thead>
-										<thead>날짜</thead>
-										<thead>수신확인</thead>
-									</tr>
-								<thead>
-									<c:forEach items="${ mList }" var="m">
-										<tr>
-											<td>${ m.ms_no }</td>
-											<td>${ m.g_no }</td>
-											<td><a href="detailMsg.do?ms_no=${m.ms_no}" >${ m.title }</a></td>
-											<td>${ m.s_date }</td>
-											<c:if test="${m.r_date eq null}">
-											<td>읽지않음</td>
-											</c:if>
-											<c:if test="${m.r_date ne null}">
-											<td>읽음</td>
-											</c:if>
-											<td></td>
-											
-										</tr>
-									</c:forEach>
-									
-									 --%>
 
 								</table>
 								<button onclick="location.href='mainMsg.do';">목록으로</button>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String[] list = request.getParameterValues("bfList");
 %>
@@ -8,155 +8,135 @@
 <html>
 <%@ include file="../include/bhead.jsp"%>
 <head>
-<style>
-	.card{
-		text-align:left;
-		margin-left:auto;
-		margin-right:auto;
-		
-	}
-	.filename{
-	clear:none;
-	border:0px none;
-	float:none;
-	background-color:#ffffff;
-	
-	}
-</style>
+
 <meta charset="UTF-8">
+<style type="text/css">
+#file {
+	display: none;
+}
+</style>
 
-<title>게시판 작성하기 </title>
-<title>Insert title here</title>
- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" type="text/javascript"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script> 
+
+
+<title>게시글 작성하기</title>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	type="text/javascript"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
 </head>
-</head>
-<body class="fix-header card-no-border logo-center">
-
 
 <body class="fix-header card-no-border logo-center">
-	<%@ include file="../include/bpreloader.jsp" %>
-	
+<body class="fix-header card-no-border logo-center">
+	<%@ include file="../include/bpreloader.jsp"%>
+
 	<div id="main-wrapper">
 
-	<header class="topbar">
-		<%@ include file="../include/btopbarheader.jsp"%>
-	</header>
-	<!-- End Topbar header -->
+		<header class="topbar">
+			<%@ include file="../include/btopbarheader.jsp"%>
+		</header>
+		<!-- End Topbar header -->
 
-	<!-- Left-sidebar -->
-	<aside class="left-sidebar">
-		<%@ include file="../include/bsidebar.jsp"%>
-	</aside>
-	<!-- End of Left-sidebar -->
+		<!-- Left-sidebar -->
+		<aside class="left-sidebar">
+			<%@ include file="../include/bsidebar.jsp"%>
+		</aside>
+		<!-- End of Left-sidebar -->
 
-	<div class="page-wrapper">
-	
-		<div class="container-fluid">
-	
-	<div class="row page-titles">
-                    <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">선생님게시판</h3>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
-                            <li class="breadcrumb-item active">선생님게시판</li>
-                        </ol>
-                    </div>
-                    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
-                        <div class="d-flex mt-2 justify-content-end">
-                            <div class="d-flex mr-3 ml-2">
-                                <div class="chart-text mr-2">
-                                    <h6 class="mb-0"><small>THIS MONTH</small></h6>
-                                    <h4 class="mt-0 text-info">$58,356</h4>
-                                </div>
-                                <div class="spark-chart">
-                                    <div id="monthchart"></div>
-                                </div>
-                            </div>
-                            <div class="d-flex mr-3 ml-2">
-                                <div class="chart-text mr-2">
-                                    <h6 class="mb-0"><small>LAST MONTH</small></h6>
-                                    <h4 class="mt-0 text-primary">$48,356</h4>
-                                </div>
-                                <div class="spark-chart">
-                                    <div id="lastmonthchart"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-		<div class="row">  
-		<div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-								<h4 class="card-title"> 글작성하기</h4>
+		<div class="page-wrapper">
 
-							<form method="post" id="MultiUpload" action="insertTBoard.do"
-								enctype="multipart/form-data" id="boardInsertForm">
+			<div class="container-fluid">
 
-
-
-								<input name="m_no" value="${mem.m_no}" type="hidden">
-
-								<div class="form-material">
-									<input type="text" name="title" id="title" required
-										placeholder="제목을 입력해주세요" value="${b.title }"
-										class="form-control"><br>
+				<div class="row page-titles">
+					<div class="col-md-5 col-12 align-self-center">
+						<h3 class="text-themecolor mb-0 mt-0">선생님게시판</h3>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
+							<li class="breadcrumb-item active">선생님게시판</li>
+						</ol>
+					</div>
+					<div class="col-md-7 col-12 align-self-center d-none d-md-block">
+						<div class="d-flex mt-2 justify-content-end">
+							<div class="d-flex mr-3 ml-2">
+								<div class="chart-text mr-2">
+									<h6 class="mb-0">
+										<small>THIS MONTH</small>
+									</h6>
+									<h4 class="mt-0 text-info">$58,356</h4>
 								</div>
-
-
-								<input type="hidden" name="m_no" value="${ mem.m_no }">
-
-
-
-
-								<c:if test="${ empty b }">
-									<label>파일첨부</label>
-									<input type="file" name="file" id="file" multiple="multiple">
-									<div id="fileArea"></div>
-								</c:if>
-
-								<textarea id="summernote" cols="50" rows="7" name="content"
-									id="content" required>${b.content }</textarea>
-
-								<div class="col-lg-6 col-md-6">
-									<div class="card">
-										<div class="card-body">
-											<h4 class="card-title">File Upload1</h4>
-											<label for="input-file-now">Your so fresh input file
-												— Default version</label> <input type="file" id="input-file-now"
-												class="dropify" />
-										</div>
-									</div>
+								<div class="spark-chart">
+									<div id="monthchart"></div>
 								</div>
-
-
-								<div align="center">
-									<button type="submit" id="subBtn"
-										class="btn waves-effect waves-light btn-info">등록하기</button>
-									<button type="button"
-										class="btn waves-effect waves-light btn-info"
-										onclick="location.href='tblist.do';">목록으로</button>
+							</div>
+							<div class="d-flex mr-3 ml-2">
+								<div class="chart-text mr-2">
+									<h6 class="mb-0">
+										<small>LAST MONTH</small>
+									</h6>
+									<h4 class="mt-0 text-primary">$48,356</h4>
 								</div>
-							</form>
-
-
-						</div>
+								<div class="spark-chart">
+									<div id="lastmonthchart"></div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<h4 class="card-title">글작성하기</h4>
+
+								<form method="post" id="MultiUpload" action="insertTBoard.do"
+									enctype="multipart/form-data" id="boardInsertForm">
+
+									<input name="m_no" value="${mem.m_no}" type="hidden">
+									<div class="form-material">
+										<input type="text" name="title" id="title" required
+											placeholder="제목을 입력해주세요" value="${b.title }"
+											class="form-control"><br>
+									</div>
+									<br>
+									<input type="hidden" name="m_no"
+										value="${ mem.m_no }">
+
+									
+
+										<input type="file" name="file" id="file" multiple="multiple">
+										<label for="file" class="btn btn-warning">파일첨부</label>
+										<div id="fileArea"></div>
+								
+
+									<textarea id="summernote" cols="50" rows="7" name="content"
+										id="content" required>${b.content }</textarea>
+									<br>
+									<div align="center">
+										<button type="submit" id="subBtn"
+											class="btn waves-effect waves-light btn-info">등록하기</button>
+										<button type="button"
+											class="btn waves-effect waves-light btn-info"
+											onclick="location.href='tblist.do';">목록으로</button>
+									</div>
+								</form>
+
+
+							</div>
+						</div>
+					</div>
 				</div>
-				
-				</body>
-		
+			</div>
+		</div>
+</body>
 
-	
 
-	
-	 <script>
+
+
+
+<script>
 	$(function(){
          $('#summernote').summernote({ // summernote를 사용하기 위한 선언
         
@@ -266,7 +246,8 @@
 	            	 input.type="text";
 	            	 input.class="filname";
 	            	 input.id="upFileName"+i;
-	            	 input.style="none";
+	            	 input.style="border:none";
+	            	 input.size="100"
 	            	 fileArea.appendChild(input);
 	            	 fileArea.appendChild(br);
 
@@ -280,14 +261,14 @@
 	         });
 	  
 	     });
-	 	</script>	
-	 
+	 	</script>
 
-	<%@ include file="../include/bjs.jsp" %>
-	
-	
-	
-    <script>
+
+<%@ include file="../include/bjs.jsp"%>
+
+
+
+<script>
     $(document).ready(function() {
         // Basic
         $('.dropify').dropify();
