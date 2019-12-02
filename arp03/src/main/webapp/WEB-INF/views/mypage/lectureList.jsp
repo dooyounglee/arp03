@@ -9,6 +9,10 @@
 </head>
 <body class="fix-header card-no-border logo-center">
 
+	<!-- Preloader - style you can find in spinners.css -->
+ 	<%@ include file="../include/bpreloader.jsp" %> 
+	<!-- End of Preloader - style you can find in spinners.css -->
+	
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -113,6 +117,9 @@
 	                                                	<c:if test="${mem.typee eq 'a' && l.status eq 'A'}">
 	           	                                     		<button class="btn btn-success" onclick="accept(${l.lec_no})">수락</button>
 	           	                                     		<button class="btn btn-warning" onclick="reject(${l.lec_no})">거절</button>
+	                                                	</c:if>
+	                                                	<c:if test="${mem.typee eq 'a' && l.status eq 'R'}">
+	           	                                     		<button class="btn">거절</button>
 	                                                	</c:if>
 	                                                </td>
 												</tr>

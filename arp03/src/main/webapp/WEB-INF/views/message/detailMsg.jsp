@@ -96,9 +96,12 @@
 				 <input type="hidden" value="${ m.g_no }" name="m_no" >
 				 <h5 >From: ${m.name}</h5>
 				 <h5>${m.content }</h5>
+				 <div id="btn" align="right">
+				 	<button  class="btn btn waves-effect waves-light btn-rounded btn-outline-info"  onclick="location.href='listMsg.do';">목록으로</button>
+				 </div>
 				</div>
 			</div>
-			<button onclick="location.href='listMsg.do';">목록으로</button>
+		
 		</div>
 	</div>
 </div>

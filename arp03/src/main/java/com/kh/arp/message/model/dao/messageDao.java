@@ -2,11 +2,14 @@ package com.kh.arp.message.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.arp.common.PageInfo;
 import com.kh.arp.message.model.vo.Dto;
 import com.kh.arp.message.model.vo.Message;
 
@@ -29,6 +32,10 @@ public class messageDao {
 	}
 	
 	public ArrayList<Message> listSendMsg(int m_no){
+		/*
+		 * int boardLimit = pi.getBoardLimit(); RowBounds rowBounds = new
+		 * RowBounds(offset, boardLimit);
+		 */
 		return (ArrayList)sqlSession.selectList("msg-mapper.listSendMsg",m_no);
 	}
 	
@@ -52,4 +59,14 @@ public class messageDao {
 	public int updateAlram(int m_no) {
 		return sqlSession.update("msg-mapper.updateAlram",m_no);
 	}
+	
+	public int getListCount(int m_no) {
+		return sqlSession.selectOne("msg-mapper.getListCount",m_no);
+	}
+	
+	public Message reSendMsgForm(int ms_no) {
+		return sqlSession.selectOne("msg-mapper.reSendMsgForm",ms_no);
+	}
+	
+	
 }

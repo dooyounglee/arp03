@@ -163,7 +163,7 @@
 							<div class="message-center"></div>
 						</li>
 						<li><a class="nav-link text-center"
-							href="javascript:void(0);"><strong id="see">쪽지함으로</strong>
+							href="javascript:void(0);"  id="see"><strong>쪽지함으로</strong>
 								<i class="fa fa-angle-right"></i>
 						</a></li>
 					</ul>
@@ -309,7 +309,7 @@
 
 							$.each(data,function(index, value) {
 	
-									$a = $("<a href='#' class='border-bottom d-block text-decoration-none py-2 px-3'></a>");
+									$a = $("<a class='border-bottom d-block text-decoration-none py-2 px-3'></a>").attr("href",'detailMsg.do?ms_no='+value.ms_no);
 									$img = $("<div class='user-img position-relative d-inline-block mr-2 mb-3'><img src='/${cp }/resources/image/mailicon1.png' alt='user' class='img-circle'></div>")
 									$con = $(
 											"<div class='mail-contnet d-inline-block align-middle'>")
@@ -337,7 +337,7 @@
 								});
 
 					}else{
-						$(".message-center").append(" <div class='drop-title' align='center'><label>새로운메시지가 없습니다.</label></div>")
+						$(".message-center").append("<div class='drop-title' align='center'><label>새로운메시지가 없습니다.</label></div>")
 					}
 						
 				}

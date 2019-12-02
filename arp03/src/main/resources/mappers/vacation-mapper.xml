@@ -82,11 +82,23 @@ where lec_no = #{lec_no}
 
 </delete>
 
+<select id="statusCheck" resultType="VacationDate">
+
+select status
+from vacationdate
+where v_no=#{v_no}
+group by (status)
+
+</select>
+
+
 
 <select id="studentVacationList" resultType="Vacation">
-select v.* , vd.tstatus , vd.astatus,vd.status , m.name , vd.vacation_date , vd.lec_no , l.title
+select v.* , m.name 
 from vacation v, vacationdate vd , member m ,lecture l 
-where vd.v_no= v.v_no and m.m_no = v.m_no and vd.lec_no = l.lec_no
+where vd.v_no= v.v_no and m.m_no = v.m_no and vd.lec_no = l.lec_no and l.m_no =#{m_no}
+group by (v.v_no , v.m_no , v.vacation_title , v.reason , v.application_date , v.sign , m.name)
+order by v.v_no desc
 </select>
 
 <select id="adminList" resultType="Vacation">
@@ -106,7 +118,8 @@ where v_no=#{v_no} and lec_no=#{lec_no} and vacation_date = #{vacation_date}
 <update id="companion">
 update vacationdate
 set tstatus='B', companion_reason=#{companion_reason}
-where v_no= #{v_no} and lec_no=#{lec_no}
+where v_no= #{v_no} and lec_no=#{lec_no} and vacation_date = #{vacation_date}
+
 </update>
 
 <update id="adminpermission">
@@ -118,7 +131,7 @@ where v_no=#{v_no}
 <update id ="multipermission">
 update vacationdate
 set astatus='Y', status='Y'
-where v_no=#{v_no} and lec_no=#{lec_no}
+where v_no=#{v_no} and lec_no=#{lec_no} and vacation_date=#{vacation_date}
 </update>
 
 
