@@ -34,4 +34,10 @@ public interface messageService{
 	
 	// 9. 알람상태 변경용
 	int updateAlram(int m_no);
+	
+	// 10.리스트 개수 
+	int getListCount(int m_no);
+	
+	// 11.답장보내기용 서비스 
+	Message reSendMsgForm(int ms_no);
 }

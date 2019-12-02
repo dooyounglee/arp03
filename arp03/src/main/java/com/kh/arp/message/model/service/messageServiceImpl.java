@@ -64,6 +64,17 @@ public class messageServiceImpl implements messageService {
 
 		return mDao.updateAlram(m_no);
 	}
+
+	@Override
+	public int getListCount(int m_no) {
+		
+		return mDao.getListCount(m_no);
+	}
+
+	@Override
+	public Message reSendMsgForm(int ms_no) {
+	    return mDao.reSendMsgForm(ms_no);
+	}
 	
 	
 

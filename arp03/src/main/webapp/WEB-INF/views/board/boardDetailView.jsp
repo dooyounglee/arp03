@@ -489,7 +489,7 @@
 				if(rst) {
 					$.ajax({
 						url:"deleteReply.do",
-						data:{r_no:$r_no, depth:$depth},
+						data:{r_no:$r_no, depth:$depth, b_no:${b.b_no}},
 						success:function(data){
 							//console.log("삭제 성공");
 							getReplyList();
