@@ -63,8 +63,11 @@
                     <div class="col-md-5 col-12 align-self-center">
                         <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="/arp">Home</a></li>
+                            <li class="breadcrumb-item"><a href="lectureList.ad">Lecture List</a></li>
+                            <li class="breadcrumb-item"><a href="main.lec?lec_no=${lec.lec_no}">${ lec.title }</a></li>
+                            <li class="breadcrumb-item"><a href="question.qu">질문게시판</a></li>
+                            <li class="breadcrumb-item active">게시글 작성하기</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -115,23 +118,21 @@
 										<br>
 										<br>
 										<br> 
-										<input class="form-control" style="width: 300px;" type="text" name="title" required><br>
+										<input class="form-control" style="width: 300px;" type="text" name="title" required placeholder="제목을 입력해주세요.">
 										<br>
-										<input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly>
+										<%-- <input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly> --%>
 										<br>
 										<textarea class="upText" id="summernote" cols="50" rows="7" name="content" required></textarea>
 										
 										<br> 첨부파일 &nbsp; <input style="display: inline-block;" type="file" name="fileUp">
 										
-										<c:if test="${ !empty q.originalname }">
-											<a
-												href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${q.changename}"
-												download="${ q.originalname }" id="fName">${ q.originalname }</a>
+<%-- 										<c:if test="${ !empty q.originalname }">
+											<a href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${q.changename}" download="${ q.originalname }" id="fName">${ q.originalname }</a>
 											<button type="button" class="btn btn-secondary btn-outline"
 												id="fileDelete">
 												<span class="docs-tooltip"><span class="fas fa-trash"></span></span>
 											</button>
-										</c:if>
+										</c:if> --%>
 										<br>
 										<br> ＃youtube＃naver＃kakao URL &nbsp; <input class="form-control inputtexturl" style="width: 300px;" id="youtubeId" type="text" name="youtubelink">
 											<img style="width:30px; height:30px; cursor:pointer;" id="addURLTest" src="resources/siraFile/plus버튼.png">
