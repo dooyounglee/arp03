@@ -93,7 +93,7 @@ public class SurveyController {
 		if(dd==0) {
 			mv.setViewName("redirect:/selectsurvey.ma?lec_no="+lec_no);
 		}else {
-			mv.setViewName("");
+			mv.setViewName("common/error");
 		}
 		return mv;
 	}
@@ -105,7 +105,7 @@ public class SurveyController {
 		sq.setSu_no(su_no);
 		List<SurveyQuestion> s = ss.detailsurvey(sq);
 		System.out.println(sq+"김경수");
-		System.out.println("dlendud"+s);
+		System.out.println("dlendud============================="+s);
 		String ssq = s.get(0).getEnrolldate();
 		int ssu = s.get(0).getSu_no();
 		String title = s.get(0).getTitle();
@@ -123,8 +123,8 @@ public class SurveyController {
 		return mv;
 	}
 	@RequestMapping("insertcompletesurvey.ma")
-	public ModelAndView updatesurvey(ModelAndView mv, int lec_no, int su_no, ForSurvey q, HttpSession session) {
-		
+	public ModelAndView updatesurvey(ModelAndView mv, int lec_no, int su_no, ForSurvey q, String[] answer, HttpSession session) {
+		System.out.println("-000000000000000----"+answer);
 		System.out.println("20319371===="+q);
 		//---------------------------- insertSurvey 구문-----------------
 		int ds =0;			// 질문이 제대로 꽂혔는지 판단하는 변수
@@ -166,8 +166,9 @@ public class SurveyController {
 	 * int lam_no=lsq.get(lsq.size()).getM_no(); sq.setM_no(lam_no); m_no가 필요할때 코드
 	 */
 	@RequestMapping("resultsurvey.ma")
-	public ModelAndView resultsurvey(ModelAndView mv, int su_no, HttpSession session) {
-	SurveyQuestion sq = new SurveyQuestion();
+	public ModelAndView resultsurvey(ModelAndView mv, int su_no,  HttpSession session) {
+	
+		SurveyQuestion sq = new SurveyQuestion();
 	
 	sq.setSu_no(su_no);
 	//그 수업과 설문에 들어가있는 m_no 리스트

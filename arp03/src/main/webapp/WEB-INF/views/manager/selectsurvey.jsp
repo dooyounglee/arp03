@@ -115,7 +115,6 @@
 												<c:if test="${mem.typee=='s' }">
 												<td>${d.issurvey }</td>
 												</c:if>
-												
 											</tr>
 										</c:forEach>
 								        </tbody>
