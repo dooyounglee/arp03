@@ -105,9 +105,19 @@ public class VacationDao {
 	}
 
 
-	public VacationDate statusCheck(int v_no) {
+	public int statusCheck(int v_no) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("vacationMapper.statusCheck" , v_no);
+		
+//		int con = sqlSession.update("vacationMapper.statusCheck" , v_no);
+//		
+//		int rst =0;
+//		
+//		if(con >0) {
+//			rst=sqlSession.insert("vacationMapper.insertvacation" , v_no);
+//		}
+//		
+//		return rst;
+		return sqlSession.update("vacationMapper.statusCheck" , v_no);
 	}
 
 
@@ -118,6 +128,18 @@ public class VacationDao {
 
 	public ArrayList<Vacation> selectListAdmin() {
 		return (ArrayList)sqlSession.selectList("vacationMapper.selectListAdmin" , null);
+	}
+
+
+	public ArrayList<Vacation> selectStatus(Vacation v) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("vacationMapper.selectStatus" , v);
+	}
+
+
+	public Vacation selectVacation(int v_no) {
+		
+		return sqlSession.selectOne("vacationMapper.selectVacation" , v_no);
 	}
 
 

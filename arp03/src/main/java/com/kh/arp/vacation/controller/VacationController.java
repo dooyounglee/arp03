@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -202,10 +203,11 @@ public class VacationController {
 			list=vService.detailVacation(v_no);
 		}
 		
+		Vacation vv = vService.selectVacation(v_no);
 		
 		System.out.println(list);
 		
-			mv.addObject("list", list).setViewName("vacation/detailVacation");
+			mv.addObject("list", list).addObject("vv",vv).setViewName("vacation/detailVacation");
 			
 		return mv;
 	}
@@ -329,19 +331,36 @@ public class VacationController {
 
 		
 	}
-	
+	@ResponseBody
 	@RequestMapping("status.me")
-	public ModelAndView statusCheck(int v_no , VacationDate vd , ModelAndView mv) {
+	public String statusCheck( int v_no, Vacation v, ModelAndView mv) {
 		
+
+		System.out.println("asdasd"+v.getV_no());
 	
-		vd = vService.statusCheck(v_no);
+		int result  = vService.statusCheck(v_no);
+		System.out.println("aa"+result + "aa1211212121");
+		if(result > 0) {
+			return "success";
+		}else {
+			return "error";
+		}
 		
-		mv.addObject("vd" , vd).setViewName("vacation/vacationListForm");
 		
+	}
 	
+	public ModelAndView adminStatus(Vacation v , ModelAndView mv) {
+		
+		v.getV_no();
+		
+		ArrayList<Vacation> list = vService.selectStatus(v);
+		
+		
+		mv.addObject("v" , list).addObject("vacation/detailView");
+		
 		return mv;
-		
-		
+				
+	 
 	}
 	
 	@ResponseBody  

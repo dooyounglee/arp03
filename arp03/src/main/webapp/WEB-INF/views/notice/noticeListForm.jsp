@@ -196,7 +196,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h2 class="card-title" align="center">공지사항</h2><br><br>
+                                <h2 class="card-title" align="center">공지사항</h2>
                                 <!-- Accordian-part -->
                                 <div id="accordian-part">                                 
                                     <div id="accordian-3">

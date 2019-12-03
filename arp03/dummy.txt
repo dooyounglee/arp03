@@ -108,7 +108,7 @@ CREATE TABLE vacation (
 	vacation_title varchar2(2000) NOT NULL,
 	reason	varchar2(2000)		NOT NULL,
 	application_date	date	NOT NULL,
-	sign varchar2(1000)     NULL
+	status	varchar2(100)	DEFAULT 'N'	NOT NULL
     );
     
 CREATE TABLE VACATIONDATE (
@@ -117,8 +117,6 @@ LEC_NO NUMBER REFERENCES LECTURE,
 VACATION_DATE DATE,
 tstatus	varchar2(100)	DEFAULT 'N'	NOT NULL,
 companion_reason varchar2(2000) NULL,
-astatus  varchar2(100)	DEFAULT 'N' NOT NULL,
-status	varchar2(100)	DEFAULT 'N'	NOT NULL, 
 PRIMARY KEY(V_NO,LEC_NO , VACATION_DATE)
 );
 
