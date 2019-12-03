@@ -38,7 +38,11 @@
 	</select>
 	
 	<update id="okDeclare">
-		update declaree set okdate=sysdate, status='A' where d_no=#{d_no}
+		update declaree set okdate=sysdate, status='Y' where d_no=#{d_no}
+	</update>
+	
+	<update id="declareDeclare">
+		update declaree set okdate=sysdate, status='D' where d_no=#{d_no}
 	</update>
 	
 	

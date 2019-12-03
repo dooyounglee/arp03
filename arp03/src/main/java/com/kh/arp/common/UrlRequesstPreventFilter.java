@@ -1,6 +1,7 @@
 package com.kh.arp.common;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -9,7 +10,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -39,14 +39,17 @@ public class UrlRequesstPreventFilter implements Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 		HttpServletRequest hreq=(HttpServletRequest)request;
-		HttpServletResponse hres=(HttpServletResponse)response;
+		//HttpServletResponse hres=(HttpServletResponse)response;
 		HttpSession session=hreq.getSession();
 		
 		String requestURI = hreq.getRequestURI();
+		System.out.println(requestURI);
 		if(!requestURI.equals("/arp/count/websocket") &&
+				!requestURI.equals("/arp/echo/websocket") &&
 				!requestURI.equals("/arp/Echo") &&
 				!requestURI.equals("/arp/websocket") &&
-				!requestURI.equals("/arp/")) {
+				!requestURI.equals("/arp/") &&
+				requestURI.indexOf("/arp/resources/")==-1) {
 			String referer=hreq.getHeader("Referer");
 			if(referer==null) {
 				hreq.getRequestDispatcher("WEB-INF/views/common/error.jsp").forward(request, response);

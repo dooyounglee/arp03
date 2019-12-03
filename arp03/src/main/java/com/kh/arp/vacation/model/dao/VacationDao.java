@@ -105,6 +105,22 @@ public class VacationDao {
 	}
 
 
+	public VacationDate statusCheck(int v_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("vacationMapper.statusCheck" , v_no);
+	}
+
+
+	public ArrayList<VacationDate> detailVactionT(Vacation v) {
+		return (ArrayList)sqlSession.selectList("vacationMapper.detailVactionT" , v);
+	}
+
+
+	public ArrayList<Vacation> selectListAdmin() {
+		return (ArrayList)sqlSession.selectList("vacationMapper.selectListAdmin" , null);
+	}
+
+
 
 
 	/*

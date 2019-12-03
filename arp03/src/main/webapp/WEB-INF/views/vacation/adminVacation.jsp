@@ -131,14 +131,14 @@
                                       	<tr>
 	
 											<th>
-												<input type="checkbox" id="basic_checkbox_1" >
+												<input type="checkbox" id="basic_checkbox_1">
                                     			<label for="basic_checkbox_1">체크</label>
 												</th>
 											<th>휴가번호</th>
 											<th>강의번호</th>
 											<th >강의명</th>
 											<th>학생명</th>
-											<th >제목</th>
+											<!-- <th >제목</th> -->
 											<th>휴가날짜</th>
 											<th >선생님</th>
 											<th>관리자</th>
@@ -146,32 +146,33 @@
 										
 										</tr>
                                         </thead>
-                                        <tbody >
+                                        <tbody>
                                         <c:forEach items="${ list }" var="v">
 										<input type="hidden" name="lec_no" id="lec_no" value="${v.lec_no }">
+										<input type="hidden" name="vacation_date" id="vacation_date" value="${v.vacation_date }">
 											<c:if test = "${v.tstatus ne 'N' and v.astatus ne 'Y'}">
 												<tr>
 													<td>
 													<%-- <input type="checkbox" id ="vl" class="check" name="vacationList" value="${ v.v_no }"> --%>
-													<input type="checkbox" id="basic_checkbox_1" name="vacationList" value="${ v.v_no }">
+													<input type="checkbox" id="basic_checkbox_1" class="filled-in" name="vacationList" value="${ v.v_no }">
                                     					<label for="basic_checkbox_1"></label>
+                                    					
 													</td>
 													<td>${ v.v_no }</td>
 													<td>${ v.lec_no }</td>
 													<td>${ v.title }</td>
 													<td>${v.name }</td>
-													<td><a href="vDetail.me?v_no=${ v.v_no }&lec_no=${v.lec_no}">${ v.vacation_title }</a></td>
+													<%-- <td><a href="vDetail.me?v_no=${ v.v_no }&lec_no=${v.lec_no}">${ v.vacation_title }</a></td> --%>
 													<td>${fn:substring(v.vacation_date,0,10) }</td>
 													<td>${v.tstatus }</td>
 													<td>${v.astatus }</td>
-													
-													
 												</tr>
 												</c:if>
 										</c:forEach>
                                         
                                         </tbody>
                                     </table>
+                                    <button type="submit" id ="submit" style="display:none">일괄처리하기</button>
                                 </div>
                             </div>
                         </div>
@@ -182,6 +183,8 @@
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
             </div>
+
+
 
 
 
@@ -219,21 +222,26 @@ $(function(){
 	// 하나 혹은 다중선택 처리
 	
 	var lec_no = $("#lec_no").val()
+	var vacation_date = $("#vacation_date").val()
 	
+	console.log($(".table").children().children().next().eq(0).children().children().eq(1))
+	
+	var checkbox = $(".table").children().children().next().eq(0).children().children();
 
-	
-	$(".check").click(function() {
+	/* 
+	console.log($(this).children().children().children().children(".page-wrapper").); */
+	$(checkbox).click("checked",function() {
 		$("input[name=vacationList]:checked").each(function() {
 
 			if($(this).prop("checked")){
 				$("#submit2").show();
-			}else{
+			}else if ($(this).prop("unchecked")){
 				$("#submit2").hide();
 			}
 
 			var test = $(this).val();
-			
-			 alert(test);
+			/* 
+			 alert(test); */
 			console.log(test); 
 			Multicheck.push(test);
 			
@@ -243,7 +251,8 @@ $(function(){
 	
 	var objectMulti = {
 		"MultiList" : Multicheck,
-		"lec_no":lec_no
+		"lec_no":lec_no,
+		"vacation_date":vacation_date
 	}	
 	
 	$("#submit2").click(function(){
@@ -256,7 +265,7 @@ $(function(){
 			data:objectMulti,
 			success: function(data){
 				
-				if(data==1){
+				if(data!==1){
 					alert("수정완료");
 					location.href="sVlist.ad";
 				}else{
@@ -309,11 +318,10 @@ $(function(){
 		 
 	 $.ajax({
 		 url : "permission.ad",
-		 dataType : "json",
 		 type : "post",
 		 data : objParam,
 		 success: function(data){
-			 if(data== 1){
+			 if(data=="success"){
 				 
 			 alert("수정완료");
 			 location.href="sVlist.ad";

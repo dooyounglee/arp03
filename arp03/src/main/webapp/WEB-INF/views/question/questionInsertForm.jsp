@@ -20,11 +20,11 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script> -->
 
-<title>Summernote Lite</title>
+<!-- <title>Summernote Lite</title>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
-
+ -->
 </head>
 <style>
 	.btn-info{
@@ -63,8 +63,11 @@
                     <div class="col-md-5 col-12 align-self-center">
                         <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item"><a href="/arp">Home</a></li>
+                            <li class="breadcrumb-item"><a href="lectureList.ad">Lecture List</a></li>
+                            <li class="breadcrumb-item"><a href="main.lec?lec_no=${lec.lec_no}">${ lec.title }</a></li>
+                            <li class="breadcrumb-item"><a href="question.qu">질문게시판</a></li>
+                            <li class="breadcrumb-item active">게시글 작성하기</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -115,45 +118,29 @@
 										<br>
 										<br>
 										<br> 
-										<input class="form-control" style="width: 300px;" type="text" name="title" required><br>
+										<input class="form-control" style="width: 300px;" type="text" name="title" required placeholder="제목을 입력해주세요.">
 										<br>
-										<input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly>
+										<%-- <input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly> --%>
 										<br>
 										<textarea class="upText" id="summernote" cols="50" rows="7" name="content" required></textarea>
-										<script>
-											$('#summernote')
-													.summernote(
-															{
-																placeholder : '※ 이 게시판은 수업시간에 궁금했던점들을 선생님께 질문할수있는 질문게시판입니다. 도배, 욕설 및 부적절한 내용을 올릴 경우 신고 및 삭제될 수 있습니다. 참고하여 작성해주세요.',
-																tabsize : 2,
-																height : 300,
-																minHeight : null,
-																maxHeight : null,
-																focus : true
-															});
-										</script>
 										
 										<br> 첨부파일 &nbsp; <input style="display: inline-block;" type="file" name="fileUp">
 										
-										
-										
-										<c:if test="${ !empty q.originalname }">
-											<a
-												href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${q.changename}"
-												download="${ q.originalname }" id="fName">${ q.originalname }</a>
+<%-- 										<c:if test="${ !empty q.originalname }">
+											<a href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${q.changename}" download="${ q.originalname }" id="fName">${ q.originalname }</a>
 											<button type="button" class="btn btn-secondary btn-outline"
 												id="fileDelete">
 												<span class="docs-tooltip"><span class="fas fa-trash"></span></span>
 											</button>
-										</c:if>
+										</c:if> --%>
 										<br>
-										<br> ＃youtube＃naver＃kakao URL &nbsp; <input class="form-control" style="width: 300px;" id="youtubeId" type="text" name="youtubelink">
-											
+										<br> ＃youtube＃naver＃kakao URL &nbsp; <input class="form-control inputtexturl" style="width: 300px;" id="youtubeId" type="text" name="youtubelink">
+											<img style="width:30px; height:30px; cursor:pointer;" id="addURLTest" src="resources/siraFile/plus버튼.png">
 										<br>
 										<br>	
 										
 										<div style="text-align: center;">
-											<button class="btn waves-effect waves-light btn-rounded btn-info" onclick="return upContent()" type="submit">등록</button>
+											<button class="btn waves-effect waves-light btn-rounded btn-warning" onclick="return upContent()" type="submit">등록</button>
 											<button class="btn waves-effect waves-light btn-rounded btn-info" type="button" onclick="location.href='question.qu';">목록</button>
 										</div>
 										<br>
@@ -173,6 +160,38 @@
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
 
+	<script>
+	/* 
+	$(function(){
+			var youtubeIdChange = $("#youtubeId").val();
+			
+			var youtu = "https://youtu.be/";
+			var naver = "/v/";
+			var kakao = "https://tv.kakao.com/v/";
+			var daum = "https://kakaotv.daum.net/v/";
+			var youtubeId = youtubeIdChange.replace('https://youtu.be/','https://www.youtube.com/embed/');
+			var naverId = youtubeIdChange.replace('/v/','/embed/');
+			var kakaoId = youtubeIdChange.replace('https://tv.kakao.com/v/','https://play-tv.kakao.com/embed/player/cliplink/');
+			var daumNewsId = youtubeIdChange.replace('https://kakaotv.daum.net/v/','https://play-tv.kakao.com/embed/player/cliplink/');
+			if(youtubeIdChange.indexOf(youtu) != -1){
+				$("#youtuberealId").attr("src", youtubeId);
+			}
+			if(youtubeIdChange.indexOf(naver) != -1){
+				$("#youtuberealId").attr("src", naverId);
+			}
+ 			if(youtubeIdChange.indexOf(kakao) != -1){
+				$("#youtuberealId").attr("src", kakaoId);
+			}
+ 			if(youtubeIdChange.indexOf(daum) != -1){
+				("#youtuberealId").attr("src", daumNewsId);
+			}
+		});
+	
+	 */
+	
+	
+	
+	</script>
 
 	
 	<script>
@@ -197,9 +216,66 @@
 			});
 		});
 		
+		$("#addURLTest").click(function(){ // 추가 버튼
+			var currentStr = $('#summernote').summernote('code');
+		//alert(currentStr);
+			
+			// 사용자가 입력한 값
+			var youtubeaaa = $(".inputtexturl").val();
+			// summernote 내용 textarea부분
+		/* 	var upText = $(".upText").text(); */
+		/* 	alert(youtubeaaa);
+			alert(upText); */
+			/* var youtubeIdChange = $("#youtubeId").val(); */
+			/* var youtubeId = youtubeIdChange.replace('watch?v=','embed/'); */
+			if($(".inputtexturl").val().trim() != ""){
+				//$('#summernote').summernote('pasteHTML', '<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');
+				
+				// 현재 내용에 있는 값들
+				var currentStr = $('#summernote').summernote('code');//현재 에디터꺼 불러왔고,
+				//$('#summernote').summernote('insertText', currentStr);//그걸 에디터로 넣었네. 여기까지만 해보자. 이거까지는 뒤로 붙여주네.
+				// 앞에 붙는 기능에 현재내용 넣고 변수에담음
+				//var real = $('#summernote').summernote('pasteHTML', currentStr);//$('#summernote').summernote('pasteHTML', currentStr);이걸 실행하고, 그 return값을 real에 저장.
+				//근데 $('#summernote').summernote('pasteHTML', currentStr);의 return값이 없나봐? 그래서 undefined찍히는거 같고.
+				//$('#summernote').summernote('pasteHTML', currentStr);이거는 뭐하는 메서드임? 현재 가져온값을 앞에 추가욤 그치
+				//$('#summernote').summernote('pasteHTML', currentStr);//이거만 하면 현제 에디터에서 맨 앞에 currentStr이 붙을꺼야. 맞나?????????새
+				// 다시 summernote로 보냄
+				//$('#summernote').summernote('code', real +'<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');
+				$('#summernote').summernote('code', currentStr +'<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">')//이제 영상이 하나 들어갈꺼고
+				//클릭을 아무리 해도 영상 하나만 들어갈꺼야. 잘 되는거 같애.//<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">
+				//<iframe>태그 앞에 원래 있던 str만 붙여넣고 에디터에 갖다 붙이자. ㄱㄱ 이렇게용?.?ㅇㅇ 이제 뒤로 잘 붙어? 새로고침하기전까진 붙었는데 또 안돼요 ㄷㄷ ㅇ
+						//되는거 아니야??ㅏㅍㅇ앞에 붙었나? 방금?네 첨엔 뒤에붙엇는데 갑자기 앞에..그런가봐여 ㄷㄷ
+				//봤음? 계속 클릭한거야넵// return ㅣㅈ우니까 안된것같은..일단 지금까지꺼 푸시하고 넘겨줘봐 ㅋㅋ 나도 만져볼꼐 네 ㅠㅠ 감사해영 ㅠㅠㅃㅃ
+				//인터치고 하면 되는건가 커서위치 때문인가?흠..
+			}
+			var youtu = "https://youtu.be/";
+			var naver = "/v/";
+			var kakao = "https://tv.kakao.com/v/";
+			var daum = "https://kakaotv.daum.net/v/";
+			var youtubeId = youtubeaaa.replace('https://youtu.be/','https://www.youtube.com/embed/');
+			var naverId = youtubeaaa.replace('/v/','/embed/');
+			var kakaoId = youtubeaaa.replace('https://tv.kakao.com/v/','https://play-tv.kakao.com/embed/player/cliplink/');
+			var daumNewsId = youtubeaaa.replace('https://kakaotv.daum.net/v/','https://play-tv.kakao.com/embed/player/cliplink/');
+			if(youtubeaaa.indexOf(youtu) != -1){
+				$("#youtuberealId").attr("src", youtubeId);
+			}
+			if(youtubeaaa.indexOf(naver) != -1){
+				$("#youtuberealId").attr("src", naverId);
+			}
+			if(youtubeaaa.indexOf(kakao) != -1){
+				$("#youtuberealId").attr("src", kakaoId);
+			}
+			if(youtubeaaa.indexOf(daum) != -1){
+				("#youtuberealId").attr("src", daumNewsId);
+			}
+			
+			
+			/* 값 비우기 */
+			$(".inputtexturl").val("").focus();
+		});
 		
 		function upContent(){
-			if($(".note-editable").text().trim() == ""){
+			if($(".note-editable").text().trim() == "" && $("#summernote").val() == ""){
 				alert("내용을 입력해주세요.");
 				false;
 			}

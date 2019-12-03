@@ -372,8 +372,6 @@ public class TBoardController {
 						bf.setRename_filename(renameFileName);
 						
 						
-					
-						
 						int resultFile = tbService.insertTBoardFile(bf);
 				}
 				
@@ -390,11 +388,6 @@ public class TBoardController {
 			}
 	
 			
-	
-	
-	
-
-	
 	// 파일 업로드 하고 업로드한 파일명(수정명) 반환하는 메소드 --> 재사용하기 위해 따로 빼둠
 	public String saveFileUpload(MultipartFile file, HttpServletRequest request,String originalFileName) {
 		System.out.println("file"+file);
@@ -436,28 +429,6 @@ public class TBoardController {
 		return renameFileName;
 	}
 	
-	/*
-	 * @RequestMapping("insertTBoard.do") public String insertTBoard(Board b,
-	 * HttpServletRequest request,BoardFile bf) {
-	 * 
-	 * if(bfArr != null) { // 파일이 넘어왔을때
-	 * 
-	 * b.setFileStatus("Y"); int result = tbService.insertTBoard(b); for(int i=0;
-	 * i<bfArr.length; i++) { System.out.println("객체배열이여"+bfList); String
-	 * original_filename= bfArr[i].getOriginal_filename(); String rename_filename
-	 * =bfArr[i].getRename_filename(); bf.setOriginal_filename(original_filename);
-	 * bf.setRename_filename(rename_filename);
-	 * 
-	 * 
-	 * int resultFile = tbService.insertTBoardFile(bf); }
-	 * 
-	 * } else { b.setFileStatus("N"); int result = tbService.insertTBoard(b);
-	 * 
-	 * }
-	 * 
-	 * return "redirect:tblist.do"; }
-	 */
-
 	// 파일 업로드 하고 업로드한 파일명(수정명) 반환하는 메소드 --> 재사용하기 위해 따로 빼둠
 	public String saveFile(MultipartFile file, HttpServletRequest request) {
 

@@ -12,6 +12,7 @@
 <form action="cReason.te" >
 	<input type="hidden" name = "v_no" value="${vd.v_no }">
 	<input type="hidden" name ="lec_no" value="${vd.lec_no }">
+	<input type="hidden" name ="vacation_date" value="${vd.vacation_date }">
 	<h2 align="center"> 반려이유</h2>
 	<textarea name ="companion_reason" cols=100 rows=10 placeholder ="이유를 적어주세요"></textarea> 
 	<button type="submit">반려</button>

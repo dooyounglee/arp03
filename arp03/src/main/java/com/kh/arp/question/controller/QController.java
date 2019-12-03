@@ -117,7 +117,7 @@ public class QController {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 
-		String changeName = sdf.format(new Date(System.currentTimeMillis())) + "."
+		String changeName = sdf.format(new Date(System.currentTimeMillis())) + (int)(Math.random()*100) + "."
 				+ originalName.substring(originalName.lastIndexOf(".") + 1);
 
 		String changeNamePath = savePath + "/" + changeName;
@@ -302,7 +302,7 @@ public class QController {
 
 		 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 
-		 String changeName = sdf.format(new Date(System.currentTimeMillis())) + "."
+		 String changeName = sdf.format(new Date(System.currentTimeMillis())) + (int)(Math.random()*100) + "."
 					+ originalName.substring(originalName.lastIndexOf(".") + 1);
 
 		String changeNamePath = savePath + "\\" + changeName;

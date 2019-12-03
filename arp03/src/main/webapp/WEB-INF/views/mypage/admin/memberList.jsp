@@ -9,7 +9,11 @@
 </head>
 <body class="fix-header card-no-border logo-center">
 
-		<!-- Main wrapper -->
+	<!-- Preloader - style you can find in spinners.css -->
+ 	<%@ include file="../../include/bpreloader.jsp" %> 
+	<!-- End of Preloader - style you can find in spinners.css -->
+	
+	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
         <!-- Topbar header - style you can find in pages.scss -->
@@ -86,6 +90,7 @@
 								        <thead>
 								            <tr>
 								                <th>#</th>
+								                <th>id</th>
                                                 <th>Name</th>
                                                 <th>email</th>
                                                 <th>phone</th>
@@ -97,6 +102,7 @@
 								        	<c:forEach var="m" items="${list }">
 								        		<tr>
 													<td>${m.m_no }</td>
+													<td>${m.id }</td>
 	                                                <td><a href="DetailStudent.ad?m_no=${m.m_no }">${m.name }</a></td>
 	                                                <td>${m.email }</td>
 	                                                <td>${m.phone }</td>

@@ -73,7 +73,7 @@
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark"
 				href="" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="mdi mdi-message"></i>
+				aria-expanded="false"> <!-- <i class="mdi mdi-message"></i> -->
 					<div class="notify">
 						<!-- <span class="heartbit"></span> <span class="point"></span> -->
 					</div>
@@ -141,6 +141,8 @@
 			<!-- ============================================================== -->
 			<!-- End Comment -->
 			<!-- ============================================================== -->
+			
+			
 			<!-- ============================================================== -->
 			<!-- Messages -->
 			<!-- ============================================================== -->
@@ -163,7 +165,7 @@
 							<div class="message-center"></div>
 						</li>
 						<li><a class="nav-link text-center"
-							href="javascript:void(0);"><strong id="see">쪽지함으로</strong>
+							href="javascript:void(0);"  id="see"><strong>쪽지함으로</strong>
 								<i class="fa fa-angle-right"></i>
 						</a></li>
 					</ul>
@@ -226,45 +228,56 @@
 	                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
 	                    <div class="dropdown-menu dropdown-menu-right scale-up"> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-in"></i> India</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-fr"></i> French</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> China</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> Dutch</a> </div>
 	                </li> -->
+	                
 		</ul>
 	</div>
+			
 </nav>
 
 <script>
 
-	var m_no = ${mem.m_no}
-	var wsa = new WebSocket(
-			"ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/arp/Echo");
+	var m_no = '${mem.m_no}'
+		
+		var wsa = new WebSocket(
+		"ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/arp/Echo");
 
-	wsa.onopen = function() {
-		console.log('헤더 커넥션 open');
-
-		wsa.onmessage = function(event) {
-			console.log("이벤트데이타" + event.data);
-
-			if (m_no == event.data) {
+			wsa.onopen = function() {
+				console.log('헤더 커넥션 open');
 			
+				wsa.onmessage = function(event) {
+					console.log("이벤트데이타" + event.data);
+			
+					if (m_no == event.data) {
+					
+			
+						$("#heart").attr("class", "heartbit");
+						$("#point").attr("class", "point");
+			
+						
+						alert("새로운 메시지가 있습니다"); 
+						list(); // 새로운 메시지가오면 리스트 새로
+					}
+				}
+			
+			};
+			
+			wsa.onclose = function(event) {
+				console.log('close');
+			
+			};
+			
+			wsa.onerror = function(event) {
+				console.log('error');
+			};
 
-				$("#heart").attr("class", "heartbit");
-				$("#point").attr("class", "point");
+		
 
-				
-				alert("새로운 메시지가 있습니다");
-				list(); // 새로운 메시지가오면 리스트 새로
-			}
-		}
 
-	};
+		
 
-	wsa.onclose = function(event) {
-		console.log('close');
 
-	};
-
-	wsa.onerror = function(event) {
-		console.log('error');
-	};
-
+	
+	
 
 	$("#see").on("click", function() {
 		
@@ -309,14 +322,14 @@
 
 							$.each(data,function(index, value) {
 	
-									$a = $("<a href='#' class='border-bottom d-block text-decoration-none py-2 px-3'></a>");
+									$a = $("<a class='border-bottom d-block text-decoration-none py-2 px-3'></a>").attr("href",'detailMsg.do?ms_no='+value.ms_no);
 									$img = $("<div class='user-img position-relative d-inline-block mr-2 mb-3'><img src='/${cp }/resources/image/mailicon1.png' alt='user' class='img-circle'></div>")
 									$con = $(
 											"<div class='mail-contnet d-inline-block align-middle'>")
 											.text(value.title);
 									$h5 = $(
 											"<h5 class='name1'></h5>")
-											.text(value.s_no);
+											.text(value.name);
 									$desc = $("<span class='mail-desc font-12 text-truncate overflow-hidden text-nowrap d-block'></span> ")
 									$time = $("<span class='time font-12 mt-1 text-truncate overflow-hidden text-nowrap d-block'></span> </div></a>").text(value.s_date);
 	
@@ -337,7 +350,7 @@
 								});
 
 					}else{
-						$(".message-center").append(" <div class='drop-title' align='center'><label>새로운메시지가 없습니다.</label></div>")
+						$(".message-center").append("<div class='drop-title' align='center'><label>새로운메시지가 없습니다.</label></div>")
 					}
 						
 				}

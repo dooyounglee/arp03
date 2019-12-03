@@ -106,6 +106,19 @@ public class VacationServiceImpl implements VacationService {
 		
 		return vDao.multiPermission(vd);
 	}
+	@Override
+	public VacationDate statusCheck(int v_no) {
+		// TODO Auto-generated method stub
+		return vDao.statusCheck(v_no);
+	}
+	@Override
+	public ArrayList<VacationDate> detailVactionT(Vacation v) {
+		return vDao.detailVactionT(v);
+	}
+	@Override
+	public ArrayList<Vacation> selectListAdmin() {
+		return vDao.selectListAdmin();
+	}
 
 	}
 	

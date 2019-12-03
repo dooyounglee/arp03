@@ -9,6 +9,10 @@
 </head>
 <body class="fix-header card-no-border logo-center">
 
+	<!-- Preloader - style you can find in spinners.css -->
+ 	<%@ include file="../../../include/bpreloader.jsp" %> 
+	<!-- End of Preloader - style you can find in spinners.css -->
+	
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -81,15 +85,17 @@
                 	<!-- 수강페이지 메뉴 -->
                 	<%@ include file="../../../include/blecturemenu.jsp" %>
                 	
-                    <div class="col-lg-9 col-xlg-10 col-md-8">
+                    <div class="col-lg-10 col-xlg-10 col-md-8">
                         <div class="card">
                             <div class="card-body">
                             	
                             	<c:set var="mapping" value="make"/>
-								<c:set var="e_no" value="0"/>	
+								<c:set var="e_no" value="0"/>
+								<c:set var="e_no" value=""/>
 								<c:if test="${!empty e }">
 									<c:set var="mapping" value="edit"/>
 									<c:set var="e_no" value="${e.e_no }"/>
+									<c:set var="examdate" value="${e.examdate.split(' ')[0] }T${e.examdate.split(' ')[1].substring(0,5) }"/>
 								</c:if>
 	
                                 <h4 class="card-title">시험 만들기</h4>
@@ -102,15 +108,15 @@
                                         <span class="bar"></span>
                                     </div>
                                     <div class="form-group mb-5">
-                                        <label for="input1">시험날짜</label>
-                                        <input type="date" class="form-control" id="input1" name="examdate" value="${e.examdate.split(' ')[0] }">
+                                        <label for="input1">시험날짜, 시간</label>
+                                        <input type="datetime-local" class="form-control" id="input1" name="examdate" value="${examdate }">
                                         <span class="bar"></span>
                                     </div>
-                                    <div class="form-group mb-5">
+                                    <%-- <div class="form-group mb-5">
                                         <label for="input1">시험시간</label>
-                                        <input type="time" class="form-control" id="input1">
+                                        <input type="time" class="form-control" id="input1" name="examtime" value="${e.examdate.split(' ')[1] }">
                                         <span class="bar"></span>
-                                    </div>
+                                    </div> --%>
                                     <button class="btn btn-success">완료</button>
                                     <a class="btn btn-success" href="list.ex">목록</a>
                                 </form>

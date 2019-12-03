@@ -22,16 +22,10 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script> -->
 
-<title>Summernote Lite</title>
+<!-- <title>Summernote Lite</title>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
-
-<style>
-	.btn-info{
-		background:#1e88e5;
-	}
-</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script> -->
 
 </head>
 
@@ -63,14 +57,18 @@
 				<!-- Bread crumb and right sidebar toggle -->
 				<!-- ============================================================== -->
 				<div class="row page-titles">
-					<div class="col-md-5 col-12 align-self-center">
+					<div class="col-md-7 col-12 align-self-center">
 						<h3 class="text-themecolor mb-0 mt-0">Forms</h3>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-							<li class="breadcrumb-item active">Form</li>
+							<li class="breadcrumb-item"><a href="/arp">Home</a></li>
+                            <li class="breadcrumb-item"><a href="lectureList.ad">Lecture List</a></li>
+                            <li class="breadcrumb-item"><a href="main.lec?lec_no=${lec.lec_no}">${ lec.title }</a></li>
+                            <li class="breadcrumb-item"><a href="question.qu">질문게시판</a></li>
+                            <li class="breadcrumb-item"><a href="qdetail.qu?q_no=${q.q_no}">상세보기 페이지</a></li>
+                            <li class="breadcrumb-item active">수정 페이지</li>
 						</ol>
 					</div>
-					<div class="col-md-7 col-12 align-self-center d-none d-md-block">
+					<div class="col-md-5 col-12 align-self-center d-none d-md-block">
 						<div class="d-flex mt-2 justify-content-end">
 							<div class="d-flex mr-3 ml-2">
 								<div class="chart-text mr-2">
@@ -125,22 +123,10 @@
 										<br>
 										<br>
 										<br> 
-										<input class="form-control" style="width: 300px;" type="text" name="title" value="${ q.title }" required><br>
+										<input class="form-control" style="width: 300px;" type="text" name="title" value="${ q.title }" required placeholder="제목을 입력해주세요."><br>
 										<br>
-										<input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly><br>
+										<%-- <input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly><br> --%>
 										<textarea id="summernote" cols="50" rows="7" name="content" required>${ q.content }</textarea>
-										<script>
-											$('#summernote')
-													.summernote(
-															{
-																placeholder : '※ 이 게시판은 수업시간에 궁금했던점들을 선생님께 질문할수있는 질문게시판입니다. 도배, 욕설 및 부적절한 내용을 올릴 경우 신고 및 삭제될 수 있습니다. 참고하여 작성해주세요.',
-																tabsize : 2,
-																height : 300,
-																minHeight : null,
-																maxHeight : null,
-																focus : true
-															});
-										</script>
 										<br> 첨부파일 &nbsp; <input style="display: inline-block;"
 											type="file" name="fileReload">
 										<c:if test="${ !empty q.originalname }">
@@ -152,10 +138,12 @@
 											</button>
 										</c:if>
 										<br>
-										<br> ＃youtube＃naver＃kakao URL &nbsp; <input class="form-control" id="youtubeId" type="text" style="width: 300px;" name="youtubelink" value="${ q.youtubelink }"> <br>
+										<br> ＃youtube＃naver＃kakao URL &nbsp; <input class="form-control inputtexturl" id="youtubeId" type="text" style="width: 300px;" name="youtubelink" value="${ q.youtubelink }">
+											<img style="width:30px; height:30px; cursor:pointer;" id="addURLTest" src="resources/siraFile/plus버튼.png">
+										<br>
 										<br>
 										<div style="text-align: center;">
-											<button class="btn waves-effect waves-light btn-rounded btn-info" id="deleteaj" onclick="return note2UpText()" type="submit">확인</button>
+											<button class="btn waves-effect waves-light btn-rounded btn-warning" id="deleteaj" onclick="return note2UpText()" type="submit">확인</button>
 											<!-- <button type="button" onclick="window.history.back()">취소</button> -->
 											<button class="btn waves-effect waves-light btn-rounded btn-info" type="button" onclick="location.href='question.qu?lec_no=${q.lec_no}';">목록</button>
 										</div>
@@ -222,7 +210,7 @@
 	
 	<script>
 	
-		/* $(document).ready(function(){
+		$(document).ready(function(){
 			$("#summernote").summernote({
 				height:300,
 				minHeight: null,
@@ -242,10 +230,51 @@
 				placeholder: '※ 이 게시판은 수업시간에 궁금했던점들을 선생님께 질문할수있는 질문게시판입니다. 도배, 욕설 및 부적절한 내용을 올릴 경우 신고 및 삭제될 수 있습니다. 참고하여 작성해주세요.'
 				
 			});
-		}); */
+		});
+		
+		
+		$("#addURLTest").click(function(){ // 추가 버튼
+			
+			// 사용자가 입력한 값
+			var youtubeaaa = $(".inputtexturl").val();
+			// summernote 내용 textarea부분
+		/* 	var upText = $(".upText").text(); */
+		/* 	alert(youtubeaaa);
+			alert(upText); */
+			/* var youtubeIdChange = $("#youtubeId").val(); */
+			/* var youtubeId = youtubeIdChange.replace('watch?v=','embed/'); */
+			if($(".inputtexturl").val().trim() != ""){
+				$('#summernote').summernote('pasteHTML', '<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');
+			}
+			var youtu = "https://youtu.be/";
+			var naver = "/v/";
+			var kakao = "https://tv.kakao.com/v/";
+			var daum = "https://kakaotv.daum.net/v/";
+			var youtubeId = youtubeaaa.replace('https://youtu.be/','https://www.youtube.com/embed/');
+			var naverId = youtubeaaa.replace('/v/','/embed/');
+			var kakaoId = youtubeaaa.replace('https://tv.kakao.com/v/','https://play-tv.kakao.com/embed/player/cliplink/');
+			var daumNewsId = youtubeaaa.replace('https://kakaotv.daum.net/v/','https://play-tv.kakao.com/embed/player/cliplink/');
+			if(youtubeaaa.indexOf(youtu) != -1){
+				$("#youtuberealId").attr("src", youtubeId);
+			}
+			if(youtubeaaa.indexOf(naver) != -1){
+				$("#youtuberealId").attr("src", naverId);
+			}
+			if(youtubeaaa.indexOf(kakao) != -1){
+				$("#youtuberealId").attr("src", kakaoId);
+			}
+			if(youtubeaaa.indexOf(daum) != -1){
+				("#youtuberealId").attr("src", daumNewsId);
+			}
+			
+			
+			/* 값 비우기 */
+			$(".inputtexturl").val("").focus();
+		});
+		
 		
 		function note2UpText(){
-			if($(".note-editable").text().trim() == ""){
+			if($(".note-editable").text().trim() == "" && $("#summernote").val() == ""){
 				alert("내용을 입력해주세요.");
 				return false;
 			}

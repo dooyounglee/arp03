@@ -9,6 +9,10 @@
 </head>
 <body class="fix-header card-no-border logo-center">
 
+	<!-- Preloader - style you can find in spinners.css -->
+ 	<%@ include file="../../../include/bpreloader.jsp" %> 
+	<!-- End of Preloader - style you can find in spinners.css -->
+	
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -80,7 +84,7 @@
                 	<!-- 수강페이지 메뉴 -->
                 	<%@ include file="../../../include/blecturemenu.jsp" %>
                 	
-                    <div class="col-lg-9 col-xlg-10 col-md-8">
+                    <div class="col-lg-10 col-xlg-10 col-md-8">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">시험 점수 관리</h5>
@@ -99,7 +103,7 @@
                                         <tbody>
                                         	<c:forEach var="m" items="${mlist }">
 												<tr>
-													<td>${m.name }</td>
+													<td>${m.name }#${m.m_no }</td>
 													
 													<c:set var="sum" value="0"/>
 													<c:forEach var="e" items="${elist }">
@@ -159,7 +163,7 @@
                                         <tbody>
                                         	<c:forEach var="m" items="${mlist }">
 												<tr>
-													<td>${m.name }</td>
+													<td>${m.name }#${m.m_no }</td>
 													
 													<c:set var="sum" value="0"/>
 													<c:forEach var="hw" items="${hlist }">

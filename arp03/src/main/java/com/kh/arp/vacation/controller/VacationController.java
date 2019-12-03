@@ -2,7 +2,6 @@ package com.kh.arp.vacation.controller;
 
 import java.io.File;
 import java.io.PrintWriter;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,16 +47,22 @@ public class VacationController {
 	
 	@RequestMapping("vlist.me")
 	public ModelAndView vacationListForm(ModelAndView mv, HttpSession session ) {
+		Member mem=(Member)session.getAttribute("mem");
 		
-		int m_no = ((Member)session.getAttribute("mem")).getM_no();
-		
-		ArrayList<Vacation> list = vService.selectList(m_no);
-				
+		ArrayList<Vacation> list=null;
+		if(mem.getTypee().equals("s")) {
+			list = vService.selectList(mem.getM_no());
+		}else if(mem.getTypee().equals("a")){
+			list=vService.selectListAdmin();
+		}
+		System.out.println(list);
 		mv.addObject("list" , list).setViewName("vacation/vacationListForm");
 		
 		
 		return mv;
 	}
+	
+	
 	
 	@RequestMapping("vinsertForm.me")
 	public String vInsertForm() {
@@ -183,9 +188,20 @@ public class VacationController {
 	*/
 	
 	@RequestMapping("vDetail.me")
-	public ModelAndView vDetail(ModelAndView mv,int v_no) {
+	public ModelAndView vDetail(ModelAndView mv,int v_no, HttpSession session) {
 		//vd.setVacationdate(vacationD);
-		ArrayList<VacationDate> list = vService.detailVacation(v_no);
+		Member mem=(Member)session.getAttribute("mem");
+		
+		ArrayList<VacationDate> list=null;
+		Vacation v=new Vacation();
+		v.setV_no(v_no);
+		v.setM_no(mem.getM_no());
+		if(mem.getTypee().equals("t")) {
+			list=vService.detailVactionT(v);
+		}else {
+			list=vService.detailVacation(v_no);
+		}
+		
 		
 		System.out.println(list);
 		
@@ -232,11 +248,11 @@ public class VacationController {
 	}
 	
 	@RequestMapping("companiForm.me")
-	public ModelAndView companiForm(int v_no ,int lec_no , ModelAndView mv, VacationDate vd ) {
+	public ModelAndView companiForm(int v_no ,int lec_no ,String vacation_date, ModelAndView mv, VacationDate vd ) {
 		
 		vd.setV_no(v_no);
 		vd.setLec_no(lec_no);
-		
+		vd.setVacation_date(vacation_date);
 		mv.addObject("vd",vd).setViewName("vacation/companion");
 		
 		return mv;
@@ -249,11 +265,11 @@ public class VacationController {
 		vd.setLec_no(lec_no);
 		vd.setV_no(v_no);
 		vd.setVacation_date(vacation_date);
-		System.out.println(vd);
+		
 		int result = vService.permission(vd);
 		
 		if(result >0) {
-			return "redirect:sVlist.te";
+			return "redirect:vDetail.me?v_no="+v_no;
 		}else {
 			return "common/errorPage";
 		}
@@ -265,7 +281,6 @@ public class VacationController {
 		
 		v.setV_no(v_no);
 		v.setLec_no(lec_no);
-		System.out.println("v"+v);
 		int result = vService.companion(v);
 		
 		 
@@ -280,17 +295,14 @@ public class VacationController {
 	public ModelAndView adminpermission(HttpSession session, ModelAndView mv) {
 		int m_no = ((Member)session.getAttribute("mem")).getM_no();
 		ArrayList<Vacation> list = vService.adminList(m_no);
-		
 			mv.addObject("list", list).setViewName("vacation/adminVacation");
-		
-		
 		return mv;
 		
 	}
 	
 	@ResponseBody  
 	@RequestMapping("permission.ad")
-	public int checkVnoTest(@RequestParam(value="checkList[]") List<String> Number) {
+	public String checkVnoTest(@RequestParam(value="checkList[]") List<String> Number) {
 		
 		
 	//	System.out.println(Number);
@@ -298,27 +310,49 @@ public class VacationController {
 		int result=0;
 		
 		for(String v : Number ) {
-			//System.out.println(v);
+			System.out.println("값이 넘어오는" + v);
 			
 			int num =Integer.parseInt(v);
 			System.out.println(num);
 			result =vService.adminpermission(num); 	
 			//System.out.println(result);
 		}
-		System.out.println(result);
-		return result;
+	
+		
+		
+		if(result>0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
 
+		
+	}
+	
+	@RequestMapping("status.me")
+	public ModelAndView statusCheck(int v_no , VacationDate vd , ModelAndView mv) {
+		
+	
+		vd = vService.statusCheck(v_no);
+		
+		mv.addObject("vd" , vd).setViewName("vacation/vacationListForm");
+		
+	
+		return mv;
+		
 		
 	}
 	
 	@ResponseBody  
 	@RequestMapping("multiPermission.ad")
 	public int MultiCheck(@RequestParam(value="MultiList[]") List<String> Number ,
-						  @RequestParam(value="lec_no")int lec_no, VacationDate vd) {
+						  @RequestParam(value="lec_no")int lec_no,
+						  @RequestParam(value="vacation_date")String vacation_date, VacationDate vd) {
 		System.out.println("배열"+Number);
 		
-		//System.out.println(lec_no);
-	
+		System.out.println(lec_no);
+		System.out.println(vacation_date);
 		int num=0;
 		for(String v : Number) {
 			System.out.println(v);
@@ -327,7 +361,8 @@ public class VacationController {
 		
 		
 		vd.setV_no(num);
-		vd.setLec_no(lec_no);		
+		vd.setLec_no(lec_no);
+		vd.setVacation_date(vacation_date);
 		
 		System.out.println("dd" + num);
 		

@@ -1,6 +1,7 @@
 package com.kh.arp.board.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,8 +48,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public int deleteReply(int r_no, int depth) {
-		return bDao.deleteReply(r_no, depth);
+	public int deleteReply(BReply r) {
+		return bDao.deleteReply(r);
 	}
 
 	@Override
@@ -79,6 +80,16 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int updateVcount(int b_no) {
 		return bDao.updateVcount(b_no);
+	}
+
+	@Override
+	public int searchListCount(HashMap map) {
+		return bDao.searchListCount(map);
+	}
+
+	@Override
+	public ArrayList<Board> searchList(HashMap map, PageInfo pi) {
+		return bDao.searchList(map, pi);
 	}
 
 }

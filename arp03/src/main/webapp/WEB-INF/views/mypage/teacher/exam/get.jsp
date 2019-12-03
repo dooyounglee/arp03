@@ -9,6 +9,10 @@
 </head>
 <body class="fix-header card-no-border logo-center">
 
+	<!-- Preloader - style you can find in spinners.css -->
+ 	<%@ include file="../../../include/bpreloader.jsp" %> 
+	<!-- End of Preloader - style you can find in spinners.css -->
+	
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -81,7 +85,7 @@
                 	<!-- 수강페이지 메뉴 -->
                 	<%@ include file="../../../include/blecturemenu.jsp" %>
                 	
-                    <div class="col-lg-9 col-xlg-10 col-md-8">
+                    <div class="col-lg-10 col-xlg-10 col-md-8">
                         <div class="card">
                             <div class="card-body">
                                 <h1 class="card-title" id="1">시험 정보</h1>
@@ -90,7 +94,7 @@
                                 <h4 class="card-title mt-4" id="3">시험일</h4>
                                 <p>${e.examdate.split(' ')[0] }</p>
                                 <h4 class="card-title mt-4" id="4">시험시간</h4>
-                                <p>자정</p>
+                                <p>${e.examdate.split(' ')[1].substring(0,5) }</p>
 	                            <a class="btn btn-success" href="edit.ex?e_no=${e.e_no }">수정</a>
 	                            <a class="btn btn-success" href="list.ex">목록</a>
                             </div>

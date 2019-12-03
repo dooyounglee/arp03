@@ -38,10 +38,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                      <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                      <h3 class="text-themecolor mb-0 mt-0">쪽지보내기</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item active">쪽지보내기</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -80,20 +80,85 @@
 			          <div class="card">
 	                        <div class="card-body">
 	                            <h3 class="card-title mdi mdi-email">쪽지 보내기</h3>
-	                      <form action="insertMsg.do" >
+	                   				   <form action="insertMsg.do" >
 	                            <div class="form-group">
 	                                <input class="form-control" name="title" placeholder="제목을 입력해주세요" required>
 	                            </div>
 	                            <div class="form-group">
+	                            
 	                           		 <input type="hidden" value="${ mem.m_no }" name="s_no">
 	                            	<input type="hidden"  name="g_no" id="g_no">
-	                                <input class="form-control"  name="name" id="g_list" placeholder="ex) 강보람-5" required>
-	                                    <input type="checkbox" id="basic_checkbox_1" value="${mem.name}-${mem.m_no}">
-	                                    <label for="basic_checkbox_1">나에게쓰기</label>
+	                                    
+	                               	   <label style="color:black">받는사람 </label>
+	                               	   <p id="memId" style="color:black"></p>
+	                                 <button type="button" class="btn btn-info" data-toggle="modal"
+                                        data-target="#bs-example-modal-lg">회원선택</button>
+	                                 
+	                                 <!-- 모달 창 -->
+		                                <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog"
+		                                    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		                                    <div class="modal-dialog modal-lg">
+		                                        <div class="modal-content">
+		                                            <div class="modal-header">
+		                                              
+		                                                <button type="button" class="close" data-dismiss="modal"
+		                                                    aria-hidden="true">×</button>
+		                                            </div>
+		                                            <div class="modal-body">
+		                                            
+		                                                  <div class="card">
+									                            <div class="card-body">
+									                                <h4 class="card-title">회원선택</h4>
+									                                <h6 class="card-subtitle">Member</h6>
+									                                <div class="table-responsive">
+									                                <table id="zero_config" class="table no-wrap">
+				                                                         <thead>
+				                                                            <tr>
+				                                                               <th>회원번호</th>
+				                                                               <th>구분</th>
+				                                                               <th>이름</th>
+				
+				                                                            </tr>
+				                                                         </thead>
+				                                                         <tbody>
+				                                                            <c:forEach items="${ list }" var="m">
+				                                                               <tr>
+				                                                                  <td>${m.m_no }</td>
+				                                                                  
+				                                                                  <c:if test="${m.typee eq 's'}">
+				                                                                  <td>학생</td>
+				                                                                  </c:if>
+				                                                                  
+				                                                                   <c:if test="${m.typee eq 't'}">
+				                                                                  <td>선생님</td>
+				                                                                  </c:if>
+				                                                                  
+				                                                            
+				                                                                  <td style="cursor:pointer" class="nameGet">${m.name }</td>
+				                                                               </tr>
+				                                                            </c:forEach>
+				                                                         </tbody>
+				                                                      </table>
+						                                             <script>
+																		$('#zero_config').DataTable();
+																	</script>
+																						                                                     
+									                                  
+									                                </div>
+									                            </div>
+									                        </div>
+		                                          
+		                                            
+		                                             
+		                                            </div>
+		                                        </div><!-- /.modal-content -->
+		                                    </div><!-- /.modal-dialog -->
+		                                </div><!-- /.modal -->
 	                                
-	                                 <%--   <input type="checkbox" id="me" name="me" value="${mem.name}-${mem.m_no}">나에게 쓰기<br> --%>
-	                            </div>
-	                            <div class="form-group">
+	                          
+
+										</div>
+										<div class="form-group">
 	                                <textarea class="textarea_editor form-control" name="content" rows="15"
 	                                    placeholder="내용을 입력해주세요" required></textarea>
 	                            </div>
@@ -110,30 +175,43 @@
 	                </div>
 	                
               
-<%--                  
-<form action="insertMsg.do">
-<h3>쪽지보내기</h3>
-제목 : <input type="text" name="title"><br>
-<input type="hidden" value="${ mem.m_no }" name="s_no">
-<input type="hidden"  name="g_no" id="g_no">
-받는사람 : <input type="text" name="name" id="g_list" style="width:250px" placeholder="이름뒤에 -와 회원번호를 입력해주세요"><input type="checkbox" id="me" name="me" value="${mem.name}-${mem.m_no}">나에게 쓰기<br>
-<textarea rows="3" cols="50" name="content">
-</textarea>
-
-<button onclick="abc()">보내기</button>
-</form> --%>
-
 <script>
+
+$(".nameGet").on("click", function(){
+	var name = $(this).text();
+	var mno = $(this).prev().prev().text();
+	var str = name.concat("#", mno);
+	console.log(str);
+	
+	$("#memId").text(str);
+	$("#g_no").val(mno);
+	
+	$('.modal').modal("hide"); 
+	
+	
+})
+	
+
+
+
 function abc(){
 	//....
 	var gno = $("#g_no").val();
 	ws.send(gno);
     submit(); 
 }
+
+
+function select(){
+	window.open("","","width=400");
+}
 </script>
+
+
+
 <script>
 
-$(document).ready(function() {
+/* $(document).ready(function() {
 	$("#g_list").autocomplete({
 		source : function(request, response) {
 
@@ -156,7 +234,10 @@ $(document).ready(function() {
 			});
 		}
 	});
-});
+}); */
+
+
+
 
 
 $("#g_list").change(function(){

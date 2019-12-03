@@ -10,6 +10,10 @@
 </head>
 <body class="fix-header card-no-border logo-center">
 
+	<!-- Preloader - style you can find in spinners.css -->
+ 	<%@ include file="../include/bpreloader.jsp" %> 
+	<!-- End of Preloader - style you can find in spinners.css -->
+	
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -82,7 +86,7 @@
                                 <a class="btn btn-success float-left" href="write.qna">문의하기</a><br>
                                 <h6 class="card-subtitle"></code></h6>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table id="zero_config" class="table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -110,6 +114,9 @@
 											</c:forEach>
                                         </tbody>
                                     </table>
+                                    <script>
+								   		$('#zero_config').DataTable();
+								    </script>
                                 </div>
                             </div>
                         </div>

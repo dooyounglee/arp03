@@ -1,10 +1,13 @@
 package com.kh.arp.message.controller;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,11 +19,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.kh.arp.common.PageInfo;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.message.model.service.messageService;
 import com.kh.arp.message.model.vo.Dto;
@@ -38,10 +43,15 @@ public class messageController {
 	}
 	
 	@RequestMapping("sendMsgFrom.do")
-	public String sendMsgForm() {
+	public ModelAndView sendMsgForm(ModelAndView mv) {
 		
-		return "message/sendMessage";
-	}
+	  ArrayList<Member> list = mService.selectMember();
+	 
+	  mv.addObject("list",list).setViewName("message/sendMessage");
+	  System.out.println("list"+list);
+				  
+		  return mv;
+	  }
 	
 	@RequestMapping("insertMsg.do")
 	public String insertMsg(Message m) {
@@ -72,12 +82,18 @@ public class messageController {
 	
 	// 받은 쪽지
 	@RequestMapping("listSendMsg.do")
-	public ModelAndView listSendMsg(ModelAndView mv, HttpSession session) {
+	public ModelAndView listSendMsg(ModelAndView mv, HttpSession session,
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
 		
+
 		int m_no =	((Member)session.getAttribute("mem")).getM_no();
+		int listCount = mService.getListCount(m_no);
+		System.out.println("lc"+listCount);
+		PageInfo pi = new PageInfo(currentPage, listCount, 5, 10);
+		
 		ArrayList<Message> mList = mService.listSendMsg(m_no);
 		System.out.println("받은쪽지"+mList);
-		mv.addObject("mList",mList).setViewName("message/listSendMessage");
+		mv.addObject("mList",mList).addObject("pi", pi).setViewName("message/listSendMessage");
 		
 		return mv;
 		
@@ -131,7 +147,9 @@ public class messageController {
 	  }
 	  
 	  @ResponseBody
-	  @RequestMapping("selectNList.do")
+	  @RequestMapping(value = "selectNList.do", 
+	  produces = "application/text; charset=utf8")
+
 	  public String selectNList(int m_no) {
 		  ArrayList<Message> mlist = mService.selectNList(m_no);
 		  
@@ -154,7 +172,13 @@ public class messageController {
 		  }
 	  }
 	  
-	  
+	
 	  
 	 
-}
+		  
+		 
+		  
+	  }
+
+	  
+

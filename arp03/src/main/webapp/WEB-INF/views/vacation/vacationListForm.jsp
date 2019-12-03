@@ -160,14 +160,16 @@
                                         </thead>
                                         <tbody >
                                         <c:forEach items="${list }" var="c">
-                                        <c:if test = "${mem.m_no eq c.m_no }">
+                                        <%-- <c:if test = "${mem.m_no }"> --%>
 										<tr>
 											<td>${c.v_no }</td>
 											<td>${c.name }</td>
 											<td><a href="vDetail.me?v_no=${c.v_no}">${c.vacation_title }</a></td>
 											<td>${c.application_date}</td>
 										</tr>
-										</c:if>
+										<tr>
+										</tr>
+										<%-- </c:if> --%>
 										</c:forEach>
                                         
                                         </tbody>

@@ -18,6 +18,10 @@
 </head>
 <body class="fix-header card-no-border logo-center">
 
+	<!-- Preloader - style you can find in spinners.css -->
+ 	<%@ include file="../../../include/bpreloader.jsp" %> 
+	<!-- End of Preloader - style you can find in spinners.css -->
+	
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
 	
@@ -89,7 +93,7 @@
                 	<!-- 수강페이지 메뉴 -->
                 	<%@ include file="../../../include/blecturemenu.jsp" %>
                 	
-                    <div class="col-lg-9 col-xlg-10 col-md-8">
+                    <div class="col-lg-10 col-xlg-10 col-md-8">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">출석 관리</h5>
@@ -108,7 +112,7 @@
                                         <tbody>
                                         	<c:forEach var="m" items="${mlist }">
 												<tr>
-													<td>${m.name }</td>
+													<td>${m.name }#${m.m_no }</td>
 													<c:forEach var="d" items="${dlist }" varStatus="i">
 													
 														<!-- attendence선택 -->
@@ -117,6 +121,7 @@
 														<c:set var="checked2" value=""/>
 														<c:set var="checked3" value=""/>
 														<c:set var="checked4" value=""/>
+														<c:set var="checked5" value=""/>
 														<c:forEach var="a" items="${alist }">
 															<c:if test="${a.m_no == m.m_no && a.nth == i.count }">
 																<c:set var="attendence" value="${a.content }"/>
@@ -132,6 +137,9 @@
 																	<c:if test="${attendence eq 'X' }">
 																		<c:set var="checked4" value="selected"/>
 																	</c:if>
+																	<c:if test="${attendence eq '휴' }">
+																		<c:set var="checked5" value="selected"/>
+																	</c:if>
 															</c:if>
 														</c:forEach>
 														<!-- End of attendence선택 -->
@@ -146,11 +154,12 @@
 															<option value="O" ${checked2 }>O</option>
 															<option value="/" ${checked3 }>/</option>
 															<option value="X" ${checked4 }>X</option>
+															<option value="휴" ${checked5 }>휴</option>
 														</select>
 														</c:if>
 													</td>
 													</c:forEach>
-													<td class=sum>${sum }</td>
+													<td class=sum>${sum }/${dlist.size() }</td>
 												</tr>
 											</c:forEach>
                                         </tbody>
@@ -270,6 +279,36 @@
 				},
 			})
 		})
+	</script>
+	<script>
+	//합
+	$('table select').on('input',function(){
+		var this_=$(this)
+		var att=$(this_).val()
+
+		//총점
+		var tds=this_.closest('tr').children('td')
+		var sum_=this_.closest('tr').children('td.sum')
+		var sum=0;
+		for(i=1;i<tds.length-1;i++){
+			var n=$(tds).eq(i).children().eq(0).val()
+			if(n=='O')sum++
+		}
+		$(sum_).text(100*sum/+'${dlist.size()}'+'%')
+	})
+	
+	var trs=$('table tbody tr')
+	for(j=0;j<trs.length;j++){
+		var tds=trs.eq(j).children('td')
+		var sum_=trs.eq(j).children('td.sum')
+		var sum=0;
+		for(i=1;i<tds.length-1;i++){
+			var n=$(tds).eq(i).children().eq(0).val()
+			if(n=='O')sum++
+		}
+		$(sum_).text(100*sum/+'${dlist.size()}'+'%')
+	}
+		
 	</script>
 	
 	<jsp:include page="../../../include/footer.jsp"/>
