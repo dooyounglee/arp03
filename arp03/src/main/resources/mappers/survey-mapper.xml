@@ -30,22 +30,31 @@
 	from insertSurvey s ,lecture l, member m 
 	where s.lec_no=l.lec_no And s.m_no=m.m_no And s.lec_no=#{lec_no} And s.m_no=-1 
   </select>
-	<!--  and s.m_no=l.m_no -->
-																		<!-- 선생님 번호 -->
+	<!--  and s.m_no=l.m_no --><!-- 선생님 번호 -->
+																		
 	<select id="selectSurveyStudent" resultMap="surveyquestion"> <!-- 학생 전용 셀렉문 -->
-	select    	s.su_no, s.title, s.enrolldate, m.name, l.title lec_title, sq.issurvey
+	 select      s.su_no, s.title, s.enrolldate, m.name, l.title lec_title, sq.issurvey
 	from insertSurvey s ,lecture l, member m , surveyquestion sq, myclass mc
 	where s.lec_no=l.lec_no 
-	And s.m_no=m.m_no 
-	And l.m_no=s.m_no  
-	And mc.m_no=sq.m_no
+	And mc.m_no=sq.m_no 
 	And s.su_no=sq.su_no 
 	And s.lec_no=#{lec_no}
-	and mc.m_no=#{m_no}  <!-- 학생넘버 -->
+	and mc.m_no=#{m_no}
 	And mc.lec_no=#{lec_no}
 	And sq.sq_no=1
+    And s.m_no=-1
+    And m.typee='a'
 	</select>
-	
+	<!-- select    	s.su_no, s.title, s.enrolldate, m.name, l.title lec_title, sq.issurvey
+	from insertSurvey s ,lecture l, member m , surveyquestion sq, myclass mc
+	where s.lec_no=l.lec_no 
+	And mc.m_no=sq.m_no 학생넘버
+	And s.su_no=sq.su_no 
+	And s.lec_no=#{lec_no}
+	and mc.m_no=#{m_no}  학생넘버
+	And mc.lec_no=#{lec_no}
+	And sq.sq_no=1-->
+	<!-- And l.m_no=s.m_no  	 --><!-- 선생님 넘버 --><!-- And s.m_no=m.m_no --> 	<!-- 선생님넘버 -->
   <insert id="insertSurvey">
   	insert into insertsurvey values
   	(seq_insertsurvey.nextval,  #{lec_no}, #{m_no}, 
