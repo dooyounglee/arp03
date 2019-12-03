@@ -5,16 +5,15 @@
 <html>
 <head>
 <%@ include file="../include/bhead.jsp"%>
- <style>
+<style>
+#page {
+	margin-left: auto;
+	margin-right: auto;
+}
 
-	#page{
-		margin-left:auto;
-		margin-right:auto;
-	}
-	#btn{
-		margin-left:94%;
-	}
-
+#btn {
+	margin-left: 94%;
+}
 </style>
 
 <meta charset="UTF-8">
@@ -24,79 +23,89 @@
 
 	<!-- Main wrapper -->
 	<div id="main-wrapper">
-	
-        <!-- Topbar header - style you can find in pages.scss -->
-        <header class="topbar">
-        	<%@ include file="../include/btopbarheader.jsp" %>
-        </header>
-        <!-- End Topbar header -->
-        
-        <!-- Left-sidebar -->
-        <aside class="left-sidebar">
-        	<%@ include file="../include/bsidebar.jsp" %>
-        </aside>
-        <!-- End of Left-sidebar -->
+
+		<!-- Topbar header - style you can find in pages.scss -->
+		<header class="topbar">
+			<%@ include file="../include/btopbarheader.jsp"%>
+		</header>
+		<!-- End Topbar header -->
+
+		<!-- Left-sidebar -->
+		<aside class="left-sidebar">
+			<%@ include file="../include/bsidebar.jsp"%>
+		</aside>
+		<!-- End of Left-sidebar -->
 
 		<!-- Page wrapper  -->
 		<div class="page-wrapper">
-        <!-- Page wrapper  -->
+			<!-- Page wrapper  -->
 
-        	<!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <div class="row page-titles">
-                    <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
-                        </ol>
-                    </div>
-                    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
-                        <div class="d-flex mt-2 justify-content-end">
-                            <div class="d-flex mr-3 ml-2">
-                                <div class="chart-text mr-2">
-                                    <h6 class="mb-0"><small>THIS MONTH</small></h6>
-                                    <h4 class="mt-0 text-info">$58,356</h4>
-                                </div>
-                                <div class="spark-chart">
-                                    <div id="monthchart"></div>
-                                </div>
-                            </div>
-                            <div class="d-flex mr-3 ml-2">
-                                <div class="chart-text mr-2">
-                                    <h6 class="mb-0"><small>LAST MONTH</small></h6>
-                                    <h4 class="mt-0 text-primary">$48,356</h4>
-                                </div>
-                                <div class="spark-chart">
-                                    <div id="lastmonthchart"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <!-- Row -->
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="card">
-					<div class="card-body">
-		
-						<h3 class="card-title" align="center" style="color:black">게시판 리스트</h3>
-		
-					
-					<%-- <c:if test="${ !empty mem }"> --%>
+			<!-- ============================================================== -->
+			<!-- Container fluid  -->
+			<!-- ============================================================== -->
+			<div class="container-fluid">
+				<!-- ============================================================== -->
+				<!-- Bread crumb and right sidebar toggle -->
+				<!-- ============================================================== -->
+				<div class="row page-titles">
+					<div class="col-md-5 col-12 align-self-center">
+						<h3 class="text-themecolor mb-0 mt-0">선생님 게시판</h3>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+							<li class="breadcrumb-item active">선생님 게시판</li>
+						</ol>
+					</div>
+					<div class="col-md-7 col-12 align-self-center d-none d-md-block">
+						<div class="d-flex mt-2 justify-content-end">
+							<div class="d-flex mr-3 ml-2">
+								<div class="chart-text mr-2">
+									<h6 class="mb-0">
+										<small>THIS MONTH</small>
+									</h6>
+									<h4 class="mt-0 text-info">$58,356</h4>
+								</div>
+								<div class="spark-chart">
+									<div id="monthchart"></div>
+								</div>
+							</div>
+							<div class="d-flex mr-3 ml-2">
+								<div class="chart-text mr-2">
+									<h6 class="mb-0">
+										<small>LAST MONTH</small>
+									</h6>
+									<h4 class="mt-0 text-primary">$48,356</h4>
+								</div>
+								<div class="spark-chart">
+									<div id="lastmonthchart"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ============================================================== -->
+				<!-- End Bread crumb and right sidebar toggle -->
+				<!-- ============================================================== -->
+				<!-- ============================================================== -->
+				<!-- Start Page Content -->
+				<!-- ============================================================== -->
+				<!-- Row -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+
+								<h3 class="card-title" align="center" style="color: black">게시판
+									리스트</h3>
+
+
+								<%-- <c:if test="${ !empty mem }"> --%>
+								<div class="content">
+									<button onclick="location.href='insertTBoardFrom.do';"
+										class="btn waves-effect waves-light btn-info" id="btn">글쓰기</button>
+								</div>
+								<br>
 								<div class="table-responsive">
-								<button onclick="location.href='insertTBoardFrom.do';" class="btn waves-effect waves-light btn-info" id="btn">글쓰기</button>
+								
 									<table class="table color-table muted-table">
 										<thead>
 											<tr>
@@ -112,8 +121,10 @@
 												<tr>
 													<td>${ b.b_no }</td>
 													<c:if test="${ b.imageStatus eq 'Y' }">
-													<td><a href="tbdetail.do?b_no=${ b.b_no }">${ b.title }
-													<img src="resources/image/imgIcon.jpg" width="17px" height="17px" /></a></td>
+														<td><a href="tbdetail.do?b_no=${ b.b_no }">${ b.title }
+																<img src="resources/image/imgIcon.jpg" width="17px"
+																height="17px" />
+														</a></td>
 													</c:if>
 													<c:if test="${ b.imageStatus eq 'N' }">
 														<td><a href="tbdetail.do?b_no=${ b.b_no }">${ b.title }</a></td>
@@ -122,84 +133,87 @@
 													<td>${b.regdate }</td>
 													<td>${ b.vcount }</td>
 													<c:if test="${ b.fileStatus eq 'Y' }">
-														<td>O</td>
+														<td><img src="resources/image/fileIcon.jpg" width="17px"
+																height="17px" /></td>
 													</c:if>
 													<c:if test="${ b.fileStatus eq 'N' }">
 														<td></td>
 													</c:if>
 												</tr>
 											</c:forEach>
-		
-										</table>
-											<!-- 페이징 처리 -->
-									
-						
+									</table>
+
+								</div>
 							</div>
-						</div>
-							<div id="page" >
-									<ul class="pagination" >
+							<!-- 페이징 처리 -->
+							<div id="page">
+								<ul class="pagination">
 									<c:if test="${ pi.currentPage eq 1 }">
 										<li class="page-item"><a class="page-link">이전</a></li>
-									</c:if> 
+									</c:if>
 									<c:if test="${ pi.currentPage ne 1 }">
 										<c:url value="tblist.do" var="before">
 											<c:param name="currentPage" value="${ pi.currentPage-1 }" />
 										</c:url>
-										<li class="page-item"><a class="page-link" href="${ before }">이전</a></li>
+										<li class="page-item"><a class="page-link"
+											href="${ before }">이전</a></li>
 									</c:if>
-									
-									<c:forEach begin="${ pi.startPage }"
-														end="${ pi.endPage }" var="p">
-											<c:if test="${ p eq pi.currentPage }">
-													<li class="page-item"><a class="page-link">${ p }</a></li>
-													
-											</c:if>
-											<c:if test="${ p ne pi.currentPage }">
-													<c:url value="tblist.do" var="page">
-														<c:param name="currentPage" value="${ p }" />
-													</c:url>
-												<li class="page-item"><a class="page-link" href="${ page }"> ${ p }</a></li>
-											</c:if>
-									</c:forEach> 
-									
-									<c:if test="${ pi.currentPage eq pi.maxPage }">
-											<li class="page-item"><a class="page-link">다음</a></li>
-									</c:if> 
-									<c:if test="${ pi.currentPage ne pi.maxPage }">
-											<c:url value="tblist.do" var="after">
-													<c:param name="currentPage" value="${ pi.currentPage+1 }" />
+
+									<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }"
+										var="p">
+										<c:if test="${ p eq pi.currentPage }">
+											<li class="page-item"><a class="page-link">${ p }</a></li>
+
+										</c:if>
+										<c:if test="${ p ne pi.currentPage }">
+											<c:url value="tblist.do" var="page">
+												<c:param name="currentPage" value="${ p }" />
 											</c:url>
-										<li class="page-item"><a class="page-link" href="${ after }"> 다음</a></li>
+											<li class="page-item"><a class="page-link"
+												href="${ page }"> ${ p }</a></li>
+										</c:if>
+									</c:forEach>
+
+									<c:if test="${ pi.currentPage eq pi.maxPage }">
+										<li class="page-item"><a class="page-link">다음</a></li>
 									</c:if>
-									</ul>
-									</div>
-					
-							
-						</div>		
+									<c:if test="${ pi.currentPage ne pi.maxPage }">
+										<c:url value="tblist.do" var="after">
+											<c:param name="currentPage" value="${ pi.currentPage+1 }" />
+										</c:url>
+										<li class="page-item"><a class="page-link"
+											href="${ after }"> 다음</a></li>
+									</c:if>
+								</ul>
+							</div>
+
+
+						</div>
 					</div>
 				</div>
 			</div>
 
-	            <!-- footer -->
-            <footer class="footer">
-                <%@ include file="../include/bfooter.jsp" %>
-            </footer>
-            <!-- End footer -->
-        
-        </div>
-        <!-- End of Page wrapper  -->
-        
+			<!-- footer -->
+			<footer class="footer">
+				<%@ include file="../include/bfooter.jsp"%>
+			</footer>
+			<!-- End footer -->
+
+		</div>
+		<!-- End of Page wrapper  -->
+
 	</div>
 	<!-- End of Main wrapper -->
 
 
-	<%@ include file="../include/bjs.jsp" %>
-	
-	
-	
+	<%@ include file="../include/bjs.jsp"%>
 
-	
+
+
+
+
 
 	</div>
-	
-</body></html>
+
+</body>
+</html>

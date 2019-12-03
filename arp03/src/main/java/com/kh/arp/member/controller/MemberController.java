@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.arp.lecture.model.service.LectureService;
 import com.kh.arp.member.model.service.MemberService;
 import com.kh.arp.member.model.vo.Auth;
@@ -218,5 +220,15 @@ public class MemberController {
 		}else {
 			return "not";
 		}
+	}
+	
+	@ResponseBody
+	@PostMapping(value="myLecLastest.me", produces="application/json; charset=UTF-8")
+	public String myLecLastestPost(HttpSession session) {
+		System.out.println("잭스가?");
+		Member mem=(Member)session.getAttribute("mem");
+		session.setAttribute("myLec", ms.getLectureList(mem));
+		Gson gson=new GsonBuilder().create();
+		return gson.toJson(ms.getLectureList(mem));
 	}
 }

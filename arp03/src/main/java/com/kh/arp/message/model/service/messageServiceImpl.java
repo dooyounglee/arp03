@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.message.model.dao.messageDao;
 import com.kh.arp.message.model.vo.Dto;
 import com.kh.arp.message.model.vo.Message;
@@ -63,6 +64,22 @@ public class messageServiceImpl implements messageService {
 	public int updateAlram(int m_no) {
 
 		return mDao.updateAlram(m_no);
+	}
+
+	@Override
+	public int getListCount(int m_no) {
+		
+		return mDao.getListCount(m_no);
+	}
+
+	@Override
+	public Message reSendMsgForm(int ms_no) {
+	    return mDao.reSendMsgForm(ms_no);
+	}
+
+	@Override
+	public ArrayList<Member> selectMember() {
+		return mDao.selectMember();
 	}
 	
 	

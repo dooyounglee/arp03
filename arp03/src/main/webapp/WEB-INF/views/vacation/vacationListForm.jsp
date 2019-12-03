@@ -160,7 +160,7 @@
                                         </thead>
                                         <tbody >
                                         <c:forEach items="${list }" var="c">
-                                        <c:if test = "${mem.m_no eq c.m_no }">
+                                        <%-- <c:if test = "${mem.m_no }"> --%>
 										<tr>
 											<td>${c.v_no }</td>
 											<td>${c.name }</td>
@@ -169,7 +169,7 @@
 										</tr>
 										<tr>
 										</tr>
-										</c:if>
+										<%-- </c:if> --%>
 										</c:forEach>
                                         
                                         </tbody>

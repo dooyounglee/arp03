@@ -23,70 +23,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
  -->
 <style>
-	input, textarea{
-		border:none;
-	}
-	#qOpen{
-		display:none;
-	}
-/* 	.c1{
-		border:1px solid black;
-		width:623px;
-		height:250px;
-		margin-left:auto;
-		margin-right:auto;
-	} */
-/* 	.t1{
-		margin-top:50px;
-	} */
-/* 	.c5{
-		border:1px solid black;
-		width:800px;
-		height:auto;
-		margin-left:auto;
-		margin-right:auto;
-	} */
-	
-	.card{
-		text-align:left;
-		margin-left:auto;
-		margin-right:auto;
-		min-hieght:500px;
-		height:auto;
-	
-	}
-	
-	#bor{
-		margin:0px;	
-	}
-/* 	
-	#regDate{
-	float:right;
-	color :gray;
-	font-size:13px;
-	} */
-	
-	
-/* 	#file,a{
-	font-size:15px;
-	} */
-	#btn{
-		text-align:right;
-		margin-left:auto;
-		margin-right:auto;
-		width:600px;
-	}
-	.btn-info{
-		background:#1e88e5;
-	}
-	
-	.contentWordText{
-		line-height:22px;
-		word-break:break-word;
-	}
-	.spanTrashColor:hover{
-		color:navy;
-	}
+	 .spanTrashColor{
+	 	color:black;
+	 }
+	 .spanTrashColor:hover{
+	 	color:red;
+	 }
 </style>
 </head>
 <body class="fix-header card-no-border logo-center">
@@ -120,8 +62,11 @@
 					<div class="col-md-5 col-12 align-self-center">
 						<h3 class="text-themecolor mb-0 mt-0">Forms</h3>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-							<li class="breadcrumb-item active">Form</li>
+							<li class="breadcrumb-item"><a href="/arp">Home</a></li>
+                            <li class="breadcrumb-item"><a href="lectureList.ad">Lecture List</a></li>
+                            <li class="breadcrumb-item"><a href="main.lec?lec_no=${lec.lec_no}">${ lec.title }</a></li>
+                            <li class="breadcrumb-item"><a href="question.qu">질문게시판</a></li>
+                            <li class="breadcrumb-item active">상세보기 페이지</li>
 						</ol>
 					</div>
 					<div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -164,26 +109,22 @@
 
 					<div class="col-lg-10">
 						<div class="card">
-							<div class="card-body"
-								style="padding-left: 100px; padding-right: 100px; padding-top: 70px;">
+							<div class="card-body">
 								<section class="cd-horizontal-timeline loaded">
 
 									<!-- .timeline -->
 									<div class="events-content">
 										<form class="c5" action="qupdateForm.qu?q_no=${ q.q_no }"
 											method="post" enctype="multipart/form-data">
-											
-											<h3 align="center" style="font-size: 20px; color: gray;">상세보기
-												페이지</h3>
 											<br>
+											<h3 align="center" style="font-size: 20px; color: gray;">상세보기 페이지</h3>
 											<div class="selected">
 												<!-- <h3 style="font-size: 18px; font-weight:bold;"><img width="55" src="resources/siraFile/Q2.png">&nbsp;&nbsp;&nbsp;학생질문</h3> -->
-												<br> <img width="60" src="resources/siraFile/Q2.png">&nbsp;&nbsp;&nbsp;<input
-													style="font-weight: bold; font-size: 25px;" size="20"
-													type="text" name="title" value="${ q.title }" readonly>
+												<img width="60" src="resources/siraFile/Q2.png">&nbsp;&nbsp;&nbsp;
+												<span style="font-weight: bold; color:black; font-size: 25px;" size="20"
+													type="text" name="title">${ q.title }</span>
 												<hr class="mt-4">
-												<input size="10" type="text" name="name" value="${ q.name }"
-													readonly>
+												<span style="color:black; font-weight:500;" size="10" type="text" name="name">${ q.name }</span>
 												<div style="float: right; color: black;">${ q.updatedate }</div>
 												<br> <br> ${ q.content }
 												<c:if test="${ !empty q.youtubelink }">
@@ -194,9 +135,7 @@
 											<c:if test="${ !empty q.originalname }">
 												<tr>
 													<td><br>첨부파일</td>
-													<td><a
-														href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${ q.changename }"
-														download="${ q.originalname }">${ q.originalname }</a></td>
+													<td><a href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${ q.changename }" download="${ q.originalname }">${ q.originalname }</a></td>
 												</tr>
 											</c:if>
 											<input id="youtubeId" type="hidden" style="width: 300px;"
@@ -228,20 +167,15 @@
 								</section>
 							</div>
 						</div>
-					</div>
-				</div>
-				<!-- row1끝 -->
-
-				<!-- row2시작 (선생님답변 쓰는부분)  -->
+						<!-- row2시작 (선생님답변 쓰는부분)  -->
 				<div class="row">
-					<div class="col-2"></div>
-					<div class="col-10">
+					<div class="col-12">
 						<div class="card">
-							<form id="qOpen" action="qTCInsertReply?q_no=${ q.q_no }"
+							<form id="qOpen" style="display:none;" action="qTCInsertReply?q_no=${ q.q_no }"
 								method="post" enctype="multipart/form-data">
 								<div class="card-body">
-									<br> <input size="10" type="text" name="name"
-										value="${ qt.tcname }" readonly> <br> <br>
+									<br><%--  <input size="10" type="text" name="name"
+										value="${ qt.tcname }" readonly> --%>
 									<textarea id="summernote" cols="50" rows="7"
 										name="replycontent" required>${ q.replycontent }</textarea>
 									<!-- 									<script>
@@ -272,27 +206,23 @@
 				<!-- row3시작 (선생님답변 올린부분) -->
 				<c:if test="${!empty q.replycontent}">
 					<div class="row">
-						<div class="col-lg-2"></div>
-						<div class="col-lg-10">
+						<div class="col-lg-12">
 							<div class="card">
-								<div class="card-body"
-									style="padding-left: 100px; padding-right: 100px;">
+								<div class="card-body">
 									<section class="cd-horizontal-timeline loaded">
 
 										<!-- .timeline -->
 										<div class="events-content">
 											<form class="c1" id="qOpen1" method="post"
 												enctype="multipart/form-data">
-												<br> <br> <br>
+												<br>
 												<div class="selected">
 													<!-- <h3 style="font-size: 18px; font-weight:bold;"><img width="55" src="resources/siraFile/Q2.png">&nbsp;&nbsp;&nbsp;학생질문</h3> -->
-													<br> <img width="60" src="resources/siraFile/A2.png">&nbsp;&nbsp;&nbsp;<span
-														style="font-weight: bold; font-size: 25px; color: black;"
-														size="20">선생님 답변</span>
+													<br> <img width="60" src="resources/siraFile/A2.png">&nbsp;&nbsp;&nbsp;
+													<span style="font-weight: bold; font-size: 25px; color: black;" size="20">선생님 답변</span>
 													<hr class="mt-4">
-													<input size="10" style="color: black;" type="text"
-														name="name" value="${ qt.tcname }" readonly>
-													<div style="float: right; color: black;">${ q.replydate }</div>
+													<span size="10" style="color:black; font-weight:500;" type="text" name="name">${ qt.tcname }</span>
+													<div style="float: right; color:black;">${ q.replydate }</div>
 													<br> <br> ${ q.replycontent }
 													<c:if test="${ mem.typee eq 't' && mem.m_no eq lec.m_no }">
 														<br>
@@ -318,8 +248,7 @@
 					<!-- row4시작 (댓글리스트부분) -->
 					<div id="dat">
 						<div class="row">
-							<div class="col-lg-2"></div>
-							<div class="col-lg-10">
+							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-body">
 										<div id="replyArea">
@@ -392,12 +321,12 @@
 													</script> -->
 																</div>
 																<div style="float: right;">
-																	<span> ${ qr.updatedate } </span> <span> <c:if
+																	<span style="color:black;"> ${ qr.updatedate } </span> <span> <c:if
 																			test="${ qr.m_no eq mem.m_no }">
 																			<button class="qrBtn btn-outline"
 																				style="outline: 0; border: none; font-size: 13px;"
 																				type="button">
-																				<span class="fas fa-trash spanTrashColor"></span>
+																				<span  class="fas fa-trash spanTrashColor"></span>
 																			</button>
 																		</c:if>
 																	</span>
@@ -420,12 +349,12 @@
 						<!-- row4끝 -->
 						<!-- row5시작 (댓글 등록하는 칸부분) -->
 						<div class="row">
-							<div class="col-lg-4"></div>
-							<div class="col-lg-8">
+							<div class="col-lg-2"></div>
+							<div class="col-lg-9">
 								<div>
 									<textarea class="contentWordText"
 										style="border: 1px solid lightgray; padding: 10px; border-radius: 5px;"
-										cols="60" rows="3" id="repl" name="content"></textarea>
+										cols="60" rows="3" id="repl" name="content" required></textarea>
 									<button class="btn waves-effect waves-light btn-warning"
 										style="height: 47px; margin-left: auto; margin-right: auto; margin-top: -70px;"
 										id="datUp" type="submit" onclick="qRestartInsert()">댓글등록</button>
@@ -437,6 +366,12 @@
 						<br>
 					</div>
 				</c:if>
+					</div>
+					
+				</div>
+				<!-- row1끝 -->
+
+				
 			</div>
 
 			<!-- row5끝 -->
@@ -759,7 +694,13 @@
 	</script>
 
 
-				<script>
+		<script>
+		
+		/* $(".spanTrashColor").mouseover(function(){
+			$(".spanTrashColor").attr("style","color:red");
+		}).mouseout(function(){
+			$(".spanTrashColor").attr("style","color:black");
+		}); */
 	
 		// 다시 리로드 구역정하기 // 호출해서 쓰자
 		function qRestart(){

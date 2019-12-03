@@ -88,6 +88,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th>m_no</th>
                                                 <th>title</th>
                                                 <th>regdate</th>
                                                 <th>updatedate</th>
@@ -98,13 +99,13 @@
                                         	<c:forEach var="b" items="${list }">
                                         		<tr>
 	                                        		<td>${b.b_no }</td>
+	                                        		<td>${b.m_no }</td>
 	                                                <td>${b.title }</td>
 	                                                <td>${b.regdate }</td>
 	                                                <td>${b.update_date }</td>
 	                                                <td>
 	                                                	<c:if test="${b.status eq 'Y'}">
 	                                                		<button class="btn btn-danger" onclick="deleteBoard(${b.b_no})">삭제</button>
-	                                                		<button class="btn btn-secondary" onclick="declareBoard(${b.b_no})">신고</button>
 	                                                	</c:if>
 	                                                	<c:if test="${b.status eq 'N'}">
 	           	                                     		<button class="btn btn-primary" onclick="deleteCancleBoard(${b.b_no})">삭제취소</button>
@@ -116,7 +117,7 @@
 												</tr>
 											</c:forEach>
                                         </tbody>
-                                        <tfoot>
+                                        <!-- <tfoot>
                                         	<tr>
                                                 <th>#</th>
                                                 <th>title</th>
@@ -125,7 +126,7 @@
                                                 <th>dcount</th>
                                                 <th>status</th>
                                             </tr>
-                                        </tfoot>
+                                        </tfoot> -->
                                     </table>
                                     <script>
 								   		$('#zero_config').DataTable();
@@ -185,11 +186,6 @@
 		}
 		function deleteCancleBoard(b_no){
 			var formm=$('#form').attr('action','deleteCancleBoard.ad')
-			formm.children('input').eq(0).val(b_no)
-			formm.submit();
-		}
-		function declareBoard(b_no){
-			var formm=$('#form').attr('action','declareBoard.ad')
 			formm.children('input').eq(0).val(b_no)
 			formm.submit();
 		}

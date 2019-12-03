@@ -1,8 +1,10 @@
 package com.kh.arp.message.model.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
+import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.message.model.vo.Dto;
 import com.kh.arp.message.model.vo.Message;
 
@@ -34,4 +36,13 @@ public interface messageService{
 	
 	// 9. 알람상태 변경용
 	int updateAlram(int m_no);
+	
+	// 10.리스트 개수 
+	int getListCount(int m_no);
+	
+	// 11.답장보내기용 서비스 
+	Message reSendMsgForm(int ms_no);
+	
+	// 12. 전체회원리스트
+	ArrayList<Member> selectMember();
 }

@@ -99,6 +99,7 @@
 												<th>제목</th>
 												<th>날짜</th>
 												<th>확인여부</th>
+											
 
 											</tr>
 										<thead>
@@ -114,13 +115,16 @@
 													<c:if test="${m.read_status eq 'Y'}">
 														<td>읽음</td>
 													</c:if>
-
+												<%-- 	<td><a class="btn btn waves-effect waves-light btn-rounded btn-outline-success"  href="reSendMsgForm.do?ms_no=${m.ms_no}">답장보내기</a>
+													</td>
+ --%>
 
 												</tr>
 											</c:forEach>
 									</table>
 								</div>
 							</div>
+	
 						</div>
 					</div>
 				</div>
