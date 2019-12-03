@@ -107,7 +107,7 @@ public class VacationServiceImpl implements VacationService {
 		return vDao.multiPermission(vd);
 	}
 	@Override
-	public VacationDate statusCheck(int v_no) {
+	public int statusCheck(int v_no) {
 		// TODO Auto-generated method stub
 		return vDao.statusCheck(v_no);
 	}
@@ -119,6 +119,17 @@ public class VacationServiceImpl implements VacationService {
 	public ArrayList<Vacation> selectListAdmin() {
 		return vDao.selectListAdmin();
 	}
+	@Override
+	public ArrayList<Vacation> selectStatus(Vacation v) {
+		// TODO Auto-generated method stub
+		return vDao.selectStatus(v);
+	}
+	@Override
+	public Vacation selectVacation(int v_no) {
+		// TODO Auto-generated method stub
+		return vDao.selectVacation(v_no);
+	}
+
 
 	}
 	

@@ -146,7 +146,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">휴가관리</h4><a class="btn btn-primary float-right" href="vinsertForm.me">휴가작성하기</a><br>
+                                <h4 class="card-title">휴가관리</h4>
+                                <c:if test="${mem.typee eq 's' }">
+                                <a class="btn btn-primary float-right" href="vinsertForm.me">휴가작성하기</a>
+                                <br>
+                                </c:if>
                                 <h6 class="card-subtitle">Add vacation <code>.table</code></h6>
                                 <div class="table-responsive">
                                     <table class="table color-table info-table">
@@ -155,7 +159,8 @@
                                                <th>휴가번호</th>
                                                <th>이름</th>
                                                <th>제목</th>
-                                               <th>입력날짜</th>	
+                                               <th>입력날짜</th>
+                                               <th>처리상태</th>	
                                             	</tr>
                                         </thead>
                                         <tbody >
@@ -166,6 +171,14 @@
 											<td>${c.name }</td>
 											<td><a href="vDetail.me?v_no=${c.v_no}">${c.vacation_title }</a></td>
 											<td>${c.application_date}</td>
+											<c:if test="${c.status eq 'N' }">
+												<td>처리중</td>
+											</c:if>
+											<c:if test="${c.status eq 'Y' }">
+												<td>처리완료<td>
+											</c:if>
+											
+											
 										</tr>
 										<tr>
 										</tr>
