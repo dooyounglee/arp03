@@ -38,34 +38,31 @@
                 </ul>
             </li>
             </c:if>
+            <c:if test="${mem.typee eq 's' }">
             <li>
                 <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">학생</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="vlist.me">내 휴가</a></li>
                 </ul>
             </li>
+            </c:if>
             <li class="nav-devider"></li>
+            <c:if test="${mem.typee eq 't' }">
             <li class="one-column">
                 <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">선생님</span></a>
                 <ul aria-expanded="false" class="collapse">
                     <li><a href="applyList.lec">신청 리스트</a></li>
                     <li><a href="tblist.do">선생님 게시판</a></li>
-                    
-                    <c:if test="${ mem.typee eq 't' }">
-						<a href="tblist.do">선생님 게시판</a>
-					</c:if>
-					<c:if test="${ mem.typee ne 't' }">
-						<li><a onclick="no();">선생님 게시판</a></li>
-					</c:if>
-                    
                     <li><a href="sVlist.te">학생휴가 관리</a></li>
                     <li><a href="calmain.ca">캘린더</a></li>
                 </ul>
             </li>
+            </c:if>
             
             
             <li class="nav-devider"></li>
             <li class="nav-small-cap">EXTRA COMPONENTS</li>
+            <c:if test="${mem.typee eq 'a' }">
             <li class="two-column">
                 <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">관리자</span></a>
                 <ul aria-expanded="false" class="collapse">
@@ -77,15 +74,9 @@
                     <li><a href="vlist.me">휴가관리</a></li>
                 </ul>
             </li>
+            </c:if>
         </ul>
     </nav>
     <!-- End Sidebar navigation -->
 </div>
 <!-- End Sidebar scroll-->
-
-<script>
-	function no(){
-		alert("선생님만 이용가능한 게시판입니다.");
-	
-	}
-</script>
