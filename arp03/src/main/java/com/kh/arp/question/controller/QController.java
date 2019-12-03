@@ -425,5 +425,49 @@ public class QController {
 		 
 	 }
 	 
+	 @RequestMapping("qsearchSelect.qu")
+	 public ModelAndView qsearchSelect(Question q, String searchSelectContent, ModelAndView mv, Question Category1,
+			 							@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, HttpSession session) {
+		 
+		 int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+		 
+		 q.setLec_no(lec_no);
+		 
+		 int listCount = qService.getListCount(lec_no);
+
+			int pageLimit = 5;
+			int boardLimit = 10;
+			
+			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
+			// PageInfo pi = new PageInfo(currentPage, listCount, 5, 10); 이렇게 바로써도됨
+		 
+		 if(q.getCategory1() == "Category1") { // 제목
+			 	q.setCategory1("1");
+		 }
+		 
+		 if(q.getCategory1() == "Category2") { // 내용
+				q.setCategory1("2");
+		 }
+		 
+		 if(q.getCategory1() == "Category3") { // 내가 쓴 글
+				q.setCategory1("3");
+		 }
+			 
+		 if(q.getCategory1() == "Category4") { // 작성자
+			 	q.setCategory1("4");
+		 }
+			
+		 ArrayList<Question> qList = qService.selectQuestionList(pi, q);
+		/*
+		 * // lecture 객체 가져오자~ Lecture lec = qService.getLecture(lec_no);
+		 */
+			
+			// 데이터값, 뷰 지정
+			mv.addObject("pi", pi).addObject("qList", qList).setViewName("question/question");
+		 
+		 
+		 return mv;
+	 }
+	 
 
 }

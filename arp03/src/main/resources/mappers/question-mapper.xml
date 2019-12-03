@@ -187,4 +187,16 @@
         where ca_no=1 and status='Y'
         order by vcount desc
 	</select>
+	<select id="selectQuestionSearchList" resultMap="qList">
+		<if test="Categori1 == 1">
+			select q.q_no, q.lec_no, q.m_no, q.title, m.name,
+	           q.regdate, q.vcount, q.isreply, q.fileox, originalname,
+	           changename, youtubelink
+		    from question q
+		    join member m on(q.m_no=m.m_no)
+		    left join qfile f on(q.q_no=f.q_no)
+		    where q.lec_no=#{lec_no} and q.status='Y' and title=#{title}
+		    order by q.q_no desc
+		</if>
+	</select>
 </mapper>

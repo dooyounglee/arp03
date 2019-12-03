@@ -99,7 +99,7 @@
 											<c:forEach items="${ qList }" var="q">
 												<tr align="center">
 													<td>${ q.q_no }</td>
-													<td>
+													<td style="max-width:300px;">
 														<a href="qdetail.qu?q_no=${ q.q_no }">${ q.title }</a>
 													</td>
 													<td>${ q.name }</td>
@@ -181,21 +181,25 @@
                                     </table>
                                 </div>
                                 <!-- 검색창 -->
-                                
+                                <br>
+                                <form action="qsearchSelect.qu" method="post">
                                 <div class="input-group">
-                                <div class="col-lg-3">
-                                     <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
-                                         <option value="Category 1">제목</option>
-                                         <option value="Category 2">내용</option>
-                                         <option value="Category 3">내가 쓴 글</option>
-                                         <option value="Category 4">작성자</option>
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-2">
+                                     <select class="form-control custom-select" name="Category1" data-placeholder="Choose a Category" tabindex="1">
+                                         <option value="Category1">제목</option>
+                                         <option value="Category2">내용</option>
+                                         <option value="Category3">내가 쓴 글</option>
+                                         <option value="Category4">작성자</option>
                                      </select>
                                  </div>
-                                    <input type="text" class="form-control" placeholder="Search for...">
-                                    <div class="input-group-append col-lg-5">
-                                        <button class="btn btn-warning" type="button">Search</button>
+                                    <input type="text" id="searchSelectContent" class="col-lg-4 form-control" name="searchSelectContent" placeholder="Search for...">
+                                    <div class="input-group-append col-lg-2">
+                                        <button id="searchSelectBtn" class="btn btn-warning" onclick="return searchSelect()" type="submit">Search</button>
                                     </div>
                                 </div>
+                                </form>
+                                <br>
                                 
                                 
                                 
@@ -212,6 +216,15 @@
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
 
+		<script>
+			function searchSelect(){
+				if($("#searchSelectContent").val().trim() != ""){
+					
+				}else{
+					return false;
+				}
+			};
+		</script>
 
 
 
