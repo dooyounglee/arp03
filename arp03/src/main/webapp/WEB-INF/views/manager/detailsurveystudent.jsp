@@ -80,7 +80,7 @@
                 	
                 	<!-- 수강페이지 메뉴 -->
                 	<%@ include file="../include/blecturemenu.jsp" %>
-                	
+                <c:if test="${mem.typee=='a' }">
                     <div class="col-lg-9 col-xlg-10 col-md-8">
                         <div class="card">
                             <div class="card-body">
@@ -93,7 +93,7 @@
 										</tr>
 										<c:forEach var="Y" items="${Ysq }">
 										<tr>
-											<td>${Y.m_no }, ${Y.name }</td>
+											<td>${Y.name }#${Y.m_no }</td>
 										</tr>
 										</c:forEach>
 										<tr>
@@ -101,33 +101,74 @@
 										</tr>
 										<c:forEach var="N" items="${Nsq }">
 										<tr>
-										<td>${N.m_no }, ${N.name }</td>
+										<td> ${N.name }#${N.m_no }</td>
 										</tr>
 										</c:forEach>
 										<input type="hidden" value="${su_no }" name="su_no">
 										<tr>
 										<td><button id="result" class="btn btn-success waves-effect waves-light" type="button" >설문조사 결과보기</button>
 										<a class="btn btn-inverse waves-effect waves-light" href="selectsurvey.ma?lec_no=${lec.lec_no}">뒤로가기</a></td>
+										
 										</tr>
 										
                                         </tbody>
                                     </table>
-									<script>
-                                    	$(document).ready(function(){
-                                    		$("#result").click(function(){
-                                    			 if(${Ysq[0]!= null }){
-													 location.href='resultsurvey.ma?su_no=${su_no}'; 
-												}else{
-													
-												}
- 		                                   	})
-                                    	});
-                                    </script>
+									
 								</div>
                             </div>
                         </div>
                     </div>
+                </c:if>
+                 
+                  <c:if test="${mem.typee=='t' }">
+	                    <div class="col-lg-9 col-xlg-10 col-md-8">
+	                        <div class="card">
+	                            <div class="card-body">
+	                                <h4 class="card-title">설문조사 인원</h4>
+	                                <div class="table-responsive">
+	                                    <table class="table table-hover no-wrap">
+	                                        <tbody>
+	                                        <tr>
+												<td>설문조사 완료한 사람들</td>
+											</tr>
+											
+											<tr>
+												<td>${Ysq.size()}명</td>
+											</tr>
+											
+											<tr>
+											<td>설문조사 안한 사람들</td>
+											</tr>
+											
+											<tr>
+											<td>${Nsq.size() }명</td>
+											</tr>
+											
+											<input type="hidden" value="${su_no }" name="su_no">
+											<tr>
+											<td><button id="result" class="btn btn-success waves-effect waves-light" type="button" >설문조사 결과보기</button>
+											<a class="btn btn-inverse waves-effect waves-light" href="selectsurvey.ma?lec_no=${lec.lec_no}">뒤로가기</a></td>
+											
+											</tr>
+											
+	                                        </tbody>
+	                                    </table>
+									</div>
+	                            </div>
+	                        </div>
+	                    </div>
+	             
+                </c:if>
                 </div>
+				<script>
+                  	$(document).ready(function(){
+                   		$("#result").click(function(){
+           					if(${Ysq[0]!= null }){
+								location.href='resultsurvey.ma?su_no=${su_no}'; 
+							}
+                   		})
+               		});
+       			 </script>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -151,7 +192,4 @@
 	<%@ include file="../include/bjs.jsp" %>
 
 </body> 
-<script>
-console.log("222");
-</script>
 </html>

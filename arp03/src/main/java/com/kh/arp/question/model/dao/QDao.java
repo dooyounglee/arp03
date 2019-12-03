@@ -125,6 +125,13 @@ public class QDao {
 		return realList;
 	}
 
+	public ArrayList<Question> selectQuestionList(PageInfo pi, Question q) {
+		
+		ArrayList<Question> qList = (ArrayList)sqlSession.selectList("questionMapper.selectQuestionSearchList", q, new RowBounds(pi.getOffset(), pi.getBoardLimit()));
+		
+		return qList;
+	}
+
 	/*
 	 * public int selectQ(QFile qf) { return
 	 * sqlSession.selectOne("questionMapper.selectQ", qf); }

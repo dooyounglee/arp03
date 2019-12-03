@@ -30,6 +30,11 @@ public class SurveyController {
 	@Autowired
 	private SurveyService ss;
 	
+	/**
+	 * @param mv 
+	 * @param lec_no 수업 넘버
+	 * @return s객체는 lec_no번호에 있는 모든 설문조사양식(InsertSurvey) 정보, 강의메인페이지에서-> 설문조사 리스트를 보여준다.
+	 */
 	@RequestMapping("selectsurvey.ma")
 	public ModelAndView selectsurvey(ModelAndView mv, int lec_no) {
 		List<InsertSurvey> s= ss.selectsurvey(lec_no);
@@ -37,6 +42,14 @@ public class SurveyController {
 		return mv;
 	}
 	
+	/**
+	 * @param sss(SelectSurveyStudent) 학생과 강의번호를 담을수있는 객체
+	 * @param mv
+	 * @param session
+	 * @param lec_no
+	 * @param sq (SurveyQuestion) 질문양식이 아닌 답과 질문에대한 정보 객체
+	 * @return
+	 */
 	@RequestMapping("selectsurveystudent.ma")
 	public ModelAndView selectsurveystudent(SelectSurveyStudent sss, ModelAndView mv, HttpSession session, int lec_no, SurveyQuestion sq) {
 		sss.setM_no(((Member)session.getAttribute("mem")).getM_no());
@@ -93,7 +106,7 @@ public class SurveyController {
 		if(dd==0) {
 			mv.setViewName("redirect:/selectsurvey.ma?lec_no="+lec_no);
 		}else {
-			mv.setViewName("");
+			mv.setViewName("common/error");
 		}
 		return mv;
 	}
@@ -105,7 +118,7 @@ public class SurveyController {
 		sq.setSu_no(su_no);
 		List<SurveyQuestion> s = ss.detailsurvey(sq);
 		System.out.println(sq+"김경수");
-		System.out.println("dlendud"+s);
+		System.out.println("dlendud============================="+s);
 		String ssq = s.get(0).getEnrolldate();
 		int ssu = s.get(0).getSu_no();
 		String title = s.get(0).getTitle();
@@ -123,8 +136,8 @@ public class SurveyController {
 		return mv;
 	}
 	@RequestMapping("insertcompletesurvey.ma")
-	public ModelAndView updatesurvey(ModelAndView mv, int lec_no, int su_no, ForSurvey q, HttpSession session) {
-		
+	public ModelAndView updatesurvey(ModelAndView mv, int lec_no, int su_no, ForSurvey q, String[] answer, HttpSession session) {
+		System.out.println("-000000000000000----"+answer);
 		System.out.println("20319371===="+q);
 		//---------------------------- insertSurvey 구문-----------------
 		int ds =0;			// 질문이 제대로 꽂혔는지 판단하는 변수
@@ -166,8 +179,9 @@ public class SurveyController {
 	 * int lam_no=lsq.get(lsq.size()).getM_no(); sq.setM_no(lam_no); m_no가 필요할때 코드
 	 */
 	@RequestMapping("resultsurvey.ma")
-	public ModelAndView resultsurvey(ModelAndView mv, int su_no, HttpSession session) {
-	SurveyQuestion sq = new SurveyQuestion();
+	public ModelAndView resultsurvey(ModelAndView mv, int su_no,  HttpSession session) {
+	
+		SurveyQuestion sq = new SurveyQuestion();
 	
 	sq.setSu_no(su_no);
 	//그 수업과 설문에 들어가있는 m_no 리스트

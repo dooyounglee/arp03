@@ -85,7 +85,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">설문조사 목록</h4>
-                                <c:if test="${mem.typee=='t' }">
+                                <c:if test="${mem.typee=='a' }">
                                 <a class="btn btn-success float-left" href="daysurvey.ma">설문조사 만들기</a>
                                 </c:if>
                                 <div class="table-responsive">
@@ -115,7 +115,6 @@
 												<c:if test="${mem.typee=='s' }">
 												<td>${d.issurvey }</td>
 												</c:if>
-												
 											</tr>
 										</c:forEach>
 								        </tbody>
@@ -163,7 +162,7 @@
 					location.href="detailsurvey.ma?su_no=" + no;
 				}
 			}
-			if("${mem.typee}"=='t'){
+			if("${mem.typee}"=='t'||"${mem.typee}"=='a'){
 				location.href="detailsurveystudent.ma?su_no=" + no;
 			}
 		})
