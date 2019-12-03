@@ -22,10 +22,7 @@ public class WebSocketTest extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		for (WebSocketSession sess : sessionList) {
-			int m_no=(int)sess.getAttributes().get("m_no");
-			if(m_no==Integer.parseInt(message.getPayload())) {
-				sess.sendMessage(new TextMessage("6번 학생한테만 가지롱"));
-			}
+			sess.sendMessage(new TextMessage("6번 학생한테만 가지롱"));
 		}
 	}
 

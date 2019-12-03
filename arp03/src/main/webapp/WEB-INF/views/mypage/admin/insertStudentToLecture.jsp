@@ -425,6 +425,7 @@
 							now=now+1
 							ingList($('#lecture').val())
 							otherList($('#lecture').val())
+							ws_mylec.send("mylec최신화");
 						},
 					})
 				}
@@ -443,6 +444,7 @@
 					success:function(data){
 						ingList($('#lecture').val())
 						otherList($('#lecture').val())
+						ws_mylec.send("mylec최신화");
 					},
 				})
 			}
