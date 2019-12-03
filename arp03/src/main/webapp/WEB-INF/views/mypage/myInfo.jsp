@@ -136,11 +136,15 @@
                                         </form>
                                         <script>
 	                                        function update(this_){
-	                                        	var isEmail=false
-	                                        	var isPhone=false
+	                                        	var existEmail=false
+	                                        	var existPhone=false
 	                                        	var email=$('#email').val()
 	                                        	var phone=$('#phone').val()
 	                                        	
+	                                        	if(email=='${mem.email}' && phone=='${mem.phone}'){
+	                                        		alert("email, phone이 변경되지 않았어요.")
+	                                        		return false;
+	                                        	}
 	                                        	$.ajax({
 	                                				url:'existEmail.me',
 	                                				type:'post',
@@ -149,9 +153,10 @@
 	                                				},
 	                                				success:function(data){
 	                                					if(data=="exist"){
-	                                						isEmail=false
+	                                						console.log("email이미있다")
+	                                						existEmail=true
 	                                					}else if(data=="not"){
-	                                						isEmail=true
+	                                						existEmail=false
 	                                					}
 	                                				}
 	                                			})
@@ -163,18 +168,30 @@
 													},
 													success:function(data){
 														if(data=="exist"){
-															isPhone=false
+															console.log("phone이미있다")
+															if(existEmail && email=='${mem.email}'){//email이미 있고, 지꺼=>phone은 이미 있는데 달라=>남의 phone=>submitㄴㄴㄴ
+																alert('phone이 중복이에요.')
+															}else if(existEmail && email!='${mem.email}'){//email이미 있고, 남에꺼=>submitㄴㄴㄴ
+																alert('email이 중복이에요.')
+															}else if(!existEmail && phone=='${mem.phone}'){//새email인데 phone은 안바꼈어 =submit
+																$(this_).closest('form').attr('action','update.me').submit();
+															}else if(phone!='${mem.phone}'){//이미있는데 내꺼는 아님
+																alert('phone이 중복이에요.')
+															}
 														}else if(data=="not"){
-															isPhone=true
+															if(existEmail && email!='${mem.email}'){//email이미 있는데 남에꺼면=>submitㄴㄴㄴ
+																alert('email이 중복이에요.')
+															}else{
+																$(this_).closest('form').attr('action','update.me').submit();
+															}
 														}
 													}
 												})
-												if(isEmail || isPhone){
-	                                    			$(this_).closest('form').attr('action','update.me').submit();
-												}
 	                                    	}
                                         	function leave(this_){
-                                        		$(this_).closest('form').attr('action','leave.me').submit();
+                                        		if(confirm("진짜 갈꺼야?ㅠ") && confirm("응 못가^^") && confirm("알겠어..잘가...멀리 안나간다..")){
+	                                        		$(this_).closest('form').attr('action','leave.me').submit();
+                                        		}
                                         	}
                                         </script>
                                     </div>
@@ -220,6 +237,7 @@
                                         			alert("빈칸은 안돼요.")
                                         			return;
                                         		}else if($('#newPw').val()!=$('input[name="newPw"]').eq(0).val()){
+                                        			alert('새로운 비번이 달라요.')
                                         			return;
                                         		}
                                         		$(this_).closest('form').submit()
@@ -277,7 +295,7 @@
 	
 	
 	
-	<jsp:include page="../include/header.jsp"/>
+<%-- 	<jsp:include page="../include/header.jsp"/>
 	
 	<h1>내정보</h1>
 	${mem }
@@ -306,6 +324,6 @@
 		<input type="hidden" name="m_no" value="${mem.m_no }">
 		<button>탈퇴</button>
 	</form>
-	<jsp:include page="../include/footer.jsp"/>
+	<jsp:include page="../include/footer.jsp"/> --%>
 </body>
 </html>
