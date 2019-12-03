@@ -426,8 +426,7 @@
 	    $('#dateArea').append(str)
 	    calend(yyyy,mm);
 	    		
-	    	
-			
+
 
 	});
 	
