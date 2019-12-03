@@ -200,9 +200,28 @@
 													<td>
 														<a class="btn btn-success" href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}' >허가</a>
 													</td>
-													<td>	
-														<a class="btn btn-success" onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}',width=300, height=300)">반려</a>
+													
+													<td>
+													<button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-example-modal-lg">반려</button>
+													<div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+	                                    <div class="modal-dialog modal-lg">
+	                                        <div class="modal-content">
+	                                            <div class="modal-header">
+	                                                <h4 class="modal-title" id="myLargeModalLabel">싸인하기</h4>
+	                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	                                            </div>
+	                                            <div class="modal-body">
+	 												<iframe id="sof" name="sof" src="companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}" width="100%" height="400" frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>
+	                                            </div>
+	                                        </div>/.modal-content
+	                                    </div>/.modal-dialog
+	                                </div> 
 													</td>
+													
+													
+													<%-- <td>	
+														<a class="btn btn-success" onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}',width=300, height=300)">반려</a>
+													</td> --%>
 													</c:if>	
 												</c:if>          
 												 <c:if test="${mem.typee eq 's' }">
