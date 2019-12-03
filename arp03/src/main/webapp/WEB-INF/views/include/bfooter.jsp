@@ -22,6 +22,7 @@
 	var ws_mylec = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/${cp}/echo/websocket?m_no=${mem.m_no}");
 	ws_mylec.onopen=function() {
 		console.log("성공")
+		ws_mylec.send("mylec최신화");
 	}
 	ws_mylec.onmessage = function(msg) {
 		var data = msg.data;
