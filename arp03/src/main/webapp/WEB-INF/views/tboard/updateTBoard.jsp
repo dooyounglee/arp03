@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String[] list = request.getParameterValues("bfList");
 %>
+
 <!DOCTYPE html>
 <html>
 <!-- <script src="https://code.jquery.com/juqery-3.1.0.min.js" type="text/javascript"></script> -->
@@ -12,109 +13,151 @@
 <%@ include file="../include/bhead.jsp"%>
 <meta charset="UTF-8">
 <style>
-	#formDiv{
-		text-align:left;
-		margin-left:auto;
-		margin-right:auto;
-		width:800px
-		}
-		
-	
-	
+#file {
+	display: none;
+}
 </style>
 
-<title>게시판 작성하기 </title>
+
+<title>게시글 수정하기</title>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	type="text/javascript"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
 </head>
 
-<body>
-<!-- Topbar header - style you can find in pages.scss -->
-	<header class="topbar">
-		<%@ include file="../include/btopbarheader.jsp"%>
-	</header>
-	<!-- End Topbar header -->
 
-	<!-- Left-sidebar -->
-	<aside class="left-sidebar">
-		<%@ include file="../include/bsidebar.jsp"%>
-	</aside>
-	<!-- End of Left-sidebar -->
+<body class="fix-header card-no-border logo-center">
 
 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	<div id="main-wrapper">
 
-<!-- include summernote css/js -->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+		<header class="topbar">
+			<%@ include file="../include/btopbarheader.jsp"%>
+		</header>
+		<!-- End Topbar header -->
 
+		<!-- Left-sidebar -->
+		<aside class="left-sidebar">
+			<%@ include file="../include/bsidebar.jsp"%>
+		</aside>
+		<!-- End of Left-sidebar -->
 
+		<div class="page-wrapper">
 
-	<jsp:include page="../include/header.jsp"/>
-	
-	<div class="page-wrapper">
-		<div class="card">
-	 	<c:if test="${ !empty b }">
-			<h3 align="center">글 수정하기</h3>
-			
-			<div align="center" id="formDiv">
-			
-				<form action="tbupdate.do" method="post" enctype="multipart/form-data">
-	
-					<div class="form-material">
-						<input type="text" name="title" id="title" required placeholder="제목을 입력해주세요" value="${b.title }" class="form-control"><br>
-                     </div>
-				
+			<div class="container-fluid">
 
-				
-			
-				<input type="hidden" name="b_no" value="${ b.b_no }">
-				<input type="hidden" name="m_no" value="${ b.m_no }">
-					<br>
-		
-					<label>첨부파일</label>
-			
-				<input type="file" name="reloadFile" id="file" multiple="multiple"> 
-				<div id="fileArea">
-				
-				</div>
-				
-				<c:if test="${ !empty bfList }">
-				<c:forEach items="${ bfList }" var="bfList">
-				
-					<input type="hidden" class="original_filename" name="original_filename"  value="${ bfList.original_filename }">
-					<input type="hidden" id="rename" value="${ bfList.rename_filename }">
-					
-					<div id="delDiv">
-					 <a id="fileName" href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bfList.rename_filename}" download="${ bfList.original_filename }">${ bfList.original_filename }</a>
-					 <input type="hidden" name="fileStatus" value="${ bfList.original_filename }">
-                	  <button type="button" class="delBtn">파일삭제</button>
+				<div class="row page-titles">
+					<div class="col-md-5 col-12 align-self-center">
+						<h3 class="text-themecolor mb-0 mt-0">선생님게시판</h3>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="/${cp }">Home</a></li>
+							<li class="breadcrumb-item active">선생님게시판</li>
+						</ol>
 					</div>
-				
-				</c:forEach>
-					</c:if>
-			
-			
-			
-				<textarea id="summernote" cols="50" rows="7" name="content" id="content" required>${ b.content }</textarea>
-		
-				
-		
-				<div align="center">
-						<button type="submit" id="subBtn" class="btn waves-effect waves-light btn-info">수정하기</button> 
-						<button type="button" onclick="location.href='tblist.do';" class="btn waves-effect waves-light btn-info">목록으로</button>
-			
+					<div class="col-md-7 col-12 align-self-center d-none d-md-block">
+						<div class="d-flex mt-2 justify-content-end">
+							<div class="d-flex mr-3 ml-2">
+								<div class="chart-text mr-2">
+									<h6 class="mb-0">
+										<small>THIS MONTH</small>
+									</h6>
+									<h4 class="mt-0 text-info">$58,356</h4>
+								</div>
+								<div class="spark-chart">
+									<div id="monthchart"></div>
+								</div>
+							</div>
+							<div class="d-flex mr-3 ml-2">
+								<div class="chart-text mr-2">
+									<h6 class="mb-0">
+										<small>LAST MONTH</small>
+									</h6>
+									<h4 class="mt-0 text-primary">$48,356</h4>
+								</div>
+								<div class="spark-chart">
+									<div id="lastmonthchart"></div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<br><br><br>
-	
-		</form>
-		</c:if>
+
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<h4 class="card-title">글수정하기</h4>
+
+
+
+								<form action="tbupdate.do" method="post"
+									enctype="multipart/form-data">
+
+									<div class="form-material">
+										<input type="text" name="title" id="title" required
+											placeholder="제목을 입력해주세요" value="${b.title }"
+											class="form-control"><br>
+									</div>
+
+
+									<input type="hidden" name="b_no" value="${ b.b_no }"> <input
+										type="hidden" name="m_no" value="${ b.m_no }"> <br>
+
+									 <input type="file" name="reloadFile" id="file" multiple="multiple">
+										<label for="file" class="btn btn-warning">파일첨부</label>
+									<div id="fileArea"></div>
+
+									<c:if test="${ !empty bfList }">
+										<c:forEach items="${ bfList }" var="bfList">
+
+											<input type="hidden" class="original_filename"
+												name="original_filename"
+												value="${ bfList.original_filename }">
+											<input type="hidden" id="rename"
+												value="${ bfList.rename_filename }">
+
+											<div id="delDiv">
+												<a id="fileName"
+													href="${ pageContext.servletContext.contextPath }/resources/tbuploadFiles/${bfList.rename_filename}"
+													download="${ bfList.original_filename }">${ bfList.original_filename }</a>
+												<input type="hidden" name="fileStatus"
+													value="${ bfList.original_filename }">
+												<button type="button" class="delBtn">파일삭제</button>
+											</div>
+
+										</c:forEach>
+									</c:if>
+
+
+
+									<textarea id="summernote" cols="50" rows="7" name="content"
+										id="content" required>${ b.content }</textarea>
+
+
+									<br>
+									<br>
+									<div align="center">
+										<button type="submit" id="subBtn"
+											class="btn waves-effect waves-light btn-info">수정하기</button>
+										<button type="button" onclick="location.href='tblist.do';"
+											class="btn waves-effect waves-light btn-info">목록으로</button>
+
+									</div>
+								
+					
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-	</div>
-</div>		 
-	
-	
-	 <script>
+		</div>
+</body>
+		<script>
 	 $(document).ready(function() {
          $('#summernote').summernote({ // summernote를 사용하기 위한 선언
         
@@ -220,7 +263,8 @@
 	            	 var br = document.createElement("br");
 	            	 input.type="text";
 	            	 input.id="upFileName"+i;
-	            	 input.style="none";
+	            	 input.style="border:none";
+	            	 input.size="100"
 	            	 fileArea.appendChild(input);
 	            	 fileArea.appendChild(br);
 
@@ -238,66 +282,34 @@
 	
 	 
 	</script>
-	
-	 <!--  헤더 제이쿼리 충돌 방지  -->
-	<script src='jquery-3.2.1.js'></script>
-	
-	<script>
+
+		<!--  헤더 제이쿼리 충돌 방지  -->
+		<script src='jquery-3.2.1.js'></script>
+
+		<script>
 	
 	var jq132 = jQuery.noConflict();
 
 	
 	</script>
-	
-<!-- 	<script>
-		var form = document.forms[0];
-		var fileArea = document.getElementById("fileArea");
-		var num =2;
-	
-		$("#addBtn").on("click", function(){
-		if(num < 6){
-			var element = document.createElement("input");
-			element.type="file";
-			element.name="uploadFile"+num;
-			num++;
-			
-			fileArea.appendChild(element);
-		
-		}else{
-			alert("파일첨부는 5개까지 가능합니다");
-		}
-	});	
-		$("#deleteBtn").on("click",function(){
-			if(num > 2){
-				num--;
-				var inputs = fileArea.getElementsByTagName('input');
-				fileArea.removeChild(inputs[inputs.length-1]);
-			
-			}
-		});
-		
-	form.onsubmit=function(){
-		var inputs = fileArea.getElementsByTagName('input');
-		event.preventDefault(); // 일단 정지
-		for(var i=0; i<inputs.length; i++){
-			if(inputs[i].value== ""){
-				alert((i+1)+"번째파일을 선택해주세요");
-				inputs[i].focus();
-				return;
-			}
-		}
-		
-		this.submit();
-	}
-	
-	</script> -->
-	 
-	
-	
-	
-  
 
+	
+<%@ include file="../include/bjs.jsp"%>
+
+<!-- footer -->
+<footer class="footer">
+	<%@ include file="../include/bfooter.jsp"%>
+</footer>
+<!-- End footer -->
+
+</div>
+<!-- End of Page wrapper  -->
+
+</div>
+<!-- End of Main wrapper -->
+
+	
 </body>
- 
+
 
 </html>

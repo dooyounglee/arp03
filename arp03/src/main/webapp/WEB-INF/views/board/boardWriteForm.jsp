@@ -32,7 +32,6 @@ include summernote css/js
 		margin-right:auto;
 		/* width:1000px; */
 	}
-	#writeTb{width:80%;}
 </style>
 </head>
 <body class="fix-header card-no-border logo-center">
@@ -102,23 +101,12 @@ include summernote css/js
 	<h3 align="center" style="color:black">글쓰기</h3>
 	<form action="binsert.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name=m_no value=${ mem.m_no }>
-		<table id="writeTb" align="center">
-			<tr>	
-				<td><input type="text" name="title" id="title" class="form-control" required></td>
-			</tr>
-			
-			<tr>
-				<td>
-				<textarea cols="50" rows="7" name="content" id="summernote" required></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td align="center">
-					<button class="btn waves-effect waves-light btn-info" type="button" onclick="location.href='blist.do';">목록으로</button>
-					<button class="btn waves-effect waves-light btn-info" type="submit" onclick="check();">등록하기</button>
-				</td>
-			</tr>
-		</table>	
+		<div>
+			<div><input type="text" name="title" id="title" class="form-control" required></div>
+			<div><textarea cols="50" rows="7" name="content" id="summernote" required></textarea></div><br>
+			<div align="center"><button class="btn waves-effect waves-light btn-info" type="button" onclick="location.href='blist.do';">목록으로</button>
+					<button class="btn waves-effect waves-light btn-info" type="submit" onclick="check();">등록하기</button></div>
+			</div>
 	</form>
 	</c:if>
 	
@@ -126,23 +114,12 @@ include summernote css/js
 	<h3 align="center" style="color:black">글 수정</h3>
 	<form action="bupdate.do?b_no=${b.b_no}" method="post" enctype="multipart/form-data">
 		<input type="hidden" name=m_no value=${ mem.m_no }>
-		<table id="writeTb" align="center">
-			<tr>	
-				<td><input type="text" name="title" id="title" class="form-control" value="${ b.title }" required></td>
-			</tr>
-			
-			<tr>
-				<td>
-				<textarea cols="50" rows="7" name="content" id="summernote" required>${ b.content }</textarea>
-				</td>
-			</tr>
-			<tr>
-				<td align="center">
-					<button class="btn waves-effect waves-light btn-info" type="button" onclick="location.href='blist.do';">목록으로</button>
-					<button class="btn waves-effect waves-light btn-info" type="submit" onclick="check();">등록하기</button>
-				</td>
-			</tr>
-		</table>	
+		<div>
+			<div><input type="text" name="title" id="title" class="form-control" value="${ b.title }" required></div>
+			<div><textarea cols="50" rows="7" name="content" id="summernote" required>${ b.content }</textarea></div><br>
+			<div align="center"><button class="btn waves-effect waves-light btn-info" type="button" onclick="location.href='blist.do';">목록으로</button>
+					<button class="btn waves-effect waves-light btn-info" type="submit" onclick="check();">등록하기</button></div>
+			</div>
 	</form>
 	</c:if>
 	

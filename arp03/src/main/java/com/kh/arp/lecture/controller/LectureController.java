@@ -131,6 +131,7 @@ public class LectureController {
 		Lecture lec=(Lecture)session.getAttribute("lec");
 		e.setLec_no(lec.getLec_no());
 		
+		e.setExamdate(e.getExamdate().replace("T", " "));
 		Exam newe=ls.makeExam(e);
 		newe=ls.getExam(newe.getE_no());
 		mv.setViewName("redirect:/list.ex");
@@ -157,6 +158,7 @@ public class LectureController {
 	
 	@PostMapping("/edit.ex")
 	public ModelAndView editExamPost(Exam e, ModelAndView mv) {
+		e.setExamdate(e.getExamdate().replace("T", " "));
 		int result=ls.editExam(e);
 		mv.setViewName("redirect:/get.ex?e_no="+e.getE_no());
 		return mv;

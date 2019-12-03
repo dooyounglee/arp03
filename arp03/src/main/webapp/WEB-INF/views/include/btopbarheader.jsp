@@ -73,7 +73,7 @@
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark"
 				href="" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="mdi mdi-message"></i>
+				aria-expanded="false"> <!-- <i class="mdi mdi-message"></i> -->
 					<div class="notify">
 						<!-- <span class="heartbit"></span> <span class="point"></span> -->
 					</div>
@@ -141,6 +141,8 @@
 			<!-- ============================================================== -->
 			<!-- End Comment -->
 			<!-- ============================================================== -->
+			
+			
 			<!-- ============================================================== -->
 			<!-- Messages -->
 			<!-- ============================================================== -->
@@ -226,8 +228,10 @@
 	                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
 	                    <div class="dropdown-menu dropdown-menu-right scale-up"> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-in"></i> India</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-fr"></i> French</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> China</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> Dutch</a> </div>
 	                </li> -->
+	                
 		</ul>
 	</div>
+			
 </nav>
 
 <script>
@@ -250,7 +254,7 @@
 						$("#point").attr("class", "point");
 			
 						
-						alert("새로운 메시지가 있습니다");
+						alert("새로운 메시지가 있습니다"); 
 						list(); // 새로운 메시지가오면 리스트 새로
 					}
 				}
@@ -325,7 +329,7 @@
 											.text(value.title);
 									$h5 = $(
 											"<h5 class='name1'></h5>")
-											.text(value.s_no);
+											.text(value.name);
 									$desc = $("<span class='mail-desc font-12 text-truncate overflow-hidden text-nowrap d-block'></span> ")
 									$time = $("<span class='time font-12 mt-1 text-truncate overflow-hidden text-nowrap d-block'></span> </div></a>").text(value.s_date);
 	

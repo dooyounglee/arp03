@@ -5,16 +5,7 @@
 <html>
 <head>
 <%@ include file="../include/bhead.jsp"%>
-<style>
-#page {
-	margin-left: auto;
-	margin-right: auto;
-}
 
-#btn {
-	margin-left: 94%;
-}
-</style>
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -94,14 +85,15 @@
 						<div class="card">
 							<div class="card-body">
 
-								<h3 class="card-title" align="center" style="color: black">게시판
+								<h3 class="text-center" >게시판
 									리스트</h3>
-
-
-								<%-- <c:if test="${ !empty mem }"> --%>
-								<div class="table-responsive">
+								<div class="content">
 									<button onclick="location.href='insertTBoardFrom.do';"
-										class="btn waves-effect waves-light btn-info" id="btn">글쓰기</button>
+										class="btn waves-effect waves-light btn-info float-right" id="btn">글쓰기</button>
+								</div>
+								
+								<div class="table-responsive">
+								
 									<table class="table color-table muted-table">
 										<thead>
 											<tr>
@@ -129,7 +121,8 @@
 													<td>${b.regdate }</td>
 													<td>${ b.vcount }</td>
 													<c:if test="${ b.fileStatus eq 'Y' }">
-														<td>O</td>
+														<td><img src="resources/image/fileIcon.jpg" width="17px"
+																height="17px" /></td>
 													</c:if>
 													<c:if test="${ b.fileStatus eq 'N' }">
 														<td></td>

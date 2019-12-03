@@ -109,7 +109,7 @@
                                     <c:if test="${mem.typee eq 's' || mem.typee eq 't'}">
                                     <a class="btn btn-success" href="mylist.qna">목록</a>
                                     </c:if>
-                                    <c:if test="${mem.typee eq 's' && mem.m_no eq qna.m_no && qna.answer ne 'null'}">
+                                    <c:if test="${mem.typee ne 'a' && mem.m_no eq qna.m_no && empty qna.answer}">
                                     <button type="button" class="btn btn-success" onclick="del(${qna.qna_no})">삭제</button>
                                     </c:if>
                                 <c:if test="${empty qna.answer && mem.typee eq 'a' }">

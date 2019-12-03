@@ -7,7 +7,7 @@
 	</insert>
 	
 	<select id="selectList" resultType="Message">
-		select ms.*,m.name
+		select ms.*,m.name gname
 		from message ms, member m 
 		where ms.s_no=#{m_no} and ms.g_no=m.m_no
 		order by s_date desc
@@ -15,13 +15,13 @@
 	
 	
 	<select id="detailMsg" resultType="Message">
-	select ms.*, m.name 
-	from message ms , member m
-	where ms_no=#{ms_no} and ms.g_no = m.m_no
+  	select ms.*, m.name gname ,m2.name sname
+	from message ms , member m, member m2
+	where ms_no=#{ms_no} and ms.g_no = m.m_no and ms.s_no=m2.m_no
 	</select>
 	
 	<select id="listSendMsg" resultType="Message">
-		select ms.*,m.name
+		select ms.*,m.name sname
 		from message ms, member m 
 		where ms.g_no=#{m_no} and ms.s_no=m.m_no
 		order by s_date desc
@@ -31,9 +31,11 @@
 	 update message set r_date=sysdate, read_status = 'Y', alram='Y' where ms_no=#{ms_no}
 	</update>
 	
-	<select id="searchList" parameterType="com.kh.arp.message.model.vo.Dto" resultType="com.kh.arp.message.model.vo.Dto">
-	select name,m_no from member where name like '%${name}%' and m_no != #{m_no}
-	</select> 
+<!-- 	<select id="searchList" parameterType="com.kh.arp.message.model.vo.Dto" resultType="com.kh.arp.message.model.vo.Dto">
+	select name,m_no 
+	from member where name like '%${name}%' 
+	and m_no != #{m_no}
+	</select> --> 
 	
 	<select id="selectMcount" resultType="_int">
 	select count(*)
@@ -44,10 +46,10 @@
 	
 	<select id="selectNList" resultType="Message">
 	<![CDATA[
-	 select *
-	 from  (select *
-	       from message 
-	       where g_no=#{m_no} and read_status='N'and alram='N' order by s_date desc )
+	select *
+	 from (select ms.*, m.name sname
+	       from message ms , member m
+	       where g_no=#{m_no} and read_status='N'and alram='N' and ms.s_no=m.m_no order by s_date desc ) 
 	where rownum <= 3 
 	 ]]>
 	</select>

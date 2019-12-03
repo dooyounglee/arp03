@@ -82,8 +82,8 @@
                     <div class="col-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">학생을 강좌로 넣엉주기</h4>
-                                <h6 class="card-subtitle"></h6>
+                                <h4 class="card-title">선생님과 강좌 선택</h4>
+                                <h6 class="card-subtitle">선생님을 선택하시면 해당 선생님의 수업목록이 나옵니다.</h6>
                                 <div class="row">
                                     <div class="col-lg-6 col-xlg-6">
                                     	<h5 class="p-2 rounded-title">Teacher</h5>
@@ -106,11 +106,11 @@
                     <div class="col-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">학생을 강좌로 넣엉주기</h4>
-                                <h6 class="card-subtitle"></h6>
+                                <h4 class="card-title">선택한 수업의 학생현황</h4>
+                                <h6 class="card-subtitle">학생을 선택하고 좌우로 옮겨보세요.</h6>
                                 <div class="row">
                                     <div class="col-lg-5 col-xlg-5">
-                                        <h5 class="p-2 rounded-title">다른 학생</h5>
+                                        <h5 class="p-2 rounded-title">비수강 학생</h5>
                                         <select id="other" class="form-control" size="10" multiple>
 											<option>Not Exist</option>
 										</select>
@@ -120,7 +120,7 @@
                                         <button onclick="insertStudent()"><i class="fas fa-angle-double-right"></i></button>
                                     </div>
                                     <div class="col-lg-5 col-xlg-5">
-                                        <h5 class="p-2 rounded-title" id="ingCount">수강중인 학생</h5>
+                                        <h5 class="p-2 rounded-title" id="ingCount">수강 학생</h5>
                                         <select id="ings" multiple class="form-control" size="10">
 											<option>Not Exist</option>
 										</select>
@@ -342,12 +342,7 @@
 				dataType:'json',
 				success:function(data){
 					total=data.headcount
-				},
-				error:function(){
-					console.log("에러")
-				},
-				complete:function(){
-					console.log("완료")
+					//alert("total="+total)
 				}
 			})
 		}
@@ -360,6 +355,7 @@
 				},
 				dataType:'json',
 				success:function(data){
+					var flag=false;
 					now=data.length
 					$('#ings').empty()
 					if(data.length>0){
@@ -369,12 +365,20 @@
 					}else{
 						$('#ings').html('<option>Not Exist</option>')
 						now=0
+						flag=true
 					}
-					$('#ingCount').text('수강중인 학생('+now+'/'+total+')')
+					if(i==data.length || flag){
+						$('#ingCount').text('수강 학생('+now+'/'+total+')')
+					}
 				},
 			})
 		}
 		$('#lecture').on('click',function(){
+			getInfo($('#lecture').val())
+			ingList($('#lecture').val())
+			otherList($('#lecture').val())
+		})
+		$('#lecture').on('change',function(){
 			getInfo($('#lecture').val())
 			ingList($('#lecture').val())
 			otherList($('#lecture').val())
@@ -421,6 +425,7 @@
 							now=now+1
 							ingList($('#lecture').val())
 							otherList($('#lecture').val())
+							ws_mylec.send("mylec최신화");
 						},
 					})
 				}
@@ -439,6 +444,7 @@
 					success:function(data){
 						ingList($('#lecture').val())
 						otherList($('#lecture').val())
+						ws_mylec.send("mylec최신화");
 					},
 				})
 			}

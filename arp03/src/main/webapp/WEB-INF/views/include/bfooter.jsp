@@ -17,24 +17,38 @@
 	}
 </script>
 
-<%-- <c:if test="${!empty mem }">
+<c:if test="${!empty mem }">
 <button onclick="sendMessage_Test()">qq</button>
 <script>
-	var ws = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/${cp}/echo/websocket?m_no=${mem.m_no}");
-	ws.onopen=function() {
+	var ws_mylec = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/${cp}/echo/websocket?m_no=${mem.m_no}");
+	ws_mylec.onopen=function() {
 		console.log("성공")
 	}
-	ws.onmessage = function(msg) {
+	ws_mylec.onmessage = function(msg) {
 		var data = msg.data;
-		alert(data)
+		myLecLastest()
 	}
-	ws.onclose = function(evt) {
+	ws_mylec.onclose = function(evt) {
 		console.log("연결 끊김");
 	}
 
 	// 메시지 전송
 	function sendMessage_Test() {
-		ws.send(6+"");
+		ws_mylec.send("mylec최신화");
+	}
+	
+	function myLecLastest(){
+		$.ajax({
+			url:'myLecLastest.mem',
+			type:'post',
+			dataType:'json',
+			success:function(data){
+				$('#myLecList').html('')
+				for(i=0;i<data.length;i++){
+					$('#myLecList').append('<li><a href="main.lec?lec_no='+data[i].lec_no+'">'+data[i].title+'</a></li>')
+				}
+			},
+		})
 	}
 </script>
-</c:if> --%>
+</c:if>

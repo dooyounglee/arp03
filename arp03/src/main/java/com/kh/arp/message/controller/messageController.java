@@ -147,7 +147,9 @@ public class messageController {
 	  }
 	  
 	  @ResponseBody
-	  @RequestMapping("selectNList.do")
+	  @RequestMapping(value = "selectNList.do", 
+	  produces = "application/text; charset=utf8")
+
 	  public String selectNList(int m_no) {
 		  ArrayList<Message> mlist = mService.selectNList(m_no);
 		  
