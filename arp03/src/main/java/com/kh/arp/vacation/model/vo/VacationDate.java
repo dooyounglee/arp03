@@ -18,4 +18,6 @@ public class VacationDate {
 //	private String astatus;
 	private String status;
 	private String title;
+	
+	private int nth;
 }

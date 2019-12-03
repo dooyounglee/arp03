@@ -129,6 +129,10 @@ public class VacationServiceImpl implements VacationService {
 		// TODO Auto-generated method stub
 		return vDao.selectVacation(v_no);
 	}
+	@Override
+	public List<VacationDate> selectVacationDateListWithCount(int v_no) {
+		return vDao.selectVacationDateListWithCount(v_no);
+	}
 
 
 	}

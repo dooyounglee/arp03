@@ -143,6 +143,11 @@ public class VacationDao {
 	}
 
 
+	public List<VacationDate> selectVacationDateListWithCount(int v_no) {
+		return sqlSession.selectList("vacationMapper.selectVacationDateListWithCount" , v_no);
+	}
+
+
 
 
 	/*

@@ -67,6 +67,8 @@ public interface VacationService {
 
 	Vacation selectVacation(int v_no);
 
+	List<VacationDate> selectVacationDateListWithCount(int v_no);
+
 
 
 	
