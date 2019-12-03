@@ -2,6 +2,10 @@ package com.kh.arp.manager.model.vo;
 
 import lombok.Data;
 
+/**
+ * @author nashaQ
+ *	설문조사에서 답과 질문을 담는 vo
+ */
 @Data
 public class SurveyQuestion {
 
