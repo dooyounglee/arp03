@@ -349,7 +349,7 @@ public class VacationController {
 			Vacation v=vService.selectVacation(v_no);
 			List<VacationDate> vdList=vService.selectVacationDateListWithCount(v_no);
 			if(vdList.size()==0) {
-				return "error";
+				return "success";
 			}else {
 				for(VacationDate vd:vdList) {
 					Attendence att=new Attendence();
