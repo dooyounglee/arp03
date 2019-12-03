@@ -1,5 +1,6 @@
 package com.kh.arp.member.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -228,12 +229,11 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value="myLecLastest.me", produces="application/json; charset=UTF-8")
+	@PostMapping(value="myLecLastest.mem", produces="application/json; charset=UTF-8")
 	public String myLecLastestPost(HttpSession session) {
-		System.out.println("잭스가?");
 		Member mem=(Member)session.getAttribute("mem");
 		session.setAttribute("myLec", ms.getLectureList(mem));
 		Gson gson=new GsonBuilder().create();
-		return gson.toJson(ms.getLectureList(mem));
+		return gson.toJson((ArrayList)ms.getLectureList(mem));
 	}
 }
