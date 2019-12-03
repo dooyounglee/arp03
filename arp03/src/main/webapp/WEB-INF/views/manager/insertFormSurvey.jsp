@@ -90,10 +90,13 @@
                                     <table class="table table-hover no-wrap">
                                     	<thead>
                                     		<tr>
+                                    		<th><input class="form-control" type="text" name="title" placeholder="제목" required></th>
                                     			<th><p>과목명 : ${lec.title}</p></th>
+                                    			
 												<th><p >선생님 : ${mem.name }</p></th>
+												
 												<th><p >작성 날짜 : ${d }</p></th>
-												<th><input type="text" name="title" placeholder="제목" required></th>
+													
 												
 												<th><input type="hidden" name="lec_no" value="${lec.lec_no }">
 													<input type="hidden" name="m_no" value="${mem.m_no }">
@@ -161,7 +164,7 @@
 			var tr = $("<tr></tr>").attr("class", "tr");
 			var td = $("<td></td>").attr("class", "td");
 			var div =$("<div></div>").attr("id", "div"+lastq);
-			var input = $("<input><br><br>").attr("placeholder", "질문"+q).attr("name", "question["+lastq+"]").attr("required", true).attr("id", "question["+lastq+"]");
+			var input = $("<input><br><br>").attr("placeholder", "질문"+q).attr("name", "question["+lastq+"]").attr("required", true).attr("id", "question["+lastq+"]").attr("class","form-control");
 			/* var hid = $("<input>").attr("type", "hidden").attr("name", "sq_no["+lastq+"]").attr("value", q);
 			$("#div").append(hid); */
 			$("#div").append(div);

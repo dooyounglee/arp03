@@ -100,7 +100,7 @@
 											<c:forEach items="${ mList }" var="m">
 												<tr>
 													<td>${ m.ms_no }</td>
-													<td>${ m.name }</td>
+													<td>${ m.gname }</td>
 													<td width="300"><a
 														href="detailMsg.do?ms_no=${m.ms_no}">${ m.title }</a></td>
 													<td>${ m.s_date }</td>

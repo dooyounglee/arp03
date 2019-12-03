@@ -94,8 +94,8 @@
                                     		<tr>
                                     			<input type="hidden" name="lec_no" value="${lec.lec_no}" >
                                     			<input type="hidden" name="su_no" value="${ssu}">
-												<td><p>${lec.lec_no}</p></td>
-												<td><p>${mem.name }</p></td>
+												<td ><p>${lec.lec_no}</p></td>
+												<td ><p>${mem.name }</p></td>
 												<td><p>${title }</p></td>
 												<td><p>${d}</p></td>
 												<td><p>점수</p></td>
@@ -104,11 +104,16 @@
                                         <tbody>
                                         	<c:forEach items="${s }" var="a" varStatus="status">
                                         		<tr>
-													<td colspan="2"><p>질문 ${status.count} : ${a.question }</p></td>
-													<td colspan="2"><input type="range" id="answer[${status.index }]" 
-													class="inputrange" name="answer[${status.index }]" placeholder="답변" 
-													min="1" max="5" step="1" required oninput="document.getElementById('value[${status.index}]').innerHTML=this.value;"></td>
-													<td><span id="value[${status.index}]">0</span> </td>
+													<td colspan="1"><p>질문 ${status.count} : ${a.question }</p></td>
+													<td colspan="4">
+														 <div class="row mr-0">
+														 	<div class="col-md-12">
+														 	 	<h4 class="card-title">만족도조사</h4>
+														 		<%-- <div id="rlarudtn[${status.index}]"></div> --%>
+														 		<input  id="rlarudtn${status.index}" name="answer">
+														 	</div>
+														 </div>
+										            </td>
 												</tr>
 											</c:forEach>
 												
@@ -116,82 +121,44 @@
                                         </tbody>
                                     </table>
                                     </form>
-                                    <script>
-                                    	/* $(document).ready(function(){
-                                    		var value=$("answer[0]").val()
-                                    		console.log("11---");
-                                    			 $.ajax({
-                                    			
-                            					url:"detailsurvey.jsp",
-                            					data:{value:value},
-                            					type:"get",
-                            					success:function(value){
-		                            				console.log(value);
-		                            				console.log("333");
-                            					},
-                            					error:function(){
-                            						console.log("ajax!!~ 실행 실패");
-                            					}
-                            				}) */
-                            				/*
-                                    		var inputrange= $(".inputrange");
-                                    		var rangevalue=$(".rangevalue");
-                                    		
-                                    		
-                                    			$("#answer[0]").on("input", function(){
-                                    				var value=$(this).val()
-                                    				$.ajax({
-                                    					url:"resultsurvey.jsp",
-                                    					data:{value:value},
-                                    					success:function(){
-                                    				console.log(inputrange.val());
-                                    				console.log("333");
-                                    				 $(this).next().html(value); 
-                                    					},
-                                    					error:function(){
-                                    						console.log("ajax!! 실행 실패");
-                                    					}
-                                    				})
-                                    			}) 
-
-                                    			$("#answer[1]").on("input", function(){
-                                    				var value=$(this).val()
-                                    				$.ajax({
-                                    					url:"resultsurvey.jsp",
-                                    					data:{value:value},
-                                    					success:function(){
-                                    				console.log(inputrange.val());
-                                    				console.log("44");
-                                    				 $(this).next().html(value); 
-                                    					},
-                                    					error:function(){
-                                    						console.log("ajax!! 실행 실패");
-                                    					}
-                                    				})
-                                    			}) 
-
-                                    			$("#answer[2]").on("input", function(){
-                                    				var value=$(this).val()
-                                    				$.ajax({
-                                    					url:"resultsurvey.jsp",
-                                    					data:{value:value},
-                                    					success:function(){
-                                    				console.log(inputrange.val());
-                                    				console.log("55");
-                                    				 $(this).next().html(value); 
-                                    					},
-                                    					error:function(){
-                                    						console.log("ajax!! 실행 실패");
-                                    					}
-                                    				})
-                                    			})  
-                                    	});*/
-                                    </script>
+                                   <script>
+                                    $(document).ready(function(){
+                                    	console.log("222");
+                                   
+                                    	for(var i=0; i<${s.size()}; i++){
+                                    		console.log("rlarudtn"+i);
+		                                    $("#rlarudtn"+i).attr("value", $("#irs-hidden-input").val()).ionRangeSlider({
+		                                        grid: true,
+		                                        min: 1,
+		                                        max: 5,
+		                                        from: 3,
+		                                        prefix: "만족도 "
+		                                    })
+		                                  
+                                    }
+                                    });
+                                    /* 	for(var i=0; i<${s.size()}; i++){
+                            		console.log("rlarudtn["+i+"]");
+                                    $("#rlarudtn["+i+"]").ionRangeSlider({
+                                        grid: true,
+                                        min: 1,
+                                        max: 5,
+                                        from: 3,
+                                        prefix: "만족도 ",
+                                        max_postfix: "+"
+                                    })
+                                    range_16[${stauts.index}]
+                                    #range_16["+i+"]
+                            	} */
+                                    </script> 
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+                
+                
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -213,7 +180,10 @@
 	<!-- End of Main wrapper -->
 	
 	<%@ include file="../include/bjs.jsp" %>
-	
+	<td><input type="range" id="answer[${status.index }]"
+	class="inputrange" name="answer[${status.index }]" placeholder="답변" 
+	min="1" max="5" step="0.5" required oninput="document.getElementById('value[${status.index}]').innerHTML=this.value;"></td>
+	<td><span id="value[${status.index}]">0</span> </td>
 
 </body>
 </html>
