@@ -312,7 +312,7 @@
 																</div>
 																<div class="contentWordText" style="display: inline;">
 																	<span class="contentWordText"
-																		style="color: black; font: fantasy;"> ${ qr.content }
+																		style="color: black; font: fantasy; word-break:break-all; white-space:pre-line;"> ${ qr.content }
 																	</span>
 																	<!-- <script>
 														$(function(){
