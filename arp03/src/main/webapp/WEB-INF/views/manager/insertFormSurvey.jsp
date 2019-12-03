@@ -164,7 +164,7 @@
 			var tr = $("<tr></tr>").attr("class", "tr");
 			var td = $("<td></td>").attr("class", "td");
 			var div =$("<div></div>").attr("id", "div"+lastq);
-			var input = $("<input><br><br>").attr("placeholder", "질문"+q).attr("name", "question["+lastq+"]").attr("required", true).attr("id", "question["+lastq+"]");
+			var input = $("<input><br><br>").attr("placeholder", "질문"+q).attr("name", "question["+lastq+"]").attr("required", true).attr("id", "question["+lastq+"]").attr("class","form-control");
 			/* var hid = $("<input>").attr("type", "hidden").attr("name", "sq_no["+lastq+"]").attr("value", q);
 			$("#div").append(hid); */
 			$("#div").append(div);
