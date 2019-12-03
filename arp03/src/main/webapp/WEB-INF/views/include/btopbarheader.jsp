@@ -253,9 +253,10 @@
 						$("#heart").attr("class", "heartbit");
 						$("#point").attr("class", "point");
 			
-						
+						list();
+						console.log("alert전에 list() 실행")// 새로운 메시지가오면 리스트 새로
 						alert("새로운 메시지가 있습니다"); 
-						list(); // 새로운 메시지가오면 리스트 새로
+					
 					}
 				}
 			
@@ -276,8 +277,7 @@
 		
 
 
-	
-	
+
 
 	$("#see").on("click", function() {
 		
@@ -357,11 +357,10 @@
 			})
 			
 }
-	
-if( ${mem ne null}){
+
 
 	list(); // 들어오자마자 list 새로 불러오기
-}
+
 
 </script>
 

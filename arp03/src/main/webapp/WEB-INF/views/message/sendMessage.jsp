@@ -206,8 +206,7 @@
 	                                    
 ====== Origin Message=====	                                  
 Title : ${msg.title }
-From : ${msg.sname }
-date : ${msg.r_date }
+Date : ${msg.r_date }
 	                                    </textarea>
 	                                    </c:if>
 	                            </div>
