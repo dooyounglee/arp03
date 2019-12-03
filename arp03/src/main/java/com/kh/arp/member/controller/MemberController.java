@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,12 +57,16 @@ public class MemberController {
 	}
 	
 	@PostMapping("/login.me")
-	public String loginPost(Member m,HttpSession session,String remember,HttpServletResponse res) {
+	public String loginPost(Member m,HttpSession session,String remember,HttpServletResponse res, Model model) {
 		
 		//status=y일떄만 되도록 해야겠는데?
 		
 		Member mem=ms.login(m);
 		if(mem!=null) {
+			if(mem.getStatus().equals("A")) {
+				model.addAttribute("msg", "인증 후 이용해 주세요.");
+				return "common/error";
+			}
 			session.setAttribute("mem", mem);
 			session.setAttribute("myLec", ms.getLectureList(mem));
 			if(remember!=null) {
