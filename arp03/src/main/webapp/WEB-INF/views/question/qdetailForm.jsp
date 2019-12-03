@@ -804,7 +804,7 @@
 
 
 				<!-- header에 있는 jquery 충돌 방지 -->
-				<script src='jquery-3.2.1.js'></script>
+<!-- 				<script src='jquery-3.2.1.js'></script> -->
 
 				<script>
    

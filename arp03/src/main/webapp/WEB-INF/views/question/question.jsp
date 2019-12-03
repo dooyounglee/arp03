@@ -72,12 +72,106 @@
                                 <h6 class="card-subtitle" align="right" style="color:black;">
                                 	<%-- 총 게시글 갯수 : ${ pi.listCount }&nbsp;&nbsp;&nbsp;페이지 : ${ pi.currentPage } / ${ pi.maxPage }
 	                                 &nbsp;&nbsp; --%>
+	                                 
 	                                 <c:if test="${ !empty mem }">
 										<span><button class="btn waves-effect waves-light btn-info" style="align:right; cursor:pointer;" onclick="location.href='qWriteForm.qu'">글쓰기</button></span>
 									 </c:if>
                                 </h6>
+                                <script>
+                                	var ArrayList = [];
+                                	jQuery.ajax({
+                        				url:"questionList2.aj",
+                        				dataType:"json",
+                        				success:function(data){
+                        					console.log(data);
+                        					ArrayList = data;
+                        					
+                        					
+                        				},
+                        				error:function(){
+                        					console.log("ajax 통신 실패");
+                        				}
+                        			});
+                                	
+                                	//제목검색용
+                                		function searchSelect(){
+                                		var Category1 = $('#Category1').val();
+                                		var searchSelectContent = $("#searchSelectContent").val();
+                                		$.ajax({
+                            				url:"questionList3.aj",
+                            				dataType:"json",
+                            				data:{
+                            					Category1:Category1,
+                            					searchSelectContent:searchSelectContent
+                            				},
+                            				success:function(data){
+                            					console.log(data);
+                            					ArrayList = data;
+                            					
+                            				},
+                            				error:function(){
+                            					console.log("ajax 통신 실패");
+                            				}
+                            			});
+                                	}
+                                	
+                                	
+                                </script>
+                                
+                                
+
+                                <script>
+                                
+                                function page(pNo){
+                                	
+                                	$tbody = $("#dlendud tbody").eq(0);
+                                	$tbody.html("");
+                                	console.log($tbody.length);
+                                	
+                                	var st=(pNo-1)*5 
+                                	var str=""
+                                	
+                                	if ( ArrayList == null ){
+                                		str+='<tr align="center">';
+                                		str+='<td>게시글이 없습니다.</td>';
+                                		str+='</tr>';
+                                		$tbody.append(str);
+                                	}
+									/*< tr>
+										<td colspan="7">게시글이 없습니다.</td>
+									</tr> */
+                                	
+                                	
+                                	for(i=0;i<5;i++){
+                                		str+='<tr>';
+                                		str+='<td>'+ArrayList[st+i].q_no+'</td>';
+                                		str+='<td style="max-width:300px;">'+
+                                		"<a href='qdetail.qu?q_no="+ArrayList[st+i].q_no+"'>" + 
+                                				ArrayList[st+i].title+"</a>"
+                                		+'</td>';
+                                		str+='<td>'+ArrayList[st+i].name+'</td>';
+                                		str+='<td>'+ArrayList[st+i].regdate+'</td>';
+                                		str+='<td>'+ArrayList[st+i].vcount+'</td>';
+                                		if(ArrayList[st+i].fileox =='Y'){
+                                			str+='<td><img width="15" src="resources/siraFile/클립2.svg"></td>';
+                                		};
+										if(ArrayList[st+i].fileox != 'Y'){
+											str+='<td>'+ArrayList[st+i].fileox+'</td>';
+										};
+										str+='<td>'+ArrayList[st+i].isreply+'</td>';
+                                		str+='</tr>';
+                                		
+                                	/* 	if(ArrayList == 5){
+                                			return;
+                                		} */
+                                		
+                                	}
+                                	$tbody.append(str);
+                                }
+                                
+                                </script>
                                 <div class="table-responsive">
-                                    <table class="table color-bordered-table muted-bordered-table">
+                                    <table id="dlendud" class="table color-bordered-table muted-bordered-table">
                                         <thead>
                                             <tr align="center">
 												<th>번호</th>
@@ -89,8 +183,8 @@
 												<th>답변여부</th>
 											</tr>
                                         </thead>
-                                        <tbody>
-                                        	<c:if test="${ empty qList }">
+                                        <tbody id="tbody">
+                                        	<%-- <c:if test="${ empty qList }">
 												<tr align="center">
 													<td colspan="7">게시글이 없습니다.</td>
 												</tr>
@@ -114,12 +208,12 @@
 													</c:if>
 													<td>${ q.isreply }</td>
 												</tr>
-											</c:forEach>
+											</c:forEach> --%>
 											
 											
-						<c:if test="${ !empty qList }">
+						<%-- <c:if test="${ !empty qList }"> --%>
 							<!-- 페이징 -->
-							<tr align="center" height="20">
+							<%-- <tr align="center" height="20">
 								<td colspan="7">
 									<!-- 이전 -->
 									<c:if test="${ pi.currentPage eq 1 }">
@@ -131,9 +225,9 @@
 											<c:param name="lec_no" value="${ lec.lec_no }"/>
 										</c:url>
 										<a href="${ before }"> 이전 </a>
-									</c:if>
+									</c:if> --%>
 									<!-- 페이지 -->
-										<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+										<%-- <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
 											<c:if test="${ p eq pi.currentPage }">
 												<font color="red" size="4"> ${ p } </font>
 											</c:if>
@@ -141,12 +235,14 @@
 												<c:url value="question.qu" var="page">
 													<c:param name="currentPage" value="${ p }"/>
 													<c:param name="lec_no" value="${ lec.lec_no }"/>
+													<c:param name="m_no" value="${ mem.m_no }"/>
+													<c:param name="Category1" value="Category3"/>
 												</c:url>
 												<a href="${ page }"> ${ p } </a>
 											</c:if>
-										</c:forEach>
+										</c:forEach> --%>
 									<!-- 다음 -->
-									<c:if test="${ pi.currentPage eq pi.maxPage}">
+									<%-- <c:if test="${ pi.currentPage eq pi.maxPage}">
 										 다음 &nbsp;
 									</c:if>
 									<c:if test="${ pi.currentPage ne pi.maxPage &&  pi.maxPage eq pi.endPage }">
@@ -159,46 +255,48 @@
 								</td>
 							</tr>
 						</c:if>
-                                            <!-- <tr>
-                                                <td>1</td>
-                                                <td>Nigam</td>
-                                                <td>Eichmann</td>
-                                                <td>@Sonu</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Deshmukh</td>
-                                                <td>Prohaska</td>
-                                                <td>@Genelia</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Roshan</td>
-                                                <td>Rogahn</td>
-                                                <td>@Hritik</td>
-                                            </tr> -->
+                                  --%>
+                                
                                         </tbody>
                                     </table>
+                                 
+                                 
+          <div align="center">                       
+          <ul id="pageul" class="pagination" align="center">
+		
+		<!-- <tr align="center" height="20">
+			<td colspan="5"> -->
+				<!-- 이전 -->
+					<li class="page-item"><a class="page-link">이전</a></li>
+				<!-- 페이지 -->
+						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(1)">1</a></li>
+						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(2)">2</a></li>
+						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(3)">3</a></li>
+				<!-- 다음 -->
+					<li class="page-item"><a class="page-link">다음</a></li>
+			<!-- </td>
+		</tr> -->
+			</ul>
+			</div>
+           
                                 </div>
                                 <!-- 검색창 -->
                                 <br>
-                                <form action="qsearchSelect.qu" method="post">
                                 <div class="input-group">
                                 <div class="col-lg-2"></div>
                                 <div class="col-lg-2">
-                                     <select class="form-control custom-select" name="Category1" data-placeholder="Choose a Category" tabindex="1">
+                                     <select id="Category1" class="form-control custom-select" name="Category1" data-placeholder="Choose a Category" tabindex="1">
                                          <option value="Category1">제목</option>
                                          <option value="Category2">내용</option>
-                                         <option value="Category3">내가 쓴 글</option>
+                                      	 <option value="Category3">내가 쓴 글</option>
                                          <option value="Category4">작성자</option>
                                      </select>
                                  </div>
                                     <input type="text" id="searchSelectContent" class="col-lg-4 form-control" name="searchSelectContent" placeholder="Search for...">
                                     <div class="input-group-append col-lg-2">
-                                        <button id="searchSelectBtn" class="btn btn-warning" onclick="return searchSelect()" type="submit">Search</button>
+                                    <button id="searchSelectBtn" class="btn btn-warning" onclick="searchSelect()" type="button">Search</button>
                                     </div>
                                 </div>
-                                </form>
                                 <br>
                                 
                                 
@@ -217,13 +315,14 @@
             <!-- ============================================================== -->
 
 		<script>
-			function searchSelect(){
+/* 			function searchSelect(){
 				if($("#searchSelectContent").val().trim() != ""){
 					
 				}else{
+					alert("검색창에 입력해주세요.");
 					return false;
 				}
-			};
+			}; */
 		</script>
 
 

@@ -149,6 +149,22 @@ public class QServiceImple implements QService{
 		return qDao.selectQuestionList(pi, q);
 	}
 
+	@Override
+	public int searchListCount(Question q) {
+		return qDao.searchListCount(q);
+	}
+
+	@Override
+	public ArrayList<Question> selecttest(int lec_no) {
+		return qDao.selecttest(lec_no);
+	}
+
+	// 테스트
+	@Override
+	public ArrayList<Question> selectQuestionList(Question q) {
+		return qDao.selectQuestionList(q);
+	}
+
 
 	/*
 	 * @Override public int selectQ(QFile qf) { return qDao.selectQ(qf); }
