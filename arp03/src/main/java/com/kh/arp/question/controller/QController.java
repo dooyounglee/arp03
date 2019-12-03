@@ -454,6 +454,7 @@ public class QController {
 		 
 		 if(q.getCategory1().equals("Category3")) { // 내가 쓴 글
 				q.setCategory1("3");
+				q.setContent(searchSelectContent);
 		 }
 			 
 		 if(q.getCategory1() == "Category4") { // 작성자
