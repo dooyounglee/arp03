@@ -11,7 +11,7 @@
             	<c:if test="${!empty mem}">
             	<a class="has-arrow" onclick="location.href='lectureList.ad'" href="lectureList.ad"><span class="hide-menu">나의 강좌 리스트</span></a>
             	<c:if test="${mem.typee ne 'a' }">
-            	<ul aria-expanded="false" class="collapse">
+            	<ul id="myLecList" aria-expanded="false" class="collapse">
             		<c:forEach var="l" items="${myLec }">
                     	<li><a href="main.lec?lec_no=${l.lec_no }">${l.title }</a></li>
             		</c:forEach>

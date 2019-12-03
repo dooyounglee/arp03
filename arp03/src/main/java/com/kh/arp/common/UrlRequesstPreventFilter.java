@@ -44,6 +44,7 @@ public class UrlRequesstPreventFilter implements Filter {
 		
 		String requestURI = hreq.getRequestURI();
 		if(!requestURI.equals("/arp/count/websocket") &&
+				!requestURI.equals("/arp/echo/websocket") &&
 				!requestURI.equals("/arp/Echo") &&
 				!requestURI.equals("/arp/websocket") &&
 				!requestURI.equals("/arp/") &&
