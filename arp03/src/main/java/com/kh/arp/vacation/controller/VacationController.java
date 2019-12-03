@@ -265,7 +265,7 @@ public class VacationController {
 		return mv;
 	}
 	
-	
+	@ResponseBody
 	@RequestMapping("permission.te")
 	public String permission(VacationDate vd , int lec_no , int v_no , String vacation_date) {
 		
@@ -276,9 +276,9 @@ public class VacationController {
 		int result = vService.permission(vd);
 		
 		if(result >0) {
-			return "redirect:vDetail.me?v_no="+v_no;
+			return "success";
 		}else {
-			return "common/errorPage";
+			return "error";
 		}
 		
 	}
@@ -292,7 +292,7 @@ public class VacationController {
 		
 		 
 		if(result > 0) {
-			return "redirect:sVlist.te";
+			return "redirect:vDetail.me?v_no="+v_no;
 		}else {
 			return "common/errorPage";
 		}
