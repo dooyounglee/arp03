@@ -4,6 +4,7 @@
 <%
 	String[] list = request.getParameterValues("bfList");
 %>
+
 <!DOCTYPE html>
 <html>
 <!-- <script src="https://code.jquery.com/juqery-3.1.0.min.js" type="text/javascript"></script> -->
@@ -11,6 +12,11 @@
 <head>
 <%@ include file="../include/bhead.jsp"%>
 <meta charset="UTF-8">
+<style>
+#file {
+	display: none;
+}
+</style>
 
 
 <title>게시글 수정하기</title>
@@ -101,8 +107,8 @@
 									<input type="hidden" name="b_no" value="${ b.b_no }"> <input
 										type="hidden" name="m_no" value="${ b.m_no }"> <br>
 
-									<label>첨부파일</label> <input type="file" name="reloadFile"
-										id="file" multiple="multiple">
+									 <input type="file" name="reloadFile" id="file" multiple="multiple">
+										<label for="file" class="btn btn-warning">파일첨부</label>
 									<div id="fileArea"></div>
 
 									<c:if test="${ !empty bfList }">
