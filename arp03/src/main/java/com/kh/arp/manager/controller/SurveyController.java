@@ -132,6 +132,18 @@ public class SurveyController {
 	public ModelAndView detailsurveystudent(ModelAndView mv, int su_no, SurveyQuestion sq) {
 		List<SurveyQuestion> ysq = ss.detailsurveyYstudent(su_no);
 		List<SurveyQuestion> nsq = ss.detailsurveyNstudent(su_no);
+		for(int i= 0; i<ysq.size(); i++) {
+			for(int j=i; j<ysq.size();j++) {
+				boolean k=ysq.get(i).getName()==ysq.get(j).getName();
+				int n=0;
+				if(k==true){
+					List l=new ArrayList();
+					l.add(ysq.get(i).getName());
+					n+=1;
+					k=false;
+				}
+			}
+		}
 		mv.addObject("Ysq", ysq).addObject("Nsq",nsq).addObject("su_no", su_no).setViewName("manager/detailsurveystudent");
 		return mv;
 	}

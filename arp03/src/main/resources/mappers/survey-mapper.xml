@@ -26,12 +26,12 @@
 	
 	
 	<select id="selectSurvey" resultMap="insertsurveyList"> <!-- 선생님 전용 셀렉문 -->
-  	 select s.su_no, s.title, s.enrolldate, m.name, l.title lec_title
+  	select s.su_no, s.title, s.enrolldate, m.name, l.title lec_title
 	from insertSurvey s ,lecture l, member m 
-	where s.lec_no=l.lec_no And s.m_no=m.m_no And s.lec_no=#{lec_no} and s.m_no=l.m_no
-	
+	where s.lec_no=l.lec_no And s.m_no=m.m_no And s.lec_no=#{lec_no} And s.m_no=-1 
   </select>
-	
+	<!--  and s.m_no=l.m_no -->
+																		<!-- 선생님 번호 -->
 	<select id="selectSurveyStudent" resultMap="surveyquestion"> <!-- 학생 전용 셀렉문 -->
 	select    	s.su_no, s.title, s.enrolldate, m.name, l.title lec_title, sq.issurvey
 	from insertSurvey s ,lecture l, member m , surveyquestion sq, myclass mc
@@ -66,6 +66,7 @@
    select  m_no
 	from myclass
 	where lec_no=#{lec_no}
+	<!-- 학생넘버 -->
   </select>
   
   <insert id ="insertSurveyQuestion">
@@ -80,6 +81,7 @@
 		select sq.su_no, sq.sq_no, sq.question, ie.title, ie.enrolldate
         from surveyquestion sq, insertsurvey ie
 		where sq.m_no=#{m_no} and sq.su_no=#{su_no} and sq.su_no=ie.su_no
+		            <!-- 학생넘버 -->
 	</select>
 	
 	
@@ -87,7 +89,7 @@
 		update surveyquestion set 
 		answer=#{answer},
 		issurvey='Y'
-		where m_no=#{m_no}
+		where m_no=#{m_no} <!-- m_no 학생넘버 -->
 		And su_no=#{su_no}
 		And sq_no=#{sq_no}
 	</update>
@@ -108,6 +110,7 @@
 		select sq.sq_no, sq.question, sq.answer, sq.su_no
         from surveyquestion sq
 		where sq.m_no=#{m_no} and sq.su_no=#{su_no}
+		           <!-- 학생넘버 -->
 	</select>
 	
 	<!-- sq와 su넘버만 넣은 셀렉문 -->
