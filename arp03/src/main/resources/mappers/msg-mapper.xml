@@ -64,10 +64,10 @@
 	where g_no=#{m_no}
 	</select>
 	
-	<select id="reSendMsgForm" resultType="Message">
-	select * 
-	from message
-	where ms_no=#{ms_no}
+	<select id="reSendMsgForm" resultType="Message"> 
+	select ms.*, m.name gname ,m2.name sname
+	from message ms , member m, member m2
+	where ms_no=#{ms_no} and ms.g_no = m.m_no and ms.s_no=m2.m_no
 	</select>
 	
 	<select id="selectMember" resultType="Member">
@@ -77,3 +77,4 @@
 	</select>
 
 </mapper>
+

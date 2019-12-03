@@ -1,13 +1,10 @@
 package com.kh.arp.message.controller;
 
 import java.io.IOException;
-
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -171,6 +168,20 @@ public class messageController {
 			  return "fail";
 		  }
 	  }
+	  
+	  
+	  @RequestMapping("reMsg.do")
+	  public ModelAndView reSendMsgForm(int ms_no,ModelAndView mv) {
+		  ArrayList<Member> list = mService.selectMember();
+		  
+		  Message msg = mService.reSendMsgForm(ms_no);
+		  System.out.println("답장"+msg);
+		  
+		  mv.addObject("msg",msg).addObject("list",list).setViewName("message/sendMessage");
+		  
+		  return mv;
+	  }
+	  
 	  
 	
 	  
