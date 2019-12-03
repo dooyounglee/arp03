@@ -16,7 +16,7 @@
             <c:if test="${mem.typee=='t'|| mem.typee=='a' }">
             <a href="selectsurvey.ma?lec_no=${lec.lec_no }" class="list-group-item">설문조사</a>
             </c:if>
-            <c:if test="${mem.typee eq 't' && lec.m_no eq mem.m_no }">
+            <c:if test="${mem.typee eq 'a' || (mem.typee eq 't' && lec.m_no eq mem.m_no) }">
             <a href="#" class="list-group-item">--------</a>
             <a href="list.ex" class="list-group-item">시험관리</a>
             <a href="list.at" class="list-group-item">출석관리</a>

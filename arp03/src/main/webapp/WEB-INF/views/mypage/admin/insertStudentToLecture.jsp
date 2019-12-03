@@ -89,7 +89,7 @@
                                     	<h5 class="p-2 rounded-title">Teacher</h5>
 										<select id="teacher" class="form-control" size="10">
 											<c:forEach var="t" items="${tlist }">
-												<option value="${t.m_no }">${t.name }(${t.m_no })</option>
+												<option value="${t.m_no }">${t.name }#${t.m_no }</option>
 											</c:forEach>
 										</select>
                                     </div>
@@ -323,7 +323,7 @@
 					$('#lecture').empty()
 					if(data.length>0){
 						for(i=0;i<data.length;i++){
-							$('#lecture').append('<option value="'+data[i].lec_no+'">'+data[i].title+'('+data[i].lec_no+')'+'</option>')
+							$('#lecture').append('<option value="'+data[i].lec_no+'">'+data[i].title+'#'+data[i].lec_no+'</option>')
 						}
 					}else{
 						$('#lecture').html('<option>Not Exist</option>')
@@ -360,7 +360,7 @@
 					$('#ings').empty()
 					if(data.length>0){
 						for(i=0;i<data.length;i++){
-							$('#ings').append('<option value="'+data[i].m_no+'">'+data[i].name+'('+data[i].m_no+')'+'</option>')
+							$('#ings').append('<option value="'+data[i].m_no+'">'+data[i].name+'#'+data[i].m_no+'</option>')
 						}
 					}else{
 						$('#ings').html('<option>Not Exist</option>')
@@ -396,7 +396,7 @@
 					$('#other').empty()
 					if(data.length>0){
 						for(i=0;i<data.length;i++){
-							$('#other').append('<option value="'+data[i].m_no+'">'+data[i].name+'('+data[i].m_no+')'+'</option>')
+							$('#other').append('<option value="'+data[i].m_no+'">'+data[i].name+'#'+data[i].m_no+'</option>')
 						}
 					}else{
 						$('#other').html('<option>Not Exist</option>')
