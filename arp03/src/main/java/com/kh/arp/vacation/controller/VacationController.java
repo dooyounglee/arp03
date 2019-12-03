@@ -15,12 +15,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.arp.lecture.model.service.LectureService;
+import com.kh.arp.lecture.model.vo.Attendence;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.vacation.model.service.VacationService;
 import com.kh.arp.vacation.model.vo.Vacation;
@@ -30,6 +33,9 @@ import com.kh.arp.vacation.model.vo.VacationDate;
 public class VacationController {
 	@Autowired
 	private VacationService vService;
+	
+	@Autowired
+	private LectureService ls;
 	
 	/*
 	 * @RequestMapping("myLlist.me") public ModelAndView myLectrueList(ModelAndView
@@ -202,10 +208,11 @@ public class VacationController {
 			list=vService.detailVacation(v_no);
 		}
 		
+		Vacation vv = vService.selectVacation(v_no);
 		
 		System.out.println(list);
 		
-			mv.addObject("list", list).setViewName("vacation/detailVacation");
+			mv.addObject("list", list).addObject("vv",vv).setViewName("vacation/detailVacation");
 			
 		return mv;
 	}
@@ -258,7 +265,7 @@ public class VacationController {
 		return mv;
 	}
 	
-	
+	@ResponseBody
 	@RequestMapping("permission.te")
 	public String permission(VacationDate vd , int lec_no , int v_no , String vacation_date) {
 		
@@ -269,9 +276,9 @@ public class VacationController {
 		int result = vService.permission(vd);
 		
 		if(result >0) {
-			return "redirect:vDetail.me?v_no="+v_no;
+			return "success";
 		}else {
-			return "common/errorPage";
+			return "error";
 		}
 		
 	}
@@ -285,7 +292,7 @@ public class VacationController {
 		
 		 
 		if(result > 0) {
-			return "redirect:sVlist.te";
+			return "redirect:vDetail.me?v_no="+v_no;
 		}else {
 			return "common/errorPage";
 		}
@@ -329,19 +336,50 @@ public class VacationController {
 
 		
 	}
-	
+	@ResponseBody
 	@RequestMapping("status.me")
-	public ModelAndView statusCheck(int v_no , VacationDate vd , ModelAndView mv) {
+	public String statusCheck( int v_no,ModelAndView mv) {
 		
+		System.out.println("asdasd"+v_no);
+		
+		int result  = vService.statusCheck(v_no);
+		System.out.println("aa"+result + "aa1211212121");
+		if(result > 0) {
+			//학생꺼 출결 바꾸는거
+			Vacation v=vService.selectVacation(v_no);
+			List<VacationDate> vdList=vService.selectVacationDateListWithCount(v_no);
+			if(vdList.size()==0) {
+				return "success";
+			}else {
+				for(VacationDate vd:vdList) {
+					Attendence att=new Attendence();
+					att.setLec_no(vd.getLec_no());
+					att.setM_no(vd.getM_no());
+					att.setNth(vd.getNth());
+					att.setContent("휴");
+					int result1=ls.insertAttendence(att);
+				}
+			}
+			return "success";
+		}else {
+			return "error";
+		}
+		
+		
+	}
 	
-		vd = vService.statusCheck(v_no);
+	public ModelAndView adminStatus(Vacation v , ModelAndView mv) {
 		
-		mv.addObject("vd" , vd).setViewName("vacation/vacationListForm");
+		v.getV_no();
 		
-	
+		ArrayList<Vacation> list = vService.selectStatus(v);
+		
+		
+		mv.addObject("v" , list).addObject("vacation/detailView");
+		
 		return mv;
-		
-		
+				
+	 
 	}
 	
 	@ResponseBody  

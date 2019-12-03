@@ -182,22 +182,23 @@
 					<a
 						class="nav-link dropdown-toggle text-muted waves-effect waves-dark"
 						href="login.me" />login</a>
-				</c:if> <c:if test="${!empty mem }">
+				</c:if>
+				<c:if test="${!empty mem }">
+					<c:set var="type" value=""/>
+					<c:if test="${mem.typee eq 's' }">
+						<c:set var="type" value="학생"/>
+					</c:if>
+					<c:if test="${mem.typee eq 't' }">
+						<c:set var="type" value="선생님"/>
+					</c:if>
 					<a
 						class="nav-link dropdown-toggle text-muted waves-effect waves-dark"
 						href="" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"><img
-						src="/${cp }/resources/material-pro/assets/images/users/1.jpg"
-						alt="user" class="profile-pic" /></a>
+						aria-expanded="false">${mem.name } ${type }</a>
 					<div class="dropdown-menu dropdown-menu-right scale-up">
 						<ul class="dropdown-user">
 							<li>
 								<div class="dw-user-box">
-									<div class="u-img">
-										<img
-											src="/${cp }/resources/material-pro/assets/images/users/1.jpg"
-											alt="user">
-									</div>
 									<div class="u-text">
 										<h4>${mem.name }</h4>
 										<p class="text-muted">${mem.email}<!-- <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f98f988b8c97b99e94989095d79a9694">[email&#160;protected]11</a> -->
@@ -210,11 +211,8 @@
 							<li role="separator" class="divider"></li>
 							<li><a href="myInfo.me"><i class="ti-user"></i> My
 									Profile</a></li>
-							<li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-							<li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+							<li><a href="listMsg.do"><i class="ti-email"></i> Inbox</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#"><i class="ti-settings"></i> Account
-									Setting</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="logout.me"><i class="fa fa-power-off"></i>
 									Logout</a></li>
@@ -253,9 +251,10 @@
 						$("#heart").attr("class", "heartbit");
 						$("#point").attr("class", "point");
 			
-						
+						list();
+						console.log("alert전에 list() 실행")// 새로운 메시지가오면 리스트 새로
 						alert("새로운 메시지가 있습니다"); 
-						list(); // 새로운 메시지가오면 리스트 새로
+					
 					}
 				}
 			
@@ -276,8 +275,7 @@
 		
 
 
-	
-	
+
 
 	$("#see").on("click", function() {
 		
@@ -357,11 +355,10 @@
 			})
 			
 }
-	
-if( ${mem ne null}){
+
 
 	list(); // 들어오자마자 list 새로 불러오기
-}
+
 
 </script>
 

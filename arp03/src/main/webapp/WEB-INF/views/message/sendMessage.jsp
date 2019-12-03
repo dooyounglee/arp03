@@ -79,21 +79,49 @@
 			      <div class="col-lg-12">
 			          <div class="card">
 	                        <div class="card-body">
-	                            <h3 class="card-title mdi mdi-email">쪽지 보내기</h3>
+	                        <c:if test="${msg.title eq null}">
+	                            <h3 class="card-title mdi mdi-email">쪽지 보내기 </h3>
+	                         </c:if>
+	                         
+	                         <c:if test="${msg.title ne null}">
+	                            <h3 class="card-title mdi mdi-email">답장 보내기 </h3>
+	                         </c:if>
+	                            
 	                   				   <form action="insertMsg.do" >
 	                            <div class="form-group">
-	                                <input class="form-control" name="title" placeholder="제목을 입력해주세요" required>
+	                            
+	                             <c:if test="${msg.title eq null}">
+	                            		  <input class="form-control" name="title"  placeholder="제목을 입력해주세요" required>
+	                            	 </c:if>
+	                            	 <c:if test="${msg.title ne null}">
+	                            		   <input class="form-control" name="title" value="re:" placeholder="제목을 입력해주세요" required>
+	                            	 </c:if>
+	                           
+	                            
+	                          
+	                       
 	                            </div>
+	                            
 	                            <div class="form-group">
 	                            
 	                           		 <input type="hidden" value="${ mem.m_no }" name="s_no">
-	                            	<input type="hidden"  name="g_no" id="g_no">
-	                                    
+	                           		 <c:if test="${msg.title eq null}">
+	                            		<input type="hidden"  name="g_no" id="g_no">
+	                            	 </c:if>
+	                            	 <c:if test="${msg.title ne null}">
+	                            		<input type="hidden" value="${msg.s_no }" name="g_no" id="g_no">
+	                            	 </c:if>
+	                             
+	                                   
+	                             	<c:if test="${msg.title eq null}">
 	                               	   <label style="color:black">받는사람 </label>
 	                               	   <p id="memId" style="color:black"></p>
 	                                 <button type="button" class="btn btn-info" data-toggle="modal"
                                         data-target="#bs-example-modal-lg">회원선택</button>
-	                                 
+	                                 </c:if>  
+	                                 <c:if test="${msg.title ne null}">
+	                                 <label>받는사람 : ${msg.sname }</label>
+	                                 </c:if>
 	                                 <!-- 모달 창 -->
 		                                <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog"
 		                                    aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -117,6 +145,7 @@
 				                                                               <th>회원번호</th>
 				                                                               <th>구분</th>
 				                                                               <th>이름</th>
+				                                                            
 				
 				                                                            </tr>
 				                                                         </thead>
@@ -159,8 +188,27 @@
 
 										</div>
 										<div class="form-group">
+										
+									<c:if test="${msg.title eq null}">
 	                                <textarea class="textarea_editor form-control" name="content" rows="15"
-	                                    placeholder="내용을 입력해주세요" required></textarea>
+	                                    placeholder="내용을 입력해주세요" required>
+	                                    
+	                                 </textarea>
+	                                 </c:if>
+										
+									<c:if test="${msg.title ne null}">
+	                                <textarea class="textarea_editor form-control" name="content" rows="15"
+	                                    placeholder="내용을 입력해주세요" required>
+	                                    
+	                                    
+	                                    
+	                                    
+	                                    
+====== Origin Message=====	                                  
+Title : ${msg.title }
+Date : ${msg.r_date }
+	                                    </textarea>
+	                                    </c:if>
 	                            </div>
 	                     
 	                            <button type="submit" onclick="sub()" class="btn btn-success mt-3"><i
@@ -177,7 +225,7 @@
               
 <script>
 
-$(".nameGet").on("click", function(){
+$(document).on("click",".nameGet", function(){
 	var name = $(this).text();
 	var mno = $(this).prev().prev().text();
 	var str = name.concat("#", mno);

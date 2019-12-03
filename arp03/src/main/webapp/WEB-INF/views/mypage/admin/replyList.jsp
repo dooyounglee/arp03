@@ -101,7 +101,7 @@
                                         		<tr>
 	                                        		<td>${r.r_no }</td>
 	                                        		<td>${r.m_no }</td>
-	                                                <td>${r.content }</td>
+	                                                <td style="word-wrap:break-word; min-width:400px; max-width:400px;">${r.content }</td>
 	                                                <td>${r.regdate }</td>
 	                                                <td>${r.update_date }</td>
 	                                                <td>${r.m_no }</td>
@@ -116,21 +116,20 @@
 	           	                                     		<button class="btn btn-primary" onclick="deleteCancleReply(${r.r_no})">삭제 취소</button>
 	                                                	</c:if>
 	                                                </td>
-	                                                <td>
-	                                                </td>
 												</tr>
 											</c:forEach>
                                         </tbody>
-                                        <!-- <tfoot>
+                                        <tfoot>
                                             <tr>
                                                 <th>#</th>
-                                                <th>title</th>
+                                                <th>m_no</th>
+                                                <th>content</th>
                                                 <th>regdate</th>
                                                 <th>updatedate</th>
                                                 <th>m_no</th>
                                                 <th>status</th>
                                             </tr>
-                                        </tfoot> -->
+                                        </tfoot>
                                     </table>
                                     <script>
 								   		$('#zero_config').DataTable();

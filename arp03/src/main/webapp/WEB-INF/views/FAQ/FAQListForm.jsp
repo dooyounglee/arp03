@@ -43,7 +43,6 @@ display:inline;
 
 		<!-- Page wrapper  -->
         <div class="page-wrapper">
-<br><br><br>
 
 
 
