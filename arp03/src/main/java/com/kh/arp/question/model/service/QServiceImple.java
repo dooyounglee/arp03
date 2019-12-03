@@ -144,6 +144,11 @@ public class QServiceImple implements QService{
 		return qDao.realTimeFreeSelect();
 	}
 
+	@Override
+	public ArrayList<Question> selectQuestionList(PageInfo pi, Question q) {
+		return qDao.selectQuestionList(pi, q);
+	}
+
 
 	/*
 	 * @Override public int selectQ(QFile qf) { return qDao.selectQ(qf); }

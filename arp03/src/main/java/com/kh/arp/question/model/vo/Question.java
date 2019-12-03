@@ -26,4 +26,6 @@ public class Question {
 	private String changename;
 	private String tcname;	// 선생님이름
 	private String youtubelink;
+	private String searchSelectContent; // 검색구분
+	private String Category1;
 }

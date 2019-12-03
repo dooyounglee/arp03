@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <%@ include file="../include/bhead.jsp"%>
 <head>
 <style>
-	.col-lg-8{
-	margin-left:auto;
-	margin-right:auto;
-	}
+.col-lg-8 {
+	margin-left: auto;
+	margin-right: auto;
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -89,30 +89,38 @@
 						<div class="card">
 							<div class="card-body">
 
-				 <h3 class="card-title mb-0">${m.title}</h3>
-				   <div>
-                       <hr class="mt-0">
-                   </div>
-				 <input type="hidden" value="${ m.g_no }" name="m_no" >
-				 <h5 > ${m.name}</h5>
-				 <h5>${m.content }</h5>
-				 <div id="btn" align="right">
-				 	<button  class="btn btn waves-effect waves-light btn-rounded btn-outline-info"  onclick="location.href='listMsg.do';">목록으로</button>
-				 </div>
+								<h3 class="card-title mb-0">${m.title}</h3>
+								<div>
+								<hr class="mt-0">
+								</div>
+								<input type="hidden" value="${ m.g_no }" name="m_no">
+								<div class="form-group">
+								<h5>보낸사람 : ${m.sname}</h5>
+								<h5>받는사람 :  ${m.gname}</h5>
+								</div>
+
+
+								<div class="form-group">
+								<h5>${m.content }</h5>
+								</div>
+								<div id="btn" align="right">
+									<button
+										class="btn btn waves-effect waves-light btn-rounded btn-outline-info"
+										onclick="location.href='listMsg.do';">목록으로</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
 				</div>
 			</div>
-		
-		</div>
-	</div>
-</div>
 
-<!-- footer -->
-<footer class="footer">
-	<%@ include file="../include/bfooter.jsp"%>
-</footer>
-<!-- End footer -->
+			<!-- footer -->
+			<footer class="footer">
+				<%@ include file="../include/bfooter.jsp"%>
+			</footer>
+			<!-- End footer -->
 
-<%@ include file="../include/bjs.jsp"%>
-
+			<%@ include file="../include/bjs.jsp"%>
 </body>
 </html>

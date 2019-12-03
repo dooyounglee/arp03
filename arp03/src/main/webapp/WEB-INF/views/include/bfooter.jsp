@@ -26,8 +26,7 @@
 	}
 	ws_mylec.onmessage = function(msg) {
 		var data = msg.data;
-		alert(data+'이제 ajax')
-		
+		myLecLastest()
 	}
 	ws_mylec.onclose = function(evt) {
 		console.log("연결 끊김");
@@ -40,19 +39,16 @@
 	
 	function myLecLastest(){
 		$.ajax({
-			url:'myLecLastest.me',
+			url:'myLecLastest.mem',
 			type:'post',
-			//dataType:'json',
+			dataType:'json',
 			success:function(data){
-				console.log(data)
-				alert("최신화")
-				/* $('#myLecList').html('')
+				$('#myLecList').html('')
 				for(i=0;i<data.length;i++){
-					'<li><a href="main.lec?lec_no='+data[i].lec_no+'">'+data[i].title+'</a></li>'
-				} */
+					$('#myLecList').append('<li><a href="main.lec?lec_no='+data[i].lec_no+'">'+data[i].title+'</a></li>')
+				}
 			},
 		})
 	}
-	myLecLastest()
 </script>
 </c:if>

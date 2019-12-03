@@ -81,6 +81,9 @@ public interface QService {
 	// 자유게시판 조회수 많은 글 리스트 조회
 	ArrayList<Board> realTimeFreeSelect();
 
+	// 검색 게시판
+	ArrayList<Question> selectQuestionList(PageInfo pi, Question q);
+	
 	/*
 	 * // QFile 검색 int selectQ(QFile qf);
 	 */
