@@ -433,6 +433,7 @@ public class QController {
 		 
 		 q.setLec_no(lec_no);
 		 
+		 
 		 int listCount = qService.getListCount(lec_no);
 
 			int pageLimit = 5;
@@ -440,16 +441,18 @@ public class QController {
 			
 			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
 			// PageInfo pi = new PageInfo(currentPage, listCount, 5, 10); 이렇게 바로써도됨
-		 
-		 if(q.getCategory1() == "Category1") { // 제목
+		 System.out.println("전"+ q);
+		 if(q.getCategory1().equals("Category1")) { // 제목
 			 	q.setCategory1("1");
+			 	q.setTitle(searchSelectContent);
 		 }
 		 
-		 if(q.getCategory1() == "Category2") { // 내용
+		 if(q.getCategory1().equals("Category2")) { // 내용
 				q.setCategory1("2");
+				q.setContent(searchSelectContent);
 		 }
 		 
-		 if(q.getCategory1() == "Category3") { // 내가 쓴 글
+		 if(q.getCategory1().equals("Category3")) { // 내가 쓴 글
 				q.setCategory1("3");
 		 }
 			 
@@ -457,6 +460,7 @@ public class QController {
 			 	q.setCategory1("4");
 		 }
 			
+		 System.out.println("이두영"+q);
 		 ArrayList<Question> qList = qService.selectQuestionList(pi, q);
 		/*
 		 * // lecture 객체 가져오자~ Lecture lec = qService.getLecture(lec_no);

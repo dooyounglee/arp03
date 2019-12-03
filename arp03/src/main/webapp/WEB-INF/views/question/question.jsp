@@ -92,7 +92,7 @@
                                         <tbody>
                                         	<c:if test="${ empty qList }">
 												<tr align="center">
-													<td colspan="7">아직 게시글이 없습니다.</td>
+													<td colspan="7">게시글이 없습니다.</td>
 												</tr>
 											</c:if>
 											

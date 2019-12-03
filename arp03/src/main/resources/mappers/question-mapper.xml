@@ -9,6 +9,7 @@
 		<result property="title" column="title"/>
 		<result property="name" column="name"/>
 		<result property="regdate" column="regdate"/>
+		<result property="content" column="content"/>
 		<result property="vcount" column="vcount"/>
 		<result property="isreply" column="isreply"/>
 		<result property="fileox" column="fileox"/>
@@ -188,15 +189,27 @@
         order by vcount desc
 	</select>
 	<select id="selectQuestionSearchList" resultMap="qList">
-		<if test="Categori1 == 1">
+	<choose>
+		<when test='Category1 == "1".toString()'>
 			select q.q_no, q.lec_no, q.m_no, q.title, m.name,
 	           q.regdate, q.vcount, q.isreply, q.fileox, originalname,
 	           changename, youtubelink
 		    from question q
 		    join member m on(q.m_no=m.m_no)
 		    left join qfile f on(q.q_no=f.q_no)
-		    where q.lec_no=#{lec_no} and q.status='Y' and title=#{title}
+		    where q.lec_no=#{lec_no} and q.status='Y' and title like '%' || #{title} || '%'
 		    order by q.q_no desc
-		</if>
+		</when>
+		<when test='Category1 == "2".toString()'>
+			select q.q_no, q.lec_no, q.m_no, q.title, m.name,
+	           q.regdate, q.content, q.vcount, q.isreply, q.fileox, originalname,
+	           changename, youtubelink
+		    from question q
+		    join member m on(q.m_no=m.m_no)
+		    left join qfile f on(q.q_no=f.q_no)
+		    where q.lec_no=#{lec_no} and q.status='Y' and content like '%' || #{content} || '%'
+		    order by q.q_no desc
+		</when>
+	</choose>
 	</select>
 </mapper>
