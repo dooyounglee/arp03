@@ -30,6 +30,11 @@ public class SurveyController {
 	@Autowired
 	private SurveyService ss;
 	
+	/**
+	 * @param mv 
+	 * @param lec_no 수업 넘버
+	 * @return s객체는 lec_no번호에 있는 모든 설문조사양식(InsertSurvey) 정보, 강의메인페이지에서-> 설문조사 리스트를 보여준다.
+	 */
 	@RequestMapping("selectsurvey.ma")
 	public ModelAndView selectsurvey(ModelAndView mv, int lec_no) {
 		List<InsertSurvey> s= ss.selectsurvey(lec_no);
@@ -37,6 +42,14 @@ public class SurveyController {
 		return mv;
 	}
 	
+	/**
+	 * @param sss(SelectSurveyStudent) 학생과 강의번호를 담을수있는 객체
+	 * @param mv
+	 * @param session
+	 * @param lec_no
+	 * @param sq (SurveyQuestion) 질문양식이 아닌 답과 질문에대한 정보 객체
+	 * @return
+	 */
 	@RequestMapping("selectsurveystudent.ma")
 	public ModelAndView selectsurveystudent(SelectSurveyStudent sss, ModelAndView mv, HttpSession session, int lec_no, SurveyQuestion sq) {
 		sss.setM_no(((Member)session.getAttribute("mem")).getM_no());
