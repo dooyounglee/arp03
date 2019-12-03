@@ -81,7 +81,7 @@
 	</select>
 	
 	<select id="getLectureListByTeacher" resultType="Lecture">
-		select * from lecture where m_no=#{m_no}
+		select * from lecture where m_no=#{m_no} and status='Y'
 	</select>
 	
 	<select id="getIngStudentList" resultType="Member">
