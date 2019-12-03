@@ -103,7 +103,7 @@
 								        		<tr>
 													<td>${m.m_no }</td>
 													<td>${m.id }</td>
-	                                                <td><a href="DetailStudent.ad?m_no=${m.m_no }">${m.name }</a></td>
+	                                                <td>${m.name }</td>
 	                                                <td>${m.email }</td>
 	                                                <td>${m.phone }</td>
 	                                                <td>
