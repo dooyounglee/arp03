@@ -8,23 +8,19 @@
 <title>Insert title here</title>
 <style>
 	.btns{display: inline-block;}
-	#title{align:center; height:100px;}
+	/* #title{align:center; height:100px;} */
 	/* #demo-foo-pagination{width:700px;} */
-	.card{
+	/* .card{
 		text-align:left;
 		margin-left:auto;
 		margin-right:auto;
-		/* width:1000px; */
-	}
-	#bor{
-		margin:0px;	
-	}
-	#regDate{
+	} */
+	/* #regDate{
 		float:right !important;
-	}	
-	#file,a{
+	}	 */
+	/* #file,a{
 	font-size:15px;
-	}
+	} */
 	#btn{
 		text-align:right;
 		margin-left:auto;
@@ -83,6 +79,7 @@
 		margin-right:auto;
 		width:80%;
 		}
+		table td{white-space: normal !important;}
 </style>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
@@ -149,7 +146,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="pull-left">
-                                    <span id="regDate" class="pull-right text-right">${ b.regdate }</span>
+                                    <span id="regDate" class="float-right text-right">${ b.regdate }</span>
                                     	<br><br>
                                         <address>
                                             <p class="text-muted ml-1">${ b.content }</p>
@@ -157,26 +154,49 @@
                                     </div>
                                 </div>
                                 <div id="btns" class="text-center">
-		<button type="button" class="btn waves-effect waves-light btn-danger" onclick="declareBoard();">신고</button>
+                   <button class="btn waves-effect waves-light btn-success" type="button" onclick="location.href='blist.do';">목록</button>
+				<button type="button" class="btn waves-effect waves-light btn-danger" onclick="declareBoard();">신고</button>
 				<c:if test="${ mem.m_no eq b.m_no }">
 					<button class="btn waves-effect waves-light btn-info" type="button" onclick="location.href='bupdateView.do?b_no=${b.b_no}';">수정</button>
 					<button class="btn waves-effect waves-light btn-info" type="button" onclick="deleteCheck();">삭제</button>
 				</c:if>
 		</div>
 		<!-- 댓글 등록 -->
-            <div id="re">
-				<table id="reTb" width="700px" align="center" cellspacing="0">
-					<tr>
-						<td><textarea cols="70" rows="3" id="rContent"></textarea></td>
-						<td><button class="btn waves-effect waves-light btn-info" id="rBtn">등록</button></td>
-					</tr>
-				</table>
+            <div id="re" style="width:70%">
+				<div class="col-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="3" id="rContent"></textarea>
+                                    </div>
+                                    <hr>  
+                                    <div align="right">
+                                    <p><span id="counter">0</span> / 300</p>
+                                    <button type="button" class="btn btn-info" id="rBtn">등록</button>
+                                    </div>>
+                            </div> 
 			</div>
+			
+			<script>
+				 $(function(){
+			            $("#rContent").on("keyup", function(){
+			                var inputlength = $(this).val().length;
+			                $("#counter").html(inputlength);
+			                if(inputlength > 300) {
+			                    alert("300자를 초과할 수 없습니다.");
+			                    $(this).val($(this).val().substr(0, 300));
+			                    $("#rBtn").prop("disabled", true);
+			                } else {
+			                	$("#rBtn").prop("disabled", false);
+			                }
+	
+			            });
+			        });
+			</script>
+			
                      <!-- 댓글 목록 -->
                            <div id="relist">
                                 <div class="col-md-12">
                                     <div class="table-responsive mt-4" style="clear: both;">
-                                        <table id="demo-foo-pagination" class="table table-hover no-wrap">
+                                        <table style='word-break:break-all' id="demo-foo-pagination" class="table table-hover no-wrap">
                                             <thead>
                                                 <tr>
                                                     <td colspan="4"><b id="rCount"></b></td>
@@ -411,8 +431,9 @@
 			});
 			
 			jQuery("#rBtn").on("click", function(){
-				var content = $("#rContent").val();
-				if(content == ""){
+				var $content = $("#rContent").val();
+				//console.log("내용:" + $content);
+				if($content == ""){
 					alert("댓글을 작성해주세요!");
 					return false;
 				}
@@ -436,28 +457,43 @@
 				
 			});
 			
-			$clicked = 0;
+			//$clicked = 0;
 
 			jQuery(document).on("click", ".rr", function(){
 				//console.log($(this).parent().parent().children().eq(0).text());
 				$parent_no = $(this).parent().parent().children("#hrno").val();
 				
 				//$(this).parent().parent().after("<tr><td colspan='3'><textarea cols='55' rows='3' id='reContent'></textarea></td><td><button class='rrsb'>등록</button>" + "<input type='button' class='cancel' value='취소'/></td></tr>");
-				$(this).parent().parent().after("<tr><td colspan='3'><textarea cols='55' id='reContent'></textarea></td><td class='text-center'><button class='rrsb btn waves-effect waves-light btn-outline-info btn-xs'>등록</button>" + "<input type='button' class='cancel btn waves-effect waves-light btn-outline-secondary btn-xs' value='취소'/></td></tr>");
+				$(this).parent().parent().after("<tr><td colspan='3'><textarea cols='40' class='form-control' id='reContent'></textarea></td><td class='text-center'><button class='rrsb btn waves-effect waves-light btn-outline-info btn-xs'>등록</button>" + "<input type='button' class='cancel btn waves-effect waves-light btn-outline-secondary btn-xs' value='취소'/></td></tr>");
 				$(this).hide();
 				$(this).next().hide();
-				console.log($(this).next())
+				//console.log($(this).next())
 				//console.log($clicked);
 				//$clicked++;
 				//console.log($clicked);
+			});
+			
+			$(document).on("keyup", "#reContent", function(){
+				var inputlength = $(this).val().length;
+                console.log(inputlength);
+                if(inputlength > 300) {
+                    alert("300자를 초과할 수 없습니다.");
+                    $(this).val($(this).val().substr(0, 300));
+                    $(".rrsb").prop("disabled", true);
+                    $(".modify").prop("disabled", true);
+                } else {
+                	$(".rrsb").prop("disabled", false);
+                	$(".modify").prop("disabled", false);
+                }
 			});
 			
 			jQuery(document).on("click", ".rrsb", function(){
 				//console.log($("#reContent").val());
 				//console.log($parent_no);
 				
-				var content = $("#reContent").val();
-				if(content == ""){
+				var $content = $("#reContent").val();
+				console.log($content)
+				if($content == ""){
 					alert("댓글을 작성해주세요!");
 					return false;
 				}
@@ -507,9 +543,9 @@
 			 	//var $contentText= $content.text();
 				//console.log($content);
 				var $btns = $(this).parent();
-				console.log($btns);
+				//console.log($btns);
 				
-				var $reContent = $("<textarea cols='30' name='reContent' id='reContent'>" + $content.text() + "</textarea>");
+				var $reContent = $("<textarea cols='30' rows='2' class='form-control' id='reContent'>" + $content.text() + "</textarea>");
 				
 				$content.replaceWith($reContent);
 				$("#reContent").focus();
@@ -535,12 +571,14 @@
 				
 			});
 			
-			jQuery(document).on("click", ".modify", function(){
+			$(document).on("click", ".modify", function(){
 				
 				//var $r_no = $(this).parent().children().eq(0).text();
 				/* console.log($r_no);
 				console.log($("#reContent").val()); */
-				var $r_no = $(this).parent().children("#hrno").val();
+				var $r_no = $(this).parent().parent().children("#hrno").val();
+				console.log($("#reContent").val());
+				console.log($r_no);
 				
 				jQuery.ajax({
 					url:"updateReply.do",
@@ -584,9 +622,9 @@
 						$td = jQuery("<td class='text-center'>");
 						
 						$rnoTd = $("<td class='text-center'>").text("익명");
-						$rrnoTd = jQuery("<td class='text-center'>").text("┖>");
+						$rrnoTd = $("<td class='text-center'>").html('<i class="mdi mdi-subdirectory-arrow-right"></i>');
 							
-						$contentTd = $("<td class='content' width='400px'>").text(value.content);
+						$contentTd = $("<td style='word-wrap:break-word; min-width:400px; max-width:400px;' class='content'>").text(value.content);
 						$dateTd = jQuery("<td class='text-center'>").text(value.update_date);
 						
 						$rreply = jQuery('<input type="button" class="rr btn waves-effect waves-light btn-outline-info btn-xs" value="답댓글"/>');

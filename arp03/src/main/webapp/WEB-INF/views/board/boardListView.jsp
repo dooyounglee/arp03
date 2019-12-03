@@ -8,17 +8,15 @@
 <title>Insert title here</title>
 <%@ include file="../include/bhead.jsp"%>
 <style>
-	.col-lg-10, #page{
+	/* .col-lg-10, #page{
 		margin-left:auto;
 		margin-right: auto;
-	}
-	.card{
+	} */
+	/* .card{
 		margin-left:auto;
 		margin-right: auto;
-		/* width:1000px; */
-	}
-	.table{text-align:center;}
-	#searchArea{
+	} */
+	/* #searchArea{
 		width:100%;
 		margin-left:auto;
 		margin-right:auto;
@@ -28,7 +26,7 @@
 		margin-left:35%;
 		margin-right:35%;
 		width:100%;
-	}
+	} */
 </style>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 </head>
@@ -90,24 +88,16 @@
                         <div class="card">
                             <div class="card-body">
 	
-	<h3 align="center" style="color:black">자유 게시판</h3>
-	
-	<h6 align="center">총 게시글 갯수 : ${pi.listCount} 페이지 : 
-	<c:if test="${ pi.listCount eq 0 }">
-		0
-	</c:if>
-	<c:if test="${ pi.listCount ne 0 }">
-		${ pi.currentPage }
-	</c:if>
-		 / ${ pi.maxPage } 
+	<h4 align="left" style="color:black">자유 게시판</h4>
+	<div align="left">
 		<button class="btn waves-effect waves-light btn-info" onclick="location.href='binsertForm.do';">글쓰기</button>
-	</h6>
-	
+	</div>
+	<h6 class="card-subtitle"></h6>
 	<div class="row">
 			<div class="col-lg-12">
 					
 						<div class="table-responsive">
-	<table align="center" cellspacing="0" width="700" class="table color-table muted-table">
+	<table align="center" cellspacing="0" class="table color-table muted-table text-center">
 		<thead>
 		<tr>
 			<th>번호</th>
@@ -139,7 +129,7 @@
 		
 		</div>
 		<!-- 페이징 처리 -->
-		<div id="page" align="center">
+		<div id="page" class="text-center" style="float:none; margin:0 auto">
 		<ul id="pageul" class="pagination">
 		<c:if test="${pi.listCount ne 0}">
 		<!-- <tr align="center" height="20">
@@ -181,9 +171,9 @@
 		</c:if>
 		</ul>
 		</div>
-					<div id="searchArea" class="center-block text-center col-lg-12" align="center">
+					<div id="searchArea" class="text-center col-lg-12" align="center" style="float:none; margin:0 auto;">
 						<form id="searchDo" action="search.do" method="get">
-                                            <div align="center" id="realSearch" class="input-group text-center">
+                                            <div align="center" id="realSearch" class="input-group text-center" style="margin-right:35%; margin-left:35%; width:100%">
                                             	<select class="col-md-1 custom-select" id="searchCondition" name="condition">
                                                 <option value=1>제목</option>
                                                 <option value=2>제목+내용</option>
