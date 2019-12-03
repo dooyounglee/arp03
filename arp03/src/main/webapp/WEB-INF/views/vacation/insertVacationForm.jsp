@@ -92,7 +92,7 @@
                 </div>
 	
 			<div class="row">
-                    <div class="col-lg-8 col-xlg-8 col-md-8">
+                    <div class="col-lg-9 col-xlg-8 col-md-8">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-md-flex no-block align-items-center">

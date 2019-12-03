@@ -54,11 +54,18 @@ public interface VacationService {
 	int insertVacationDate(List<VacationDate> vDlist);
 
 	// 휴가 상태
-	VacationDate statusCheck(int v_no);
-
+	int statusCheck(int v_no);
+	
+	//	선생님 디테일
 	ArrayList<VacationDate> detailVactionT(Vacation v);
-
+	
+	// 관리자 리스트
 	ArrayList<Vacation> selectListAdmin();
+
+	//상태
+	ArrayList<Vacation> selectStatus(Vacation v);
+
+	Vacation selectVacation(int v_no);
 
 
 
