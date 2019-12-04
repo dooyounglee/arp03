@@ -216,7 +216,7 @@ CREATE TABLE  Board  (
     m_no    Number      REFERENCES MEMBER,
     ca_no    Number   DEFAULT 1   REFERENCES BCATEGORY,
     title    varchar2(1000)      NOT NULL,
-    content    varchar2(4000)      NOT NULL,
+    content    clob      NOT NULL,
     regdate    date   DEFAULT sysdate   NOT NULL,
     update_date    date   DEFAULT sysdate   NOT NULL,
     vcount    number   DEFAULT 0   NOT NULL,

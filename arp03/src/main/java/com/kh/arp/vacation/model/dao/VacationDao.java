@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.vacation.model.vo.Vacation;
 import com.kh.arp.vacation.model.vo.VacationDate;
@@ -145,6 +146,12 @@ public class VacationDao {
 
 	public List<VacationDate> selectVacationDateListWithCount(int v_no) {
 		return sqlSession.selectList("vacationMapper.selectVacationDateListWithCount" , v_no);
+	}
+
+
+	public ArrayList<Classdate> classdateList(int m_no) {
+		
+		return (ArrayList)sqlSession.selectList("vacationMapper.classdateList" , m_no);
 	}
 
 

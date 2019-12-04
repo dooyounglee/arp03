@@ -186,5 +186,12 @@ WHERE totalcount=yescount)
 AND vdd.LEC_NO=cd.LEC_NO AND vdd.VACATION_DATE=cd.CLASSDATE
 </select>
 
+<select id="classdateList" resultType="Classdate">
+select distinct cd.classdate 
+from myclass mc , classdate cd
+where mc.m_no=#{m_no} and mc.lec_no = cd.lec_no
+order by 1
+</select>
+
 
 </mapper>
