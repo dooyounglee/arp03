@@ -155,8 +155,8 @@
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
                 <div class="row page-titles">
-                    <div class="col-md-5 col-12 align-self-center">
-                        <h2 class="text-themecolor mb-2 mt-0">공지사항</h2>
+                    <div class="col-md-3 col-10 align-self-center">
+                        <h3 class="text-themecolor mb-0 mt-0">공지사항</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/arp">Home</a></li>
                             <li class="breadcrumb-item active">공지사항</li>

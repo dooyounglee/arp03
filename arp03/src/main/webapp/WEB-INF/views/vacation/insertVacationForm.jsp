@@ -383,7 +383,7 @@ $("#submit").click( function(){
 				$(this).css('background','gray')
 			}else if(yyyy==today_yyyy){
 				if(mm<today_mm){
-					$(this).css('background','gray').css("")
+					$(this).css('background','gray')
 				}else if(mm==today_mm){
 					if($(this).data('dd')<today_dd){
 						$(this).css('background','gray');
