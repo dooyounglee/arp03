@@ -113,7 +113,7 @@
                     <div class="col-10">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">게시판관리${hw }</h4>
+                                <h4 class="card-title">게시판관리</h4>
                                 <c:if test="${mem.typee eq 't' }">
                                 <button class="btn btn-success" onclick="add()">추가하기</button><br>
                                 </c:if>

@@ -140,12 +140,12 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <c:if test="${empty alist || alist.size()==0 }">
+                                <c:if test="${mem.typee eq 's' && (empty alist || alist.size()==0) }">
 								<button class="btn btn-success" onclick="ok()">제출</button>
 								</c:if>
-								<c:if test="${alist.size()>0 }">
+								<%-- <c:if test="${alist.size()>0 }"> --%>
 								<a class="btn btn-success" href="homeworklist.lec">목록</a>
-								</c:if>
+								<%-- </c:if> --%>
                            	</div>
                         </div>
                     </div>

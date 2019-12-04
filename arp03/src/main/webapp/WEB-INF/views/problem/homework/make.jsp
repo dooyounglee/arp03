@@ -96,7 +96,7 @@
                                 </div>
 	                            <div class="form-group">
 	                            	<label>End Date</label>
-                                    <input id="prob" class="form-control" name="enddate" value="${hw.enddate }"></input>
+                                    <input type="date" class="form-control" name="enddate" value="${hw.enddate }"></input>
                                 </div>
                                 <button class="btn btn-success">완료</button>
                             </form>

@@ -116,9 +116,9 @@
 		                                        <tbody>
 		                                        	<c:forEach var="hw" items="${list }">
 		                                        		<tr>
-			                                        		<td>${hw.hw_no }${hw.status }</td>
+			                                        		<td>${hw.hw_no }</td>
 			                                                <td><a href="getHomework.lec?hw_no=${hw.hw_no }">${hw.title }</a></td>
-			                                                <td>${hw.enddate }</td>
+			                                                <td>${hw.enddate.split(' ')[0] }</td>
 			                                                <td>
 			                                                <c:if test="${mem.typee eq 's' && hw.status eq'Y' }">
 			                                                	진행중
@@ -126,8 +126,11 @@
 			                                                <c:if test="${mem.typee eq 't' && hw.status eq'Y' }">
 			                                                	<button class="btn btn-success" onclick="end(${hw.hw_no })">마감</button>
 			                                                </c:if>
-			                                                <c:if test="${hw.status eq'N' }">
+			                                                <c:if test="${mem.typee eq 's' && hw.status eq'N' }">
 			                                                	<button class="btn btn-success" onclick="answer(${hw.hw_no })">정답확인</button>
+			                                                </c:if>
+			                                                <c:if test="${mem.typee eq 't' && hw.status eq'N' }">
+			                                                	마감
 			                                                </c:if>
 			                                                </td>
 															<c:if test="${mem.typee eq 't' }">
