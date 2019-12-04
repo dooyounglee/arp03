@@ -151,7 +151,7 @@
                                 <a class="btn btn-primary float-right" href="vinsertForm.me">휴가작성하기</a>
                                 <br>
                                 </c:if>
-                                <h6 class="card-subtitle">Add vacation <code>.table</code></h6>
+                               
                                 <div class="table-responsive">
                                     <table class="table color-table info-table">
                                         <thead>

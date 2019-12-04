@@ -119,17 +119,7 @@
 												</tr>
 											</c:forEach>
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>m_no</th>
-                                                <th>content</th>
-                                                <th>regdate</th>
-                                                <th>updatedate</th>
-                                                <th>m_no</th>
-                                                <th>status</th>
-                                            </tr>
-                                        </tfoot>
+                                       
                                     </table>
                                     <script>
 								   		$('#zero_config').DataTable();

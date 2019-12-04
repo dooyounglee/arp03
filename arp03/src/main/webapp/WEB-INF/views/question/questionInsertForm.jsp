@@ -241,38 +241,38 @@
 				//$('#summernote').summernote('pasteHTML', currentStr);//이거만 하면 현제 에디터에서 맨 앞에 currentStr이 붙을꺼야. 맞나?????????새
 				// 다시 summernote로 보냄
 				//$('#summernote').summernote('code', real +'<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');
-				$('#summernote').summernote('code', currentStr +'<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">')//이제 영상이 하나 들어갈꺼고
+				$('#summernote').summernote('code', currentStr +'<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');//이제 영상이 하나 들어갈꺼고
 				//클릭을 아무리 해도 영상 하나만 들어갈꺼야. 잘 되는거 같애.//<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">
 				//<iframe>태그 앞에 원래 있던 str만 붙여넣고 에디터에 갖다 붙이자. ㄱㄱ 이렇게용?.?ㅇㅇ 이제 뒤로 잘 붙어? 새로고침하기전까진 붙었는데 또 안돼요 ㄷㄷ ㅇ
 						//되는거 아니야??ㅏㅍㅇ앞에 붙었나? 방금?네 첨엔 뒤에붙엇는데 갑자기 앞에..그런가봐여 ㄷㄷ
 				//봤음? 계속 클릭한거야넵// return ㅣㅈ우니까 안된것같은..일단 지금까지꺼 푸시하고 넘겨줘봐 ㅋㅋ 나도 만져볼꼐 네 ㅠㅠ 감사해영 ㅠㅠㅃㅃ
 				//인터치고 하면 되는건가 커서위치 때문인가?흠..
-			var youtu = "https://youtu.be/";
-			var naver = "naver.com/v/";
-			var kakao = "https://tv.kakao.com/v/";
-			var daum = "https://kakaotv.daum.net/v/";
-			var youtubeId = youtubeaaa.replace('https://youtu.be/','https://www.youtube.com/embed/');
-			var naverId = youtubeaaa.replace('naver.com/v/','naver.com/embed/');
-			var kakaoId = youtubeaaa.replace('https://tv.kakao.com/v/','https://play-tv.kakao.com/embed/player/cliplink/');
-			var daumNewsId = youtubeaaa.replace('https://kakaotv.daum.net/v/','https://play-tv.kakao.com/embed/player/cliplink/');
-			if(youtubeaaa.indexOf(youtu) != -1){
-				$("#youtuberealId").attr("src", youtubeId);
-			}
-			if(youtubeaaa.indexOf(naver) != -1){
-				$("#youtuberealId").attr("src", naverId);
-			}
-			if(youtubeaaa.indexOf(kakao) != -1){
-				$("#youtuberealId").attr("src", kakaoId);
-			}
-			if(youtubeaaa.indexOf(daum) != -1){
-				("#youtuberealId").attr("src", daumNewsId);
-			}
-			
-			
-			/* 값 비우기 */
-			$(".inputtexturl").val("").focus();
+				var youtu = "https://youtu.be/";
+				var naver = "naver.com/v/";
+				var kakao = "https://tv.kakao.com/v/";
+				var daum = "https://kakaotv.daum.net/v/";
+				var youtubeId = youtubeaaa.replace('https://youtu.be/','https://www.youtube.com/embed/');
+				var naverId = youtubeaaa.replace('naver.com/v/','naver.com/embed/');
+				var kakaoId = youtubeaaa.replace('https://tv.kakao.com/v/','https://play-tv.kakao.com/embed/player/cliplink/');
+				var daumNewsId = youtubeaaa.replace('https://kakaotv.daum.net/v/','https://play-tv.kakao.com/embed/player/cliplink/');
+				if(youtubeaaa.indexOf(youtu) != -1){
+					$("#youtuberealId").attr("src", youtubeId);
+				}
+				if(youtubeaaa.indexOf(naver) != -1){
+					$("#youtuberealId").attr("src", naverId);
+				}
+				if(youtubeaaa.indexOf(kakao) != -1){
+					$("#youtuberealId").attr("src", kakaoId);
+				}
+				if(youtubeaaa.indexOf(daum) != -1){
+					("#youtuberealId").attr("src", daumNewsId);
+				}
+				
+				
+				/* 값 비우기 */
+				$(".inputtexturl").val("").focus();
+				};
 		});
-		
 		function upContent(){
 			if($(".note-editable").text().trim() == "" && $("#summernote").val() == ""){
 				alert("내용을 입력해주세요.");

@@ -7,6 +7,12 @@
 <meta charset="UTF-8">
 <title>질문게시판</title>
 	<%@ include file="../include/bhead.jsp"%>
+	
+	 	<script>
+			$(function(){
+			 	page(1);
+			}); 	
+         </script>
 </head>
 <body class="fix-header card-no-border logo-center">
 
@@ -78,20 +84,31 @@
 									 </c:if>
                                 </h6>
                                 <script>
-                                	var ArrayList = [];
+                                
+									var currentPage = 1;
+									var boardLimit = 5; // 게시글 갯수
+									var pageLimit = 5; // 페이지 바 표시갯수
+									var maxPage=0;// = parseInt(Math.ceil(ArrayList.length / boardLimit));
+                             		var startPage=1;
+                    	    		var endPage=5;
+                               
+                        		
+                        		var ArrayList = [];
+                                	
                                 	jQuery.ajax({
                         				url:"questionList2.aj",
                         				dataType:"json",
                         				success:function(data){
                         					console.log(data);
                         					ArrayList = data;
-                        					
+                        					maxPage = parseInt(Math.ceil(ArrayList.length / boardLimit));
                         					
                         				},
                         				error:function(){
                         					console.log("ajax 통신 실패");
                         				}
                         			});
+                                	
                                 	
                                 	//제목검색용
                                 		function searchSelect(){
@@ -123,6 +140,11 @@
                                 <script>
                                 
                                 function page(pNo){
+                                	currentPage = pNo;
+                                	
+                                	//startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
+                            		//endPage = startPage + pageLimit -1;
+                            		
                                 	
                                 	$tbody = $("#dlendud tbody").eq(0);
                                 	$tbody.html("");
@@ -142,33 +164,37 @@
 									</tr> */
                                 	
                                 	
-                                	for(i=0;i<5;i++){
-                                		str+='<tr>';
-                                		str+='<td>'+ArrayList[st+i].q_no+'</td>';
-                                		str+='<td style="max-width:300px;">'+
-                                		"<a href='qdetail.qu?q_no="+ArrayList[st+i].q_no+"'>" + 
-                                				ArrayList[st+i].title+"</a>"
-                                		+'</td>';
-                                		str+='<td>'+ArrayList[st+i].name+'</td>';
-                                		str+='<td>'+ArrayList[st+i].regdate+'</td>';
-                                		str+='<td>'+ArrayList[st+i].vcount+'</td>';
-                                		if(ArrayList[st+i].fileox =='Y'){
-                                			str+='<td><img width="15" src="resources/siraFile/클립2.svg"></td>';
-                                		};
-										if(ArrayList[st+i].fileox != 'Y'){
-											str+='<td>'+ArrayList[st+i].fileox+'</td>';
-										};
-										str+='<td>'+ArrayList[st+i].isreply+'</td>';
-                                		str+='</tr>';
-                                		
-                                	/* 	if(ArrayList == 5){
-                                			return;
-                                		} */
-                                		
+	                                	for(i=0;i<boardLimit;i++){
+	                                		if(st+i == ArrayList.length){
+	                                			break;
+	                                		}
+	                                		str+='<tr>';
+	                                		str+='<td>'+ArrayList[st+i].q_no+'</td>';
+	                                		str+='<td style="max-width:300px;">'+
+	                                		"<a href='qdetail.qu?q_no="+ArrayList[st+i].q_no+"'>" + 
+	                                				ArrayList[st+i].title+"</a>"
+	                                		+'</td>';
+	                                		str+='<td>'+ArrayList[st+i].name+'</td>';
+	                                		str+='<td>'+ArrayList[st+i].regdate+'</td>';
+	                                		str+='<td>'+ArrayList[st+i].vcount+'</td>';
+	                                		if(ArrayList[st+i].fileox =='Y'){
+	                                			str+='<td><img width="15" src="resources/siraFile/클립2.svg"></td>';
+	                                		};
+											if(ArrayList[st+i].fileox != 'Y'){
+												str+='<td>'+ArrayList[st+i].fileox+'</td>';
+											};
+											str+='<td>'+ArrayList[st+i].isreply+'</td>';
+	                                		str+='</tr>';
+	                                		
+	                                	/* 	if(ArrayList == 5){
+	                                			return;
+	                                		} */
+	                                		
+	                                	}
+	                                	$tbody.append(str);
+	                                	console.log("start="+startPage)
                                 	}
-                                	$tbody.append(str);
-                                }
-                                
+								
                                 </script>
                                 <div class="table-responsive">
                                     <table id="dlendud" class="table color-bordered-table muted-bordered-table">
@@ -259,7 +285,7 @@
                                 
                                         </tbody>
                                     </table>
-                                 
+                                
                                  
           <div align="center">                       
           <ul id="pageul" class="pagination" align="center">
@@ -267,16 +293,68 @@
 		<!-- <tr align="center" height="20">
 			<td colspan="5"> -->
 				<!-- 이전 -->
-					<li class="page-item"><a class="page-link">이전</a></li>
+					<!-- <li class="page-item"><a class="page-link">이전</a></li> -->
 				<!-- 페이지 -->
-						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(1)">1</a></li>
+						<!-- <li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(1)">1</a></li>
 						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(2)">2</a></li>
 						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(3)">3</a></li>
+						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(4)">3</a></li>
+						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(5)">3</a></li>
+						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(6)">3</a></li>
+						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(7)">3</a></li>
+						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(8)">3</a></li>
+						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(9)">3</a></li>
+						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(10)">3</a></li>
+						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(11)">3</a></li> -->
 				<!-- 다음 -->
-					<li class="page-item"><a class="page-link">다음</a></li>
+					<!-- <li class="page-item"><a class="page-link">다음</a></li> -->
 			<!-- </td>
 		</tr> -->
 			</ul>
+			<script>
+			function showPage(){
+				startPage = parseInt((currentPage - 1) / pageLimit) * pageLimit + 1;
+	    		endPage = startPage + pageLimit -1;
+				
+				var btn2 = "";
+				var ultg = $("#pageul");
+				
+				btn2 += '<li id="qBefore" style="cursor:pointer" class="page-item"><a class="page-link">'+"이전"+'</a></li>';
+				
+				for(i=startPage;i<=endPage;i++){
+	        		/* if(st+i == ArrayList.length){
+	        			break;
+	        		} */
+	        		btn2+='<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page('+i+')">'+i+'</a></li>';
+	        	}
+			
+				btn2 += '<li style="cursor:pointer" class="page-item qAfter"><a class="page-link">'+"다음"+'</a></li>';
+        		ultg.html("");
+				ultg.append(btn2);
+			}
+			
+			showPage();
+        	$("#qBefore").click(function(){
+        		page(currentPage-1);
+        	});
+        	
+        	/* $("#qAfter").click(function(){
+        		page(currentPage+1);
+        		if(endPage+1 == maxPage){
+        			$("#qAfter").attr("disabled","false");
+        		}
+        		showPage();
+        	}); */
+        	
+        	$(document).on('click',".qAfter",function(){
+        		page(currentPage+1);
+        		if(endPage+1 == maxPage){
+        			$("#qAfter").attr("disabled","false");
+        		}
+        		showPage();
+        	});
+        	
+			</script>
 			</div>
            
                                 </div>
