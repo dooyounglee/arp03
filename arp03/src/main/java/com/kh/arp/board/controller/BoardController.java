@@ -59,7 +59,7 @@ public class BoardController {
 	@RequestMapping("binsert.do")
 	public String insertBoard(Board b, HttpServletRequest request, Model model,
 			@RequestParam(value = "uploadFile", required = false) MultipartFile file) {
-		System.out.println(b);
+		//System.out.println(b);
 		int result = bService.insertBoard(b);
 		if (result > 0) {
 			return "redirect:blist.do";
