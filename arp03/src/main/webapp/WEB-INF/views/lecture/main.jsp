@@ -85,10 +85,58 @@
                     <div class="col-lg-10 col-xlg-10 col-md-10">
                         <div class="card">
                             <div class="card-body">
-                                <h1 class="card-title ttt" id="1">${lec.title } 강의 페이지 입니다.</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.</p>
-                                <h4 class="card-title mt-4" id="22">2. Title will be here</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.</p>
+                                <h1 class="card-title">${lec.title } 강의 페이지 입니다.</h1>
+                                <h2 class="card-subtitle">${lec.content }</h2>
+                                <div class="row">
+                                	<div class="col-md-6">
+                                		<h3>시험</h3>
+                                		<table class="table">
+                                			<thead>
+                                				<tr>
+                                					<th>시험이름</th>
+                                					<th>시험일</th>
+                                				</tr>
+                                			</thead>
+                                			<tbody>
+                                				<c:if test="${empty elist }">
+                                					<tr><td colspan="2">등록된 시험이 아직(?) 없습니다.</td></tr>
+                                				</c:if>
+                                				<c:if test="${!empty elist }">
+	                                				<c:forEach var="e" items="${elist }">
+	                                				<tr>
+	                                					<td>${e.title }</td>
+	                                					<td>${e.examdate }</td>
+	                                				</tr>
+	                                				</c:forEach>
+                                				</c:if>
+                                			</tbody>
+                                		</table>
+                                	</div>
+                                	<div class="col-md-6">
+                                		<h3>숙제</h3>
+                                		<table class="table">
+                                			<thead>
+                                				<tr>
+                                					<th>숙제이름</th>
+                                					<th>제출일</th>
+                                				</tr>
+                                			</thead>
+                                			<tbody>
+                                				<c:if test="${empty hwlist }">
+                                					<tr><td colspan="2">등록된 숙제가 아직(?) 없습니다.</td></tr>
+                                				</c:if>
+                                				<c:if test="${!empty hwlist }">
+	                                				<c:forEach var="hw" items="${hwlist }">
+	                                				<tr>
+	                                					<td>${hw.title }</td>
+	                                					<td>${hw.enddate }</td>
+	                                				</tr>
+	                                				</c:forEach>
+	                                			</c:if>
+                                			</tbody>
+                                		</table>
+                                	</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -134,11 +182,11 @@
 	
 	
 	
-	<jsp:include page="../include/header.jsp"/>
+<%-- 	<jsp:include page="../include/header.jsp"/>
 		수강페이지
 	<a href="">메인</a>
 	<a href="">강의계획</a>
-<%-- 	<a href="question.qu?lec_no=${ c.lec_no }">질문게시판</a> --%>
+	<a href="question.qu?lec_no=${ c.lec_no }">질문게시판</a>
 	<a href="question.qu?lec_no=${ lec.lec_no }">질문게시판</a>
 	<a href="">내 출석</a>
 	<a href="">내 점수</a>
@@ -149,6 +197,6 @@
 	
 	${lec }
 
-	<jsp:include page="../include/footer.jsp"/>
+	<jsp:include page="../include/footer.jsp"/> --%>
 </body>
 </html>
