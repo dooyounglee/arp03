@@ -256,7 +256,7 @@
 	
 	
 	
-	<jsp:include page="../../include/header.jsp"/>
+	<%-- <jsp:include page="../../include/header.jsp"/>
 	
 	<form action="make.lec" method="post" autocomplete=off>
 		<input type="hidden" value="">
@@ -279,7 +279,7 @@
 		<br>
 		장소:<input name="place"><br>
 		
-		<br>
+		<br> --%>
 		
 		<!-- <table style="text-align:center;float:left;">
 			<thead>
@@ -302,14 +302,14 @@
 			</tbody>
 		</table> -->
 	
-		<div id="chooseClassdate" style="float:left;">
+		<!-- <div id="chooseClassdate" style="float:left;">
 		
 		</div>
 		
 		<br clear="both">
 		
 		<button>요청</button>
-	</form>
+	</form> -->
 	
 	
 	
@@ -547,6 +547,6 @@
 	})
 	</script>
 			
-	<jsp:include page="../../include/footer.jsp"/>
+	<%-- <jsp:include page="../../include/footer.jsp"/> --%>
 </body>
 </html>

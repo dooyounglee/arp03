@@ -148,10 +148,10 @@
 	
 	
 	
-<h1>숙제 추가하기</h1>
+<%-- <h1>숙제 추가하기</h1>
 <c:forEach var="hw" items="${list }">
 	${hw }<button onclick="add(${hw.hw_no })">추가</button><br>
-</c:forEach>
+</c:forEach> --%>
 
 <script>
 	var parent = window.opener;

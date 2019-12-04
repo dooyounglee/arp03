@@ -184,24 +184,21 @@
 	
 	
 	
-<button onclick="add()">숙제 추가</button>
+<%-- <button onclick="add()">숙제 추가</button>
 <div id="homeworkArea">
 	<div id="homeworkContent">
 <c:forEach var="hw" items="${list }">
 	<a href="getHomework.lec?hw_no=${hw.hw_no }">${hw }</a>
-	<%-- <button onclick="solve(${hw.hw_no })">문제풀기</button> --%>
+	<button onclick="solve(${hw.hw_no })">문제풀기</button>
 	<button onclick="answer(${hw.hw_no })">정답확인</button>
 	<button onclick="del(${hw.hw_no })">삭제</button><br>
 </c:forEach>
 	</div>
-</div>
+</div> --%>
 
 	<form id="form" method='post'>
 		<input type="hidden" name="hw_no">
 	</form>
-	<script>
-		
-	</script>
 <script>
 	function add(){
 		var url="homework.te";

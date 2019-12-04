@@ -195,7 +195,7 @@
 	
 	
 	
-${hw }<br>
+<%-- ${hw }<br>
 <c:forEach var="p" items="${plist }" varStatus="i">
 	문제:${p.problem }<br>
 	<c:if test="${empty alist || alist.size()==0 }">
@@ -214,7 +214,7 @@ ${hw }<br>
 	</c:if>
 	<c:if test="${alist.size()>0 }">
 	<a href="homeworklist.lec">목록</a>
-	</c:if>
+	</c:if> --%>
 
 <script>
 	function ok(){
