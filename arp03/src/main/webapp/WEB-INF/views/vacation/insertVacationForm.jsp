@@ -30,13 +30,8 @@
 
 		<!-- Page wrapper  -->
         <div class="page-wrapper">
-
-
-
-
-
 	<form action="vinsert.me" method="POST" class="form-material mt-4" >
-	<input type="hidden" name="m_no" id="m_no" value="${mem.m_no }" readonly><br>
+	<input type="hidden" name="m_no" id="m_no" value="${mem.m_no }" readonly>
 <%-- 	강의번호:<input type="text" name="lec_no"  id="lec_no" value="${param.lec_no }" readonly><br> --%>
 	<%-- 강의명:<input type="text" name="title" id="title"value="${param.title }" readonly><br> --%>
 <!-- 	제목:<input type="text" id="vacation_title" name="vacation_title"><br>

@@ -71,7 +71,7 @@
                     <div class="col-md-5 col-12 align-self-center">
                         <h3 class="text-themecolor mb-0 mt-0">학생휴가관리</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/arp">Home</a></li>
                             <li class="breadcrumb-item active">학생휴가관리</li>
                         </ol>
                     </div>
@@ -110,8 +110,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">학생 휴가 관리</h4>
-                                <h6 class="card-subtitle">StudentVacation<code>.table-bordered</code>for borders on all sides of the
-                                    table and cells.</h6><br>
+                                <h6 class="card-subtitle"><code></code></h6><br>
                                 <div class="table-responsive">
                                     <table class="table color-table info-table">
                                         <thead>

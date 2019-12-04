@@ -107,11 +107,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">자유게시판</h3>
-                                <a class="btn btn-success float-right" href="blist.do">더보기</a>
                                 <c:if test="${empty mem}">
                                	로그인 해주세요.
                                	</c:if>
                                	<c:if test="${!empty mem}">
+                                <a class="btn btn-success float-right" href="blist.do">더보기</a>
                                		<table class="table table-hover">
 	                                	<thead>
 	                                		<tr>

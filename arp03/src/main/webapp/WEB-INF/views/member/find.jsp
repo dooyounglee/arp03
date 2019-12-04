@@ -41,10 +41,10 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">Find id/pw</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Form</li>
+                            <li class="breadcrumb-item active">Find id/pw</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -153,7 +153,7 @@
                     <div class="col-lg-6 col-md-12">
                         <div class="card card-body">
                             <h3 class="mb-0">pw찾기</h3>
-                            <p class="text-muted mb-4 font-13">비번은 우리도 모릅니다. 임시 비번으로 바꾸고 입력하신 이메일로 알려줄께요.</p>
+                            <p class="text-muted mb-4 font-13">비번은 우리도 모릅니다. 이메일 인증 후 새로운 비번으로 설정해주세요.</p>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <form action="findPw.me" method="post" autocomplete=off>

@@ -117,14 +117,10 @@ public class SurveyController {
 		sq.setM_no(m_no);
 		sq.setSu_no(su_no);
 		List<SurveyQuestion> s = ss.detailsurvey(sq);
-		System.out.println(sq+"김경수");
-		System.out.println("dlendud============================="+s);
 		String ssq = s.get(0).getEnrolldate();
 		int ssu = s.get(0).getSu_no();
 		String title = s.get(0).getTitle();
-			System.out.println("------------="+s);
-			System.out.println("=-=-=-=-"+ssq);
-			mv.addObject("s", s).addObject("ssq", ssq).addObject("ssu", ssu).addObject("title", title).setViewName("manager/detailsurvey");
+		mv.addObject("s", s).addObject("ssq", ssq).addObject("ssu", ssu).addObject("title", title).setViewName("manager/detailsurvey");
 			
 			return mv;
 		}
@@ -149,8 +145,6 @@ public class SurveyController {
 	}
 	@RequestMapping("insertcompletesurvey.ma")
 	public ModelAndView updatesurvey(ModelAndView mv, int lec_no, int su_no, ForSurvey q, String[] answer, HttpSession session) {
-		System.out.println("-000000000000000----"+answer);
-		System.out.println("20319371===="+q);
 		//---------------------------- insertSurvey 구문-----------------
 		int ds =0;			// 질문이 제대로 꽂혔는지 판단하는 변수
 		int dd =0;			// 제대로 트랜잭션 리턴값이 올때 판단하는 번수
@@ -165,10 +159,8 @@ public class SurveyController {
 				System.out.println(qq+"========");
 				fs.setAnswer((String)qq);
 				fs.setSq_no(j);
-				System.out.println(fs);
-					ds=ss.updatesurveyquestion(fs); 					// 특정설문조사에 답을 update하는 메소드
-					System.out.println(ds);
-						if(ds<=0) {
+				ds=ss.updatesurveyquestion(fs); 					// 특정설문조사에 답을 update하는 메소드
+				if(ds<=0) {
 							dd+=1;
 							break;
 						}
@@ -203,31 +195,24 @@ public class SurveyController {
 	//그수업과 설문에 들어가있는 m_no의 번호
 	int lsm=list.get(0).getM_no();
 	sq.setM_no(lsm);
-	System.out.println(sq);
 	//sq, 질문, 답 값을 불러오는 메소드
 	List<SurveyQuestion> lsq= ss.sq_nosurvey(sq);
-	System.out.println(lsq+"lsq");
 	// 최종 질문 순서번호를 알기위한 메소드
 	int lastsq_no=lsq.size();
 	
 	sq.setSq_no(lastsq_no);
 	// 질문과 답과 m_no이 담겨있는 List변수
 	List<SurveyQuestion> sm= ss.resultsurvey(sq);
-	System.out.println("sm"+sm);
 	float su_total_m_no=sm.size();
 	ArrayList a=new ArrayList();
 	// 수업의 만족도의 평균 메소드==============
 	for(SurveyQuestion msq: lsq) {
-		System.out.println("msq"+msq);
 		float m = ss.sumsurvey(msq);// 질문에 대답한 학생들의 답들을 더한값
-		System.out.println("m"+m);
 		float b=m/su_total_m_no;  // 더한값/질문에 대답한 총 학생수
 		String c=String.format("%.1f",b);
 		a.add(c);					
 	}
-	System.out.println(a);
 	// =============================
-	System.out.println(sm+"----------"+a);
 	mv.addObject("rsq", lsq).addObject("a", a).setViewName("manager/resultsurvey");
 		return mv;
 	}
