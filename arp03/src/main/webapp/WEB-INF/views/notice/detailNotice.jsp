@@ -41,7 +41,7 @@
 		<!-- Page wrapper  -->
         <div class="page-wrapper">
 	<!-- End of Left-sidebar -->
-	<br><br><br>
+
 	
 	
 	
