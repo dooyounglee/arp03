@@ -364,7 +364,7 @@ $("#submit").click( function(){
 		    dd = (dd < 10) ? '0' + dd : dd;
 			for(i=0;i<arrr.length;i++){
 				if($('#yyyy').html()+'-'+mm+'-'+dd==arrr[i]){
-					$(this).css('background','blue').css('color','white')
+					$(this).css('background','blue')
 					$(this).data('exist',true);
 				}
 			}
