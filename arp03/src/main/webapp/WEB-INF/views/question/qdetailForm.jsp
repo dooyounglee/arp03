@@ -312,7 +312,7 @@
 																</div>
 																<div class="contentWordText" style="display: inline;">
 																	<span class="contentWordText"
-																		style="color: black; font: fantasy;"> ${ qr.content }
+																		style="color: black; font: fantasy; word-break:break-all; white-space:pre-line;"> ${ qr.content }
 																	</span>
 																	<!-- <script>
 														$(function(){
@@ -804,7 +804,7 @@
 
 
 				<!-- header에 있는 jquery 충돌 방지 -->
-				<script src='jquery-3.2.1.js'></script>
+<!-- 				<script src='jquery-3.2.1.js'></script> -->
 
 				<script>
    

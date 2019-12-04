@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.arp.board.model.vo.Board;
 import com.kh.arp.common.PageInfo;
@@ -37,10 +38,12 @@ public class QController {
 
 	@Autowired
 	private QService qService;
-
+/*
 	@RequestMapping("question.qu")
 	public ModelAndView questionList(ModelAndView mv,
-			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, HttpSession session) {
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, HttpSession session, Question q) {
+		System.out.println("Question.qu : " +q);
+		
 		// 세션에 담아둔 Lecture에 lec_no가지고오자
 		int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
 		
@@ -62,7 +65,7 @@ public class QController {
 
 		return mv;
 	}
-
+*/
 	@RequestMapping("qWriteForm.qu")
 	public String questionInsertView(Model model) {
 		
@@ -425,5 +428,157 @@ public class QController {
 		 
 	 }
 	 
+	 @RequestMapping("qsearchSelect.qu")
+	 public ModelAndView qsearchSelect(Question q, String searchSelectContent, ModelAndView mv, Question Category1,
+			 							@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, HttpSession session) {
+		 //System.out.println("ddd0 :"+Category1);
+		 int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+		 
+		 
+		 q.setLec_no(lec_no);
+		 
+		 
+
+		 if(q.getCategory1().equals("Category1")) { // 제목
+			 	q.setCategory1("1");
+			 	q.setTitle(searchSelectContent);
+		 }
+		 
+		 if(q.getCategory1().equals("Category2")) { // 내용
+				q.setCategory1("2");
+				q.setContent(searchSelectContent);
+		 }
+		/*
+		 * if(q.getCategory1().equals("Category3")) { // 내가 쓴 글 int m_no =
+		 * ((Member)session.getAttribute("mem")).getM_no(); q.setCategory1("3");
+		 * q.setM_no(m_no); q.setContent(searchSelectContent); System.out.println(q); }
+		 */ 
+		 if(q.getCategory1().equals("Category4")) { // 작성자
+			 	q.setCategory1("4");
+			 	q.setContent(searchSelectContent);
+		 }
+			
+		 
+		 
+		 int listCount = qService.searchListCount(q);
+
+			int pageLimit = 5;
+			int boardLimit = 10;
+			
+			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
+			// PageInfo pi = new PageInfo(currentPage, listCount, 5, 10); 이렇게 바로써도됨
+		 
+		 ArrayList<Question> qList = qService.selectQuestionList(pi, q);
+		/*
+		 * // lecture 객체 가져오자~ Lecture lec = qService.getLecture(lec_no);
+		 */
+			
+			// 데이터값, 뷰 지정
+			mv.addObject("pi", pi).addObject("qList", qList).setViewName("question/question");
+		 
+		 
+		 return mv;
+	 }
+	 
+		@RequestMapping("question.qu")
+		public ModelAndView questionList(ModelAndView mv, HttpSession session) {
+			
+			// 세션에 담아둔 Lecture에 lec_no가지고오자
+			int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+			
+			ArrayList<Question> qList = qService.selecttest(lec_no);
+			// lecture 객체 가져오자~
+			
+			// 데이터값, 뷰 지정
+			mv.addObject("qList", qList).setViewName("question/question");
+
+			return mv;
+		}
+	 
+		@ResponseBody
+		@RequestMapping(value="questionList2.aj", produces="application/json; charset=UTF-8")
+		public String questionList2aj(ModelAndView mv, HttpSession session) {
+			
+			// 세션에 담아둔 Lecture에 lec_no가지고오자
+			int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+			
+			ArrayList<Question> qList = qService.selecttest(lec_no);
+			 Gson gson=new GsonBuilder().create();
+			 return gson.toJson(qList);
+		}
+		
+		/*
+		@ResponseBody
+		@RequestMapping(value="questionList3.aj", produces="application/json; charset=UTF-8")
+		public String questionList3aj(ModelAndView mv, String title, HttpSession session) {
+			
+			// 세션에 담아둔 Lecture에 lec_no가지고오자
+			int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+			
+			ArrayList<Question> qList = qService.selecttest(lec_no);
+			 Gson gson=new GsonBuilder().create();
+			 return gson.toJson(qList);
+		}
+		*/
+		
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value="replyList.do",
+	 * produces="application/json; charset=UTF-8") public String replyList(int b_no,
+	 * 
+	 * @RequestParam(value = "currentPage", defaultValue = "1") int currentPage) {
+	 * //System.out.println("댓글테스트"); int listCount = bService.replyListCount(b_no);
+	 * PageInfo pi = new PageInfo(currentPage, listCount, 10, 10); ArrayList<BReply>
+	 * list = bService.selectReplyList(b_no, pi); Gson gson = new
+	 * GsonBuilder().setDateFormat("yyyy-MM-dd").create(); HashMap map = new
+	 * HashMap(); map.put("pi", pi); map.put("list", list); return gson.toJson(map);
+	 * }
+	 */
+		
+		
+		@ResponseBody
+		@RequestMapping(value="questionList3.aj", produces="application/json; charset=UTF-8")
+		 public String qsearchSelect(Question q, String searchSelectContent,  String Category1, HttpSession session) {
+			 
+			//System.out.println("ddd0 :"+Category1);
+			 
+			 int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+			 
+			 q.setLec_no(lec_no);
+			 
+			 q.setCategory1(Category1);
+			 
+			 if(q.getCategory1().equals("Category1")) { // 제목
+				 	q.setCategory1("1");
+				 	q.setTitle(searchSelectContent);
+			 }
+			 
+			 if(q.getCategory1().equals("Category2")) { // 내용
+					q.setCategory1("2");
+					q.setContent(searchSelectContent);
+			 }
+			 
+			 if(q.getCategory1().equals("Category3")) { // 내가 쓴 글 int m_no =
+				 int m_no = ((Member)session.getAttribute("mem")).getM_no();
+				 q.setCategory1("3");
+				 q.setM_no(m_no);
+				 q.setTitle(searchSelectContent); 
+			 }
+			 
+			 if(q.getCategory1().equals("Category4")) { // 작성자
+				 	q.setCategory1("4");
+				 	q.setName(searchSelectContent);
+			 }
+			 
+			 ArrayList<Question> qList = qService.selectQuestionList(q);
+			 
+			 Gson gson=new GsonBuilder().create();
+			 return gson.toJson(qList);
+			 
+		 }
+
+
+
 
 }

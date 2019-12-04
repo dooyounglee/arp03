@@ -15,7 +15,9 @@ public class VacationDate {
 	private String name;
 	private String reason;
 	private String tstatus;
-	private String astatus;
+//	private String astatus;
 	private String status;
 	private String title;
+	
+	private int nth;
 }

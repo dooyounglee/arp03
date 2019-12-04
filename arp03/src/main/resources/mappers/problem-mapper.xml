@@ -56,7 +56,7 @@
 	</update>
 	
 	<insert id="makeHomework">
-		insert into homework values(seq_homework.nextval,#{m_no},#{title},sysdate)
+		insert into homework values(seq_homework.nextval,#{m_no},#{title},to_date(#{enddate},'yyyy-mm-dd'))
 		<selectKey keyProperty="hw_no" resultType="int" order="AFTER">
 			select seq_homework.currval from dual
 		</selectKey>

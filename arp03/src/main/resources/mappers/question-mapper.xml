@@ -9,6 +9,7 @@
 		<result property="title" column="title"/>
 		<result property="name" column="name"/>
 		<result property="regdate" column="regdate"/>
+		<result property="content" column="content"/>
 		<result property="vcount" column="vcount"/>
 		<result property="isreply" column="isreply"/>
 		<result property="fileox" column="fileox"/>
@@ -186,5 +187,86 @@
         from board
         where ca_no=1 and status='Y'
         order by vcount desc
+	</select>
+	<select id="selectQuestionSearchList" resultMap="qList">
+	<choose>
+		<when test='Category1 == "1".toString()'>
+			select q.q_no, q.lec_no, q.m_no, q.title, m.name,
+	           q.regdate, q.vcount, q.isreply, q.fileox, originalname,
+	           changename, youtubelink
+		    from question q
+		    join member m on(q.m_no=m.m_no)
+		    left join qfile f on(q.q_no=f.q_no)
+		    where q.lec_no=#{lec_no} and q.status='Y' and title like '%' || #{title} || '%'
+		    order by q.q_no desc
+		</when>
+		<when test='Category1 == "2".toString()'>
+			select q.q_no, q.lec_no, q.m_no, q.title, m.name,
+	           q.regdate, q.content, q.vcount, q.isreply, q.fileox, originalname,
+	           changename, youtubelink
+		    from question q
+		    join member m on(q.m_no=m.m_no)
+		    left join qfile f on(q.q_no=f.q_no)
+		    where q.lec_no=#{lec_no} and q.status='Y' and content like '%' || #{content} || '%'
+		    order by q.q_no desc
+		</when>
+ 		<when test='Category1 == "3".toString()'>
+			select q.q_no, q.lec_no, q.m_no, q.title, m.name,
+		           q.regdate, q.content, q.vcount, q.isreply, q.fileox, originalname,
+		           changename, youtubelink
+		    from question q
+		    join member m on(q.m_no=m.m_no)
+		    left join qfile f on(q.q_no=f.q_no)
+		    where q.lec_no=#{lec_no} and q.status='Y' and q.m_no=#{m_no} and title like '%' || #{title} || '%'
+		    order by q.q_no desc
+		</when>
+		<when test='Category1 == "4".toString()'>
+			select q.q_no, q.lec_no, q.m_no, q.title, m.name,
+		           q.regdate, q.content, q.vcount, q.isreply, q.fileox, originalname,
+		           changename, youtubelink
+		    from question q
+		    join member m on(q.m_no=m.m_no)
+		    left join qfile f on(q.q_no=f.q_no)
+		    where q.lec_no=#{lec_no} and q.status='Y' and name like '%' || #{name} || '%'
+		    order by q.q_no desc
+		</when>
+	</choose>
+	</select>
+	
+	<select id="searchListCount" resultType="_int">
+		<choose>
+			<when test='Category1 == "1".toString()'>
+				select count(*)
+				from Question
+				where lec_no=#{lec_no} and status='Y' and title like '%' || #{title} || '%'
+			</when>
+			<when test='Category1 == "2".toString()'>
+				select count(*)
+				from Question
+				where lec_no=#{lec_no} and status='Y' and content like '%' || #{content} || '%'
+			</when>
+			<when test='Category1 == "3".toString()'>
+				select count(*)
+				from Question
+				where lec_no=#{lec_no} and status='Y' and q.m_no=#{m_no} and content like '%' || #{title} || '%'
+			</when>
+			<when test='Category1 == "3".toString()'>
+				select count(*)
+				from Question
+				where lec_no=#{lec_no} and status='Y' and name like '%' || #{name} || '%'
+			</when>
+		</choose>
+	</select>
+	
+	
+	<select id="selecttest" resultMap="qList">
+	    select q.q_no, q.lec_no, q.m_no, q.title, m.name,
+	           q.regdate, q.vcount, q.isreply, q.fileox, originalname,
+	           changename, youtubelink
+	    from question q
+	    join member m on(q.m_no=m.m_no)
+	    left join qfile f on(q.q_no=f.q_no)
+	    where q.lec_no=#{lec_no} and q.status='Y'
+	    order by q.q_no desc
 	</select>
 </mapper>

@@ -154,28 +154,27 @@
      				                                
                                     </table>
        	
-				
+
 				<c:forEach items="${list}" var="v" >  
-				<div class="col-md-3 col-xs-10 col-sm-2 no-padding" style="display:inline-block" >
+				<div class="col-md-3 col-xs-10 col-sm-2 no-padding"  style="display:inline-block" >
 								 
-								 <input type="hidden" name="lec_no" value="${v.lec_no }">
-								 <input type="hidden" name="v_no" value="${v.v_no }">
+								 
+								 <input type="hidden" name="lec_no"  id="lec_no"value="${v.lec_no }">
+								 <input type="hidden" name="v_no" id="v_no" value="${v.v_no }">
+								 <input type="hidden" name="vacation_date" id="vacation_date" value="${fn:substring(v.vacation_date , 0 ,10)}">
 								 
                                         <div class="pricing-box featured-plan">
                                             <div class="pricing-body"  >
                                                    
                                                 <div class="pricing-header">
-                                                    <h4 class="price-lable text-white bg-warning">${v.lec_no }</h4>
+                                                  <!--   <h4 class="price-lable text-white bg-warning">휴가</h4> -->
                                                     <h4 class="text-center">강의명</h4>
-                                                    <h1 class="text-center"><span class="price-sign"></span>${v.title }</h1>
+                                                    <h1 class="text-center"><span class="price-sign"></span>${v.title }#${v.lec_no }</h1>
                                                   <c:if test="${mem.typee eq 's' }">  
-                                                    <c:if test="${v.status eq 'N'}">
-                                                    <p class="uppercase badge badge-danger">처리중</p>
-                                                    </c:if>
                                                     <c:if test="${v.tstatus eq 'B' }">
                                                      <p class="uppercase badge badge-warning">반려</p>
                                                     </c:if>
-                                                    <c:if test="${v.status eq 'Y'}">
+                                                    <c:if test="${v.tstatus eq 'Y'}">
                                                     <p class="uppercase badge badge-info">처리완료</p>
                                                     </c:if>
                                                    </c:if> 
@@ -199,12 +198,31 @@
                                                     <div class="price-row">
                                                  <c:if test="${mem.typee eq 't' }">
                                               	   <c:if test="${v.tstatus eq 'N' }">
+													<td>					
+														<a class="btn btn-success" id="teacherPermission" href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}' >허가</a>
+													</td>
+													
 													<td>
-														<a class="btn btn-success" href='permission.te?lec_no=${ v.lec_no }&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}' >허가</a>
+													<button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-example-modal-lg">반려</button>
+													<div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+	                                    <div class="modal-dialog modal-lg">
+	                                        <div class="modal-content">
+	                                            <div class="modal-header">
+	                                                <h4 class="modal-title" id="myLargeModalLabel">반려하기</h4>
+	                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	                                            </div>
+	                                            <div class="modal-body">
+	 												<iframe id="sof" name="sof" src="companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}" width="100%" height="400" frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div> 
 													</td>
-													<td>	
+													
+													
+													<%-- <td>	
 														<a class="btn btn-success" onclick="window.open('companiForm.me?lec_no=${v.lec_no}&v_no=${v.v_no }&vacation_date=${fn:substring(v.vacation_date , 0 ,10)}',width=300, height=300)">반려</a>
-													</td>
+													</td> --%>
 													</c:if>	
 												</c:if>          
 												 <c:if test="${mem.typee eq 's' }">
@@ -221,35 +239,55 @@
                                          <br>
                                     </div>
                                    
+                               
+                              </c:forEach><br>
+                                  <c:if test="${mem.typee eq 'a'}">
+                                 			<c:set var="flag" value="true"/>
+                                 			<c:forEach var="v" items="${list }">
+                                 				<c:if test="${v.tstatus eq 'N'}">
+                                 					<c:set var="flag" value="false"/>
+                                 				</c:if>
+                                 			</c:forEach>
+                          
+                                 			<c:if test="${flag eq 'false' }">
+                                 				선생님  미처리
+                                 			</c:if>
+                                 			<c:if test="${flag eq 'true' }">
+                							<c:if test="${vv.status eq 'N' }">
+                                 				<button  id="adminsubmit" class="btn waves-effect waves-light btn-rounded btn-outline-info">처리하기</button>
+                                 			</c:if>
+                                 			</c:if>
+                                 		
+                                 		
+                                 			<a href="vlist.me" class="btn waves-effect waves-light btn-rounded btn-outline-info">목록</a>
+                                 		</c:if>
 										
-                              </c:forEach>
-                                 
+                            
                                 </div>	
-										<c:if test="${mem.typee eq 's' }">
-											<a href="vdelete.me?v_no=${v.v_no }" class="btn waves-effect waves-light btn-rounded btn-outline-warning" style="float:right;" >삭제하기</a>
-										</c:if>	
+										
 										<c:if test="${mem.typee eq 't' }">		
                                  			<a href='sVlist.te' class="btn waves-effect waves-light btn-rounded btn-outline-info" style="float:right;">리스트로돌아가기</a>
                                  		</c:if>
                                  		<c:if test="${mem.typee eq 's' }">		
                                  			<a href='vlist.me' class="btn waves-effect waves-light btn-rounded btn-outline-info"style="float:right;">리스트로돌아가기</a>
                                  		</c:if>
-                                 		<c:if test="${mem.typee eq 'a' }">
+                                 	<%-- 	<c:if test="${mem.typee eq 'a' }">
                                  			<c:set var="flag" value="true"/>
                                  			<c:forEach var="v" items="${list }">
-                                 				<c:if test="${v.tstatus eq 'B' || v.tstatus eq 'N'}">
+                                 				<c:if test="${v.tstatus eq 'N'}">
                                  					<c:set var="flag" value="false"/>
                                  				</c:if>
                                  			</c:forEach>
                                  			<c:if test="${flag eq 'false' }">
-                                 				선생님 반려 또는 미처리
+                                 				선생님  미처리
                                  			</c:if>
                                  			<c:if test="${flag eq 'true' }">
-                                 				<a href="" class="btn waves-effect waves-light btn-rounded btn-outline-info">처리하기</a>
+                							
+                                 				<button type="submit" class="btn waves-effect waves-light btn-rounded btn-outline-info">처리하기</button>
                                  				<!-- 버튼구현 -->
                                  			</c:if>
                                  			<a href="vlist.me" class="btn waves-effect waves-light btn-rounded btn-outline-info">목록</a>
-                                 		</c:if>
+                                 		</c:if> --%>
                                  		
                             </div>
                         </div>
@@ -310,6 +348,66 @@
 	
 <script>
 
+
+$("#adminsubmit").on("click" , function(){
+	
+
+	
+	var v_no = $("#v_no").val()
+	
+	
+	$.ajax({
+		 url : "status.me",
+         method : "post",
+         data : {
+             v_no : v_no
+         },
+         success : function(data){
+        	if(data=="success"){ 
+             alert("처리완료 ");
+            $("#adminsubmit").css("display","none");
+        	}else{
+        		console.log("실패")
+        	}
+         },
+         error : function(){
+             console.log("에러??????");
+         }
+		
+		
+	});
+	
+});
+
+$("#teacherPermission").on("click" , function(){
+	
+	var v_no = $("#v_no").val();
+	var lec_no=$("#lec_no").val();
+	var vacation_date=$("#vacation_date").val();
+	
+	$.ajax({
+		
+		url:"permission.te",
+		method:"post",
+		data: {v_no:v_no , lec_no:lec_no , vacation_date:vacation_date},
+		success: function(data){
+			
+			if(data=="success"){
+				alert("처리완료");
+				location.href="vDetail.me?v_no="+v_no;
+				
+			}else{
+				console.log("실패");
+			}
+		},
+		
+		error: function(){
+			console.log("error");
+		}
+	});
+	
+	
+});
 /* $("#signText").click(function(){
 	alert("ㅋㅋㅋ");
 })
@@ -355,6 +453,9 @@ function myvacation() {
 	});
 	 
 	 
+	
+	
+	
 	function resizeCanvas(){
 	    var canvas = $("#signature-pad canvas")[0];
 	

@@ -16,26 +16,41 @@ public class SurveyServiceImpl implements SurveyService {
 	@Autowired
 	private SurveyDao sDao;
 	
+	/**
+	 * 설문 양식을 넣는 서비스
+	 */
 	@Override
 	public int insertsurvey(InsertSurvey s) {
 		return sDao.insertsurvey(s);
 	}
 
+	/**
+	 * 수업에 있는 설문을 조회해오는 서비스
+	 */
 	@Override
 	public List<InsertSurvey> selectsurvey(int lec_no) {
 		return sDao.selectsurvey(lec_no);
 	}
 	
+	/**
+	 * 학생이 보는 설문조사 조회용을 불러오는것
+	 */
 	@Override
 	public List<SurveyQuestion> selectsurveystudent(SelectSurveyStudent sss) {
 		return sDao.selectsurveystudent(sss);
 	}
 	
+	/**
+	 * 설문조사 상세 보기 답을 하는 설문조사로 들어감
+	 */
 	@Override
 	public List<SurveyQuestion> detailsurvey(SurveyQuestion sq) {
 		return sDao.detailsurvey(sq);
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	public int insertcompletesurvey(SurveyQuestion s) {
 		return sDao.insertcompletesurvey(s);

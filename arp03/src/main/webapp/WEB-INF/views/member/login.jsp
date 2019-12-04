@@ -160,13 +160,13 @@
 
 
 
-	<jsp:include page="../include/header.jsp"></jsp:include>
+	<%-- <jsp:include page="../include/header.jsp"></jsp:include>
 	
 	<form action="login.me" method="post" autocomplete=off>
 		id:<input name="id" id="id"><br>
 		pw:<input name="pw" id="pass"><button>로그인</button><br>
 		<input type="checkbox" name="remember">자동로그인 | <input type="checkbox" id="idSaveCheck"> 아이디/비번 기억하기<br>
-	</form>
+	</form> --%>
 	
 	<script>
 	$("#id").val(Cookies.get('id'));      
@@ -194,7 +194,7 @@
 	</script>
 	
 	
-	<table border=1>
+	<%-- <table border=1>
 		<tr>
 			<th>id</th>
 			<th>pw</th>
@@ -207,6 +207,6 @@
 	</c:forEach>
 	</table>
 	
-	<jsp:include page="../include/footer.jsp"></jsp:include>
+	<jsp:include page="../include/footer.jsp"></jsp:include> --%>
 </body>
 </html>
