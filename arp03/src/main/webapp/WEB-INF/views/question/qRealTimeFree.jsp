@@ -94,7 +94,7 @@
 </head>
 <body>
 	<c:if test="${!empty mem }">
-        <div id="rank-List-Content">
+        <div id="rank-List-Content" class="d-none d-sm-block">
         	<div class="realText">자유게시판 조회 순위 ▼</div>
             <dl id="rank-list" style="width:250px;">
                 <dt>실시간 급상승 검색어</dt>

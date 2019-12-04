@@ -254,6 +254,25 @@
 	console.log($("#title").val());
 	
 	
+	
+	var vacation_title=$("#vacation_title").val();
+	var reason = $("#reason").val();
+	
+$("#submit").submit( function(){
+	
+	if(vacation_title == ""){
+		alert("제목을 입력하세요");
+		return false;
+	}else if(reason == ""){
+		alert("이유를 입력하세요");
+		return false;
+	}else{
+		return true;
+	}
+	
+});	
+	
+	
 	var allData = {			
 	"arrDate" : arr,
 	"m_no" : m_no,
@@ -426,8 +445,7 @@
 	    $('#dateArea').append(str)
 	    calend(yyyy,mm);
 	    		
-	    	
-			
+
 
 	});
 	

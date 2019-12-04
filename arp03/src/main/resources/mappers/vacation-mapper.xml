@@ -9,7 +9,7 @@ values(seq_vacation.nextval,
 	   #{vacation_title},
 	   #{reason},
 	   sysdate,
-	   null
+	   default
 	   )
 	   <selectKey keyProperty="v_no" resultType="int" order="AFTER">
 	   		select seq_vacation.currval from dual
@@ -30,8 +30,6 @@ insert into vacationdate
 values(#{v_no},
 	   #{lec_no},
 	  #{vacation_date},
-	  default,
-	  default,
 	  default,
 	  default
 	  <!-- #{classdate} -->)
@@ -89,22 +87,25 @@ where lec_no = #{lec_no}
 
 </delete>
 
-<select id="statusCheck" resultType="VacationDate">
-
-select status
-from vacationdate
+<update id="statusCheck">
+update vacation
+set status='Y'
 where v_no=#{v_no}
-group by (status)
+</update>
+
+<select id ="selectStatus" resultType="Vacation">
+select status
+from vacation
+where v_no=#{v_no}
+
 
 </select>
-
-
 
 <select id="studentVacationList" resultType="Vacation">
 select v.* , m.name 
 from vacation v, vacationdate vd , member m ,lecture l 
 where vd.v_no= v.v_no and m.m_no = v.m_no and vd.lec_no = l.lec_no and l.m_no =#{m_no}
-group by (v.v_no , v.m_no , v.vacation_title , v.reason , v.application_date , v.sign , m.name)
+group by (v.v_no , v.m_no , v.vacation_title , v.reason , v.status, v.application_date , m.name)
 order by v.v_no desc
 </select>
 
@@ -147,4 +148,43 @@ from vacation v , member m
 where v.m_no=m.m_no
 order by v.v_no desc
 </select>
+
+<select id="selectVacation" resultType="Vacation">
+select v.*, m.name 
+from vacation v , member m 
+where v.v_no =#{v_no} and v.m_no=m.m_no
+</select>
+<!-- 
+<insert id="insertvacation">
+
+insert into calendar values(SEQ_CALENDAR.nextval,
+(select l.m_no
+from vacationdate vd, lecture l
+where v_no=#{v_no} and vd.lec_no=l.lec_no) , 
+(select  m.name 
+from vacation v , member m
+where v_no=#{v_no} and v.m_no = m.m_no ) || ' 휴가',
+(select vd.vacation_date 
+from vacation v ,vacationdate vd 
+where v.v_no =#{v_no} and vd.v_no = v.v_no),
+(select vd.vacation_date 
+from vacation v ,vacationdate vd 
+where v.v_no =#{v_no} and vd.v_no = v.v_no), default)
+
+
+</insert>
+ -->
+ 
+ <select id="selectVacationDateListWithCount" resultType="VacationDate">
+SELECT vdd.*,cd.NTH,(SELECT m_no from VACATION WHERE v_no=#{v_no}) m_no FROM VACATIONDATE vdd, CLASSDATE cd
+WHERE VACATION_DATE IN (SELECT vacation_date
+FROM (SELECT vd.VACATION_DATE,count(*) totalcount,
+(SELECT count(*) FROM VACATIONDATE WHERE vacation_date=vd.VACATION_DATE AND v_no=#{v_no} AND tstatus='Y') yescount
+FROM VACATIONDATE vd
+WHERE v_no=#{v_no} GROUP BY VACATION_DATE)
+WHERE totalcount=yescount)
+AND vdd.LEC_NO=cd.LEC_NO AND vdd.VACATION_DATE=cd.CLASSDATE
+</select>
+
+
 </mapper>

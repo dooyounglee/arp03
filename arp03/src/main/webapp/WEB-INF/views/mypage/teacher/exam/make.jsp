@@ -167,7 +167,7 @@
 	
 	
 	
-	<jsp:include page="../../../include/header.jsp"/>
+	<%-- <jsp:include page="../../../include/header.jsp"/>
 	<h1>시험만들기</h1>
 
 	<c:set var="mapping" value="make"/>
@@ -187,6 +187,6 @@
 		<button>완료</button>
 	</form>
 	
-	<jsp:include page="../../../include/footer.jsp"/>
+	<jsp:include page="../../../include/footer.jsp"/> --%>
 </body>
 </html>
