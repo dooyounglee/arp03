@@ -5,7 +5,7 @@
 <html>
 <head>
 <!-- <link href="stylesheet.css" media="screen" rel="stylesheet" type="text/css" /> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script> -->
 <!-- <script src="application.js" type="text/javascript"></script> -->
 <meta charset="UTF-8">
 <title>Insert title here</title>
