@@ -182,13 +182,11 @@ public class MemberController {
 	
 	@PostMapping("/findChangePw.me")
 	public ModelAndView findPwPost(Member m, ModelAndView mv) {
-		System.out.println("인증후비번수정"+m);
 		Member newm=ms.getMember(m);
-		System.out.println(newm);
 		newm.setPw(m.getPw());
-		System.out.println(newm);
+		
 		int result=ms.update(newm);
-		//int result1=ms.deleteAuth(m.getEmail());
+		int result1=ms.deleteAuth(newm.getEmail());
 		mv.setViewName("redirect:login.me");
 		return mv;
 	}
