@@ -1,14 +1,21 @@
 package com.kh.arp.member.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +39,9 @@ public class MemberController {
 	
 	@Autowired
 	private LectureService ls;
+	
+	@Autowired
+	private JavaMailSenderImpl javaMailSenderImple;
 	
 	@GetMapping("/login.me")
 	public ModelAndView loginGet(ModelAndView mv, HttpServletRequest req, HttpSession session) {
@@ -124,8 +134,14 @@ public class MemberController {
 		mem.setEmail(getauth.getEmail());
 		mem=ms.getMember(mem);
 		System.out.println(mem);
-		mv.addObject("auth", mem);
-		mv.setViewName("member/join");
+		
+		if(mem.getId()==null) {//회원가입이면
+			mv.addObject("auth", mem);
+			mv.setViewName("member/join");
+		}else {//비번찾기
+			mv.addObject("m", mem);
+			mv.setViewName("member/findPw");
+		}
 		return mv;
 	}
 	
@@ -137,10 +153,14 @@ public class MemberController {
 	
 	@PostMapping("/update.me")
 	public ModelAndView updatePost(Member m, HttpSession session, ModelAndView mv) {
+		Member newm=ms.getMember(m);
+		newm.setName(m.getName());
+		newm.setEmail(m.getEmail());
+		newm.setPhone(m.getPhone());
 		int result=ms.update(m);
 		if(result>0) {
-			Member newm=ms.getMember(m);
-			session.setAttribute("mem", newm);
+			Member newmem=ms.getMember(m);
+			session.setAttribute("mem", newmem);
 		}
 		mv.setViewName("redirect:myInfo.me");
 		return mv;
@@ -157,6 +177,19 @@ public class MemberController {
 			}
 		}
 		mv.setViewName("redirect:myInfo.me");
+		return mv;
+	}
+	
+	@PostMapping("/findChangePw.me")
+	public ModelAndView findPwPost(Member m, ModelAndView mv) {
+		System.out.println("인증후비번수정"+m);
+		Member newm=ms.getMember(m);
+		System.out.println(newm);
+		newm.setPw(m.getPw());
+		System.out.println(newm);
+		int result=ms.update(newm);
+		//int result1=ms.deleteAuth(m.getEmail());
+		mv.setViewName("redirect:login.me");
 		return mv;
 	}
 	
@@ -189,18 +222,45 @@ public class MemberController {
 	}
 	
 	@PostMapping("/findPw.me")
-	public ModelAndView findPwPost(Member m, ModelAndView mv) {
+	public ModelAndView findPwPost(Member m, HttpServletRequest req, HttpServletResponse res, ModelAndView mv) {
 		System.out.println(m);
 		Member newm=ms.find(m);
 		System.out.println(newm);
 		if(newm!=null) {
 			//임시비번 컬럼을 만들어서, 임시비번
 			//안전하게 임시비번도 확인해도 좋고..
+			Auth auth=new Auth();
+			auth.setEmail(m.getEmail());
+			
+			Auth newauth=ms.getAuth(auth);
+			if(newauth==null) {//없으면 insert. 
+				auth.setCode(randomCode(50));
+				int result1=ms.insertAuth(auth);
+			}else {//있으면 그거.
+				auth=newauth;
+			}
 			
 			//url랜덤코드 테이블이 있어야 해 Auth처럼
 			//이메일 전송-url누르게 할까?-비번변경페이지-새비번으로 수정
+			MimeMessage message = javaMailSenderImple.createMimeMessage();
+			try {
+				message.setFrom(new InternetAddress("gostbaducking2@gmail.com","KH수학교육원","utf-8"));
+				message.addRecipient(RecipientType.TO, new InternetAddress(auth.getEmail()));
+				message.setSubject("[KH수학교육원]비번분실 인증메일 입니다.");
+				message.setText("<a href=\"http://"+req.getServerName()+":"+req.getServerPort()+"/arp/auth.me?code="+auth.getCode()+"\">여기를 누르면 비번 수정 페이지로 이동합니다.</a>","utf-8", "html");
+				javaMailSenderImple.send(message);
+			} catch (AddressException e) {
+				e.printStackTrace();
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
 		}else {
 			//등록된 이메일이 없습니다.
+			mv.addObject("msg", "등록된 이메일이 없습니다.");
+			mv.setViewName("common/error");
 		}
 		mv.setViewName("redirect:/find.me");
 		return mv;
@@ -235,5 +295,26 @@ public class MemberController {
 		session.setAttribute("myLec", ms.getLectureList(mem));
 		Gson gson=new GsonBuilder().create();
 		return gson.toJson((ArrayList)ms.getLectureList(mem));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	//랜덤코드 생성
+	public String randomCode(int len) {
+		String code="";
+		int num = 0;
+		while (true) {
+			num = (int)Math.floor(Math.random()*75) + 48;
+			if ((num >= 48 && num <= 57) || (num >= 65 && num <= 90) || (num >= 97 && num <= 122)) {
+				code+=(char)num;
+			}
+			if(code.length()>len)break;
+		}
+		return code;
 	}
 }
