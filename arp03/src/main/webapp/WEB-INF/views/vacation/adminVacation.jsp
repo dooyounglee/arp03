@@ -75,6 +75,8 @@
 </table> --%>
 
 
+
+<%-- 
 	<button type="submit" id ="submit" style="display:none">일괄처리하기</button>
 	
 	<button type="submit" id ="submit2" style="display:none">처리하기</button>
@@ -153,7 +155,7 @@
 											<c:if test = "${v.tstatus ne 'N' and v.astatus ne 'Y'}">
 												<tr>
 													<td>
-													<%-- <input type="checkbox" id ="vl" class="check" name="vacationList" value="${ v.v_no }"> --%>
+													<input type="checkbox" id ="vl" class="check" name="vacationList" value="${ v.v_no }">
 													<input type="checkbox" id="basic_checkbox_1" class="filled-in" name="vacationList" value="${ v.v_no }">
                                     					<label for="basic_checkbox_1"></label>
                                     					
@@ -162,7 +164,7 @@
 													<td>${ v.lec_no }</td>
 													<td>${ v.title }</td>
 													<td>${v.name }</td>
-													<%-- <td><a href="vDetail.me?v_no=${ v.v_no }&lec_no=${v.lec_no}">${ v.vacation_title }</a></td> --%>
+													<td><a href="vDetail.me?v_no=${ v.v_no }&lec_no=${v.lec_no}">${ v.vacation_title }</a></td>
 													<td>${fn:substring(v.vacation_date,0,10) }</td>
 													<td>${v.tstatus }</td>
 													<td>${v.astatus }</td>
@@ -183,7 +185,7 @@
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
             </div>
-
+ --%>
 
 
 

@@ -46,7 +46,8 @@
 	</update>
 	
 	<select id="getBoardListForMain" resultType="Board">
-		select * from board where status='Y'
+		select b.*,m.name from board b, member m
+		where b.status='Y' and b.m_no=m.m_no
 	</select>
 	<select id="getNoticeListForMain" resultType="Notice">
 		select * from notice

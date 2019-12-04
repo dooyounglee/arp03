@@ -151,7 +151,7 @@
 	
 	
 	
-<input id="movie"><button onclick="movie()">부미</button>
+<!-- <input id="movie"><button onclick="movie()">부미</button> -->
 <script>
 function movie(){
 	//<iframe id="youtuberealId" width="560" height="315" src="https://play-tv.kakao.com/embed/player/cliplink/404312441" frameborder="0"></iframe>
