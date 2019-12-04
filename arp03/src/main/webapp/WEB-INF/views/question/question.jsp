@@ -7,12 +7,6 @@
 <meta charset="UTF-8">
 <title>질문게시판</title>
 	<%@ include file="../include/bhead.jsp"%>
-	
-	 	<script>
-			$(function(){
-			 	page(1);
-			}); 	
-         </script>
 </head>
 <body class="fix-header card-no-border logo-center">
 
@@ -83,86 +77,83 @@
 										<span><button class="btn waves-effect waves-light btn-info" style="align:right; cursor:pointer;" onclick="location.href='qWriteForm.qu'">글쓰기</button></span>
 									 </c:if>
                                 </h6>
-                                <script>
-                                
+								<script>
+            
 									var currentPage = 1;
-									var boardLimit = 5; // 게시글 갯수
+									var boardLimit = 3; // 게시글 갯수
 									var pageLimit = 5; // 페이지 바 표시갯수
-									var maxPage=0;// = parseInt(Math.ceil(ArrayList.length / boardLimit));
-                             		var startPage=1;
-                    	    		var endPage=5;
-                               
-                        		
-                        		var ArrayList = [];
-                                	
-                                	jQuery.ajax({
-                        				url:"questionList2.aj",
-                        				dataType:"json",
-                        				success:function(data){
-                        					console.log(data);
-                        					ArrayList = data;
-                        					maxPage = parseInt(Math.ceil(ArrayList.length / boardLimit));
-                        					
-                        				},
-                        				error:function(){
-                        					console.log("ajax 통신 실패");
-                        				}
-                        			});
-                                	
-                                	
-                                	//제목검색용
-                                		function searchSelect(){
-                                		var Category1 = $('#Category1').val();
-                                		var searchSelectContent = $("#searchSelectContent").val();
-                                		$.ajax({
-                            				url:"questionList3.aj",
-                            				dataType:"json",
-                            				data:{
-                            					Category1:Category1,
-                            					searchSelectContent:searchSelectContent
-                            				},
-                            				success:function(data){
-                            					console.log(data);
-                            					ArrayList = data;
-                            					
-                            				},
-                            				error:function(){
-                            					console.log("ajax 통신 실패");
-                            				}
-                            			});
-                                	}
-                                	
-                                	
-                                </script>
-                                
-                                
+									var maxPage = 0;// = parseInt(Math.ceil(ArrayList.length / boardLimit));
+									var startPage = 1;
+									var endPage = 5;
 
-                                <script>
+									var ArrayList = [];
+
+									$.ajax({
+										url : "questionList2.aj",
+										dataType : "json",
+										success : function(data) {
+											ArrayList = data;
+											maxPage = parseInt(Math.ceil(ArrayList.length/ boardLimit));
+											page(1);
+											var str="";
+											var tbody = $("#dlendud tbody").eq(0);
+											if ( ArrayList.length == 0 ){
+												
+											}else{
+												showPage()
+											}
+										},error : function() {
+											console.log("ajax 통신 실패");
+										}
+									});
+
+									//제목,내용,내가쓴글,작성자 검색용
+									function searchSelect() {
+										var Category1 = $('#Category1').val();
+										var searchSelectContent = $("#searchSelectContent").val();
+										$.ajax({
+												url : "questionList3.aj",
+												dataType : "json",
+												data : {
+													Category1 : Category1,
+													searchSelectContent : searchSelectContent
+												},success : function(data) {
+													ArrayList = data;
+													maxPage = parseInt(Math.ceil(ArrayList.length/ boardLimit));
+													page(1);
+													showPage();
+												},error : function() {
+													console.log("ajax 통신 실패");
+												}
+										});
+									}
+								</script>
+
+
+
+								<script>
                                 
                                 function page(pNo){
-                                	currentPage = pNo;
                                 	
-                                	//startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
-                            		//endPage = startPage + pageLimit -1;
-                            		
+                                	currentPage = pNo;
+                    				startPage = parseInt((currentPage - 1) / pageLimit) * pageLimit + 1;
+                    	    		endPage = startPage + pageLimit -1;
+                    	    		if(endPage >= maxPage){
+                            			endPage = maxPage;
+                    	    		};
                                 	
                                 	$tbody = $("#dlendud tbody").eq(0);
                                 	$tbody.html("");
-                                	console.log($tbody.length);
                                 	
-                                	var st=(pNo-1)*5 
+                                	var st=(pNo-1)*boardLimit;
                                 	var str=""
                                 	
-                                	if ( ArrayList == null ){
+                                	if ( ArrayList.length == 0 ){
                                 		str+='<tr align="center">';
-                                		str+='<td>게시글이 없습니다.</td>';
+                                		str+='<td colspan="7">게시글이 없습니다.</td>';
                                 		str+='</tr>';
                                 		$tbody.append(str);
-                                	}
-									/*< tr>
-										<td colspan="7">게시글이 없습니다.</td>
-									</tr> */
-                                	
+                                	}else{
                                 	
 	                                	for(i=0;i<boardLimit;i++){
 	                                		if(st+i == ArrayList.length){
@@ -185,15 +176,10 @@
 											};
 											str+='<td>'+ArrayList[st+i].isreply+'</td>';
 	                                		str+='</tr>';
-	                                		
-	                                	/* 	if(ArrayList == 5){
-	                                			return;
-	                                		} */
-	                                		
 	                                	}
 	                                	$tbody.append(str);
-	                                	console.log("start="+startPage)
                                 	}
+                                }
 								
                                 </script>
                                 <div class="table-responsive">
@@ -210,78 +196,6 @@
 											</tr>
                                         </thead>
                                         <tbody id="tbody">
-                                        	<%-- <c:if test="${ empty qList }">
-												<tr align="center">
-													<td colspan="7">게시글이 없습니다.</td>
-												</tr>
-											</c:if>
-											
-											<c:forEach items="${ qList }" var="q">
-												<tr align="center">
-													<td>${ q.q_no }</td>
-													<td style="max-width:300px;">
-														<a href="qdetail.qu?q_no=${ q.q_no }">${ q.title }</a>
-													</td>
-													<td>${ q.name }</td>
-													<td>${ q.regdate }</td>
-													<td>${ q.vcount }</td>
-													
-													<c:if test="${ q.fileox eq 'Y' }">
-														<td><img width="15" src="resources/siraFile/클립2.svg"></td>
-													</c:if>
-													<c:if test="${ q.fileox ne 'Y' }">
-														<td>${ q.fileox } </td>
-													</c:if>
-													<td>${ q.isreply }</td>
-												</tr>
-											</c:forEach> --%>
-											
-											
-						<%-- <c:if test="${ !empty qList }"> --%>
-							<!-- 페이징 -->
-							<%-- <tr align="center" height="20">
-								<td colspan="7">
-									<!-- 이전 -->
-									<c:if test="${ pi.currentPage eq 1 }">
-										 이전 &nbsp;
-									</c:if>
-									<c:if test="${ pi.currentPage ne 1 }">
-										<c:url value="question.qu" var="before">
-											<c:param name="currentPage" value="${ pi.currentPage-1 }"/>
-											<c:param name="lec_no" value="${ lec.lec_no }"/>
-										</c:url>
-										<a href="${ before }"> 이전 </a>
-									</c:if> --%>
-									<!-- 페이지 -->
-										<%-- <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-											<c:if test="${ p eq pi.currentPage }">
-												<font color="red" size="4"> ${ p } </font>
-											</c:if>
-											<c:if test="${ p ne pi.currentPage }">
-												<c:url value="question.qu" var="page">
-													<c:param name="currentPage" value="${ p }"/>
-													<c:param name="lec_no" value="${ lec.lec_no }"/>
-													<c:param name="m_no" value="${ mem.m_no }"/>
-													<c:param name="Category1" value="Category3"/>
-												</c:url>
-												<a href="${ page }"> ${ p } </a>
-											</c:if>
-										</c:forEach> --%>
-									<!-- 다음 -->
-									<%-- <c:if test="${ pi.currentPage eq pi.maxPage}">
-										 다음 &nbsp;
-									</c:if>
-									<c:if test="${ pi.currentPage ne pi.maxPage &&  pi.maxPage eq pi.endPage }">
-										<c:url value="question.qu" var="after">
-											<c:param name="currentPage" value="${ pi.currentPage+1 }"/>
-											<c:param name="lec_no" value="${ lec.lec_no }"/>
-										</c:url>
-										<a href="${ after }"> 다음 </a>
-									</c:if>
-								</td>
-							</tr>
-						</c:if>
-                                  --%>
                                 
                                         </tbody>
                                     </table>
@@ -290,76 +204,59 @@
           <div align="center">                       
           <ul id="pageul" class="pagination" align="center">
 		
-		<!-- <tr align="center" height="20">
-			<td colspan="5"> -->
-				<!-- 이전 -->
-					<!-- <li class="page-item"><a class="page-link">이전</a></li> -->
-				<!-- 페이지 -->
-						<!-- <li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(1)">1</a></li>
-						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(2)">2</a></li>
-						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(3)">3</a></li>
-						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(4)">3</a></li>
-						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(5)">3</a></li>
-						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(6)">3</a></li>
-						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(7)">3</a></li>
-						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(8)">3</a></li>
-						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(9)">3</a></li>
-						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(10)">3</a></li>
-						<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page(11)">3</a></li> -->
-				<!-- 다음 -->
-					<!-- <li class="page-item"><a class="page-link">다음</a></li> -->
-			<!-- </td>
-		</tr> -->
-			</ul>
-			<script>
-			function showPage(){
-				startPage = parseInt((currentPage - 1) / pageLimit) * pageLimit + 1;
-	    		endPage = startPage + pageLimit -1;
-				
-				var btn2 = "";
-				var ultg = $("#pageul");
-				
-				btn2 += '<li id="qBefore" style="cursor:pointer" class="page-item"><a class="page-link">'+"이전"+'</a></li>';
-				
-				for(i=startPage;i<=endPage;i++){
-	        		/* if(st+i == ArrayList.length){
-	        			break;
-	        		} */
-	        		btn2+='<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page('+i+')">'+i+'</a></li>';
-	        	}
+		  </ul>
+		
+		
+		
+		<script>
+		function showPage(){
+			var btn2 = "";
+			var ultg = $("#pageul");
 			
-				btn2 += '<li style="cursor:pointer" class="page-item qAfter"><a class="page-link">'+"다음"+'</a></li>';
-        		ultg.html("");
-				ultg.append(btn2);
-			}
+			btn2 += '<li id="qBefore" style="cursor:pointer" class="page-item"><a class="page-link">'+"이전"+'</a></li>';
 			
-			showPage();
-        	$("#qBefore").click(function(){
-        		page(currentPage-1);
-        	});
-        	
-        	/* $("#qAfter").click(function(){
-        		page(currentPage+1);
-        		if(endPage+1 == maxPage){
-        			$("#qAfter").attr("disabled","false");
-        		}
-        		showPage();
-        	}); */
-        	
-        	$(document).on('click',".qAfter",function(){
-        		page(currentPage+1);
-        		if(endPage+1 == maxPage){
-        			$("#qAfter").attr("disabled","false");
-        		}
-        		showPage();
-        	});
-        	
-			</script>
-			</div>
-           
+			for(i=startPage;i<=endPage;i++){
+        		btn2+='<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page('+i+')">'+i+'</a></li>';
+        	}
+			if(endPage >= maxPage){
+				btn2 += '<li id="qAfter" style="cursor:pointer" class="page-item" disabled><a class="page-link">'+"다음"+'</a></li>';
+       		}else{
+       			btn2 += '<li id="qAfter" style="cursor:pointer" class="page-item"><a class="page-link">'+"다음"+'</a></li>';
+       		}
+			
+       		ultg.html("");
+			ultg.append(btn2);
+		}
+		
+		
+       	$(document).on('click',"#qBefore",function(){
+       		if(currentPage <= 1 ){
+       			return false;
+       		}
+       		page(currentPage-1);
+       		showPage();
+       	});
+       	
+       	
+       	$(document).on('click',"#qAfter",function(){
+       		if(currentPage >= maxPage){
+       			return false;
+       		}
+       		
+       		page(currentPage+1);
+       		showPage();
+       		
+       	});
+       	
+		</script>
+		
+		</div>
                                 </div>
+                                
+                                
                                 <!-- 검색창 -->
                                 <br>
+                                
                                 <div class="input-group">
                                 <div class="col-lg-2"></div>
                                 <div class="col-lg-2">
@@ -376,9 +273,6 @@
                                     </div>
                                 </div>
                                 <br>
-                                
-                                
-                                
                             </div>
                         </div>
                     </div>
@@ -391,23 +285,6 @@
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
-
-		<script>
-/* 			function searchSelect(){
-				if($("#searchSelectContent").val().trim() != ""){
-					
-				}else{
-					alert("검색창에 입력해주세요.");
-					return false;
-				}
-			}; */
-		</script>
-
-
-
-
-
-
 
 		<!-- footer -->
         <footer class="footer">
