@@ -3,6 +3,7 @@ package com.kh.arp.vacation.model.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.vacation.model.vo.Vacation;
 import com.kh.arp.vacation.model.vo.VacationDate;
@@ -65,9 +66,13 @@ public interface VacationService {
 	//상태
 	ArrayList<Vacation> selectStatus(Vacation v);
 
+	// 휴가선택
 	Vacation selectVacation(int v_no);
 
 	List<VacationDate> selectVacationDateListWithCount(int v_no);
+
+	// 나의 강의날짜 가져오기
+	ArrayList<Classdate> classdateList(int m_no);
 
 
 

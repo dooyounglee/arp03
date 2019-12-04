@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.vacation.model.dao.VacationDao;
 import com.kh.arp.vacation.model.vo.Vacation;
@@ -132,6 +133,11 @@ public class VacationServiceImpl implements VacationService {
 	@Override
 	public List<VacationDate> selectVacationDateListWithCount(int v_no) {
 		return vDao.selectVacationDateListWithCount(v_no);
+	}
+	@Override
+	public ArrayList<Classdate> classdateList(int m_no) {
+		
+		return vDao.classdateList(m_no);
 	}
 
 

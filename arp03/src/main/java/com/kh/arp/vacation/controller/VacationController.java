@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.arp.lecture.model.service.LectureService;
 import com.kh.arp.lecture.model.vo.Attendence;
+import com.kh.arp.lecture.model.vo.Classdate;
 import com.kh.arp.member.model.vo.Member;
 import com.kh.arp.vacation.model.service.VacationService;
 import com.kh.arp.vacation.model.vo.Vacation;
@@ -71,9 +71,18 @@ public class VacationController {
 	
 	
 	@RequestMapping("vinsertForm.me")
-	public String vInsertForm() {
+	public ModelAndView vInsertForm(HttpSession session , ModelAndView mv) {
 		
-		return "vacation/insertVacationForm";
+		Member mem=(Member)session.getAttribute("mem");
+		
+		ArrayList<Classdate> date = vService.classdateList(mem.getM_no());
+		
+		System.out.println(date);
+		
+		mv.addObject("date", date).setViewName("vacation/insertVacationForm");
+		
+		
+		return mv;
 	}
 	
 	@RequestMapping("vupdateForm")
@@ -87,16 +96,36 @@ public class VacationController {
 	return mv;
 	}
 	
+	
+	/*
+	 * public ModelAndView calenderList(int m_no , ModelAndView mv , HttpSession
+	 * session) {
+	 * 
+	 * Member mem=(Member)session.getAttribute("mem");
+	 * 
+	 * ArrayList<Classdate> list = vService.classdateList(mem.getM_no());
+	 * 
+	 * System.out.println(list);
+	 * 
+	 * mv.addObject("list", list).setViewName("vacation/insertVacationForm");
+	 * 
+	 * return mv;
+	 * 
+	 * }
+	 */
+	
+	
+	
+	
 	@PostMapping("vinsert.me")
-	public String vinsert(Vacation v , String[] dateArea, HttpSession session ) {
+	public String vinsert(Vacation v , String[] dateArea, HttpSession session  ) {
 		
 		Member mem=(Member)session.getAttribute("mem");
 		
-		System.out.println(v);
-		System.out.println(dateArea);
-		int result = vService.insertVacation(v);
-		System.out.println(v);
 		
+
+		int result = vService.insertVacation(v);
+	
 		int result1 = 0;
 		for(int j =0; j<dateArea.length; j++) {
 			
@@ -109,7 +138,6 @@ public class VacationController {
 //			vd.setClassdate(dateArea[j]);
 			vd.setVacation_date(dateArea[j]);
 			
-			System.out.println(vd);
 			
 			List<VacationDate> list=vService.selectLecNo(vd);
 			
@@ -132,9 +160,9 @@ public class VacationController {
 		
 		if(result >0 && result1 >0) {
 			
-			return "redirect:vlist.me";
+			return"redirect:vlist.me";
 		}else {
-			return "qcommons/errorPage";
+			return"common/errorPage";
 		}
 		
 		
@@ -368,20 +396,24 @@ public class VacationController {
 		
 	}
 	
-	public ModelAndView adminStatus(Vacation v , ModelAndView mv) {
-		
-		v.getV_no();
-		
-		ArrayList<Vacation> list = vService.selectStatus(v);
-		
-		
-		mv.addObject("v" , list).addObject("vacation/detailView");
-		
-		return mv;
-				
-	 
-	}
 	
+	
+	
+	
+//	public ModelAndView adminStatus(Vacation v , ModelAndView mv) {
+//		
+//		v.getV_no();
+//		
+//		ArrayList<Vacation> list = vService.selectStatus(v);
+//		
+//		
+//		mv.addObject("v" , list).addObject("vacation/detailView");
+//		
+//		return mv;
+//				
+//	 
+//	}
+//	
 	@ResponseBody  
 	@RequestMapping("multiPermission.ad")
 	public int MultiCheck(@RequestParam(value="MultiList[]") List<String> Number ,
