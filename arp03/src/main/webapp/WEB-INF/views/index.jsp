@@ -674,7 +674,7 @@
 
 
 
-	<jsp:include page="include/header.jsp"></jsp:include>
+<%-- 	<jsp:include page="include/header.jsp"></jsp:include>
 index
 
 	<script>
@@ -693,6 +693,6 @@ index
     <input type="button" value="신고"  onclick="dwindow()"/>
     
     
-	<jsp:include page="include/footer.jsp"></jsp:include>
+	<jsp:include page="include/footer.jsp"></jsp:include> --%>
 </body>
 </html>

@@ -113,7 +113,7 @@
                     <div class="col-10">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">게시판관리${hw }</h4>
+                                <h4 class="card-title">게시판관리</h4>
                                 <c:if test="${mem.typee eq 't' }">
                                 <button class="btn btn-success" onclick="add()">추가하기</button><br>
                                 </c:if>
@@ -219,7 +219,7 @@
 	
 	
 	
-${hw }<br>
+<%-- ${hw }<br>
 <c:forEach var="p" items="${plist }" varStatus="i">
 	문제:${p.problem }<br>
 	<c:if test="${empty alist || alist.size()==0 }">
@@ -238,7 +238,7 @@ ${hw }<br>
 	</c:if>
 	<c:if test="${alist.size()>0 }">
 	<a href="homeworklist.lec">목록</a>
-	</c:if>
+	</c:if> --%>
 
 <script>
 	function ok(){

@@ -220,7 +220,7 @@ public class LectureController {
 			mc.setM_no(mem.getM_no());
 			mc.setName(mem.getName());
 			mlist.add(mc);
-		}else if(mem.getTypee().equals("t")) {
+		}else if(mem.getTypee().equals("t") || mem.getTypee().equals("a")) {
 			mlist=ls.getStudentList(lec.getLec_no());
 		}
 		List<Attendence> alist=ls.getLectureAttendence(lec.getLec_no());

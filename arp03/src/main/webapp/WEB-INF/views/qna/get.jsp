@@ -179,14 +179,14 @@
 	
 	
 	
-	<jsp:include page="../include/header.jsp"/>
+	<%-- <jsp:include page="../include/header.jsp"/>
 	
 	${qna }<br>
 	<form action="answerQna.ad" method="post" autocomplete=off>
 		<input type="hidden" name="qna_no" value="${qna.qna_no }">
 		<input name="answer"><button>답</button><br>
 	</form>
-	<button onclick="del(${qna.qna_no})">삭제</button><br>
+	<button onclick="del(${qna.qna_no})">삭제</button><br> --%>
 	
 	<form id="form" method='post'>
 		<input type="hidden" name="qna_no">
@@ -199,6 +199,6 @@
 		}
 	</script>
 	
-	<jsp:include page="../include/footer.jsp"/>
+	<%-- <jsp:include page="../include/footer.jsp"/> --%>
 </body>
 </html>

@@ -175,12 +175,12 @@
 	
 	
 	
-	<jsp:include page="../../include/header.jsp"/>
+	<%-- <jsp:include page="../../include/header.jsp"/>
 	
 	<c:forEach var="r" items="${list }">
 		${r }<button onclick="deleteReply(${r.r_no})">삭제</button>
 		<button onclick="deleteCancleReply(${r.r_no})">삭제취소</button><br>
-	</c:forEach>
+	</c:forEach> --%>
 	
 	<form id="form" method='post'>
 		<input type="hidden" name="r_no">
@@ -197,6 +197,6 @@
 			formm.submit();
 		}
 	</script>
-	<jsp:include page="../../include/footer.jsp"/>
+	<%-- <jsp:include page="../../include/footer.jsp"/> --%>
 </body>
 </html>

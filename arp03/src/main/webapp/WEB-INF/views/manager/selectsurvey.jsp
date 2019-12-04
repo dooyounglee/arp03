@@ -166,7 +166,6 @@
 				location.href="detailsurveystudent.ma?su_no=" + no;
 			}
 		})
-	
 	});
 	</script>
 </body>

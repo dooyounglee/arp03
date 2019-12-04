@@ -196,7 +196,7 @@
 	
 	
 	
-	<h1>문제만들기</h1>
+	<%-- <h1>문제만들기</h1>
 	
 	<c:set var="aaa" value="make"/>
 	<c:set var="p_no" value="0"/>
@@ -222,7 +222,7 @@
 				<input name="val" value="${v.val }"><button onclick="editBtn(this,${v.v_no })">수정</button><button onclick="delBtn(this,${v.v_no })">삭제</button><br>
 			</c:forEach>
 		</div>
-	</c:if>
+	</c:if> --%>
 	
 	<script>
 		$('#addBtn').click(function(){
@@ -280,10 +280,10 @@
 	</script>
 	
 	
-	<textarea id="math" rows="10" cols="50"></textarea><br>
+	<!-- <textarea id="math" rows="10" cols="50"></textarea><br>
 	<iframe id=iframe name="math" src="preview" height="500px" width="100%">
 	
-	</iframe>
+	</iframe> -->
 	
 	<form action="preview" name="form1" target="math">
 		<input type="hidden" id="mathinput" name="math">

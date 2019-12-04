@@ -101,9 +101,12 @@
 
 
 								<div class="form-group">
-								<h5>${m.content }</h5>
+								<pre><h5>${m.content}</h5></pre>
 								</div>
 								<div id="btn" align="right">
+								<button
+										class="btn btn waves-effect waves-light btn-rounded btn-outline-info"
+										onclick="location.href='reMsg.do?ms_no=${m.ms_no}'">답장하기</button>
 									<button
 										class="btn btn waves-effect waves-light btn-rounded btn-outline-info"
 										onclick="location.href='listMsg.do';">목록으로</button>

@@ -2,6 +2,10 @@ package com.kh.arp.manager.model.vo;
 
 import lombok.Data;
 
+/**
+ * @author nashaQ
+ *	학생번호와 수업번호가 들어있는 vo
+ */
 @Data
 public class SelectSurveyStudent {
 

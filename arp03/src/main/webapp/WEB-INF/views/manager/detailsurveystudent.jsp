@@ -93,7 +93,7 @@
 										</tr>
 										<c:forEach var="Y" items="${Ysq }">
 										<tr>
-											<td>${Y.m_no }, ${Y.name }</td>
+											<td>${Y.name }#${Y.m_no }</td>
 										</tr>
 										</c:forEach>
 										<tr>
@@ -101,7 +101,7 @@
 										</tr>
 										<c:forEach var="N" items="${Nsq }">
 										<tr>
-										<td>${N.m_no }, ${N.name }</td>
+										<td> ${N.name }#${N.m_no }</td>
 										</tr>
 										</c:forEach>
 										<input type="hidden" value="${su_no }" name="su_no">

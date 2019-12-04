@@ -142,12 +142,12 @@
 	
 	
 	
-	<jsp:include page="../../../include/header.jsp"/>
+	<%-- <jsp:include page="../../../include/header.jsp"/>
 	<h1>시험만들기</h1>
 
 	${e }<br>
 	<a href="edit.ex?e_no=${e.e_no }">수정</a>
 	
-	<jsp:include page="../../../include/footer.jsp"/>
+	<jsp:include page="../../../include/footer.jsp"/> --%>
 </body>
 </html>

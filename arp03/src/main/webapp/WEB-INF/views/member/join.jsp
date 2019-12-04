@@ -175,7 +175,7 @@
 	
 	
 	
-	<jsp:include page="../include/header.jsp"/>
+	<%-- <jsp:include page="../include/header.jsp"/> --%>
 	
 	<%-- <c:if test="${auth.typee eq 's' }">
 		<c:set var="s" value="checked"/>
@@ -184,7 +184,7 @@
 		<c:set var="t" value="checked"/>
 	</c:if> --%>
 		
-	<form action="join.me" method="post" autocomplete=off>
+	<%-- <form action="join.me" method="post" autocomplete=off>
 		<input type="hidden" name="m_no" value="${auth.typee }">
 		<input type="radio" name="typee" value="s" ${s }>학생
 		<input type="radio" name="typee" value="t" ${t }>선생님<br>
@@ -196,6 +196,6 @@
 		email:<input name="email" value="${auth.email }"><br>
 		<button>회원가입</button>
 	</form>
-	<jsp:include page="../include/footer.jsp"/>
+	<jsp:include page="../include/footer.jsp"/> --%>
 </body>
 </html>

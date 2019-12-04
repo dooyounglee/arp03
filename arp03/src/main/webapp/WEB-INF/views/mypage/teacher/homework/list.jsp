@@ -116,9 +116,9 @@
 		                                        <tbody>
 		                                        	<c:forEach var="hw" items="${list }">
 		                                        		<tr>
-			                                        		<td>${hw.hw_no }${hw.status }</td>
+			                                        		<td>${hw.hw_no }</td>
 			                                                <td><a href="getHomework.lec?hw_no=${hw.hw_no }">${hw.title }</a></td>
-			                                                <td>${hw.enddate }</td>
+			                                                <td>${hw.enddate.split(' ')[0] }</td>
 			                                                <td>
 			                                                <c:if test="${mem.typee eq 's' && hw.status eq'Y' }">
 			                                                	진행중
@@ -126,8 +126,11 @@
 			                                                <c:if test="${mem.typee eq 't' && hw.status eq'Y' }">
 			                                                	<button class="btn btn-success" onclick="end(${hw.hw_no })">마감</button>
 			                                                </c:if>
-			                                                <c:if test="${hw.status eq'N' }">
+			                                                <c:if test="${mem.typee eq 's' && hw.status eq'N' }">
 			                                                	<button class="btn btn-success" onclick="answer(${hw.hw_no })">정답확인</button>
+			                                                </c:if>
+			                                                <c:if test="${mem.typee eq 't' && hw.status eq'N' }">
+			                                                	마감
 			                                                </c:if>
 			                                                </td>
 															<c:if test="${mem.typee eq 't' }">
@@ -184,24 +187,21 @@
 	
 	
 	
-<button onclick="add()">숙제 추가</button>
+<%-- <button onclick="add()">숙제 추가</button>
 <div id="homeworkArea">
 	<div id="homeworkContent">
 <c:forEach var="hw" items="${list }">
 	<a href="getHomework.lec?hw_no=${hw.hw_no }">${hw }</a>
-	<%-- <button onclick="solve(${hw.hw_no })">문제풀기</button> --%>
+	<button onclick="solve(${hw.hw_no })">문제풀기</button>
 	<button onclick="answer(${hw.hw_no })">정답확인</button>
 	<button onclick="del(${hw.hw_no })">삭제</button><br>
 </c:forEach>
 	</div>
-</div>
+</div> --%>
 
 	<form id="form" method='post'>
 		<input type="hidden" name="hw_no">
 	</form>
-	<script>
-		
-	</script>
 <script>
 	function add(){
 		var url="homework.te";

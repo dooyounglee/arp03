@@ -97,7 +97,7 @@
                                         		<tr>
 	                                        		<td>${hw.hw_no }</td>
 	                                                <td><a href="get.hw?hw_no=${hw.hw_no }">${hw.title }</a></td>
-	                                                <td>${hw.enddate }</td>
+	                                                <td>${hw.enddate.split(' ')[0] }</td>
 												</tr>
 											</c:forEach>
                                         </tbody>
