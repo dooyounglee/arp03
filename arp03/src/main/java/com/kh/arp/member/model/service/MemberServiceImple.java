@@ -16,6 +16,7 @@ import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.member.model.dao.MemberDao;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.notice.model.vo.Notice;
 import com.kh.arp.qna.model.vo.Qna;
 
 @Service
@@ -204,6 +205,16 @@ public class MemberServiceImple implements MemberService {
 	@Override
 	public int acceptMember(Member mem) {
 		return md.acceptMember(mem);
+	}
+
+	@Override
+	public List<Board> getBoardListForMain() {
+		return md.getBoardListForMain();
+	}
+
+	@Override
+	public List<Notice> getNoticeListForMain() {
+		return md.getNoticeListForMain();
 	}
 
 	

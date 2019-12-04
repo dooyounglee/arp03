@@ -132,6 +132,20 @@ public class QDao {
 		return qList;
 	}
 
+	public int searchListCount(Question q) {
+		return sqlSession.selectOne("questionMapper.searchListCount", q);
+	}
+
+	public ArrayList<Question> selecttest(int lec_no) {
+		return (ArrayList)sqlSession.selectList("questionMapper.selecttest", lec_no);
+	}
+	
+	// 테스트
+	public ArrayList<Question> selectQuestionList(Question q) {
+		ArrayList<Question> qList = (ArrayList)sqlSession.selectList("questionMapper.selectQuestionSearchList", q);
+		return qList;
+	}
+
 	/*
 	 * public int selectQ(QFile qf) { return
 	 * sqlSession.selectOne("questionMapper.selectQ", qf); }

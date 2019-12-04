@@ -15,6 +15,7 @@ import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.notice.model.vo.Notice;
 import com.kh.arp.qna.model.vo.Qna;
 
 @Repository
@@ -176,6 +177,14 @@ public class MemberDao {
 
 	public int declareDeclare(Declaree d) {
 		return sqlSession.update("adminMapper.declareDeclare",d);
+	}
+
+	public List<Board> getBoardListForMain() {
+		return sqlSession.selectList("adminMapper.getBoardListForMain",null);
+	}
+
+	public List<Notice> getNoticeListForMain() {
+		return sqlSession.selectList("adminMapper.getNoticeListForMain",null);
 	}
 
 	

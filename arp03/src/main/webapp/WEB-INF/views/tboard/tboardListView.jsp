@@ -9,7 +9,12 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<style>
+#page{
+	margin-left:auto;
+	margin-right:auto;
+}
+</style>
 </head>
 <body class="fix-header card-no-border logo-center">
 
@@ -49,7 +54,8 @@
 					</div>
 					<div class="col-md-7 col-12 align-self-center d-none d-md-block">
 						<div class="d-flex mt-2 justify-content-end">
-							<div class="d-flex mr-3 ml-2">
+						<%@ include file="../question/qRealTimeFree.jsp"%>
+							<!-- <div class="d-flex mr-3 ml-2">
 								<div class="chart-text mr-2">
 									<h6 class="mb-0">
 										<small>THIS MONTH</small>
@@ -70,7 +76,7 @@
 								<div class="spark-chart">
 									<div id="lastmonthchart"></div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -136,7 +142,7 @@
 							</div>
 							<!-- 페이징 처리 -->
 							<div id="page">
-								<ul class="pagination">
+								<ul class="pagination" >
 									<c:if test="${ pi.currentPage eq 1 }">
 										<li class="page-item"><a class="page-link">이전</a></li>
 									</c:if>

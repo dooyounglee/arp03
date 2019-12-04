@@ -193,7 +193,7 @@
 	
 	
 	
-	<h1>문제 상세보기</h1>
+	<%-- <h1>문제 상세보기</h1>
 	문제: ${p.problem }<br>
 	정답: ${p.solution }<br>
 	해설: ${p.solve }<br>
@@ -206,6 +206,6 @@
 		해설: ${ranp.solve }<br>
 	</c:if>
 
-	<a href="edit.pro?p_no=${p.p_no }">수정</a>
+	<a href="edit.pro?p_no=${p.p_no }">수정</a> --%>
 </body>
 </html>

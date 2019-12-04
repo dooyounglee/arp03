@@ -89,7 +89,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h1 class="card-title" id="1">시험 정보</h1>
-                                <h4 class="card-title mt-4" id="22">시험잉름</h4>
+                                <h4 class="card-title mt-4" id="22">시험이름</h4>
                                 <p>${e.title }</p>
                                 <h4 class="card-title mt-4" id="3">시험일</h4>
                                 <p>${e.examdate.split(' ')[0] }</p>
@@ -142,12 +142,12 @@
 	
 	
 	
-	<jsp:include page="../../../include/header.jsp"/>
+	<%-- <jsp:include page="../../../include/header.jsp"/>
 	<h1>시험만들기</h1>
 
 	${e }<br>
 	<a href="edit.ex?e_no=${e.e_no }">수정</a>
 	
-	<jsp:include page="../../../include/footer.jsp"/>
+	<jsp:include page="../../../include/footer.jsp"/> --%>
 </body>
 </html>

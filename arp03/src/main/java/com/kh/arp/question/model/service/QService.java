@@ -83,6 +83,14 @@ public interface QService {
 
 	// 검색 게시판
 	ArrayList<Question> selectQuestionList(PageInfo pi, Question q);
+
+	// 검색한 게시물 갯수
+	int searchListCount(Question q);
+
+	ArrayList<Question> selecttest(int lec_no);
+
+	// 검색 게시판 테스트
+	ArrayList<Question> selectQuestionList(Question q);
 	
 	/*
 	 * // QFile 검색 int selectQ(QFile qf);

@@ -4,6 +4,7 @@
 	<select id="getMyQnaList" resultType="Qna">
 		select qna.*,m.name from (select * from qna where m_no=#{m_no}) qna, member m
 		where qna.m_no=m.m_no
+		order by 1 desc
 	</select>
 	
 	<select id="getQna" resultType="Qna">

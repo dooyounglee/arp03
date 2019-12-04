@@ -176,14 +176,14 @@ where v.v_no =#{v_no} and vd.v_no = v.v_no), default)
  -->
  
  <select id="selectVacationDateListWithCount" resultType="VacationDate">
-SELECT vd.*,cd.NTH,(SELECT m_no from VACATION WHERE v_no=1) m_no FROM VACATIONDATE vd, CLASSDATE cd
+SELECT vdd.*,cd.NTH,(SELECT m_no from VACATION WHERE v_no=#{v_no}) m_no FROM VACATIONDATE vdd, CLASSDATE cd
 WHERE VACATION_DATE IN (SELECT vacation_date
 FROM (SELECT vd.VACATION_DATE,count(*) totalcount,
-(SELECT count(*) FROM VACATIONDATE WHERE vacation_date=vd.VACATION_DATE AND tstatus='Y') yescount
+(SELECT count(*) FROM VACATIONDATE WHERE vacation_date=vd.VACATION_DATE AND v_no=#{v_no} AND tstatus='Y') yescount
 FROM VACATIONDATE vd
 WHERE v_no=#{v_no} GROUP BY VACATION_DATE)
 WHERE totalcount=yescount)
-AND vd.LEC_NO=cd.LEC_NO AND vd.VACATION_DATE=cd.CLASSDATE
+AND vdd.LEC_NO=cd.LEC_NO AND vdd.VACATION_DATE=cd.CLASSDATE
 </select>
 
 <select id="classdateList" resultType="Classdate">

@@ -46,7 +46,6 @@ public class TBoardController {
 
 		int listCount = tbService.getListCount();
 		PageInfo pi = new PageInfo(currentPage, listCount, 7, 10);
-		// System.out.println("pi"+pi);
 		ArrayList<Board> list = tbService.selectTBoardList(pi);
 
 		for (Board b : list) {
@@ -114,7 +113,6 @@ public class TBoardController {
 		
 			
 		
-			System.out.println("b파일"+b.getFileStatus());
 		
 			Iterator<String> files = reloadFile.getFileNames();
 			
@@ -133,13 +131,11 @@ public class TBoardController {
 				
 				
 			
-			System.out.println(fileList);
 			
 			for (MultipartFile filePart : fileList) {
 				 
 				
 				 String originalFileName = filePart.getOriginalFilename(); // 원본파일명
-				 System.out.println("원본명"+originalFileName);
 				 String renameFileName = saveFileUpload(mpf,reloadFile,originalFileName);
 				 
 				 bf.setOriginal_filename(originalFileName);
@@ -272,7 +268,6 @@ public class TBoardController {
 		File f = new File(savePath + "/" + rename);
 
 		if (f.exists()) {
-			System.out.println(f);
 			f.delete();
 		}
 
@@ -289,7 +284,6 @@ public class TBoardController {
 	public void deleteFile(String renameFileName, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "/tbuploadFiles";
-		System.out.println("컨트롤");
 
 		File f = new File(savePath + "/" + renameFileName);
 
@@ -322,11 +316,8 @@ public class TBoardController {
 		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + uuid + "."
 				+ org_filename.substring(org_filename.lastIndexOf(".") + 1);
 
-		// System.out.println("원본 파일명 : " + org_filename);
-		// System.out.println("저장할 파일명 : " + renameFileName);
 
 		String filepath = realFolder + "\\" + renameFileName;
-		// System.out.println("파일경로 : " + filepath);
 
 		File f = new File(filepath);
 		if (!f.exists()) {
@@ -341,7 +332,6 @@ public class TBoardController {
 	// 게시글 작성용 메소드 
 	@RequestMapping(value = "insertTBoard.do", method = RequestMethod.POST)
 	public String MultifileUp(MultipartHttpServletRequest multi,ModelAndView mv,BoardFile bf,Board b) {
-		System.out.println("파일업로드");
 		
 		  Iterator<String> files = multi.getFileNames();
 		
@@ -349,7 +339,6 @@ public class TBoardController {
      	  
 			List<MultipartFile> fileList = multi.getFiles("file");
 			
-				System.out.println(multi);
 			
 			
 			if(!mpf.getOriginalFilename().equals("")) { // 파일이 넘어왔을때
@@ -390,7 +379,6 @@ public class TBoardController {
 			
 	// 파일 업로드 하고 업로드한 파일명(수정명) 반환하는 메소드 --> 재사용하기 위해 따로 빼둠
 	public String saveFileUpload(MultipartFile file, HttpServletRequest request,String originalFileName) {
-		System.out.println("file"+file);
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "/tbuploadFiles";
 
@@ -412,7 +400,6 @@ public class TBoardController {
 		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) + uuid+"."
 				+ originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
 		
-		System.out.println("파일변경명"+renameFileName);
 
 		// ~~~/resources/buploadFiles/201911051717.PNG
 		String renamePath = savePath + "/" + renameFileName;
@@ -439,8 +426,6 @@ public class TBoardController {
 		  
 		  File folder = new File(savePath);
 		 
-		 System.out.println(savePath);
-		 System.out.println(folder.exists());
 		
 		  if (!folder.exists()) {
 			  folder.mkdirs(); // savePath까지의 경로가 존재하지 않다면 폴더 생성 }
@@ -504,7 +489,6 @@ public class TBoardController {
 	@ResponseBody
 	@RequestMapping("tbReplyUpdate.do")
 	public String tbReplyUpdate(BReply r) {
-		System.out.println("r="+r);
 		int result = tbService.tbReplyUpdate(r);
 		
 		if(result > 0) {
@@ -518,7 +502,6 @@ public class TBoardController {
 	@ResponseBody
 	@RequestMapping("reReplyInsert.do")
 	public String reReplyInsert(BReply r) {
-		System.out.println("r="+r);
 		int result = tbService.reReplyInsert(r);
 		
 		tbService.recountUpdate(r);
@@ -535,7 +518,6 @@ public class TBoardController {
 	@ResponseBody
 	@RequestMapping("deleteBtn.do")
 	public String deleteRe(BReply r) {
-		System.out.println(r);
 		
 		int result = tbService.deleteRe(r);
 		

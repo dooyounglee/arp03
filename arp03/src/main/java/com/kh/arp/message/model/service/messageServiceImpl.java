@@ -45,7 +45,6 @@ public class messageServiceImpl implements messageService {
 
 	@Override
 	public List<Dto> searchList(Dto dto) {
-		System.out.println("impl"+ dto);
 		return mDao.searchList(dto);
 	}
 

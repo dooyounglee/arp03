@@ -45,6 +45,12 @@
 		update declaree set okdate=sysdate, status='D' where d_no=#{d_no}
 	</update>
 	
+	<select id="getBoardListForMain" resultType="Board">
+		select * from board where status='Y'
+	</select>
+	<select id="getNoticeListForMain" resultType="Notice">
+		select * from notice
+	</select>
 	
 
 </mapper>

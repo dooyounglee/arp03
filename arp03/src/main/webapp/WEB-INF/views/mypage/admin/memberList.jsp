@@ -183,7 +183,7 @@
         
         
         
-	<jsp:include page="../../include/header.jsp"/>
+	<%-- <jsp:include page="../../include/header.jsp"/>
 	
 	<h1>회원관리</h1>
 	<a href="insertMember.ad">회원등록</a><br>
@@ -191,7 +191,7 @@
 	<c:forEach var="m" items="${list }">
 		<a href="DetailStudent.ad?m_no=${m.m_no }">${m }</a>
 		<button onclick="banish(${m.m_no})">강퇴</button><button onclick="banishCancle(${m.m_no})">강퇴취소</button><br>
-	</c:forEach>
+	</c:forEach> --%>
 	
 	<form id="form" method='post'>
 		<input type="hidden" name="m_no">
@@ -213,6 +213,6 @@
 			formm.submit();
 		} */
 	</script>
-	<jsp:include page="../../include/footer.jsp"/>
+	<%-- <jsp:include page="../../include/footer.jsp"/> --%>
 </body>
 </html>

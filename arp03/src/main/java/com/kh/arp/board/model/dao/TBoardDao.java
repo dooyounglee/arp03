@@ -60,7 +60,6 @@ public class TBoardDao {
 	}
 	
 	public int updateFile(BoardFile bf) {
-		System.out.println("dao"+bf);
 		return sqlSession.update("tboardMapper.updateFile",bf);
 	}
 	
@@ -74,7 +73,6 @@ public class TBoardDao {
 	}
 	
 	public int selectRcount(int b_no) {
-		System.out.println("다오에서 실행중");
 		return sqlSession.update("tboardMapper.selectRcount",b_no);
 		
 	}

@@ -247,13 +247,12 @@
 						//되는거 아니야??ㅏㅍㅇ앞에 붙었나? 방금?네 첨엔 뒤에붙엇는데 갑자기 앞에..그런가봐여 ㄷㄷ
 				//봤음? 계속 클릭한거야넵// return ㅣㅈ우니까 안된것같은..일단 지금까지꺼 푸시하고 넘겨줘봐 ㅋㅋ 나도 만져볼꼐 네 ㅠㅠ 감사해영 ㅠㅠㅃㅃ
 				//인터치고 하면 되는건가 커서위치 때문인가?흠..
-			}
 			var youtu = "https://youtu.be/";
-			var naver = "/v/";
+			var naver = "naver.com/v/";
 			var kakao = "https://tv.kakao.com/v/";
 			var daum = "https://kakaotv.daum.net/v/";
 			var youtubeId = youtubeaaa.replace('https://youtu.be/','https://www.youtube.com/embed/');
-			var naverId = youtubeaaa.replace('/v/','/embed/');
+			var naverId = youtubeaaa.replace('naver.com/v/','naver.com/embed/');
 			var kakaoId = youtubeaaa.replace('https://tv.kakao.com/v/','https://play-tv.kakao.com/embed/player/cliplink/');
 			var daumNewsId = youtubeaaa.replace('https://kakaotv.daum.net/v/','https://play-tv.kakao.com/embed/player/cliplink/');
 			if(youtubeaaa.indexOf(youtu) != -1){
@@ -309,7 +308,7 @@
 	
 	
 	<!-- header에 있는 jquery 충돌 방지 -->
-   <script src='jquery-3.2.1.js'></script>
+<!--    <script src='jquery-3.2.1.js'></script> -->
    
    <script>
    
