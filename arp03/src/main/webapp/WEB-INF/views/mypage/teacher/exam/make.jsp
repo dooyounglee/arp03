@@ -99,7 +99,7 @@
 								</c:if>
 	
                                 <h4 class="card-title">시험 만들기</h4>
-                                <h6 class="card-subtitle">Just add <code>floating-labels</code> class to the form.</h6>
+                          
                                 <form class="form-material mt-4" action="${mapping }.ex" method="post" autocomplete=off>
                                 	<input type="hidden" name="e_no" value="${e_no }">
                                     <div class="form-group mb-5">
