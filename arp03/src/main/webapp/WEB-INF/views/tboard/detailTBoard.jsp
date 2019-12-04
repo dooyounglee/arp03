@@ -136,7 +136,7 @@
 									<address>
 										<span><b class="text-info pull-left">${ b.name}</b></span> <span
 											class="text-right">${ b.regdate }</b></span>
-										<p class="text-muted ml-1">${ b.content }
+										<p class="text-muted ml-1" >${ b.content }
 									</address>
 									<div class="pull-right text-right">
 										<address>
@@ -171,18 +171,21 @@
 										<div class="card-body">
 											<!-- 댓글 등록 부분 -->
 											<!-- <div class="card"> -->
-											<div id="re">
-												<table id="reTb" width="600px" align="center"
-													cellspacing="0"table-layout:fixed;>
-													<tr>
+											<div id="re" style="width: 70%">
+												<div class="col-12">
+													<div class="form-group">
+														<textarea class="form-control" rows="3" id="rContent"></textarea>
 
-														<td><textarea cols="60" rows="3" id="rContent"></textarea></td>
-														<td><button
-																class="btn waves-effect waves-light btn-info" id="rBtn">등록</button></td>
-													</tr>
-												</table>
-												<hr>
-												<!-- 댓글 목록	 -->
+													</div>
+
+													<div align="right">
+														<button type="button" class="btn btn-info" id="rBtn">등록</button>
+													</div>
+													>
+												</div>
+											</div>
+											<hr>
+											<!-- 댓글 목록	 -->
 												<div class="col-md-8">
 													<table class="table table-hover no-wrap" align="center"
 														id="rtb" style="color: black" cellspacing="0">
@@ -247,8 +250,8 @@
 				
 			});
 	//	눌렀을떄 this를 제외하고 class 닫히게 
-		// 수정버튼을 눌렀을때
 	
+		// 수정버튼을 눌렀을때
 		$(document).on("click",".upBtn",function(){
 		 	
 	/* 		console.log("hhhhh"+($(".content").attr("class")))
@@ -258,10 +261,10 @@
 			// content자리가 textarea로 변경되게 
 			
 			
-			 var upContent=$(this).parent().parent().children(".content")
-		  	 var contentText= upContent.text();
+			var upContent=$(this).parent().parent().children(".content")
+		  	var contentText= upContent.text();
 			
-		 	upContent.replaceWith( '<textarea id="upcontent">'+contentText+'</textarea>');
+		 	upContent.replaceWith( '<div class="form-group"><textarea id="upcontent" class="form-control">'+contentText+'</textarea></div>');
 		 	
 		 	var delNo =$(this).parent().parent().children(".delBtn"); 
 		 	// 삭제버튼, 수	정버튼 안보이고 등록버튼 보임
@@ -278,7 +281,7 @@
 		// 등록버튼 눌렀을때
 		$(document).on("click",".subBtn", function(){
 			
-			var updateContent =	$(this).parent().parent().children("#upcontent");
+			var updateContent =	$(this).parent().parent().children().children("#upcontent");
 			
 			console.log(updateContent);
 			
@@ -323,7 +326,7 @@
 			var updateContent = $(this).parent().parent().children(".content");
 			var name = $(this).parent().parent().children(".name").text();
 			console.log(name);
-			updateContent.parent().after("<tr><td>┖></td><td><textarea></textarea></td><td><button class='resubBtn btn waves-effect waves-light btn-rounded btn-outline-success btn-xs' >등록</button></td></tr>");
+			updateContent.parent().after("<tr><td>┖></td><td><div class='form-group'><textarea class='form-control'></textarea></div></td><td><button class='resubBtn btn waves-effect waves-light btn-rounded btn-outline-success btn-xs' >등록</button></td></tr>");
 			
 			$(this).parent().parent().children("#reBtn").hide();	// 답글버튼
 			
@@ -334,7 +337,7 @@
 			
 			var r_no = $(this).parent().parent().prev().children("#r_no").val();
 			console.log("r_no"+r_no);
-			var content = $(this).parent().prev().children().val(); 
+			var content = $(this).parent().prev().children().children().val(); 
 			console.log(content);
 			
 			if(content != ""){
@@ -367,32 +370,7 @@
 		
 		});		
 		 
-	/* 	 // 대댓글 삭제 버튼을 눌렀을때
-		 $(document).on("click",".delReBtn", function(){
-			 
-			 $.ajax({
-				 url:"deleteRe.do",
-				 data:{r_no:r_no,
-					   b_no:${b.b_no},
-					   parent_no: r_no,
-					   success:function(data){
-							  
-							  if(data=="success"){
-								  
-								  getReplyList();
-								} else {
-									alert("댓글 삭제에 실패했습니다");
-								}
-							}, error:function(){
-								console.log("ajax 통신 실패");
-							}	
-					   
-					 }
-		
-			 });
-		 
-		 }); */
-		 
+
 		 
 
 		 // 댓글 삭제버튼 눌렀을때
@@ -471,6 +449,7 @@
 							
 							
 							if(value.depth == 1){				// 댓글
+								
 								$tr.append($writerTd);
 								
 								var status = value.status;

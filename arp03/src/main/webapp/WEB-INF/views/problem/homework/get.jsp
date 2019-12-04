@@ -175,8 +175,8 @@
 	
 	
 	
-${hw }
-<button onclick="add()">추가하기</button><br>
+<%-- ${hw }
+<button onclick="add()">추가하기</button><br> --%>
 <%-- <div id="problemArea">
 	<div id="problemContent">
 		<c:forEach var="p" items="${list }">

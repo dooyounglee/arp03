@@ -59,26 +59,19 @@
                             <li class="breadcrumb-item active">자유게시판</li>
                         </ol>
                     </div>
-                    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+                     <div class="col-md-7 col-12 align-self-center d-none d-md-block">
                         <div class="d-flex mt-2 justify-content-end">
                             <div class="d-flex mr-3 ml-2">
                                 <div class="chart-text mr-2">
-                                    <h6 class="mb-0"><small>THIS MONTH</small></h6>
-                                    <h4 class="mt-0 text-info">$58,356</h4>
+                                    <h6 class="mb-0"><small></small></h6>
+                                    <h4 class="mt-0 text-info"></h4>
                                 </div>
                                 <div class="spark-chart">
-                                    <div id="monthchart"></div>
                                 </div>
                             </div>
-                            <div class="d-flex mr-3 ml-2">
-                                <div class="chart-text mr-2">
-                                    <h6 class="mb-0"><small>LAST MONTH</small></h6>
-                                    <h4 class="mt-0 text-primary">$48,356</h4>
-                                </div>
-                                <div class="spark-chart">
-                                    <div id="lastmonthchart"></div>
-                                </div>
-                            </div>
+                            <div class="col-md-7 col-4 align-self-center" style="padding-left:30%;">
+                        <jsp:include page="../question/qRealTimeFree.jsp"></jsp:include>
+                    </div>
                         </div>
                     </div>
                 </div>
@@ -104,18 +97,16 @@
 			<th width="400">제목</th>
 			<th>글쓴이</th>
 			<th>작성일</th>
-			<th>조회수</th>
-			<th>댓글수</th>
+			<th>조회수</th>	
 		</tr>
 		</thead>
 		<c:forEach items="${ list }" var="b">
 			<tr>
 				<td>${ b.b_no }</td>
-				<td><a href="bdetail.do?b_no=${ b.b_no }">${ b.title }</a></td>
+				<td><a href="bdetail.do?b_no=${ b.b_no }">${ b.title } <b>[${ b.rcount }]</b></a></td>
 				<td>익명</td>
 				<td>${ b.regdate }</td>
 				<td>${ b.vcount }</td>
-				<td>${ b.rcount }</td>
 			</tr>
 		</c:forEach>
 		

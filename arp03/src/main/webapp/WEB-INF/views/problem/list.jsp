@@ -157,10 +157,10 @@
 	
 	
 	
-	<h1>problemList</h1>
+	<%-- <h1>problemList</h1>
 	<a href="make.pro">문제 만들기</a><br>
 	<c:forEach var="p" items="${plist }">
 		<a href="get.pro?p_no=${p.p_no }">${p }</a><br>
-	</c:forEach>
+	</c:forEach> --%>
 </body>
 </html>

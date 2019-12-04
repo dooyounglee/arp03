@@ -82,7 +82,6 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">강좌관리</h4>
-                                <h6 class="card-subtitle">Add class <code>.table</code></h6>
                                 <div class="table-responsive">
                                     <table class="table table-hover">
                                         <thead>

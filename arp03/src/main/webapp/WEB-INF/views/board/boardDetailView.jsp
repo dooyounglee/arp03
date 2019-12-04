@@ -21,18 +21,18 @@
 	/* #file,a{
 	font-size:15px;
 	} */
-	#btn{
+	/* #btn{
 		text-align:right;
 		margin-left:auto;
 		margin-right:auto;
 		width:600px;
-	}
+	} */
         hr{margin-top:0 !important;}
-        #btns{
+       #btns{
         margin-left:auto;
 		margin-right:auto;
 		width:100%;
-		}
+		} 
 		#re{
 		margin-left:auto;
 		margin-right:auto;
@@ -83,22 +83,15 @@
                         <div class="d-flex mt-2 justify-content-end">
                             <div class="d-flex mr-3 ml-2">
                                 <div class="chart-text mr-2">
-                                    <h6 class="mb-0"><small>THIS MONTH</small></h6>
-                                    <h4 class="mt-0 text-info">$58,356</h4>
+                                    <h6 class="mb-0"><small></small></h6>
+                                    <h4 class="mt-0 text-info"></h4>
                                 </div>
                                 <div class="spark-chart">
-                                    <div id="monthchart"></div>
                                 </div>
                             </div>
-                            <div class="d-flex mr-3 ml-2">
-                                <div class="chart-text mr-2">
-                                    <h6 class="mb-0"><small>LAST MONTH</small></h6>
-                                    <h4 class="mt-0 text-primary">$48,356</h4>
-                                </div>
-                                <div class="spark-chart">
-                                    <div id="lastmonthchart"></div>
-                                </div>
-                            </div>
+                            <div class="col-md-7 col-4 align-self-center" style="padding-left:30%;">
+                        <jsp:include page="../question/qRealTimeFree.jsp"></jsp:include>
+                    </div>
                         </div>
                     </div>
                 </div>
@@ -118,7 +111,7 @@
                                         </address>
                                     </div>
                                 </div>
-                                <div id="btns" class="text-center">
+                                <div id="btns" align="center" class="text-center">
                    <button class="btn waves-effect waves-light btn-success" type="button" onclick="location.href='blist.do';">목록</button>
 				<button type="button" class="btn waves-effect waves-light btn-danger" onclick="declareBoard();">신고</button>
 				<c:if test="${ mem.m_no eq b.m_no }">
@@ -142,16 +135,17 @@
 			
 			<script>
 				 $(function(){
-			            $("#rContent").on("keyup", function(){
+			            $("#rContent").on("input", function(){
 			                var inputlength = $(this).val().length;
-			                $("#counter").html(inputlength);
-			                if(inputlength > 300) {
+			                //console.log(inputlength);
+			                if(inputlength > 300) {			                	
 			                    alert("300자를 초과할 수 없습니다.");
 			                    $(this).val($(this).val().substr(0, 300));
-			                    $("#rBtn").prop("disabled", true);
+			                    inputlength = $(this).val().length;
 			                } else {
 			                	$("#rBtn").prop("disabled", false);
 			                }
+			                $("#counter").html(inputlength);
 	
 			            });
 			        });
@@ -438,14 +432,12 @@
 				//console.log($clicked);
 			});
 			
-			$(document).on("keyup", "#reContent", function(){
+			$(document).on("input", "#reContent", function(){
 				var inputlength = $(this).val().length;
-                console.log(inputlength);
+                //console.log(inputlength);
                 if(inputlength > 300) {
                     alert("300자를 초과할 수 없습니다.");
                     $(this).val($(this).val().substr(0, 300));
-                    $(".rrsb").prop("disabled", true);
-                    $(".modify").prop("disabled", true);
                 } else {
                 	$(".rrsb").prop("disabled", false);
                 	$(".modify").prop("disabled", false);

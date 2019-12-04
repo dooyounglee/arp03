@@ -91,7 +91,7 @@
                             	
                             	<c:set var="mapping" value="make"/>
 								<c:set var="e_no" value="0"/>
-								<c:set var="e_no" value=""/>
+								<c:set var="examdate" value=""/>
 								<c:if test="${!empty e }">
 									<c:set var="mapping" value="edit"/>
 									<c:set var="e_no" value="${e.e_no }"/>
@@ -99,7 +99,7 @@
 								</c:if>
 	
                                 <h4 class="card-title">시험 만들기</h4>
-                                <h6 class="card-subtitle">Just add <code>floating-labels</code> class to the form.</h6>
+                          
                                 <form class="form-material mt-4" action="${mapping }.ex" method="post" autocomplete=off>
                                 	<input type="hidden" name="e_no" value="${e_no }">
                                     <div class="form-group mb-5">
@@ -167,7 +167,7 @@
 	
 	
 	
-	<jsp:include page="../../../include/header.jsp"/>
+	<%-- <jsp:include page="../../../include/header.jsp"/>
 	<h1>시험만들기</h1>
 
 	<c:set var="mapping" value="make"/>
@@ -187,6 +187,6 @@
 		<button>완료</button>
 	</form>
 	
-	<jsp:include page="../../../include/footer.jsp"/>
+	<jsp:include page="../../../include/footer.jsp"/> --%>
 </body>
 </html>

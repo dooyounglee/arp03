@@ -151,7 +151,7 @@
 	
 	
 	
-	<jsp:include page="../include/header.jsp"/>
+	<%-- <jsp:include page="../include/header.jsp"/>
 	
 	<form action="write.qna" method="post" autocomplete=off>
 		제목:<input name="title"><br>
@@ -159,6 +159,6 @@
 		<button>완료</button>
 	</form>
 	
-	<jsp:include page="../include/footer.jsp"/>
+	<jsp:include page="../include/footer.jsp"/> --%>
 </body>
 </html>

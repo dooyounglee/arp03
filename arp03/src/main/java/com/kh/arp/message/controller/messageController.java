@@ -45,14 +45,12 @@ public class messageController {
 	  ArrayList<Member> list = mService.selectMember();
 	 
 	  mv.addObject("list",list).setViewName("message/sendMessage");
-	  System.out.println("list"+list);
 				  
 		  return mv;
 	  }
 	
 	@RequestMapping("insertMsg.do")
 	public String insertMsg(Message m) {
-		System.out.println(m);
 		int result = mService.insertMsg(m);
 		
 		if(result >0) {
@@ -85,11 +83,9 @@ public class messageController {
 
 		int m_no =	((Member)session.getAttribute("mem")).getM_no();
 		int listCount = mService.getListCount(m_no);
-		System.out.println("lc"+listCount);
 		PageInfo pi = new PageInfo(currentPage, listCount, 5, 10);
 		
 		ArrayList<Message> mList = mService.listSendMsg(m_no);
-		System.out.println("받은쪽지"+mList);
 		mv.addObject("mList",mList).addObject("pi", pi).setViewName("message/listSendMessage");
 		
 		return mv;
@@ -119,9 +115,7 @@ public class messageController {
 	
 		dto.setName(request.getParameter("term"));
 		dto.setM_no(((Member)session.getAttribute("mem")).getM_no());
-		System.out.println(dto);
 		List<Dto> list = mService.searchList(dto);
-		System.out.println("list"+list);
 		JSONArray j = new JSONArray();
 		for(Dto jlist : list) {
 			String text = jlist.getName() + "-"+ jlist.getM_no() ;
@@ -175,7 +169,6 @@ public class messageController {
 		  ArrayList<Member> list = mService.selectMember();
 		  
 		  Message msg = mService.reSendMsgForm(ms_no);
-		  System.out.println("답장"+msg);
 		  
 		  mv.addObject("msg",msg).addObject("list",list).setViewName("message/sendMessage");
 		  

@@ -11,6 +11,7 @@ import com.kh.arp.lecture.model.vo.Lecture;
 import com.kh.arp.lecture.model.vo.MyClass;
 import com.kh.arp.member.model.vo.Auth;
 import com.kh.arp.member.model.vo.Member;
+import com.kh.arp.notice.model.vo.Notice;
 import com.kh.arp.qna.model.vo.Qna;
 
 public interface MemberService {
@@ -86,6 +87,10 @@ public interface MemberService {
 	List<Lecture> getLectureList(Member mem);
 
 	int acceptMember(Member mem);
+
+	List<Board> getBoardListForMain();
+
+	List<Notice> getNoticeListForMain();
 
 
 	

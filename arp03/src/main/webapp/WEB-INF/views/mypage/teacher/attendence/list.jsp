@@ -97,7 +97,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">출석 관리</h5>
-                                <h6 class="card-subtitle">Just click on the table cell you want to edit.</h6>
+                                
                                 <div class="table-responsive">
                                     <table class="table striped editable-table no-wrap">
                                         <thead>
@@ -145,16 +145,18 @@
 														<!-- End of attendence선택 -->
 													
 													<td>
-														<c:if test="${mem.typee eq 's' }">
+														<c:if test="${mem.typee eq 's' || (mem.typee eq 't' && attendence eq '휴')}">
 														${attendence }
 														</c:if>
-														<c:if test="${mem.typee eq 't' }">
+														<c:if test="${(mem.typee eq 't' && attendence ne '휴') || mem.typee eq 'a'}">
 														<select class="att" style="width:20px;" data-d_no="${i.count }" data-m_no="${m.m_no }">
 															<option value="--" ${checked1 }>----</option>
 															<option value="O" ${checked2 }>O</option>
 															<option value="/" ${checked3 }>/</option>
 															<option value="X" ${checked4 }>X</option>
+															<c:if test="${mem.typee eq 'a' }">
 															<option value="휴" ${checked5 }>휴</option>
+															</c:if>
 														</select>
 														</c:if>
 													</td>
@@ -208,8 +210,8 @@
 	
 	
 	
-	<jsp:include page="../../../include/header.jsp"/>
-	<h1>성적</h1>
+	<%-- <jsp:include page="../../../include/header.jsp"/>
+	<h1>성적</h1> --%>
 	<%-- <table border=1>
 		<thead>
 			<tr>
@@ -311,6 +313,6 @@
 		
 	</script>
 	
-	<jsp:include page="../../../include/footer.jsp"/>
+	<%-- <jsp:include page="../../../include/footer.jsp"/> --%>
 </body>
 </html>
