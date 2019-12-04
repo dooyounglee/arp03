@@ -88,7 +88,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">시험 점수 관리</h5>
-                                <h6 class="card-subtitle">Just click on the table cell you want to edit.</h6>
+                              
                                 <div class="table-responsive">
                                     <table class="table striped editable-table no-wrap">
                                         <thead>
@@ -146,7 +146,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">숙제 점수 관리</h5>
-                                <h6 class="card-subtitle">Just click on the table cell you want to edit.</h6>
+                              
                                 <div class="table-responsive">
                                     <table class="table striped editable-table no-wrap">
                                         <thead>
@@ -238,7 +238,7 @@
 	
 	
 	
-	<jsp:include page="../../../include/header.jsp"/>
+	<%-- <jsp:include page="../../../include/header.jsp"/>
 	<h1>성적</h1>
 	<table border=1>
 		<thead>
@@ -283,7 +283,7 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table>
+	</table> --%>
 	
 	<script>
 		//합
@@ -330,6 +330,6 @@
 		})
 	</script>
 	
-	<jsp:include page="../../../include/footer.jsp"/>
+	<%-- <jsp:include page="../../../include/footer.jsp"/> --%>
 </body>
 </html>

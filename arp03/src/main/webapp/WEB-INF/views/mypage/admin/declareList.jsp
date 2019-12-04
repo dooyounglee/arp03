@@ -82,7 +82,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">신고관리</h4>
-                                <h6 class="card-subtitle">Add class <code>.table</code></h6>
+                              
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table">
                                         <thead>
@@ -132,19 +132,7 @@
 												</tr>
 											</c:forEach>
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>m_no</th>
-                                                <th>kind</th>
-                                                <th>obj</th>
-                                                <th>obj_no</th>
-                                                <th>regdate</th>
-                                                <th>okdate</th>
-                                                <th>보기</th>
-                                                <th>처리</th>
-                                            </tr>
-                                        </tfoot>
+                                       
                                     </table>
                                     <script>
 								   		$('#zero_config').DataTable();
