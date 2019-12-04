@@ -85,24 +85,22 @@
 			<th width="400">제목</th>
 			<th>글쓴이</th>
 			<th>작성일</th>
-			<th>조회수</th>
-			<th>댓글수</th>
+			<th>조회수</th>	
 		</tr>
 		</thead>
 		<c:forEach items="${ list }" var="b">
 			<tr>
 				<td>${ b.b_no }</td>
-				<td><a href="bdetail.do?b_no=${ b.b_no }">${ b.title }</a></td>
+				<td><a href="bdetail.do?b_no=${ b.b_no }">${ b.title } <b>[${ b.rcount }]</b></a></td>
 				<td>익명</td>
 				<td>${ b.regdate }</td>
 				<td>${ b.vcount }</td>
-				<td>${ b.rcount }</td>
 			</tr>
 		</c:forEach>
 		
 		<c:if test="${pi.listCount eq 0}">
 			<tr>
-			<td align="center" colspan="6">존재하는 게시글이 없습니다.</td>
+			<td align="center" colspan="5">존재하는 게시글이 없습니다.</td>
 			</tr>
 		</c:if>
 		</table>
