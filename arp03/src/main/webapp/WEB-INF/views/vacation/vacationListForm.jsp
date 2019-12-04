@@ -111,7 +111,7 @@
                     <div class="col-md-5 col-12 align-self-center">
                         <h3 class="text-themecolor mb-0 mt-0">휴가신청하기</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/arp">Home</a></li>
                             <li class="breadcrumb-item active">휴가신청하기</li>
                         </ol>
                     </div>
@@ -148,6 +148,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">휴가관리</h4>
                                 <c:if test="${mem.typee eq 's' }">
+                               
                                 <a class="btn btn-primary float-right" href="vinsertForm.me">휴가작성하기</a>
                                 <br>
                                 </c:if>
@@ -166,6 +167,7 @@
                                         <tbody >
                                         <c:forEach items="${list }" var="c">
                                         <%-- <c:if test = "${mem.m_no }"> --%>
+                                        <input type="hidden" name="v_no" value="${c.v_no }">
 										<tr>
 											<td>${c.v_no }</td>
 											<td>${c.name }</td>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +36,6 @@
 
 
 	<form action="vinsert.me" method="POST" class="form-material mt-4" >
-	
 	<input type="hidden" name="m_no" id="m_no" value="${mem.m_no }" readonly><br>
 <%-- 	강의번호:<input type="text" name="lec_no"  id="lec_no" value="${param.lec_no }" readonly><br> --%>
 	<%-- 강의명:<input type="text" name="title" id="title"value="${param.title }" readonly><br> --%>
@@ -102,13 +102,13 @@
                                         <div class="form-group mt-4 row">
                                         <label class="col-md-2 col-form-label">제목:</label>
                                         <div class="col-md-10">
-                                           <input type="text" class="form-control form-control-line" id="vacation_title" name="vacation_title">
+                                           <input type="text" class="form-control form-control-line" id="vacation_title" name="vacation_title" required>
                                         </div>
                                     </div>
                                     	<div class="form-group mt-4 row">
                                         <label class="col-md-2 col-form-label">사유:</label>
                                         <div class="col-md-10">
-                                           <textarea name="reason" class="form-control" id="reason" rows="5" cols="50" placeholder="사유입력"></textarea>
+                                           <textarea name="reason" class="form-control" id="reason" rows="5" cols="50" placeholder="사유입력" required></textarea>
                                         </div>
                                     </div>    
           						<div class="col-lg-13 col-xlg-7 col-mid-5" style="float:right">                                              
@@ -193,7 +193,7 @@
    
    <script>
    
-   	$("#vacation_title").
+
    
    
    
@@ -204,7 +204,9 @@
    
 	
 	<script>
+	
 		var arr=[];
+		var arrr=[];
 	
 		$("#howdate").on("change", function(){
 			var start_date = $("#testDatepicker").val()//20190101
@@ -255,21 +257,33 @@
 	
 	
 	
-	var vacation_title=$("#vacation_title").val();
-	var reason = $("#reason").val();
+
 	
-$("#submit").submit( function(){
+
 	
-	if(vacation_title == ""){
+$("#submit").click( function(){
+	
+	console.log($("#vacation_title").val());
+	 if(arr == ""){
+		alert("날짜를 누르세요");
+		return false;
+	}
+	 if($("#vacation_title").val() == ""){
 		alert("제목을 입력하세요");
 		return false;
-	}else if(reason == ""){
+	}
+	 
+	if($("#reason").val() == ""){
 		alert("이유를 입력하세요");
 		return false;
-	}else{
+	} 
+	 
+	 
+	 if(confirm("정말 등록하시겠습니까 ?")){	
 		return true;
+	}else{
+		return false;
 	}
-	
 });	
 	
 	
@@ -342,39 +356,50 @@ $("#submit").submit( function(){
 		}
 		tbody.append(str)
 		
+		
+		//arr[i]의 날짜에 지정된 예약날짜
+		$('td.real').each(function(index,item){
+			var mm = $('#mm').html(); mm = (mm < 10) ? '0' + mm : mm;
+		    var dd = $(this).data('dd');
+		    dd = (dd < 10) ? '0' + dd : dd;
+			for(i=0;i<arrr.length;i++){
+				if($('#yyyy').html()+'-'+mm+'-'+dd==arrr[i]){
+					$(this).css('background','blue').css('color','white')
+					$(this).data('exist',true);
+				}
+			}
+			for(i=0;i<arr.length;i++){
+				 if($('#yyyy').html()+'/'+mm+'/'+dd==arr[i]){
+					$(this).css('background','yellow').css('cursor','pointer').css('color' ,'black');
+					$(this).data('exist',true);
+					
+				 }
+			}
+		})
+		
 		//오늘 이전날짜는 회색
 		$('td.real').each(function(index,item){
 			if(yyyy<today_yyyy){
 				$(this).css('background','gray')
 			}else if(yyyy==today_yyyy){
 				if(mm<today_mm){
-					$(this).css('background','gray')
+					$(this).css('background','gray').css("")
 				}else if(mm==today_mm){
 					if($(this).data('dd')<today_dd){
 						$(this).css('background','gray');
 					}
 				}
 			}
-		})
+		});
 		
-		//arrr[i]의 날짜에 지정된 예약날짜
-		$('td.real').each(function(index,item){
-			var mm = $('#mm').html(); mm = (mm < 10) ? '0' + mm : mm;
-		    var dd = $(this).data('dd');
-		    dd = (dd < 10) ? '0' + dd : dd;
-			for(i=0;i<arr.length;i++){
-				 if($('#yyyy').html()+'/'+mm+'/'+dd==arr[i]){
-					$(this).css('background','yellow').css('cursor','pointer')
-					$(this).data('exist',true);
-					
-				 }
-			}
-			
-		
-		})
 	}
 	</script>
 
+ <c:forEach items="${date}" var="v">
+	<script>
+		arrr.push("${fn:substring(v.classdate , 0 , 10).split(' ')[0]}")
+	</script>
+</c:forEach> 
 	<script>
 	//arr채우기
 	//var arrr=[];
