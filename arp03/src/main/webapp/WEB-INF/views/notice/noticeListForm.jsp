@@ -288,6 +288,9 @@
                     </div>
                 </div>
                 
+                
+                
+   
 					<!-- footer -->
     		<!-- footer -->
         <footer class="footer">
@@ -301,14 +304,6 @@
 	</div>
 	<!-- End of Main wrapper -->
 	<%@ include file="../include/bjs.jsp" %>
-	
-		 
-<script>
-
-
-
-
-</script>
 
 </body>
 </html>

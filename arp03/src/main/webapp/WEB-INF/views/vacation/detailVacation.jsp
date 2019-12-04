@@ -126,7 +126,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h2 class="card-title">휴가상세보기</h2><br>
-                                <h6 class="card-subtitle"> vacation <code>.table</code></h6>
+                                <h6 class="card-subtitle">  <code></code></h6>
                                 <div class="table-responsive">
                                     <table class="table color-table info-table">
                                         <thead>

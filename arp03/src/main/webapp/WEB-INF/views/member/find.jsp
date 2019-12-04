@@ -84,7 +84,6 @@
                             <p class="text-muted mb-4 font-13"> 회원번호 / email / phone 을 입력하세요.</p>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form action="findId.me" method="post" autocomplete=off>
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="email" id="email" placeholder="회원번호 / email / phone">
                                             <input type="hidden" name="m_no" id="m_no">
@@ -93,9 +92,8 @@
                                         <div class="btn-list">
 		                                    <!-- Success Alert modal -->
 		                                    <button type="button" class="btn btn-success" data-toggle="modal"
-		                                        data-target="#success-alert-modal" onclick="findId()">Success Alert</button>
+		                                        data-target="#success-alert-modal" onclick="findId()">찾기</button>
 		                                </div>
-                                    </form>
                                     <script>
                                     	function findId(){
                                     		if($('#email').val()==""){
@@ -116,7 +114,7 @@
                                     					$('#success-alert-modal').find('p').text("다시 입력해주세요.")
                                     				}else{
                                     					$('#success-alert-modal').find('h4').text("찾았어요!")
-                                    					$('#success-alert-modal').find('p').text(data)
+                                    					$('#success-alert-modal').find('h2').html(data).css('color','white')
                                     				}
                                     			}
                                     		})
@@ -141,8 +139,8 @@
                                             <div class="text-center">
                                                 <i class="dripicons-checkmark h1"></i>
                                                 <h4 class="mt-2 text-white">Well Done!</h4>
-                                                <p class="mt-3 op-7">Cras mattis consectetur purus sit amet fermentum.
-                                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+                                                <h2 class="mt-3 op-7">Cras mattis consectetur purus sit amet fermentum.
+                                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam.</h2>
                                                 <button type="button" class="btn btn-light my-2"
                                                     data-dismiss="modal">Continue</button>
                                             </div>
