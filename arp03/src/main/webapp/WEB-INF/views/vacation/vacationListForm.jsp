@@ -150,7 +150,7 @@
                                 <c:if test="${mem.typee eq 's' }">
                                
                                 <a class="btn btn-primary float-right" href="vinsertForm.me">휴가작성하기</a>
-                                <br>
+                                <br><br>
                                 </c:if>
                                
                                 <div class="table-responsive">
@@ -161,7 +161,8 @@
                                                <th>이름</th>
                                                <th>제목</th>
                                                <th>입력날짜</th>
-                                               <th>처리상태</th>	
+                                               <th>처리상태</th>
+                                               <th></th>	
                                             	</tr>
                                         </thead>
                                         <tbody >
