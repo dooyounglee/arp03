@@ -233,10 +233,10 @@
 	</div>
 			
 </nav>
-
+<c:if test="${mem.m_no ne null }">
 <script>
 
-	var m_no = '${mem.m_no}'
+	var m_no = ${mem.m_no}
 		
 		var wsa = new WebSocket(
 		"ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/arp/Echo");
@@ -271,13 +271,9 @@
 				console.log('error');
 			};
 
-		
-
-
-		
-
-
-
+</script>
+</c:if>
+<script>	
 
 	$("#see").on("click", function() {
 		

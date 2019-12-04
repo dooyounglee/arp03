@@ -123,7 +123,7 @@
 	select b.*,m.name 
 	from breply b,member m 
 	where b_no = #{b_no} and (b.STATUS = 'Y' OR RE_COUNT >= 1) and b.m_no = m.m_no
-	order by b.parent_no, b.depth, b.r_no
+	order by b.parent_no desc, b.depth, b.r_no 
 	</select>
 	
 	<update id="tbReplyUpdate">
