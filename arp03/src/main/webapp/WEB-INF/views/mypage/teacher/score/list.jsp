@@ -238,7 +238,7 @@
 	
 	
 	
-	<jsp:include page="../../../include/header.jsp"/>
+	<%-- <jsp:include page="../../../include/header.jsp"/>
 	<h1>성적</h1>
 	<table border=1>
 		<thead>
@@ -283,7 +283,7 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table>
+	</table> --%>
 	
 	<script>
 		//합
@@ -330,6 +330,6 @@
 		})
 	</script>
 	
-	<jsp:include page="../../../include/footer.jsp"/>
+	<%-- <jsp:include page="../../../include/footer.jsp"/> --%>
 </body>
 </html>
