@@ -91,7 +91,7 @@
                             	
                             	<c:set var="mapping" value="make"/>
 								<c:set var="e_no" value="0"/>
-								<c:set var="e_no" value=""/>
+								<c:set var="examdate" value=""/>
 								<c:if test="${!empty e }">
 									<c:set var="mapping" value="edit"/>
 									<c:set var="e_no" value="${e.e_no }"/>
