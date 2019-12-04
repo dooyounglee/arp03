@@ -90,7 +90,7 @@
                                 <div class="row">
                                 	<div class="col-md-6">
                                 		<h3>시험</h3>
-                                		<table class="table">
+                                		<table class="table table-hover">
                                 			<thead>
                                 				<tr>
                                 					<th>시험이름</th>
@@ -105,7 +105,7 @@
 	                                				<c:forEach var="e" items="${elist }">
 	                                				<tr>
 	                                					<td>${e.title }</td>
-	                                					<td>${e.examdate }</td>
+	                                					<td>${e.examdate.split(' ')[0] }</td>
 	                                				</tr>
 	                                				</c:forEach>
                                 				</c:if>
@@ -129,7 +129,7 @@
 	                                				<c:forEach var="hw" items="${hwlist }">
 	                                				<tr>
 	                                					<td>${hw.title }</td>
-	                                					<td>${hw.enddate }</td>
+	                                					<td>${hw.enddate.split(' ')[0] }</td>
 	                                				</tr>
 	                                				</c:forEach>
 	                                			</c:if>
