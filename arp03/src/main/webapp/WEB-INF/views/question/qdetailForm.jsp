@@ -8,20 +8,6 @@
 <!-- head태그. header.jsp말고 -->
 	<%@ include file="../include/bhead.jsp"%>
 <title>상세보기 페이지</title>
-<!-- include libraries(jQuery, bootstrap) -->
-<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
-<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
-<!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> -->
-
-<!-- include summernote css/js -->
-<!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet"> -->
-<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
-
-<!-- <title>Summernote Lite</title>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
- -->
 <style>
 	 .spanTrashColor{
 	 	color:black;
@@ -129,7 +115,7 @@
 												<br> <br> ${ q.content }
 												<c:if test="${ !empty q.youtubelink }">
 													<iframe id="youtuberealId" width="560" height="315" src=""
-														frameborder="0"></iframe>
+														frameborder="0" allowfullscreen></iframe>
 												</c:if>
 											</div>
 											<c:if test="${ !empty q.originalname }">
@@ -149,7 +135,7 @@
 														class="btn waves-effect waves-light btn-rounded btn-danger">삭제</button>
 												</c:if>
 												<!-- <button type="button" onclick="window.history.back()">취소</button> -->
-												<!-- 나중에 답변하기 버튼은 선생님만 보이게 처리하기 -->
+											
 												<c:if
 													test="${empty q.replycontent && mem.typee eq 't' && mem.m_no eq lec.m_no}">
 													<button type="button" onclick="Qre();"
@@ -255,44 +241,12 @@
 											<div id="replyAreaChildren">
 												<table id="demo-foo-pagination" align="center"
 													cellspacing="0">
-													<input type="hidden" id="q_nohidden" name="q_no"
-														value="${ q.q_no }">
+													<input type="hidden" id="q_nohidden" name="q_no" value="${ q.q_no }">
 													<c:if test="${ qRListCount ne 0 }">
 														<span
 															style="color: gray; font: fantasy; font-weight: bold;">댓글(${ qRListCount })</span>
 														<hr>
 														<c:forEach items="${ qRList }" var="qr">
-															<!-- 	<table border="1"> -->
-															<%--  															<tr align="center">
-																<td style="width:auto;">${ qr.r_no } &nbsp;</td>
-																<td style="width:auto;">
-																	${ qr.name }
-																	<!-- 내글일경우에만 표시해주자 ex) 내 글 -->
-																		<!-- 박스 -->
-																		<span style="height:19px; margin:3px 0 0 6px; padding:0 8px; border-width:1px 1px 1px 1px; 
-																		border-style:solid; border-radius:17px; position:relative; float:right; vertical-align:top;">
-																			<!-- 글 -->
-																			<span style="height:17px; line-height:17px; margin:0; color:rgb(81, 143, 187); font-size:10px; letter-spacing:-1px; float:left;">
-																				내 글
-																			</span>
-																		</span>
-																</td>
-																<td style="width: 400px;">
-																	${ qr.content }
-																</td>
-																<td>${ qr.updatedate }</td>
-																<c:if test="${ qr.m_no eq mem.m_no }">
-																	<td>
-																		<button class="qrBtn btn btn-secondary btn-outline" type="button">
-																			<span class="docs-tooltip">
-																				<span class="fas fa-trash"></span>
-																			</span>
-																		</button>
-																	</td>
-																</c:if>
-															</tr> --%>
-															<!-- 	</table> -->
-															<!-- 이름부분 -->
 															<div>
 																<div style="padding-bottom: 7px; height: 30px;">
 																	<span
@@ -314,15 +268,10 @@
 																	<span class="contentWordText"
 																		style="color: black; font: fantasy; word-break:break-all; white-space:pre-line;"> ${ qr.content }
 																	</span>
-																	<!-- <script>
-														$(function(){
-															${ qr.content }.replace("\n","<br>");
-														});
-													</script> -->
 																</div>
 																<div style="float: right;">
-																	<span style="color:black;"> ${ qr.updatedate } </span> <span> <c:if
-																			test="${ qr.m_no eq mem.m_no }">
+																	<span style="color:black;"> ${ qr.updatedate } </span>
+																	<span> <c:if test="${ qr.m_no eq mem.m_no }">
 																			<button class="qrBtn btn-outline"
 																				style="outline: 0; border: none; font-size: 13px;"
 																				type="button">
@@ -361,9 +310,7 @@
 								</div>
 							</div>
 						</div>
-						<br>
-						<br>
-						<br>
+						<br><br><br>
 					</div>
 				</c:if>
 					</div>
@@ -386,195 +333,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-<%-- 
-
-
-
-
-
-
-			<!-- 제목, 내용, 작성자, 첨부파일정보 -->
-	<jsp:include page="../include/header.jsp"/>
-	<!-- 여기 작성자부분 수정전엔 뜨는데 수정다하고 상세보기다시오면 못뜸 -> 다시올떈 url에 name값사라져있음 -->
-	<br><br><br>
-			<!-- <h1 align="center">상세보기 페이지</h1> -->
-			<br>
-	<form class="c5" action="qupdateForm.qu?q_no=${ q.q_no }" method="post" enctype="multipart/form-data">
-		<h3 align="center">학생 질문</h3>
-			<table class="t1" align="center">
-			<tr>
-				<td>제목</td>
-				<td><input size="20" type="text" name="title" value="${ q.title }" readonly></td>
-				<td>${ q.updatedate }</td>
-			</tr>
-						<tr>
-				<td>작성자</td>
-				<td><input size="10" type="text" name="name" value="${ q.name }" readonly></td>
-			</tr>
-		<tr>
-				<td>내용</td>
-				<td>${ q.content }
-				<iframe id="youtuberealId" width="560" height="315" src="" frameborder="0"></iframe>
-				</td>
-			</tr>
-			<c:if test="${ !empty q.originalname }">
-			<tr>
-				<td>첨부파일</td>
-				<td>
-					<c:if test="${ !empty q.originalname }">
-						<a href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${ q.changename }" download="${ q.originalname }">${ q.originalname }</a>
-					</c:if>
-				</td>
-			</tr>
-			</c:if>
-			 <tr>
-				<td><input id="youtubeId" type="hidden" style="width:300px;" name="youtubelink" value="${ q.youtubelink }"></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right">
-					<c:if test="${ mem.name eq q.name }">
-					<button type="submit">수정</button>
-					<button type="button" id="qDel">삭제</button>
-					</c:if>
-					<!-- <button type="button" onclick="window.history.back()">취소</button> -->
-					<!-- 나중에 답변하기 버튼은 선생님만 보이게 처리하기 -->
-					<c:if test="${empty q.replycontent && mem.typee eq 't' && mem.m_no eq lec.m_no}">
-					<button type="button" onclick="Qre();">답변하기</button>
-					</c:if>
-					
-					<button type="button" onclick="location.href='question.qu';">목록</button>
-					<br><br>
-				</td>
-			</tr>
-		</table>
-	</form>
-	<br>
-
-
-			<!-- 질문게시판에 선생님이 답변달았을때의 insert form 사실상update-->
-		<form id="qOpen" action="qTCInsertReply?q_no=${ q.q_no }" method="post" enctype="multipart/form-data">
-		<table align="center">
-						<tr>
-				<td>작성자</td>
-				<!-- 접속한 아이디는 mem.getId()쓰면되는데 이름을 따로알아와보자 -->
-				<td><input size="10" type="text" name="name" value="${ qt.tcname }" readonly></td>
-			</tr>
-			 <tr>
-				<td>내용</td>
-				<td><textarea id="summernote" cols="50" rows="7" name="replycontent">${ q.replycontent }</textarea></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right">
-					<button id="qReOk" type="submit">확인</button>
-					<button type="button" onclick="window.history.back()">취소</button>
-					<button type="button" onclick="qReX();">취소</button>
-					<br><br>
-				</td>
-			</tr>
-		</table>
-	</form>
-	
-
-
-			<!-- 값얻어온다음에 조건값에 메소드값으로 바꾸기 -->
-			<c:if test="${!empty q.replycontent}">
-				<form class="c1" id="qOpen1" method="post"
-					enctype="multipart/form-data">
-
-					<h3 align="center">선생님 답변</h3>
-
-					<table class="t1" align="center">
-						<tr>
-							<td>작성자</td>
-							<!-- 여기도 선생님 이름 위에서 알아오면 적어놓자 -->
-							<td><input size="10" type="text" name="name"
-								value="${ qt.tcname }" readonly></td>
-							<td>${ q.replydate }</td>
-						</tr>
-						<tr>
-							<td>내용</td>
-							<td>${q.replycontent }</td>
-						</tr>
-						<tr>
-							<td colspan="2" align="right">
-								<!-- 수정버튼은 작성한 해당선생님만 볼 수 있게 -->
-								<c:if test="${mem.typee eq 't' && mem.m_no eq lec.m_no }">
-									<br>
-									<button type="button" onclick="qReUpdate();">수정</button>
-								</c:if>
-							</td>
-						</tr>
-					</table>
-				</form>
-				<br>
-
-
-
-				<!-- 댓글 리스트 조회한것-->
-	<div id="dat">
-	<input type="hidden" id="q_nohidden" name="q_no" value="${ q.q_no }">
-	<div id="replyArea">
-	<div id="replyAreaChildren" style="width:623px; margin-left:auto; margin-right:auto; border:1px solid black;">
-		<c:if test="${ qRListCount ne 0 }">
-		<table border="1" style="width:623px;">
-		<tr>
-			<td colspan="3">댓글(${ qRListCount })</td>
-		</tr>
-		</table>
-	<c:forEach items="${ qRList }" var="qr">
-		<table border="1">
-			<tr align="center">
-				<td style="width:20px;">${ qr.r_no }</td>
-				<td style="width:70px;">${ qr.name }</td>
-				<td style="width:310px;"><textarea class="textAreaRe" cols="38" rows="1" readonly>${ qr.content }</textarea></td>
-				<td>${ qr.updatedate }</td>
-				<c:if test="${ qr.m_no eq mem.m_no }">
-				<td>
-					<button class="qrBtn" type="button">X</button>
-				</td>
-				</c:if>
-			</tr>
-		</table>
-	</c:forEach>
-	</c:if>
-	</div>
-	</div>
-
-
-	<br>
-	<!-- 댓글 등록칸 -->
-	<table align="center">
-	<tr>
-		<td>
-			<textarea style="border:1px solid black;" id="repl" cols="50" rows="2" name="content"></textarea>
-		</td>
-		<td>
-			<button style="height:47px;" id="datUp" type="submit" onclick="qRestartInsert()">댓글등록</button>
-		</td>
-	</tr>
-	</table>
-	</div>
-			<br><br><br>
-	</c:if>
-
-
-
- --%>
-
-
-				<script>
-				
+		<script>
 				
  		$(document).ready(function(){
 			$("#summernote").summernote({
@@ -629,9 +388,6 @@
 			
 		}
 		
-	
-		
-		
 		function Qre(){
 			$("#qOpen").attr("style","display:block");
 		}
@@ -645,8 +401,6 @@
 		});
 		
 		function qReX(){
-			//$("#summernote").remove();
-			//$("textarea[name=summernote]").text("");
 			if(confirm("작성한 내용이 사라집니다. 페이지에서 나가시겠습니까?") == true){
 				$("#qOpen").attr("style","display:none");
 				location.reload();
@@ -670,10 +424,10 @@
 					type: "POST",
 					url: "deleteDatReply.re",
 					success: function(success){
-						console.log("ajax통신 성공")
+						//console.log("ajax통신 성공")
 						
 						if(success=="success"){
-							console.log("댓글삭제성공");
+							alert("댓글이 삭제되었습니다.");
 							qRestart();
 							webSocket.send("댓글삭제성공");
 						}else{
@@ -695,12 +449,6 @@
 
 
 		<script>
-		
-		/* $(".spanTrashColor").mouseover(function(){
-			$(".spanTrashColor").attr("style","color:red");
-		}).mouseout(function(){
-			$(".spanTrashColor").attr("style","color:black");
-		}); */
 	
 		// 다시 리로드 구역정하기 // 호출해서 쓰자
 		function qRestart(){
@@ -736,64 +484,7 @@
 					console.log("ajax통신 실패");
 				}
 			});
-		}
-
-		
-		$(function(){
-			var youtubeIdChange = $("#youtubeId").val();
-			/* var youtubeId = youtubeIdChange.replace('watch?v=','embed/'); */
-			var youtu = "https://youtu.be/";
-			var naver = "/v/";
-			var kakao = "https://tv.kakao.com/v/";
-			var daum = "https://kakaotv.daum.net/v/";
-			var youtubeId = youtubeIdChange.replace('https://youtu.be/','https://www.youtube.com/embed/');
-			var naverId = youtubeIdChange.replace('/v/','/embed/');
-			var kakaoId = youtubeIdChange.replace('https://tv.kakao.com/v/','https://play-tv.kakao.com/embed/player/cliplink/');
-			var daumNewsId = youtubeIdChange.replace('https://kakaotv.daum.net/v/','https://play-tv.kakao.com/embed/player/cliplink/');
-			if(youtubeIdChange.indexOf(youtu) != -1){
-				$("#youtuberealId").attr("src", youtubeId);
-			}
-			if(youtubeIdChange.indexOf(naver) != -1){
-				$("#youtuberealId").attr("src", naverId);
-			}
- 			if(youtubeIdChange.indexOf(kakao) != -1){
-				$("#youtuberealId").attr("src", kakaoId);
-			}
- 			if(youtubeIdChange.indexOf(daum) != -1){
-				("#youtuberealId").attr("src", daumNewsId);
-			}
-		});
-		
-		
-		
-		
-		
-/* 		function qrUpdateBtn(){
-			$("#textAreaRe").removeAttr("readonly");
-		}
-		 */
-/* 		$("#qrUpdateBtn").click(function(){
-			$(.textAreaRe).click(function(){
-				$(this).removeAttr("readonly");
-			});
-		}); */
-		
-/* 		$(document).ready(function(){
-			$(".qrUpdateBtn").click(function(){
-				$(this).click(function(){
-					$(".textAreaRe").removeAttr("readonly");
-				});
-			});
-		});
-		
-		
-		$(".qrUpdateBtn").click(function(){
-			$(this).append("")
-		}); */
-		
-/* 		$("#qrUpdateBtn").click(function(){
-			$("#textAreaRe").removeAttr("readonly");
-		}); */
+		}	
 		
 		
 	</script>
@@ -802,11 +493,7 @@
 
 
 
-
-				<!-- header에 있는 jquery 충돌 방지 -->
-<!-- 				<script src='jquery-3.2.1.js'></script> -->
-
-				<script>
+	<script>
    
    var jq132 = jQuery.noConflict();
    
@@ -827,19 +514,19 @@ var webSocket = new WebSocket("ws://${pageContext.request.serverName}:${pageCont
 var messageTextArea = document.getElementById("messageTextArea");
 //웹 소켓이 연결되었을 때 호출되는 이벤트
 webSocket.onopen = function(message){
-console.log("연결성공flekd")
+//console.log("연결성공flekd")
 };
 //웹 소켓이 닫혔을 때 호출되는 이벤트
 webSocket.onclose = function(message){
-	console.log("연결닫힘www")
+//	console.log("연결닫힘www")
 };
 //웹 소켓이 에러가 났을 때 호출되는 이벤트
 webSocket.onerror = function(message){
-	console.log("연결에러ww")
+//	console.log("연결에러ww")
 };
 //웹 소켓에서 메시지가 날라왔을 때 호출되는 이벤트
 webSocket.onmessage = function(message){
-console.log(message)
+//console.log(message)
 qRestart();
 }; 
 //Send 버튼을 누르면 실행되는 함수
@@ -860,18 +547,18 @@ webSocket.close();
 
 
 
-				<!-- footer -->
-				<footer class="footer">
-					<%@ include file="../include/bfooter.jsp"%>
-				</footer>
-				<!-- End footer -->
-		</div>
-		<!-- End of Page wrapper  -->
+			<!-- footer -->
+			<footer class="footer">
+				<%@ include file="../include/bfooter.jsp"%>
+			</footer>
+			<!-- End footer -->
+			</div>
+			<!-- End of Page wrapper  -->
         
-	</div>
-	<!-- End of Main wrapper -->
+			</div>
+			<!-- End of Main wrapper -->
 	
-	<%@ include file="../include/bjs.jsp" %>
+			<%@ include file="../include/bjs.jsp" %>
 
 
 

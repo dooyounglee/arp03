@@ -178,7 +178,7 @@
 	<select id="realTimeSelect" resultMap="qList">
 		select title, q_no
 		from question
-		where lec_no=#{lec_no}
+		where lec_no=#{lec_no} and status='Y'
 		order by vcount desc
 	</select>
 	
@@ -269,4 +269,5 @@
 	    where q.lec_no=#{lec_no} and q.status='Y'
 	    order by q.q_no desc
 	</select>
+	
 </mapper>

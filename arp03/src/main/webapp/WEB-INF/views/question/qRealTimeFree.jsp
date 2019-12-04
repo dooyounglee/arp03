@@ -10,19 +10,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-/* body {
-    font-size: 12px;
-    background: #FFF;
-    color: #333;
-    margin: 0;
-}
- *//* 
-#content {
-    margin: 20px;
-    width: 250px;
-    padding: 10px;
-    background: #eef5f9;
-} */
 
 #rank-list a {
     color: #FFF;
@@ -97,7 +84,7 @@
         <div id="rank-List-Content" class="d-none d-sm-block">
         	<div class="realText">자유게시판 조회 순위 ▼</div>
             <dl id="rank-list" style="width:250px;">
-                <dt>실시간 급상승 검색어</dt>
+                <dt>실시간 급상승 자유게시판 글</dt>
                 <dd>
                     <ol>
                     </ol>

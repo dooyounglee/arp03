@@ -73,14 +73,18 @@
                                 	<%-- 총 게시글 갯수 : ${ pi.listCount }&nbsp;&nbsp;&nbsp;페이지 : ${ pi.currentPage } / ${ pi.maxPage }
 	                                 &nbsp;&nbsp; --%>
 	                                 
-	                                 <c:if test="${ !empty mem }">
-										<span><button class="btn waves-effect waves-light btn-info" style="align:right; cursor:pointer;" onclick="location.href='qWriteForm.qu'">글쓰기</button></span>
+	                                 <c:if test="${ !empty mem && mem.typee eq 's' }">
+										<span>
+											<button class="btn waves-effect waves-light btn-info" style="align:right; cursor:pointer;" onclick="location.href='qWriteForm.qu'">
+												글쓰기
+											</button>
+										</span>
 									 </c:if>
                                 </h6>
 								<script>
             
 									var currentPage = 1;
-									var boardLimit = 3; // 게시글 갯수
+									var boardLimit = 5; // 게시글 갯수
 									var pageLimit = 5; // 페이지 바 표시갯수
 									var maxPage = 0;// = parseInt(Math.ceil(ArrayList.length / boardLimit));
 									var startPage = 1;
@@ -159,7 +163,7 @@
 	                                		if(st+i == ArrayList.length){
 	                                			break;
 	                                		}
-	                                		str+='<tr>';
+	                                		str+='<tr align="center">';
 	                                		str+='<td>'+ArrayList[st+i].q_no+'</td>';
 	                                		str+='<td style="max-width:300px;">'+
 	                                		"<a href='qdetail.qu?q_no="+ArrayList[st+i].q_no+"'>" + 
@@ -201,11 +205,13 @@
                                     </table>
                                 
                                  
-          <div align="center">                       
+          <div align="center">
+          <div class="col-lg-5"></div>
+          <div class="col-lg-5">              
           <ul id="pageul" class="pagination" align="center">
 		
 		  </ul>
-		
+			</div>  
 		
 		
 		<script>
@@ -219,7 +225,7 @@
         		btn2+='<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="page('+i+')">'+i+'</a></li>';
         	}
 			if(endPage >= maxPage){
-				btn2 += '<li id="qAfter" style="cursor:pointer" class="page-item" disabled><a class="page-link">'+"다음"+'</a></li>';
+				btn2 += '<li id="qAfter" style="cursor:text" class="page-item" disabled><a class="page-link">'+"다음"+'</a></li>';
        		}else{
        			btn2 += '<li id="qAfter" style="cursor:pointer" class="page-item"><a class="page-link">'+"다음"+'</a></li>';
        		}

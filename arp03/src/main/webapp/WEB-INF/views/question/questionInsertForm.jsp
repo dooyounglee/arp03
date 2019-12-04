@@ -6,32 +6,7 @@
 <meta charset="UTF-8">
 <title>글 작성하기 페이지</title>
 <%@ include file="../include/bhead.jsp"%>
-<!-- include libraries(jQuery, bootstrap) -->
-<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
-<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
-<!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> -->
-
-<!-- include summernote css/js -->
-<!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet"> -->
-<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
-
-
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script> -->
-
-<!-- <title>Summernote Lite</title>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
- -->
 </head>
-<style>
-	.btn-info{
-		background:#1e88e5;
-	}
-</style>
-
 <body class="fix-header card-no-border logo-center">
 
 	<!-- Main wrapper -->
@@ -115,9 +90,7 @@
 									<input type="hidden" name="m_no" value="${ mem.m_no }">
 										
 										<h3 align="center" style="font-size: 20px; color: gray">게시글 작성하기</h3>
-										<br>
-										<br>
-										<br> 
+										<br><br><br> 
 										<input class="form-control" style="width: 300px;" type="text" name="title" required placeholder="제목을 입력해주세요.">
 										<br>
 										<%-- <input style="border: none;" size="10" type="text" name="name" value="${ mem.name }" readonly> --%>
@@ -159,40 +132,6 @@
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
-
-	<script>
-	/* 
-	$(function(){
-			var youtubeIdChange = $("#youtubeId").val();
-			
-			var youtu = "https://youtu.be/";
-			var naver = "/v/";
-			var kakao = "https://tv.kakao.com/v/";
-			var daum = "https://kakaotv.daum.net/v/";
-			var youtubeId = youtubeIdChange.replace('https://youtu.be/','https://www.youtube.com/embed/');
-			var naverId = youtubeIdChange.replace('/v/','/embed/');
-			var kakaoId = youtubeIdChange.replace('https://tv.kakao.com/v/','https://play-tv.kakao.com/embed/player/cliplink/');
-			var daumNewsId = youtubeIdChange.replace('https://kakaotv.daum.net/v/','https://play-tv.kakao.com/embed/player/cliplink/');
-			if(youtubeIdChange.indexOf(youtu) != -1){
-				$("#youtuberealId").attr("src", youtubeId);
-			}
-			if(youtubeIdChange.indexOf(naver) != -1){
-				$("#youtuberealId").attr("src", naverId);
-			}
- 			if(youtubeIdChange.indexOf(kakao) != -1){
-				$("#youtuberealId").attr("src", kakaoId);
-			}
- 			if(youtubeIdChange.indexOf(daum) != -1){
-				("#youtuberealId").attr("src", daumNewsId);
-			}
-		});
-	
-	 */
-	
-	
-	
-	</script>
-
 	
 	<script>
 		$(document).ready(function(){
@@ -218,35 +157,17 @@
 		
 		$("#addURLTest").click(function(){ // 추가 버튼
 			var currentStr = $('#summernote').summernote('code');
-		//alert(currentStr);
 			
 			// 사용자가 입력한 값
 			var youtubeaaa = $(".inputtexturl").val();
 			// summernote 내용 textarea부분
-		/* 	var upText = $(".upText").text(); */
-		/* 	alert(youtubeaaa);
-			alert(upText); */
-			/* var youtubeIdChange = $("#youtubeId").val(); */
-			/* var youtubeId = youtubeIdChange.replace('watch?v=','embed/'); */
+	
 			if($(".inputtexturl").val().trim() != ""){
-				//$('#summernote').summernote('pasteHTML', '<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');
 				
-				// 현재 내용에 있는 값들
-				var currentStr = $('#summernote').summernote('code');//현재 에디터꺼 불러왔고,
-				//$('#summernote').summernote('insertText', currentStr);//그걸 에디터로 넣었네. 여기까지만 해보자. 이거까지는 뒤로 붙여주네.
-				// 앞에 붙는 기능에 현재내용 넣고 변수에담음
-				//var real = $('#summernote').summernote('pasteHTML', currentStr);//$('#summernote').summernote('pasteHTML', currentStr);이걸 실행하고, 그 return값을 real에 저장.
-				//근데 $('#summernote').summernote('pasteHTML', currentStr);의 return값이 없나봐? 그래서 undefined찍히는거 같고.
-				//$('#summernote').summernote('pasteHTML', currentStr);이거는 뭐하는 메서드임? 현재 가져온값을 앞에 추가욤 그치
-				//$('#summernote').summernote('pasteHTML', currentStr);//이거만 하면 현제 에디터에서 맨 앞에 currentStr이 붙을꺼야. 맞나?????????새
-				// 다시 summernote로 보냄
-				//$('#summernote').summernote('code', real +'<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');
-				$('#summernote').summernote('code', currentStr +'<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');//이제 영상이 하나 들어갈꺼고
-				//클릭을 아무리 해도 영상 하나만 들어갈꺼야. 잘 되는거 같애.//<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">
-				//<iframe>태그 앞에 원래 있던 str만 붙여넣고 에디터에 갖다 붙이자. ㄱㄱ 이렇게용?.?ㅇㅇ 이제 뒤로 잘 붙어? 새로고침하기전까진 붙었는데 또 안돼요 ㄷㄷ ㅇ
-						//되는거 아니야??ㅏㅍㅇ앞에 붙었나? 방금?네 첨엔 뒤에붙엇는데 갑자기 앞에..그런가봐여 ㄷㄷ
-				//봤음? 계속 클릭한거야넵// return ㅣㅈ우니까 안된것같은..일단 지금까지꺼 푸시하고 넘겨줘봐 ㅋㅋ 나도 만져볼꼐 네 ㅠㅠ 감사해영 ㅠㅠㅃㅃ
-				//인터치고 하면 되는건가 커서위치 때문인가?흠..
+				var currentStr = $('#summernote').summernote('code');
+				
+				$('#summernote').summernote('code', currentStr +'<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0"></iframe>');
+				
 				var youtu = "https://youtu.be/";
 				var naver = "naver.com/v/";
 				var kakao = "https://tv.kakao.com/v/";
@@ -268,18 +189,17 @@
 					("#youtuberealId").attr("src", daumNewsId);
 				}
 				
-				
 				/* 값 비우기 */
 				$(".inputtexturl").val("").focus();
 				};
 		});
+		
 		function upContent(){
 			if($(".note-editable").text().trim() == "" && $("#summernote").val() == ""){
 				alert("내용을 입력해주세요.");
 				false;
 			}
 		}
-		
 		
 		function sendFile(file, el){
 			var form_data = new FormData();
@@ -303,12 +223,8 @@
 			
 		}
 		
-		
 	</script>
 	
-	
-	<!-- header에 있는 jquery 충돌 방지 -->
-<!--    <script src='jquery-3.2.1.js'></script> -->
    
    <script>
    
@@ -317,7 +233,7 @@
    </script>
 	
 	
-			<!-- footer -->
+		<!-- footer -->
         <footer class="footer">
             <%@ include file="../include/bfooter.jsp" %>
         </footer>
@@ -326,12 +242,11 @@
 		</div>
         <!-- End of Page wrapper  -->
         
-	</div>
-	<!-- End of Main wrapper -->
+		</div>
+		<!-- End of Main wrapper -->
 	
-	<%@ include file="../include/bjs.jsp" %>
+		<%@ include file="../include/bjs.jsp" %>
 
-<%-- 	<jsp:include page="../include/footer.jsp"/> --%>
 	
 </body>
 </html>

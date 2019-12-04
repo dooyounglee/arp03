@@ -92,8 +92,4 @@ public interface QService {
 	// 검색 게시판 테스트
 	ArrayList<Question> selectQuestionList(Question q);
 	
-	/*
-	 * // QFile 검색 int selectQ(QFile qf);
-	 */
-	
 }

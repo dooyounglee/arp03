@@ -158,55 +158,7 @@
 			</div>
 		</div>
 	</div>
-
-
-
-	<%-- <!-- 제목, 내용, 작성자, 첨부파일정보 -->
-	<jsp:include page="../include/header.jsp"/>
 	
-	<h1 align="center">수정 페이지</h1>
-	<br> --%>
-	<%-- <form action="qupdate.qu?q_no=${ q.q_no }" method="post" enctype="multipart/form-data"> --%>
-	<%-- <input type="hidden" name="name" value="${ name }"> --%>
-	<%-- <input type="hidden" name="lec_no" value="${q.lec_no }">
-	<input type="hidden" name="originalname" value="${ q.originalname }">
-	<input type="hidden" name="changename" value="${ q.changename }">
-		<table align="center"> --%>
-<%-- 			<tr>
-				<td>제목</td>
-				<td><input size="40" type="text" name="title" value="${ q.title }"></td>
-			</tr> --%>
-			<%-- <tr>
-				<td>작성자</td>
-				<td><input size="10" type="text" name="name" value="${ mem.name }" readonly></td>
-			</tr> --%>
-<%-- 			<tr>
-				<td>내용</td>
-				<td><textarea id="summernote" cols="50" rows="7" name="content">${ q.content }</textarea></td>
-			</tr> --%>
-			<%-- <tr>
-				<td>첨부파일</td>
-				<td><input style="display:inline-block;" type="file" name="fileReload">
-					<c:if test="${ !empty q.originalname }">
-						<a href="${ pageContext.servletContext.contextPath }/resources/qFileUpload/${q.changename}" download="${ q.originalname }" id="fName">${ q.originalname }</a>
-						<button type="button" id="fileDelete">삭제</button>
-					</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td>유튜브URL</td>
-				<td><input id="youtubeId" type="text" style="width:300px;" name="youtubelink" value="${ q.youtubelink }"></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right">
-					<button id="deleteaj" type="submit">확인</button>
-					<!-- <button type="button" onclick="window.history.back()">취소</button> -->
-					<button type="button" onclick="location.href='question.qu?lec_no=${q.lec_no}';">목록</button>
-					<br><br>
-				</td>
-			</tr>
-		</table>
-	</form> --%>
 	
 	<script>
 	
@@ -237,36 +189,31 @@
 			
 			// 사용자가 입력한 값
 			var youtubeaaa = $(".inputtexturl").val();
-			// summernote 내용 textarea부분
-		/* 	var upText = $(".upText").text(); */
-		/* 	alert(youtubeaaa);
-			alert(upText); */
-			/* var youtubeIdChange = $("#youtubeId").val(); */
-			/* var youtubeId = youtubeIdChange.replace('watch?v=','embed/'); */
+		
 			if($(".inputtexturl").val().trim() != ""){
 				$('#summernote').summernote('pasteHTML', '<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');
 			}
 			var youtu = "https://youtu.be/";
-			var naver = "/v/";
+			var naver = "naver.com/v/";
 			var kakao = "https://tv.kakao.com/v/";
 			var daum = "https://kakaotv.daum.net/v/";
 			var youtubeId = youtubeaaa.replace('https://youtu.be/','https://www.youtube.com/embed/');
-			var naverId = youtubeaaa.replace('/v/','/embed/');
+			var naverId = youtubeaaa.replace('naver.com/v/','naver.com/embed/','/embed/');
 			var kakaoId = youtubeaaa.replace('https://tv.kakao.com/v/','https://play-tv.kakao.com/embed/player/cliplink/');
 			var daumNewsId = youtubeaaa.replace('https://kakaotv.daum.net/v/','https://play-tv.kakao.com/embed/player/cliplink/');
-			if(youtubeaaa.indexOf(youtu) != -1){
-				$("#youtuberealId").attr("src", youtubeId);
-			}
-			if(youtubeaaa.indexOf(naver) != -1){
-				$("#youtuberealId").attr("src", naverId);
-			}
-			if(youtubeaaa.indexOf(kakao) != -1){
-				$("#youtuberealId").attr("src", kakaoId);
-			}
-			if(youtubeaaa.indexOf(daum) != -1){
-				("#youtuberealId").attr("src", daumNewsId);
-			}
 			
+				if(youtubeaaa.indexOf(youtu) != -1){
+					$("#youtuberealId").attr("src", youtubeId);
+				}
+				if(youtubeaaa.indexOf(naver) != -1){
+					$("#youtuberealId").attr("src", naverId);
+				}
+				if(youtubeaaa.indexOf(kakao) != -1){
+					$("#youtuberealId").attr("src", kakaoId);
+				}
+				if(youtubeaaa.indexOf(daum) != -1){
+					("#youtuberealId").attr("src", daumNewsId);
+				}
 			
 			/* 값 비우기 */
 			$(".inputtexturl").val("").focus();
@@ -306,9 +253,6 @@
 	
 		$("#fileDelete").click(function(){
 			var changename = $("input[name=changename]").val();
-			//console.log(changename);
-			//var q_no = ${ q.q_no };
-			//var lec_no = ${q.lec_no };
 			
 			$.ajax({
 				url: "fileDelete.aj",
@@ -316,7 +260,6 @@
 				success: function(data){
 					console.log("ajax통신 성공")
 					if(data == "success"){
-						console.log("sucess");
 						$("#fName").text("");
 						$("input[name=originalname]").val(null);
 						$("#fileDelete").attr("style","display:none");
@@ -330,54 +273,8 @@
 			});
 			
 		});
-		
-		
-		 
-		 
-		 
-		 
-		
-/* 		 $("#fileDelete").click(function(){
-			 $("#fileDelete").attr("style","display:none");
-			 $("#fName").attr("style","display:none");
-			});
-			
-		
-		$("#deleteaj").click(function(){
-			var changename = $("input[name=changename]").val();
-			//console.log(changename);
-			var q_no = ${ q.q_no };
-			
-			$.ajax({
-				url: "fileDelete.aj",
-				data: {changename:changename, q_no:q_no},
-				success: function(data){
-					console.log("ajax통신 성공")
-					if(data == "success"){
-						console.log("sucess");
-						$("#fName").text("");
-						$("input[name=originalname]").val(null);
-						$("#fileDelete").attr("style","display:none");
-					}else{
-						alert("파일이 정상적으로 삭제되지않았습니다.");
-					}
-					
-				}, error:function(){
-					console.log("ajax통신 실패");
-				}
-			});
-			
-		});
-		 */
-		
-		
-		
 		
 	</script>
-	
-	
-	<!-- header에 있는 jquery 충돌 방지 -->
-   <script src='jquery-3.2.1.js'></script>
    
    <script>
    
@@ -387,7 +284,7 @@
 	
 	
 	
-					<!-- footer -->
+		<!-- footer -->
         <footer class="footer">
             <%@ include file="../include/bfooter.jsp" %>
         </footer>
@@ -396,10 +293,10 @@
 		</div>
         <!-- End of Page wrapper  -->
         
-	</div>
-	<!-- End of Main wrapper -->
-	
-	<%@ include file="../include/bjs.jsp" %>
+		</div>
+		<!-- End of Main wrapper -->
+		
+		<%@ include file="../include/bjs.jsp" %>
 	
 </body>
 </html>

@@ -24,8 +24,8 @@ public class QWebsocket {
 @OnOpen
 public void handleOpen(Session session){
 	clients.add(session);
-	System.out.println(clients.size());
-System.out.println("확인요");
+	//System.out.println(clients.size());
+	//System.out.println("확인요");
 }
 /**
 * 웹 소켓으로부터 메시지가 오면 호출되는 이벤트
@@ -34,7 +34,7 @@ System.out.println("확인요");
 */
 @OnMessage
 public void handleMessage(String message, Session session){
-System.out.println("클라이언톡보낸거 : "+message);
+System.out.println("message: "+message);
 synchronized (clients) {
 	for(Session client:clients) {
 		try {

@@ -10,19 +10,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-/* body {
-    font-size: 12px;
-    background: #FFF;
-    color: #333;
-    margin: 0;
-}
- *//* 
-#content {
-    margin: 20px;
-    width: 250px;
-    padding: 10px;
-    background: #eef5f9;
-} */
 
 #rank-list a {
     color: #FFF;
@@ -83,20 +70,10 @@
 	font-size:13px;
 	color:gray;
 	font-weight:900px;
-	
 }
-/* #rank-List-Content{
-	z-index:1 !important;
-}
-#tatatarget{
-	z-index:2;
-	display:none;
-} */
-
 </style>
 </head>
-<body>		
-<!-- 	<div id="tatatarget" style="width:280px; height:400px; background:white; position:absolute; left:450px;"></div> -->
+<body>	
         <div id="rank-List-Content" style="display:inline">
         	<div class="realText">많이 찾아본 질문 순위 ▼</div>
 	            <dl id="rank-list" style="width:250px;">
@@ -107,7 +84,6 @@
 	                </dd>
 	            </dl>
 		</div>
-<!-- 	</div> -->
 </body>
 <script>
 
@@ -152,35 +128,6 @@ $(function(){
 		}
 	});
 });
-
-
-
-/* id="rank-List-Content" */
-/*  	$(document).on("mouseover", ".realText", function(){
-		$("#tatatarget").attr("style","display:inline");
-	});  */
-
-/* 	$(".realText").click(function(){
-		$("#tatatarget").attr("style","display:inline");
-	}); */
-
-
-
-/* $(function() {
-    var count = $('#rank-list li').length;
-    var height = $('#rank-list li').height();
-
-    function step(index) {
-        $('#rank-list ol').delay(2000).animate({
-            top: -height * index,
-        }, 500, function() {
-            step((index + 1) % count);
-        });
-    }
-
-    step(1);
-    
-}); */
 
 
 </script>

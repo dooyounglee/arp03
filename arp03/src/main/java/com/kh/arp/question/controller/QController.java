@@ -38,37 +38,36 @@ public class QController {
 
 	@Autowired
 	private QService qService;
-/*
-	@RequestMapping("question.qu")
-	public ModelAndView questionList(ModelAndView mv,
-			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, HttpSession session, Question q) {
-		System.out.println("Question.qu : " +q);
-		
-		// 세션에 담아둔 Lecture에 lec_no가지고오자
-		int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
-		
-		int listCount = qService.getListCount(lec_no);
 
-		int pageLimit = 5;
-		int boardLimit = 10;
-		
-		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
-		// PageInfo pi = new PageInfo(currentPage, listCount, 5, 10); 이렇게 바로써도됨
-		
-		
-		ArrayList<Question> qList = qService.selectQuestionList(pi, lec_no);
-		// lecture 객체 가져오자~
-		Lecture lec = qService.getLecture(lec_no);
-		
-		// 데이터값, 뷰 지정
-		mv.addObject("pi", pi).addObject("qList", qList).setViewName("question/question");
-
-		return mv;
-	}
-*/
+	/*
+	 * @RequestMapping("question.qu") public ModelAndView questionList(ModelAndView
+	 * mv,
+	 * 
+	 * @RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+	 * HttpSession session, Question q) { System.out.println("Question.qu : " +q);
+	 * 
+	 * // 세션에 담아둔 Lecture에 lec_no가지고오자 int lec_no =
+	 * ((Lecture)session.getAttribute("lec")).getLec_no();
+	 * 
+	 * int listCount = qService.getListCount(lec_no);
+	 * 
+	 * int pageLimit = 5; int boardLimit = 10;
+	 * 
+	 * PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit); //
+	 * PageInfo pi = new PageInfo(currentPage, listCount, 5, 10); 이렇게 바로써도됨
+	 * 
+	 * 
+	 * ArrayList<Question> qList = qService.selectQuestionList(pi, lec_no); //
+	 * lecture 객체 가져오자~ Lecture lec = qService.getLecture(lec_no);
+	 * 
+	 * // 데이터값, 뷰 지정 mv.addObject("pi", pi).addObject("qList",
+	 * qList).setViewName("question/question");
+	 * 
+	 * return mv; }
+	 */
 	@RequestMapping("qWriteForm.qu")
 	public String questionInsertView(Model model) {
-		
+
 		return "question/questionInsertForm";
 	}
 
@@ -76,14 +75,14 @@ public class QController {
 	@RequestMapping("qinsert.qu")
 	public String qInsert(Question q, HttpServletRequest request, HttpSession session,
 			@RequestParam(value = "fileUp", required = false) MultipartFile file) {
-		
+
 		// System.out.println(q);
 		// System.out.println(file.getOriginalFilename());
 		// System.out.println(file);
-		int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+		int lec_no = ((Lecture) session.getAttribute("lec")).getLec_no();
 		q.setLec_no(lec_no);
 		QFile qf = new QFile();
-		//System.out.println(q);
+		// System.out.println(q);
 		int resultqf = 0;
 
 		if (!file.getOriginalFilename().equals("")) {
@@ -99,10 +98,10 @@ public class QController {
 			q.setFileox("N");
 			int result = qService.qInsert(q);
 		}
-		
-		//request.setAttribute("q", q);
+
+		// request.setAttribute("q", q);
 		return "redirect:question.qu";
-		//return "question/qdetailForm";
+		// return "question/qdetailForm";
 	}
 
 	private String saveFile(MultipartFile file, HttpServletRequest request) {
@@ -120,7 +119,7 @@ public class QController {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 
-		String changeName = sdf.format(new Date(System.currentTimeMillis())) + (int)(Math.random()*100) + "."
+		String changeName = sdf.format(new Date(System.currentTimeMillis())) + (int) (Math.random() * 100) + "."
 				+ originalName.substring(originalName.lastIndexOf(".") + 1);
 
 		String changeNamePath = savePath + "/" + changeName;
@@ -139,23 +138,24 @@ public class QController {
 
 	@RequestMapping("qdetail.qu")
 	public ModelAndView qdetail(ModelAndView mv, int q_no, HttpSession session) {
-		
+
 		Question q = qService.selectDetailQuestion(q_no);
 		// System.out.println(q);
-		
+
 		// QReply 조회해오기
 		ArrayList<QReply> qRList = qService.selectQReply(q_no);
-		
+
 		// QReply 총 댓글수 조회해보자
 		int qReplyListCount = qService.qReplyListCount(q_no);
-		
+
 		// 선생님 이름 조회해오기
-		int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
+		int lec_no = ((Lecture) session.getAttribute("lec")).getLec_no();
 		Question qt = qService.selectTeacherName(lec_no);
 		// 조회해온 name을 question객체에다가 담아놓자
-		
+
 		if (q != null) {
-			mv.addObject("q", q).addObject("qRList", qRList).addObject("qt", qt).addObject("qRListCount", qReplyListCount).setViewName("question/qdetailForm");
+			mv.addObject("q", q).addObject("qRList", qRList).addObject("qt", qt)
+					.addObject("qRListCount", qReplyListCount).setViewName("question/qdetailForm");
 		} else {
 			mv.addObject("msg", "게시글 상세조회 실패").setViewName("common/error");
 		}
@@ -177,65 +177,65 @@ public class QController {
 	public ModelAndView qUpdate(Question q, QFile qf, ModelAndView mv, HttpServletRequest request, HttpSession session,
 			@RequestParam(value = "fileReload", required = false) MultipartFile file) {
 		int result = 0;
-		int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
-		
-		//System.out.println("한번보자" + q.getOriginalname());
-		//System.out.println("한번보자2" + file.getOriginalFilename());
+		int lec_no = ((Lecture) session.getAttribute("lec")).getLec_no();
+
+		// System.out.println("한번보자" + q.getOriginalname());
+		// System.out.println("한번보자2" + file.getOriginalFilename());
 		// 새 첨부파일 넘어올때
 		if (!file.getOriginalFilename().equals("")) {
-			//System.out.println("새 첨부파일 : " + file);
-			//System.out.println("qf에 기존 첨부파일 : " + qf.getOriginalName());
-			//System.out.println("q에 기존 첨부파일 : " + q.getOriginalname());
+			// System.out.println("새 첨부파일 : " + file);
+			// System.out.println("qf에 기존 첨부파일 : " + qf.getOriginalName());
+			// System.out.println("q에 기존 첨부파일 : " + q.getOriginalname());
 			int fileo1 = qService.fileoxChange(q.getQ_no());
 			// 첨부파일이 이미 있을경우
 			if (!q.getOriginalname().equals("")) {
-				
+
 				// 기존파일 삭제
 				deleteFile(qf.getChangeName(), request);
-				
+
 				String changename = saveFile(file, request);
 				qf.setChangeName(changename);
 				qf.setOriginalName(file.getOriginalFilename());
 				qf.setQ_no(qf.getQ_no());
-				
+
 				// 내용 업데이트
 				result = qService.qUpdate(q);
 				// 파일 업데이트
 				int result2 = qService.qUpdateFile(qf);
 				// fileox컬럼값을 Y로 바꾸는 업데이트
 				int fileo = qService.fileoxChange(q.getQ_no());
-				//int filex = qService.DeleteAfterFileox(qf.getQ_no());
-				
-			}else {
+				// int filex = qService.DeleteAfterFileox(qf.getQ_no());
+
+			} else {
 				String changename = saveFile(file, request);
 				qf.setChangeName(changename);
 				qf.setOriginalName(file.getOriginalFilename());
 				qf.setQ_no(q.getQ_no());
-				
+
 				// 내용 업데이트
 				result = qService.qUpdate(q);
 				// 파일 업데이트
 				int result2 = qService.qNewInsertFile(qf);
 				// fileox컬럼값을 Y로 바꾸는 업데이트
 				int fileo = qService.fileoxChange(q.getQ_no());
-				//int filex = qService.DeleteAfterFileox(qf.getQ_no());
+				// int filex = qService.DeleteAfterFileox(qf.getQ_no());
 			}
 
-		}else {
+		} else {
 			result = qService.qUpdate(q);
 			int filex = qService.DeleteAfterFileox(qf.getQ_no());
 		}
-		
-		if(!q.getOriginalname().equals("")) {
+
+		if (!q.getOriginalname().equals("")) {
 			int fileo = qService.fileoxChange(q.getQ_no());
 		}
-		
-		if(result > 0) {
+
+		if (result > 0) {
 			mv.addObject("q_no", q.getQ_no()).setViewName("redirect:qdetail.qu");
-		}else {
+		} else {
 			mv.addObject("msg", "게시판 수정 실패").setViewName("common/error");
 		}
-		
+
 		return mv;
 
 	}
@@ -268,86 +268,83 @@ public class QController {
 			f.delete(); // 삭제
 		}
 	}
-	
-	
+
 	@ResponseBody
 	@RequestMapping("fileDelete.aj")
 	public String fileDelete(QFile qf, String changename, HttpServletRequest request) {
-		//System.out.println(changename);
-		
+		// System.out.println(changename);
+
 		deleteFile(changename, request); // 재사용~
-		
-		//System.out.println("값:" + changename);
-		
+
+		// System.out.println("값:" + changename);
+
 		int result = qService.fileDelete(changename);
-		
-		if(result > 0) {
+
+		if (result > 0) {
 			int result2 = qService.DeleteAfterFileox(qf.getQ_no());
 		}
-		
+
 		return "success";
 	}
-	
 
-	 @RequestMapping("qImgUpload.aj")
-	 public void qImgUpload(MultipartFile file, HttpServletRequest request, 
-			 HttpServletResponse response) throws IOException {
-		 
-		 response.setContentType("text/html;charset=utf-8");
-		 PrintWriter out = response.getWriter();
-		 
-		 String root = request.getSession().getServletContext().getRealPath("resources");
-		 String savePath = root + "/qImageUpload";
-		 
-		 UUID uuid = UUID.randomUUID();
-		 
-		 String originalName = file.getOriginalFilename();
+	@RequestMapping("qImgUpload.aj")
+	public void qImgUpload(MultipartFile file, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
 
-		 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
 
-		 String changeName = sdf.format(new Date(System.currentTimeMillis())) + (int)(Math.random()*100) + "."
-					+ originalName.substring(originalName.lastIndexOf(".") + 1);
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "/qImageUpload";
+
+		UUID uuid = UUID.randomUUID();
+
+		String originalName = file.getOriginalFilename();
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+
+		String changeName = sdf.format(new Date(System.currentTimeMillis())) + (int) (Math.random() * 100) + "."
+				+ originalName.substring(originalName.lastIndexOf(".") + 1);
 
 		String changeNamePath = savePath + "\\" + changeName;
-		 
-		//System.out.println("첸지패뜨:"+changeNamePath);
-		//System.out.println("아웃프린트엘엔:"+savePath + "/" + changeName);
+
+		// System.out.println("첸지패뜨:"+changeNamePath);
+		// System.out.println("아웃프린트엘엔:"+savePath + "/" + changeName);
 		File f = new File(changeNamePath);
-		if(!f.exists()) {
+		if (!f.exists()) {
 			f.mkdirs();
 		}
 		file.transferTo(f);
-		out.println("resources/qImageUpload/"+changeName);
+		out.println("resources/qImageUpload/" + changeName);
 		out.close();
-	 }
-	 
-	 @RequestMapping("qTCInsertReply")
-	 public ModelAndView qTCInsertReplyUpdate(ModelAndView mv, Question q, HttpSession session) {
-		 String name = ((Member)session.getAttribute("mem")).getName();
-		 int q_no = q.getQ_no();
+	}
+
+	@RequestMapping("qTCInsertReply")
+	public ModelAndView qTCInsertReplyUpdate(ModelAndView mv, Question q, HttpSession session) {
+		String name = ((Member) session.getAttribute("mem")).getName();
+		int q_no = q.getQ_no();
 		// String name = q.getName();
-		 //int lec_no = q.getLec_no();
-		 
-		 q.setQ_no(q.getQ_no()); 
-		 q.setReplycontent(q.getReplycontent());
-		 q.setName(name);
-		 //System.out.println(q);
-		 
-		 int result = qService.qTCInsertReply(q);
-		 
-		 if(result > 0) {
-			 Question q1 = qService.selectDetailQuestion(q_no);
-			 System.out.println(q1);
-			 mv.addObject("q1", q1).setViewName("redirect:qdetail.qu?q_no="+ q_no);
-		 }else {
-			 mv.addObject("msg", "게시판 수정 실패").setViewName("common/error");
-		 }
-		 
-		 return mv;
-		 
-	 }
-	 
-	 
+		// int lec_no = q.getLec_no();
+
+		q.setQ_no(q.getQ_no());
+		q.setReplycontent(q.getReplycontent());
+		q.setName(name);
+		// System.out.println(q);
+
+		int result = qService.qTCInsertReply(q);
+
+		if (result > 0) {
+			Question q1 = qService.selectDetailQuestion(q_no);
+			
+			mv.addObject("q1", q1).setViewName("redirect:qdetail.qu?q_no=" + q_no);
+		} else {
+			mv.addObject("msg", "게시판 수정 실패").setViewName("common/error");
+		}
+
+		return mv;
+
+	}
+
 	/*
 	 * @RequestMapping("qReplyInsert.re") public ModelAndView qReplyInsert(QReply q,
 	 * int q_no, ModelAndView mv, HttpSession session) { int lec_no =
@@ -366,161 +363,153 @@ public class QController {
 	 * 
 	 * }
 	 */
-	 
-	 
-	 @ResponseBody
-	 @RequestMapping("qReplyInsert.re")
-	 public String qReplyInsert(QReply q, int q_no, HttpSession session) {
-		 int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
-		 int m_no = ((Member)session.getAttribute("mem")).getM_no();
-		 
-		 q.setLec_no(lec_no);
-		 q.setM_no(m_no);
-		 //System.out.println(q);
-		 
-		 int result = qService.qReplyInsert(q);
-		 
-		 
-		 if(result > 0) { 
+
+	@ResponseBody
+	@RequestMapping("qReplyInsert.re")
+	public String qReplyInsert(QReply q, int q_no, HttpSession session) {
+		int lec_no = ((Lecture) session.getAttribute("lec")).getLec_no();
+		int m_no = ((Member) session.getAttribute("mem")).getM_no();
+
+		q.setLec_no(lec_no);
+		q.setM_no(m_no);
+		// System.out.println(q);
+
+		int result = qService.qReplyInsert(q);
+
+		if (result > 0) {
 			return "success";
-		 }else { 
+		} else {
 			return "fail";
-		 }
-		  
-	 }
-	 
-	 
-	 @ResponseBody
-	 @RequestMapping("deleteDatReply.re")
-	 public String deleteDatReply(QReply qr) {
-		 
-		 int result = qService.deleteDatReply(qr);
-		 
-		 //System.out.println(qr);
+		}
+
+	}
+
+	@ResponseBody
+	@RequestMapping("deleteDatReply.re")
+	public String deleteDatReply(QReply qr) {
+
+		int result = qService.deleteDatReply(qr);
+
+		// System.out.println(qr);
 		// System.out.println(result);
-		 if(result > 0) {
-			 return "success";
-		 }else {
-			 return "fail";
-		 }
-	 }
-	 
-	 @RequestMapping("realTimeSelect.al")
-	 public void realTimeSelect(HttpServletResponse response, HttpSession session) throws IOException {
-		 int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
-		 ArrayList<Question> realList = qService.realTimeSelect(lec_no);
-		 response.setContentType("application/json; charset=UTF-8");
-		 
-		 
+		if (result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+
+	@RequestMapping("realTimeSelect.al")
+	public void realTimeSelect(HttpServletResponse response, HttpSession session) throws IOException {
+		int lec_no = ((Lecture) session.getAttribute("lec")).getLec_no();
+		ArrayList<Question> realList = qService.realTimeSelect(lec_no);
+		response.setContentType("application/json; charset=UTF-8");
+
 		/* mv.addObject("realList", realList).setViewName("question/question"); */
 		Gson gson = new Gson();
 		gson.toJson(realList, response.getWriter());
-	 }
-	 
-	 @RequestMapping("realTimeFreeSelect.al")
-	 public void realTimeFreeSelect(HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
-		 ArrayList<Board> realList = qService.realTimeFreeSelect();
-		 
-		 response.setContentType("application/json; charset=UTF-8");
-		 
-		 Gson gson = new Gson();
-		 gson.toJson(realList, response.getWriter());
-		 
-	 }
-	 
-	 @RequestMapping("qsearchSelect.qu")
-	 public ModelAndView qsearchSelect(Question q, String searchSelectContent, ModelAndView mv, Question Category1,
-			 							@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, HttpSession session) {
-		 //System.out.println("ddd0 :"+Category1);
-		 int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
-		 
-		 
-		 q.setLec_no(lec_no);
-		 
-		 
+	}
 
-		 if(q.getCategory1().equals("Category1")) { // 제목
-			 	q.setCategory1("1");
-			 	q.setTitle(searchSelectContent);
-		 }
-		 
-		 if(q.getCategory1().equals("Category2")) { // 내용
-				q.setCategory1("2");
-				q.setContent(searchSelectContent);
-		 }
-		/*
-		 * if(q.getCategory1().equals("Category3")) { // 내가 쓴 글 int m_no =
-		 * ((Member)session.getAttribute("mem")).getM_no(); q.setCategory1("3");
-		 * q.setM_no(m_no); q.setContent(searchSelectContent); System.out.println(q); }
-		 */ 
-		 if(q.getCategory1().equals("Category4")) { // 작성자
-			 	q.setCategory1("4");
-			 	q.setContent(searchSelectContent);
-		 }
-			
-		 
-		 
-		 int listCount = qService.searchListCount(q);
+	@RequestMapping("realTimeFreeSelect.al")
+	public void realTimeFreeSelect(HttpServletResponse response, HttpSession session)
+			throws JsonIOException, IOException {
+		ArrayList<Board> realList = qService.realTimeFreeSelect();
 
-			int pageLimit = 5;
-			int boardLimit = 10;
-			
-			PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit);
-			// PageInfo pi = new PageInfo(currentPage, listCount, 5, 10); 이렇게 바로써도됨
-		 
-		 ArrayList<Question> qList = qService.selectQuestionList(pi, q);
-		/*
-		 * // lecture 객체 가져오자~ Lecture lec = qService.getLecture(lec_no);
-		 */
-			
-			// 데이터값, 뷰 지정
-			mv.addObject("pi", pi).addObject("qList", qList).setViewName("question/question");
-		 
-		 
-		 return mv;
-	 }
-	 
-		@RequestMapping("question.qu")
-		public ModelAndView questionList(ModelAndView mv, HttpSession session) {
-			
-			// 세션에 담아둔 Lecture에 lec_no가지고오자
-			int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
-			
-			ArrayList<Question> qList = qService.selecttest(lec_no);
-			// lecture 객체 가져오자~
-			
-			// 데이터값, 뷰 지정
-			mv.addObject("qList", qList).setViewName("question/question");
+		response.setContentType("application/json; charset=UTF-8");
 
-			return mv;
-		}
-	 
-		@ResponseBody
-		@RequestMapping(value="questionList2.aj", produces="application/json; charset=UTF-8")
-		public String questionList2aj(ModelAndView mv, HttpSession session) {
-			
-			// 세션에 담아둔 Lecture에 lec_no가지고오자
-			int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
-			
-			ArrayList<Question> qList = qService.selecttest(lec_no);
-			 Gson gson=new GsonBuilder().create();
-			 return gson.toJson(qList);
-		}
-		
-		/*
-		@ResponseBody
-		@RequestMapping(value="questionList3.aj", produces="application/json; charset=UTF-8")
-		public String questionList3aj(ModelAndView mv, String title, HttpSession session) {
-			
-			// 세션에 담아둔 Lecture에 lec_no가지고오자
-			int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
-			
-			ArrayList<Question> qList = qService.selecttest(lec_no);
-			 Gson gson=new GsonBuilder().create();
-			 return gson.toJson(qList);
-		}
-		*/
-		
+		Gson gson = new Gson();
+		gson.toJson(realList, response.getWriter());
+
+	}
+	/*
+	 * @RequestMapping("qsearchSelect.qu") public ModelAndView
+	 * qsearchSelect(Question q, String searchSelectContent, ModelAndView mv,
+	 * Question Category1,
+	 * 
+	 * @RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+	 * HttpSession session) { //System.out.println("ddd0 :"+Category1); int lec_no =
+	 * ((Lecture)session.getAttribute("lec")).getLec_no();
+	 * 
+	 * 
+	 * q.setLec_no(lec_no);
+	 * 
+	 * 
+	 * 
+	 * if(q.getCategory1().equals("Category1")) { // 제목 q.setCategory1("1");
+	 * q.setTitle(searchSelectContent); }
+	 * 
+	 * if(q.getCategory1().equals("Category2")) { // 내용 q.setCategory1("2");
+	 * q.setContent(searchSelectContent); }
+	 * 
+	 * if(q.getCategory1().equals("Category3")) { // 내가 쓴 글 int m_no =
+	 * ((Member)session.getAttribute("mem")).getM_no(); q.setCategory1("3");
+	 * q.setM_no(m_no); q.setContent(searchSelectContent); System.out.println(q); }
+	 * 
+	 * if(q.getCategory1().equals("Category4")) { // 작성자 q.setCategory1("4");
+	 * q.setContent(searchSelectContent); }
+	 * 
+	 * 
+	 * 
+	 * int listCount = qService.searchListCount(q);
+	 * 
+	 * int pageLimit = 5; int boardLimit = 10;
+	 * 
+	 * PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, boardLimit); //
+	 * PageInfo pi = new PageInfo(currentPage, listCount, 5, 10); 이렇게 바로써도됨
+	 * 
+	 * ArrayList<Question> qList = qService.selectQuestionList(pi, q);
+	 * 
+	 * // lecture 객체 가져오자~ Lecture lec = qService.getLecture(lec_no);
+	 * 
+	 * 
+	 * // 데이터값, 뷰 지정 mv.addObject("pi", pi).addObject("qList",
+	 * qList).setViewName("question/question");
+	 * 
+	 * 
+	 * return mv; }
+	 */
+
+	@RequestMapping("question.qu")
+	public ModelAndView questionList(ModelAndView mv, HttpSession session) {
+
+		// 세션에 담아둔 Lecture에 lec_no가지고오자
+		int lec_no = ((Lecture) session.getAttribute("lec")).getLec_no();
+
+		ArrayList<Question> qList = qService.selecttest(lec_no);
+		// lecture 객체 가져오자~
+
+		// 데이터값, 뷰 지정
+		mv.addObject("qList", qList).setViewName("question/question");
+
+		return mv;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "questionList2.aj", produces = "application/json; charset=UTF-8")
+	public String questionList2aj(ModelAndView mv, HttpSession session) {
+
+		// 세션에 담아둔 Lecture에 lec_no가지고오자
+		int lec_no = ((Lecture) session.getAttribute("lec")).getLec_no();
+
+		ArrayList<Question> qList = qService.selecttest(lec_no);
+		Gson gson = new GsonBuilder().create();
+		return gson.toJson(qList);
+	}
+
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value="questionList3.aj",
+	 * produces="application/json; charset=UTF-8") public String
+	 * questionList3aj(ModelAndView mv, String title, HttpSession session) {
+	 * 
+	 * // 세션에 담아둔 Lecture에 lec_no가지고오자 int lec_no =
+	 * ((Lecture)session.getAttribute("lec")).getLec_no();
+	 * 
+	 * ArrayList<Question> qList = qService.selecttest(lec_no); Gson gson=new
+	 * GsonBuilder().create(); return gson.toJson(qList); }
+	 */
+
 	/*
 	 * @ResponseBody
 	 * 
@@ -535,50 +524,46 @@ public class QController {
 	 * HashMap(); map.put("pi", pi); map.put("list", list); return gson.toJson(map);
 	 * }
 	 */
-		
-		
-		@ResponseBody
-		@RequestMapping(value="questionList3.aj", produces="application/json; charset=UTF-8")
-		 public String qsearchSelect(Question q, String searchSelectContent,  String Category1, HttpSession session) {
-			 
-			//System.out.println("ddd0 :"+Category1);
-			 
-			 int lec_no = ((Lecture)session.getAttribute("lec")).getLec_no();
-			 
-			 q.setLec_no(lec_no);
-			 
-			 q.setCategory1(Category1);
-			 
-			 if(q.getCategory1().equals("Category1")) { // 제목
-				 	q.setCategory1("1");
-				 	q.setTitle(searchSelectContent);
-			 }
-			 
-			 if(q.getCategory1().equals("Category2")) { // 내용
-					q.setCategory1("2");
-					q.setContent(searchSelectContent);
-			 }
-			 
-			 if(q.getCategory1().equals("Category3")) { // 내가 쓴 글 int m_no =
-				 int m_no = ((Member)session.getAttribute("mem")).getM_no();
-				 q.setCategory1("3");
-				 q.setM_no(m_no);
-				 q.setTitle(searchSelectContent); 
-			 }
-			 
-			 if(q.getCategory1().equals("Category4")) { // 작성자
-				 	q.setCategory1("4");
-				 	q.setName(searchSelectContent);
-			 }
-			 
-			 ArrayList<Question> qList = qService.selectQuestionList(q);
-			 
-			 Gson gson=new GsonBuilder().create();
-			 return gson.toJson(qList);
-			 
-		 }
 
+	@ResponseBody
+	@RequestMapping(value = "questionList3.aj", produces = "application/json; charset=UTF-8")
+	public String qsearchSelect(Question q, String searchSelectContent, String Category1, HttpSession session) {
 
+		// System.out.println("ddd0 :"+Category1);
 
+		int lec_no = ((Lecture) session.getAttribute("lec")).getLec_no();
+
+		q.setLec_no(lec_no);
+
+		q.setCategory1(Category1);
+
+		if (q.getCategory1().equals("Category1")) { // 제목
+			q.setCategory1("1");
+			q.setTitle(searchSelectContent);
+		}
+
+		if (q.getCategory1().equals("Category2")) { // 내용
+			q.setCategory1("2");
+			q.setContent(searchSelectContent);
+		}
+
+		if (q.getCategory1().equals("Category3")) { // 내가 쓴 글 int m_no =
+			int m_no = ((Member) session.getAttribute("mem")).getM_no();
+			q.setCategory1("3");
+			q.setM_no(m_no);
+			q.setTitle(searchSelectContent);
+		}
+
+		if (q.getCategory1().equals("Category4")) { // 작성자
+			q.setCategory1("4");
+			q.setName(searchSelectContent);
+		}
+
+		ArrayList<Question> qList = qService.selectQuestionList(q);
+
+		Gson gson = new GsonBuilder().create();
+		return gson.toJson(qList);
+
+	}
 
 }

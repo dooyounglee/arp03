@@ -145,10 +145,4 @@ public class QDao {
 		ArrayList<Question> qList = (ArrayList)sqlSession.selectList("questionMapper.selectQuestionSearchList", q);
 		return qList;
 	}
-
-	/*
-	 * public int selectQ(QFile qf) { return
-	 * sqlSession.selectOne("questionMapper.selectQ", qf); }
-	 */
-	
 }
