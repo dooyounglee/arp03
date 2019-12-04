@@ -81,33 +81,6 @@
                 <!-- Row -->
                 <div class="row">
                     <!-- Column -->
-                    <div class="col-lg-12 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="d-flex flex-wrap">
-                                            <div>
-                                                <h1 class="card-title">
-                                                	<c:if test="${empty mem}">
-                                                	로그인 해주세요.
-                                                	</c:if>
-                                                	<c:if test="${!empty mem}">
-                                                	${mem.name }님 환영합니다.
-                                                	</c:if>
-                                                </h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Row -->
-                <!-- Row -->
-                <div class="row">
-                    <!-- Column -->
                     <div class="col-lg-6 col-md-6">
                         <div class="card">
                             <div class="card-body">
@@ -135,22 +108,27 @@
                             <div class="card-body">
                                 <h3 class="card-title">자유게시판</h3>
                                 <a class="btn btn-success float-right" href="blist.do">더보기</a>
-                                <table class="table table-hover">
-                                	<thead>
-                                		<tr>
-		                                	<th>title</th>
-		                                	<th>writer</th>
-	                                	</tr>
-                                	</thead>
-                                	<tbody>
-                                		<c:forEach var="b" begin="0" end="4" items="${blist }">
-                                			<tr>
-			                                	<td><a href="bdetail.do?b_no=${ b.b_no }">${ b.title } <b>[${ b.rcount }]</b></a></td>
-			                                	<td>${b.name }</td>
+                                <c:if test="${empty mem}">
+                               	로그인 해주세요.
+                               	</c:if>
+                               	<c:if test="${!empty mem}">
+                               		<table class="table table-hover">
+	                                	<thead>
+	                                		<tr>
+			                                	<th>title</th>
+			                                	<th>writer</th>
 		                                	</tr>
-                                		</c:forEach>
-                                	</tbody>
-                                </table>
+	                                	</thead>
+	                                	<tbody>
+	                                		<c:forEach var="b" begin="0" end="4" items="${blist }">
+	                                			<tr>
+				                                	<td><a href="bdetail.do?b_no=${ b.b_no }">${ b.title } <b>[${ b.rcount }]</b></a></td>
+				                                	<td>${b.name }</td>
+			                                	</tr>
+	                                		</c:forEach>
+	                                	</tbody>
+	                                </table>
+                               	</c:if>
                             </div>
                         </div>
                     </div>
