@@ -44,8 +44,13 @@ public class LectureController {
 	@RequestMapping("/main.lec")
 	public ModelAndView lectureList(int lec_no, HttpSession session, ModelAndView mv) {
 		Lecture lec=ls.getLecture(lec_no);
+		List<Exam> elist=ls.getExamList(lec.getLec_no());
+		List<Homework> hwlist=ls.getHomeworkListInLecture(lec.getLec_no());
 		
 		session.setAttribute("lec", lec);
+		
+		mv.addObject("elist", elist);
+		mv.addObject("hwlist",hwlist);
 		mv.setViewName("lecture/main");
 		return mv;
 	}

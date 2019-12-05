@@ -87,7 +87,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">게시판관리</h4>
+                                <h4 class="card-title">숙제세트 만들기</h4>
                                 <form class="form-horizontal mt-4" action="make.hw" method="post" autocomplete=off>
                             	<input type="hidden" name="hw_no" value="${hw_no }">
                                 <div class="form-group">

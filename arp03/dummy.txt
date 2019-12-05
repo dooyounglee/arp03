@@ -537,7 +537,7 @@ insert into question values(seq_question.nextval, 1, 3, '안녕하세요5', '반
 
 
 
--- insertsurvey 더미
+/*-- insertsurvey 더미
 insert into insertsurvey values(100, 2, 21, '1', SYSDATE);
 insert into insertsurvey values(101, 2, 22, '2', SYSDATE);
 insert into insertsurvey values(102, 1, 23, '3', SYSDATE);
@@ -572,7 +572,7 @@ insert into surveyquestion values(1, 100, 7, 1, null, 'N');
 insert into surveyquestion values(2, 100, 7, 2, null, 'N');
 insert into surveyquestion values(3, 100, 7, 3, null, 'N');
 insert into surveyquestion values(1, 101, 2, 33, null, 'N');
-insert into surveyquestion values(2, 101, 2, 3, null, 'N');
+insert into surveyquestion values(2, 101, 2, 3, null, 'N');*/
 
 INSERT INTO PROBLEM VALUES (seq_problem.nextval,'\(ㄱ+ㄴ=\)?','\(ㄱ+ㄴ=ㄷ\)','\(ㄷ\)','ㄱ,ㄴ,ㄷ');
 INSERT INTO PROBLEM VALUES (seq_problem.nextval,'''이차함수 \(f(x)=ax^2+bx+c\)의 \(x=1\)에서의 미분계수를 구하세요.','\(f\)를 \(x\)에 대해서 미분하면 \(f''(x)=2·ax+b\)이므로 \(f''(1)=2·a+b=c\)','\(c\)','a,b,c');
