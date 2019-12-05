@@ -29,7 +29,7 @@
                 <h1 class="text-info">403</h1>
                 <h3 class="text-uppercase">Forbiddon Error!</h3>
                 <p class="text-muted mt-4 mb-4">YOU DON'T HAVE PERMISSION TO ACCESS ON THIS SERVER.</p>
-                <a href="/${cp }" class="btn btn-info btn-rounded waves-effect waves-light mb-5">Back to home</a> </div>
+                <a href="/arp" class="btn btn-info btn-rounded waves-effect waves-light mb-5">Back to home</a> </div>
             <footer class="footer text-center">© 2018 Material Pro.</footer>
         </div>
     </section>

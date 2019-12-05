@@ -86,7 +86,7 @@
                                 <a class="btn btn-success float-left" href="write.qna">문의하기</a><br>
                                 <h6 class="card-subtitle"></code></h6>
                                 <div class="table-responsive">
-                                    <table id="zero_config" class="table">
+                                    <table id="zero_config" class="table hover-table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>

@@ -30,7 +30,7 @@
                 <h3 class="text-uppercase">Page Not Found !</h3>
                 <p class="text-muted m-t-30 m-b-30">${msg }</p>
                 <a href="/arp" class="btn btn-info btn-rounded waves-effect waves-light m-b-40">Back to home</a> </div>
-            <footer class="footer text-center">© 2018 Material Pro.</footer>
+            <footer class="footer text-center">© 2019 KH Math Academy</footer>
         </div>
     </section>
     <!-- ============================================================== -->
