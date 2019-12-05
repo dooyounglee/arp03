@@ -125,7 +125,13 @@
 													ArrayList = data;
 													maxPage = parseInt(Math.ceil(ArrayList.length/ boardLimit));
 													page(1);
-													showPage();
+													var str="";
+													var tbody = $("#dlendud tbody").eq(0);
+													if ( ArrayList.length == 0 ){
+														
+													}else{
+														showPage()
+													};
 												},error : function() {
 													console.log("ajax 통신 실패");
 												}

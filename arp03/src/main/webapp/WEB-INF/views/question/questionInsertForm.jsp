@@ -168,7 +168,6 @@
 				
 				//$('#summernote').summernote('code', currentStr +'<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0"></iframe>');
 				$('#summernote').summernote('pasteHTML', '<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');
-			
 			}
 				var youtu = "https://youtu.be/";
 				var naver = "naver.com/v/";
