@@ -36,7 +36,7 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-12 align-self-center">
-                        <h3 class="text-themecolor mb-0 mt-0">Forms</h3>
+                        <h3 class="text-themecolor mb-0 mt-0">게시글 작성하기</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/arp">Home</a></li>
                             <li class="breadcrumb-item"><a href="lectureList.ad">Lecture List</a></li>
