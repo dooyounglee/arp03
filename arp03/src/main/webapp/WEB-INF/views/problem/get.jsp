@@ -56,7 +56,7 @@
                             <li class="breadcrumb-item active">Problem</li>
                         </ol>
                     </div>
-                    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+                    <!-- <div class="col-md-7 col-12 align-self-center d-none d-md-block">
                         <div class="d-flex mt-2 justify-content-end">
                             <div class="d-flex mr-3 ml-2">
                                 <div class="chart-text mr-2">
@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
@@ -120,7 +120,7 @@
                 <div class="row">
                     <div class="col-12 mt-4">
                         <h4 class="mb-0">Problem ${p.p_no }</h4>
-                        <p class="text-muted mt-0">The building block of a card is the <code>.card</code> <code>.card-body</code> Use it whenever you need a padded section within a card.</p>
+                        <p class="text-muted mt-0"></p>
                         <div class="card">
                             <div class="card-body collapse show">
                                 <h2 class="card-title">${p.problem }</h2>
@@ -138,7 +138,7 @@
                 <div class="row">
                     <div class="col-12 mt-4">
                         <h4 class="mb-0">학생화면</h4>
-                        <p class="text-muted mt-0">The building block of a card is the <code>.card</code> <code>.card-body</code> Use it whenever you need a padded section within a card.</p>
+                        <p class="text-muted mt-0"></p>
                         <div class="card">
                             <div class="card-body collapse show">
                                 <h4 class="card-title">${ranp.problem }</h4>

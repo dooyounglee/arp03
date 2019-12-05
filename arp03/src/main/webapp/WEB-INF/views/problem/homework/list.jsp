@@ -46,7 +46,7 @@
                             <li class="breadcrumb-item active">Homework</li>
                         </ol>
                     </div>
-                    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+                    <!-- <div class="col-md-7 col-12 align-self-center d-none d-md-block">
                         <div class="d-flex mt-2 justify-content-end">
                             <div class="d-flex mr-3 ml-2">
                                 <div class="chart-text mr-2">
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
