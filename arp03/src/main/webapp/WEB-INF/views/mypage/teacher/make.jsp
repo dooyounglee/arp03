@@ -89,8 +89,8 @@
                             <div class="card-body">
                                 <div class="d-md-flex no-block align-items-center">
                                     <div>
-                                        <h4 class="card-title">Default Basic Forms</h4>
-                                        <h6 class="card-subtitle"> All bootstrap element classies </h6>
+                                        <h4 class="card-title">강의 신청</h4>
+                                        <h6 class="card-subtitle">관리자 허가 후 이용가능합니다.</h6>
                                     </div>
                                 </div>
                                 <form class="form" action="make.lec" method="post" autocomplete=off>

@@ -82,8 +82,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">문의내용</h4>
-                                <h6 class="card-subtitle">Just add <code>form-material</code> class to the form that's
-                                    it.</h6>
+                                <h6 class="card-subtitle"></h6>
                                 
                                     <div class="form-group">
                                         <label>제목</label>

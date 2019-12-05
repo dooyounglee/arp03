@@ -82,8 +82,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">문의하기</h4>
-                                <h6 class="card-subtitle">Just add <code>form-material</code> class to the form that's
-                                    it.</h6>
+                                <h6 class="card-subtitle"></h6>
                                 <form id="qnaForm" class="form-material mt-4" action="write.qna" method="post" autocomplete=off>
                                     <div class="form-group">
                                         <label>제목</label>

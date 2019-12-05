@@ -81,8 +81,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">신청리스트</h4><a class="btn btn-primary float-right" href="make.lec">강좌 만들기</a>
-                                <h6 class="card-subtitle">Add class <code>.table</code></h6>
+                                <h4 class="card-title">신청리스트</h4><a class="btn btn-primary float-right" href="make.lec">강의 신청</a>
+                                <h6 class="card-subtitle"></h6>
                                 <div class="table-responsive">
                                     <table class="table table-hover">
                                         <thead>
