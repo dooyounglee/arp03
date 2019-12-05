@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-© 2019 Material Pro Admin by wrappixel.com
+© 2019 KH Math Academy by 6th dwarf
 
 <script>
 	var ws_count = new WebSocket("ws://${pageContext.request.serverName}:${pageContext.request.serverPort}/${cp}/count/websocket");
