@@ -9,11 +9,11 @@
 </head>
 <style>
 
-ul,li{
+/* ul,li{
 
 display:inline;
 
-}
+} */
 
 </style>
 <body>
@@ -148,12 +148,12 @@ display:inline;
 								</c:if>
 								<h2 align="center">FAQ 입니다</h2>                                    
                 <nav align="center">
-				<ul align="center">
-					<li><a href="flist.ad" class="btn waves-effect waves-light btn-rounded btn-outline-secondary">전체</a></li>
-					<li><a href="fcategory.ad?category=수강"  class="btn waves-effect waves-light btn-rounded btn-outline-danger">수강</a></li>
-					<li><a href="fcategory.ad?category=로그인" class="btn waves-effect waves-light btn-rounded btn-outline-warning">로그인</a></li>
-					<li><a href="fcategory.ad?category=홈페이지" class="btn waves-effect waves-light btn-rounded btn-outline-info">홈페이지</a></li>
-					<li><a href="fcategory.ad?category=기타" class="btn waves-effect waves-light btn-rounded btn-outline-primary">기타</a></li>
+				<ul align="center" >
+					<a href="flist.ad" class="btn waves-effect waves-light btn-rounded btn-outline-secondary">전체</a>
+					<a href="fcategory.ad?category=수강"  class="btn waves-effect waves-light btn-rounded btn-outline-danger">수강</a>
+					<a href="fcategory.ad?category=로그인" class="btn waves-effect waves-light btn-rounded btn-outline-warning">로그인</a>
+					<a href="fcategory.ad?category=홈페이지" class="btn waves-effect waves-light btn-rounded btn-outline-info">홈페이지</a>
+					<a href="fcategory.ad?category=기타" class="btn waves-effect waves-light btn-rounded btn-outline-primary">기타</a>
 				</ul>
 				</nav><br><br>                                         
                                          <table class="table color-table info-table">

@@ -47,7 +47,8 @@
 	
 	<select id="getBoardListForMain" resultType="Board">
 		select b.*,m.name from board b, member m
-		where b.status='Y' and b.m_no=m.m_no
+		where b.status='Y' and b.m_no=m.m_no and ca_no =1
+		order by 1 desc
 	</select>
 	<select id="getNoticeListForMain" resultType="Notice">
 		select * from notice
