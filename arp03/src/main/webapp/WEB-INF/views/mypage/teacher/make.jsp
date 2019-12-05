@@ -182,8 +182,8 @@
                             <div class="card-body">
                                 <div class="d-md-flex no-block align-items-center">
                                     <div>
-                                        <h4 class="card-title">Default Basic Forms</h4>
-                                        <h6 class="card-subtitle"> All bootstrap element classies </h6>
+                                        <h4 class="card-title">날짜</h4>
+                                        <h6 class="card-subtitle">  </h6>
                                     </div>
                                 </div>
 								<table style="text-align:center;float:left;">

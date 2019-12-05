@@ -1,0 +1,100 @@
+
+DROP TABLE BoardFile;
+DROP TABLE BReply;
+DROP TABLE Board;
+DROP TABLE BCategory;
+
+
+CREATE TABLE  Board  (
+	 b_no 	number		NOT NULL,
+	 m_no 	Number		NOT NULL,
+	 ca_no 	Number	DEFAULT 1	NOT NULL,
+	 title 	varchar2(1000)		NOT NULL,
+	 content 	varchar2(4000)		NOT NULL,
+	 regdate 	date	DEFAULT sysdate	NOT NULL,
+	 udpate_date 	date	DEFAULT sysdate	NOT NULL,
+	 vcount 	number	DEFAULT 0	NOT NULL,
+	 status 	varchar2(10)	DEFAULT 'Y'	NOT NULL,
+	 dcount 	Number	DEFAULT 0	NULL,
+	 rcount 	Number	DEFAULT 0	NULL
+);
+
+CREATE TABLE  BReply  (
+	 r_no 	number		NOT NULL,
+	 b_no2 	number		NOT NULL,
+	 m_no 	Number		NOT NULL,
+	 content 	varchar2(4000)		NULL,
+	 regdate 	date	DEFAULT sysdate	NOT NULL,
+	 udpate_date 	date	DEFAULT sysdate	NULL,
+	 status 	varchar2(3)	DEFAULT 'Y'	NOT NULL,
+	 depth 	number	DEFAULT 1	NOT NULL,
+	 parent 	Number		NULL
+);
+
+CREATE TABLE  BoardFile  (
+	 Key 	number		NOT NULL,
+	 b_no 	number		NOT NULL,
+	 original_filename 	varchar(30)		NOT NULL,
+	 rename_filename 	varchar(30)		NOT NULL
+);
+
+
+CREATE TABLE  BCategory  (
+	 ca_no 	Number	DEFAULT 1	NOT NULL,
+	 ca_name 	varchar2(20)	DEFAULT '¿œπ›'	NOT NULL
+);
+
+
+ALTER TABLE  Board  ADD CONSTRAINT  PK_BOARD  PRIMARY KEY (
+	 b_no 
+);
+
+ALTER TABLE  BReply  ADD CONSTRAINT  PK_BREPLY  PRIMARY KEY (
+	 r_no 
+);
+
+ALTER TABLE  BoardFile  ADD CONSTRAINT  PK_BOARDFILE  PRIMARY KEY (
+	 Key 
+);
+
+ALTER TABLE  BCategory  ADD CONSTRAINT  PK_BCATEGORY  PRIMARY KEY (
+	 ca_no 
+);
+
+ALTER TABLE  Board  ADD CONSTRAINT  FK_Member_TO_Board_1  FOREIGN KEY (
+	 m_no 
+)
+REFERENCES  Member  (
+	 m_no 
+);
+
+ALTER TABLE  Board  ADD CONSTRAINT  FK_BCategory_TO_Board_1  FOREIGN KEY (
+	 ca_no 
+)
+REFERENCES  BCategory  (
+	 ca_no 
+);
+
+ALTER TABLE  BReply  ADD CONSTRAINT  FK_Board_TO_BReply_1  FOREIGN KEY (
+	 b_no2 
+)
+REFERENCES  Board  (
+	 b_no 
+);
+
+ALTER TABLE  BReply  ADD CONSTRAINT  FK_Member_TO_BReply_1  FOREIGN KEY (
+	 m_no 
+)
+REFERENCES  Member  (
+	 m_no 
+);
+
+ALTER TABLE  BoardFile  ADD CONSTRAINT  FK_Board_TO_BoardFile_1  FOREIGN KEY (
+	 b_no 
+)
+REFERENCES  Board  (
+	 b_no 
+);
+
+
+

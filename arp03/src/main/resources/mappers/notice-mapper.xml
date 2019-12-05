@@ -33,7 +33,7 @@ from notice
 <select id="selectList" resultMap="noticeResultSet">
 select *
 from notice
-order by n_no desc
+order by n_no*1 desc
 </select>
 
 <update id="updateCount">
