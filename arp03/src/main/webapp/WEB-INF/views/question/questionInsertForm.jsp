@@ -164,9 +164,12 @@
 	
 			if($(".inputtexturl").val().trim() != ""){
 				
-				var currentStr = $('#summernote').summernote('code');
+				//var currentStr = $('#summernote').summernote('code');
 				
-				$('#summernote').summernote('code', currentStr +'<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0"></iframe>');
+				//$('#summernote').summernote('code', currentStr +'<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0"></iframe>');
+				$('#summernote').summernote('pasteHTML', '<iframe id="youtuberealId" width="560" height="315" src="' + youtubeaaa + '" frameborder="0">');
+			}
+				
 				
 				var youtu = "https://youtu.be/";
 				var naver = "naver.com/v/";
@@ -191,7 +194,6 @@
 				
 				/* 값 비우기 */
 				$(".inputtexturl").val("").focus();
-				};
 		});
 		
 		function upContent(){
