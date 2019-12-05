@@ -63,7 +63,7 @@
                                     		<th><input class="form-control" type="text" name="title" placeholder="제목" required></th>
                                     			<th><p>과목명 : ${lec.title}</p></th>
                                     			
-												<th><p >선생님 : ${mem.name }</p></th>
+												<th><p >작성자 : ${mem.name }</p></th>
 												
 												<th><p >작성 날짜 : ${d }</p></th>
 													
