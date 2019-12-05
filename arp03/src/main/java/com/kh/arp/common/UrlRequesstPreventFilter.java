@@ -48,6 +48,7 @@ public class UrlRequesstPreventFilter implements Filter {
 				!requestURI.equals("/arp/echo/websocket") &&
 				!requestURI.equals("/arp/Echo") &&
 				!requestURI.equals("/arp/websocket") &&
+				!requestURI.equals("/arp/auth.me") &&
 				!requestURI.equals("/arp/") &&
 				requestURI.indexOf("/arp/resources/")==-1) {
 			String referer=hreq.getHeader("Referer");

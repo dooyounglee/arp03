@@ -136,13 +136,16 @@ public class MemberController {
 		System.out.println(mem);
 		
 		if(mem.getId()==null) {//회원가입이면
+			System.out.println("회원가입이니?");
 			mv.addObject("auth", mem);
 			mv.setViewName("member/join");
+			return mv;
 		}else {//비번찾기
+			System.out.println("비번찾기니?");
 			mv.addObject("m", mem);
 			mv.setViewName("member/findPw");
+			return mv;
 		}
-		return mv;
 	}
 	
 	@GetMapping("/myInfo.me")

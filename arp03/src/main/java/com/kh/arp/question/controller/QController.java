@@ -106,12 +106,12 @@ public class QController {
 
 	private String saveFile(MultipartFile file, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
-
+		System.out.println(root);
 		String savePath = root + "/qFileUpload";
-
+		System.out.println(savePath);
 		File folder = new File(savePath);
 
-		if (folder.exists()) {
+		if (!folder.exists()) {
 			folder.mkdirs();
 		}
 
