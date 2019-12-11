@@ -166,8 +166,6 @@
                                         <address>
                                             <c:if test="${mem.id eq 'admin' }">
 												<div align="right"  id="btn">
-												
-												<button onclick="location.href= 'nlist.ad';" align="center" class="btn waves-effect waves-light btn-info">리스트로 돌아가기</button>
 												<a href="nupdateForm.ad?n_no=${ n.n_no }" class="btn waves-effect waves-light btn-success">수정하기</a>
 												<a href="ndelete.ad?n_no=${ n.n_no }" class="btn waves-effect waves-light btn-danger">삭제하기</a>
 												</div>
