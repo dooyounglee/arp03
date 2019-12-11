@@ -189,7 +189,7 @@
 	
 		var arr=[];
 		var arrr=[];
-	
+	/* 
 		$("#howdate").on("change", function(){
 			var start_date = $("#testDatepicker").val()//20190101
 			var yyyy= start_date.substr(0,4)
@@ -226,7 +226,7 @@
 			}
 			
 			
-		})
+		}) */
 	
 	</script>
 	
@@ -338,14 +338,15 @@ $("#submit").click( function(){
 		}
 		tbody.append(str)
 		
-		
-		var title;
+
 		
 		//arr[i]의 날짜에 지정된 예약날짜
 		$('td.real').each(function(index,item){
 			var mm = $('#mm').html(); mm = (mm < 10) ? '0' + mm : mm;
 		    var dd = $(this).data('dd');
 		    dd = (dd < 10) ? '0' + dd : dd;
+		    
+		    // 나의 강의 날짜
 			for(i=0;i<arrr.length;i++){
 				if($('#yyyy').html()+'-'+mm+'-'+dd==arrr[i]){
 					$(this).css('background','blue')
@@ -353,9 +354,6 @@ $("#submit").click( function(){
 
 					$(this).data('exist',true);
 				}
-				
-	
-			
 			}
 			for(i=0;i<arr.length;i++){
 				 if($('#yyyy').html()+'/'+mm+'/'+dd==arr[i]){
@@ -369,13 +367,13 @@ $("#submit").click( function(){
 		//오늘 이전날짜는 회색
 		$('td.real').each(function(index,item){
 			if(yyyy<today_yyyy){
-				$(this).css('background','gray')
+				$(this).css('background','gray').prop('disabled' , true);
 			}else if(yyyy==today_yyyy){
 				if(mm<today_mm){
-					$(this).css('background','gray')
+					$(this).css('background','gray').prop('disabled' , true);
 				}else if(mm==today_mm){
 					if($(this).data('dd')<today_dd){
-						$(this).css('background','gray');
+						$(this).css('background','gray').prop('disabled' , true);
 					}
 				}
 			}
@@ -393,13 +391,6 @@ $("#submit").click( function(){
 		arrr.push("${fn:substring(v.classdate , 0 , 10).split(' ')[0]}")
 	</script>
 </c:forEach> 
-
-	<script>
-	$(function() {
-	    $(document).tooltip();
-	});
-	
-	</script>
 
 
 
