@@ -107,8 +107,8 @@
                                         </div>
                                     </div>    
           						<div class="col-lg-13 col-xlg-7 col-mid-5" style="float:right">                                              
-    <button type="submit" id="submit" style="float:right" class="btn waves-effect waves-light btn-outline-info">등록하기</button>&nbsp;
-	<button type="button" onclick="location.href='vlist.me';" style="float:right" class="btn waves-effect waves-light btn-outline-warning">목록으로</button>
+    <button type="submit" id="submit"  class="btn waves-effect waves-light btn-outline-info">등록하기</button>&nbsp;
+	<button type="button" onclick="location.href='vlist.me';"  class="btn waves-effect waves-light btn-outline-warning">목록으로</button>
                                 </div>
                                     </div>
                                 </div>
@@ -184,20 +184,7 @@
    var jq132 = jQuery.noConflict();
    
    </script>
-   
-   
-   <script>
-   
 
-   
-   
-   
-   
-   </script>
-   
-   
-   
-	
 	<script>
 	
 		var arr=[];
@@ -352,6 +339,8 @@ $("#submit").click( function(){
 		tbody.append(str)
 		
 		
+		var title;
+		
 		//arr[i]의 날짜에 지정된 예약날짜
 		$('td.real').each(function(index,item){
 			var mm = $('#mm').html(); mm = (mm < 10) ? '0' + mm : mm;
@@ -360,8 +349,13 @@ $("#submit").click( function(){
 			for(i=0;i<arrr.length;i++){
 				if($('#yyyy').html()+'-'+mm+'-'+dd==arrr[i]){
 					$(this).css('background','blue')
+				
+
 					$(this).data('exist',true);
 				}
+				
+	
+			
 			}
 			for(i=0;i<arr.length;i++){
 				 if($('#yyyy').html()+'/'+mm+'/'+dd==arr[i]){
@@ -390,11 +384,25 @@ $("#submit").click( function(){
 	}
 	</script>
 
+
+
+
+
  <c:forEach items="${date}" var="v">
 	<script>
 		arrr.push("${fn:substring(v.classdate , 0 , 10).split(' ')[0]}")
 	</script>
 </c:forEach> 
+
+	<script>
+	$(function() {
+	    $(document).tooltip();
+	});
+	
+	</script>
+
+
+
 	<script>
 	//arr채우기
 	//var arrr=[];
@@ -455,7 +463,7 @@ $("#submit").click( function(){
 	    
 	    //listClassdates_arr(arr)
 	    console.log(arr)
-	    $('#dateArea').html('')
+	    $('#dateArea').html('').prop("readonly" , true);
 	    var str=""
 	    for(i=0;i<arr.length;i++){
 	    	str+='<input name="dateArea" class="form-control col-6" value="'+arr[i]+'"><br>';
