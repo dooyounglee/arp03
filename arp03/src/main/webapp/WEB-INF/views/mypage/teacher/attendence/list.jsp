@@ -161,7 +161,7 @@
 														</c:if>
 													</td>
 													</c:forEach>
-													<td class=sum>${sum }/${dlist.size() }</td>
+													<td class=sum></td>
 												</tr>
 											</c:forEach>
                                         </tbody>
@@ -305,12 +305,16 @@
 		var sum_=trs.eq(j).children('td.sum')
 		var sum=0;
 		for(i=1;i<tds.length-1;i++){
-			var n=$(tds).eq(i).children().eq(0).val()
+			var n;
+			if('${mem.typee}'=='s'){
+				n=$(tds).eq(i).text().trim()
+			}else{
+				n=$(tds).eq(i).children().eq(0).val()
+			}
 			if(n=='O')sum++
 		}
 		$(sum_).text(100*sum/+'${dlist.size()}'+'%')
 	}
-		
 	</script>
 	
 	<%-- <jsp:include page="../../../include/footer.jsp"/> --%>

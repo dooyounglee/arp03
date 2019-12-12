@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="col-lg-6 col-xlg-6">
                                         <h5 class="p-2 rounded-title">Lecture</h5>
-										<select id="lecture" class="form-control" size="10">
+										<select id="lecture" class="form-control" size="10" disabled>
 											<option>Not Exist</option>
 										</select>
                                     </div>
@@ -111,17 +111,17 @@
                                 <div class="row">
                                     <div class="col-lg-5 col-xlg-5">
                                         <h5 class="p-2 rounded-title">비수강 학생</h5>
-                                        <select id="other" class="form-control" size="10" multiple>
+                                        <select id="other" class="form-control" size="10" multiple disabled>
 											<option>Not Exist</option>
 										</select>
                                     </div>
                                     <div class="col-lg-2 col-xlg-2" style="text-align:center;margin-top:auto;margin-bottom:auto;">
-										<button onclick="removeStudent()"><i class="fas fa-angle-double-left"></i></button>
-                                        <button onclick="insertStudent()"><i class="fas fa-angle-double-right"></i></button>
+										<button id="remove" onclick="removeStudent()" disabled><i class="fas fa-angle-double-left"></i></button>
+                                        <button id="insert" onclick="insertStudent()" disabled><i class="fas fa-angle-double-right"></i></button>
                                     </div>
                                     <div class="col-lg-5 col-xlg-5">
                                         <h5 class="p-2 rounded-title" id="ingCount">수강 학생</h5>
-                                        <select id="ings" multiple class="form-control" size="10">
+                                        <select id="ings" multiple class="form-control" size="10" disabled>
 											<option>Not Exist</option>
 										</select>
                                     </div>
@@ -320,10 +320,18 @@
 				},
 				dataType:'json',
 				success:function(data){
+					$('#ings').html('<option>Not Exist</option>')
+					$('#other').html('<option>Not Exist</option>')
+					$('#ings').prop('disabled',true)
+					$('#other').prop('disabled',true)
+					$('#remove').prop('disabled',true)
+					$('#insert').prop('disabled',true)
+					
 					$('#lecture').empty()
 					if(data.length>0){
 						for(i=0;i<data.length;i++){
 							$('#lecture').append('<option value="'+data[i].lec_no+'">'+data[i].title+'#'+data[i].lec_no+'</option>')
+							$('#lecture').prop('disabled',false)
 						}
 					}else{
 						$('#lecture').html('<option>Not Exist</option>')
@@ -343,6 +351,10 @@
 				success:function(data){
 					total=data.headcount
 					//alert("total="+total)
+					$('#ings').prop('disabled',false)
+					$('#other').prop('disabled',false)
+					$('#remove').prop('disabled',false)
+					$('#insert').prop('disabled',false)
 				}
 			})
 		}

@@ -349,17 +349,16 @@
 			if(start==""){
 				alert("시작날짜입력해주세요.")
 				return;
-			}else{
-				
+			}else if(limit==""){
+				return;
 			}
 			
 			var week=[];
 			$('input[name="week"]:checked').each(function(){
 				week.push(parseInt($(this).val()))
-				console.log(week)
 			})
 			
-			for(i=0;i<limit;i++){
+			for(i=0;i<limit+holiday.length;i++){
 				for(j=0;j<week.length;j++){
 					if(i==0 && ddd<=week[j]){
 						if(holiday.indexOf(date_add(start, 7*i+week[j]-ddd))==-1){
@@ -423,16 +422,15 @@
 	
 		
 		var str='';
-		var x=0;
-		var y=0;
 		var count=1;
-		for(j=0;j<6;j++){
+		for(j=0;j<6;j++){//달력에서 최대 6줄
 			str+='<tr>'
-			for(i=0;i<7;i++){
+			for(i=0;i<7;i++){//요일별로 7칸
 				if(j==0 && i<ddd_firstday){
 					str+='<td></td>'
 				} else if (count<=mm_lastday){
-					str+='<td class="real" data-dd="'+count+'">'+(count++)+'</td>'		
+					str+='<td class="real" data-dd="'
+						+count+'">'+(count++)+'</td>'
 				}
 			}
 			if(count>mm_lastday)break;
@@ -461,7 +459,7 @@
 		    var dd = $(this).data('dd'); dd = (dd < 10) ? '0' + dd : dd;
 			for(i=0;i<arr.length;i++){
 				if($('#yyyy').html()+'-'+mm+'-'+dd==arr[i]){
-					$(this).css('background','blue').css('cursor','pointer')
+					$(this).css('background','blue').css('cursor','pointer').css('color','white')
 					$(this).data('exist',true);
 				}
 			}
